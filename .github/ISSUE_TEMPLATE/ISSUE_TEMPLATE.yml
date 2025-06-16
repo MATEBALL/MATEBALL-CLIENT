@@ -1,6 +1,6 @@
 name: '💎 Issue Template'
 description: MATEBALL-CLIENT ISSUE TEMPLATE
-title: ''
+title: ':'
 body:
   - type: markdown
     attributes:
