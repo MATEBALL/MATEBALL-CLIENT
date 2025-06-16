@@ -1,0 +1,25 @@
+name: '💎 Issue Template'
+description: MATEBALL-CLIENT ISSUE TEMPLATE
+title: ''
+body:
+  - type: markdown
+    attributes:
+      value: |
+        작성 예시 : "feat: 공통 컴포넌트 구현"
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: 🔨 Issue
+      description: 이슈에 대해 간략하게 작성해주세요
+      placeholder: 설명을 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: todo-description
+    attributes:
+      label: ✅ To-do
+      description: 진행할 작업에 대해 작성해주세요
+      value: |
+        - [ ] To-do
+    validations:
+      required: true
