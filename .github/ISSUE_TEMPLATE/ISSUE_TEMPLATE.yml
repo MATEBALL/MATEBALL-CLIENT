@@ -1,4 +1,4 @@
-name: '💎 Issue Template'
+name: ' Issue Template'
 description: MATEBALL-CLIENT ISSUE TEMPLATE
 title: ':'
 body:
@@ -10,16 +10,8 @@ body:
     id: issue-description
     attributes:
       label: 🔨 Issue
-      description: 이슈에 대해 간략하게 작성해주세요
+      description: 이슈에 대해 설명해주세요
       placeholder: 설명을 적어주세요.
     validations:
       required: true
-  - type: textarea
-    id: todo-description
-    attributes:
-      label: ✅ To-do
-      description: 진행할 작업에 대해 작성해주세요
-      value: |
-        - [ ] To-do
-    validations:
-      required: true
+
