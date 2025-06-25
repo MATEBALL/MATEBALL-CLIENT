@@ -4,16 +4,16 @@ enable:
 
 labels:
   deploy:
-    - '^\[deploy\]'
+    - '^deploy:'
   docs:
-    - '^\[docs\]'
+    - '^docs:'
   feat:
-    - '^\[feat\]'
+    - '^feat:'
   Good Review:
-    - '^\[Good Review\]'
+    - '^Good Review:'
   init:
-    - '^\[init\]'
+    - '^init:'
   refactor:
-    - '^\[refactor\]'
+    - '^refactor:'
   style:
-    - '^\[style\]'
+    - '^style:'
