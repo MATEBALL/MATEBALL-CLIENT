@@ -4,7 +4,7 @@ import Home from '@pages/home/Home';
 
 export const router = createBrowserRouter([
   {
-    path: ROUTES.HOME.path,
+    path: ROUTES.HOME,
     element: <Home />,
   },
 ]);
