@@ -1,0 +1,19 @@
+enable:
+  issues: true
+  prs: true
+
+labels:
+  deploy:
+    - '^\[deploy\]'
+  docs:
+    - '^\[docs\]'
+  feat:
+    - '^\[feat\]'
+  Good Review:
+    - '^\[Good Review\]'
+  init:
+    - '^\[init\]'
+  refactor:
+    - '^\[refactor\]'
+  style:
+    - '^\[style\]'
