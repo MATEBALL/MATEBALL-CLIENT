@@ -1,5 +1,12 @@
+import { RouterProvider } from 'react-router-dom';
+import { router } from '@routes/Router';
+
 const App = () => {
-  return <div>메잇볼</div>;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 };
 
 export default App;
