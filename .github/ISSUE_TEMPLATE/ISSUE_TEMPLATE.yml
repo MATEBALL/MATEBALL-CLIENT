@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        작성 예시 : "feat: 공통 컴포넌트 구현"
+        작성 예시 : "feat: header 공통 컴포넌트를 구현합니다."
   - type: textarea
     id: issue-description
     attributes:
@@ -14,4 +14,3 @@ body:
       placeholder: 설명을 적어주세요.
     validations:
       required: true
-
