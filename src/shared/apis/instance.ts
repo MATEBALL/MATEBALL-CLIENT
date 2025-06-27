@@ -10,6 +10,7 @@ export const instance = axios.create({
   withCredentials: true,
 });
 
+// TODO: interceptor 추후 수정 필요
 instance.interceptors.response.use(
   (response) => {
     // TODO: 명세서 보고 바꾸기
