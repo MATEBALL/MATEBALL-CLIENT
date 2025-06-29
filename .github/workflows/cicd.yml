@@ -8,6 +8,7 @@ on:
   push:
     branches:
 <<<<<<< HEAD
+<<<<<<< HEAD
       - develop
 =======
       - "init/**"
@@ -25,6 +26,9 @@ on:
       - "chore/**"
       - "setting/**"
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+      - develop
+>>>>>>> 470dff0 (chore: sprite 플러그인 빌드 에러 해결(#20))
 
 permissions:
   contents: write
@@ -38,6 +42,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       - name: Setup Pnpm
@@ -71,23 +76,35 @@ jobs:
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
 =======
           node-version: 20
+=======
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+>>>>>>> 470dff0 (chore: sprite 플러그인 빌드 에러 해결(#20))
           cache: 'pnpm'
 
-      - name: Enable and Prepare pnpm via Corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-
       - name: Install dependencies
+<<<<<<< HEAD
 <<<<<<< HEAD
         run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
 >>>>>>> 15a76c5 (chore: 깃헙 액션 위크플로우 수정(#20))
 =======
         run: pnpm install --no-frozen-lockfile
 >>>>>>> 6c0c0a8 (deploy: ci cd workflow 수정(#20))
+=======
+        run: pnpm install --frozen-lockfile
+>>>>>>> 470dff0 (chore: sprite 플러그인 빌드 에러 해결(#20))
 
       - name: Run Build
-        run: pnpm run build
+        run: |
+          echo "🔨 빌드 실행 중..."
+          pnpm run build
 
       - name: Deploy to Cloudflare Pages
         if: success()
@@ -99,6 +116,7 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 <<<<<<< HEAD
+<<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 =======
 
@@ -106,3 +124,6 @@ jobs:
    
       
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
+>>>>>>> 470dff0 (chore: sprite 플러그인 빌드 에러 해결(#20))
