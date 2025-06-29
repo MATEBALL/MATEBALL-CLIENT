@@ -64,7 +64,6 @@ jobs:
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
 =======
           node-version: 20
-          cache: "pnpm"
 
       - name: Install pnpm (fallback)
         run: npm install -g pnpm
