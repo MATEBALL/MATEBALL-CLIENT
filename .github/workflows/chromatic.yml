@@ -28,6 +28,6 @@ jobs:
         run: pnpm install
 
       - name: Publish to Chromatic
-        run: pnpm chromatic --exit-zero-on-changes
+        run: pnpm chromatic --storybook-build-dir=storybook-static --exit-zero-on-changes
         env:
           CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
