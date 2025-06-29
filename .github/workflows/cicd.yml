@@ -75,7 +75,7 @@ jobs:
         if: success()
         run: |
           npx wrangler pages deploy dist \
-            --project-name=your-project-name \
+            --project-name=mateball-client \
             --branch=${{ github.head_ref || github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
