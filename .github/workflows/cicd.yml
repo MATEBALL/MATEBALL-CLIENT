@@ -31,22 +31,19 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-      - name: Install pnpm (fallback)
-        run: npm install -g pnpm
-
-      - name: Enable Corepack (for pnpm)
-        run: corepack enable
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Approve build scripts (esbuild, swc, sharp 등)
-        run: pnpm approve-builds
-
-      - name: Run Build
-        run: |
-          echo "🔨 빌드 실행 중..."
-          pnpm run build
+          - name: Install pnpm
+          run: npm install -g pnpm
+  
+        - name: Install dependencies
+          run: pnpm install --no-frozen-lockfile
+  
+        - name: Approve build scripts (esbuild, swc, sharp 등)
+          run: pnpm approve-builds
+  
+        - name: Run Build
+          run: |
+            echo "🔨 빌드 실행 중..."
+            pnpm run build
 
       - name: Comment on PR (Success)
         if: success() && github.event_name == 'pull_request'
