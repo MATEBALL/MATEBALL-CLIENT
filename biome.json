@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["pages/**/*.ts", "shared/**/*.ts", "pages/**/*.tsx", "shared/**/*.tsx"]
+		"includes": ["src/pages/**/*.{ts,tsx}", "src/shared/**/*.{ts,tsx}"]
 	},
 	"formatter": {
 		"enabled": true,
