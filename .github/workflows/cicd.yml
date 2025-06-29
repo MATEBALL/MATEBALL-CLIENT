@@ -50,34 +50,33 @@ jobs:
           echo "🔨 빌드 실행 중..."
           pnpm run build
 
-          - name: Comment on PR (Success)
-          if: success()
-          uses: actions/github-script@v6
-          with:
-            script: |
-              const prNumber = context.payload.pull_request.number;
-              const commit = context.sha.substring(0, 7);
-              const branch = context.payload.pull_request.head.ref.replace(/\//g, '-');
-        
-              const previewUrl = `https://${commit}.mateball-client.pages.dev`;
-              const branchUrl = `https://${branch}--mateball-client.pages.dev`;
-        
-              const message = [
-                "✅ **빌드에 성공했습니다. Cloudflare Pages로 preview 배포를 시작합니다.**",
-                "",
-                "| 항목 | 정보 |",
-                "|------|------|",
-                `| **Latest commit** | \`${commit}\` |`,
-                `| **Preview URL** | [${previewUrl}](${previewUrl}) |`,
-                `| **Branch Preview URL** | [${branchUrl}](${branchUrl}) |`
-              ].join("\n");
-        
-              await github.rest.issues.createComment({
-                issue_number: prNumber,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: message
-              });
+      - name: Comment on PR (Success)
+        if: success()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const commit = process.env.GITHUB_SHA.slice(0, 7);
+            const branch = context.payload.pull_request.head.ref.replace(/\//g, '-');
+            const previewUrl = `https://${commit}.mateball-client.pages.dev`;
+            const branchUrl = `https://${branch}--mateball-client.pages.dev`;
+
+            const message = [
+              "✅ **빌드에 성공했습니다. Cloudflare Pages로 preview 배포를 시작합니다.**",
+              "",
+              "| 항목 | 정보 |",
+              "|------|------|",
+              `| **Latest commit** | \`${commit}\` |`,
+              `| **Preview URL** | [${previewUrl}](${previewUrl}) |`,
+              `| **Branch Preview URL** | [${branchUrl}](${branchUrl}) |`
+            ].join("\n");
+
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
 
       - name: Comment on PR (Failure)
         if: failure()
