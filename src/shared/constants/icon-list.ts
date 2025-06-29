@@ -30,4 +30,3 @@ export const iconNames = [
 
 export type IconName = (typeof iconNames)[number];
 
-export type IconName = (typeof iconNames)[number];
