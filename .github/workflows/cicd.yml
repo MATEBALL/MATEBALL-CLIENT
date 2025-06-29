@@ -37,10 +37,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: "pnpm"
+
+      - name: Install pnpm (fallback)
+        run: npm install -g pnpm
+
+      - name: Enable Corepack (for pnpm)
+        run: corepack enable
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
 
       - name: Run Build
         run: pnpm run build
