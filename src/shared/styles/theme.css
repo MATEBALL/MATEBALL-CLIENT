@@ -2,121 +2,123 @@
 
 @theme {
   /* Main */
-  main-1000: #0e4fcc;
-  main-900: #1263ff;
-  main-800: #4182ff;
-  main-700: #5992ff;
-  main-600: #71a1ff;
-  main-500: #a6c5ff;
-  main-400: #b8d0ff;
-  main-300: #d0e0ff;
-  main-200: #e7efff;
-  main-100: #e7efff;
+  --main-1000: #0e4fcc;
+  --main-900: #1263ff;
+  --main-800: #4182ff;
+  --main-700: #5992ff;
+  --main-600: #71a1ff;
+  --main-500: #a6c5ff;
+  --main-400: #b8d0ff;
+  --main-300: #d0e0ff;
+  --main-200: #e7efff;
+  --main-100: #e7efff;
 
   /* Sub */
-  sub-1000: #a6cc4b;
-  sub-900: #cfff5e;
-  sub-800: #d9f7f7;
-  sub-700: #ddff8e;
-  sub-600: #e2ff9e;
-  sub-500: #e7ffae;
-  sub-400: #f1ffcf;
-  sub-300: #f5ffdf;
-  sub-200: #faffef;
-  sub-100: #fdfff7;
+  --sub-1000: #a6cc4b;
+  --sub-900: #cfff5e;
+  --sub-800: #d9f7f7;
+  --sub-700: #ddff8e;
+  --sub-600: #e2ff9e;
+  --sub-500: #e7ffae;
+  --sub-400: #f1ffcf;
+  --sub-300: #f5ffdf;
+  --sub-200: #faffef;
+  --sub-100: #fdfff7;
 
   /* Grayscale */
-  gray-black: #1a1a1a;
-  gray-900: #3a3a3b;
-  gray-800: #464748;
-  gray-700: #656667;
-  gray-600: #868789;
-  gray-500: #acadae;
-  gray-400: #cacbcd;
-  gray-300: #e4e4e6;
-  gray-200: #f1f1f3;
-  gray-100: #f6f7f9;
-  gray-white: #ffffff;
+  --gray-black: #1a1a1a;
+  --gray-900: #3a3a3b;
+  --gray-800: #464748;
+  --gray-700: #656667;
+  --gray-600: #868789;
+  --gray-500: #acadae;
+  --gray-400: #cacbcd;
+  --gray-300: #e4e4e6;
+  --gray-200: #f1f1f3;
+  --gray-100: #f6f7f9;
+  --gray-white: #ffffff;
 
   /* Background & Overlay */
-  background: #f6f7f9;
-  overlay: rgba(0, 0, 0, 0.3);
+  --background: #f6f7f9;
+  --overlay: rgba(0, 0, 0, 0.3);
 }
 
-@utility shadow-1 {
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-}
+@layer utilities {
+  /* Shadow */
+  .shadow-1 {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
 
-@utility shadow-2 {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
-}
+  .shadow-2 {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
+  }
 
-@utility back-blur {
-  backdrop-filter: blur(8px);
-  background-color: rgba(0, 0, 0, 0.3);
-}
+  .back-blur {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 
-/* typography */
+  /* Typography */
+  .title_24_sb {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -1px;
+  }
 
-@utility title_24_sb {
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 36px;
-  letter-spacing: -1px;
-}
+  .head_20_sb {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0px;
+  }
 
-@utility head_20_sb {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 30px;
-  letter-spacing: 0px;
-}
+  .head_20_m {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: 0px;
+  }
 
-@utility head_20_m {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 30px;
-  letter-spacing: 0px;
-}
+  .subhead_18_sb {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0px;
+  }
 
-@utility subhead_18_sb {
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: 0px;
-}
+  .body_16_b {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
 
-@utility body_16_b {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0px;
-}
+  .body_16_m {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+  }
 
-@utility body_16_m {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0px;
-}
+  .cap_14_sb {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0px;
+  }
 
-@utility cap_14_sb {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: 0px;
-}
+  .cap_14_m {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: 0px;
+  }
 
-@utility cap_14_m {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
-  letter-spacing: 0px;
-}
-
-@utility cap_12_m {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: 0px;
+  .cap_12_m {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0px;
+  }
 }
