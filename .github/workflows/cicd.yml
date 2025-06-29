@@ -7,7 +7,20 @@ on:
 
   push:
     branches:
+<<<<<<< HEAD
       - develop
+=======
+      - "init/**"
+      - "feat/**"
+      - "refactor/**"
+      - "deploy/**"
+      - "api/**"
+      - "fix/**"
+      - "docs/**"
+      - "style/**"
+      - "chore/**"
+      - "setting/**"
+>>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
 
 permissions:
   contents: write
@@ -21,6 +34,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+<<<<<<< HEAD
       - name: Setup Pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -28,17 +42,28 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
+=======
+      - name: Enable and Prepare pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@8.15.4 --activate
+
+      - name: Setup Node.js & pnpm cache
+        uses: actions/setup-node@v3
+>>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
         with:
           node-version: '20'
           cache: 'pnpm'
 
       - name: Install dependencies
+<<<<<<< HEAD
         run: pnpm install --frozen-lockfile
+=======
+        run: pnpm install --no-frozen-lockfile
+>>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
 
       - name: Run Build
-        run: |
-          echo "🔨 빌드 실행 중..."
-          pnpm run build
+        run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
         if: success()
@@ -49,4 +74,11 @@ jobs:
             --branch=${{ github.head_ref || github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+<<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
+=======
+
+
+   
+      
+>>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
