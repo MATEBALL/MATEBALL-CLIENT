@@ -25,19 +25,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
           cache: "pnpm"
 
-      - name: Enable Corepack
+      - name: Enable Corepack (for pnpm)
         run: corepack enable
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run build/test script
+      - name: Approve build scripts (esbuild, swc, sharp 등)
+        run: pnpm approve-builds
+
+      - name: Run Build
         run: |
           echo "🔨 빌드 실행 중..."
           pnpm run build
@@ -52,7 +55,7 @@ jobs:
               issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `✅ 빌드에 성공했습니다. Cloudflare Pages로 preview 배포합니다.`
+              body: `✅ 빌드에 성공했습니다. Cloudflare Pages로 preview 배포를 시작합니다.`
             });
 
       - name: Comment on PR (Failure)
@@ -65,13 +68,12 @@ jobs:
               issue_number: prNumber,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `❌ 빌드에 실패했습니다.`
+              body: `❌ 빌드에 실패했습니다. 로그를 확인해주세요.`
             });
 
       - name: Deploy to Cloudflare Pages
         if: success()
         run: |
-          pnpm run build
           npx wrangler pages deploy dist \
             --project-name=your-project-name \
             --branch=${{ github.head_ref || github.ref_name }}

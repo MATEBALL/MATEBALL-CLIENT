@@ -7,8 +7,10 @@ export default defineConfig({
 	plugins: [
 		react(),
 		createSvgIconsPlugin({
-			iconDirs: [path.resolve(process.cwd(), "src/shared/assets/svgs/sprites")],
+			iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
 			symbolId: "icon-[name]",
+			inject: "body-last",
+			customDomId: "__svg__icons__dom__",
 		}),
 	],
 });
