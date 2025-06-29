@@ -31,22 +31,22 @@ jobs:
           node-version: 20
           cache: "pnpm"
 
-          - name: Install pnpm
-          run: npm install -g pnpm
-  
-        - name: Install dependencies
-          run: pnpm install --no-frozen-lockfile
-  
-        - name: Approve build scripts (esbuild, swc, sharp 등)
-          run: pnpm approve-builds
-  
-        - name: Run Build
-          run: |
-            echo "🔨 빌드 실행 중..."
-            pnpm run build
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Approve build scripts (esbuild, swc, sharp 등)
+        run: pnpm approve-builds
+
+      - name: Run Build
+        run: |
+          echo "🔨 빌드 실행 중..."
+          pnpm run build
 
       - name: Comment on PR (Success)
-        if: success() && github.event_name == 'pull_request'
+        if: success()
         uses: actions/github-script@v6
         with:
           script: |
@@ -59,7 +59,7 @@ jobs:
             });
 
       - name: Comment on PR (Failure)
-        if: failure() && github.event_name == 'pull_request'
+        if: failure()
         uses: actions/github-script@v6
         with:
           script: |
