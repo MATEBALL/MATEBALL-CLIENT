@@ -2,15 +2,47 @@ language: 'ko-KR'
 early_access: false
 
 reviews:
-  profile: 'chill' # 'chill', 'strict', 'balanced' 등 선택 가능
+  profile: 'balanced'
   request_changes_workflow: false
   high_level_summary: true
   poem: false
   review_status: true
   collapse_walkthrough: false
   auto_review:
-    enabled: true # PR 생성 시 자동 리뷰
-    drafts: false # draft PR은 자동 리뷰하지 않음
+    enabled: true
+    drafts: false
 
 chat:
-  auto_reply: true # PR에 질문하면 자동 응답 (예: 코드 설명해달라고 코멘트 남기면 답함)
+  auto_reply: true
+
+filters:
+  ignore_paths:
+    - 'dist/**'
+    - 'node_modules/**'
+    - 'src/shared/assets/**'
+
+tone_instructions: |
+  당신은 React, TypeScript에 능숙하며, 우리 팀의 코드 스타일과 폴더 구조에 맞게 리뷰를 제공합니다.
+
+  🔧 파일 및 네이밍 규칙
+  - 파일명은 **항상 kebab-case**로 작성해야 하며, camelCase나 PascalCase는 사용하지 않습니다.
+    - ✅ 예: `my-component.tsx`, `use-fetch-data.ts`
+    - ❌ 예: `MyComponent.tsx`, `myComponent.tsx`
+  - 컴포넌트명, 함수명은 **camelCase**로 작성합니다.
+    - ✅ 예: `const useCustomHook = () => {}`
+
+  📁 프로젝트 구조
+  - `pages/`: 라우팅 기반 페이지
+  - `shared/`: 컴포넌트, util, type, api, style, route 등
+
+  🧠 리뷰 중점
+  - 성능: 불필요한 렌더링, 의존성 배열, 메모리 누수 등
+  - 유지보수: 관심사 분리, 재사용성, import 정리
+  - UX: 접근성, 오류 처리, 로딩 핸들링
+
+  피드백은 친절하고 간결하게, 의미 있는 개선에 집중해주세요.
+
+custom_rules:
+  - name: '파일명은 kebab-case여야 합니다'
+    pattern: 'src/.+/(.*[^a-z0-9\\-].*)\\.tsx?$'
+    check: '파일명은 kebab-case로 작성되어야 합니다. 예: `my-component.tsx`'
