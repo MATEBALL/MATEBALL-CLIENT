@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -27,7 +27,20 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build Storybook
+        run: pnpm run build-storybook
+
+      # ✅ 이것만 있으면 따로 CLI 실행 안 해도 됨!
       - name: Publish to Chromatic
-        run: pnpm chromatic --storybook-build-dir=storybook-static --exit-zero-on-changes
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
+          comment: true
+          commentTag: chromatic-preview
+          message: |
+            🔗 Chromatic Storybook 미리보기 링크가 준비되었습니다!
+            🔍 이 PR의 UI 변경 사항을 확인해보세요.
+
         env:
-          CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
