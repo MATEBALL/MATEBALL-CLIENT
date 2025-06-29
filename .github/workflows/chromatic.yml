@@ -6,6 +6,10 @@ on:
       - main
       - develop
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   chromatic:
     name: 📘 Chromatic UI Test ✅
