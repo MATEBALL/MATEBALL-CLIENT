@@ -40,7 +40,7 @@ jobs:
       - name: Run build/test script
         run: |
           echo "🔨 빌드 실행 중..."
-          sh ./build.sh
+          pnpm run build
 
       - name: Comment on PR (Success)
         if: success() && github.event_name == 'pull_request'
