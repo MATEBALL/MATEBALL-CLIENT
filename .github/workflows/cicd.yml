@@ -101,7 +101,6 @@ jobs:
           run_install: false
 =======
           node-version: 20
-          cache: "pnpm"
 
       - name: Install pnpm (fallback)
         run: npm install -g pnpm
