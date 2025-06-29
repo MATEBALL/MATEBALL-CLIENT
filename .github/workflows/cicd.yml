@@ -1,0 +1,79 @@
+name: Build & Deploy
+
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - "feat/**"
+      - "api/**"
+      - "fix/**"
+      - "design/**"
+      - "style/**"
+      - "chore/**"
+      - "setting/**"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run build/test script
+        run: |
+          echo "🔨 빌드 실행 중..."
+          sh ./build.sh
+
+      - name: Comment on PR (Success)
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ 빌드에 성공했습니다. Cloudflare Pages로 preview 배포합니다.`
+            });
+
+      - name: Comment on PR (Failure)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `❌ 빌드에 실패했습니다.`
+            });
+
+      - name: Deploy to Cloudflare Pages
+        if: success()
+        run: |
+          pnpm run build
+          npx wrangler pages deploy dist \
+            --project-name=your-project-name \
+            --branch=${{ github.head_ref || github.ref_name }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
