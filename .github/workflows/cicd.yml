@@ -82,6 +82,7 @@ jobs:
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
         with:
 <<<<<<< HEAD
+<<<<<<< HEAD
           node-version: '20'
           cache: 'pnpm'
 
@@ -98,6 +99,19 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           run_install: false
+=======
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install pnpm (fallback)
+        run: npm install -g pnpm
+
+      - name: Enable Corepack (for pnpm)
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
+>>>>>>> 0af7b6c (chore: 깃헙 액션 위크플로우 수정(#20))
 
 <<<<<<< HEAD
       - name: Set up Node.js
