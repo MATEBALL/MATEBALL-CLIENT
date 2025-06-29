@@ -6,12 +6,8 @@ on:
       - main
       - develop
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
-  storybook-preview:
+  chromatic:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,22 +36,9 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           storybookBuildDir: storybook-static
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    outputs:
-      storybook_url: ${{ steps.chromatic.outputs.storybookUrl }}
-
-  github-comment:
-    needs: storybook-preview
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: PR 코멘트 남기기
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          comment_tag: chromatic-preview
+          comment: true
+          commentTag: chromatic-preview
           message: |
-            🔗 [Chromatic Storybook 미리보기](${{ needs.storybook-preview.outputs.storybook_url }})
+            🔗 [Chromatic Storybook 미리보기](${{ steps.chromatic.outputs.storybookUrl }})
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
