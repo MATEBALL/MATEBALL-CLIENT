@@ -30,8 +30,8 @@ jobs:
       - name: Build Storybook
         run: pnpm run build-storybook
 
-      # ✅ 이것만 있으면 따로 CLI 실행 안 해도 됨!
       - name: Publish to Chromatic
+        id: chromatic
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
@@ -39,8 +39,6 @@ jobs:
           comment: true
           commentTag: chromatic-preview
           message: |
-            🔗 Chromatic Storybook 미리보기 링크가 준비되었습니다!
-            🔍 이 PR의 UI 변경 사항을 확인해보세요.
-
+            🔗 [Chromatic Storybook 미리보기](${{ steps.chromatic.outputs.storybookUrl }})
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
