@@ -102,16 +102,6 @@
     vertical-align: baseline;
   }
 
-  /* body 기본 스타일 */
-  /* body {
-    line-height: 1.5;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    height: 100%;
-    width: 100%;
-  } */
-
   /* 리스트 스타일 제거 */
   ol,
   ul {
