@@ -1,44 +1,44 @@
 @theme {
   /* Main */
-  --main-1000: #0e4fcc;
-  --main-900: #1263ff;
-  --main-800: #4182ff;
-  --main-700: #5992ff;
-  --main-600: #71a1ff;
-  --main-500: #a6c5ff;
-  --main-400: #b8d0ff;
-  --main-300: #d0e0ff;
-  --main-200: #e7efff;
-  --main-100: #e7efff;
+  --color-main-1000: #0e4fcc;
+  --color-main-900: #1263ff;
+  --color-main-800: #4182ff;
+  --color-main-700: #5992ff;
+  --color-main-600: #71a1ff;
+  --color-main-500: #a6c5ff;
+  --color-main-400: #b8d0ff;
+  --color-main-300: #d0e0ff;
+  --color-main-200: #e7efff;
+  --color-main-100: #e7efff;
 
   /* Sub */
-  --sub-1000: #a6cc4b;
-  --sub-900: #cfff5e;
-  --sub-800: #d9f7f7;
-  --sub-700: #ddff8e;
-  --sub-600: #e2ff9e;
-  --sub-500: #e7ffae;
-  --sub-400: #f1ffcf;
-  --sub-300: #f5ffdf;
-  --sub-200: #faffef;
-  --sub-100: #fdfff7;
+  --color-sub-1000: #a6cc4b;
+  --color-sub-900: #cfff5e;
+  --color-sub-800: #d9f7f7;
+  --color-sub-700: #ddff8e;
+  --color-sub-600: #e2ff9e;
+  --color-sub-500: #e7ffae;
+  --color-sub-400: #f1ffcf;
+  --color-sub-300: #f5ffdf;
+  --color-sub-200: #faffef;
+  --color-sub-100: #fdfff7;
 
   /* Grayscale */
-  --gray-black: #1a1a1a;
-  --gray-900: #3a3a3b;
-  --gray-800: #464748;
-  --gray-700: #656667;
-  --gray-600: #868789;
-  --gray-500: #acadae;
-  --gray-400: #cacbcd;
-  --gray-300: #e4e4e6;
-  --gray-200: #f1f1f3;
-  --gray-100: #f6f7f9;
-  --gray-white: #ffffff;
+  --color-gray-black: #1a1a1a;
+  --color-gray-900: #3a3a3b;
+  --color-gray-800: #464748;
+  --color-gray-700: #656667;
+  --color-gray-600: #868789;
+  --color-gray-500: #acadae;
+  --color-gray-400: #cacbcd;
+  --color-gray-300: #e4e4e6;
+  --color-gray-200: #f1f1f3;
+  --color-gray-100: #f6f7f9;
+  --color-gray-white: #ffffff;
 
   /* Background & Overlay */
-  --background: #f6f7f9;
-  --overlay: rgba(0, 0, 0, 0.3);
+  --color-background: #f6f7f9;
+  --color-overlay: rgba(0, 0, 0, 0.3);
 }
 
 @layer utilities {
