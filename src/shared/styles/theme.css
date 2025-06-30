@@ -23,6 +23,11 @@
   --color-sub-200: #faffef;
   --color-sub-100: #fdfff7;
 
+  /* etc */
+  --color-background: #f6f7f9;
+  --color-overlay: rgba(0, 0, 0, 0.3);
+  --color-kakao-brand: #fee500;
+
   /* Grayscale */
   --color-gray-black: #1a1a1a;
   --color-gray-900: #3a3a3b;
@@ -36,9 +41,31 @@
   --color-gray-100: #f6f7f9;
   --color-gray-white: #ffffff;
 
-  /* Background & Overlay */
-  --color-background: #f6f7f9;
-  --color-overlay: rgba(0, 0, 0, 0.3);
+  /* Team */
+  --color-team-ncdinos-background: #fff4d1;
+  --color-team-ncdinos-text: #cc5f00;
+  --color-team-doosan-background: #d6daff;
+  --color-team-doosan-text: #000d9d;
+  --color-team-ktwiz-background: #ffd7d9;
+  --color-team-ktwiz-text: #ed1b24;
+  --color-team-ssglanders-background: #fff2ca;
+  --color-team-ssglanders-text: #d07300;
+  --color-team-kiwoom-background: #ffdbf1;
+  --color-team-kiwoom-text: #eb008f;
+  --color-team-lottegiants-background: #cfdeff;
+  --color-team-lottegiants-text: #092442;
+  --color-team-hanhwaeagles-background: #fff1ea;
+  --color-team-hanhwaeagles-text: #fb4c00;
+  --color-team-lgtwins-background: #ffcbdc;
+  --color-team-lgtwins-text: #c00c5a;
+  --color-team-kiatigers-background: #ffc6d0;
+  --color-team-kiatigers-text: #ea0029;
+  --color-team-samsunglions-background: #cceaff;
+  --color-team-samsunglions-text: #0063b1;
+
+  /* Week */
+  --color-week-red: #ec5d5d;
+  --color-week-blue: #397bff;
 }
 
 @layer utilities {
