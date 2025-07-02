@@ -1,4 +1,4 @@
-import { format, isBefore, startOfDay } from 'date-fns';
+import { format, isBefore, isSameDay, startOfDay } from 'date-fns';
 import { useState } from 'react';
 import { getMonthGrid } from '../../utils/calendar';
 
@@ -25,17 +25,21 @@ const MonthCalendar = () => {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-7 cap_14_m  gap-y-[0.4rem]">
+        <div className="grid grid-cols-7 justify-items-center align-items-center cap_14_m  gap-y-[0.4rem]">
           {days.map((day) => {
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
             const isMonday = day.getDay() === 1;
+            const isSelected = isSameDay(day, value);
 
             return (
               <button
                 key={day.toISOString()}
                 type="button"
                 onClick={() => setValue(day)}
-                className={`px-[1.65rem] py-[1.35rem] ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
+                className={`
+                    w-[4.8rem] h-[4.8rem]
+                    ${isSelected ? 'w-[4rem] h-[4rem] p-[0.4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'}
+                    ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
               >
                 {format(day, 'd')}
               </button>
