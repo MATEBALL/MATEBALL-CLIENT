@@ -1,0 +1,28 @@
+# MATEBALL
+
+### ⚾ 나와 딱 맞는 야구 직관 메이트를 매칭해주는 웹서비스
+
+<br/>
+
+## 👥 TEAM-MATEBALL
+
+| <img src="https://github.com/user-attachments/assets/ab5706ab-4290-4ba5-808b-6b2cbde62746" width="200" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/43450783-111d-4269-868a-c52b5e132598" width="200" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/d2ee2b33-270e-4f85-828d-f9d3d2b2b70e" width="200" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/65a49262-4657-46bd-ad31-7eaaa000519a" width="200" alt="프로필사진">  |
+| :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------:
+|                            <div align = "center"><b>박희선</b></div>                            |                            <div align = "center"><b>김채은</b></div>                            |                            <div align = "center"><b>윤소은</b></div>                            |                             <div align = "center"><b>김예원</b></div>
+|                            [@heesunee](https://github.com/heesunee)                            |                [@1jiwoo27](https://github.com/bongtta)                                 |                       [@jeonghoon11](https://github.com/Dubabbi)                        |                        [@hamxxn](https://github.com/yeeewww)   | 
+
+<br/>
+<br/>
+
+### 🛠 기술스택
+
+| 역할                 | 종류                                                                                                                                                                                                                                                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Library              | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black)                                                                                                                                                                                                                              |
+| Programming Language | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white)                                                                                                                                                                                                               |
+| Styling              | ![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-%231a202c?style=for-the-badge&logo=tailwind-css)                                                                                                                                                                                        |
+| Data Fetching        | ![Tanstack Query](https://img.shields.io/badge/tanstackquery-FF4154.svg?style=for-the-badge&logo=tanstackquery&logoColor=white)   |                                                                                                                                                                                                              |
+| Formatting           | ![Biome](https://img.shields.io/badge/Biome-4B3263?style=for-the-badge&logo=eslint&logoColor=white)  |
+| Package Manager      |  ![Pnpm](https://img.shields.io/badge/Pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)             |
+| Version Control      | ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)                                                                                                                |
+| Deployment           | ![CloudFlare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)                                                                                                                                                                                                                           |
