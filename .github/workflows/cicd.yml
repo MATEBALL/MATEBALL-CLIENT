@@ -73,9 +73,10 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Install pnpm (fallback)
-        run: npm install -g pnpm
-
+      - name: Enable and Prepare pnpm via Corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
 <<<<<<< HEAD
@@ -100,6 +101,7 @@ jobs:
 <<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 =======
+
 
    
       
