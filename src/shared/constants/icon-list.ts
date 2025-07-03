@@ -8,6 +8,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
@@ -17,6 +18,8 @@ export const iconNames = [
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
 =======
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-arrow-left-18',
   'ic-arrow-left-24',
   'ic-arrow-left',
@@ -25,11 +28,14 @@ export const iconNames = [
   'ic-calendar-24',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
 =======
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-calendar',
   'ic-caution',
   'ic-chat-filled',
@@ -40,6 +46,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-footer-logo',
 =======
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
@@ -47,11 +54,14 @@ export const iconNames = [
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
 =======
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -107,11 +117,14 @@ export const iconNames = [
 =======
 =======
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
   'ic-right',
   'ic-x'
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
@@ -130,5 +143,9 @@ export const iconNames = [
 ] as const;
  
 >>>>>>> f0446d3 (fix: pnpm corepack으로 설치(#20))
+=======
+] as const;
+ 
+export type IconName = typeof iconNames[number];
+>>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 
-export type IconName = (typeof iconNames)[number];
