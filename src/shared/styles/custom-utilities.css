@@ -1,51 +1,51 @@
 @layer utilities {
-	/* flex row 방향 */
-	.flex-row {
-		@apply flex flex-row;
-	}
+  /* flex row 방향 */
+  .flex-row {
+    @apply flex flex-row;
+  }
 
-	.flex-row-center {
-		@apply flex flex-row justify-center items-center;
-	}
+  .flex-row-center {
+    @apply flex flex-row justify-center items-center;
+  }
 
-	.flex-row-between {
-		@apply flex flex-row justify-between items-center;
-	}
+  .flex-row-between {
+    @apply flex flex-row justify-between items-center;
+  }
 
-	.flex-row-end {
-		@apply flex flex-row justify-end items-center;
-	}
+  .flex-row-end {
+    @apply flex flex-row justify-end items-center;
+  }
 
-	.flex-row-items-start {
-		@apply flex flex-row items-start;
-	}
+  .flex-row-items-start {
+    @apply flex flex-row items-start;
+  }
 
-	.flex-row-items-end {
-		@apply flex flex-row items-end;
-	}
+  .flex-row-items-end {
+    @apply flex flex-row items-end;
+  }
 
-	/* flex col 방향 */
-	.flex-col {
-		@apply flex flex-col;
-	}
+  /* flex col 방향 */
+  .flex-col {
+    @apply flex flex-col;
+  }
 
-	.flex-col-center {
-		@apply flex flex-col justify-center items-center;
-	}
+  .flex-col-center {
+    @apply flex flex-col justify-center items-center;
+  }
 
-	.flex-col-between {
-		@apply flex flex-col justify-between items-center;
-	}
+  .flex-col-between {
+    @apply flex flex-col justify-between items-center;
+  }
 
-	.flex-col-end {
-		@apply flex flex-col justify-end items-center;
-	}
+  .flex-col-end {
+    @apply flex flex-col justify-end items-center;
+  }
 
-	.flex-col-items-start {
-		@apply flex flex-col items-start;
-	}
+  .flex-col-items-start {
+    @apply flex flex-col items-start;
+  }
 
-	.flex-col-items-end {
-		@apply flex flex-col items-end;
-	}
+  .flex-col-items-end {
+    @apply flex flex-col items-end;
+  }
 }
