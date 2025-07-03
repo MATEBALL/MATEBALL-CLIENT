@@ -11,11 +11,15 @@ on:
       - develop
 =======
       - "init/**"
+      - "init/**"
       - "feat/**"
+      - "refactor/**"
+      - "deploy/**"
       - "refactor/**"
       - "deploy/**"
       - "api/**"
       - "fix/**"
+      - "docs/**"
       - "docs/**"
       - "style/**"
       - "chore/**"
@@ -35,6 +39,7 @@ jobs:
         uses: actions/checkout@v4
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       - name: Setup Pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -48,6 +53,8 @@ jobs:
           corepack enable
           corepack prepare pnpm@8.15.4 --activate
 
+=======
+>>>>>>> 6c0c0a8 (deploy: ci cd workflow 수정(#20))
       - name: Setup Node.js & pnpm cache
         uses: actions/setup-node@v3
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
@@ -64,16 +71,19 @@ jobs:
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
 =======
           node-version: 20
+          cache: 'pnpm'
 
       - name: Install pnpm (fallback)
         run: npm install -g pnpm
 
-      - name: Enable Corepack (for pnpm)
-        run: corepack enable
 
       - name: Install dependencies
+<<<<<<< HEAD
         run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
 >>>>>>> 15a76c5 (chore: 깃헙 액션 위크플로우 수정(#20))
+=======
+        run: pnpm install --no-frozen-lockfile
+>>>>>>> 6c0c0a8 (deploy: ci cd workflow 수정(#20))
 
       - name: Run Build
         run: pnpm run build
@@ -90,7 +100,6 @@ jobs:
 <<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 =======
-
 
    
       
