@@ -7,11 +7,15 @@ on:
   push:
     branches:
       - "init/**"
+      - "init/**"
       - "feat/**"
+      - "refactor/**"
+      - "deploy/**"
       - "refactor/**"
       - "deploy/**"
       - "api/**"
       - "fix/**"
+      - "docs/**"
       - "docs/**"
       - "style/**"
       - "chore/**"
@@ -28,24 +32,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Enable and Prepare pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@8.15.4 --activate
-
       - name: Setup Node.js & pnpm cache
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: 'pnpm'
 
       - name: Install pnpm (fallback)
         run: npm install -g pnpm
 
-      - name: Enable Corepack (for pnpm)
-        run: corepack enable
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run Build
         run: pnpm run build
@@ -59,7 +57,6 @@ jobs:
             --branch=${{ github.head_ref || github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
-
 
    
       
