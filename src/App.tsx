@@ -8,18 +8,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-<<<<<<< HEAD
-      <ReactQueryDevtools initialIsOpen={false} />  
-=======
       <ReactQueryDevtools initialIsOpen={false} />
-      <div>
-			메잇볼
-      <Icon name="ic-home-filled" width={40} height={40} className="text-main-700" />
-      <Icon name="ic-home-filled" size={20} className="text-main-700" />
-      <Icon name="ic-home-filled" rotate={90} className="text-gray-500" />
-
-		</div>
->>>>>>> 37aa21a (chore: 빌드 에러 해결(#20))
     </QueryClientProvider>
   );
 };
