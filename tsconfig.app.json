@@ -1,45 +1,45 @@
 {
-	"compilerOptions": {
-		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-		"target": "ES2020",
-		"useDefineForClassFields": true,
-		"lib": ["ES2020", "DOM", "DOM.Iterable"],
-		"module": "ESNext",
-		"skipLibCheck": true,
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
 
-		/* Bundler mode */
-		"moduleResolution": "bundler",
-		"allowImportingTsExtensions": true,
-		"verbatimModuleSyntax": true,
-		"moduleDetection": "force",
-		"noEmit": true,
-		"jsx": "react-jsx",
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
 
-		/* Linting */
-		"strict": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"erasableSyntaxOnly": true,
-		"noFallthroughCasesInSwitch": true,
-		"noUncheckedSideEffectImports": true,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
 
-		/* path alias */
-		"baseUrl": ".",
-		"paths": {
-			"@pages/*": ["./src/pages/*"],
-			"@api/*": ["./src/shared/api/*"],
-			"@styles/*": ["./src/shared/styles/*"],
-			"@components/*": ["./src/shared/components/*"],
-			"@libs/*": ["./src/shared/libs/*"],
-			"@constants/*": ["./src/shared/constants/*"],
-			"@mocks/*": ["./src/shared/mocks/*"],
-			"@hooks/*": ["./src/shared/hooks/*"],
-			"@types/*": ["./src/shared/types/*"],
-			"@routes/*": ["./src/shared/routes/*"],
-			"@img/*": ["./src/shared/assets/images/*"],
-			"@svg/*": ["./src/shared/assets/svgs/*"],
-			"@/*": ["./src/*"]
-		}
-	},
-	"include": ["src"]
+    /* path alias */
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["./src/pages/*"],
+      "@api/*": ["./src/shared/api/*"],
+      "@styles/*": ["./src/shared/styles/*"],
+      "@components/*": ["./src/shared/components/*"],
+      "@libs/*": ["./src/shared/libs/*"],
+      "@constants/*": ["./src/shared/constants/*"],
+      "@mocks/*": ["./src/shared/mocks/*"],
+      "@hooks/*": ["./src/shared/hooks/*"],
+      "@types/*": ["./src/shared/types/*"],
+      "@routes/*": ["./src/shared/routes/*"],
+      "@img/*": ["./src/shared/assets/images/*"],
+      "@svg/*": ["./src/shared/assets/svgs/*"],
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
 }

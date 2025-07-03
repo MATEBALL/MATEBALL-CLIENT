@@ -6,14 +6,14 @@ import { defineConfig } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-	plugins: [
-		react(),
-		svgSprite({
-			iconDirs: [resolve(__dirname, 'src/shared/assets/svgs')],
-			symbolId: 'icon-[name]',
-			inject: 'body-last',
-		}),
-		tailwindcss(),
-		tsconfigPaths(),
-	],
+  plugins: [
+    react(),
+    svgSprite({
+      iconDirs: [resolve(__dirname, 'src/shared/assets/svgs')],
+      symbolId: 'icon-[name]',
+      inject: 'body-last',
+    }),
+    tailwindcss(),
+    tsconfigPaths(),
+  ],
 });
