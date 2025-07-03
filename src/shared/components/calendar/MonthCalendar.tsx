@@ -32,17 +32,21 @@ const MonthCalendar = () => {
             const isSelected = isSameDay(day, value);
 
             return (
-              <button
+              <div
                 key={day.toISOString()}
-                type="button"
-                onClick={() => setValue(day)}
-                className={`
-                    w-[4.8rem] h-[4.8rem]
-                    ${isSelected ? 'w-[4rem] h-[4rem] p-[0.4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'}
-                    ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
+                className="w-[4.8rem] h-[4.8rem] flex items-center justify-center"
               >
-                {format(day, 'd')}
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setValue(day)}
+                  className={`
+                    flex items-center justify-center
+                    ${isSelected ? 'w-[4rem] h-[4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'}
+                    ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
+                >
+                  {format(day, 'd')}
+                </button>
+              </div>
             );
           })}
         </div>
