@@ -38,9 +38,10 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Install pnpm (fallback)
-        run: npm install -g pnpm
-
+      - name: Enable and Prepare pnpm via Corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -57,6 +58,7 @@ jobs:
             --branch=${{ github.head_ref || github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
 
    
       
