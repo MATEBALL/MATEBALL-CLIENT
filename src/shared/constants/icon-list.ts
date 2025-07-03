@@ -5,6 +5,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
@@ -12,6 +13,8 @@ export const iconNames = [
 =======
 =======
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
+=======
+>>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-arrow-left-18',
   'ic-arrow-left-24',
   'ic-arrow-left',
@@ -19,9 +22,12 @@ export const iconNames = [
   'ic-baseball',
   'ic-calendar-24',
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
+=======
+>>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-calendar',
   'ic-caution',
   'ic-chat-filled',
@@ -31,16 +37,20 @@ export const iconNames = [
   'ic-error-filled',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-footer-logo',
 =======
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
+=======
+>>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   'ic-matchinglist-filled',
@@ -87,11 +97,14 @@ export const iconNames = [
 <<<<<<< HEAD
 >>>>>>> e792cc5 (fix: pnpm corepack으로 설치(#20))
 =======
+=======
+>>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
   'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
   'ic-right',
   'ic-x'
+<<<<<<< HEAD
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 8098b09 (fix: pnpm corepack으로 설치(#20))
@@ -100,6 +113,9 @@ export const iconNames = [
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
 =======
 >>>>>>> 221e908 (init: svg sprite 세팅 (#10))
+=======
+>>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 ] as const;
+ 
+export type IconName = typeof iconNames[number];
 
-export type IconName = (typeof iconNames)[number];

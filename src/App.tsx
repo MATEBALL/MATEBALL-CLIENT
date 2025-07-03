@@ -6,6 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from 'react-router-dom';
 =======
 import queryClient from '@libs/query-client';
+import Icon from './shared/components/Icon';
 
 
 >>>>>>> 0c1f69d (chore: 확인용 코드 삭제(#10))
@@ -15,6 +16,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools initialIsOpen={false} />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -28,6 +30,11 @@ const App = () => {
 >>>>>>> 37aa21a (chore: 빌드 에러 해결(#20))
 =======
 >>>>>>> 0c1f69d (chore: 확인용 코드 삭제(#10))
+=======
+      
+        <Icon name="ic-home-filled"/>
+      
+>>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
     </QueryClientProvider>
   );
 };
