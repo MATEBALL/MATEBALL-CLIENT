@@ -1,6 +1,8 @@
 @import "tailwindcss";
-@import "./theme.css";
-@import "./reset.css";
+@import "@styles/theme.css";
+@import "@styles/reset.css";
+@import "@styles/custom-utilities.css";
+
 
 @layer base {
   :root {
