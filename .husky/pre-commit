@@ -1,0 +1,2 @@
+chmod +x .husky/pre-commit
+biome check .

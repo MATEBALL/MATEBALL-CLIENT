@@ -1,0 +1,98 @@
+name: Build & Deploy
+
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - "feat/**"
+      - "api/**"
+      - "fix/**"
+      - "design/**"
+      - "style/**"
+      - "chore/**"
+      - "setting/**"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Setup pnpm cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Approve build scripts (esbuild, swc, sharp 등)
+        run: pnpm approve-builds
+
+      - name: Run Build
+        run: |
+          echo "🔨 빌드 실행 중..."
+          pnpm run build
+
+      - name: Deploy to Cloudflare Pages
+        if: success()
+        run: |
+          echo "🚀 Cloudflare Pages 배포 시작..."
+          npx wrangler pages deploy dist \
+            --project-name=mateball-client \
+            --branch=${{ github.head_ref || github.ref_name }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Comment on PR (Success Only)
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const branch = context.payload.pull_request.head.ref.replace(/\//g, '-');
+            const branchUrl = `https://${branch}--mateball-client.pages.dev`;
+
+            const message = [
+              "✅ **빌드에 성공했습니다. Cloudflare Pages로 preview 배포가 완료되었습니다.**",
+              "",
+              "| 항목 | 정보 |",
+              "|------|------|",
+              `| **Branch Preview URL** | [${branchUrl}](${branchUrl}) |`
+            ].join("\n");
+
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });
+
+      - name: Comment on PR (Failure)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            await github.rest.issues.createComment({
+              issue_number: prNumber,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `❌ 빌드에 실패했습니다. 로그를 확인해주세요.`
+            })

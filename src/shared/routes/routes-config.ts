@@ -1,0 +1,16 @@
+export const ROUTES = {
+	HOME: '/',
+	LOGIN: '/login',
+	SIGNUP: '/signup',
+	ONBOARDING: '/onboarding',
+	MATCH_CREATE: '/match/create',
+	MATCH_SINGLE: (id = ':matchId') => `/match/single/${id}`,
+	GROUP_MATES: (id = ':matchId') => `/match/groups/mates/${id}`,
+	GROUP_NEW: (id = ':matchId') => `/match/groups/${id}/new`,
+	MATCH: '/match',
+	PROFILE: '/profile',
+	PROFILE_EDIT: '/profile/edit',
+	CHAT: '/chat',
+	CHAT_ROOM: (id = ':matchId') => `/chat/${id}`,
+	RESULT: '/result',
+};
