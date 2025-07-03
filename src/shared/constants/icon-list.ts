@@ -9,6 +9,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
@@ -86,6 +87,8 @@ export const iconNames = [
 >>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
 =======
 >>>>>>> f0446d3 (fix: pnpm corepack으로 설치(#20))
+=======
+>>>>>>> b10c65f (fix: pnpm corepack으로 설치(#20))
 	'ic-arrow-left-18',
 	'ic-arrow-left-24',
 	'ic-arrow-left',
@@ -109,6 +112,7 @@ export const iconNames = [
 	'ic-my-lined',
 	'ic-right',
 	'ic-x',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -148,4 +152,8 @@ export const iconNames = [
  
 export type IconName = typeof iconNames[number];
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+] as const;
+>>>>>>> b10c65f (fix: pnpm corepack으로 설치(#20))
 
+export type IconName = (typeof iconNames)[number];
