@@ -9,6 +9,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools initialIsOpen={false} />
+      
     </QueryClientProvider>
   );
 };
