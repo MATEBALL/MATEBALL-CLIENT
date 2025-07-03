@@ -40,7 +40,6 @@ const MonthCalendar = () => {
                   type="button"
                   onClick={() => setValue(day)}
                   className={`
-                    flex items-center justify-center
                     ${isSelected ? 'w-[4rem] h-[4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'}
                     ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
                 >
