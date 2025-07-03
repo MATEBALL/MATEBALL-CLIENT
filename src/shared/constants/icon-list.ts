@@ -7,6 +7,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
@@ -73,6 +74,8 @@ export const iconNames = [
 >>>>>>> 221e908 (init: svg sprite 세팅 (#10))
 =======
 >>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
+=======
+>>>>>>> f0446d3 (fix: pnpm corepack으로 설치(#20))
 	'ic-arrow-left-18',
 	'ic-arrow-left-24',
 	'ic-arrow-left',
@@ -99,6 +102,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e792cc5 (fix: pnpm corepack으로 설치(#20))
 =======
 =======
@@ -122,5 +126,9 @@ export const iconNames = [
 =======
 >>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
 ] as const;
+=======
+] as const;
+ 
+>>>>>>> f0446d3 (fix: pnpm corepack으로 설치(#20))
 
 export type IconName = (typeof iconNames)[number];
