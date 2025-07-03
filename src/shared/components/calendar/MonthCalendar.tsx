@@ -1,3 +1,4 @@
+import Icon from '@components/Icon';
 import { format, isBefore, isSameDay, startOfDay } from 'date-fns';
 import { useState } from 'react';
 import { getMonthGrid } from '../../utils/calendar';
@@ -8,14 +9,15 @@ const MonthCalendar = () => {
 
   return (
     <div className="flex flex-col gap-[1.2rem]">
-      <div>
-        <div></div>
-        <p className="head_20_sb text-gray-black text-center">{format(value, 'yyyy.MM')}</p>
-        <div></div>
+      {/* TODO: flex 유틸리티 적용 */}
+      <div className="flex flex-row justify-center gap-[2.4rem]">
+        <Icon name="ic-arrow-left-18" width={3.2} height={3.2} className="p-[0.7rem]" />
+        <p className="head_20_sb text-center text-gray-black">{format(value, 'yyyy.MM')}</p>
+        <Icon name="ic-arrow-right-18" width={3.2} height={3.2} className="p-[0.7rem]" />
       </div>
 
       <div>
-        <div className="grid grid-cols-7 text-center cap_14_sb">
+        <div className="cap_14_sb grid grid-cols-7 text-center">
           {['일', '월', '화', '수', '목', '금', '토'].map((d, idx) => (
             <div
               key={d}
@@ -25,7 +27,7 @@ const MonthCalendar = () => {
             </div>
           ))}
         </div>
-        <div className="grid grid-cols-7 justify-items-center align-items-center cap_14_m  gap-y-[0.4rem]">
+        <div className="cap_14_m grid grid-cols-7 justify-items-center gap-y-[0.4rem] align-items-center">
           {days.map((day) => {
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
             const isMonday = day.getDay() === 1;
@@ -34,14 +36,12 @@ const MonthCalendar = () => {
             return (
               <div
                 key={day.toISOString()}
-                className="w-[4.8rem] h-[4.8rem] flex items-center justify-center"
+                className="flex h-[4.8rem] w-[4.8rem] items-center justify-center"
               >
                 <button
                   type="button"
                   onClick={() => setValue(day)}
-                  className={`
-                    ${isSelected ? 'w-[4rem] h-[4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'}
-                    ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
+                  className={`cursor-pointer ${isSelected ? 'h-[4rem] w-[4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'} ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
                 >
                   {format(day, 'd')}
                 </button>
