@@ -16,21 +16,28 @@ on:
 =======
 >>>>>>> 8febeeb (chore: sprite 플러그인 빌드 에러 해결(#20))
       - "init/**"
+      - "init/**"
       - "feat/**"
       - "refactor/**"
       - "deploy/**"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e9f184a (deploy: ci cd workflow 수정(#20))
       - "refactor/**"
       - "deploy/**"
       - "api/**"
       - "fix/**"
       - "docs/**"
       - "docs/**"
+<<<<<<< HEAD
 =======
       - "api/**"
       - "fix/**"
       - "docs/**"
 >>>>>>> 8febeeb (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+>>>>>>> e9f184a (deploy: ci cd workflow 수정(#20))
       - "style/**"
       - "chore/**"
       - "setting/**"
@@ -51,6 +58,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -77,6 +85,8 @@ jobs:
           corepack prepare pnpm@8.15.4 --activate
 
 >>>>>>> 8febeeb (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+>>>>>>> e9f184a (deploy: ci cd workflow 수정(#20))
       - name: Setup Node.js & pnpm cache
         uses: actions/setup-node@v3
 >>>>>>> 46ebf34 (chore: sprite 플러그인 빌드 에러 해결(#20))
@@ -101,16 +111,19 @@ jobs:
           run_install: false
 =======
           node-version: 20
+          cache: 'pnpm'
 
       - name: Install pnpm (fallback)
         run: npm install -g pnpm
 
-      - name: Enable Corepack (for pnpm)
-        run: corepack enable
 
       - name: Install dependencies
+<<<<<<< HEAD
         run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
 >>>>>>> 0af7b6c (chore: 깃헙 액션 위크플로우 수정(#20))
+=======
+        run: pnpm install --no-frozen-lockfile
+>>>>>>> e9f184a (deploy: ci cd workflow 수정(#20))
 
 <<<<<<< HEAD
       - name: Set up Node.js
@@ -151,7 +164,6 @@ jobs:
 <<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 =======
-
 
    
       
