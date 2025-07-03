@@ -22,8 +22,8 @@ const Icon = ({
 	ariaLabel,
 	...rest
 }: IconProps) => {
-	const computedWidth = width ?? size ?? 24;
-	const computedHeight = height ?? size ?? 24;
+	const computedWidth = width ?? size ?? 2.4;
+	const computedHeight = height ?? size ?? 2.4;
 
 	const rotateClass =
 		rotate === 90
@@ -38,8 +38,8 @@ const Icon = ({
 
 	return (
 		<svg
-			width={typeof computedWidth === 'number' ? `${computedWidth}px` : computedWidth}
-			height={typeof computedHeight === 'number' ? `${computedHeight}px` : computedHeight}
+			width={typeof computedWidth === 'number' ? `${computedWidth}rem` : computedWidth}
+			height={typeof computedHeight === 'number' ? `${computedHeight}rem` : computedHeight}
 			className={combinedClass}
 			fill="currentColor"
 			stroke="currentColor"
