@@ -7,23 +7,48 @@
 	},
 	"files": {
 		"ignoreUnknown": true,
-		"includes": ["src/pages/**/*.{ts,tsx}", "src/shared/**/*.{ts,tsx}"]
+		"includes": [
+			"**",
+			"!**/dist/**",
+			"!**/build/**",
+			"!**/.next/**",
+			"!**/storybook-static/**",
+			"!**/.direnv/**"
+		]
 	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab",
-		"lineWidth": 100
+		"lineWidth": 100,
+		"formatWithErrors": true
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"correctness": {
+				"noUnusedImports": "error"
+			},
+			"nursery": {
+				"useSortedClasses": {
+					"fix": "safe",
+					"level": "error",
+					"options": {
+						"functions": ["clsx", "cn", "cva", "tw", "tw.*"]
+					}
+				}
+			},
 			"style": {
-				"useSingleVarDeclarator": "error"
+				"useSingleVarDeclarator": "error",
+				"useSelfClosingElements": "error",
+				"noNonNullAssertion": {
+					"level": "off"
+				}
 			},
 			"suspicious": {
 				"noDoubleEquals": "error",
-				"noEmptyBlockStatements": "warn"
+				"noEmptyBlockStatements": "warn",
+				"noVar": "error"
 			}
 		}
 	},

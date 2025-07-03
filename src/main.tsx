@@ -1,12 +1,10 @@
-
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';;
+import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
-import "./shared/styles/global.css";
+import '@styles/global.css';
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-
+createRoot(document.getElementById('root')!).render(
+	<StrictMode>
+		<App />
+	</StrictMode>,
 );
