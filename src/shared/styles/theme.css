@@ -90,64 +90,56 @@
   /* Typography */
   .title_24_sb {
     font-weight: 600;
-    font-size: 24px;
-    line-height: 36px;
-    letter-spacing: -1px;
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    letter-spacing: -0.1rem;
   }
 
   .head_20_sb {
     font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: 0px;
+    font-size: 2rem;
+    line-height: 3rem;
   }
 
   .head_20_m {
     font-weight: 500;
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: 0px;
+    font-size: 2rem;
+    line-height: 3rem;
   }
 
   .subhead_18_sb {
     font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-    letter-spacing: 0px;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
   }
 
   .body_16_b {
     font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
   }
 
   .body_16_m {
     font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0px;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
   }
 
   .cap_14_sb {
     font-weight: 600;
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0px;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
   }
 
   .cap_14_m {
     font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-    letter-spacing: 0px;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
   }
 
   .cap_12_m {
     font-weight: 500;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0px;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
   }
 }
