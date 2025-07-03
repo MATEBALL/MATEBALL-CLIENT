@@ -34,17 +34,16 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
+      - name: Enable and Prepare pnpm via Corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
       - name: Run Build
-        run: |
-          echo "🔨 빌드 실행 중..."
-          pnpm run build
+        run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
         if: success()
@@ -55,6 +54,7 @@ jobs:
             --branch=${{ github.head_ref || github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
 
    
       
