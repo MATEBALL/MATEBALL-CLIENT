@@ -23,6 +23,7 @@ const App = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <div>
 			메잇볼
@@ -41,6 +42,8 @@ const App = () => {
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
+=======
+>>>>>>> 8e41c7b (chore: 빌드 에러 해결(#20))
     </QueryClientProvider>
   );
 };
