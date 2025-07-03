@@ -29,6 +29,7 @@
       "@pages/*": ["./src/pages/*"],
       "@api/*": ["./src/shared/api/*"],
       "@styles/*": ["./src/shared/styles/*"],
+      "@components/*": ["./src/shared/components/*"],
       "@libs/*": ["./src/shared/libs/*"],
       "@constants/*": ["./src/shared/constants/*"],
       "@mocks/*": ["./src/shared/mocks/*"],

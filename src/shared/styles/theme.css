@@ -23,7 +23,7 @@
   --color-sub-200: #faffef;
   --color-sub-100: #fdfff7;
 
-  /* etc */
+  /* Etc */
   --color-background: #f6f7f9;
   --color-overlay: rgba(0, 0, 0, 0.3);
   --color-kakao-brand: #fee500;
@@ -66,6 +66,10 @@
   /* Week */
   --color-week-red: #ec5d5d;
   --color-week-blue: #397bff;
+
+  /* State */
+  --color-state-success: #00c400;
+  --color-state-error: #ef2626;
 }
 
 @layer utilities {
