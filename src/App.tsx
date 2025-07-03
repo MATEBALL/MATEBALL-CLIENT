@@ -2,13 +2,20 @@ import queryClient from '@libs/query-client';
 import { router } from '@routes/router';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+<<<<<<< HEAD
 import { RouterProvider } from 'react-router-dom';
+=======
+import queryClient from '@libs/query-client';
+
+
+>>>>>>> 0c1f69d (chore: 확인용 코드 삭제(#10))
 
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools initialIsOpen={false} />
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
       <div>
@@ -19,6 +26,8 @@ const App = () => {
 
 		</div>
 >>>>>>> 37aa21a (chore: 빌드 에러 해결(#20))
+=======
+>>>>>>> 0c1f69d (chore: 확인용 코드 삭제(#10))
     </QueryClientProvider>
   );
 };
