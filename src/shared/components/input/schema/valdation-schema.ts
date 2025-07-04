@@ -3,7 +3,7 @@ import {
   NICKNAME_MAX_LENGTH,
   NICKNAME_MIN_LENGTH,
   NICKNAME_REGEX,
-} from '@components/text-field/constants/validation';
+} from '@components/input/constants/validation';
 import { z } from 'zod';
 
 export const NicknameSchema = z
