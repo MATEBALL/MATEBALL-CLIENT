@@ -32,6 +32,11 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
+      - name: Check Cloudflare Token
+        run: npx wrangler whoami
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
