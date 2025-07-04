@@ -12,7 +12,7 @@ interface ChipStateProps {
 
 const ChipState = ({ label, state = 'default', className }: ChipStateProps) => {
   if (state === '매칭률') {
-    const rate = label.replace(/[^0-9]/g, '');
+    const rate = label.match(/\d+/)?.[0] ?? '0';
 
     return (
       <div
