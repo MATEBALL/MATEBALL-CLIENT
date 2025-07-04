@@ -14,22 +14,29 @@ import EditProfile from '@pages/profile/edit-profile/edit-profile';
 import Profile from '@pages/profile/profile';
 import Result from '@pages/result/result';
 import SignUp from '@pages/sign-up/sign-up';
+import Layout from '@routes/layout';
+import { ROUTES } from '@routes/routes-config';
 import { createBrowserRouter } from 'react-router-dom';
-import { ROUTES } from './routes-config';
 
 export const router = createBrowserRouter([
-  { path: ROUTES.HOME, element: <Home /> },
-  { path: ROUTES.LOGIN, element: <Login /> },
-  { path: ROUTES.SIGNUP, element: <SignUp /> },
-  { path: ROUTES.ONBOARDING, element: <Onboarding /> },
-  { path: ROUTES.MATCH_CREATE, element: <Create /> },
-  { path: ROUTES.MATCH_SINGLE(), element: <Single /> },
-  { path: ROUTES.GROUP_MATES(), element: <GroupMates /> },
-  { path: ROUTES.GROUP_NEW(), element: <GroupNew /> },
-  { path: ROUTES.MATCH, element: <Match /> },
-  { path: ROUTES.PROFILE, element: <Profile /> },
-  { path: ROUTES.PROFILE_EDIT, element: <EditProfile /> },
-  { path: ROUTES.CHAT, element: <ChatList /> },
-  { path: ROUTES.CHAT_ROOM(), element: <ChatRoom /> },
-  { path: ROUTES.RESULT, element: <Result /> },
+  {
+    path: ROUTES.LAYOUT,
+    element: <Layout />,
+    children: [
+      { path: ROUTES.HOME, element: <Home /> },
+      { path: ROUTES.LOGIN, element: <Login /> },
+      { path: ROUTES.SIGNUP, element: <SignUp /> },
+      { path: ROUTES.ONBOARDING, element: <Onboarding /> },
+      { path: ROUTES.MATCH_CREATE, element: <Create /> },
+      { path: ROUTES.MATCH_SINGLE(), element: <Single /> },
+      { path: ROUTES.GROUP_MATES(), element: <GroupMates /> },
+      { path: ROUTES.GROUP_NEW(), element: <GroupNew /> },
+      { path: ROUTES.MATCH, element: <Match /> },
+      { path: ROUTES.PROFILE, element: <Profile /> },
+      { path: ROUTES.PROFILE_EDIT, element: <EditProfile /> },
+      { path: ROUTES.CHAT, element: <ChatList /> },
+      { path: ROUTES.CHAT_ROOM(), element: <ChatRoom /> },
+      { path: ROUTES.RESULT, element: <Result /> },
+    ],
+  },
 ]);
