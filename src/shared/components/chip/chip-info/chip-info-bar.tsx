@@ -11,9 +11,9 @@ interface ChipInfoBarProps {
 const ChipInfoBar: FC<ChipInfoBarProps> = ({ awayTeam, homeTeam, location, date }) => {
   return (
     <div className="flex items-center">
-      <ChipInfo iconId="ic-baseball" text={`${awayTeam} vs ${homeTeam}`} />
-      <ChipInfo iconId="ic-location" text={location} />
-      <ChipInfo iconId="ic-calendar" text={date} />
+      <ChipInfo iconName="ic-baseball" text={`${awayTeam} vs ${homeTeam}`} />
+      <ChipInfo iconName="ic-location" text={location} />
+      <ChipInfo iconName="ic-calendar" text={date} />
     </div>
   );
 };
