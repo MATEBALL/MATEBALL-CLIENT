@@ -48,4 +48,4 @@ jobs:
             --project-name=mateball-client \
             --branch=${{ github.head_ref || github.ref_name }}
         env:
-          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
