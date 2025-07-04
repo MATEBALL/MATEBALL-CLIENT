@@ -17,3 +17,5 @@ export const NICKNAME_REGEX = {
   KOREAN_ONLY: /^[가-힣]+$/,
   ENGLISH_ONLY: /^[a-zA-Z]+$/,
 };
+
+export const NICKNAME_PLACEHOLDER = '2-6자 이내의 닉네임을 입력하세요.';
