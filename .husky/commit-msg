@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "[커밋 메시지 규칙 안내]"
+echo "예시: feat: 로그인 기능 추가 (#1)"
+echo ""
+
+pnpm exec commitlint --edit $1
