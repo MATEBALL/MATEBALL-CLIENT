@@ -3,7 +3,6 @@ name: 📘 Chromatic UI Test
 on:
   pull_request:
     branches:
-      - main
       - develop
 
 jobs:
@@ -24,20 +23,13 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies
         run: pnpm install
-
-      - name: Build Storybook
-        run: pnpm run build-storybook
 
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          storybookBuildDir: storybook-static
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
