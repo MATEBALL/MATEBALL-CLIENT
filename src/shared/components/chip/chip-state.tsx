@@ -1,12 +1,12 @@
-import { chipStateVariants } from '@constants/chip-state-variants';
 import { cn } from '@libs/cn';
+import { chipStateVariants } from '@styles/chip-state-variants';
 import type { VariantProps } from 'class-variance-authority';
 
-type ChipStateName = VariantProps<typeof chipStateVariants>['state'];
+type ChipStateType = NonNullable<VariantProps<typeof chipStateVariants>['state']>;
 
 interface ChipStateProps {
 	label: string;
-	state?: ChipStateName;
+	state?: ChipStateType;
 	className?: string;
 }
 
