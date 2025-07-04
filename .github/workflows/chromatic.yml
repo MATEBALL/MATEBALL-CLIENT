@@ -8,7 +8,6 @@ on:
 
 jobs:
   chromatic:
-    name: 📘 Chromatic UI Test ✅
     runs-on: ubuntu-latest
 
     steps:

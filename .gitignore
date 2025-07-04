@@ -26,4 +26,3 @@ dist-ssr
 # Local env files
 .env
 *storybook.log
-storybook-static
