@@ -1,5 +1,6 @@
 import Footer from '@components/footer/footer';
 import { ROUTES } from '@routes/routes-config';
+import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
@@ -8,7 +9,9 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex-col">
       <main className="flex-grow">
-        <Outlet />
+        <Suspense fallback={<div className="py-10 text-center">로딩 중...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
       {location.pathname === ROUTES.HOME && <Footer />}
     </div>
