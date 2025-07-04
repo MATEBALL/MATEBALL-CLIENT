@@ -7,10 +7,13 @@ import { RouterProvider } from 'react-router-dom';
 =======
 import queryClient from '@libs/query-client';
 
+<<<<<<< HEAD
 
 
 >>>>>>> 0c1f69d (chore: 확인용 코드 삭제(#10))
 
+=======
+>>>>>>> 063ed42 (chore: 브랜치 변경 전 커밋(#45))
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
