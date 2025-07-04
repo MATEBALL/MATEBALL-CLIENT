@@ -10,6 +10,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
@@ -21,12 +22,15 @@ export const iconNames = [
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
   'ic-arrow-left-18',
   'ic-arrow-left-24',
   'ic-arrow-left',
   'ic-arrow-right-18',
   'ic-baseball',
   'ic-calendar-24',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -37,6 +41,8 @@ export const iconNames = [
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
   'ic-calendar',
   'ic-caution',
   'ic-chat-filled',
@@ -44,6 +50,7 @@ export const iconNames = [
   'ic-check-filled',
   'ic-clock',
   'ic-error-filled',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,11 +64,14 @@ export const iconNames = [
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -123,10 +133,13 @@ export const iconNames = [
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
   'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
   'ic-right',
+<<<<<<< HEAD
   'ic-x'
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -142,6 +155,9 @@ export const iconNames = [
 >>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
+=======
+  'ic-x',
+>>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
 ] as const;
 =======
 ] as const;
