@@ -4,6 +4,11 @@
 
 <br/>
 
+
+[![web](https://badgen.net/badge/web/mateball-client.pages.dev/blue?icon=vercel)](https://mateball-client.pages.dev/)
+[![docs](https://badgen.net/badge/storybook/chromatic/pink?icon=https://cdn.jsdelivr.net/gh/storybookjs/brand@main/icon/icon-storybook-inverse.svg)](https://github.com/MATEBALL/MATEBALL-CLIENT/actions/workflows/chromatic.yml)
+
+
 ## 👥 TEAM-MATEBALL Web Developers
 
 | <img src="https://github.com/user-attachments/assets/ab5706ab-4290-4ba5-808b-6b2cbde62746" width="200" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/43450783-111d-4269-868a-c52b5e132598" width="200" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/d2ee2b33-270e-4f85-828d-f9d3d2b2b70e" width="200" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/65a49262-4657-46bd-ad31-7eaaa000519a" width="200" alt="프로필사진">  |
