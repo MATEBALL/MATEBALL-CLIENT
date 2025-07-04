@@ -12,7 +12,8 @@
 		"prepare": "husky install",
 		"generate:icons": "tsx src/shared/scripts/generate-icon-list.ts",
 		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"build-storybook": "storybook build",
+    "chromatic": "chromatic"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.81.5",
