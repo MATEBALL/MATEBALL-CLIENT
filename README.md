@@ -328,7 +328,7 @@ const InfoText = () => {
 ## 일정 관리
 
 
-| 작업 리스트업 | 일정 캘린더 |
+| 캘린더 | 작업 보드 |
 |-----------|---------------------|
 |![image](https://github.com/user-attachments/assets/6b0f5e93-34a0-44d3-8671-b18216ea1da4) | ![image](https://github.com/user-attachments/assets/b8711ef3-37aa-43e8-9f9f-ff59212f5ddf)
  |
