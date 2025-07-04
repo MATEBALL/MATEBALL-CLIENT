@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./theme.css";
 @import "./reset.css";
+@import "./custom-utilities.css";
 
 @layer base {
   :root {
@@ -14,8 +15,9 @@
   }
 
   body {
-    font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family:
+      "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      Arial, sans-serif;
     min-width: var(--min-width);
     max-width: var(--max-width);
     margin-left: auto;
