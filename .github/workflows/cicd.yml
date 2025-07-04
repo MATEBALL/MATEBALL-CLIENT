@@ -10,6 +10,7 @@ on:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       - develop
 =======
       - "init/**"
@@ -45,6 +46,9 @@ on:
 =======
       - develop
 >>>>>>> 470dff0 (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+      - develop
+>>>>>>> 1b1672b (fix: ci-cd 파일을 수정합니다 (#43))
 
 permissions:
   contents: write
@@ -58,6 +62,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -111,20 +116,30 @@ jobs:
           run_install: false
 =======
           node-version: 20
+=======
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+>>>>>>> 1b1672b (fix: ci-cd 파일을 수정합니다 (#43))
           cache: 'pnpm'
 
-      - name: Enable and Prepare pnpm via Corepack
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-
       - name: Install dependencies
+<<<<<<< HEAD
 <<<<<<< HEAD
         run: pnpm install --no-frozen-lockfile --no-frozen-lockfile
 >>>>>>> 0af7b6c (chore: 깃헙 액션 위크플로우 수정(#20))
 =======
         run: pnpm install --no-frozen-lockfile
 >>>>>>> e9f184a (deploy: ci cd workflow 수정(#20))
+=======
+        run: pnpm install --frozen-lockfile
+>>>>>>> 1b1672b (fix: ci-cd 파일을 수정합니다 (#43))
 
 <<<<<<< HEAD
       - name: Set up Node.js
@@ -149,7 +164,9 @@ jobs:
 =======
 >>>>>>> 8febeeb (chore: sprite 플러그인 빌드 에러 해결(#20))
       - name: Run Build
-        run: pnpm run build
+        run: |
+          echo "🔨 빌드 실행 중..."
+          pnpm run build
 
       - name: Deploy to Cloudflare Pages
         if: success()
@@ -160,6 +177,7 @@ jobs:
             --branch=${{ github.head_ref || github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -180,3 +198,6 @@ jobs:
 >>>>>>> 64820e7 (fix: ci-cd 파일을 수정합니다 (#43))
 =======
 >>>>>>> 8febeeb (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
+>>>>>>> 1b1672b (fix: ci-cd 파일을 수정합니다 (#43))
