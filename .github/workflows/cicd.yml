@@ -117,6 +117,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 =======
 
@@ -127,3 +128,7 @@ jobs:
 =======
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 >>>>>>> 470dff0 (chore: sprite 플러그인 빌드 에러 해결(#20))
+=======
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
+        
+>>>>>>> 64820e7 (fix: ci-cd 파일을 수정합니다 (#43))
