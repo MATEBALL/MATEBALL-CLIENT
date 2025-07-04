@@ -1,2 +1,3 @@
 chmod +x .husky/pre-commit
-biome check .
+
+pnpm biome format --write .

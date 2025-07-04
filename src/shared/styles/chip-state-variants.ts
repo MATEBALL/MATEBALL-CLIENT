@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const chipStateVariants = cva(
-	'inline-flex items-center px-[0.8rem] py-[0.4rem] cap_12_m rounded-[8px]',
+	'flex items-center px-[0.8rem] py-[0.4rem] cap_12_m rounded-[8px]',
 	{
 		variants: {
 			state: {
