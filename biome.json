@@ -1,47 +1,73 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
-	"vcs": {
-		"enabled": true,
-		"clientKind": "git",
-		"useIgnoreFile": true
-	},
-	"files": {
-		"ignoreUnknown": true,
-		"includes": ["src/pages/**/*.{ts,tsx}", "src/shared/**/*.{ts,tsx}"]
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "tab",
-		"lineWidth": 100
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"style": {
-				"useSingleVarDeclarator": "error"
-			},
-			"suspicious": {
-				"noDoubleEquals": "error",
-				"noEmptyBlockStatements": "warn"
-			}
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "single",
-			"trailingCommas": "all"
-		},
-		"linter": {
-			"enabled": true
-		}
-	},
-	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!**/dist/**",
+      "!**/build/**",
+      "!**/.next/**",
+      "!**/storybook-static/**",
+      "!**/.direnv/**"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "formatWithErrors": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedImports": "error"
+      },
+      "nursery": {
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "functions": ["clsx", "cn", "cva", "tw", "tw.*"]
+          }
+        }
+      },
+      "style": {
+        "useSingleVarDeclarator": "error",
+        "useSelfClosingElements": "error",
+        "noNonNullAssertion": {
+          "level": "off"
+        }
+      },
+      "suspicious": {
+        "noDoubleEquals": "error",
+        "noEmptyBlockStatements": "warn",
+        "noVar": "error"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "trailingCommas": "all"
+    },
+    "linter": {
+      "enabled": true
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
 }
