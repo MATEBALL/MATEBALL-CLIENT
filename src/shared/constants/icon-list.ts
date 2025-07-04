@@ -3,18 +3,24 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
   'ic-baseball',
 =======
+=======
+>>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
   'ic-arrow-left-18',
   'ic-arrow-left-24',
   'ic-arrow-left',
   'ic-arrow-right-18',
   'ic-baseball',
   'ic-calendar-24',
+<<<<<<< HEAD
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
   'ic-calendar',
   'ic-caution',
   'ic-chat-filled',
@@ -23,22 +29,29 @@ export const iconNames = [
   'ic-clock',
   'ic-error-filled',
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-footer-logo',
 =======
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
+=======
+>>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
   'ic-logo',
+=======
+>>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
   'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
+<<<<<<< HEAD
   'ic-right',
   'ic-x'
 =======
@@ -78,6 +91,9 @@ export const iconNames = [
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 8098b09 (fix: pnpm corepack으로 설치(#20))
+=======
+  'ic-x',
+>>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
