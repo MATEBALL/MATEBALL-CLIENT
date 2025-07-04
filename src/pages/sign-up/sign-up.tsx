@@ -5,7 +5,7 @@ const SignUp = () => {
   return (
     <div>
       회원가입페이지
-      <Input placeholder={NICKNAME_PLACEHOLDER} svg="x" />
+      <Input placeholder={NICKNAME_PLACEHOLDER} />
     </div>
   );
 };
