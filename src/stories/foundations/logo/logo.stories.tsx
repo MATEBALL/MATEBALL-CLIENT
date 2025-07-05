@@ -22,6 +22,7 @@ export const Logo: Story = {
     width: 15,
     height: 15,
   },
+  // TODO: 로고 아이콘 적용
   render: (args: LogoArgs) => (
     <div className="flex flex-col items-center space-y-16 p-16">
       <div className="flex flex-col items-center">

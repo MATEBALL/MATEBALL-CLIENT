@@ -20,17 +20,17 @@ export default meta;
 type Story = StoryObj;
 
 const ColorBox = ({ name, value }: { name: string; value: string }) => (
-  <div className="flex w-28 flex-col gap-1">
+  <div className="flex w-36 flex-col gap-1">
     <div className="h-36 w-36" style={{ backgroundColor: value }} />
-    <span className="cap_14_m text-gray-black text-m">{name}</span>
-    <span className="cap_12_m text-gray-600 text-sm">{value}</span>
+    <span className="cap_14_m text-gray-black">{name}</span>
+    <span className="cap_12_m text-gray-600">{value}</span>
   </div>
 );
 
 const ColorGroup = ({ title, colors }: { title: string; colors: Record<string, string> }) => (
   <div className="mb-12">
-    <h3 className="head_20_sb mb-4 text-xl">{title}</h3>
-    <div className="flex flex-wrap gap-12">
+    <h3 className="head_20_sb mb-4">{title}</h3>
+    <div className="flex flex-wrap gap-6">
       {Object.entries(colors).map(([name, value]) => (
         <ColorBox key={name} name={name} value={value} />
       ))}
