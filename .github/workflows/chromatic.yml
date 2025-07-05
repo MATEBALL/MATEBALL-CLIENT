@@ -43,6 +43,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
           body: |
-            ⚾ Storybook 배포가 완료되었습니다!
-            [Chromatic에서 결과 보기](${{ steps.chromatic.outputs.storybookUrl }})
+            MATEBALL-STORYBOOK  
+            [⚾ Storybook 배포가 완료되었습니다!](${{ steps.chromatic.outputs.storybookUrl }})
