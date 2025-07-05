@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import TabItem from '@components/tab/tab-item';
 
-const tabTitles = ['전체', '대기 중', '완료'];
+const tabTitles = ['전체', '대기 중', '완료', '실패'];
 
-export default function TabList() {
+const TabList = () => {
   const [activeTab, setActiveTab] = useState(tabTitles[0]);
 
   return (
@@ -18,4 +18,6 @@ export default function TabList() {
       ))}
     </div>
   );
-}
+};
+
+export default TabList;
