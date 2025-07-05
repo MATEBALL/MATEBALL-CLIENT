@@ -15,7 +15,10 @@ export default meta;
 type Story = StoryObj;
 
 export const Month: Story = {
-  render: () => <MonthCalendar />,
+  render: () => {
+    const [value, setValue] = useState(new Date());
+    return <MonthCalendar value={value} onWeekChange={setValue} onMonthChange={setValue} />;
+  },
 };
 
 export const Week: Story = {

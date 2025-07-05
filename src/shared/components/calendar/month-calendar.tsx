@@ -9,12 +9,17 @@ import {
   startOfMonth,
   subMonths,
 } from 'date-fns';
-import { useState } from 'react';
 import { getMonthGrid } from '../../utils/calendar';
 import { calendarDayVariants } from './calendar-day-variants';
 
-const MonthCalendar = () => {
-  const [value, setValue] = useState(new Date());
+interface MonthCalendarProps {
+  value: Date;
+  onWeekChange: (date: Date) => void;
+  onMonthChange: (newMonth: Date) => void;
+}
+
+const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProps) => {
+  // const [value, setValue] = useState(new Date());
   const days = getMonthGrid(value);
   const startDate = startOfMonth(value);
   const endDate = endOfMonth(value);
@@ -27,7 +32,7 @@ const MonthCalendar = () => {
           width={3.2}
           height={3.2}
           className="cursor-pointer p-[0.7rem]"
-          onClick={() => setValue((prev) => subMonths(prev, 1))}
+          onClick={() => onMonthChange(subMonths(value, 1))}
         />
         <p className="head_20_sb text-center text-gray-black">{format(value, 'yyyy.MM')}</p>
         <Icon
@@ -35,7 +40,7 @@ const MonthCalendar = () => {
           width={3.2}
           height={3.2}
           className="cursor-pointer p-[0.7rem]"
-          onClick={() => setValue((prev) => addMonths(prev, 1))}
+          onClick={() => onMonthChange(addMonths(value, 1))}
         />
       </div>
 
@@ -62,7 +67,7 @@ const MonthCalendar = () => {
               <div key={day.toISOString()} className="flex-row-center">
                 <button
                   type="button"
-                  onClick={() => setValue(day)}
+                  onClick={() => onWeekChange(day)}
                   disabled={isDisabled}
                   className={calendarDayVariants({
                     monthSelected: isSelected,
