@@ -1,5 +1,5 @@
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
-import Icon from '@components/Icon';
+import Icon from '@components/icon/icon';
 import {
   addMonths,
   endOfMonth,
