@@ -1,5 +1,14 @@
 import Icon from '@components/Icon';
-import { endOfMonth, format, isBefore, isSameDay, startOfDay, startOfMonth } from 'date-fns';
+import {
+  addMonths,
+  endOfMonth,
+  format,
+  isBefore,
+  isSameDay,
+  startOfDay,
+  startOfMonth,
+  subMonths,
+} from 'date-fns';
 import { useState } from 'react';
 import { getMonthGrid } from '../../utils/calendar';
 import { calendarDayVariants } from './calendar-day-variants';
@@ -13,9 +22,21 @@ const MonthCalendar = () => {
   return (
     <div className="flex-col gap-[1.2rem]">
       <div className="flex-row-center gap-[2.4rem]">
-        <Icon name="ic-arrow-left-18" width={3.2} height={3.2} className="p-[0.7rem]" />
+        <Icon
+          name="ic-arrow-left-18"
+          width={3.2}
+          height={3.2}
+          className="cursor-pointer p-[0.7rem]"
+          onClick={() => setValue((prev) => subMonths(prev, 1))}
+        />
         <p className="head_20_sb text-center text-gray-black">{format(value, 'yyyy.MM')}</p>
-        <Icon name="ic-arrow-right-18" width={3.2} height={3.2} className="p-[0.7rem]" />
+        <Icon
+          name="ic-arrow-right-18"
+          width={3.2}
+          height={3.2}
+          className="cursor-pointer p-[0.7rem]"
+          onClick={() => setValue((prev) => addMonths(prev, 1))}
+        />
       </div>
 
       <div>
