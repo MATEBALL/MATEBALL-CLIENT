@@ -4,7 +4,7 @@ export const calendarDayVariants = cva('flex items-center justify-center text-ce
   variants: {
     monthSelected: {
       true: 'h-[4rem] w-[4rem] rounded-[8px] bg-main-900 text-gray-white',
-      false: 'px-[1.65rem] py-[1.35rem]',
+      false: '',
     },
     weekSelected: {
       true: 'rounded-[12px] bg-main-900',
@@ -19,8 +19,8 @@ export const calendarDayVariants = cva('flex items-center justify-center text-ce
       false: '',
     },
     size: {
-      month: 'h-[4.8rem] w-[4.8rem]',
-      week: 'w-[3.8rem] py-[0.8rem]',
+      month: 'h-[4.8rem] w-[4.8rem] px-[1.65rem] py-[1.35rem]',
+      week: 'w-[3.8rem] flex-col py-[0.8rem]',
     },
   },
   defaultVariants: {

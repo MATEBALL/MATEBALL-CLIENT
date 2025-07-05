@@ -1,6 +1,8 @@
+import { cn } from '@libs/cn';
 import { format, isSameDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { getWeekDays } from '@/shared/utils/calendar';
+import { calendarDayVariants } from './calendar-day-variants';
 
 interface WeekCalendarProps {
   value: Date;
@@ -11,7 +13,7 @@ const WeekCalendar = ({ value, onChange }: WeekCalendarProps) => {
   const days = getWeekDays(value);
 
   return (
-    <div className="w-full flex-row-between gap-[1.2rem]">
+    <div className="w-full flex-row-between gap-[1.2rem] bg-gray-black">
       {days.map((day) => {
         const isSelected = isSameDay(day, value);
         const isMonday = day.getDay() === 1;
@@ -22,13 +24,21 @@ const WeekCalendar = ({ value, onChange }: WeekCalendarProps) => {
             type="button"
             onClick={() => onChange(day)}
             disabled={isMonday}
-            className={`w-[3.8rem] py-[0.8rem] ${isSelected ? 'rounded-[12px] bg-main-900' : ''} ${isMonday ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+            className={calendarDayVariants({
+              weekSelected: isSelected,
+              disabled: isMonday,
+              isMonday,
+              size: 'week',
+            })}
           >
-            <p className={`body_16_m ${isMonday ? 'text-gray-600' : 'text-gray-white'} `}>
+            <p className={cn('body_16_m', isMonday ? 'text-gray-600' : 'text-gray-white')}>
               {format(day, 'd')}
             </p>
             <p
-              className={`cap_14_m ${isSelected ? 'text-main-400' : isMonday ? 'text-gray-600' : 'text-gray-500'}`}
+              className={cn(
+                'cap_14_m',
+                isSelected ? 'text-main-400' : isMonday ? 'text-gray-600' : 'text-gray-500',
+              )}
             >
               {format(day, 'E', { locale: ko })}
             </p>

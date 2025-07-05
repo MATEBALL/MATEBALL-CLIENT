@@ -44,7 +44,6 @@ const MonthCalendar = () => {
                   className={calendarDayVariants({
                     monthSelected: isSelected,
                     disabled: isDisabled,
-                    isMonday,
                     size: 'month',
                   })}
                 >
