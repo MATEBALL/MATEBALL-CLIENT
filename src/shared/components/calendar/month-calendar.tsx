@@ -41,7 +41,8 @@ const MonthCalendar = () => {
                 <button
                   type="button"
                   onClick={() => setValue(day)}
-                  className={`cursor-pointer ${isSelected ? 'h-[4rem] w-[4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'} ${isPast || isMonday ? 'text-gray-500' : 'text-gray-900'}`}
+                  disabled={isPast || isMonday}
+                  className={` ${isSelected ? 'h-[4rem] w-[4rem] rounded-[8px] bg-main-900 text-gray-white' : 'px-[1.65rem] py-[1.35rem]'} ${isPast || isMonday ? 'cursor-not-allowed text-gray-500' : 'cursor-pointer text-gray-900'}`}
                 >
                   {format(day, 'd')}
                 </button>
