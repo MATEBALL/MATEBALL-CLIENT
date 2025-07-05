@@ -1117,9 +1117,6 @@ packages:
     peerDependencies:
       storybook: ^9.0.14
 
-  '@storybook/addon-backgrounds@9.0.8':
-    resolution: {integrity: sha512-4Vvr4wYHtiZ8UVWdCahK0XEMU4zNgInnNcVQ31YkUg41MVSY+aoZqtNuxOuRbFzUtjL9/aVsbY0Sg9Lp1/EJ4g==}
-
   '@storybook/addon-docs@9.0.14':
     resolution: {integrity: sha512-vjWH2FamLzoPZXitecbhRSUvQDj27q/dDaCKXSwCIwEVziIQrqHBGDmuJPCWoroCkKxLo8s8gwMi6wk5Minaqg==}
     peerDependencies:
@@ -4167,8 +4164,6 @@ snapshots:
       '@storybook/global': 5.0.0
       axe-core: 4.10.3
       storybook: 9.0.14(@testing-library/dom@10.4.0)
-
-  '@storybook/addon-backgrounds@9.0.8': {}
 
   '@storybook/addon-docs@9.0.14(@types/react@19.1.8)(storybook@9.0.14(@testing-library/dom@10.4.0))':
     dependencies:
