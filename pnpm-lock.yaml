@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@storybook/addon-backgrounds':
-        specifier: ^9.0.8
-        version: 9.0.8
       '@tanstack/react-query':
         specifier: ^5.81.5
         version: 5.81.5(react@19.1.0)
@@ -20,6 +17,9 @@ importers:
       axios:
         specifier: ^1.10.0
         version: 1.10.0
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -1018,9 +1018,6 @@ packages:
     peerDependencies:
       storybook: ^9.0.14
 
-  '@storybook/addon-backgrounds@9.0.8':
-    resolution: {integrity: sha512-4Vvr4wYHtiZ8UVWdCahK0XEMU4zNgInnNcVQ31YkUg41MVSY+aoZqtNuxOuRbFzUtjL9/aVsbY0Sg9Lp1/EJ4g==}
-
   '@storybook/addon-docs@9.0.14':
     resolution: {integrity: sha512-vjWH2FamLzoPZXitecbhRSUvQDj27q/dDaCKXSwCIwEVziIQrqHBGDmuJPCWoroCkKxLo8s8gwMi6wk5Minaqg==}
     peerDependencies:
@@ -1660,6 +1657,9 @@ packages:
         optional: true
       '@chromatic-com/playwright':
         optional: true
+
+  class-variance-authority@0.7.1:
+    resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
 
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
@@ -3728,8 +3728,6 @@ snapshots:
       axe-core: 4.10.3
       storybook: 9.0.14(@testing-library/dom@10.4.0)
 
-  '@storybook/addon-backgrounds@9.0.8': {}
-
   '@storybook/addon-docs@9.0.14(@types/react@19.1.8)(storybook@9.0.14(@testing-library/dom@10.4.0))':
     dependencies:
       '@mdx-js/react': 3.1.0(@types/react@19.1.8)(react@19.1.0)
@@ -4403,6 +4401,10 @@ snapshots:
   chromatic@12.2.0: {}
 
   chromatic@13.1.2: {}
+
+  class-variance-authority@0.7.1:
+    dependencies:
+      clsx: 2.1.1
 
   clsx@2.1.1: {}
 

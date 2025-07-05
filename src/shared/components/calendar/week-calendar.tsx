@@ -11,7 +11,7 @@ const WeekCalendar = ({ value, onChange }: WeekCalendarProps) => {
   const days = getWeekDays(value);
 
   return (
-    <div className="flex w-full flex-row justify-between gap-[1.2rem]">
+    <div className="w-full flex-row-between gap-[1.2rem]">
       {days.map((day) => {
         const isSelected = isSameDay(day, value);
         const isMonday = day.getDay() === 1;
