@@ -1,4 +1,4 @@
-import { addDays, endOfMonth, isAfter, startOfMonth, startOfWeek } from 'date-fns';
+import { addDays, endOfMonth, getDay, isAfter, startOfMonth, startOfWeek } from 'date-fns';
 
 export const getWeekDays = (baseDate: Date): Date[] => {
   const start = startOfWeek(baseDate, { weekStartsOn: 0 });
@@ -15,4 +15,9 @@ export const getMonthGrid = (date: Date): Date[] => {
     days.push(d);
   }
   return days;
+};
+
+export const getInitialSelectedDate = (entryDate: Date): Date => {
+  const base = addDays(entryDate, 2);
+  return getDay(base) === 1 ? addDays(base, 1) : base; // 월요일은 비활성화 대상이므로 화요일 선택
 };

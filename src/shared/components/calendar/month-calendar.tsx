@@ -15,11 +15,10 @@ import { calendarDayVariants } from './calendar-day-variants';
 interface MonthCalendarProps {
   value: Date;
   onWeekChange: (date: Date) => void;
-  onMonthChange: (newMonth: Date) => void;
+  onMonthChange: (date: Date) => void;
 }
 
 const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProps) => {
-  // const [value, setValue] = useState(new Date());
   const days = getMonthGrid(value);
   const startDate = startOfMonth(value);
   const endDate = endOfMonth(value);
