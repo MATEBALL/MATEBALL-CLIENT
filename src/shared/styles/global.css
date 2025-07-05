@@ -16,7 +16,7 @@
 
   body {
     font-family:
-      "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+      "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
       Arial, sans-serif;
     min-width: var(--min-width);
     max-width: var(--max-width);
