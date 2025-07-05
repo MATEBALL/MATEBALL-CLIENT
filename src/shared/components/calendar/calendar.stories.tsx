@@ -23,7 +23,15 @@ export const Month: Story = {
 
 export const Week: Story = {
   render: () => {
-    const [value, setValue] = useState(new Date());
-    return <WeekCalendar value={value} onChange={setValue} />;
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const baseWeekDate = new Date();
+
+    return (
+      <WeekCalendar
+        value={selectedDate}
+        baseDate={baseWeekDate}
+        onChange={(date) => setSelectedDate(date)}
+      />
+    );
   },
 };

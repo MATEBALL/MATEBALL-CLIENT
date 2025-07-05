@@ -5,13 +5,13 @@ import { getWeekDays } from '@/shared/utils/calendar';
 import { calendarDayVariants } from './calendar-day-variants';
 
 interface WeekCalendarProps {
+  baseDate: Date;
   value: Date;
   onChange: (date: Date) => void;
-  alignTo?: 'left' | 'center';
 }
 
-const WeekCalendar = ({ value, onChange, alignTo = 'center' }: WeekCalendarProps) => {
-  const days = getWeekDays(value, alignTo);
+const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
+  const days = getWeekDays(baseDate);
 
   return (
     <div className="w-full flex-row-between gap-[1.2rem]">
