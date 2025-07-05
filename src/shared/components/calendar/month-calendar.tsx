@@ -1,5 +1,5 @@
 import Icon from '@components/Icon';
-import { format, isBefore, isSameDay, startOfDay } from 'date-fns';
+import { endOfMonth, format, isBefore, isSameDay, startOfDay, startOfMonth } from 'date-fns';
 import { useState } from 'react';
 import { getMonthGrid } from '../../utils/calendar';
 import { calendarDayVariants } from './calendar-day-variants';
@@ -7,10 +7,11 @@ import { calendarDayVariants } from './calendar-day-variants';
 const MonthCalendar = () => {
   const [value, setValue] = useState(new Date());
   const days = getMonthGrid(value);
+  const startDate = startOfMonth(value);
+  const endDate = endOfMonth(value);
 
   return (
     <div className="flex-col gap-[1.2rem]">
-      {/* TODO: flex 유틸리티 적용 */}
       <div className="flex-row-center gap-[2.4rem]">
         <Icon name="ic-arrow-left-18" width={3.2} height={3.2} className="p-[0.7rem]" />
         <p className="head_20_sb text-center text-gray-black">{format(value, 'yyyy.MM')}</p>
@@ -34,6 +35,7 @@ const MonthCalendar = () => {
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
             const isMonday = day.getDay() === 1;
             const isDisabled = isPast || isMonday;
+            const isNotCurrentMonth = day < startDate || day > endDate;
 
             return (
               <div key={day.toISOString()} className="flex-row-center">
@@ -44,6 +46,7 @@ const MonthCalendar = () => {
                   className={calendarDayVariants({
                     monthSelected: isSelected,
                     disabled: isDisabled,
+                    notCurrentMonth: isNotCurrentMonth,
                     size: 'month',
                   })}
                 >

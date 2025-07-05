@@ -13,7 +13,7 @@ const WeekCalendar = ({ value, onChange }: WeekCalendarProps) => {
   const days = getWeekDays(value);
 
   return (
-    <div className="w-full flex-row-between gap-[1.2rem] bg-gray-black">
+    <div className="w-full flex-row-between gap-[1.2rem]">
       {days.map((day) => {
         const isSelected = isSameDay(day, value);
         const isMonday = day.getDay() === 1;

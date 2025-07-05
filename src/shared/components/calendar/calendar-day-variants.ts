@@ -18,6 +18,10 @@ export const calendarDayVariants = cva('flex items-center justify-center text-ce
       true: 'text-gray-600',
       false: '',
     },
+    notCurrentMonth: {
+      true: 'pointer-events-none opacity-0',
+      false: '',
+    },
     size: {
       month: 'h-[4.8rem] w-[4.8rem] px-[1.65rem] py-[1.35rem]',
       week: 'w-[3.8rem] flex-col py-[0.8rem]',
