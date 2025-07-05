@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import TabItem from '@components/tab/tab-item';
 
-const tabTitles = ['전체', '대기 중', '완료', '실패'];
+interface TabListProps {
+  tabs: string[];
+}
 
-const TabList = () => {
-  const [activeTab, setActiveTab] = useState(tabTitles[0]);
+const TabList = ({ tabs }: TabListProps) => {
+  const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
     <div className="flex gap-[0.8rem]">
-      {tabTitles.map((title) => (
+      {tabs.map((title) => (
         <TabItem
           key={title}
           title={title}
