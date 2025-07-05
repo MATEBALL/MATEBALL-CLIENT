@@ -7,10 +7,11 @@ import { calendarDayVariants } from './calendar-day-variants';
 interface WeekCalendarProps {
   value: Date;
   onChange: (date: Date) => void;
+  alignTo?: 'left' | 'center';
 }
 
-const WeekCalendar = ({ value, onChange }: WeekCalendarProps) => {
-  const days = getWeekDays(value);
+const WeekCalendar = ({ value, onChange, alignTo = 'center' }: WeekCalendarProps) => {
+  const days = getWeekDays(value, alignTo);
 
   return (
     <div className="w-full flex-row-between gap-[1.2rem]">

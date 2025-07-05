@@ -1,14 +1,16 @@
 import { addDays, endOfMonth, getDay, isAfter, startOfMonth, startOfWeek } from 'date-fns';
 
-export const getWeekDays = (baseDate: Date): Date[] => {
-  const start = startOfWeek(baseDate, { weekStartsOn: 0 });
-  return Array.from({ length: 7 }, (_, i) => addDays(start, i));
+export const getWeekDays = (baseDate: Date, alignTo: 'center' | 'left' = 'center'): Date[] => {
+  if (alignTo === 'left') {
+    return Array.from({ length: 7 }, (_, i) => addDays(baseDate, i));
+  }
+
+  return Array.from({ length: 7 }, (_, i) => addDays(baseDate, i - 2));
 };
 
 export const getMonthGrid = (date: Date): Date[] => {
   const start = startOfWeek(startOfMonth(date), { weekStartsOn: 0 });
   const end = addDays(endOfMonth(date), 6 - endOfMonth(date).getDay());
-
   const days = [];
 
   for (let d = start; !isAfter(d, end); d = addDays(d, 1)) {
