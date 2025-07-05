@@ -20,7 +20,7 @@ const WeekCalendar = ({ value, onChange }: WeekCalendarProps) => {
             key={day.toISOString()}
             type="button"
             onClick={() => onChange(day)}
-            className={`w-[3.8rem] py-[0.8rem] ${isSelected ? 'rounded-[12px] bg-main-900' : ''}`}
+            className={`w-[3.8rem] cursor-pointer py-[0.8rem] ${isSelected ? 'rounded-[12px] bg-main-900' : ''}`}
           >
             <p className="body_16_m text-gray-white">{format(day, 'd')}</p>
             <p className={`cap_14_m ${isSelected ? 'text-main-400' : 'text-gray-500'}`}>
