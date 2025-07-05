@@ -1,13 +1,13 @@
 import { cn } from '@libs/cn';
 import type { FC } from 'react';
 
-interface TabItemProps {
+interface FillTabItemProps {
   title: string;
   isActive: boolean;
   onClick: () => void;
 }
 
-const TabItem: FC<TabItemProps> = ({ title, isActive, onClick }) => (
+const FillTabItem: FC<FillTabItemProps> = ({ title, isActive, onClick }) => (
   <button
     type="button"
     data-state={isActive ? 'active' : 'inactive'}
@@ -28,4 +28,4 @@ const TabItem: FC<TabItemProps> = ({ title, isActive, onClick }) => (
   </button>
 );
 
-export default TabItem;
+export default FillTabItem;

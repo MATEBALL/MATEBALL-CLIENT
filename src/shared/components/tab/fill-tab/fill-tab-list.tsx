@@ -5,7 +5,7 @@ interface TabListProps {
   tabs: string[];
 }
 
-const TabList = ({ tabs }: TabListProps) => {
+const FillTabList = ({ tabs }: TabListProps) => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
@@ -22,4 +22,4 @@ const TabList = ({ tabs }: TabListProps) => {
   );
 };
 
-export default TabList;
+export default FillTabList;
