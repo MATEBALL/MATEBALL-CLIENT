@@ -1,4 +1,4 @@
-html[data-storybook] body {
+body {
   min-width: unset !important;
   max-width: unset !important;
   min-height: unset !important;
