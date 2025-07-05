@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
+import '../src/shared/styles/global.css';
+import '../src/shared/styles/story-styles.css';
 
 const preview: Preview = {
   parameters: {
@@ -8,11 +10,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-
     actions: {
       argTypesRegex: '^on[A-Z].*',
     },
-
     a11y: {
       test: 'todo',
     },
