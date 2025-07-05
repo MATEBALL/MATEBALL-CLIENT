@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TabItem from '@components/tab/tab-item';
+import TabItem from '@components/tab/fill-tab/tab-item';
 
 interface TabListProps {
   tabs: string[];
