@@ -22,14 +22,14 @@ type Story = StoryObj;
 const ColorBox = ({ name, value }: { name: string; value: string }) => (
   <div className="flex w-28 flex-col gap-1">
     <div className="h-36 w-36" style={{ backgroundColor: value }} />
-    <span className="text-gray-black text-m">{name}</span>
-    <span className="text-gray-600 text-sm">{value}</span>
+    <span className="cap_14_m text-gray-black text-m">{name}</span>
+    <span className="cap_12_m text-gray-600 text-sm">{value}</span>
   </div>
 );
 
 const ColorGroup = ({ title, colors }: { title: string; colors: Record<string, string> }) => (
   <div className="mb-12">
-    <h3 className="mb-4 font-semibold text-xl">{title}</h3>
+    <h3 className="head_20_sb mb-4 text-xl">{title}</h3>
     <div className="flex flex-wrap gap-12">
       {Object.entries(colors).map(([name, value]) => (
         <ColorBox key={name} name={name} value={value} />
