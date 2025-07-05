@@ -5,6 +5,10 @@ on:
     branches:
       - develop
 
+permissions:
+  pull-requests: write
+  issues: write
+
 jobs:
   chromatic:
     runs-on: ubuntu-latest
