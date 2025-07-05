@@ -1,5 +1,5 @@
-import Icon from '@components/Icon';
-import type { Meta, StoryObj } from '@storybook/react';
+import Icon from '@components/icon/icon';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta = {
   title: 'Foundations/Logo',
