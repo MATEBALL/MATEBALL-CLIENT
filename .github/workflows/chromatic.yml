@@ -5,18 +5,22 @@ on:
     branches:
       - develop
 
+permissions:
+  pull-requests: write
+  issues: write
+
 jobs:
   chromatic:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -33,3 +37,13 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add PR comment for Chromatic deployment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          edit-mode: replace
+          body: |
+            MATEBALL-STORYBOOK  
+            [⚾ Storybook 배포가 완료되었습니다!](${{ steps.chromatic.outputs.storybookUrl }})
