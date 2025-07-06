@@ -19,6 +19,13 @@ const preview: Preview = {
       test: 'todo',
     },
   },
+  decorators: [
+    (Story) => (
+      <div className="min-h-screen flex-col-center">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
