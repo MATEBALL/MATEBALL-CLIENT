@@ -181,6 +181,7 @@ jobs:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 =======
 
@@ -201,3 +202,7 @@ jobs:
 =======
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
 >>>>>>> 1b1672b (fix: ci-cd 파일을 수정합니다 (#43))
+=======
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID}} 
+        
+>>>>>>> 259c379 (feat: card 공통 컴포넌트 구조 작성(#49))
