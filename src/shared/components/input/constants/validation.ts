@@ -3,7 +3,7 @@ export const NICKNAME_MAX_LENGTH = 6;
 
 export const NICKNAME_ERROR_MESSAGES = {
   LENGTH: '2-6자 이내로 입력해 주세요.',
-  WHITESPACE: '닉넹미에 띄어쓰기를 포함할 수 없어요.',
+  WHITESPACE: '닉네임에 띄어쓰기를 포함할 수 없어요.',
   NUMBER: '닉네임에 숫자를 포함할 수 없어요.',
   SPECIALCHAR: '닉네임에 특수문자를 포함할 수 없어요.',
   MIXEDLANG: '닉네임은 한글 또는 영어만 입력할 수 있어요.',
