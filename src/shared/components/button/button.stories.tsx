@@ -1,6 +1,6 @@
 import Button from '@components/button/button';
 import type { buttonVariants } from '@components/button/styles/button-variants';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { VariantProps } from 'class-variance-authority';
 
 type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>['variant']>;
@@ -17,20 +17,23 @@ const meta: Meta<typeof Button> = {
     docs: {
       description: {
         component: `
-        Button 컴포넌트는 버튼 색상과 크기를 조절하여 재사용 가능한 컴포넌트입니다.
+**Button 컴포넌트**는 버튼 색상과 크기를 조절하여 재사용 가능한 컴포넌트입니다.
 
-        - 필수적 props:
-         📍variant와 size 설정 안하면 기본값으로 blue, M 설정됩니다.
-          - label: 버튼 텍스트
-          - variant: 버튼 색상 (blue, gray, skyblue, white, skyblueBorder)
-          - size: 버튼 크기 (M, L, setting_M, setting_L)
+---
 
-        - 선택적 props:
-          - disabled: 버튼 비활성화 여부
-          - onClick: 버튼 클릭 이벤트
-          - ariaLabel: 버튼 접근성 라벨
-          - className: 버튼 추가 클래스
-        `,
+### ✅ 필수 props
+- \`label\`: 버튼 텍스트
+- \`variant\`: 버튼 색상 (blue, gray, skyblue, white, skyblueBorder)  
+  → 설정 안 하면 기본값: **blue**
+- \`size\`: 버튼 크기 (M, L, setting_M, setting_L)  
+  → 설정 안 하면 기본값: **M**
+
+### 🛠 선택적 props
+- \`disabled\`: 버튼 비활성화 여부
+- \`onClick\`: 버튼 클릭 이벤트
+- \`ariaLabel\`: 접근성 라벨
+- \`className\`: 추가 클래스 적용
+      `,
       },
     },
   },
@@ -79,7 +82,6 @@ export const TestButton: Story = {
   },
 };
 
-// 모든 조합을 보여주는 스토리 추가
 export const AllVariants: Story = {
   render: () => (
     <div className="flex-col gap-4">
@@ -90,7 +92,7 @@ export const AllVariants: Story = {
         ))}
       </div>
       <div className="flex items-center gap-2">
-        <span className="min-w-[10rem]">Gray:</span> 
+        <span className="min-w-[10rem]">Gray:</span>
         {sizeOptions.map((size) => (
           <Button key={size} label={size} variant="gray" size={size} />
         ))}
