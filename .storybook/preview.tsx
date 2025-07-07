@@ -12,7 +12,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className="min-h-screen flex-row-center">
+      <div className="flex-row-center py-12">
         <Story />
       </div>
     ),
