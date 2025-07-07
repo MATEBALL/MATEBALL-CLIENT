@@ -9,7 +9,7 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen flex-col">
-      <Header />
+      {location.pathname !== ROUTES.MATCH_CREATE && <Header />}
       <main className="flex-grow">
         <Suspense fallback={<div className="py-10 text-center">로딩 중...</div>}>
           <Outlet />
