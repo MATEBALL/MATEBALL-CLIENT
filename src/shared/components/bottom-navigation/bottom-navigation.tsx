@@ -1,24 +1,65 @@
 import Icon from '@components/icon/icon';
+import { ROUTES } from '@routes/routes-config';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const BottomNavigation = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const NAV_ITEMS = [
+    {
+      label: '홈',
+      path: ROUTES.HOME,
+      icon: {
+        filled: 'ic-home-filled',
+        lined: 'ic-home-lined',
+      },
+    },
+    {
+      label: '매칭 현황',
+      path: ROUTES.MATCH,
+      icon: {
+        filled: 'ic-matchinglist-filled',
+        lined: 'ic-matchinglist-lined',
+      },
+    },
+    {
+      label: '채팅',
+      path: ROUTES.CHAT,
+      icon: {
+        filled: 'ic-chat-filled',
+        lined: 'ic-chat-lined',
+      },
+    },
+    {
+      label: '내 정보',
+      path: ROUTES.PROFILE,
+      icon: {
+        filled: 'ic-my-filled',
+        lined: 'ic-my-lined',
+      },
+    },
+  ];
+
+  const isActive = (path: string) => pathname === path;
+
   return (
     <div className="flex justify-between px-[1.6rem] py-[0.8rem]">
-      <div className="h-[4.8rem] w-[4.8rem] flex-col-center gap-[0.4rem]">
-        <Icon name="ic-home-lined" width={2.4} height={2.4} />
-        <p className="cap_12_m text-gray-black">홈</p>
-      </div>
-      <div className="h-[4.8rem] w-[4.8rem] flex-col-center gap-[0.4rem]">
-        <Icon name="ic-matchinglist-lined" width={2.4} height={2.4} />
-        <p className="cap_12_m text-gray-black">매칭 현황</p>
-      </div>
-      <div className="h-[4.8rem] w-[4.8rem] flex-col-center gap-[0.4rem]">
-        <Icon name="ic-chat-lined" width={2.4} height={2.4} />
-        <p className="cap_12_m text-gray-black">채팅</p>
-      </div>
-      <div className="h-[4.8rem] w-[4.8rem] flex-col-center gap-[0.4rem]">
-        <Icon name="ic-my-lined" width={2.4} height={2.4} />
-        <p className="cap_12_m text-gray-black">내 정보</p>
-      </div>
+      {NAV_ITEMS.map(({ label, path, icon }) => {
+        const active = isActive(path);
+
+        return (
+          <button
+            key={label}
+            type="button"
+            className="h-[4.8rem] w-[4.8rem] flex-col-center cursor-pointer gap-[0.4rem]"
+            onClick={() => navigate(path)}
+          >
+            <Icon name={active ? icon.filled : icon.lined} width={2.4} height={2.4} />
+            <p className="cap_12_m text-gray-black">{label}</p>
+          </button>
+        );
+      })}
     </div>
   );
 };
