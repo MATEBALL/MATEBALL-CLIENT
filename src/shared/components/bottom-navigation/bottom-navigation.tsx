@@ -1,4 +1,5 @@
 import Icon from '@components/icon/icon';
+import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -56,7 +57,7 @@ const BottomNavigation = () => {
             onClick={() => navigate(path)}
           >
             <Icon name={active ? icon.filled : icon.lined} width={2.4} height={2.4} />
-            <p className="cap_12_m text-gray-black">{label}</p>
+            <p className={cn('cap_12_m text-gray-600', active && 'text-gray-black')}>{label}</p>
           </button>
         );
       })}
