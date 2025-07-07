@@ -1,12 +1,12 @@
 import { cn } from '@libs/cn';
 import type { FC } from 'react';
-import type { TabColorMode } from '@styles/bar-tab';
+import type { TabColorMode } from '@components/tab/bar-tab/styles/bar-tab';
 import {
   getTextColorClass,
   getBorderColorClass,
   getHeightClass,
   getTypographyClass,
-} from '@styles/bar-tab';
+} from '@components/tab/bar-tab/styles/bar-tab';
 
 interface BarTabItemProps {
   label: string;
