@@ -40,7 +40,7 @@ export const HomeMode: Story = {
   },
   decorators: [
     (Story) => (
-      <div className="bg-gray-700 p-[1.2rem]">
+      <div className="bg-gray-700">
         <Story />
       </div>
     ),
