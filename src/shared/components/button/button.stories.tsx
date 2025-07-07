@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button from '@components/button/Button';
+import Button from '@components/button/Button'
 import { buttonVariants } from '@components/button/styles/button-variants';
 import type { VariantProps } from 'class-variance-authority';
 
@@ -10,7 +10,7 @@ const variantOptions: ButtonVariant[] = ['blue', 'gray', 'skyblue', 'white', 'sk
 const sizeOptions: ButtonSize[] = ['M', 'L', 'setting_M', 'setting_L'];
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Common/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: {
