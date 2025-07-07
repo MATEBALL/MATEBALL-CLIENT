@@ -42,7 +42,6 @@ const Icon = ({
       height={typeof computedHeight === 'number' ? `${computedHeight}rem` : computedHeight}
       className={combinedClass}
       fill="currentColor"
-      stroke="currentColor"
       aria-hidden={ariaHidden}
       role={!ariaHidden ? 'img' : undefined}
       aria-label={!ariaHidden && ariaLabel ? ariaLabel : undefined}
