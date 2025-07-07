@@ -14,7 +14,7 @@ export default defineConfig({
   plugins: [
     react(),
     svgSprite({
-      iconDirs: [resolve(dirname, 'src/shared/assets/svgs')],
+      iconDirs: [resolve(__dirname, 'src/shared/assets/svgs')],
       symbolId: 'icon-[name]',
       inject: 'body-last',
     }),
