@@ -1,3 +1,4 @@
+import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/Icon';
 import {
   addMonths,
@@ -9,8 +10,12 @@ import {
   startOfMonth,
   subMonths,
 } from 'date-fns';
-import { getMonthGrid } from '../../utils/calendar';
-import { calendarDayVariants } from './calendar-day-variants';
+import {
+  WEEK_DAY_COLORS,
+  WEEK_DAYS,
+  WEEKDAY,
+} from '@/shared/components/calendar/constants/calendar';
+import { calendarDayVariants } from '@/shared/components/calendar/styles/calendar-day-variants';
 
 interface MonthCalendarProps {
   value: Date;
@@ -27,7 +32,7 @@ const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProp
     <div className="flex-col gap-[1.2rem]">
       <div className="flex-row-center gap-[2.4rem]">
         <Icon
-          name="ic-arrow-left-18"
+          name="ic-arrow-left"
           width={3.2}
           height={3.2}
           className="cursor-pointer p-[0.7rem]"
@@ -45,20 +50,17 @@ const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProp
 
       <div>
         <div className="cap_14_sb grid grid-cols-7 text-center">
-          {['일', '월', '화', '수', '목', '금', '토'].map((d, idx) => (
-            <div
-              key={d}
-              className={`px-[1.75rem] py-[1.35rem] ${idx === 0 ? 'text-week-red' : idx === 6 ? 'text-week-blue' : 'text-gray-900'}`}
-            >
+          {WEEK_DAYS.map((d) => (
+            <div key={d} className={`px-[1.75rem] py-[1.35rem] ${WEEK_DAY_COLORS[d]}`}>
               {d}
             </div>
           ))}
         </div>
-        <div className="cap_14_m grid grid-cols-7 justify-items-center gap-y-[0.4rem] align-items-center">
+        <div className="cap_14_m grid grid-cols-7 justify-items-center gap-y-[0.4rem]">
           {days.map((day) => {
             const isSelected = isSameDay(day, value);
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
-            const isMonday = day.getDay() === 1;
+            const isMonday = day.getDay() === WEEKDAY.MONDAY;
             const isDisabled = isPast || isMonday;
             const isNotCurrentMonth = day < startDate || day > endDate;
 

@@ -1,8 +1,9 @@
+import { getWeekDays } from '@components/calendar/utils/date-grid';
 import { cn } from '@libs/cn';
 import { format, isSameDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { getWeekDays } from '@/shared/utils/calendar';
-import { calendarDayVariants } from './calendar-day-variants';
+import { WEEKDAY } from '@/shared/components/calendar/constants/calendar';
+import { calendarDayVariants } from '@/shared/components/calendar/styles/calendar-day-variants';
 
 interface WeekCalendarProps {
   baseDate: Date;
@@ -17,7 +18,14 @@ const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
     <div className="w-full flex-row-between gap-[1.2rem]">
       {days.map((day) => {
         const isSelected = isSameDay(day, value);
-        const isMonday = day.getDay() === 1;
+        const isMonday = day.getDay() === WEEKDAY.MONDAY;
+
+        const dateColor = isMonday ? 'text-gray-600' : 'text-gray-white';
+        const dayColor = isSelected
+          ? 'text-main-400'
+          : isMonday
+            ? 'text-gray-600'
+            : 'text-gray-500';
 
         return (
           <button
@@ -32,17 +40,8 @@ const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
               size: 'week',
             })}
           >
-            <p className={cn('body_16_m', isMonday ? 'text-gray-600' : 'text-gray-white')}>
-              {format(day, 'd')}
-            </p>
-            <p
-              className={cn(
-                'cap_14_m',
-                isSelected ? 'text-main-400' : isMonday ? 'text-gray-600' : 'text-gray-500',
-              )}
-            >
-              {format(day, 'E', { locale: ko })}
-            </p>
+            <p className={cn('body_16_m', dateColor)}>{format(day, 'd')}</p>
+            <p className={cn('cap_14_m', dayColor)}>{format(day, 'E', { locale: ko })}</p>
           </button>
         );
       })}

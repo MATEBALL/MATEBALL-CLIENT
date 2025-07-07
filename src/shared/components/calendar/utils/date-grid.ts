@@ -1,4 +1,5 @@
 import { addDays, endOfMonth, getDay, isAfter, startOfMonth, startOfWeek } from 'date-fns';
+import { WEEKDAY } from '@/shared/components/calendar/constants/calendar';
 
 export const getWeekDays = (baseDate: Date): Date[] => {
   return Array.from({ length: 7 }, (_, i) => addDays(baseDate, i));
@@ -17,5 +18,5 @@ export const getMonthGrid = (date: Date): Date[] => {
 
 export const getInitialSelectedDate = (entryDate: Date): Date => {
   const base = addDays(entryDate, 2);
-  return getDay(base) === 1 ? addDays(base, 1) : base; // 월요일은 비활성화 대상이므로 화요일 선택
+  return getDay(base) === WEEKDAY.MONDAY ? addDays(base, 1) : base;
 };
