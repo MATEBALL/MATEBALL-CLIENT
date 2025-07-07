@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Chip from '@components/chip/chip';
 import ChipList from '@components/chip/chip-list';
-import { chipVariants, chipVariantOptions } from '@components/chip/styles/chip-variants';
+import type { chipVariants } from '@components/chip/styles/chip-variants';
+import { chipVariantOptions } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 
 type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
@@ -16,8 +17,7 @@ const meta: Meta<typeof Chip> = {
   parameters: {
     docs: {
       description: {
-        component: 
-        `
+        component: `
 *🏷️ Chip 컴포넌트*
 
 팀 또는 응원 특성에 따라 배경색과 글자색이 자동으로 매핑되는 컴포넌트입니다.  
@@ -35,18 +35,18 @@ const meta: Meta<typeof Chip> = {
 ### 🎨 배경색 (bgColor)
 | 키워드 | 클래스 |
 |--------|--------|
-${Object.entries(chipVariantOptions.bgColor).map(
-  ([key, value]) => `| \`${key}\` | \`${value}\` |`,
-).join('\n')}
+${Object.entries(chipVariantOptions.bgColor)
+  .map(([key, value]) => `| \`${key}\` | \`${value}\` |`)
+  .join('\n')}
 
 ---
 
 ### 텍스트 색상 (textColor)
 | 키워드 | 클래스 |
 |--------|--------|
-${Object.entries(chipVariantOptions.textColor).map(
-  ([key, value]) => `| \`${key}\` | \`${value}\` |`,
-).join('\n')}
+${Object.entries(chipVariantOptions.textColor)
+  .map(([key, value]) => `| \`${key}\` | \`${value}\` |`)
+  .join('\n')}
 
 ---
 
@@ -55,7 +55,7 @@ ${Object.entries(chipVariantOptions.textColor).map(
 <Chip label="한화" bgColor="한화" textColor="한화" />
 <Chip label="직관먹방러" bgColor="직관먹방러" textColor="직관먹방러" />
 \`\`\`
-        `
+        `,
       },
     },
   },
@@ -103,9 +103,6 @@ export const AllVariants: Story = {
         </div>
       </div>
     );
-  },
-  parameters: {
-    controls: { disable: true },
   },
   parameters: {
     controls: { disable: true },
