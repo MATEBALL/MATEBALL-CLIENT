@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof Dialog> = {
   title: 'common/Dialog',
   component: Dialog,
-    parameters: {
+  parameters: {
     docs: {
       description: {
         component: `
