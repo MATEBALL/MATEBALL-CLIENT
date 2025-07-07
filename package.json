@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpm generate:icons && vite",
+    "dev": "vite",
     "build": "tsc -b && vite build",
     "format": "biome format . --write",
     "lint": "biome check .",
@@ -15,17 +15,22 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.81.5",
-    "@tanstack/react-query-devtools": "^5.81.5",
+    "@hookform/resolvers": "^5.1.1",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-query": "^5.81.2",
+    "@tanstack/react-query-devtools": "^5.81.2",
     "axios": "^1.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.59.0",
     "react-router-dom": "^7.6.2",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "zod": "^3.25.74"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
