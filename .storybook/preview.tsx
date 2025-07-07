@@ -10,13 +10,14 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    actions: {
-      argTypesRegex: '^on[A-Z].*',
-    },
-    a11y: {
-      test: 'todo',
-    },
   },
+  decorators: [
+    (Story) => (
+      <div className="min-h-screen flex-col-center">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default preview;
