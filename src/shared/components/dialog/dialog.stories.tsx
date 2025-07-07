@@ -2,8 +2,26 @@ import Dialog from '@components/dialog/dialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof Dialog> = {
-  title: 'Components/Dialog',
+  title: 'common/Dialog',
   component: Dialog,
+    parameters: {
+    docs: {
+      description: {
+        component: `
+**Dialog 컴포넌트**
+
+사용자에게 중요한 메시지를 전달하거나 액션을 유도하는 모달 컴포넌트입니다.  
+기본적으로 안내 텍스트(\`info\`)와 하위 요소(\`children\`)를 렌더링합니다.
+
+- \`info\`: 안내 메시지 (문자열 또는 JSX 가능)
+- \`children\`: 버튼 등의 커스텀 액션 요소
+- 텍스트 줄바꿈, 버튼 정렬 등은 자유롭게 커스터마이징 가능합니다.
+
+✅ 다양한 상황에 맞게 children을 통해 액션 버튼 구성 가능
+      `,
+      },
+    },
+  },
   tags: ['autodocs'],
 } satisfies Meta<typeof Dialog>;
 
