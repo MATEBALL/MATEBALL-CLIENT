@@ -1,11 +1,10 @@
-import { NICKNAME_PLACEHOLDER } from '@components/input/constants/validation';
-import Input from '@components/input/input';
+import { NOTICE } from './constants/NOTICE';
 
 const SignUp = () => {
   return (
     <div>
-      회원가입페이지
-      <Input placeholder={NICKNAME_PLACEHOLDER} />
+      <p className="title_24_sb text-gray-black">기본 정보를 확인해 주세요.</p>
+      <p className="cap_14_m whitespace-pre-line text-gray-600">{NOTICE}</p>
     </div>
   );
 };
