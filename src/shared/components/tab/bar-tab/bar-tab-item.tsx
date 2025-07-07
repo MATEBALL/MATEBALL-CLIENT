@@ -1,5 +1,4 @@
 import { cn } from '@libs/cn';
-import type { FC } from 'react';
 import type { TabColorMode } from '@components/tab/bar-tab/styles/bar-tab';
 import {
   getTextColorClass,
@@ -15,7 +14,7 @@ interface BarTabItemProps {
   onClick?: () => void;
 }
 
-const BarTabItem: FC<BarTabItemProps> = ({ label, isActive, colorMode, onClick }) => {
+function BarTabItem({ label, isActive, colorMode, onClick }: BarTabItemProps) {
   return (
     <button
       type="button"
@@ -39,6 +38,6 @@ const BarTabItem: FC<BarTabItemProps> = ({ label, isActive, colorMode, onClick }
       </span>
     </button>
   );
-};
+}
 
 export default BarTabItem;

@@ -33,7 +33,7 @@ const meta: Meta<typeof FillTabList> = {
 ### 사용 예시
 
 \`\`\`tsx
-<FillTabList tabs={['전체', '공지', '채팅']} />
+<FillTabList tabs={['전체', '대기 중', '완료', '실패']} />
 \`\`\`
         `,
       },
