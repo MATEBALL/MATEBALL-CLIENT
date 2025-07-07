@@ -22,6 +22,7 @@ export const iconNames = [
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
+  'ic-right',
   'ic-x'
 ] as const;
  
