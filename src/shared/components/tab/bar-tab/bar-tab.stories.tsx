@@ -9,7 +9,7 @@ const meta: Meta<typeof BarTabList> = {
     docs: {
       description: {
         component: `
-**📌 BarTabList 컴포넌트**
+**BarTabList 컴포넌트**
 
 홈/그룹 모드에 따라 탭 간 간격 및 색상이 달라지는 수평 탭 컴포넌트입니다.  
 내부 상태로 현재 활성 탭을 관리하며, 각 탭은 \`BarTabItem\`으로 구성됩니다.
@@ -38,6 +38,13 @@ export const HomeMode: Story = {
   args: {
     colorMode: 'home',
   },
+  decorators: [
+    (Story) => (
+      <div className="bg-gray-700 p-[1.2rem]">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export const GroupMode: Story = {
