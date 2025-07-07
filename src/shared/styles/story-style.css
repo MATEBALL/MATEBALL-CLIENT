@@ -1,0 +1,8 @@
+body {
+  min-width: unset !important;
+  max-width: unset !important;
+  min-height: unset !important;
+  max-height: unset !important;
+  box-shadow: none !important;
+  background: #fff !important;
+}

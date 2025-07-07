@@ -1,24 +1,29 @@
-import Icon from '@components/Icon';
+import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
 
 interface ButtonCreateProps {
   label: string;
   onClick?: () => void;
-  disabled?: boolean;
   className?: string;
   ariaLabel?: string;
+  textColor?: string;
 }
 
-const ButtonCreate = ({ label, onClick, disabled, className, ariaLabel }: ButtonCreateProps) => {
+const ButtonCreate = ({
+  label,
+  onClick,
+  className,
+  ariaLabel,
+  textColor = 'text-main-900',
+}: ButtonCreateProps) => {
   return (
     <button
       type="button"
-      disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel ?? label}
       className={cn(
-        'cap_14_sb flex h-[3.7rem] items-center justify-center gap-[0.8rem] rounded-[0.8rem] bg-gray-white px-[1.2rem] text-main-900 opacity-80 transition-colors',
-        disabled && 'cursor-not-allowed opacity-50',
+        'cap_14_sb flex cursor-pointer items-center gap-[0.8rem] rounded-[0.8rem] bg-gray-white px-[1.2rem] py-[0.8rem] opacity-80 transition-colors',
+        textColor,
         className,
       )}
     >
