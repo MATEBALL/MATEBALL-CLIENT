@@ -52,6 +52,6 @@ type Story = StoryObj<typeof FillTabList>;
 
 export const Default: Story = {
   args: {
-    tabs: ['전체', '공지', '채팅'],
+    tabs: ['전체', '대기 중', '완료', '실패'],
   },
 };
