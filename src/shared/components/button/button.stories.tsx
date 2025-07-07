@@ -10,7 +10,7 @@ const variantOptions: ButtonVariant[] = ['blue', 'gray', 'skyblue', 'white', 'sk
 const sizeOptions: ButtonSize[] = ['M', 'L', 'setting_M', 'setting_L'];
 
 const meta: Meta<typeof Button> = {
-  title: 'COMMON/Button',
+  title: 'COMMON/Button/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {

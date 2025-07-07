@@ -1,8 +1,8 @@
-import ButtonCreate from '@components/button/button-create';
+import ButtonCreate from '@components/button/button-create/button-create';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ButtonCreate> = {
-  title: 'COMMON/ButtonCreate',
+  title: 'COMMON/Button/ButtonCreate',
   component: ButtonCreate,
   tags: ['autodocs'],
   parameters: {
