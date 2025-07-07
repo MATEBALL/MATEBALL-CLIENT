@@ -21,7 +21,7 @@ export const iconNames = [
   'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
-  'ic-right',
+  'ic-plus',
   'ic-x',
 ] as const;
 
