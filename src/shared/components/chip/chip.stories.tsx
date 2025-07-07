@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Chip from '@components/chip/chip';
 import { chipVariants, chipVariantOptions } from '@styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
+import '@styles/theme.css'; 
 
 type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
@@ -9,7 +10,7 @@ const bgColorOptions = Object.keys(chipVariantOptions.bgColor) as ChipColor[];
 const textColorOptions = Object.keys(chipVariantOptions.textColor) as ChipColor[];
 
 const meta: Meta<typeof Chip> = {
-  title: 'Shared/Chip',
+  title: 'common/Chip',
   component: Chip,
   tags: ['autodocs'],
   argTypes: {
