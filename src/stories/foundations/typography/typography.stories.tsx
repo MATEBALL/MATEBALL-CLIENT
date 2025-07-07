@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { TYPOGRAPHY_CLASSES } from '../tokens/typography';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { TYPOGRAPHY_CLASSES } from '@/stories/foundations/tokens/typography';
 
 const meta: Meta = {
   title: 'Foundations/Typography',

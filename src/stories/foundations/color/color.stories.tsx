@@ -7,7 +7,7 @@ import {
   SUB_COLORS,
   TEAM_COLORS,
   WEEK_COLORS,
-} from '../tokens/colors';
+} from '@/stories/foundations/tokens/colors';
 
 const meta: Meta = {
   title: 'Foundations/Color',
