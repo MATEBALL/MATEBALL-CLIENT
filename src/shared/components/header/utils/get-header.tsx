@@ -30,15 +30,7 @@ export const getHeaderContent = (pathname: string, isFail: boolean) => {
   }
 
   if (isFail) {
-    return (
-      <Icon
-        name="ic-arrow-left-24"
-        width={2.4}
-        height={2.4}
-        fill="black"
-        onClick={handleBackClick}
-      />
-    );
+    return <Icon name="ic-arrow-left-white" width={2.4} height={2.4} onClick={handleBackClick} />;
   }
 
   return (
