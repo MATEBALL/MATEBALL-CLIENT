@@ -1,4 +1,3 @@
-import Button from '@components/button/button';
 import queryClient from '@libs/query-client';
 import { router } from '@routes/Router';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -10,7 +9,6 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <ReactQueryDevtools initialIsOpen={false} />
-      <Button label="Button" variant="skyblueBorder" />
     </QueryClientProvider>
   );
 };
