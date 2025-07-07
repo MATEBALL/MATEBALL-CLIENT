@@ -1,4 +1,4 @@
-import Icon from '@components/Icon';
+import Icon from '@components/icon/icon';
 import { type InputHTMLAttributes, useState } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -29,19 +29,15 @@ const Input = ({ placeholder, ...props }: InputProps) => {
         onChange={handleChange}
         {...props}
       />
-<<<<<<< HEAD
-      {(isFocused || value) && <Icon name="ic-x" width={2.4} height={2.4} aria-label='입력 내용 삭제' onClick={handleClear} />}
-=======
       {(isFocused || value) && (
         <Icon
           name="ic-x"
           width={2.4}
           height={2.4}
-          aria-label="입력 내용 지우기"
+          aria-label="입력 내용 삭제"
           onClick={handleClear}
         />
       )}
->>>>>>> 885badc (feat: 최신화 (#38))
     </div>
   );
 };

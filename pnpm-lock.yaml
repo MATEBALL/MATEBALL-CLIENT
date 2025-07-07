@@ -10,11 +10,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.1.1
-<<<<<<< HEAD
         version: 5.1.1(react-hook-form@7.60.0(react@19.1.0))
-=======
-        version: 5.1.1(react-hook-form@7.59.0(react@19.1.0))
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
       '@tailwindcss/postcss':
         specifier: ^4.1.11
         version: 4.1.11
@@ -44,11 +40,7 @@ importers:
         version: 19.1.0(react@19.1.0)
       react-hook-form:
         specifier: ^7.59.0
-<<<<<<< HEAD
         version: 7.60.0(react@19.1.0)
-=======
-        version: 7.59.0(react@19.1.0)
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
       react-router-dom:
         specifier: ^7.6.2
         version: 7.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1117,7 +1109,6 @@ packages:
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
 
-<<<<<<< HEAD
   '@storybook/addon-a11y@9.0.14':
     resolution: {integrity: sha512-xDtzD89lyyq706yynJ8iAUjBfNebb7F5OoJXSAPYPnUiHoNHAcRT9ia2HrC6Yjp3f3JX2PRIEMjD5Myz3sL04A==}
     peerDependencies:
@@ -1209,8 +1200,6 @@ packages:
       typescript:
         optional: true
 
-=======
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
   '@swc/core-darwin-arm64@1.12.9':
     resolution: {integrity: sha512-GACFEp4nD6V+TZNR2JwbMZRHB+Yyvp14FrcmB6UCUYmhuNWjkxi+CLnEvdbuiKyQYv0zA+TRpCHZ+whEs6gwfA==}
     engines: {node: '>=10'}
@@ -2826,23 +2815,15 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
-<<<<<<< HEAD
   react-hook-form@7.60.0:
     resolution: {integrity: sha512-SBrYOvMbDB7cV8ZfNpaiLcgjH/a1c7aK0lK+aNigpf4xWLO8q+o4tcvVurv3c4EOyzn/3dCsYt4GKD42VvJ/+A==}
-=======
-  react-hook-form@7.59.0:
-    resolution: {integrity: sha512-kmkek2/8grqarTJExFNjy+RXDIP8yM+QTl3QL6m6Q8b2bih4ltmiXxH7T9n+yXNK477xPh5yZT/6vD8sYGzJTA==}
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
 
-<<<<<<< HEAD
   react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
 
-=======
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
   react-refresh@0.17.0:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
@@ -3920,17 +3901,10 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-<<<<<<< HEAD
   '@hookform/resolvers@5.1.1(react-hook-form@7.60.0(react@19.1.0))':
     dependencies:
       '@standard-schema/utils': 0.3.0
       react-hook-form: 7.60.0(react@19.1.0)
-=======
-  '@hookform/resolvers@5.1.1(react-hook-form@7.59.0(react@19.1.0))':
-    dependencies:
-      '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.59.0(react@19.1.0)
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
 
   '@humanfs/core@0.19.1': {}
 
@@ -4170,7 +4144,6 @@ snapshots:
 
   '@standard-schema/utils@0.3.0': {}
 
-<<<<<<< HEAD
   '@storybook/addon-a11y@9.0.14(storybook@9.0.14(@testing-library/dom@10.4.0))':
     dependencies:
       '@storybook/global': 5.0.0
@@ -4273,8 +4246,6 @@ snapshots:
     optionalDependencies:
       typescript: 5.8.3
 
-=======
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
   '@swc/core-darwin-arm64@1.12.9':
     optional: true
 
@@ -5876,19 +5847,12 @@ snapshots:
       react: 19.1.0
       scheduler: 0.26.0
 
-<<<<<<< HEAD
   react-hook-form@7.60.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 
   react-is@17.0.2: {}
 
-=======
-  react-hook-form@7.59.0(react@19.1.0):
-    dependencies:
-      react: 19.1.0
-
->>>>>>> e81faac (chore: react-hook-form 설치 (#38))
   react-refresh@0.17.0: {}
 
   react-router-dom@7.6.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
