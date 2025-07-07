@@ -29,7 +29,19 @@ const Input = ({ placeholder, ...props }: InputProps) => {
         onChange={handleChange}
         {...props}
       />
+<<<<<<< HEAD
       {(isFocused || value) && <Icon name="ic-x" width={2.4} height={2.4} aria-label='입력 내용 삭제' onClick={handleClear} />}
+=======
+      {(isFocused || value) && (
+        <Icon
+          name="ic-x"
+          width={2.4}
+          height={2.4}
+          aria-label="입력 내용 지우기"
+          onClick={handleClear}
+        />
+      )}
+>>>>>>> 885badc (feat: 최신화 (#38))
     </div>
   );
 };
