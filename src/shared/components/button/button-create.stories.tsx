@@ -47,6 +47,13 @@ const meta: Meta<typeof ButtonCreate> = {
       description: 'Additional CSS classes',
     },
   },
+  decorators: [
+    (Story) => (
+      <div className="h-[10rem] w-[50rem] flex-row-center bg-gray-500">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
