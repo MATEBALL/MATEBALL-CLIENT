@@ -107,4 +107,7 @@ export const AllVariants: Story = {
   parameters: {
     controls: { disable: true },
   },
+  parameters: {
+    controls: { disable: true },
+  },
 };
