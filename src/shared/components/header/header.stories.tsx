@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 export default {
-  title: 'Components/Header',
+  title: 'layout/Header',
   component: Header,
   decorators: [
     (Story: StoryFn, context: StoryContext) => {
