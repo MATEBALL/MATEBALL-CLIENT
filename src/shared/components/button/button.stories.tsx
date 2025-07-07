@@ -71,7 +71,7 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const TestButton: Story = {
   args: {
     label: 'Button',
     variant: 'blue',
@@ -79,77 +79,36 @@ export const Default: Story = {
   },
 };
 
-export const SizeM: Story = {
-  args: {
-    label: 'Medium Button',
-    variant: 'blue',
-    size: 'M',
-  },
-};
-
-export const SizeL: Story = {
-  args: {
-    label: 'Large Button',
-    variant: 'blue',
-    size: 'L',
-  },
-};
-
-export const SettingM: Story = {
-  args: {
-    label: 'Setting Medium',
-    variant: 'blue',
-    size: 'setting_M',
-  },
-};
-
-export const SettingL: Story = {
-  args: {
-    label: 'Setting Large',
-    variant: 'blue',
-    size: 'setting_L',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled Button',
-    variant: 'blue',
-    size: 'M',
-    disabled: true,
-  },
-};
-
 // 모든 조합을 보여주는 스토리 추가
 export const AllVariants: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <span style={{ minWidth: '100px' }}>Blue:</span>
+    <div className="flex-col gap-4">
+      <div className="flex items-center gap-2">
+        <span className="min-w-[10rem]">Blue:</span>
         {sizeOptions.map((size) => (
           <Button key={size} label={size} variant="blue" size={size} />
         ))}
       </div>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <span style={{ minWidth: '100px' }}>Gray:</span>
+      <div className="flex items-center gap-2">
+        <span className="min-w-[10rem]">Gray:</span> 
         {sizeOptions.map((size) => (
           <Button key={size} label={size} variant="gray" size={size} />
         ))}
       </div>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <span style={{ minWidth: '100px' }}>SkyBlue:</span>
+      <div className="flex items-center gap-2">
+        <span className="min-w-[10rem]">SkyBlue:</span>
         {sizeOptions.map((size) => (
           <Button key={size} label={size} variant="skyblue" size={size} />
         ))}
       </div>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <span style={{ minWidth: '100px' }}>White:</span>
+      <div className="flex items-center gap-2">
+        <span className="min-w-[10rem]">White:</span>
         {sizeOptions.map((size) => (
           <Button key={size} label={size} variant="white" size={size} />
         ))}
       </div>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-        <span style={{ minWidth: '100px' }}>SkyBlueBorder:</span>
+      <div className="flex items-center gap-2">
+        <span className="min-w-[10rem]">SkyBlueBorder:</span>
         {sizeOptions.map((size) => (
           <Button key={size} label={size} variant="skyblueBorder" size={size} />
         ))}

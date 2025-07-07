@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const buttonVariants = cva(
-  'subhead_18_sb inline-flex items-center justify-center rounded-[1.2rem] transition-colors',
+  'subhead_18_sb flex-row-center cursor-pointer rounded-[1.2rem] transition-colors',
   {
     variants: {
       variant: {
@@ -12,10 +12,10 @@ export const buttonVariants = cva(
         skyblueBorder: 'border border-main-900 bg-main-200 text-main-900',
       },
       size: {
-        M: 'w-[16.75rem] py-[1.2rem]',
-        L: 'w-[34.3rem] py-[1.2rem]',
-        setting_M: 'w-[16.75rem] py-[0.8rem]',
-        setting_L: 'w-[34.3rem] py-[2rem]',
+        M: 'w-[16.75rem] px-[0.8rem] py-[1.2rem]',
+        L: 'w-[34.3rem] px-[0.8rem] py-[1.2rem]',
+        setting_M: 'w-[16.75rem] p-[0.8rem]',
+        setting_L: 'w-[34.3rem] px-[0.8rem] py-[2rem]',
       },
     },
     defaultVariants: {
