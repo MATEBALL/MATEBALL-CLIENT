@@ -22,12 +22,12 @@ const ButtonCreate = ({
       onClick={onClick}
       aria-label={ariaLabel ?? label}
       className={cn(
-        'cap_14_sb flex cursor-pointer items-center gap-[0.8rem] rounded-[0.8rem] bg-gray-white px-[1.2rem] py-[0.8rem] opacity-80 transition-colors',
+        'cap_14_sb flex-row-center cursor-pointer gap-[0.8rem] rounded-[0.8rem] bg-gray-white px-[1.2rem] py-[0.8rem] opacity-80 transition-colors',
         textColor,
         className,
       )}
     >
-      <Icon name="ic-plus" size={1.6} />
+      <Icon name="ic-plus" width={1.6} height={1.6} />
       {label}
     </button>
   );
