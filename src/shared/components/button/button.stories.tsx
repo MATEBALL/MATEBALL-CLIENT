@@ -13,7 +13,12 @@ const meta: Meta<typeof Button> = {
   title: 'COMMON/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {
+  parameters: {
+    docs: {
+      description: {
+        component: '버튼 색상은 옵션에서 변경하면서 확인해주세요',
+      },
+    },
     label: {
       control: 'text',
       description: 'Button label text',
@@ -52,45 +57,6 @@ export const Default: Story = {
   },
 };
 
-export const Blue: Story = {
-  args: {
-    label: 'Blue Button',
-    variant: 'blue',
-    size: 'M',
-  },
-};
-
-export const Gray: Story = {
-  args: {
-    label: 'Gray Button',
-    variant: 'gray',
-    size: 'M',
-  },
-};
-
-export const SkyBlue: Story = {
-  args: {
-    label: 'Sky Blue Button',
-    variant: 'skyblue',
-    size: 'M',
-  },
-};
-
-export const White: Story = {
-  args: {
-    label: 'White Button',
-    variant: 'white',
-    size: 'M',
-  },
-};
-
-export const SkyBlueBorder: Story = {
-  args: {
-    label: 'Sky Blue Border Button',
-    variant: 'skyblueBorder',
-    size: 'M',
-  },
-};
 
 export const SizeM: Story = {
   args: {
