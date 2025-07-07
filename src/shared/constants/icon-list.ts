@@ -2,6 +2,7 @@
 export const iconNames = [
   'ic-arrow-left-18',
   'ic-arrow-left-24',
+  'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right-18',
   'ic-baseball',
@@ -13,7 +14,6 @@ export const iconNames = [
   'ic-check-filled',
   'ic-clock',
   'ic-error-filled',
-  'ic-favicon',
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
@@ -25,7 +25,7 @@ export const iconNames = [
   'ic-my-lined',
   'ic-plus',
   'ic-right',
-  'ic-x',
+  'ic-x'
 ] as const;
-
-export type IconName = (typeof iconNames)[number];
+ 
+export type IconName = typeof iconNames[number];
