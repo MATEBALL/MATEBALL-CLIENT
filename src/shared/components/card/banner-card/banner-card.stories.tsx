@@ -1,15 +1,15 @@
-import CardBanner from '@components/card/card-banner/card-banner';
+import BannerCard from '@components/card/banner-card/banner-card';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof CardBanner> = {
-  title: 'COMMON/Card/CardBanner',
-  component: CardBanner,
+const meta: Meta<typeof BannerCard> = {
+  title: 'COMMON/Card/BannerCard',
+  component: BannerCard,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**CardBanner 컴포넌트**는 홈에서 사용되는 광고 배너 컴포넌트입니다.
+**BannerCard 컴포넌트**는 홈에서 사용되는 광고 배너 컴포넌트입니다.
 
 ---
 
@@ -25,7 +25,7 @@ const meta: Meta<typeof CardBanner> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof CardBanner>;
+type Story = StoryObj<typeof BannerCard>;
 
 export const Default: Story = {
   args: {

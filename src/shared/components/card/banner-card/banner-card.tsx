@@ -5,7 +5,7 @@ interface CardBannerProps {
   subText?: string;
 }
 
-const CardBanner = ({ text, subText }: CardBannerProps) => {
+const BannerCard = ({ text, subText }: CardBannerProps) => {
   return (
     <div className="relative w-[34.3rem]">
       <img src={BannerImg} alt="홈배너" className="w-full" />
@@ -19,4 +19,4 @@ const CardBanner = ({ text, subText }: CardBannerProps) => {
   );
 };
 
-export default CardBanner;
+export default BannerCard;
