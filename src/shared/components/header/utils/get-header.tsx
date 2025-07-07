@@ -35,7 +35,7 @@ export const getHeaderContent = (pathname: string, isFail: boolean) => {
 
   return (
     <Icon
-      name="ic-arrow-left-24"
+      name="ic-arrow-left"
       width={2.4}
       height={2.4}
       className="cursor-pointer"
