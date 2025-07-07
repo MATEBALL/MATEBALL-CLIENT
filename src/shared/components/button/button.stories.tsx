@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button from '@components/button/Button';
+import Button from '@components/button/button';
 import { buttonVariants } from '@components/button/styles/button-variants';
 import type { VariantProps } from 'class-variance-authority';
 
