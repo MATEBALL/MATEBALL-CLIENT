@@ -7,14 +7,16 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
+  ariaLabel?: string; 
 }
 
-const Button = ({ label, variant, size, className, disabled, onClick }: ButtonProps) => {
+const Button = ({ label, variant, size, className, disabled, onClick, ariaLabel }: ButtonProps) => {
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
+      aria-label={ariaLabel ?? label} 
       className={cn(
         buttonVariants({ variant, size }),
         disabled && 'cursor-not-allowed opacity-50',
