@@ -1,5 +1,6 @@
 import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
 import Footer from '@components/footer/footer';
+import Header from '@components/header/header';
 import { ROUTES } from '@routes/routes-config';
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -11,6 +12,7 @@ const Layout = () => {
 
   return (
     <div className="min-h-screen flex-col">
+      <Header />
       <main className="flex-grow">
         <Suspense fallback={<div className="py-10 text-center">로딩 중...</div>}>
           <Outlet />
