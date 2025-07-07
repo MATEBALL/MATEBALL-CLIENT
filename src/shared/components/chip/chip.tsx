@@ -1,4 +1,4 @@
-import { chipVariants } from '@styles/chip-variants';
+import { chipVariants } from '@components/chip/styles/chip-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
