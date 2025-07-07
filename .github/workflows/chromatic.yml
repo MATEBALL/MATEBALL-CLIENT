@@ -35,8 +35,17 @@ jobs:
         uses: chromaui/action@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          autoAcceptChanges: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Find existing comment
+        id: find_comment
+        uses: peter-evans/find-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: "<!-- chromatic-storybook-deployment -->"
 
       - name: Add PR comment for Chromatic deployment
         uses: peter-evans/create-or-update-comment@v4
@@ -45,5 +54,6 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           edit-mode: replace
           body: |
+            <!-- chromatic-storybook-deployment -->
             MATEBALL-STORYBOOK  
             [⚾ Storybook 배포가 완료되었습니다!](${{ steps.chromatic.outputs.storybookUrl }})
