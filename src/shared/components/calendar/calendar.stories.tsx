@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import MonthCalendar from '@components/calendar/month-calendar';
+import WeekCalendar from '@components/calendar/week-calendar';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
-import MonthCalendar from './month-calendar';
-import WeekCalendar from './week-calendar';
 
 const meta: Meta = {
   title: 'COMMON/Calendar',
