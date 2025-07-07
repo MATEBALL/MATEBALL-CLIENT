@@ -1,4 +1,4 @@
-import { buttonVariants } from '@components/button/styles/button-variants';
+import { buttonVariants } from '@constants/button-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
@@ -7,16 +7,14 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   className?: string;
   disabled?: boolean;
   onClick?: () => void;
-  ariaLabel?: string;
 }
 
-const Button = ({ label, variant, size, className, disabled, onClick, ariaLabel }: ButtonProps) => {
+const Button = ({ label, variant, size, className, disabled, onClick }: ButtonProps) => {
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
-      aria-label={ariaLabel ?? label}
       className={cn(
         buttonVariants({ variant, size }),
         disabled && 'cursor-not-allowed opacity-50',
