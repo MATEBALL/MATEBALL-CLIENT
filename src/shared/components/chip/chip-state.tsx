@@ -1,40 +1,43 @@
-import { chipStateVariants } from '@styles/chip-state-variants';
+import { chipStateVariants } from '@components/chip/styles/chip-state-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
-type ChipStateType = NonNullable<VariantProps<typeof chipStateVariants>['state']>;
+type ChipColorType = NonNullable<VariantProps<typeof chipStateVariants>['colorType']>;
 
 interface ChipStateProps {
-	label: string;
-	state?: ChipStateType;
-	className?: string;
+  label?: string;
+  rate?: number;
+  colorType?: ChipColorType;
+  className?: string;
 }
 
-const ChipState = ({ label, state = 'default', className }: ChipStateProps) => {
-	if (state === '매칭률') {
-		const rate = label.replace(/[^0-9]/g, '');
+const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProps) => {
+  if (rate !== undefined) {
+    return (
+      <div
+        data-state="rate"
+        className={cn(
+          chipStateVariants({ colorType }),
+          'justify-center cap_12_m items-center',
+          className,
+        )}
+      >
+        <div className="flex items-center gap-[0.2rem]">
+          <span>매칭률</span>
+          <div className="flex items-center">
+            <p>{rate}</p>
+            <p>%</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-		return (
-			<div
-				data-state="rate"
-				className={cn(
-					chipStateVariants({ state }),
-					'inline-flex justify-center cap_12_m items-center',
-					className,
-				)}
-			>
-				<div className="flex items-center gap-[0.2rem]">
-					<p>매칭률</p>
-					<div className="flex items-center">
-						<p>{rate}</p>
-						<p>%</p>
-					</div>
-				</div>
-			</div>
-		);
-	}
-
-	return <p className={cn(chipStateVariants({ state }), className)}>{label}</p>;
+  return (
+    <p className={cn(chipStateVariants({ colorType }), className)}>
+      {label}
+    </p>
+  );
 };
 
 export default ChipState;
