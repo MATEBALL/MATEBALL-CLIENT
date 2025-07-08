@@ -1,6 +1,6 @@
 import { cn } from '@libs/cn';
 import type React from 'react';
-import defaultProfile from '../../../assets/svgs/profile.svg';
+import defaultProfile from '../../../../assets/svgs/profile.svg';
 import { profileVariants } from '../styles/card-variants';
 import type { CardProfileProps } from '../types/card';
 
