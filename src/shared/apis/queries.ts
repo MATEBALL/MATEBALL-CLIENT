@@ -2,6 +2,7 @@ import { get, post } from '@apis/http';
 import { END_POINT } from '@constants/api';
 import { queryOptions } from '@tanstack/react-query';
 
+// 유저 도메인 관련 쿼리
 export const userQueries = {
   ALL: ['user'] as const,
   kakaoInfo: () =>
@@ -21,3 +22,7 @@ export const userQueries = {
       enabled: Boolean(nickname),
     }),
 };
+
+// 게임 관련
+
+// 매칭 관련
