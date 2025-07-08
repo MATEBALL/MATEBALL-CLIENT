@@ -1,4 +1,4 @@
-import { get, post } from '@apis/http';
+import { get } from '@apis/http';
 import { END_POINT } from '@constants/api';
 import { queryOptions } from '@tanstack/react-query';
 
@@ -14,12 +14,6 @@ export const userQueries = {
     queryOptions({
       queryKey: [...userQueries.ALL, 'info'],
       queryFn: () => get(END_POINT.GET_USERS_INFO),
-    }),
-  postNickName: (nickname: string) =>
-    queryOptions({
-      queryKey: [...userQueries.ALL, 'nickname'],
-      queryFn: () => post(END_POINT.POST_INFO_NICKNAME, { nickname }),
-      enabled: Boolean(nickname),
     }),
 };
 
