@@ -1,39 +1,47 @@
-import Icon from '@components/icon/icon';
+import { buttonGameVariants } from '@components/button/button-game/styles/button-game-variants';
 import { cn } from '@libs/cn';
-import { buttonGameVariants } from './styles/button-game-variants';
+import { useState } from 'react';
+import ChipInfo from './components/chip-info';
 
 interface ButtonGameProps {
-  label: string;
   onClick?: () => void;
   className?: string;
   ariaLabel?: string;
-  variant: 'blue' | 'white';
-  time: string;
-  location: string;
+  gameTime: string;
+  stadium: string;
+  awayTeam: string;
+  homeTeam: string;
 }
 
 const ButtonGame = ({
-  label,
   onClick,
   className,
   ariaLabel,
-  variant,
-  time,
-  location,
+  gameTime,
+  stadium,
+  awayTeam,
+  homeTeam,
 }: ButtonGameProps) => {
+  const [variant, setVariant] = useState<'selected' | 'default'>('default');
+
+  const handleClick = () => {
+    setVariant((prev) => (prev === 'default' ? 'selected' : 'default'));
+    onClick?.();
+  };
+
   return (
     <button
       type="button"
-      onClick={onClick}
-      aria-label={ariaLabel ?? label}
+      onClick={handleClick}
+      aria-label={ariaLabel ?? `${awayTeam} VS ${homeTeam}`}
       className={cn(buttonGameVariants({ variant }), className, 'flex-row-between')}
     >
-      <span>{label}</span>
+      <span>
+        {awayTeam} VS {homeTeam}
+      </span>
       <span className="flex-row-center gap-[0.4rem] text-gray-600">
-        <Icon name="ic-clock" width={1.6} height={1.6} className="text-gray-500" />
-        {time}
-        <Icon name="ic-location" width={1.6} height={1.6} className="ml-[0.4rem] text-gray-500" />
-        {location}
+        <ChipInfo icon="ic-clock" text={gameTime} iconColor="text-gray-500" />
+        <ChipInfo icon="ic-location" text={stadium} iconColor="text-gray-500" />
       </span>
     </button>
   );
