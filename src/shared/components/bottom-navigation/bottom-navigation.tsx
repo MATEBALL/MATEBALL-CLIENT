@@ -1,46 +1,11 @@
+import { NAV_ITEMS } from '@components/bottom-navigation/constants/bottom-navigation';
 import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
-import { ROUTES } from '@routes/routes-config';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const BottomNavigation = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-
-  const NAV_ITEMS = [
-    {
-      label: '홈',
-      path: ROUTES.HOME,
-      icon: {
-        filled: 'ic-home-filled',
-        lined: 'ic-home-lined',
-      },
-    },
-    {
-      label: '매칭 현황',
-      path: ROUTES.MATCH,
-      icon: {
-        filled: 'ic-matchinglist-filled',
-        lined: 'ic-matchinglist-lined',
-      },
-    },
-    {
-      label: '채팅',
-      path: ROUTES.CHAT,
-      icon: {
-        filled: 'ic-chat-filled',
-        lined: 'ic-chat-lined',
-      },
-    },
-    {
-      label: '내 정보',
-      path: ROUTES.PROFILE,
-      icon: {
-        filled: 'ic-my-filled',
-        lined: 'ic-my-lined',
-      },
-    },
-  ];
 
   const isActive = (path: string) => pathname === path;
 

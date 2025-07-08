@@ -5,7 +5,6 @@ import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
-  const location = useLocation();
   const { pathname } = useLocation();
 
   const showBottomNav = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT, ROUTES.PROFILE].includes(pathname);
@@ -17,7 +16,7 @@ const Layout = () => {
           <Outlet />
         </Suspense>
       </main>
-      {location.pathname === ROUTES.HOME && <Footer />}
+      {pathname === ROUTES.HOME && <Footer />}
       {showBottomNav && <BottomNavigation />}
     </div>
   );

@@ -36,7 +36,7 @@ export const chipVariantOptions = {
 };
 
 export const chipVariants = cva(
-  'flex items-center px-[0.8rem] py-[0.4rem] cap_12_m rounded-[4px]',
+  'cap_12_m flex items-center rounded-[4px] px-[0.8rem] py-[0.4rem]',
   {
     variants: chipVariantOptions,
     defaultVariants: {

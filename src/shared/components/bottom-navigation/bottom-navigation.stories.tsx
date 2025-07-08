@@ -1,14 +1,15 @@
+import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
+import { ROUTES } from '@routes/routes-config';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
-import BottomNavigation from './bottom-navigation';
 
 const meta: Meta<typeof BottomNavigation> = {
   title: 'COMMON/BottomNavigation',
   component: BottomNavigation,
   decorators: [
     (Story) => (
-      <MemoryRouter initialEntries={['/']}>
-        <div className="w-[375px] bg-gray-100">
+      <MemoryRouter initialEntries={[ROUTES.HOME]}>
+        <div className="w-[37.5rem] bg-gray-100">
           <Story />
         </div>
       </MemoryRouter>
