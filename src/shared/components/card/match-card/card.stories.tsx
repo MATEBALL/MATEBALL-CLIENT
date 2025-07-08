@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import Card from './card';
 
 const meta: Meta<typeof Card> = {
-  title: 'COMMOM/Card',
+  title: 'COMMON/Card/MatchCard',
   component: Card,
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component:
-          '매칭 시스템용 카드 컴포넌트입니다. 개인 매칭, 그룹 매칭, 상세 정보 표시 등 다양한 타입을 지원합니다.',
+          '매칭 시스템용 카드 공통 컴포넌트입니다. 개인 매칭, 그룹 매칭, 개인 상세 정보 표시 등 다양한 타입을 지원합니다.',
       },
     },
   },
@@ -22,6 +22,15 @@ const meta: Meta<typeof Card> = {
       table: {
         type: { summary: "'single' | 'group' | 'detailed'" },
         defaultValue: { summary: 'single' },
+      },
+    },
+    color: {
+      control: 'select',
+      options: ['blue', 'white'],
+      description: '카드의 색상을 설정합니다.',
+      table: {
+        type: { summary: "'blue' | 'white'" },
+        defaultValue: { summary: 'blue' },
       },
     },
     name: {
@@ -61,25 +70,35 @@ const meta: Meta<typeof Card> = {
     },
     date: {
       control: 'text',
-      description: '매칭 상태를 설정합니다.',
+      description: '매칭 날짜를 설정합니다.',
+      table: {
+        type: { summary: 'string' },
+      },
     },
     introduction: {
       control: 'text',
-      description: '부가 설명 텍스트를 설정합니다. (선택사항)',
+      description: '한줄 설명 텍스트를 설정합니다. (선택사항)',
       table: {
         type: { summary: 'string' },
         defaultValue: { summary: 'undefined' },
       },
     },
+    matched: {
+      control: 'number',
+      description: '매칭된 인원 수를 설정합니다.',
+      table: {
+        type: { summary: 'number' },
+      },
+    },
     percent: {
       control: { type: 'number', min: 0, max: 100, step: 1 },
-      description: '매칭률을 퍼센트로 설정합니다. (선택사항)',
+      description: '매칭률을 퍼센트로 설정합니다.',
       table: {
         type: { summary: 'number' },
         defaultValue: { summary: 'undefined' },
       },
     },
-    src: {
+    images: {
       control: 'object',
       description: '아바타 이미지 URL 배열입니다.',
       table: {
@@ -92,7 +111,6 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 개인 매칭 카드
 export const Single: Story = {
   args: {
     type: 'single',
@@ -100,11 +118,12 @@ export const Single: Story = {
     age: '28',
     gender: '남성',
     teams: '두산',
-    location: '열정응원러',
-    date: '새 요청',
-    src: [
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+    location: '경기장',
+    date: '11월 11일',
+    images: [
+      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
+    chips: ['키움', '열정응원러'],
   },
 };
 
@@ -115,13 +134,14 @@ export const Detailed: Story = {
     age: '25',
     gender: '여성',
     teams: 'LG',
-    location: '응원단',
-    date: '매칭 완료',
+    location: '경기장',
+    date: '11월 11일',
     introduction: '야구장에서 함께 응원해요! 치킨과 맥주 좋아합니다 🍺',
     percent: 85,
-    src: [
+    images: [
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
+    chips: ['키움', '열정응원러'],
   },
 };
 
@@ -133,12 +153,12 @@ export const Group: Story = {
     gender: '남성',
     teams: '롯데',
     location: '캐주얼',
-    date: '새 요청',
-    introduction: '매칭된 인원 3/4',
-    src: [
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    date: '11월 11일',
+    matched: 3,
+    images: [
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
+      'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
   },
 };
