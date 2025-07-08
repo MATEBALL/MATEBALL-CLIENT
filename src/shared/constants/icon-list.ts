@@ -22,7 +22,8 @@ export const iconNames = [
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
-  'ic-x',
+  'ic-right',
+  'ic-x'
 ] as const;
-
-export type IconName = (typeof iconNames)[number];
+ 
+export type IconName = typeof iconNames[number];
