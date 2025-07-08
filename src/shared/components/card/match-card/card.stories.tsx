@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Card from './card';
+import type { CardProps } from './types/card';
 
 const meta: Meta<typeof Card> = {
   title: 'COMMON/Card/MatchCard',
@@ -109,7 +110,7 @@ const meta: Meta<typeof Card> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<CardProps>;
 
 export const Single: Story = {
   args: {
@@ -149,10 +150,8 @@ export const Group: Story = {
   args: {
     type: 'group',
     name: '박철수',
-    age: '30',
-    gender: '남성',
     teams: '롯데',
-    location: '캐주얼',
+    location: '경기장',
     date: '11월 11일',
     matched: 3,
     images: [
