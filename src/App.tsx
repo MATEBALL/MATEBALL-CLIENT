@@ -1,3 +1,4 @@
+import Card from '@components/card/match-card/card';
 import queryClient from '@libs/query-client';
 import { router } from '@routes/router';
 import { QueryClientProvider } from '@tanstack/react-query';
@@ -17,6 +18,22 @@ import queryClient from '@libs/query-client';
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <Card
+        type="single"
+        nickname="홍길동"
+        team="두산"
+        style="열정응원러"
+        date="2025-01-01"
+        imgUrl={['https://picsum.photos/200/300']}
+        awayTeam="어웨이"
+        homeTeam="홈  "
+        stadium="경기장"
+        age="20"
+        gender="남"
+        color="blue"
+        chips={['두산', '열정응원러']}
+        status="매칭 완료"
+      />
       <RouterProvider router={router} />
       <ReactQueryDevtools initialIsOpen={false} />
 <<<<<<< HEAD

@@ -74,21 +74,20 @@ const Card = (props: CardProps) => {
       {type === 'detailed' && (
         <>
           <p className="cap_14_m mt-[1.6rem]">{props.introduction}</p>
-          <CardGameInfo
-            className="my-[1.2rem]"
-            teams={props.teams}
-            location={props.location}
-            date={props.date}
-          />
+          <CardGameInfo className="my-[1.2rem]" {...props} />
           <hr className="border-gray-300" />
-          <CardMatchingRate percent={props.percent} className="mt-[1.6rem] ml-auto" />
+          <CardMatchingRate matchRate={props.matchRate} className="mt-[1.6rem] ml-auto" />
         </>
       )}
 
+<<<<<<< HEAD
       {type !== 'detailed' && (
         <CardGameInfo teams={props.teams} location={props.location} date={props.date} />
 >>>>>>> a1542aa (feat: biome 에러 수정(#49))
       )}
+=======
+      {type !== 'detailed' && <CardGameInfo className="mt-[0.4rem]" {...props} />}
+>>>>>>> e6dad66 (fix: api 명세서에 맞게 props명 수정 및 gameinfo 컴포넌트 분리(#49))
     </div>
   );
 };

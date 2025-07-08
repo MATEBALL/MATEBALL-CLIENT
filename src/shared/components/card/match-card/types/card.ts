@@ -6,27 +6,29 @@ type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 export interface BaseCardProps {
   type: 'single' | 'group' | 'detailed';
   className?: string;
-  name: string;
-  teams: string;
-  location: string;
+  nickname: string;
   date: string;
-  images: string[];
+  imgUrl: string[];
   chips: ChipColor[];
+  awayTeam: string;
+  homeTeam: string;
+  stadium: string;
+  status: string;
 }
 
 export interface SingleCardProps extends BaseCardProps {
   type: 'single';
   age: string;
   gender: string;
-  introduction: string;
   color: 'blue' | 'white';
   chips: ChipColor[];
+  team: string;
+  style: string;
 }
 
 export interface GroupCardProps extends BaseCardProps {
   type: 'group';
-  memberCount?: number;
-  matched?: number;
+  count: number;
   color: 'blue' | 'white';
 }
 
@@ -35,25 +37,28 @@ export interface DetailedCardProps extends BaseCardProps {
   age: string;
   gender: string;
   introduction: string;
-  percent: number;
+  matchRate: number;
   color?: 'blue' | 'white';
   chips: ChipColor[];
+  team: string;
+  style: string;
 }
 
 export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps;
 
 export interface CardProfileProps {
   type: 'single' | 'group' | 'detailed';
-  images: string[];
+  imgUrl: string[];
 }
 
 export interface CardGameInfoProps {
-  teams: string;
-  location: string;
+  awayTeam: string;
+  homeTeam: string;
+  stadium: string;
   date: string;
   className?: string;
 }
 export interface CardMatchingRateProps {
-  percent: number;
+  matchRate: number;
   className?: string;
 }
