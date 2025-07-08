@@ -11,7 +11,7 @@ const bgColorOptions = Object.keys(chipVariantOptions.bgColor) as ChipColor[];
 const textColorOptions = Object.keys(chipVariantOptions.textColor) as ChipColor[];
 
 const meta: Meta<typeof Chip> = {
-  title: 'common/Chip',
+  title: 'common/Chip/Chip',
   component: Chip,
   tags: ['autodocs'],
   parameters: {
