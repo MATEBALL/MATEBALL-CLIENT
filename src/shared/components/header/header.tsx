@@ -2,8 +2,8 @@ import { getHeaderContent } from '@components/header/utils/get-header';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const isFail = urlParams.has('fail');
 

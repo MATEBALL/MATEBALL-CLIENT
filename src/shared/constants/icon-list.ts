@@ -19,6 +19,8 @@ export const iconNames = [
   'ic-location',
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
+  'ic-logo',
+  'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
