@@ -1,5 +1,5 @@
+import ButtonGame from '@components/button/button-game/button-game';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import ButtonGame from './button-game';
 
 const meta: Meta<typeof ButtonGame> = {
   title: 'COMMON/Button/ButtonGame  ',
@@ -14,10 +14,11 @@ const meta: Meta<typeof ButtonGame> = {
 ---
 
 ### ✅ 필수 props
-- \`label\`: 버튼 텍스트
 - \`variant\`: 버튼 색상
-- \`time\`: 버튼 시간
-- \`location\`: 버튼 위치
+- \`gameTime\`: 버튼 시간
+- \`stadium\`: 버튼 위치
+- \`awayTeam\`: 버튼 위치
+- \`homeTeam\`: 버튼 위치
 
 ### 🛠 선택적 props
 - \`onClick\`: 버튼 클릭 이벤트
@@ -28,26 +29,21 @@ const meta: Meta<typeof ButtonGame> = {
     },
   },
   argTypes: {
-    label: {
+    gameTime: {
       control: 'text',
-      description: 'Button label text',
+      description: 'Button game time',
     },
-    variant: {
-      control: 'inline-radio',
-      description: 'Button variant',
-      options: ['blue', 'white'],
-    },
-    onClick: {
-      action: 'clicked',
-      description: 'Click event handler',
-    },
-    ariaLabel: {
+    stadium: {
       control: 'text',
-      description: 'Accessibility label',
+      description: 'Button stadium',
     },
-    className: {
+    awayTeam: {
       control: 'text',
-      description: 'Additional CSS classes',
+      description: 'Button away team',
+    },
+    homeTeam: {
+      control: 'text',
+      description: 'Button home team',
     },
   },
   decorators: [
@@ -64,9 +60,9 @@ type Story = StoryObj<typeof ButtonGame>;
 
 export const TestButtonGame: Story = {
   args: {
-    label: '어웨이팀 VS 홈팀',
-    variant: 'blue',
-    time: '11:00',
-    location: '경기장',
+    gameTime: '11:00',
+    stadium: '경기장',
+    awayTeam: '어웨이팀',
+    homeTeam: '홈팀',
   },
 };

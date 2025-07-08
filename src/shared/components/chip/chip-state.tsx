@@ -18,7 +18,7 @@ const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProp
         data-state="rate"
         className={cn(
           chipStateVariants({ colorType }),
-          'justify-center cap_12_m items-center',
+          'cap_12_m items-center justify-center',
           className,
         )}
       >
@@ -33,11 +33,7 @@ const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProp
     );
   }
 
-  return (
-    <p className={cn(chipStateVariants({ colorType }), className)}>
-      {label}
-    </p>
-  );
+  return <p className={cn(chipStateVariants({ colorType }), className)}>{label}</p>;
 };
 
 export default ChipState;
