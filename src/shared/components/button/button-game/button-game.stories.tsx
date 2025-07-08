@@ -1,21 +1,23 @@
-import ButtonCreate from '@components/button/button-create/button-create';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import ButtonGame from './button-game';
 
-const meta: Meta<typeof ButtonCreate> = {
-  title: 'COMMON/Button/ButtonCreate',
-  component: ButtonCreate,
+const meta: Meta<typeof ButtonGame> = {
+  title: 'COMMON/Button/ButtonGame  ',
+  component: ButtonGame,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**Button Create컴포넌트**는 맞춤 매칭 생성하기 버튼으로 버튼 label과 색상을 조절하여 재사용 가능한 컴포넌트입니다.
+**Button Game 컴포넌트**는 경기 버튼으로 버튼 label과 색상을 조절하여 재사용 가능한 컴포넌트입니다.
 
 ---
 
 ### ✅ 필수 props
 - \`label\`: 버튼 텍스트
-- \`textColor\`: 버튼 텍스트 색상
+- \`variant\`: 버튼 색상
+- \`time\`: 버튼 시간
+- \`location\`: 버튼 위치
 
 ### 🛠 선택적 props
 - \`onClick\`: 버튼 클릭 이벤트
@@ -30,9 +32,10 @@ const meta: Meta<typeof ButtonCreate> = {
       control: 'text',
       description: 'Button label text',
     },
-    textColor: {
-      control: 'text',
-      description: 'Button text color',
+    variant: {
+      control: 'inline-radio',
+      description: 'Button variant',
+      options: ['blue', 'white'],
     },
     onClick: {
       action: 'clicked',
@@ -49,7 +52,7 @@ const meta: Meta<typeof ButtonCreate> = {
   },
   decorators: [
     (Story) => (
-      <div className="h-[10rem] w-[50rem] flex-row-center bg-gray-600">
+      <div className="h-[10rem] w-[50rem] flex-row-center bg-gray-500">
         <Story />
       </div>
     ),
@@ -57,11 +60,13 @@ const meta: Meta<typeof ButtonCreate> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof ButtonCreate>;
+type Story = StoryObj<typeof ButtonGame>;
 
-export const TestButtonCreate: Story = {
+export const TestButtonGame: Story = {
   args: {
-    label: 'Button',
-    textColor: 'text-main-900',
+    label: '어웨이팀 VS 홈팀',
+    variant: 'blue',
+    time: '11:00',
+    location: '경기장',
   },
 };
