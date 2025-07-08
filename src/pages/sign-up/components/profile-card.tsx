@@ -3,9 +3,12 @@ interface ProfileCardProps {
   data: string;
 }
 
-const ProfileCard = ({ title, data }: ProfileCardProps) => {
+const ProfileCard = ({ title, data, ...props }: ProfileCardProps) => {
   return (
-    <div className="h-[9.1rem] w-full flex-col gap-[0.8rem] rounded-[8px] bg-gray-white p-[1.6rem]">
+    <div
+      className="h-[9.1rem] w-full flex-col gap-[0.8rem] rounded-[8px] bg-gray-white p-[1.6rem]"
+      {...props}
+    >
       <p className="cap_14_m text-gray-600">{title}</p>
       <p className="head_20_m">{data}</p>
     </div>

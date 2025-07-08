@@ -1,6 +1,6 @@
 import Button from '@components/button/button';
-import ProfileCard from './components/profile-card';
-import { NOTICE } from './constants/NOTICE';
+import ProfileCard from '@pages/sign-up/components/profile-card';
+import { NOTICE } from '@pages/sign-up/constants/NOTICE';
 
 const SignUp = () => {
   return (
@@ -11,8 +11,8 @@ const SignUp = () => {
           <p className="cap_14_m whitespace-pre-line text-gray-600">{NOTICE}</p>
         </div>
         <div className="w-full flex-row gap-[1.2rem]">
-          <ProfileCard title="생년" data="xxxx년도" />
-          <ProfileCard title="성별" data="xxxx성별" />
+          <ProfileCard title="생년" data="xxxx년도" aria-label="생년" />
+          <ProfileCard title="성별" data="성별" aria-label="성별" />
         </div>
       </div>
       <Button label="가입하기" className="w-full" ariaLabel="가입하기" />
