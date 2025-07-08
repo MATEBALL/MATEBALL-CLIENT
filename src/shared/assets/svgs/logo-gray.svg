@@ -7,7 +7,11 @@
       }
 
       .cls-2 {
+<<<<<<< HEAD
         fill: currentColor;
+=======
+        fill: #656667;
+>>>>>>> 1742dde (feat: storybook 수정 (#79))
       }
 
       .cls-3 {
