@@ -16,7 +16,11 @@ const ChipState = ({ label, rate, colorType, className }: ChipStateProps) => {
     return (
       <div
         data-state="rate"
-        className={cn(chipStateVariants({ colorType }), 'cap_12_m', className)}
+        className={cn(
+          chipStateVariants({ colorType }),
+          'cap_12_m items-center justify-center',
+          className,
+        )}
       >
         <div className="flex items-center gap-[0.2rem]">
           <span>매칭률</span>

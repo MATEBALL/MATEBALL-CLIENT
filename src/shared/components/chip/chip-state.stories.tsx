@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import ChipState from '@components/chip/chip-state';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ChipState> = {
   title: 'Components/Chip/ChipState',
