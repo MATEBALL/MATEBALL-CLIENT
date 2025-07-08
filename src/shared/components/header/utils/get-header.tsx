@@ -1,16 +1,18 @@
 import Icon from '@components/icon/icon';
 import { ROUTES } from '@routes/routes-config';
-import { useNavigate } from 'react-router-dom';
+import type { NavigateFunction } from 'react-router-dom';
 
-export const getHeaderContent = (pathname: string, isFail: boolean) => {
-  const navigate = useNavigate();
-
+export const getHeaderContent = (
+  pathname: string,
+  isFail: boolean,
+  navigate?: NavigateFunction,
+) => {
   const handleLogoClick = () => {
-    navigate(ROUTES.HOME);
+    if (navigate) navigate(ROUTES.HOME);
   };
 
   const handleBackClick = () => {
-    navigate(-1);
+    if (navigate) navigate(-1);
   };
 
   if (pathname === ROUTES.HOME) {
@@ -30,7 +32,7 @@ export const getHeaderContent = (pathname: string, isFail: boolean) => {
   }
 
   if (isFail) {
-    return <Icon name="ic-arrow-left-white" width={2.4} height={2.4} onClick={handleBackClick} />;
+    return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }
 
   return (
@@ -38,8 +40,8 @@ export const getHeaderContent = (pathname: string, isFail: boolean) => {
       name="ic-arrow-left"
       width={2.4}
       height={2.4}
-      className="cursor-pointer"
       onClick={handleBackClick}
+      className="cursor-pointer"
     />
   );
 };
