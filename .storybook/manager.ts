@@ -4,7 +4,7 @@ import { themes } from '@storybook/theming';
 addons.setConfig({
   theme: {
     ...themes.light,
-    brandTitle: 'MATEBALL MATEBALL Design System',
+    brandTitle: 'MATEBALL Design System',
     brandImage: '/svgs/logo-gray.svg',
   },
 });
