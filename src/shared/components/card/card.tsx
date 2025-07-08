@@ -74,7 +74,12 @@ const Card = (props: CardProps) => {
       {type === 'detailed' && (
         <>
           <p className="cap_14_m mt-[1.6rem]">{props.introduction}</p>
-          <CardGameInfo teams={props.teams} location={props.location} date={props.date} />
+          <CardGameInfo
+            className="my-[1.2rem]"
+            teams={props.teams}
+            location={props.location}
+            date={props.date}
+          />
           <hr className="border-gray-300" />
           <CardMatchingRate percent={props.percent} className="mt-[1.6rem] ml-auto" />
         </>

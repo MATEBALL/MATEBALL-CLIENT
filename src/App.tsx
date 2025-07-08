@@ -25,6 +25,7 @@ const App = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <div>
 			메잇볼
@@ -80,6 +81,8 @@ const App = () => {
         color="blue"
       />
 >>>>>>> a1542aa (feat: biome 에러 수정(#49))
+=======
+>>>>>>> d331e17 (feat: chip 추가(#49))
     </QueryClientProvider>
   );
 };
