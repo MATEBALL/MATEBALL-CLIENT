@@ -1,3 +1,8 @@
+import type { chipVariants } from '@components/chip/styles/chip-variants';
+import type { VariantProps } from 'class-variance-authority';
+
+type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
+
 export interface BaseCardProps {
   type: 'single' | 'group' | 'detailed';
   className?: string;
@@ -6,6 +11,7 @@ export interface BaseCardProps {
   location: string;
   date: string;
   images: string[];
+  chips: ChipColor[];
 }
 
 export interface SingleCardProps extends BaseCardProps {
@@ -14,6 +20,7 @@ export interface SingleCardProps extends BaseCardProps {
   gender: string;
   introduction: string;
   color: 'blue' | 'white';
+  chips: ChipColor[];
 }
 
 export interface GroupCardProps extends BaseCardProps {
@@ -30,6 +37,7 @@ export interface DetailedCardProps extends BaseCardProps {
   introduction: string;
   percent: number;
   color?: 'blue' | 'white';
+  chips: ChipColor[];
 }
 
 export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps;
