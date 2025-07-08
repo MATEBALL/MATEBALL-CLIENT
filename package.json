@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
+    "@storybook/manager-api": "^8.6.14",
+    "@storybook/theming": "^8.6.14",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/react-query": "^5.81.5",

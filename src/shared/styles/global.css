@@ -20,9 +20,8 @@
   }
 
   body {
-    font-family:
-      "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-      sans-serif;
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, sans-serif;
     min-width: var(--min-width);
     max-width: var(--max-width);
     margin-left: auto;

@@ -11,33 +11,22 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-interface LogoArgs {
-  width?: number;
-  height?: number;
-  backgroundColor?: string;
-}
-
 export const Logo: Story = {
-  args: {
-    width: 15,
-    height: 15,
-  },
-  // TODO: 로고 아이콘 적용
-  render: (args: LogoArgs) => (
-    <div className="flex flex-col items-center space-y-16 p-16">
-      <div className="flex flex-col items-center">
+  render: () => (
+    <div className="flex flex-col items-center gap-[2rem]">
+      <div className="flex flex-col items-center p-[rem]">
         <p className="head_20_sb mb-2 text-gray-black">LogoSymbol</p>
-        <Icon name="ic-baseball" {...args} />
-      </div>
-
-      <div className="flex flex-col items-center">
-        <p className="head_20_sb mb-2 text-gray-black">LogoFooter</p>
-        <Icon name="ic-baseball" {...args} />
+        <img src="/svgs/ic-favicon.svg" alt="favicon" width={150} height={150} />
       </div>
 
       <div className="flex flex-col items-center">
         <p className="head_20_sb mb-2 text-gray-black">Logo</p>
-        <Icon name="ic-baseball" {...args} />
+        <Icon name="logo" width={15} height={7} className="bg-gray-black p-[1rem]" />
+      </div>
+
+      <div className="flex flex-col items-center">
+        <p className="head_20_sb mb-2 text-gray-black">LogoFooter</p>
+        <Icon name="logo-gray" width={15} height={7} className="p-[1rem]" />
       </div>
     </div>
   ),

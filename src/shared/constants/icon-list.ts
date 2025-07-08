@@ -11,6 +11,11 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  'ic-arrow-left-18',
+  'ic-arrow-left-24',
+>>>>>>> bf0e05f (feat: storybook 수정 (#79))
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
@@ -55,6 +60,7 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   'ic-footer-logo',
 =======
 >>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
@@ -66,6 +72,8 @@ export const iconNames = [
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
+=======
+>>>>>>> bf0e05f (feat: storybook 수정 (#79))
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
@@ -78,6 +86,7 @@ export const iconNames = [
 <<<<<<< HEAD
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
+<<<<<<< HEAD
   'ic-logo',
 =======
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
@@ -173,3 +182,14 @@ export type IconName = typeof iconNames[number];
 >>>>>>> b10c65f (fix: pnpm corepack으로 설치(#20))
 
 export type IconName = (typeof iconNames)[number];
+=======
+  'ic-my-filled',
+  'ic-my-lined',
+  'ic-plus',
+  'ic-x',
+  'logo-gray',
+  'logo'
+] as const;
+ 
+export type IconName = typeof iconNames[number];
+>>>>>>> bf0e05f (feat: storybook 수정 (#79))
