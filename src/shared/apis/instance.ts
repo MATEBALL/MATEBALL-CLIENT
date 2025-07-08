@@ -1,6 +1,7 @@
+import { ROUTES } from '@routes/routes-config';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
-import { RESPONSE_MESSAGE } from '../constants/response';
+import { HTTP_STATUS, RESPONSE_MESSAGE } from '../constants/response';
 import type { errorResponseTypes } from '../types/api';
 
 export const instance = axios.create({
@@ -11,11 +12,8 @@ export const instance = axios.create({
   withCredentials: true,
 });
 
-// TODO: interceptor 추후 수정 필요
 instance.interceptors.response.use(
   (response) => {
-    // TODO: 명세서 보고 바꾸기
-    // response.data: { status, message, data }
     return response.data.data;
   },
   (error: AxiosError) => {
@@ -28,5 +26,20 @@ instance.interceptors.response.use(
     }
 
     return Promise.reject(error);
+  },
+);
+
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const statusCode = error.response?.status;
+
+    if (statusCode === HTTP_STATUS.UNAUTHORIZED) {
+      window.location.replace(ROUTES.LOGIN);
+    }
+
+    if (statusCode === HTTP_STATUS.FORBIDDEN) {
+      window.location.replace(ROUTES.SIGNUP);
+    }
   },
 );

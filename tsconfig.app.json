@@ -27,7 +27,7 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./src/pages/*"],
-      "@api/*": ["./src/shared/api/*"],
+      "@apis/*": ["./src/shared/apis/*"],
       "@styles/*": ["./src/shared/styles/*"],
       "@components/*": ["./src/shared/components/*"],
       "@libs/*": ["./src/shared/libs/*"],
@@ -38,6 +38,7 @@
       "@routes/*": ["./src/shared/routes/*"],
       "@img/*": ["./src/shared/assets/images/*"],
       "@svg/*": ["./src/shared/assets/svgs/*"],
+      "@lotties/*": ["./src/shared/assets/lotties/*"],
       "@/*": ["./src/*"]
     }
   },
