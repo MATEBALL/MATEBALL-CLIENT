@@ -1,13 +1,17 @@
-import ChipState from '@components/chip/chip-state';
+import ChipState from '@components/chip/chip-state/chip-state';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ChipState> = {
-  title: 'Components/Chip/ChipState',
+  title: 'common/Chip/ChipState',
   component: ChipState,
   tags: ['autodocs'],
-  args: {
-    colorType: 'gray',
+  argTypes: {
+    colorType: {
+      control: { type: 'radio' },
+      options: ['main', 'gray'],
+    },
   },
+
   parameters: {
     docs: {
       description: {
@@ -29,20 +33,20 @@ ChipState 컴포넌트는 상태를 나타내는 태그(Chip)입니다.
 export default meta;
 type Story = StoryObj<typeof ChipState>;
 
-export const 기본_상태: Story = {
+export const Default: Story = {
   args: {
     label: '요청 대기 중',
   },
 };
 
-export const 메인컬러_상태: Story = {
+export const MainColor: Story = {
   args: {
     label: '승인 완료',
     colorType: 'main',
   },
 };
 
-export const 매칭률: Story = {
+export const Matching: Story = {
   args: {
     rate: 85,
     colorType: 'main',
