@@ -1,4 +1,4 @@
-import ChipState from '@components/chip/chip-state';
+import ChipState from '@components/chip/chip-state/chip-state';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof ChipState> = {

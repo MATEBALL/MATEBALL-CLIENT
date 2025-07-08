@@ -1,4 +1,4 @@
-import { chipStateVariants } from '@components/chip/styles/chip-state-variants';
+import { chipStateVariants } from '@components/chip/chip-state/styles/chip-state-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
@@ -11,7 +11,7 @@ interface ChipStateProps {
   className?: string;
 }
 
-const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProps) => {
+const ChipState = ({ label, rate, colorType, className }: ChipStateProps) => {
   if (rate !== undefined) {
     return (
       <div
@@ -37,3 +37,4 @@ const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProp
 };
 
 export default ChipState;
+
