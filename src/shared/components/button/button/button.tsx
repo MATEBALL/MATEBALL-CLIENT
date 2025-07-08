@@ -1,4 +1,4 @@
-import { buttonVariants } from '@components/button/styles/button-variants';
+import { buttonVariants } from '@components/button/button/styles/button-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
