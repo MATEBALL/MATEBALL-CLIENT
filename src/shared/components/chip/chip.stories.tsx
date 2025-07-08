@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import Chip from '@components/chip/chip';
 import ChipList from '@components/chip/chip-list';
 import type { chipVariants } from '@components/chip/styles/chip-variants';
 import { chipVariantOptions } from '@components/chip/styles/chip-variants';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { VariantProps } from 'class-variance-authority';
 
 type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
