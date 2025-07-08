@@ -5,7 +5,11 @@ const Footer = () => {
   return (
     <footer className="cap_12_m h-[30.6rem] flex-col gap-[4.8rem] px-[3.2rem] py-[1.6rem]">
       <div className="flex-col gap-[0.8rem]">
+<<<<<<< HEAD
         <Icon name="logo-gray" width={9.2} height={2.5} className="text-gray-700" />
+=======
+        <Icon name="logo-gray" width={9.2} height={2.5} />
+>>>>>>> 1742dde (feat: storybook 수정 (#79))
         <div className="flex-col gap-[0.4rem] text-gray-700">
           <p>대표 정윤지</p>
           <p>이메일 mateball0615@gmail.com</p>

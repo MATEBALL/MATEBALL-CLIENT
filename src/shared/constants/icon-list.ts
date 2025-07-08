@@ -27,7 +27,11 @@ export const iconNames = [
   'ic-plus',
   'ic-x',
   'logo-gray',
+<<<<<<< HEAD
   'logo',
+=======
+  'logo'
+>>>>>>> 1742dde (feat: storybook 수정 (#79))
 ] as const;
-
-export type IconName = (typeof iconNames)[number];
+ 
+export type IconName = typeof iconNames[number];
