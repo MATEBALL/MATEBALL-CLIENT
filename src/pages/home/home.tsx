@@ -1,6 +1,7 @@
 import Card from '@components/card/card';
 
 const Home = () => {
+<<<<<<< HEAD
   return (
     <div>
       홈
@@ -39,6 +40,9 @@ const Home = () => {
       />
     </div>
   );
+=======
+  return <div>홈</div>;
+>>>>>>> a1542aa (feat: biome 에러 수정(#49))
 };
 
 export default Home;

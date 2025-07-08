@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 interface CardProps {
   type: 'solo' | 'group' | 'detailed';
   username: string;
@@ -55,6 +56,33 @@ const Card = ({ type, username, age, gender, subText, percent, avatars }: CardPr
           <span className="text-xs">매칭률</span>
           <span className="font-bold text-sm">{percent}%</span>
         </div>
+=======
+import { cn } from '@libs/cn';
+import CardGameInfo from './components/card-game-info';
+import CardHeader from './components/card-header';
+import CardMatchingRate from './components/card-matching-rate';
+import { cardVariants } from './styles/card-variants';
+import type { CardProps } from './types/card';
+
+const Card = (props: CardProps) => {
+  const { type, className, color } = props;
+
+  return (
+    <div className={cn(cardVariants({ type, color }), className)}>
+      <CardHeader {...props} />
+
+      {type === 'detailed' && (
+        <>
+          <p className="cap_14_m mt-[1.6rem]">{props.introduction}</p>
+          <CardGameInfo teams={props.teams} location={props.location} date={props.date} />
+          <hr className="border-gray-300" />
+          <CardMatchingRate percent={props.percent} className="mt-[1.6rem] ml-auto" />
+        </>
+      )}
+
+      {type !== 'detailed' && (
+        <CardGameInfo teams={props.teams} location={props.location} date={props.date} />
+>>>>>>> a1542aa (feat: biome 에러 수정(#49))
       )}
     </div>
   );
