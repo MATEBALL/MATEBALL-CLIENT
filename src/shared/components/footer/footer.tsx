@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="cap_12_m h-[30.6rem] flex-col gap-[4.8rem] px-[3.2rem] py-[1.6rem]">
       <div className="flex-col gap-[0.8rem]">
-        <Icon name="ic-location" width={3.2} height={3.2} />
+        <Icon name="ic-footer-logo" width={9.2} height={2.5} />
         <div className="flex-col gap-[0.4rem]">
           <p>대표 정윤지</p>
           <p>이메일 mateball0615@gmail.com</p>

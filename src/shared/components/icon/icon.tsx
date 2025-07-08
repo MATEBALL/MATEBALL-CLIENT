@@ -2,6 +2,7 @@ import type React from 'react';
 
 interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: string;
+  fill?: string;
   size?: number | string;
   width?: number | string;
   height?: number | string;
@@ -15,6 +16,7 @@ const Icon = ({
   name,
   size,
   width,
+  fill = 'currentColor',
   height,
   className = '',
   rotate,
@@ -41,7 +43,7 @@ const Icon = ({
       width={typeof computedWidth === 'number' ? `${computedWidth}rem` : computedWidth}
       height={typeof computedHeight === 'number' ? `${computedHeight}rem` : computedHeight}
       className={combinedClass}
-      fill="currentColor"
+      fill={fill}
       aria-hidden={ariaHidden}
       role={!ariaHidden ? 'img' : undefined}
       aria-label={!ariaHidden && ariaLabel ? ariaLabel : undefined}

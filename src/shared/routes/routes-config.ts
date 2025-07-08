@@ -14,4 +14,6 @@ export const ROUTES = {
   CHAT: '/chat',
   CHAT_ROOM: (id = ':matchId') => `/chat/${id}`,
   RESULT: '/result',
+  ERROR: '/error',
+  LOADING: '/loading',
 };
