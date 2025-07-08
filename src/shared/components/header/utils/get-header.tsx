@@ -18,7 +18,7 @@ export const getHeaderContent = (
   if (pathname === ROUTES.HOME) {
     return (
       <Icon
-        name="ic-logo"
+        name="logo"
         height={2.5}
         width={9.2}
         onClick={handleLogoClick}
@@ -37,7 +37,7 @@ export const getHeaderContent = (
 
   return (
     <Icon
-      name="ic-arrow-left"
+      name="ic-arrow-left-24"
       width={2.4}
       height={2.4}
       onClick={handleBackClick}
