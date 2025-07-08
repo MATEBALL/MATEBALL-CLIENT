@@ -9,7 +9,7 @@ const ProfileCheckStep = () => {
   const isValid = !isAdult(data.birthYear);
 
   return (
-    <div className="h-screen flex-col-between gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem]">
+    <div className="flex-col-between gap-[4rem]">
       <div className="w-full flex-col gap-[4rem]">
         <div>
           <h1 className="title_24_sb text-gray-black">기본 정보를 확인해 주세요.</h1>

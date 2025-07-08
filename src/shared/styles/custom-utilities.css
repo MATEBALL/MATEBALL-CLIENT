@@ -48,4 +48,9 @@
   .flex-col-items-end {
     @apply flex flex-col items-end;
   }
+
+  .signup-layout {
+    @apply h-screen px-[1.6rem] pt-[4rem] pb-[1.6rem] bg-gray-white;
+  }
+
 }
