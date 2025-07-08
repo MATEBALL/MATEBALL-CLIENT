@@ -24,6 +24,7 @@ const App = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <div>
 			메잇볼
@@ -44,6 +45,41 @@ const App = () => {
 >>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
 =======
 >>>>>>> 8e41c7b (chore: 빌드 에러 해결(#20))
+=======
+      <Card
+        type="single"
+        name="김철수"
+        age="25"
+        gender="남성"
+        teams="어웨이 vs 홈"
+        location="잠실경기장"
+        date="NN월 NN일"
+        introduction="한줄소개"
+        color="blue"
+        images={['/testprofile.jpeg']}
+      />
+      <Card
+        type="detailed"
+        name="김철수"
+        age="25"
+        gender="남성"
+        teams="어웨이 vs 홈"
+        location="경기장"
+        date="NN월 NN일"
+        introduction="한줄소개"
+        images={['  /testprofile.jpeg']}
+        percent={10}
+      />
+      <Card
+        type="group"
+        name="김철수"
+        teams="어웨이 vs 홈"
+        location="경기장"
+        date="NN월 NN일"
+        images={['/testprofile.jpeg', '/testprofile.jpeg', '/testprofile.jpeg']}
+        color="blue"
+      />
+>>>>>>> a1542aa (feat: biome 에러 수정(#49))
     </QueryClientProvider>
   );
 };
