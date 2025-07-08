@@ -50,7 +50,6 @@
   }
 
   .signup-layout {
-    @apply h-screen px-[1.6rem] pt-[4rem] pb-[1.6rem] bg-gray-white;
+    @apply flex flex-col justify-between gap-[4rem] h-screen px-[1.6rem] pt-[4rem] pb-[1.6rem] bg-gray-white;
   }
-
 }

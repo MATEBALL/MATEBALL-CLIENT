@@ -9,7 +9,7 @@ const ProfileCheckStep = () => {
   const isValid = !isAdult(data.birthYear);
 
   return (
-    <div className="flex-col-between gap-[4rem]">
+    <>
       <div className="w-full flex-col gap-[4rem]">
         <div>
           <h1 className="title_24_sb text-gray-black">기본 정보를 확인해 주세요.</h1>
@@ -28,8 +28,8 @@ const ProfileCheckStep = () => {
           )}
         </div>
       </div>
-      <Button label="가입하기" className="w-full" ariaLabel="가입하기" disabled={isValid} />
-    </div>
+      <Button label="다음으로" className="w-full" ariaLabel="다음으로" disabled={isValid} />
+    </>
   );
 };
 
