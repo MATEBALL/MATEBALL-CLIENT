@@ -1,7 +1,7 @@
 import { cn } from '@libs/cn';
 import type { CardMatchingRateProps } from '../types/card';
 
-const CardMatchingRate = ({ percent, className }: CardMatchingRateProps) => {
+const CardMatchingRate = ({ matchRate, className }: CardMatchingRateProps) => {
   return (
     <div
       className={cn(
@@ -11,7 +11,7 @@ const CardMatchingRate = ({ percent, className }: CardMatchingRateProps) => {
     >
       <span className="cap_14_sb text-gray-600">매칭률</span>
       <div className="h-[2.2rem] w-[0.1rem] rounded-full bg-gray-300" />
-      <span className="head_20_sb text-main-900">{percent}%</span>
+      <span className="head_20_sb text-main-900">{matchRate}%</span>
     </div>
   );
 };

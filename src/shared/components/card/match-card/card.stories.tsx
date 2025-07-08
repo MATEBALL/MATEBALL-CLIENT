@@ -34,7 +34,7 @@ const meta: Meta<typeof Card> = {
         defaultValue: { summary: 'blue' },
       },
     },
-    name: {
+    nickname: {
       control: 'text',
       description: '사용자 이름을 설정합니다.',
       table: {
@@ -55,16 +55,23 @@ const meta: Meta<typeof Card> = {
         type: { summary: 'string' },
       },
     },
-    teams: {
+    team: {
       control: 'text',
       description: '응원하는 팀을 설정합니다.',
       table: {
         type: { summary: 'string' },
       },
     },
-    location: {
+    style: {
       control: 'text',
       description: '응원 스타일을 설정합니다.',
+      table: {
+        type: { summary: 'string' },
+      },
+    },
+    stadium: {
+      control: 'text',
+      description: '경기장을 설정합니다.',
       table: {
         type: { summary: 'string' },
       },
@@ -84,14 +91,14 @@ const meta: Meta<typeof Card> = {
         defaultValue: { summary: 'undefined' },
       },
     },
-    matched: {
+    count: {
       control: 'number',
       description: '매칭된 인원 수를 설정합니다.',
       table: {
         type: { summary: 'number' },
       },
     },
-    percent: {
+    matchRate: {
       control: { type: 'number', min: 0, max: 100, step: 1 },
       description: '매칭률을 퍼센트로 설정합니다.',
       table: {
@@ -99,11 +106,18 @@ const meta: Meta<typeof Card> = {
         defaultValue: { summary: 'undefined' },
       },
     },
-    images: {
+    imgUrl: {
       control: 'object',
       description: '아바타 이미지 URL 배열입니다.',
       table: {
         type: { summary: 'string[]' },
+      },
+    },
+    status: {
+      control: 'text',
+      description: '매칭 상태를 설정합니다.',
+      table: {
+        type: { summary: 'string' },
       },
     },
   },
@@ -115,49 +129,59 @@ type Story = StoryObj<CardProps>;
 export const Single: Story = {
   args: {
     type: 'single',
-    name: '김민수',
+    nickname: '김민수',
     age: '28',
     gender: '남성',
-    teams: '두산',
-    location: '경기장',
+    team: '두산',
+    awayTeam: '두산',
+    homeTeam: '키움',
+    style: '열정응원러',
+    stadium: '경기장',
     date: '11월 11일',
-    images: [
+    imgUrl: [
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
     chips: ['키움', '열정응원러'],
+    status: '매칭 완료',
   },
 };
 
 export const Detailed: Story = {
   args: {
     type: 'detailed',
-    name: '이영희',
+    nickname: '이영희',
     age: '25',
     gender: '여성',
-    teams: 'LG',
-    location: '경기장',
+    stadium: '경기장',
+    team: 'LG',
+    awayTeam: 'LG',
+    homeTeam: '두산',
+    style: '경기장',
     date: '11월 11일',
     introduction: '야구장에서 함께 응원해요! 치킨과 맥주 좋아합니다 🍺',
-    percent: 85,
-    images: [
+    matchRate: 85,
+    imgUrl: [
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
     chips: ['키움', '열정응원러'],
+    status: '매칭 완료',
   },
 };
 
 export const Group: Story = {
   args: {
     type: 'group',
-    name: '박철수',
-    teams: '롯데',
-    location: '경기장',
+    nickname: '박철수',
+    awayTeam: '롯데',
+    homeTeam: '두산',
+    stadium: '롯데',
     date: '11월 11일',
-    matched: 3,
-    images: [
+    count: 3,
+    imgUrl: [
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
+    status: '매칭 완료',
   },
 };
