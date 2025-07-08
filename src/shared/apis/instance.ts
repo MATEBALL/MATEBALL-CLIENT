@@ -36,10 +36,6 @@ instance.interceptors.response.use(
     const statusCode = error.response?.status;
 
     if (statusCode === HTTP_STATUS.UNAUTHORIZED) {
-      window.location.replace(ROUTES.LOGIN);
-    }
-
-    if (statusCode === HTTP_STATUS.FORBIDDEN) {
       window.location.replace(ROUTES.SIGNUP);
     }
   },
