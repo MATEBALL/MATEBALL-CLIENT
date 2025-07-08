@@ -1,4 +1,4 @@
-import { chipStateVariants } from '@components/chip/styles/chip-state-variants';
+import { chipStateVariants } from '@components/chip/chip-state/styles/chip-state-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
@@ -11,14 +11,14 @@ interface ChipStateProps {
   className?: string;
 }
 
-const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProps) => {
+const ChipState = ({ label, rate, colorType, className }: ChipStateProps) => {
   if (rate !== undefined) {
     return (
       <div
         data-state="rate"
         className={cn(
           chipStateVariants({ colorType }),
-          'justify-center cap_12_m items-center',
+          'cap_12_m items-center justify-center',
           className,
         )}
       >
@@ -33,11 +33,7 @@ const ChipState = ({ label, rate, colorType = 'gray', className }: ChipStateProp
     );
   }
 
-  return (
-    <p className={cn(chipStateVariants({ colorType }), className)}>
-      {label}
-    </p>
-  );
+  return <p className={cn(chipStateVariants({ colorType }), className)}>{label}</p>;
 };
 
 export default ChipState;

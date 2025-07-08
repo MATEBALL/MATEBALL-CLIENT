@@ -5,12 +5,21 @@ export const chipStateVariants = cva(
   {
     variants: {
       colorType: {
+<<<<<<< HEAD
         active: 'bg-main-900 text-gray-white',
         inactive: 'bg-gray-200 text-gray-700',
       },
     },
     defaultVariants: {
       colorType: 'inactive',
+=======
+        main: 'bg-main-900 text-gray-white',
+        gray: 'bg-gray-200 text-gray-700',
+      },
+    },
+    defaultVariants: {
+      colorType: 'gray',
+>>>>>>> 67606d8 (fix: chip state (#80))
     },
   },
 );
