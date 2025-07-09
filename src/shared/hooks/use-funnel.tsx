@@ -1,4 +1,4 @@
-import { Children, type ReactElement, type ReactNode, useCallback, useMemo } from 'react';
+import { Children, type ReactElement, type ReactNode, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface FunnelProps {
@@ -44,13 +44,11 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
     }
   }, [currentIndex, steps, goTo, navigate]);
 
-  const Funnel = useMemo(() => {
-    return ({ children }: FunnelProps) => {
-      const childrenArray = Children.toArray(children) as ReactElement<{ name: string }>[];
-      const matched = childrenArray.find((child) => child.props.name === currentStep);
-      return <>{matched}</>;
-    };
-  }, [currentStep]);
+  const Funnel = ({ children }: FunnelProps) => {
+    const childrenArray = Children.toArray(children) as ReactElement<{ name: string }>[];
+    const matched = childrenArray.find((child) => child.props.name === currentStep);
+    return <>{matched}</>;
+  };
 
   const Step = ({ children }: StepProps) => <>{children}</>;
 
