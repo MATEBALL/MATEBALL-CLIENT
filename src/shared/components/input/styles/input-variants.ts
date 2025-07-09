@@ -15,9 +15,9 @@ export const inputVariants = cva(
       },
     },
     defaultVariants: {
-      isFocused: true,
+      isFocused: false,
       isError: false,
-      isValid: true,
+      isValid: false,
     },
   },
 );
@@ -25,6 +25,6 @@ export const inputVariants = cva(
 export const iconColorMap = {
   error: 'text-state-error',
   valid: 'text-state-success',
-  focus: 'text-gray-black',
+  focus: 'text-gray-500',
   default: 'text-gray-500',
 };

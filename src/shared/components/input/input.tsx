@@ -7,6 +7,7 @@ import { defineInputState } from '@/shared/utils/define-input-state';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   isError?: boolean;
+  isValid?: boolean;
   isFocused?: boolean;
   icon?: string;
   defaultMessage?: string;
@@ -18,6 +19,7 @@ const Input = forwardRef(
     {
       isError,
       isFocused,
+      isValid,
       value,
       id,
       label,
@@ -28,7 +30,7 @@ const Input = forwardRef(
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const inputState = defineInputState(isError, isFocused);
+    const inputState = defineInputState(isError, isFocused, isValid);
     const messageToShow = validationMessage ?? defaultMessage;
     const iconColorClass = iconColorMap[inputState];
 
@@ -46,9 +48,11 @@ const Input = forwardRef(
             className="flex-1 text-gray-black placeholder:text-gray-500"
             value={value}
             ref={ref}
+            onFocus={props.onFocus}
+            onBlur={props.onBlur}
             {...props}
           />
-          {icon && <Icon name={icon} />}
+          {isFocused && icon && <Icon name={icon} />}
         </div>
         {messageToShow && (
           <div className="flex-row gap-[0.8rem]">
