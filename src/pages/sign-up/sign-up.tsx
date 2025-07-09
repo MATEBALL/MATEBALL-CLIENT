@@ -1,11 +1,9 @@
-import { NICKNAME_PLACEHOLDER } from '@components/input/constants/validation';
-import Input from '@components/input/input';
+import NicknameCheckStep from './components/nickname-check-step';
 
 const SignUp = () => {
   return (
-    <div>
-      회원가입페이지
-      <Input placeholder={NICKNAME_PLACEHOLDER} />
+    <div className="signup-layout">
+      <NicknameCheckStep />
     </div>
   );
 };
