@@ -1,10 +1,11 @@
+import { BASE_URL } from '@constants/api';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 import { RESPONSE_MESSAGE } from '../constants/response';
 import type { errorResponseTypes } from '../types/api';
 
 export const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
