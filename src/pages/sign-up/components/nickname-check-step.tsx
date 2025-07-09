@@ -1,4 +1,4 @@
-import Button from '@components/button/button';
+import Button from '@components/button/button/button';
 import { NICKNAME_PLACEHOLDER } from '@components/input/constants/validation';
 import Input from '@components/input/input';
 import { NICKNAME_TITLE } from '@pages/sign-up/constants/NOTICE';
