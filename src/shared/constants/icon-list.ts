@@ -28,6 +28,9 @@ export const iconNames = [
   'logo-blue',
   'logo-gray',
   'logo',
+  'ic-right',
+  'ic-x',
+  'ic-indicator',
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
