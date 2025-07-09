@@ -28,7 +28,11 @@ importers:
         version: 5.82.0(react@19.1.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.81.5
+<<<<<<< HEAD
         version: 5.81.5(@tanstack/react-query@5.82.0(react@19.1.0))(react@19.1.0)
+=======
+        version: 5.81.5(@tanstack/react-query@5.81.5(react@19.1.0))(react@19.1.0)
+>>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))
       '@toss/lottie':
         specifier: ^1.3.2
         version: 1.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2367,6 +2371,9 @@ packages:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))
   date-fns@2.30.0:
     resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
     engines: {node: '>=0.11'}
@@ -6707,6 +6714,9 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))
   classnames@2.5.1: {}
 
   cliui@8.0.1:
@@ -6836,9 +6846,17 @@ snapshots:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   date-fns@2.30.0:
     dependencies:
       '@babel/runtime': 7.27.6
+=======
+  date-fns@2.30.0:
+    dependencies:
+      '@babel/runtime': 7.27.6
+
+  date-fns@4.1.0: {}
+>>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))
 
   date-fns@4.1.0: {}
 =======
@@ -7986,6 +8004,7 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   suspend-react@0.1.3(react@19.1.0):
+<<<<<<< HEAD
 =======
 
 =======
@@ -7995,6 +8014,8 @@ snapshots:
 >>>>>>> 6863810 (chore: wrangler 설치)
   svgo@3.3.2:
 >>>>>>> 5983985 (chore: wrangler 설치)
+=======
+>>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))
     dependencies:
       react: 19.1.0
 

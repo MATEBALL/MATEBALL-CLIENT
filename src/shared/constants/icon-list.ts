@@ -188,8 +188,13 @@ export type IconName = (typeof iconNames)[number];
   'ic-plus',
   'ic-x',
   'logo-gray',
-  'logo'
+  'logo',
 ] as const;
+<<<<<<< HEAD
  
 export type IconName = typeof iconNames[number];
 >>>>>>> bf0e05f (feat: storybook 수정 (#79))
+=======
+
+export type IconName = (typeof iconNames)[number];
+>>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))
