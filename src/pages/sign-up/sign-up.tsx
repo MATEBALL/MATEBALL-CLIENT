@@ -1,7 +1,7 @@
 import NicknameStep from './components/nickname-step';
 
 const SignUp = () => {
-  const isNicknameStep = true;
+  const isNicknameStep = false;
 
   return (
     <div className={`signup-layout ${isNicknameStep ? 'bg-gray-white' : ''}`}>
