@@ -1,18 +1,18 @@
-import BarTabList from '@components/tab/tab/tab-list';
+import TabList from '@components/tab/tab/tab-list';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-const meta: Meta<typeof BarTabList> = {
-  title: 'common/tab/BarTabList',
-  component: BarTabList,
+const meta: Meta<typeof TabList> = {
+  title: 'common/tab/TabList',
+  component: TabList,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-**BarTabList 컴포넌트**
+**TabList 컴포넌트**
 
 홈/그룹 모드에 따라 탭 간 간격 및 색상이 달라지는 수평 탭 컴포넌트입니다.  
-내부 상태로 현재 활성 탭을 관리하며, 각 탭은 \`BarTabItem\`으로 구성됩니다.
+내부 상태로 현재 활성 탭을 관리하며, 각 탭은 \`TabItem\`으로 구성됩니다.
 
 - \`colorMode='home'\`일 때 간격: \`gap-[2.4rem]\`
 - \`colorMode='group'\`일 때 간격: \`gap-[0.8rem]\`
@@ -32,7 +32,7 @@ const meta: Meta<typeof BarTabList> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof BarTabList>;
+type Story = StoryObj<typeof TabList>;
 
 export const GroupMode: Story = {
   args: {
