@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "mateball",
   "private": true,
   "version": "0.0.0",
@@ -17,10 +16,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
+    "@storybook/manager-api": "^8.6.14",
+    "@storybook/theming": "^8.6.14",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
     "@tanstack/react-query": "^5.81.5",
     "@tanstack/react-query-devtools": "^5.81.5",
+    "@toss/lottie": "^1.3.2",
     "axios": "^1.10.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -74,67 +76,4 @@
     "wrangler": "^4.22.0"
   },
   "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-<<<<<<< HEAD
-=======
-	"name": "mateball",
-	"private": true,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "pnpm generate:icons && vite",
-		"build": "vite build",
-		"format": "biome format . --write",
-		"lint": "biome check .",
-		"preview": "vite preview",
-		"prepare": "husky install",
-		"generate:icons": "tsx src/shared/scripts/generate-icon-list.ts"
-	},
-	"dependencies": {
-		"@tailwindcss/postcss": "^4.1.11",
-		"@tailwindcss/vite": "^4.1.11",
-		"@tanstack/react-query": "^5.81.2",
-		"@tanstack/react-query-devtools": "^5.81.2",
-		"axios": "^1.10.0",
-		"postcss": "^8.5.6",
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0",
-		"react-router-dom": "^7.6.2",
-		"tailwindcss": "^4.1.11"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "2.0.5",
-		"@eslint/js": "^9.25.0",
-		"@pivanov/vite-plugin-svg-sprite": "^3.0.0",
-		"@types/node": "^24.0.10",
-		"@types/react": "^19.1.2",
-		"@types/react-dom": "^19.1.2",
-		"@vitejs/plugin-react": "^4.6.0",
-		"@vitejs/plugin-react-swc": "^3.9.0",
-		"eslint": "^9.25.0",
-		"eslint-plugin-react-hooks": "^5.2.0",
-		"eslint-plugin-react-refresh": "^0.4.19",
-		"globals": "^16.0.0",
-		"husky": "^9.1.7",
-		"ts-node": "^10.9.2",
-		"tsx": "^4.20.3",
-		"typescript": "~5.8.3",
-		"typescript-eslint": "^8.30.1",
-		"vite": "^6.3.5",
-		"vite-tsconfig-paths": "^5.1.4",
-		"wrangler": "^4.22.0"
-	
-	},
-	"packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977"
-}
->>>>>>> 35bf16c (chore: wrangler 설치)
-=======
->>>>>>> 063ed42 (chore: 브랜치 변경 전 커밋(#45))
-=======
-}
->>>>>>> 6863810 (chore: wrangler 설치)
-=======
-}
->>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
