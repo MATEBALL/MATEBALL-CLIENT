@@ -39,5 +39,5 @@ export const iconNames = [
   'profile',
   'logo'
 ] as const;
- 
-export type IconName = typeof iconNames[number];
+
+export type IconName = (typeof iconNames)[number];
