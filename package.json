@@ -20,7 +20,7 @@
     "@storybook/theming": "^8.6.14",
     "@tailwindcss/postcss": "^4.1.11",
     "@tailwindcss/vite": "^4.1.11",
-    "@tanstack/react-query": "^5.81.5",
+    "@tanstack/react-query": "^5.82.0",
     "@tanstack/react-query-devtools": "^5.81.5",
     "@toss/lottie": "^1.3.2",
     "axios": "^1.10.0",
