@@ -50,6 +50,10 @@
   }
 
   .signup-layout {
+<<<<<<< HEAD
     @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
+=======
+    @apply flex flex-col justify-between h-full gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem] bg-gray-white;
+>>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
   }
 }

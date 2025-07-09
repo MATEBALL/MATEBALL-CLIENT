@@ -11,10 +11,17 @@
   }
 
   #root {
+<<<<<<< HEAD
     height: 100%;
     display: flex;
     flex-direction: column;
   }
+=======
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+>>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
 
   html {
     font-size: 62.5%;
@@ -29,7 +36,11 @@
   body {
     height: 100%;
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
   body {
     font-family:
       "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
