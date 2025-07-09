@@ -1,5 +1,5 @@
+import FillTabItem from '@components/tab/fill-tab/fill-tab-item';
 import { useState } from 'react';
-import TabItem from '@components/tab/fill-tab/fill-tab-item';
 
 interface TabListProps {
   tabs: string[];
@@ -11,7 +11,7 @@ const FillTabList = ({ tabs }: TabListProps) => {
   return (
     <div className="flex gap-[0.8rem]">
       {tabs.map((title) => (
-        <TabItem
+        <FillTabItem
           key={title}
           title={title}
           isActive={activeTab === title}

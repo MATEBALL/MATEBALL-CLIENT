@@ -16,6 +16,10 @@ export const getBorderColorClass = (isActive: boolean, mode: TabColorMode): stri
   }
 };
 
+export const getTabGapClass = (colorMode: 'home' | 'group') => {
+  return colorMode === 'home' ? 'gap-[2.4rem]' : 'gap-[0.8rem]';
+};
+
 export const getHeightClass = (mode: TabColorMode): string =>
   mode === 'home' ? 'h-[3.9rem]' : 'h-[3.0rem]';
 

@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import FillTabList from '@components/tab/fill-tab/fill-tab-list';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof FillTabList> = {
   title: 'common/tab/FillTabList',

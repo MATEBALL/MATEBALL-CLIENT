@@ -26,7 +26,7 @@ export const iconNames = [
   'logo-gray',
   'logo',
   'ic-right',
-  'ic-x'
+  'ic-x',
 ] as const;
- 
-export type IconName = typeof iconNames[number];
+
+export type IconName = (typeof iconNames)[number];

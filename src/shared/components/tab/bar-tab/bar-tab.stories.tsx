@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
 import BarTabList from '@components/tab/bar-tab/bar-tab-list';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof BarTabList> = {
   title: 'common/tab/BarTabList',
