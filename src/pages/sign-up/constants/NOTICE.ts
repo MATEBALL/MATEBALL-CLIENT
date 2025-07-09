@@ -5,3 +5,5 @@ export const AGE_NOTICE = `메잇볼은 만 19세 이상부터 이용할 수 있
 export const AGE_LIMIT_MESSAGE = '만 19세 이상부터 가입이 가능합니다.';
 
 export const NICKNAME_TITLE = `반가워요, 메잇볼에서 \n 사용할 닉네임을 알려주세요.`;
+
+export const NICKNAME_RULE_MESSAGE = '공백, 숫자, 특수기호, 한글+영어 혼용 불가';

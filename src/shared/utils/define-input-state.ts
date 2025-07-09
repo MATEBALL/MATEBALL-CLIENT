@@ -1,6 +1,6 @@
-export const defineInputState = (isError?: boolean, isFocused?: boolean) => {
+export const defineInputState = (isError?: boolean, isFocused?: boolean, isValid?: boolean) => {
   if (isError) return 'error';
+  if (isValid) return 'valid';
   if (isFocused) return 'focus';
-
-  return undefined;
+  return 'default';
 };
