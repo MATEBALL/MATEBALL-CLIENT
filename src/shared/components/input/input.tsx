@@ -7,6 +7,7 @@ import { defineInputState } from '@/shared/utils/define-input-state';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 <<<<<<< HEAD
+<<<<<<< HEAD
   label?: string;
   isError?: boolean;
   isValid?: boolean;
@@ -28,12 +29,34 @@ const Input = ({
 }: InputProps) => {
 =======
   placeholder: string;
+=======
+>>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
   label?: string;
-  id?: string;
+  isError?: boolean;
+  isValid?: boolean;
+  icon?: string;
+  defaultMessage?: string;
+  validationMessage?: string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
+<<<<<<< HEAD
 const Input = ({ placeholder, label, id, ...props }: InputProps) => {
 >>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
+=======
+const Input = ({
+  isError,
+  isValid,
+  id,
+  label,
+  icon,
+  validationMessage,
+  defaultMessage,
+  onBlur,
+  ref,
+  ...props
+}: InputProps) => {
+>>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
   const [isFocused, setIsFocused] = useState(false);
   const inputState = defineInputState(isError, isFocused, isValid);
   const messageToShow = validationMessage ?? defaultMessage;
@@ -76,27 +99,32 @@ const Input = ({ placeholder, label, id, ...props }: InputProps) => {
 =======
 >>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
       )}
-      <div className="body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 p-[1.6rem] ">
+      <div
+        className={cn(
+          'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 p-[1.6rem]',
+          borderClass,
+        )}
+      >
         <input
+          id={id}
           type="text"
           className="flex-1 text-gray-black placeholder:text-gray-500"
-          value={value}
+          ref={ref}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          placeholder={isFocused ? '' : placeholder}
-          onChange={handleChange}
+          onBlur={(e) => {
+            setIsFocused(false);
+            onBlur?.(e);
+          }}
           {...props}
         />
-        {(isFocused || value) && (
-          <Icon
-            name="ic-x"
-            width={2.4}
-            height={2.4}
-            aria-label="입력 내용 삭제"
-            onClick={handleClear}
-          />
-        )}
+        {isFocused && icon && <Icon name={icon} />}
       </div>
+      {messageToShow && (
+        <div className="flex-row gap-[0.8rem]">
+          <Icon name="ic-info-filled" size={2} className={iconColorClass} />
+          <p className={`cap_14_m ${iconColorClass}`}>{messageToShow}</p>
+        </div>
+      )}
     </div>
   );
 };
