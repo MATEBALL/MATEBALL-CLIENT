@@ -24,7 +24,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
           <div className="ml-auto">
-            <ChipState label={props.status} />
+            <ChipState label={props.status} colorType={props.color} />
           </div>
         </div>
       );
@@ -33,7 +33,9 @@ const CardHeader = (props: CardProps) => {
       return (
         <div className="flex">
           <div>
-            <div className="subhead_18_sb">{props.nickname} 외 3명</div>
+            <div className="subhead_18_sb">
+              {props.nickname} 외 {props.count - 1}명
+            </div>
             <div className="flex flex-row-center gap-[0.8rem] py-[0.4rem]">
               <div className="cap_12_m text-gray-900">
                 매칭된 인원 {props.count}/{GROUP_MAX}
@@ -42,7 +44,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
           <div className="ml-auto">
-            <ChipState label={props.status} />
+            <ChipState label={props.status} colorType={props.color} />
           </div>
         </div>
       );

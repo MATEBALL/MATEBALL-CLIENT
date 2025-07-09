@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import { cn } from '@libs/cn';
 import type React from 'react';
 import defaultProfile from '../../../../assets/svgs/profile.svg';
 import { profileVariants } from '../styles/card-variants';
 import type { CardProfileProps } from '../types/card';
+=======
+import { profileVariants } from '@components/card/match-card/styles/card-variants';
+import type { CardProfileProps } from '@components/card/match-card/types/card';
+import { cn } from '@libs/cn';
+import defaultProfile from '@svg/profile.svg';
+>>>>>>> 6982561 (fix: 분기 처리 및 chip state 넣기(#49))
 
 const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -46,12 +53,7 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
               className={cn(profileVariants({ type }))}
             />
           ) : (
-            <div
-              className={cn(
-                profileVariants({ type }),
-                'flex items-center justify-center bg-gray-400',
-              )}
-            />
+            <div className={cn(profileVariants({ type }), 'flex-row-center bg-gray-400')} />
           )}
         </div>
       ))}

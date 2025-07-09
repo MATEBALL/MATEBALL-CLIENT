@@ -71,14 +71,17 @@ const Card = (props: CardProps) => {
     <div className={cn(cardVariants({ type, color }), className)}>
       <CardHeader {...props} />
 
+      {type === 'detailed' && <p className="cap_14_m mt-[1.6rem]">{props.introduction}</p>}
+
+      <CardGameInfo className={type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]'} {...props} />
+
       {type === 'detailed' && (
         <>
-          <p className="cap_14_m mt-[1.6rem]">{props.introduction}</p>
-          <CardGameInfo className="my-[1.2rem]" {...props} />
           <hr className="border-gray-300" />
           <CardMatchingRate matchRate={props.matchRate} className="mt-[1.6rem] ml-auto" />
         </>
       )}
+<<<<<<< HEAD
 
 <<<<<<< HEAD
       {type !== 'detailed' && (
@@ -88,6 +91,8 @@ const Card = (props: CardProps) => {
 =======
       {type !== 'detailed' && <CardGameInfo className="mt-[0.4rem]" {...props} />}
 >>>>>>> e6dad66 (fix: api 명세서에 맞게 props명 수정 및 gameinfo 컴포넌트 분리(#49))
+=======
+>>>>>>> 6982561 (fix: 분기 처리 및 chip state 넣기(#49))
     </div>
   );
 };
