@@ -34,9 +34,9 @@ const meta: Meta<typeof BarTabList> = {
 export default meta;
 type Story = StoryObj<typeof BarTabList>;
 
-export const HomeMode: Story = {
+export const GroupMode: Story = {
   args: {
-    colorMode: 'home',
+    colorMode: 'dark',
   },
   decorators: [
     (Story) => (
@@ -47,8 +47,8 @@ export const HomeMode: Story = {
   ],
 };
 
-export const GroupMode: Story = {
+export const LightMode: Story = {
   args: {
-    colorMode: 'group',
+    colorMode: 'light',
   },
 };
