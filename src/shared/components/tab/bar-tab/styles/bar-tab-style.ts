@@ -1,5 +1,5 @@
 export const tabStyleMap = {
-  home: {
+  dark: {
     gap: 'gap-[2.4rem]',
     textActive: 'text-gray-white',
     textInactive: 'text-gray-500',
@@ -8,7 +8,7 @@ export const tabStyleMap = {
     height: 'h-[3.9rem]',
     typography: 'subhead_18_sb',
   },
-  group: {
+  light: {
     gap: 'gap-[0.8rem]',
     textActive: 'text-gray-black',
     textInactive: 'text-gray-600',
