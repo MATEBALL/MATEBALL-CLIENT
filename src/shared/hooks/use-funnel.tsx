@@ -7,7 +7,10 @@ interface FunnelProps {
 }
 
 interface StepProps {
+<<<<<<< HEAD
   name: string;
+=======
+>>>>>>> b49684f (feat: use-funnel 훅 구현 (#89))
   children: ReactNode;
 }
 
@@ -21,6 +24,7 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
   const currentStep = steps[currentIndex];
 
   useEffect(() => {
+<<<<<<< HEAD
     if (!stepFromUrl) {
       setSearchParams({ step: steps[0] }, { replace: true });
       return;
@@ -30,6 +34,12 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
       navigate(ROUTES.ERROR, { replace: true });
     }
   }, [stepFromUrl, isValidStep, setSearchParams, steps, navigate]);
+=======
+    if (!isValidStep) {
+      navigate(ROUTES.ERROR, { replace: true });
+    }
+  }, [isValidStep, navigate]);
+>>>>>>> b49684f (feat: use-funnel 훅 구현 (#89))
 
   const goTo = useCallback(
     (step: T[number]) => {
