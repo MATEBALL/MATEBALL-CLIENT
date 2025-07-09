@@ -27,7 +27,7 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./src/pages/*"],
-      "@api/*": ["./src/shared/api/*"],
+      "@apis/*": ["./src/shared/apis/*"],
       "@styles/*": ["./src/shared/styles/*"],
       "@components/*": ["./src/shared/components/*"],
       "@libs/*": ["./src/shared/libs/*"],
