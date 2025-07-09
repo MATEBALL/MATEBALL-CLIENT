@@ -1,5 +1,6 @@
 import ButtonGame from '@components/button/button-game/button-game';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 const meta: Meta<typeof ButtonGame> = {
   title: 'COMMON/Button/ButtonGame  ',
@@ -45,6 +46,10 @@ const meta: Meta<typeof ButtonGame> = {
       control: 'text',
       description: 'Button home team',
     },
+    onClick: {
+      action: 'clicked',
+      description: 'Button click handler',
+    },
   },
   decorators: [
     (Story) => (
@@ -59,10 +64,23 @@ export default meta;
 type Story = StoryObj<typeof ButtonGame>;
 
 export const TestButtonGame: Story = {
+  render: (args) => {
+    const [isSelected, setIsSelected] = useState(false);
+
+    return (
+      <ButtonGame
+        {...args}
+        onClick={() => {
+          setIsSelected(!isSelected);
+          args.onClick?.();
+        }}
+      />
+    );
+  },
   args: {
-    gameTime: '11:00',
-    stadium: '경기장',
-    awayTeam: '어웨이팀',
-    homeTeam: '홈팀',
+    gameTime: '19:00',
+    stadium: '고척스카이돔',
+    awayTeam: '삼성 라이온즈',
+    homeTeam: '키움 히어로즈',
   },
 };
