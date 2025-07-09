@@ -1,4 +1,4 @@
-import Button from '@components/button/button';
+import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
