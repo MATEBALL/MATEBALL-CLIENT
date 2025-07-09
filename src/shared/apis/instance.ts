@@ -18,6 +18,12 @@ instance.interceptors.response.use(
     return response.data.data;
   },
   (error: AxiosError) => {
+    const statusCode = error.response?.status;
+
+    if (statusCode === HTTP_STATUS.UNAUTHORIZED) {
+      window.location.replace(ROUTES.SIGNUP);
+    }
+
     if (error.response) {
       const { status, message } = error.response.data as errorResponseTypes;
       const displayMessage = RESPONSE_MESSAGE[status] || message || '알 수 없는 오류입니다.';
@@ -27,16 +33,5 @@ instance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
-);
-
-instance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    const statusCode = error.response?.status;
-
-    if (statusCode === HTTP_STATUS.UNAUTHORIZED) {
-      window.location.replace(ROUTES.SIGNUP);
-    }
   },
 );
