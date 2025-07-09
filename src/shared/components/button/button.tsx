@@ -19,7 +19,7 @@ const Button = ({ label, variant, size, className, disabled, onClick, ariaLabel 
       aria-label={ariaLabel ?? label}
       className={cn(
         buttonVariants({ variant, size }),
-        disabled && 'cursor-not-allowed opacity-50',
+        disabled && 'cursor-not-allowed bg-gray-400',
         className,
       )}
     >

@@ -13,7 +13,7 @@ const Layout = () => {
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
-    <div className="min-h-screen flex-col">
+    <div className="flex h-screen flex-col">
       {showHeader && <Header />}
       <main className="flex-grow">
         <Suspense fallback={<div className="py-10 text-center">로딩 중...</div>}>
