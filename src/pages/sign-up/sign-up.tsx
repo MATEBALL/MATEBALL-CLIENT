@@ -1,9 +1,9 @@
-import NicknameCheckStep from './components/nickname-check-step';
+import NicknameStep from './components/nickname-step';
 
 const SignUp = () => {
   return (
     <div className="signup-layout">
-      <NicknameCheckStep />
+      <NicknameStep />
     </div>
   );
 };
