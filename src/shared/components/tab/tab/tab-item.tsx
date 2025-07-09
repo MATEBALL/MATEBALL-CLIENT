@@ -1,4 +1,4 @@
-import type { TabStyleValue } from '@components/tab/bar-tab/styles/bar-tab-style';
+import type { TabStyleValue } from '@components/tab/tab/styles/tab-style';
 import { cn } from '@libs/cn';
 
 interface BarTabItemProps {

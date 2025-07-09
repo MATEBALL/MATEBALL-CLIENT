@@ -1,6 +1,6 @@
-import BarTabItem from '@components/tab/bar-tab/bar-tab-item';
-import type { TabStyleKey } from '@components/tab/bar-tab/styles/bar-tab-style';
-import { tabStyleMap } from '@components/tab/bar-tab/styles/bar-tab-style';
+import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
+import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
+import BarTabItem from '@components/tab/tab/tab-item';
 import { cn } from '@libs/cn';
 import { useState } from 'react';
 
