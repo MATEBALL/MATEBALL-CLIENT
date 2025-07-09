@@ -29,6 +29,8 @@ const NicknameStep = () => {
     console.log('닉네임 제출됨:', data.nickname);
   };
 
+  const { onBlur, ref, ...inputProps } = register('nickname');
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="h-full flex-col justify-between gap-[4rem]">
       <div className="flex-col gap-[4rem]">
@@ -41,7 +43,9 @@ const NicknameStep = () => {
           validationMessage={errors.nickname?.message}
           isError={!!errors.nickname}
           isValid={isNicknameValid}
-          {...register('nickname')}
+          onBlur={onBlur}
+          ref={ref}
+          {...inputProps}
         />
       </div>
       <Button

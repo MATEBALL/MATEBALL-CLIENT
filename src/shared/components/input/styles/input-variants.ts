@@ -1,26 +1,9 @@
-import { cva } from 'class-variance-authority';
-
-export const inputVariants = cva(
-  'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 p-[1.6rem]',
-  {
-    variants: {
-      isFocused: {
-        true: 'border border-main-900',
-      },
-      isError: {
-        true: 'border border-state-error',
-      },
-      isValid: {
-        true: 'border border-transparent text-state-success',
-      },
-    },
-    defaultVariants: {
-      isFocused: false,
-      isError: false,
-      isValid: false,
-    },
-  },
-);
+export const inputClassMap = {
+  error: 'border border-state-error',
+  valid: 'border border-transparent text-state-success',
+  focus: 'border border-main-900',
+  default: '',
+};
 
 export const iconColorMap = {
   error: 'text-state-error',

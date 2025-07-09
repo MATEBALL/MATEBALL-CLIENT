@@ -1,5 +1,6 @@
 import Icon from '@components/icon/icon';
-import { iconColorMap, inputVariants } from '@components/input/styles/input-variants';
+import { iconColorMap, inputClassMap } from '@components/input/styles/input-variants';
+import { cn } from '@libs/cn';
 import type { InputHTMLAttributes } from 'react';
 import { forwardRef, useState } from 'react';
 import { defineInputState } from '@/shared/utils/define-input-state';
@@ -13,10 +14,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   validationMessage?: string;
 }
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ isError, isValid, id, label, icon, validationMessage, defaultMessage, ...props }, ref) => {
+  (
+    { isError, isValid, id, label, icon, validationMessage, defaultMessage, onBlur, ...props },
+    ref,
+  ) => {
     const [isFocused, setIsFocused] = useState(false);
     const inputState = defineInputState(isError, isFocused, isValid);
     const messageToShow = validationMessage ?? defaultMessage;
+
+    const borderClass = inputClassMap[inputState];
     const iconColorClass = iconColorMap[inputState];
 
     return (
@@ -26,19 +32,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </label>
         )}
-        <div className={inputVariants({ isError, isFocused, isValid })}>
+        <div
+          className={cn(
+            'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 p-[1.6rem]',
+            borderClass,
+          )}
+        >
           <input
             id={id}
             type="text"
             className="flex-1 text-gray-black placeholder:text-gray-500"
             ref={ref}
-            onFocus={(e) => {
-              setIsFocused(true);
-              props.onFocus?.(e);
-            }}
+            onFocus={() => setIsFocused(true)}
             onBlur={(e) => {
               setIsFocused(false);
-              props.onBlur?.(e);
+              onBlur?.(e);
             }}
             {...props}
           />
