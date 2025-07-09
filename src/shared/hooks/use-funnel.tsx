@@ -1,4 +1,5 @@
-import { Children, type ReactElement, type ReactNode, useCallback } from 'react';
+import { ROUTES } from '@routes/routes-config';
+import { Children, type ReactElement, type ReactNode, useCallback, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface FunnelProps {
@@ -17,6 +18,12 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
   const isValidStep = stepFromUrl && steps.includes(stepFromUrl as T[number]);
   const currentIndex = isValidStep ? steps.indexOf(stepFromUrl as T[number]) : 0;
   const currentStep = steps[currentIndex];
+
+  useEffect(() => {
+    if (!isValidStep) {
+      navigate(ROUTES.ERROR, { replace: true });
+    }
+  }, [isValidStep, navigate]);
 
   const goTo = useCallback(
     (step: T[number]) => {
