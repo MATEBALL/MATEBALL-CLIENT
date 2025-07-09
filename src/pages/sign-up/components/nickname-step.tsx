@@ -8,12 +8,9 @@ import {
 } from '@pages/sign-up/constants/NOTICE';
 import { NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
 import { type NicknameFormValues, NicknameSchema } from '@pages/sign-up/schema/validation-schema';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const NicknameStep = () => {
-  const [isFocused, setIsFocused] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -25,14 +22,12 @@ const NicknameStep = () => {
     defaultValues: { nickname: '' },
   });
 
+  const nicknameValue = watch('nickname');
+  const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
+
   const onSubmit = (data: NicknameFormValues) => {
     console.log('닉네임 제출됨:', data.nickname);
   };
-
-  const { ref, onBlur, ...rest } = register('nickname');
-
-  const nicknameValue = watch('nickname');
-  const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="h-full flex-col justify-between gap-[4rem]">
@@ -45,15 +40,8 @@ const NicknameStep = () => {
           defaultMessage={isNicknameValid ? NICKNAME_SUCCESS_MESSAGE : NICKNAME_RULE_MESSAGE}
           validationMessage={errors.nickname?.message}
           isError={!!errors.nickname}
-          isFocused={isFocused}
           isValid={isNicknameValid}
-          onFocus={() => setIsFocused(true)}
-          onBlur={(e) => {
-            setIsFocused(false);
-            onBlur(e);
-          }}
-          ref={ref}
-          {...rest}
+          {...register('nickname')}
         />
       </div>
       <Button
