@@ -1,4 +1,5 @@
 import Icon from '@components/icon/icon';
+import { iconColorMap, inputVariants } from '@components/input/styles/input-variants';
 import type { ForwardedRef, InputHTMLAttributes } from 'react';
 import { forwardRef } from 'react';
 import { defineInputState } from '@/shared/utils/define-input-state';
@@ -8,15 +9,28 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isError?: boolean;
   isFocused?: boolean;
   icon?: string;
-  errorMessage?: string;
+  defaultMessage?: string;
+  validationMessage?: string;
 }
 
 const Input = forwardRef(
   (
-    { isError, isFocused, value, id, label, icon, errorMessage, ...props }: InputProps,
+    {
+      isError,
+      isFocused,
+      value,
+      id,
+      label,
+      icon,
+      validationMessage,
+      defaultMessage,
+      ...props
+    }: InputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
     const inputState = defineInputState(isError, isFocused);
+    const messageToShow = validationMessage ?? defaultMessage;
+    const iconColorClass = iconColorMap[inputState];
 
     return (
       <div className="flex-col gap-[0.8rem]">
@@ -25,7 +39,7 @@ const Input = forwardRef(
             {label}
           </label>
         )}
-        <div className="body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 p-[1.6rem]">
+        <div className={inputVariants({ isError, isFocused })}>
           <input
             id={id}
             type="text"
@@ -36,7 +50,12 @@ const Input = forwardRef(
           />
           {icon && <Icon name={icon} />}
         </div>
-        {isError && errorMessage && <p className="body_12_r text-alert">{errorMessage}</p>}
+        {messageToShow && (
+          <div className="flex-row gap-[0.8rem]">
+            <Icon name="ic-info-filled" size={2} className={iconColorClass} />
+            <p className={`cap_14_m ${iconColorClass}`}>{messageToShow}</p>
+          </div>
+        )}
       </div>
     );
   },

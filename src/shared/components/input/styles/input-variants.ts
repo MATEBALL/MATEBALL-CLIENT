@@ -10,10 +10,21 @@ export const inputVariants = cva(
       isError: {
         true: 'border-[1px] border-state-error',
       },
+      isValid: {
+        true: 'text-state-success',
+      },
     },
     defaultVariants: {
       isFocused: true,
       isError: false,
+      isValid: true,
     },
   },
 );
+
+export const iconColorMap = {
+  error: 'text-state-error',
+  valid: 'text-state-success',
+  focus: 'text-gray-black',
+  default: 'text-gray-500',
+};
