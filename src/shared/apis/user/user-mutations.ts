@@ -4,9 +4,10 @@ import { USER_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';
 
 export const userMutations = {
-  POST_NICKNAME: (nickname: string) =>
-    mutationOptions<void, unknown, { nickname: string }>({
+  POST_NICKNAME: () =>
+    mutationOptions({
       mutationKey: USER_KEY.NICKNAME(),
-      mutationFn: () => post(END_POINT.POST_INFO_NICKNAME, { nickname }),
+      mutationFn: ({ nickname }: { nickname: string }) =>
+        post(END_POINT.POST_INFO_NICKNAME, { nickname }),
     }),
 };
