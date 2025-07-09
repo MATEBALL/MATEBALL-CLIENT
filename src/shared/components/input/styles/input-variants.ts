@@ -11,7 +11,7 @@ export const inputVariants = cva(
         true: 'border-[1px] border-state-error',
       },
       isValid: {
-        true: 'text-state-success',
+        true: 'border-none text-state-success',
       },
     },
     defaultVariants: {

@@ -1,7 +1,7 @@
 import Icon from '@components/icon/icon';
 import { iconColorMap, inputVariants } from '@components/input/styles/input-variants';
-import type { ForwardedRef, InputHTMLAttributes } from 'react';
-import { forwardRef } from 'react';
+import type { InputHTMLAttributes } from 'react';
+import { forwardRef, useState } from 'react';
 import { defineInputState } from '@/shared/utils/define-input-state';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -13,23 +13,9 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   defaultMessage?: string;
   validationMessage?: string;
 }
-
-const Input = forwardRef(
-  (
-    {
-      isError,
-      isFocused,
-      isValid,
-      value,
-      id,
-      label,
-      icon,
-      validationMessage,
-      defaultMessage,
-      ...props
-    }: InputProps,
-    ref: ForwardedRef<HTMLInputElement>,
-  ) => {
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ isError, isValid, id, label, icon, validationMessage, defaultMessage, ...props }, ref) => {
+    const [isFocused, setIsFocused] = useState(false);
     const inputState = defineInputState(isError, isFocused, isValid);
     const messageToShow = validationMessage ?? defaultMessage;
     const iconColorClass = iconColorMap[inputState];
@@ -41,15 +27,20 @@ const Input = forwardRef(
             {label}
           </label>
         )}
-        <div className={inputVariants({ isError, isFocused })}>
+        <div className={inputVariants({ isError, isFocused, isValid })}>
           <input
             id={id}
             type="text"
             className="flex-1 text-gray-black placeholder:text-gray-500"
-            value={value}
             ref={ref}
-            onFocus={props.onFocus}
-            onBlur={props.onBlur}
+            onFocus={(e) => {
+              setIsFocused(true);
+              props.onFocus?.(e);
+            }}
+            onBlur={(e) => {
+              setIsFocused(false);
+              props.onBlur?.(e);
+            }}
             {...props}
           />
           {isFocused && icon && <Icon name={icon} />}
