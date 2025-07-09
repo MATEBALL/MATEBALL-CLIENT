@@ -1,5 +1,5 @@
 import { getHeaderContent } from '@components/header/utils/get-header';
-import { ROUTES, ROUTES } from '@routes/routes-config';
+import { ROUTES } from '@routes/routes-config';
 import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,10 @@ const Header = () => {
 
   return (
     <header
-      className={`sticky top-0 z-20 h-[5.6rem] py-[1.55rem] pl-[2rem] transition-colors duration-200 ${isHome ? 'bg-black' : 'none'} `}
+      className={clsx('sticky top-0 z-20 h-[5.6rem] py-[1.55rem] pl-[2rem]', {
+        'bg-black': isHome,
+        'bg-gray-white': isSignUp,
+      })}
     >
       {getHeaderContent(location.pathname, isFail, navigate)}
     </header>
