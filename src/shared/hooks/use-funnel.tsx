@@ -6,7 +6,6 @@ interface FunnelProps {
 }
 
 interface StepProps {
-  name: string;
   children: ReactNode;
 }
 
