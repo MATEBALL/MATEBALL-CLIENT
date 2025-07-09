@@ -49,7 +49,7 @@ const meta: Meta<typeof ButtonCreate> = {
   },
   decorators: [
     (Story) => (
-      <div className="h-[10rem] w-[50rem] flex-row-center bg-gray-500">
+      <div className="h-[10rem] w-[50rem] flex-row-center bg-gray-600">
         <Story />
       </div>
     ),
