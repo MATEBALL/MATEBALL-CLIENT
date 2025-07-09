@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 
 export const LoginCallback = () => {
   const code = new URL(window.location.href).searchParams.get('code');
-  console.log(code);
 
   useEffect(() => {
     if (code) {
