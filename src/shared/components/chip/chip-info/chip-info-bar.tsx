@@ -1,5 +1,5 @@
-import type { FC } from 'react';
-import ChipInfo from '@components/chip/chip-info/chip-info-item';
+import ChipInfoItem from '@components/chip/chip-info/chip-info-item';
+import { formatDate } from '@components/chip/chip-info/utils/format-date';
 
 interface ChipInfoBarProps {
   awayTeam: string;
@@ -8,12 +8,12 @@ interface ChipInfoBarProps {
   date: string;
 }
 
-const ChipInfoBar: FC<ChipInfoBarProps> = ({ awayTeam, homeTeam, location, date }) => {
+const ChipInfoBar = ({ awayTeam, homeTeam, location, date }: ChipInfoBarProps) => {
   return (
     <div className="flex items-center">
-      <ChipInfo iconName="ic-baseball" text={`${awayTeam} vs ${homeTeam}`} />
-      <ChipInfo iconName="ic-location" text={location} />
-      <ChipInfo iconName="ic-calendar" text={date} />
+      <ChipInfoItem iconName="ic-baseball" text={`${awayTeam} vs ${homeTeam}`} />
+      <ChipInfoItem iconName="ic-location" text={location} />
+      <ChipInfoItem iconName="ic-calendar" text={formatDate(date)} />
     </div>
   );
 };
