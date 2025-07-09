@@ -5,13 +5,13 @@ export const inputVariants = cva(
   {
     variants: {
       isFocused: {
-        true: 'border-[1px] border-main-900',
+        true: 'border border-main-900',
       },
       isError: {
-        true: 'border-[1px] border-state-error',
+        true: 'border border-state-error',
       },
       isValid: {
-        true: 'border-none text-state-success',
+        true: 'border border-transparent text-state-success',
       },
     },
     defaultVariants: {

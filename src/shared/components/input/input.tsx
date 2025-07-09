@@ -8,7 +8,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   isError?: boolean;
   isValid?: boolean;
-  isFocused?: boolean;
   icon?: string;
   defaultMessage?: string;
   validationMessage?: string;
