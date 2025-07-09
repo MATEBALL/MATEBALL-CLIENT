@@ -14,19 +14,37 @@ const BarTabList = ({ colorMode }: BarTabListProps) => {
 
   const tabStyle = tabStyleMap[colorMode];
 
+  const renderTabContent = () => {
+    switch (activeType) {
+      case '1:1':
+        return <OneToOneTabContent />;
+      case '그룹':
+        return <GroupTabContent />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className={cn('flex items-center justify-start', tabStyle.gap)}>
-      {types.map((label) => (
-        <BarTabItem
-          key={label}
-          label={label}
-          isActive={activeType === label}
-          style={tabStyleMap[colorMode]}
-          onClick={() => setActiveType(label)}
-        />
-      ))}
+    <div>
+      <div className={cn('flex items-center justify-start', tabStyle.gap)}>
+        {types.map((label) => (
+          <BarTabItem
+            key={label}
+            label={label}
+            isActive={activeType === label}
+            style={tabStyle}
+            onClick={() => setActiveType(label)}
+          />
+        ))}
+      </div>
+
+      <div className="mt-4">{renderTabContent()}</div>
     </div>
   );
 };
+
+const OneToOneTabContent = () => <div>1:1 매칭 탭 콘텐츠입니다</div>;
+const GroupTabContent = () => <div>그룹 매칭 탭 콘텐츠입니다</div>;
 
 export default BarTabList;
