@@ -6,9 +6,15 @@ export const AGE_LIMIT_MESSAGE = '만 19세 이상부터 가입이 가능합니�
 
 export const NICKNAME_TITLE = `반가워요, 메잇볼에서 \n 사용할 닉네임을 알려주세요.`;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
 
 export const NICKNAME_RULE_MESSAGE = '공백, 숫자, 특수기호, 한글+영어 혼용 불가';
 
 export const NICKNAME_SUCCESS_MESSAGE = '사용 가능한 닉네임이에요.';
+<<<<<<< HEAD
 =======
 >>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
+=======
+>>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))

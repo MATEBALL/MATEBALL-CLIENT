@@ -51,10 +51,14 @@
 
   .signup-layout {
 <<<<<<< HEAD
+<<<<<<< HEAD
     @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
 =======
     @apply flex flex-col justify-between h-full gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem] bg-gray-white;
 >>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
+=======
+    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem] h-full;
+>>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
   }
 
   .header-layout {

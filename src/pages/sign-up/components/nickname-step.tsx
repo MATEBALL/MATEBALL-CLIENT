@@ -26,7 +26,11 @@ const NicknameStep = () => {
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
 
   const onSubmit = (data: NicknameFormValues) => {
+<<<<<<< HEAD
     console.log(data.nickname);
+=======
+    console.log('닉네임 제출됨:', data.nickname);
+>>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
   };
 
   const { onBlur, ref, ...inputProps } = register('nickname');
