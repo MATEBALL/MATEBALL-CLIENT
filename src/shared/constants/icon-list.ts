@@ -28,10 +28,14 @@ export const iconNames = [
   'ic-x',
   'logo-gray',
 <<<<<<< HEAD
+<<<<<<< HEAD
   'logo',
 =======
   'logo'
 >>>>>>> 1742dde (feat: storybook 수정 (#79))
+=======
+  'logo',
+>>>>>>> 4475993 (feat: lottie 파일 적용 세팅 구성 (#87))
 ] as const;
- 
-export type IconName = typeof iconNames[number];
+
+export type IconName = (typeof iconNames)[number];

@@ -28,7 +28,11 @@ importers:
         version: 5.82.0(react@19.1.0)
       '@tanstack/react-query-devtools':
         specifier: ^5.81.5
+<<<<<<< HEAD
         version: 5.81.5(@tanstack/react-query@5.82.0(react@19.1.0))(react@19.1.0)
+=======
+        version: 5.81.5(@tanstack/react-query@5.81.5(react@19.1.0))(react@19.1.0)
+>>>>>>> 4475993 (feat: lottie 파일 적용 세팅 구성 (#87))
       '@toss/lottie':
         specifier: ^1.3.2
         version: 1.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
