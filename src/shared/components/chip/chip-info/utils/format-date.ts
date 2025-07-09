@@ -1,7 +1,8 @@
-export const formatDate = (rawDate: string) => {
+export const formatDate = (rawDate: string): string => {
   try {
     const date = new Date(rawDate);
-    if (isNaN(date.getTime())) return '';
+
+    if (!(date instanceof Date) || Number.isNaN(date.getTime())) return '';
 
     const options: Intl.DateTimeFormatOptions = {
       month: 'numeric',
