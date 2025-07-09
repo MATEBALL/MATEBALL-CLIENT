@@ -1,4 +1,4 @@
-import Button from '@components/button/button';
+import Button from '@components/button/button/button';
 import { mockKaKaoData } from '@mocks/mockKakaoData';
 import ProfileCard from '@pages/sign-up/components/profile-card';
 import { AGE_LIMIT_MESSAGE, AGE_NOTICE, NOTICE } from '@pages/sign-up/constants/NOTICE';
