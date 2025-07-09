@@ -189,9 +189,10 @@ export type IconName = (typeof iconNames)[number];
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
-  'ic-x',
   'logo-gray',
   'logo',
+  'ic-right',
+  'ic-x',
 ] as const;
 <<<<<<< HEAD
  
