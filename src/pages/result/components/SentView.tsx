@@ -16,7 +16,7 @@ export default function SentView() {
         ‘매칭 현황’에서 실시간으로 확인할 수 있어요.
       </p>
       <div className="fixed bottom-0 left-1/2 w-full max-w-[430px] -translate-x-1/2 p-[1.6rem] flex-row-center gap-[0.8rem]">
-        <Button label="메이트 더 찾아보기" onClick={() => navigate(-1)} />
+        <Button label="메이트 더 찾아보기" variant="skyblue" onClick={() => navigate(-1)} />
         <Button label="매칭 현황 보기" onClick={() => navigate(ROUTES.MATCH)} />
       </div>
     </div>

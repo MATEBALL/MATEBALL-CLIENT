@@ -1,26 +1,23 @@
 import Mate from '@pages/match/components/mate';
-import MatchingRequestModal from '@pages/match/groups/components/matching-request-modal';
-import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
 
 export default function MatesPage() {
   const { matchId } = useParams();
   const numericMatchId = Number(matchId);
   const [showModal, setShowModal] = useState(false);
-  const navigate = useNavigate();
-
-  const handleRequest = () => {
-    // TODO: 요청 API
-    setShowModal(false);
-    navigate(`${ROUTES.RESULT}?type=sent`);
-  };
 
   return (
     <>
       <Mate matchId={numericMatchId!} onRequestClick={() => setShowModal(true)} />
       {showModal && (
-        <MatchingRequestModal onConfirm={handleRequest} onCancel={() => setShowModal(false)} />
+        <BottomSheetModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          description="그룹 매칭은 최대 2건까지 신청할 수 있어요."
+          subDescription="단, 하루에 한 경기만 매칭이 성사되며 같은 날짜의 중복 매칭은 불가능해요!"
+        />
       )}
     </>
   );
