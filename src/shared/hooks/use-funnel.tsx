@@ -7,6 +7,7 @@ interface FunnelProps {
 }
 
 interface StepProps {
+  name: string;
   children: ReactNode;
 }
 
@@ -20,10 +21,15 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
   const currentStep = steps[currentIndex];
 
   useEffect(() => {
+    if (!stepFromUrl) {
+      setSearchParams({ step: steps[0] }, { replace: true });
+      return;
+    }
+
     if (!isValidStep) {
       navigate(ROUTES.ERROR, { replace: true });
     }
-  }, [isValidStep, navigate]);
+  }, [stepFromUrl, isValidStep, setSearchParams, steps, navigate]);
 
   const goTo = useCallback(
     (step: T[number]) => {
