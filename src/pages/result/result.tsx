@@ -1,5 +1,5 @@
+import SentView from '@pages/result/components/SentView';
 import { useSearchParams } from 'react-router-dom';
-import SentView from './components/SentView';
 
 export default function ResultPage() {
   const [params] = useSearchParams();
