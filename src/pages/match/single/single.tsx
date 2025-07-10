@@ -1,5 +1,5 @@
-import Mate from '@pages/match/components/mate';
 import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
+import Mate from '@pages/match/components/mate';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 

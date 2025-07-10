@@ -1,6 +1,6 @@
 import type { DetailedCardProps } from '@components/card/match-card/types/card';
 
-export const dummyMateData: (DetailedCardProps & { id: number; matchId: number })[] = [
+export const mockMatchData: (DetailedCardProps & { id: number; matchId: number })[] = [
   {
     id: 1,
     matchId: 1,

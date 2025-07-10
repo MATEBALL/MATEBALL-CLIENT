@@ -1,6 +1,6 @@
-import { dummyMateData } from '@mocks/mockMatchData';
-import { useEffect, useState } from 'react';
+import { mockMatchData } from '@mocks/mockMatchData';
 import type { MateCardData } from '@pages/match/groups/types/mate-type';
+import { useEffect, useState } from 'react';
 
 export function useMate(matchId: number) {
   const [mates, setMates] = useState<MateCardData[]>([]);
@@ -8,7 +8,7 @@ export function useMate(matchId: number) {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const result = dummyMateData.filter((m) => m.matchId === matchId);
+      const result = mockMatchData.filter((m) => m.matchId === matchId);
       setMates(result);
       setLoading(false);
     }, 300);

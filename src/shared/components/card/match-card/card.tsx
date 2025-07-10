@@ -17,17 +17,17 @@ const Card = (props: CardProps) => {
     <div className={cn(cardVariants({ type, color }), className)}>
       <CardHeader {...props} />
       <div className={cn(type === 'detailed' && 'flex flex-col gap-[1.2rem]')}>
-      {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
+        {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
 
-      <CardGameInfo className={gameInfoClass} {...props} />
+        <CardGameInfo className={gameInfoClass} {...props} />
 
-      {type === 'detailed' && (
-        <div>
-          <hr className={dividerClass} />
-          <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
-        </div>
-      )}
-    </div>
+        {type === 'detailed' && (
+          <div>
+            <hr className={dividerClass} />
+            <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
