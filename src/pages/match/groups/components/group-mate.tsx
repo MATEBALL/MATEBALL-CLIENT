@@ -4,14 +4,10 @@ import { cn } from '@libs/cn';
 import CarouselIndicator from '@pages/match/groups/components/carousel_indicator';
 import GroupMateCard from '@pages/match/groups/components/group-mate-card';
 import { useMate } from '@pages/match/groups/hooks/useMate';
+import type { GroupMateProps } from '@pages/match/groups/types/mate-type';
 import { useState } from 'react';
 
-interface Props {
-  matchId: string;
-  onRequestClick: () => void;
-}
-
-const GroupMate = ({ matchId, onRequestClick }: Props) => {
+const GroupMate = ({ matchId, onRequestClick }: GroupMateProps) => {
   const numericMatchId = Number(matchId);
   const { mates } = useMate(numericMatchId);
   const [currentIndex, setCurrentIndex] = useState(0);
