@@ -20,7 +20,7 @@ const BottomSheet = ({
   children,
   className,
   showIndicator = true,
-  gap = 'gap-[1.6rem]'
+  gap = 'gap-[1.6rem]',
 }: BottomSheetProps) => {
   const sheetRef = useRef<HTMLDivElement>(null);
   useOutsideClick(sheetRef, onClose);
@@ -33,7 +33,7 @@ const BottomSheet = ({
       <div
         ref={sheetRef}
         className={cn(
-          'flex flex-col relative w-full max-w-[430px] bg-gray-white rounded-tl-[12px] rounded-tr-[12px]',
+          'flex flex-col justify-center relative w-full max-w-[43rem] bg-gray-white rounded-tl-[12px] rounded-tr-[12px]',
           gap,
           className,
         )}
