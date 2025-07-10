@@ -14,13 +14,18 @@ const dirname =
 const keyPath = process.env.VITE_PEM_KEY_PATH || 'localhost+2-key.pem';
 const certPath = process.env.VITE_PEM_CERT_PATH || 'localhost+2.pem';
 
+const resolvedKeyPath = path.resolve(dirname, keyPath);
+const resolvedCertPath = path.resolve(dirname, certPath);
+
+const isLocal = !process.env.CI && process.env.CLOUDFLARE_ENV !== 'true';
+
 const https =
-  process.env.CLOUDFLARE_ENV === 'true'
-    ? undefined
-    : {
-        key: fs.readFileSync(path.resolve(dirname, keyPath)),
-        cert: fs.readFileSync(path.resolve(dirname, certPath)),
-      };
+  isLocal && fs.existsSync(resolvedKeyPath) && fs.existsSync(resolvedCertPath)
+    ? {
+        key: fs.readFileSync(resolvedKeyPath),
+        cert: fs.readFileSync(resolvedCertPath),
+      }
+    : undefined;
 
 export default defineConfig({
   server: {
@@ -41,8 +46,6 @@ export default defineConfig({
       {
         extends: true,
         plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
           storybookTest({
             configDir: path.join(dirname, '.storybook'),
           }),
