@@ -44,7 +44,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
       <section className="w-full gap-[0.4rem]">
         <div className="w-full flex-row-center gap-[0.8rem]">
           <Icon name="ic-caution" size={1.8} />
-          <span className="cap_12_m text-[var(--color-gray-600)]">
+          <span className="cap_12_m text-gray-600">
             {isGroupMatching
               ? '그룹 매칭은 최대 2건까지 요청할 수 있어요.'
               : '1:1 매칭은 최대 3건까지 요청할 수 있어요.'}
