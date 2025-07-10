@@ -10,9 +10,8 @@ interface BottomSheetProps {
   children: React.ReactNode;
   className?: string;
   showIndicator?: boolean;
-  showOverlay?: boolean;
-  rounded?: 'xl' | '2xl';
   padding?: string;
+  gap?: string;
 }
 
 const BottomSheet = ({
@@ -21,9 +20,7 @@ const BottomSheet = ({
   children,
   className,
   showIndicator = true,
-  showOverlay = true,
-  rounded = 'xl',
-  padding = 'p-4',
+  gap = 'gap-[1.6rem]'
 }: BottomSheetProps) => {
   const sheetRef = useRef<HTMLDivElement>(null);
   useOutsideClick(sheetRef, onClose);
@@ -31,18 +28,13 @@ const BottomSheet = ({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-10 flex items-end justify-center">
-      {showOverlay && (
-        <div className="absolute inset-0 bg-[var(--color-overlay)] backdrop-blur-sm" />
-      )}
-
+    <div className="fixed inset-0 flex items-end justify-center">
+      <div className="absolute inset-0 bg-overlay" />
       <div
         ref={sheetRef}
         className={cn(
-          'relative w-full max-w-[384px] bg-[var(--color-gray-white)] shadow-2',
-          rounded === '2xl' ? 'rounded-tl-2xl rounded-tr-2xl' : 'rounded-tl-xl rounded-tr-xl',
-          'flex flex-col gap-4',
-          padding,
+          'flex flex-col relative w-full max-w-[430px] bg-gray-white rounded-tl-[12px] rounded-tr-[12px]',
+          gap,
           className,
         )}
       >
