@@ -1,9 +1,9 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import { MATCHING_COMPLETE_MESSAGE } from '@pages/match/constants/matching';
+import type { SentViewProps } from '@pages/match/groups/types/mate-type';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
-import type { SentViewProps } from '@pages/match/groups/types/mate-type';
 import { useNavigate } from 'react-router-dom';
 
 const SentView = ({ isGroupMatching = true, userNickname }: SentViewProps) => {
