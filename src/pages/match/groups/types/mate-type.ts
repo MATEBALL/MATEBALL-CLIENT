@@ -21,6 +21,7 @@ export interface MateProps {
 
 export interface SentViewProps {
   isGroupMatching?: boolean;
+  userNickname: string;
 }
 
 export type MateCardData = DetailedCardProps & { id: number; matchId: number };

@@ -1,7 +1,8 @@
-import Card from '@components/card/match-card/card';
-import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
 import CarouselIndicator from '@pages/match/groups/components/carousel_indicator';
+import SlideItem from '@pages/match/groups/components/slide-item';
+import { useSlide } from '@pages/match/hooks/useSlide';
+import type { DetailedCardProps } from '@components/card/match-card/types/card';
 
 interface MateCarouselProps {
   mates: (DetailedCardProps & { id: number })[];
@@ -10,29 +11,39 @@ interface MateCarouselProps {
   isGroupMatching: boolean;
 }
 
-const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: MateCarouselProps) => (
-  <section className="w-full flex-col gap-[1.6rem] overflow-hidden pb-[1.6rem]">
-    <div
-      className={cn('flex transition-transform duration-300 ease-in-out')}
-      style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-    >
-      {mates.map((mate) => (
-        <div key={mate.id} className="box-border min-w-full flex-row-center px-[1.6rem]">
-          <Card className="w-full" {...mate} type="detailed" />
-        </div>
-      ))}
-    </div>
+const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: MateCarouselProps) => {
+  const { handleTouchStart, handleTouchEnd, handleMouseDown, handleMouseUp } = useSlide({
+    length: mates.length,
+    currentIndex,
+    onChange: onDotClick,
+  });
 
-    {isGroupMatching && (
-      <div className="flex-row-center">
-        <CarouselIndicator
-          ids={mates.map((mate) => `mate-${mate.id}`)}
-          currentIndex={currentIndex}
-          onDotClick={onDotClick}
-        />
+  return (
+    <section className="w-full flex-col gap-[1.6rem] overflow-hidden">
+      <div
+        className={cn('flex transition-transform duration-300 ease-in-out')}
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      >
+        {mates.map((mate) => (
+          <SlideItem isGroupMatching={isGroupMatching} key={mate.id} mate={mate} />
+        ))}
       </div>
-    )}
-  </section>
-);
+
+      {isGroupMatching && (
+        <div className="flex-row-center">
+          <CarouselIndicator
+            ids={mates.map((mate) => `mate-${mate.id}`)}
+            currentIndex={currentIndex}
+            onDotClick={onDotClick}
+          />
+        </div>
+      )}
+    </section>
+  );
+};
 
 export default MateCarousel;

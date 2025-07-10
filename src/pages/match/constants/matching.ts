@@ -5,5 +5,5 @@ export const MATCHING_NOTICE = {
 
 export const MATCHING_COMPLETE_MESSAGE = {
   group: '모든 그룹원이 수락하면 그룹원이 됩니다.',
-  single: '사용자 님이 수락하면 그룹원이 됩니다.',
+  single: (nickname: string) => `${nickname} 님이 수락하면 그룹원이 됩니다.`,
 };
