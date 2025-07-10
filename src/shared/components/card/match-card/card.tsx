@@ -3,10 +3,13 @@ import CardHeader from '@components/card/match-card/components/card-header';
 import CardMatchingRate from '@components/card/match-card/components/card-matching-rate';
 import { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProps } from '@components/card/match-card/types/card';
+import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import { cn } from '@libs/cn';
 
 const Card = (props: CardProps) => {
-  const { type, className, color } = props;
+  const { type, className, color, status } = props;
+
+  const finalColor = getColorType(status, color);
 
 <<<<<<< HEAD
   const introductionClass = type === 'detailed' ? 'cap_14_m mt-[1.6rem]' : 'cap_14_m mt-[1.6rem]';
@@ -18,7 +21,7 @@ const Card = (props: CardProps) => {
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
 
   return (
-    <div className={cn(cardVariants({ type, color }), className)}>
+    <div className={cn(cardVariants({ type, color: finalColor }), className)}>
       <CardHeader {...props} />
 <<<<<<< HEAD
       <div className={cn(type === 'detailed' && 'flex flex-col gap-[1.2rem]')}>

@@ -1,28 +1,22 @@
-import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENADAR';
-import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
+
 import WeekCalendar from '@components/calendar/week-calendar';
 import Icon from '@components/icon/icon';
 import BarTabList from '@components/tab/tab/tab-list';
 import type { TabType } from '@hooks/use-tab-state';
-import { addDays } from 'date-fns';
-import { useState } from 'react';
 
 interface CalendarSectionProps {
   activeType: TabType;
   onTabChange: (type: TabType) => void;
+  selectedDate: Date;
+  onDateChange: (date: Date) => void;
+  baseWeekDate: Date;
 }
 
-const CalendarSection = ({ activeType, onTabChange }: CalendarSectionProps) => {
-  const entryDate = new Date();
-  const initialSelectedDate = getInitialSelectedDate(entryDate);
-  const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
-  const [baseWeekDate, setBaseWeekDate] = useState(
-    addDays(initialSelectedDate, WEEK_CALENDAR_START_OFFSET),
-  );
+const CalendarSection = ({ activeType, onTabChange, selectedDate, onDateChange, baseWeekDate }: CalendarSectionProps) => {
 
-  //임시용 탭 변경 핸들러 추후 월간 캘린더랑 연결 예정
+ 
   const handleTabChange = (type: TabType) => {
-    setBaseWeekDate(addDays(selectedDate, WEEK_CALENDAR_START_OFFSET));
+    onDateChange(selectedDate);
     onTabChange(type);
   };
 
@@ -32,7 +26,7 @@ const CalendarSection = ({ activeType, onTabChange }: CalendarSectionProps) => {
         baseDate={baseWeekDate}
         value={selectedDate}
         onChange={(date) => {
-          setSelectedDate(date);
+          onDateChange(date);
         }}
       />
       <div className="mt-[3.5rem] flex justify-between">

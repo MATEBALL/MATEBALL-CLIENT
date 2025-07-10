@@ -16,7 +16,7 @@ const CardHeader = (props: CardProps) => {
             <div className="flex items-center gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
-                {props.age}세 | {props.gender}
+                {props.age} | {props.gender}
               </div>
             </div>
             <div className="pl-[1.2rem]">
@@ -24,7 +24,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
           <div className="ml-auto">
-            <ChipState label={props.status} colorType={props.color} />
+            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
           </div>
         </div>
       );
@@ -44,7 +44,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
           <div className="ml-auto">
-            <ChipState label={props.status} colorType={props.color} />
+            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
           </div>
         </div>
       );
@@ -65,6 +65,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
           {props.status && (
             <div className="ml-auto">
               <ChipState label={props.status} colorType={props.color} />
@@ -75,6 +76,8 @@ const CardHeader = (props: CardProps) => {
             <ChipState label={props.status} />
           </div>
 >>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
+=======
+>>>>>>> d70367a (feat: 매칭 목록 및 필터링 구현(#83))
         </div>
       );
   }

@@ -51,15 +51,19 @@ type Story = StoryObj<typeof ChipState>;
 
 export const Default: Story = {
   args: {
-    label: '요청 대기 중',
+    status: '요청 대기 중',
   },
 };
 
 export const MainColor: Story = {
   args: {
+<<<<<<< HEAD
     label: '승인 완료',
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+    status: '승인 완료',
+>>>>>>> d70367a (feat: 매칭 목록 및 필터링 구현(#83))
     colorType: 'active',
 =======
     colorType: 'main',
