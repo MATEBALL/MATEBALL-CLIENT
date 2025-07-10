@@ -7,6 +7,24 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 const meta: Meta<typeof BottomSheet> = {
   title: 'COMMON/BottomSheet',
   component: BottomSheet,
+  parameters: {
+    docs: {
+      description: {
+        component: `
+### BottomSheet 컴포넌트
+
+하단에서 부드럽게 등장하는 바텀시트 컴포넌트입니다. 포털을 사용하여 body 하단에 고정되며, 배경 dimmed와 외부 클릭 닫기 기능을 기본적으로 제공합니다.
+
+- \`isOpen\`: 바텀시트 열림 여부
+- \`onClose\`: 닫기 핸들러
+- \`showIndicator\`: 상단 인디케이터 렌더링 여부
+- \`gap\`: 콘텐츠 스타일 조정
+
+\`children\`에는 자유롭게 콘텐츠를 삽입할 수 있으며, scrollable 영역/버튼 영역 구분도 가능합니다.
+        `,
+      },
+    },
+  },
 };
 
 export default meta;
@@ -25,7 +43,11 @@ export const Default: Story = {
             <p className="mb-2 font-bold text-lg">테스트용 BottomSheet</p>
             <p className="text-gray-600 text-sm">버튼을 눌러 닫을 수 있습니다.</p>
             <div className="p-[1.6rem]">
-              <button type="button" className="mt-4 rounded bg-gray-200 px-4 py-2 text-sm">
+              <button
+                type="button"
+                className="mt-4 cursor-pointer rounded bg-gray-200 px-4 py-2 text-sm"
+                onClick={close}
+              >
                 닫기
               </button>
             </div>
