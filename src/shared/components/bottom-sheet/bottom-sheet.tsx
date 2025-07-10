@@ -33,7 +33,7 @@ const BottomSheet = ({
       <div
         ref={sheetRef}
         className={cn(
-          'flex flex-col justify-center relative w-full max-w-[43rem] bg-gray-white rounded-tl-[12px] rounded-tr-[12px]',
+          'relative flex w-full max-w-[43rem] flex-col justify-center rounded-tl-[12px] rounded-tr-[12px] bg-gray-white',
           gap,
           className,
         )}
