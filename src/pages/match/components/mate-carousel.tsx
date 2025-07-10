@@ -11,7 +11,7 @@ interface MateCarouselProps {
 }
 
 const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: MateCarouselProps) => (
-  <section className="w-full flex-col gap-[1.6rem] overflow-hidden">
+  <section className="w-full flex-col gap-[1.6rem] overflow-hidden pb-[1.6rem]">
     <div
       className={cn('flex transition-transform duration-300 ease-in-out')}
       style={{ transform: `translateX(-${currentIndex * 100}%)` }}

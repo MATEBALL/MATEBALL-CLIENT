@@ -19,4 +19,8 @@ export interface MateProps {
   isGroupMatching?: boolean;
 }
 
+export interface SentViewProps {
+  isGroupMatching?: boolean;
+}
+
 export type MateCardData = DetailedCardProps & { id: number; matchId: number };
