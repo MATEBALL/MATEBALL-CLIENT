@@ -26,7 +26,7 @@ const CalendarSection = ({
   };
 
   return (
-    <section className="sticky top-[5.6rem] z-10 bg-black px-[1.6rem] pt-[2.4rem]">
+    <section className="sticky top-[5.6rem] z-10 bg-gray-black px-[1.6rem] pt-[2.4rem]">
       <WeekCalendar
         baseDate={baseWeekDate}
         value={selectedDate}
