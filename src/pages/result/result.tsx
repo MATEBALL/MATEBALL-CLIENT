@@ -1,5 +1,10 @@
-const Result = () => {
-  return <div>결과확인페이지 (요청 전송, 수락, 새요청, 실패 ... 등)</div>;
-};
+import { useSearchParams } from 'react-router-dom';
+import SentView from './components/SentView';
 
-export default Result;
+export default function ResultPage() {
+  const [params] = useSearchParams();
+  const type = params.get('type');
+
+  if (type === 'sent') return <SentView />;
+  return <div>잘못된 접근입니다</div>;
+}
