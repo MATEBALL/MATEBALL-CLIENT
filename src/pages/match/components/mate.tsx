@@ -12,7 +12,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <div className="mt-[4rem] flex-col-center gap-[4rem]">
+    <div className="relative max-h-screen pt-[4rem] flex-col-center gap-[4rem]">
       <section className="gap-[0.8rem] text-center">
         <h1 className="title_24_sb text-gray-black">사용자님과 딱 맞는 그룹원이에요!</h1>
         <p className="body_16_m text-gray-600">상대의 정보를 확인하고, 매칭을 요청해 보세요.</p>
@@ -41,7 +41,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
         )}
       </section>
 
-      <section className="w-full gap-[0.4rem]">
+      <section className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] w-full gap-[0.4rem]">
         <div className="w-full flex-row-center gap-[0.8rem]">
           <Icon name="ic-caution" size={1.8} />
           <span className="cap_12_m text-gray-600">
