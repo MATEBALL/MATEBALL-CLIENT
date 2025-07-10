@@ -64,11 +64,17 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={props.chips} />
             </div>
           </div>
+<<<<<<< HEAD
           {props.status && (
             <div className="ml-auto">
               <ChipState label={props.status} colorType={props.color} />
             </div>
           )}
+=======
+          <div className="ml-auto">
+            <ChipState label={props.status} />
+          </div>
+>>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
         </div>
       );
   }

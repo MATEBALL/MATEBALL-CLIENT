@@ -73,6 +73,9 @@
 
   /* Z-Index */
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
   --z-header: 6;
   --z-home-calendar-section: 5;
   --z-modal: 7;
@@ -80,11 +83,14 @@
   --z-card-profile-2: 3;
   --z-card-profile-3: 2;
   --z-card-profile-4: 1;
+<<<<<<< HEAD
 =======
   --z-header: 20;
   --z-home-calendar-section: 10;
   --z-modal: 50;
 >>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
+=======
+>>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
 }
 
 @layer utilities {

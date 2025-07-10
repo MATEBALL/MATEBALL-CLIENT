@@ -6,6 +6,7 @@ export const chipStateVariants = cva(
     variants: {
       colorType: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         active: 'bg-main-900 text-gray-white',
         inactive: 'bg-gray-200 text-gray-700',
       },
@@ -20,6 +21,14 @@ export const chipStateVariants = cva(
     defaultVariants: {
       colorType: 'gray',
 >>>>>>> 67606d8 (fix: chip state (#80))
+=======
+        active: 'bg-main-900 text-gray-white',
+        inactive: 'bg-gray-200 text-gray-700',
+      },
+    },
+    defaultVariants: {
+      colorType: 'inactive',
+>>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
     },
   },
 );

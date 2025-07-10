@@ -13,7 +13,11 @@ export interface BaseCardProps {
   awayTeam: string;
   homeTeam: string;
   stadium: string;
+<<<<<<< HEAD
   status?: string;
+=======
+  status: string;
+>>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
 }
 
 export interface SingleCardProps extends BaseCardProps {
