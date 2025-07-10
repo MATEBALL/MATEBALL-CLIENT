@@ -70,6 +70,15 @@
   /* State */
   --color-state-success: #00c400;
   --color-state-error: #ef2626;
+
+  /* Z-Index */
+  --z-header: 6;
+  --z-home-calendar-section: 5;
+  --z-modal: 7;
+  --z-card-profile-1: 4;
+  --z-card-profile-2: 3;
+  --z-card-profile-3: 2;
+  --z-card-profile-4: 1;
 }
 
 @layer utilities {

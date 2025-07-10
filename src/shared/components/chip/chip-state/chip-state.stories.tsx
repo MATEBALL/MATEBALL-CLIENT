@@ -8,7 +8,7 @@ const meta: Meta<typeof ChipState> = {
   argTypes: {
     colorType: {
       control: { type: 'radio' },
-      options: ['main', 'gray'],
+      options: ['active', 'inactive'],
     },
   },
 
@@ -20,7 +20,7 @@ const meta: Meta<typeof ChipState> = {
 ChipState 컴포넌트는 상태를 나타내는 태그(Chip)입니다.
 
 - 기본 텍스트(label) 또는 매칭률(rate)을 표시할 수 있습니다.
-- colorType은 'main' 또는 'gray' 중 선택할 수 있으며 스타일이 달라집니다.
+- colorType은 'active' 또는 'inactive' 중 선택할 수 있으며 스타일이 달라집니다.
 - className을 통해 추가적인 스타일 확장이 가능합니다.
 
 💡 rate가 주어지면 '매칭률 {rate}%' 형태로 표시되며, label은 무시됩니다.
@@ -42,13 +42,13 @@ export const Default: Story = {
 export const MainColor: Story = {
   args: {
     label: '승인 완료',
-    colorType: 'main',
+    colorType: 'active',
   },
 };
 
 export const Matching: Story = {
   args: {
     rate: 85,
-    colorType: 'main',
+    colorType: 'active',
   },
 };

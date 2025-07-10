@@ -18,6 +18,7 @@ export const iconNames = [
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
+  'ic-logo',
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
   'ic-my-filled',
