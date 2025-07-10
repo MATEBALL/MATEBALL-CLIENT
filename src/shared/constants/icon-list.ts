@@ -19,6 +19,7 @@ export const iconNames = [
   'ic-arrow-left',
   'ic-arrow-right',
   'ic-baseball',
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
@@ -47,6 +48,9 @@ export const iconNames = [
 >>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
 =======
 >>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
+=======
+  'ic-calendar-16',
+>>>>>>> 2ccf37c (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
   'ic-calendar',
   'ic-caution',
   'ic-chat-filled',
@@ -84,9 +88,12 @@ export const iconNames = [
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   'ic-logo',
 >>>>>>> 56837c1 (feat: 회원가입 페이지 뷰 구현 (#78))
+=======
+>>>>>>> 2ccf37c (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
 <<<<<<< HEAD
@@ -189,10 +196,10 @@ export type IconName = (typeof iconNames)[number];
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
+  'ic-x',
+  'logo-blue',
   'logo-gray',
   'logo',
-  'ic-right',
-  'ic-x',
 ] as const;
 <<<<<<< HEAD
  

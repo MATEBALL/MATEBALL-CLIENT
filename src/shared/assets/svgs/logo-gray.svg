@@ -7,7 +7,7 @@
       }
 
       .cls-2 {
-        fill: #656667;
+        fill: currentColor;
       }
 
       .cls-3 {

@@ -3,10 +3,10 @@ import clsx from 'clsx';
 interface ProfileCardProps {
   title: string;
   data: string | number;
-  isValid?: boolean;
+  isUnderage?: boolean;
 }
 
-const ProfileCard = ({ title, data, isValid, ...props }: ProfileCardProps) => {
+const ProfileCard = ({ title, data, isUnderage, ...props }: ProfileCardProps) => {
   const userData = title === '생년' ? `${data}년도` : title;
 
   return (
@@ -14,7 +14,7 @@ const ProfileCard = ({ title, data, isValid, ...props }: ProfileCardProps) => {
       className={clsx(
         'h-[9.1rem] w-full flex-col gap-[0.8rem] rounded-[8px] bg-gray-white p-[1.6rem]',
         {
-          'border border-state-error': isValid === true,
+          'border border-state-error': isUnderage === true,
         },
       )}
       {...props}

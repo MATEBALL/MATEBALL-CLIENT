@@ -1,3 +1,4 @@
+import { LoginCallback } from '@pages/login/components/login-callback';
 import Layout from '@routes/layout';
 import {
   ChatList,
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
     path: ROUTES.LAYOUT,
     element: <Layout />,
     children: [
+      { path: ROUTES.AUTH, element: <LoginCallback /> },
       { path: ROUTES.HOME, element: <Home /> },
       { path: ROUTES.LOGIN, element: <Login /> },
       { path: ROUTES.SIGNUP, element: <SignUp /> },

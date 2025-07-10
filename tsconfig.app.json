@@ -38,6 +38,7 @@
       "@routes/*": ["./src/shared/routes/*"],
       "@img/*": ["./src/shared/assets/images/*"],
       "@svg/*": ["./src/shared/assets/svgs/*"],
+      "@lotties/*": ["./src/shared/assets/lotties/*"],
       "@/*": ["./src/*"]
     }
   },
