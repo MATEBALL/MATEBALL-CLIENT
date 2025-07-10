@@ -3,18 +3,18 @@ import type { MateInfo } from '@pages/match/groups/types/mate-type';
 import { useEffect, useState } from 'react';
 
 export function useMate(matchId: number) {
-  const [mate, setMate] = useState<MateInfo | null>(null);
+  const [mates, setMates] = useState<MateInfo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const result = dummyMateData.find((m) => m.id === matchId) ?? null;
-      setMate(result);
+      const result = dummyMateData.filter((m) => m.matchId === matchId);
+      setMates(result);
       setLoading(false);
     }, 300);
 
     return () => clearTimeout(timer);
   }, [matchId]);
 
-  return { mate, loading };
+  return { mates, loading };
 }
