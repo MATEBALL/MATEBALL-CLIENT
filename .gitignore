@@ -25,4 +25,8 @@ dist-ssr
 
 # Local env files
 .env
+.env.production
 *storybook.log
+
+localhost+2-key.pem
+localhost+2.pem
