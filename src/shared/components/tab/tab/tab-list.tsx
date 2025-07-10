@@ -20,20 +20,21 @@ const TabList = ({ colorMode }: TabListProps) => {
 =======
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
-import BarTabItem from '@components/tab/tab/tab-item';
+import TabItem from '@components/tab/tab/tab-item';
+import type { TabType } from '@hooks/use-tab-state';
 import { cn } from '@libs/cn';
-import { useState } from 'react';
 
-interface BarTabListProps {
+interface TabListProps {
   colorMode: TabStyleKey;
+  activeType: TabType;
+  onTabChange: (type: TabType) => void;
 }
 
-const BarTabList = ({ colorMode }: BarTabListProps) => {
-  const types = ['1:1', '그룹'];
-  const [activeType, setActiveType] = useState('1:1');
-
+const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
+  const types: TabType[] = ['1:1', '그룹'];
   const tabStyle = tabStyleMap[colorMode];
 
+<<<<<<< HEAD
   const renderTabContent = () => {
     switch (activeType) {
       case '1:1':
@@ -71,10 +72,24 @@ const BarTabList = ({ colorMode }: BarTabListProps) => {
 =======
       <div className="mt-4">{renderTabContent()}</div>
 >>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
+=======
+  return (
+    <div className={cn('flex items-center justify-start', tabStyle.gap)}>
+      {types.map((label) => (
+        <TabItem
+          key={label}
+          label={label}
+          isActive={activeType === label}
+          style={tabStyle}
+          onClick={() => onTabChange(label)}
+        />
+      ))}
+>>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
     </div>
   );
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 export default TabList;
 =======
@@ -83,3 +98,6 @@ const GroupTabContent = () => <div>그룹 매칭 탭 콘텐츠입니다</div>;
 
 export default BarTabList;
 >>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
+=======
+export default TabList;
+>>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))

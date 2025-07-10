@@ -1,3 +1,4 @@
+import { WEEK_DAY_COLORS, WEEK_DAYS, WEEKDAY } from '@components/calendar/constants/CALENADAR';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
 import {
@@ -10,11 +11,6 @@ import {
   startOfMonth,
   subMonths,
 } from 'date-fns';
-import {
-  WEEK_DAY_COLORS,
-  WEEK_DAYS,
-  WEEKDAY,
-} from '@/shared/components/calendar/constants/calendar';
 import { calendarDayVariants } from '@/shared/components/calendar/styles/calendar-day-variants';
 
 interface MonthCalendarProps {

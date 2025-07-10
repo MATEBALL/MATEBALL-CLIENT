@@ -72,6 +72,7 @@
   --color-state-error: #ef2626;
 
   /* Z-Index */
+<<<<<<< HEAD
   --z-header: 6;
   --z-home-calendar-section: 5;
   --z-modal: 7;
@@ -79,6 +80,11 @@
   --z-card-profile-2: 3;
   --z-card-profile-3: 2;
   --z-card-profile-4: 1;
+=======
+  --z-header: 20;
+  --z-home-calendar-section: 10;
+  --z-modal: 50;
+>>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
 }
 
 @layer utilities {
@@ -150,5 +156,12 @@
     font-weight: 500;
     font-size: 1.2rem;
     line-height: 1.8rem;
+  }
+
+  .scrollbar-hide {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
   }
 }

@@ -14,8 +14,8 @@ const Header = () => {
 
   return (
     <header
-      className={clsx('sticky top-0 z-20 h-[5.6rem] py-[1.55rem] pl-[2rem]', {
-        'bg-black': isHome,
+      className={clsx('header-layout', {
+        'bg-gray-black': isHome,
         'bg-gray-white': isSignUp,
       })}
     >
