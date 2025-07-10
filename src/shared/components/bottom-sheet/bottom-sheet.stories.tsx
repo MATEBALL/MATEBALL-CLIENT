@@ -1,6 +1,6 @@
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
-import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
+import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
@@ -29,7 +29,7 @@ export const Default: Story = {
         <BottomSheet {...args} isOpen={isOpen} onClose={close}>
           <div className="p-4 text-center text-gray-900">
             <p className="font-bold text-lg">여기에 원하는 내용을 넣을 수 있어요.</p>
-            <p className="text-sm text-gray-600">선택 UI, 경고, 캘린더 등 다양한 UI 가능</p>
+            <p className="text-gray-600 text-sm">선택 UI, 경고, 캘린더 등 다양한 UI 가능</p>
           </div>
         </BottomSheet>
       </>
