@@ -1,3 +1,5 @@
+import type { DetailedCardProps } from '@components/card/match-card/types/card';
+
 export interface MateInfo {
   matchId: number;
   id?: number;
@@ -16,3 +18,5 @@ export interface MateProps {
   onRequestClick: () => void;
   isGroupMatching?: boolean;
 }
+
+export type MateCardData = DetailedCardProps & { id: number; matchId: number };

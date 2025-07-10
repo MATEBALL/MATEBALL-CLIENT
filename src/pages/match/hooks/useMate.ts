@@ -1,9 +1,9 @@
-import { dummyMateData } from '@mocks/dummyMateData';
-import type { MateInfo } from '@pages/match/groups/types/mate-type';
+import { dummyMateData } from '@mocks/mockMatchData';
 import { useEffect, useState } from 'react';
+import type { MateCardData } from '@pages/match/groups/types/mate-type';
 
 export function useMate(matchId: number) {
-  const [mates, setMates] = useState<MateInfo[]>([]);
+  const [mates, setMates] = useState<MateCardData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

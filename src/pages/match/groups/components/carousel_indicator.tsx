@@ -3,7 +3,7 @@ import type { CarouselIndicatorProps } from '@pages/match/groups/types/carousel-
 
 const CarouselIndicator = ({ ids, currentIndex, onDotClick }: CarouselIndicatorProps) => {
   return (
-    <div className="mt-[1.2rem] flex-row-center gap-[0.8rem]">
+    <div className="flex-row-center gap-[0.8rem]">
       {ids.map((id, index) => (
         <button
           key={id}

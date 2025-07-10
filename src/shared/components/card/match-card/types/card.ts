@@ -13,7 +13,7 @@ export interface BaseCardProps {
   awayTeam: string;
   homeTeam: string;
   stadium: string;
-  status: string;
+  status?: string;
 }
 
 export interface SingleCardProps extends BaseCardProps {
