@@ -10,7 +10,7 @@ interface ChipInfoProps {
 const ChipInfo = ({ icon, text, iconColor, size }: ChipInfoProps) => {
   return (
     <div className="flex-row-center gap-[0.4rem] text-gray-600">
-      <Icon name={icon} width={size} height={size} className={iconColor} />
+      <Icon name={icon} size={size} className={iconColor} />
       {text}
     </div>
   );

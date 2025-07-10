@@ -67,18 +67,23 @@ import type { CardProps } from './types/card';
 const Card = (props: CardProps) => {
   const { type, className, color } = props;
 
+  const introductionClass = 'cap_14_m mt-[1.6rem]';
+  const gameInfoClass = type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]';
+  const dividerClass = 'border-gray-300';
+  const matchingRateClass = 'mt-[1.6rem] ml-auto';
+
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
       <CardHeader {...props} />
 
-      {type === 'detailed' && <p className="cap_14_m mt-[1.6rem]">{props.introduction}</p>}
+      {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
 
-      <CardGameInfo className={type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]'} {...props} />
+      <CardGameInfo className={gameInfoClass} {...props} />
 
       {type === 'detailed' && (
         <>
-          <hr className="border-gray-300" />
-          <CardMatchingRate matchRate={props.matchRate} className="mt-[1.6rem] ml-auto" />
+          <hr className={dividerClass} />
+          <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
         </>
       )}
 <<<<<<< HEAD

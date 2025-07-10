@@ -9,8 +9,41 @@ const meta: Meta<typeof Card> = {
     layout: 'centered',
     docs: {
       description: {
-        component:
-          '매칭 시스템용 카드 공통 컴포넌트입니다. 개인 매칭, 그룹 매칭, 개인 상세 정보 표시 등 다양한 타입을 지원합니다.',
+        component: `
+🎯 MatchCard 컴포넌트는 매칭 시스템용 카드 공통 컴포넌트입니다.
+
+- Single: 개인 매칭 정보를 표시하는 기본 카드 형태
+- Group: 그룹 매칭 정보를 표시하며, 여러 멤버의 아바타를 표시
+- Detailed: 상세한 개인 정보와 매칭률, 소개글을 포함한 확장 카드
+
+### 공통 Props:
+
+- type: 카드 타입 ('single' | 'group' | 'detailed')
+- nickname: 사용자 이름
+- stadium: 경기장명
+- date: 매칭 날짜
+- imgUrl: 아바타 이미지 URL 배열
+- status: 매칭 상태
+- color: 카드 색상 상태 ('active' | 'inactive')
+
+### Single/Detailed 전용 Props:
+
+- age: 사용자 나이
+- gender: 사용자 성별
+- team: 응원팀
+- style: 응원 스타일
+- chips: 태그 배열
+- awayTeam/homeTeam: 원정팀/홈팀
+
+### Detailed 전용 Props:
+
+- introduction: 한줄 소개글
+- matchRate: 매칭률 (퍼센트)
+
+### Group 전용 Props:
+
+- count: 매칭된 인원 수
+`,
       },
     },
   },
@@ -27,11 +60,11 @@ const meta: Meta<typeof Card> = {
     },
     color: {
       control: 'select',
-      options: ['blue', 'white'],
+      options: ['active', 'inactive'],
       description: '카드의 색상을 설정합니다.',
       table: {
-        type: { summary: "'blue' | 'white'" },
-        defaultValue: { summary: 'blue' },
+        type: { summary: "'active' | 'inactive'" },
+        defaultValue: { summary: 'inactive' },
       },
     },
     nickname: {
@@ -85,10 +118,10 @@ const meta: Meta<typeof Card> = {
     },
     introduction: {
       control: 'text',
-      description: '한줄 설명 텍스트를 설정합니다. (선택사항)',
+      description: '한줄 설명 텍스트를 설정합니다.',
       table: {
         type: { summary: 'string' },
-        defaultValue: { summary: 'undefined' },
+        defaultValue: { summary: '한줄소개' },
       },
     },
     count: {
