@@ -25,6 +25,7 @@ const meta: Meta<typeof BottomSheet> = {
       },
     },
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
