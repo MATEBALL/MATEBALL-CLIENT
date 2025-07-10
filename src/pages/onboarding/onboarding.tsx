@@ -3,6 +3,7 @@ import { useFunnel } from '@hooks/use-funnel';
 import { ROUTES } from '@routes/routes-config';
 import Complete from './components/complete';
 import Gender from './components/gender';
+import Header from './components/header';
 import MatchingType from './components/matching-type';
 import ProgressBar from './components/progress-bar';
 import Start from './components/start';
@@ -18,9 +19,12 @@ const Onboarding = () => {
   );
   return (
     <div className="h-full flex-col-between gap-[1.6rem]">
-      <div className="w-full">
-        <ProgressBar currentStep={currentIndex + 1} totalSteps={steps.length} />
-      </div>
+      <Header onClick={goPrev} />
+      {currentStep !== 'START' && (
+        <div className="w-full">
+          <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
+        </div>
+      )}
 
       <Funnel>
         <Step name="START">
