@@ -69,7 +69,12 @@ export const RequestWarning: Story = {
     return (
       <div className="fixed top-4 left-4 justify-center">
         <Button label="바텀시트 열기" onClick={open} />
-        <BottomSheetModal isOpen={isOpen} onClose={close} />
+        <BottomSheetModal
+          isOpen={isOpen}
+          onClose={close}
+          description="그룹 매칭은 최대 2건까지 신청할 수 있어요."
+          subDescription="단, 하루에 한 경기만 매칭이 성사되며 같은 날짜의 중복 매칭은 불가능해요!"
+        />
       </div>
     );
   },
