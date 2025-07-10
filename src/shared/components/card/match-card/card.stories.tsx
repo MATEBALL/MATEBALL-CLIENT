@@ -1,6 +1,6 @@
+import Card from '@components/card/match-card/card';
+import type { CardProps } from '@components/card/match-card/types/card';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Card from './card';
-import type { CardProps } from './types/card';
 
 const meta: Meta<typeof Card> = {
   title: 'COMMON/Card/MatchCard',
@@ -129,14 +129,15 @@ const meta: Meta<typeof Card> = {
       description: '매칭된 인원 수를 설정합니다.',
       table: {
         type: { summary: 'number' },
+        defaultValue: { summary: '1' },
       },
     },
     matchRate: {
-      control: { type: 'number', min: 0, max: 100, step: 1 },
+      control: { type: 'text', min: 0, max: 100, step: 1 },
       description: '매칭률을 퍼센트로 설정합니다.',
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: 'undefined' },
+        defaultValue: { summary: '0' },
       },
     },
     imgUrl: {

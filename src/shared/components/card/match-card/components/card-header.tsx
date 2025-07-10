@@ -1,8 +1,8 @@
 import { GROUP_MAX } from '@components/card/constants/MATCH';
+import CardProfile from '@components/card/match-card/components/card-profile-image';
+import type { CardProps } from '@components/card/match-card/types/card';
 import ChipList from '@components/chip/chip-list';
-import ChipState from '@components/chip/chip-state';
-import type { CardProps } from '../types/card';
-import CardProfile from './card-profile-image';
+import ChipState from '@components/chip/chip-state/chip-state';
 
 const CardHeader = (props: CardProps) => {
   const { type } = props;

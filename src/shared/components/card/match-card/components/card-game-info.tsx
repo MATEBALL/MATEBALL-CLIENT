@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import ChipInfo from '@components/button/button-game/components/chip-info';
-=======
 import type { CardGameInfoProps } from '@components/card/match-card/types/card';
 import ChipInfo from '@components/chip/chip-info';
->>>>>>> e3d00c0 (fix: card 코드리뷰 반영(#49))
 import { cn } from '@libs/cn';
-import type { CardGameInfoProps } from '../types/card';
 
 const CardGameInfo = ({ awayTeam, homeTeam, stadium, date, className }: CardGameInfoProps) => {
   return (

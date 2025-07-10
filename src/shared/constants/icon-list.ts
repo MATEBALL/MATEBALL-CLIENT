@@ -1,56 +1,10 @@
 export const iconNames = [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   'ic-arrow-left-18',
   'ic-arrow-left-24',
->>>>>>> bf0e05f (feat: storybook 수정 (#79))
   'ic-arrow-left-white',
   'ic-arrow-left',
   'ic-arrow-right',
   'ic-baseball',
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
-=======
->>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
-  'ic-arrow-left-18',
-  'ic-arrow-left-24',
-  'ic-arrow-left',
-  'ic-arrow-right-18',
-  'ic-baseball',
-  'ic-calendar-24',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
-=======
->>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
-=======
-  'ic-calendar-16',
->>>>>>> 2ccf37c (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
   'ic-calendar',
   'ic-caution',
   'ic-chat-filled',
@@ -58,154 +12,21 @@ export const iconNames = [
   'ic-check-filled',
   'ic-clock',
   'ic-error-filled',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  'ic-footer-logo',
-=======
->>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
-=======
->>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
-=======
->>>>>>> bf0e05f (feat: storybook 수정 (#79))
   'ic-home-filled',
   'ic-home-lined',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   'ic-logo',
->>>>>>> 56837c1 (feat: 회원가입 페이지 뷰 구현 (#78))
-=======
->>>>>>> 2ccf37c (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
-<<<<<<< HEAD
-  'ic-logo',
-=======
->>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
-  'ic-matchinglist',
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
-<<<<<<< HEAD
-  'ic-right',
-  'ic-x'
-=======
-=======
->>>>>>> 8098b09 (fix: pnpm corepack으로 설치(#20))
-=======
->>>>>>> 221e908 (init: svg sprite 세팅 (#10))
-=======
->>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
-=======
->>>>>>> f0446d3 (fix: pnpm corepack으로 설치(#20))
-=======
->>>>>>> b10c65f (fix: pnpm corepack으로 설치(#20))
-	'ic-arrow-left-18',
-	'ic-arrow-left-24',
-	'ic-arrow-left',
-	'ic-arrow-right-18',
-	'ic-baseball',
-	'ic-calendar-24',
-	'ic-calendar',
-	'ic-caution',
-	'ic-chat-filled',
-	'ic-chat-lined',
-	'ic-check-filled',
-	'ic-clock',
-	'ic-error-filled',
-	'ic-home-filled',
-	'ic-home-lined',
-	'ic-info-filled',
-	'ic-kakao-logo',
-	'ic-location',
-	'ic-matchinglist',
-	'ic-my-filled',
-	'ic-my-lined',
-	'ic-right',
-	'ic-x',
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e792cc5 (fix: pnpm corepack으로 설치(#20))
-=======
-=======
->>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
-  'ic-matchinglist',
-  'ic-my-filled',
-  'ic-my-lined',
-  'ic-right',
-<<<<<<< HEAD
-  'ic-x'
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 73e71b6 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 8098b09 (fix: pnpm corepack으로 설치(#20))
-=======
-  'ic-x',
->>>>>>> 8ab309e (feat: button-create 공통 컴포넌트 구현(#45))
-=======
->>>>>>> 221e908 (init: svg sprite 세팅 (#10))
-=======
->>>>>>> 7458381 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
->>>>>>> 5301d48 (fix: pnpm corepack으로 설치(#20))
-=======
-  'ic-x',
->>>>>>> 6df9ed8 (chore: 머지 충돌 해결 (#39))
-] as const;
-=======
-] as const;
- 
->>>>>>> f0446d3 (fix: pnpm corepack으로 설치(#20))
-=======
-] as const;
- 
-export type IconName = typeof iconNames[number];
->>>>>>> 19632b2 (chore: icon 크기 props 단위 rem 수정 및 icon-list 띄어쓰기 수정(#10))
-=======
-] as const;
->>>>>>> b10c65f (fix: pnpm corepack으로 설치(#20))
-
-export type IconName = (typeof iconNames)[number];
-=======
-  'ic-my-filled',
-  'ic-my-lined',
-  'ic-plus',
-  'ic-x',
-  'logo-blue',
   'logo-gray',
   'logo',
+  'ic-right',
+  'ic-x',
 ] as const;
-<<<<<<< HEAD
- 
-export type IconName = typeof iconNames[number];
->>>>>>> bf0e05f (feat: storybook 수정 (#79))
-=======
 
 export type IconName = (typeof iconNames)[number];
->>>>>>> f6c7eed (feat: lottie 파일 적용 세팅 구성 (#87))

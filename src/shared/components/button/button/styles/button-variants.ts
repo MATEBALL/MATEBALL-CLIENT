@@ -1,11 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const buttonVariants = cva(
-<<<<<<< HEAD
   'subhead_18_sb flex-row-center cursor-pointer rounded-[1.2rem] transition-colors',
-=======
-  'subhead_18_sb inline-flex items-center justify-center rounded-[1.2rem] transition-colors',
->>>>>>> 8212d70 (fix: aria-label 추가 및 button-variants.ts 폴더 이동(#39))
   {
     variants: {
       variant: {
@@ -13,7 +9,6 @@ export const buttonVariants = cva(
         gray: 'bg-gray-400 text-white',
         skyblue: 'bg-main-200 text-main-900',
         white: 'bg-white text-gray-700',
-<<<<<<< HEAD
         skyblueBorder: 'border border-main-900 bg-main-200 text-main-900',
       },
       size: {
@@ -21,15 +16,6 @@ export const buttonVariants = cva(
         L: 'w-[34.3rem] px-[0.8rem] py-[1.2rem]',
         setting_M: 'w-[16.75rem] p-[0.8rem]',
         setting_L: 'w-[34.3rem] px-[0.8rem] py-[2rem]',
-=======
-        skyblueBorder: 'border·border-main-900·bg-main-200·text-main-900',
-      },
-      size: {
-        M: 'w-[16.75rem] py-[1.2rem]',
-        L: 'w-[34.3rem] py-[1.2rem]',
-        setting_M: 'w-[16.75rem] py-[0.8rem]',
-        setting_L: 'w-[34.3rem] py-[2rem]',
->>>>>>> 8212d70 (fix: aria-label 추가 및 button-variants.ts 폴더 이동(#39))
       },
     },
     defaultVariants: {

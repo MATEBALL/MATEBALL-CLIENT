@@ -1,13 +1,7 @@
 import { buttonGameVariants } from '@components/button/button-game/styles/button-game-variants';
-<<<<<<< HEAD
-import { cn } from '@libs/cn';
-import { useState } from 'react';
-import ChipInfo from './components/chip-info';
-=======
 import ChipInfo from '@components/chip/chip-info';
 import { cn } from '@libs/cn';
 import { useState } from 'react';
->>>>>>> 4681a3d (feat: button game 컴포넌트 구현 (#81))
 
 interface ButtonGameProps {
   onClick?: () => void;
@@ -46,13 +40,8 @@ const ButtonGame = ({
         {awayTeam} VS {homeTeam}
       </span>
       <span className="flex-row-center gap-[0.4rem] text-gray-600">
-<<<<<<< HEAD
-        <ChipInfo icon="ic-clock" text={gameTime} iconColor="text-gray-500" />
-        <ChipInfo icon="ic-location" text={stadium} iconColor="text-gray-500" />
-=======
         <ChipInfo icon="ic-clock" size={1.85} text={gameTime} iconColor="text-gray-500" />
         <ChipInfo icon="ic-location" size={1.6} text={stadium} iconColor="text-gray-500" />
->>>>>>> 4681a3d (feat: button game 컴포넌트 구현 (#81))
       </span>
     </button>
   );
