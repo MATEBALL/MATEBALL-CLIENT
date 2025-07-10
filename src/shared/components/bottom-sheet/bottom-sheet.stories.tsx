@@ -18,21 +18,20 @@ export const Default: Story = {
     const { isOpen, open, close } = useBottomSheet();
 
     return (
-      <>
-        <button
-          type="button"
-          onClick={open}
-          className="fixed top-4 left-4 rounded bg-blue-500 px-4 py-2 text-white"
-        >
-          바텀시트 열기
-        </button>
+      <div className="fixed top-4 left-4 justify-center">
+        <Button label="바텀시트 열기" onClick={open} />
         <BottomSheet {...args} isOpen={isOpen} onClose={close}>
-          <div className="p-4 text-center text-gray-900">
-            <p className="font-bold text-lg">여기에 원하는 내용을 넣을 수 있어요.</p>
-            <p className="text-gray-600 text-sm">선택 UI, 경고, 캘린더 등 다양한 UI 가능</p>
+          <div className="text-center text-gray-900">
+            <p className="mb-2 font-bold text-lg">테스트용 BottomSheet</p>
+            <p className="text-gray-600 text-sm">버튼을 눌러 닫을 수 있습니다.</p>
+            <div className="p-[1.6rem]">
+              <button type="button" className="mt-4 rounded bg-gray-200 px-4 py-2 text-sm">
+                닫기
+              </button>
+            </div>
           </div>
         </BottomSheet>
-      </>
+      </div>
     );
   },
   args: {
