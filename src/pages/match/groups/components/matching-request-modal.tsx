@@ -14,12 +14,12 @@ const MatchingRequestModal = ({ onCancel, onConfirm }: Props) => {
         <button type="button" className="btn-outline w-1/2" onClick={onCancel}>
           다음에 할래요
         </button>
-        <button className="btn-primary w-1/2" onClick={onConfirm}>
+        <button type="button" className="btn-primary w-1/2" onClick={onConfirm}>
           요청할래요
         </button>
       </div>
     </div>
   );
-}
+};
 
 export default MatchingRequestModal;
