@@ -2,8 +2,8 @@ import Icon from '@components/icon/icon';
 
 const BottomSheetIndicator = () => {
   return (
-    <div className="inline-flex flex-col items-center justify-center self-stretch px-2 py-3">
-      <Icon name="ic-indicator" width={4} height={1} />
+    <div className="flex-col items-center justify-center py-[1.2rem]">
+      <Icon width={4} height={4} name="ic-indicator" />
     </div>
   );
 };

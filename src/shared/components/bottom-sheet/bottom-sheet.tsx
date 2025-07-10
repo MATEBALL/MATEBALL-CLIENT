@@ -10,7 +10,6 @@ interface BottomSheetProps {
   children: React.ReactNode;
   className?: string;
   showIndicator?: boolean;
-  padding?: string;
   gap?: string;
 }
 
@@ -20,7 +19,7 @@ const BottomSheet = ({
   children,
   className,
   showIndicator = true,
-  gap = 'gap-[1.6rem]',
+  gap,
 }: BottomSheetProps) => {
   const sheetRef = useRef<HTMLDivElement>(null);
   useOutsideClick(sheetRef, onClose);
