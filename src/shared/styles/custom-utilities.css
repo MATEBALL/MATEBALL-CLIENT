@@ -50,6 +50,6 @@
   }
 
   .signup-layout {
-    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
+    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem] ;
   }
 }
