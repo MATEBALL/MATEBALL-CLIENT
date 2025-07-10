@@ -1,6 +1,6 @@
-import type { GroupMateCardProps } from '@pages/match/groups/types/mate-type';
+import type { MateCardProps } from '@pages/match/groups/types/mate-type';
 
-const GroupMateCard = ({ mate }: GroupMateCardProps) => {
+const MateCard = ({ mate }: MateCardProps) => {
   if (!mate) return null;
 
   return (
@@ -14,4 +14,4 @@ const GroupMateCard = ({ mate }: GroupMateCardProps) => {
   );
 };
 
-export default GroupMateCard;
+export default MateCard;
