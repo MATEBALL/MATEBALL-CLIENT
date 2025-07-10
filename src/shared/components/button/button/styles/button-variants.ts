@@ -12,10 +12,10 @@ export const buttonVariants = cva(
         skyblueBorder: 'border border-main-900 bg-main-200 text-main-900',
       },
       size: {
-        M: 'w-[16.75rem] px-[0.8rem] py-[1.2rem]',
-        L: 'w-[34.3rem] px-[0.8rem] py-[1.2rem]',
-        setting_M: 'w-[16.75rem] p-[0.8rem]',
-        setting_L: 'w-[34.3rem] px-[0.8rem] py-[2rem]',
+        M: 'w-full px-[0.8rem] py-[1.2rem]',
+        L: 'w-full px-[0.8rem] py-[1.2rem]',
+        setting_M: 'w-full p-[0.8rem]',
+        setting_L: 'w-full px-[0.8rem] py-[2rem]',
       },
     },
     defaultVariants: {
