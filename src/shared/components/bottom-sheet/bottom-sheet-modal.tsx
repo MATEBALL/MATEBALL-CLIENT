@@ -8,7 +8,7 @@ interface BottomSheetModalProps {
   onClose: () => void;
   description: string;
   subDescription: string | string[];
-  isGroupMatching: boolean;
+  isGroupMatching?: boolean;
 }
 
 const BottomSheetModal = ({
