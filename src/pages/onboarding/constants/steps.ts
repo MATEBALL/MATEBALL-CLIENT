@@ -1,0 +1,9 @@
+export const ONBOARDING_STEPS = [
+  'START',
+  'SUPPROT_TEAM',
+  'SYNC_SUPPROT_TEAM',
+  'VIEWING_STYLE',
+  'GENDER',
+  'MATCHING_TYPE',
+  'COMPLETE',
+] as const;
