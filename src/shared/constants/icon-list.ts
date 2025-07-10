@@ -15,6 +15,7 @@ export const iconNames = [
   'ic-error-filled',
   'ic-home-filled',
   'ic-home-lined',
+  'ic-indicator',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
@@ -24,12 +25,8 @@ export const iconNames = [
   'ic-my-lined',
   'ic-plus',
   'ic-x',
-  'logo-blue',
   'logo-gray',
   'logo',
-  'ic-right',
-  'ic-x',
-  'ic-indicator',
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
