@@ -36,9 +36,10 @@ const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProp
         />
         <p className="head_20_sb text-center text-gray-black">{format(value, 'yyyy.MM')}</p>
         <Icon
-          name="ic-arrow-right-18"
+          name="ic-arrow-left"
           width={3.2}
           height={3.2}
+          rotate={180}
           className="cursor-pointer p-[0.7rem]"
           onClick={() => onMonthChange(addMonths(value, 1))}
         />

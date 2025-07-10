@@ -1,4 +1,3 @@
-
 import WeekCalendar from '@components/calendar/week-calendar';
 import Icon from '@components/icon/icon';
 import BarTabList from '@components/tab/tab/tab-list';
@@ -10,11 +9,17 @@ interface CalendarSectionProps {
   selectedDate: Date;
   onDateChange: (date: Date) => void;
   baseWeekDate: Date;
+  onOpenBottomSheet: () => void;
 }
 
-const CalendarSection = ({ activeType, onTabChange, selectedDate, onDateChange, baseWeekDate }: CalendarSectionProps) => {
-
- 
+const CalendarSection = ({
+  activeType,
+  onTabChange,
+  selectedDate,
+  onDateChange,
+  baseWeekDate,
+  onOpenBottomSheet,
+}: CalendarSectionProps) => {
   const handleTabChange = (type: TabType) => {
     onDateChange(selectedDate);
     onTabChange(type);
@@ -29,12 +34,16 @@ const CalendarSection = ({ activeType, onTabChange, selectedDate, onDateChange, 
           onDateChange(date);
         }}
       />
-      <div className="mt-[3.5rem] flex justify-between">
+      <section className="mt-[3.5rem] flex justify-between">
         <BarTabList colorMode="dark" activeType={activeType} onTabChange={handleTabChange} />
-        <div className="h-[3.2rem] w-[3.2rem] flex-col-center rounded-[8px] bg-gray-900">
-          <Icon name="ic-calendar" size={2.4} className="text-gray-white" />
-        </div>
-      </div>
+        <button
+          type="button"
+          className="h-[3.2rem] w-[3.2rem] flex-col-center rounded-[8px] bg-gray-900"
+          onClick={onOpenBottomSheet}
+        >
+          <Icon name="ic-calendar" size={2.4} className="cursor-pointer text-gray-white" />
+        </button>
+      </section>
     </section>
   );
 };
