@@ -19,16 +19,18 @@ export const iconNames = [
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
-  'ic-logo',
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
   'ic-my-filled',
   'ic-my-lined',
   'ic-plus',
+  'ic-x',
+  'logo-blue',
   'logo-gray',
 <<<<<<< HEAD
 <<<<<<< HEAD
   'logo',
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   'logo'
@@ -40,6 +42,8 @@ export const iconNames = [
   'ic-right',
   'ic-x',
 >>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
+=======
+>>>>>>> 6a3c3a6 (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import ErrorView from '@pages/error/error-view';
+=======
+>>>>>>> 6a3c3a6 (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
 import { LoginCallback } from '@pages/login/components/login-callback';
 import Layout from '@routes/layout';
 import {
