@@ -40,7 +40,7 @@ const GroupMate = ({ matchId, onRequestClick }: GroupMateProps) => {
       </section>
 
       <section className="w-full gap-[0.4rem]">
-        <div className="flex w-full items-center justify-center gap-[0.8rem]">
+        <div className="w-full flex-row-center gap-[0.8rem]">
           <Icon name="ic-caution" size={1.8} />
           <span className="cap_12_m text-gray-600">1:1 매칭은 최대 3건까지 요청할 수 있어요.</span>
         </div>
