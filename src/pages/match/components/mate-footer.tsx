@@ -1,5 +1,6 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
+import { MATCHING_NOTICE } from '@pages/match/constants/matching';
 
 interface MateFooterProps {
   isGroupMatching: boolean;
@@ -11,9 +12,7 @@ const MateFooter = ({ isGroupMatching, onRequestClick }: MateFooterProps) => (
     <div className="w-full flex-row-center gap-[0.8rem]">
       <Icon name="ic-caution" size={1.8} />
       <span className="cap_12_m text-gray-600">
-        {isGroupMatching
-          ? '그룹 매칭은 최대 2건까지 요청할 수 있어요.'
-          : '1:1 매칭은 최대 3건까지 요청할 수 있어요.'}
+        {isGroupMatching ? MATCHING_NOTICE.group : MATCHING_NOTICE.single}
       </span>
     </div>
     <div className="p-[1.6rem]">

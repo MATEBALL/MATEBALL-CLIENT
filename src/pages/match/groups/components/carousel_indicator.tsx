@@ -12,8 +12,8 @@ const CarouselIndicator = ({ ids, currentIndex, onDotClick }: CarouselIndicatorP
           aria-current={currentIndex === index ? 'true' : undefined}
           onClick={() => onDotClick?.(index)}
           className={cn(
-            'h-[0.8rem] w-[0.8rem] rounded-full transition-all duration-200',
-            currentIndex === index ? 'bg-main-900' : 'bg-gray-300',
+            'size-[0.8rem] rounded-full transition-all duration-200',
+            currentIndex === index ? 'bg-main-900' : 'bg-gray-400',
           )}
         />
       ))}
