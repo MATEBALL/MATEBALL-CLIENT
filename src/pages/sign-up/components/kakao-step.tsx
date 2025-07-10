@@ -6,7 +6,7 @@ import { isAdult } from '@pages/sign-up/utils/age-calculate';
 
 const KakaoStep = () => {
   const data = mockKaKaoData;
-  const isValid = !isAdult(data.birthYear);
+  const isUnderage = !isAdult(data.birthYear);
 
   return (
     <div className="h-full flex-col-between">
@@ -17,18 +17,23 @@ const KakaoStep = () => {
         </div>
         <div className="w-full flex-col gap-[1.6rem] ">
           <div className="w-full flex-row gap-[1.2rem]">
-            <ProfileCard title="생년" data={data.birthYear} aria-label="생년" isValid={isValid} />
+            <ProfileCard
+              title="생년"
+              data={data.birthYear}
+              aria-label="생년"
+              isUnderage={isUnderage}
+            />
             <ProfileCard title="성별" data={data.gender} aria-label="성별" />
           </div>
 
-          {isValid ? (
+          {isUnderage ? (
             <p className="cap_12_m text-state-error">{AGE_LIMIT_MESSAGE}</p>
           ) : (
             <p className="cap_12_m whitespace-pre-line text-gray-500">{AGE_NOTICE}</p>
           )}
         </div>
       </div>
-      <Button label="다음으로" className="w-full" ariaLabel="다음으로" disabled={isValid} />
+      <Button label="다음으로" className="w-full" ariaLabel="다음으로" disabled={isUnderage} />
     </div>
   );
 };

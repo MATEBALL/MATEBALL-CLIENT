@@ -1,7 +1,8 @@
 import Icon from '@components/icon/icon';
+import type { IconName } from '@constants/icon-list';
 
 interface ChipInfoProps {
-  icon: string;
+  icon: IconName;
   text: string;
   iconColor?: string;
   size?: number;
