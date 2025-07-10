@@ -1,3 +1,4 @@
+import ErrorView from '@pages/error/error-view';
 import { LoginCallback } from '@pages/login/components/login-callback';
 import Layout from '@routes/layout';
 import {
@@ -17,7 +18,7 @@ import {
   Single,
 } from '@routes/lazy';
 import { ROUTES } from '@routes/routes-config';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ export const router = createBrowserRouter([
       { path: ROUTES.CHAT, element: <ChatList /> },
       { path: ROUTES.CHAT_ROOM(), element: <ChatRoom /> },
       { path: ROUTES.RESULT, element: <Result /> },
+      {
+        path: '*',
+        element: <Navigate to={ROUTES.ERROR} replace />,
+      },
+      {
+        path: '/error',
+        element: <ErrorView />,
+      },
     ],
   },
 ]);
