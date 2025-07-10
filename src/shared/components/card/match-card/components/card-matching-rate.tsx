@@ -1,5 +1,5 @@
+import type { CardMatchingRateProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
-import type { CardMatchingRateProps } from '../types/card';
 
 const CardMatchingRate = ({ matchRate, className }: CardMatchingRateProps) => {
   return (
