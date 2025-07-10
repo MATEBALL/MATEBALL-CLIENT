@@ -15,75 +15,59 @@ interface MatchListSectionProps {
   selectedDate: Date;
 }
 
+type SingleMatch = (typeof mockMateSingle)[0];
+type GroupMatch = (typeof mockMateGroup)[0];
+
 const MatchListSection = ({ isOneOnOne, selectedDate }: MatchListSectionProps) => {
   const formattedDate = format(selectedDate, 'yyyy-MM-dd');
 
-  const filteredMateGroup = useMemo(() => {
-    return mockMateGroup.filter((group) => {
-      const groupDate = group.date;
-      return groupDate === formattedDate;
-    });
-  }, [formattedDate]);
+  const filteredMatches = useMemo(() => {
+    const sourceData = isOneOnOne ? mockMateSingle : mockMateGroup;
+    return sourceData.filter((match) => match.date === formattedDate);
+  }, [formattedDate, isOneOnOne]);
 
-  const filteredMateSingle = useMemo(() => {
-    return mockMateSingle.filter((single) => {
-      const singleDate = single.date;
-      return singleDate === formattedDate;
-    });
-  }, [formattedDate]);
+  const getCommonProps = (match: SingleMatch | GroupMatch) => ({
+    nickname: match.nickname,
+    date: match.date,
+    imgUrl: Array.isArray(match.imgUrl) ? match.imgUrl : [match.imgUrl],
+    awayTeam: match.awayTeam,
+    homeTeam: match.homeTeam,
+    stadium: match.stadium,
+    matchRate: match.matchRate,
+  });
 
-  const currentMatches = isOneOnOne ? filteredMateSingle : filteredMateGroup;
+  const renderSingleCard = (match: SingleMatch) => (
+    <Card
+      key={match.id}
+      type="single"
+      {...getCommonProps(match)}
+      age={match.age}
+      gender={match.gender}
+      team={match.team}
+      style={match.style}
+      chips={[match.team as ChipColor, match.style as ChipColor]}
+    />
+  );
+
+  const renderGroupCard = (match: GroupMatch) => (
+    <Card key={match.id} type="group" {...getCommonProps(match)} count={match.count} />
+  );
+
+  const renderMatchCards = () => {
+    return filteredMatches.map((match) => {
+      if (isOneOnOne) {
+        return renderSingleCard(match as SingleMatch);
+      }
+      return renderGroupCard(match as GroupMatch);
+    });
+  };
 
   return (
     <section className="p-[1.6rem]">
-      <ButtonCreate label={`맞춤 매칭 생성하기`} className="ml-auto" />
+      <ButtonCreate label="맞춤 매칭 생성하기" className="ml-auto" />
 
-      {currentMatches.length > 0 ? (
-        <div className="mt-[2rem] space-y-3">
-          {currentMatches.map((match) => {
-            if (isOneOnOne) {
-              const singleMatch = match as (typeof mockMateSingle)[0];
-              return (
-                <Card
-                  key={singleMatch.id}
-                  type="single"
-                  nickname={singleMatch.nickname}
-                  date={singleMatch.date}
-                  imgUrl={
-                    Array.isArray(singleMatch.imgUrl) ? singleMatch.imgUrl : [singleMatch.imgUrl]
-                  }
-                  awayTeam={singleMatch.awayTeam}
-                  homeTeam={singleMatch.homeTeam}
-                  stadium={singleMatch.stadium}
-                  age={singleMatch.age}
-                  gender={singleMatch.gender}
-                  team={singleMatch.team}
-                  style={singleMatch.style}
-                  chips={[singleMatch.team as ChipColor, singleMatch.style as ChipColor]}
-                  matchRate={singleMatch.matchRate}
-                />
-              );
-            } else {
-              const groupMatch = match as (typeof mockMateGroup)[0];
-              return (
-                <Card
-                  key={groupMatch.id}
-                  type="group"
-                  nickname={groupMatch.nickname}
-                  date={groupMatch.date}
-                  imgUrl={
-                    Array.isArray(groupMatch.imgUrl) ? groupMatch.imgUrl : [groupMatch.imgUrl]
-                  }
-                  awayTeam={groupMatch.awayTeam}
-                  homeTeam={groupMatch.homeTeam}
-                  stadium={groupMatch.stadium}
-                  count={groupMatch.count}
-                  matchRate={groupMatch.matchRate}
-                />
-              );
-            }
-          })}
-        </div>
+      {filteredMatches.length > 0 ? (
+        <div className="mt-[2rem] space-y-3">{renderMatchCards()}</div>
       ) : (
         <EmptyState
           className="mt-[4rem]"
