@@ -1,3 +1,4 @@
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
 import TabContent, { type TabType } from '@components/tab/tab/tab-content';
@@ -10,8 +11,8 @@ interface TabListProps {
 }
 
 const TabList = ({ colorMode }: TabListProps) => {
-  const types: TabType[] = ['1:1', '그룹'];
-  const [activeType, setActiveType] = useState<TabType>('1:1');
+  const types: TabType[] = [TAB_TYPES.SINGLE, TAB_TYPES.GROUP];
+  const [activeType, setActiveType] = useState<TabType>(TAB_TYPES.SINGLE);
 
   const tabStyle = tabStyleMap[colorMode];
 
