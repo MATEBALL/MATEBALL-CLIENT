@@ -1,8 +1,5 @@
 import { BASE_URL } from '@constants/api';
-<<<<<<< HEAD
 import { ROUTES } from '@routes/routes-config';
-=======
->>>>>>> eb06153 (feat: query 패턴 세팅 (#84))
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 import { HTTP_STATUS, RESPONSE_MESSAGE } from '../constants/response';

@@ -1,5 +1,6 @@
 import Icon from '@components/icon/icon';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import type { IconName } from '@constants/icon-list';
 
 interface ChipInfoProps {
@@ -9,6 +10,12 @@ interface ChipInfoProps {
 interface ChipInfoProps {
   icon: string;
 >>>>>>> b3d0c9d (feat: button game 컴포넌트 구현 (#81))
+=======
+import type { IconName } from '@constants/icon-list';
+
+interface ChipInfoProps {
+  icon: IconName;
+>>>>>>> 6a3c3a6 (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
   text: string;
   iconColor?: string;
   size?: number;
