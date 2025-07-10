@@ -1,10 +1,5 @@
 import { cn } from '@libs/cn';
-
-interface CarouselIndicatorProps {
-  ids: string[];
-  currentIndex: number;
-  onDotClick?: (index: number) => void;
-}
+import type { CarouselIndicatorProps } from '@pages/match/groups/types/carousel-indicator';
 
 const CarouselIndicator = ({ ids, currentIndex, onDotClick }: CarouselIndicatorProps) => {
   return (

@@ -1,10 +1,6 @@
-import type { MateInfo } from '@pages/match/groups/types/mate-type';
+import type { GroupMateCardProps } from '@pages/match/groups/types/mate-type';
 
-interface Props {
-  mate: MateInfo;
-}
-
-const GroupMateCard = ({ mate }: Props) => {
+const GroupMateCard = ({ mate }: GroupMateCardProps) => {
   if (!mate) return null;
 
   return (

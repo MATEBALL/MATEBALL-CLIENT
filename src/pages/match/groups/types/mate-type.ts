@@ -6,3 +6,12 @@ export interface MateInfo {
   team: string;
   type: string;
 }
+
+export interface GroupMateCardProps {
+  mate: MateInfo;
+}
+
+export interface GroupMateProps {
+  matchId: string;
+  onRequestClick: () => void;
+}
