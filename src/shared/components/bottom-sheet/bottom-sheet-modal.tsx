@@ -8,6 +8,7 @@ interface BottomSheetModalProps {
   onClose: () => void;
   description: string;
   subDescription: string | string[];
+  isGroupMatching: boolean;
 }
 
 const BottomSheetModal = ({
@@ -15,8 +16,10 @@ const BottomSheetModal = ({
   onClose,
   description,
   subDescription,
+  isGroupMatching,
 }: BottomSheetModalProps) => {
   const navigate = useNavigate();
+
   return (
     <BottomSheet showIndicator={false} isOpen={isOpen} onClose={onClose}>
       <div className="mx-auto flex-col-center gap-[0.4rem] px-[5rem] pt-[3.2rem] text-center">
@@ -32,7 +35,8 @@ const BottomSheetModal = ({
         <Button
           label="요청할래요"
           onClick={() => {
-            navigate(`${ROUTES.RESULT}?type=sent`);
+            const mode = isGroupMatching ? 'group' : 'single';
+            navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
             onClose();
           }}
         />

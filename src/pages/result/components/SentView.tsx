@@ -3,15 +3,11 @@ import { LOTTIE_PATH } from '@constants/lotties';
 import { MATCHING_COMPLETE_MESSAGE } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import type { SentViewProps } from '@pages/match/groups/types/mate-type';
+import { useNavigate } from 'react-router-dom';
 
-export default function SentView() {
+const SentView = ({ isGroupMatching = true, userNickname }: SentViewProps) => {
   const navigate = useNavigate();
-  const [params] = useSearchParams();
-  const isGroupMatching = params.get('mode') === 'group';
-
-  // TODO: 실제 로그인 유저 정보에서 가져와야 함
-  const userNickname = '두밥비';
 
   return (
     <div className="relative max-h-screen flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem] pb-[8rem]">
@@ -30,4 +26,6 @@ export default function SentView() {
       </div>
     </div>
   );
-}
+};
+
+export default SentView;
