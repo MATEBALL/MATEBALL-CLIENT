@@ -26,7 +26,6 @@ export const iconNames = [
   'ic-my-lined',
   'ic-plus',
   'ic-x',
-  'logo-blue',
   'logo-gray',
 <<<<<<< HEAD
 <<<<<<< HEAD
