@@ -11,31 +11,12 @@ import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
 import { ROUTES } from '@routes/routes-config';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Onboarding = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
     FIRST_FUNNEL_STEPS,
     ROUTES.HOME,
   );
-
-  const [selections, setSelections] = useState<Record<string, string | null>>({
-    SUPPORT_TEAM: null,
-    SYNC_SUPPORT_TEAM: null,
-    VIEWING_STYLE: null,
-    GENDER: null,
-    MATCHING_TYPE: null,
-  });
-
-  const handleSelect = (stepName: string, value: string) => {
-    setSelections((prev) => ({ ...prev, [stepName]: value }));
-  };
-
-  const isStepCompleted = (stepName: string) => selections[stepName] !== null;
-
-  const navigate = useNavigate();
-
   return (
     <div className="flex h-[100svh] flex-col">
       <div className="sticky top-0 bg-background">
