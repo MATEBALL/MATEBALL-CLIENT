@@ -20,20 +20,28 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
   });
 
   return (
-    <section className="w-full flex-col gap-[1.6rem] overflow-hidden">
-      <div
-        role="presentation"
-        aria-hidden="true"
+    <section className="w-full flex-col gap-[1.6rem] overflow-hidden" aria-label="매칭 캐러셀">
+      <ul
         className={cn('flex transition-transform duration-300 ease-in-out')}
         style={getSlideTransformStyle(currentIndex)}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
+        aria-roledescription="carousel"
+        aria-live="polite"
       >
-        {mates.map((mate) => (
-          <SlideItem isGroupMatching={isGroupMatching} key={mate.id} mate={mate} />
+        {mates.map((mate, index) => (
+          <li
+            key={mate.id}
+            aria-roledescription="slide"
+            aria-label={`슬라이드 ${index + 1} / ${mates.length}`}
+            aria-hidden={index !== currentIndex}
+            className="min-w-full"
+          >
+            <SlideItem isGroupMatching={isGroupMatching} mate={mate} />
+          </li>
         ))}
-      </div>
+      </ul>
 
       {isGroupMatching && (
         <div className="flex-row-center">

@@ -11,11 +11,11 @@ export const useSlide = ({ length, currentIndex, onChange }: UseSlideProps) => {
   const endXRef = useRef<number | null>(null);
   const isDraggingRef = useRef(false);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (e: React.TouchEvent<HTMLElement>) => {
     startXRef.current = e.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchEnd = (e: React.TouchEvent<HTMLElement>) => {
     if (startXRef.current === null) return;
     const endX = e.changedTouches[0].clientX;
     const diff = startXRef.current - endX;
@@ -26,7 +26,7 @@ export const useSlide = ({ length, currentIndex, onChange }: UseSlideProps) => {
     startXRef.current = null;
   };
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     isDraggingRef.current = true;
     startXRef.current = e.clientX;
