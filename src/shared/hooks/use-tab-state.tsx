@@ -16,5 +16,6 @@ export const useTabState = () => {
     changeTab,
     isOneOnOne,
     isGroup,
+    TAB_TYPES,
   };
 };
