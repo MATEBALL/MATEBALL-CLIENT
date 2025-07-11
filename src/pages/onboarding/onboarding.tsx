@@ -3,7 +3,9 @@ import { useFunnel } from '@hooks/use-funnel';
 import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
 import Complete from './components/complete';
+import DateSelect from './components/date-select';
 import Gender from './components/gender';
+import GroupRole from './components/group-role';
 import Header from './components/header';
 import MatchingType from './components/matching-type';
 import ProgressBar from './components/progress-bar';
@@ -25,6 +27,8 @@ const Onboarding = () => {
     VIEWING_STYLE: null,
     GENDER: null,
     MATCHING_TYPE: null,
+    GROUP_ROLE: null,
+    DATE_SELECT: null,
   });
 
   const handleSelect = (stepName: string, value: string) => {
@@ -117,8 +121,35 @@ const Onboarding = () => {
             onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
           />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="다음으로" size={'L'} onClick={goNext} />
+            <Button
+              label="다음으로"
+              size={'L'}
+              onClick={goNext}
+              disabled={!isStepCompleted('MATCHING_TYPE')}
+            />
           </div>
+        </Step>
+
+        <Step name="GROUP_ROLE">
+          <GroupRole
+            selectedOption={selections.GROUP_ROLE}
+            onSelect={(option) => handleSelect('GROUP_ROLE', option)}
+          />
+          <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <Button
+              label="다음으로"
+              size={'L'}
+              onClick={goNext}
+              disabled={!isStepCompleted('GROUP_ROLE')}
+            />
+          </div>
+        </Step>
+
+        <Step name="DATE_SELECT">
+          <DateSelect
+          // selectedOption={selections.DATE_SELECT}
+          // onSelect={(option) => handleSelect('DATE_SELECT', option)}
+          />
         </Step>
 
         <Step name="COMPLETE">
