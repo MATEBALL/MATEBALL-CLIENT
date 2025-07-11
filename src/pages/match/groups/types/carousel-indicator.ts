@@ -12,3 +12,9 @@ export interface MateCarouselProps {
   onDotClick: (index: number) => void;
   isGroupMatching: boolean;
 }
+
+export interface UseSlideProps {
+  length: number;
+  currentIndex: number;
+  onChange: (index: number) => void;
+}
