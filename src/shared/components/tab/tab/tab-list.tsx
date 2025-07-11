@@ -112,6 +112,7 @@ const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default TabList;
 =======
 const OneToOneTabContent = () => <div>1:1 매칭 탭 콘텐츠입니다</div>;
@@ -125,3 +126,6 @@ export default TabList;
 =======
 export default TabList;
 >>>>>>> 94cf350 (feat: tab 공통 컴포넌트 구현 (#96))
+=======
+export default TabList;
+>>>>>>> e5b8004 (chore: 리베이스 해결(#83))
