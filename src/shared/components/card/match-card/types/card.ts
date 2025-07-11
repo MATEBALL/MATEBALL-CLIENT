@@ -30,7 +30,7 @@ export interface SingleCardProps extends BaseCardProps {
   type: 'single';
   age: string;
   gender: string;
-  chips?: ChipColor[];
+  chips: ChipColor[];
   team: string;
   style: string;
   matchRate?: number;
@@ -48,7 +48,7 @@ export interface DetailedCardProps extends BaseCardProps {
   gender: string;
   introduction: string;
   matchRate: number;
-  chips?: ChipColor[];
+  chips: ChipColor[];
   team: string;
   style: string;
 }
@@ -57,7 +57,7 @@ export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps;
 
 export interface CardProfileProps {
   type: 'single' | 'group' | 'detailed';
-  imgUrl: string[];
+  imgUrl: string | string[];
 }
 
 export interface CardGameInfoProps {
