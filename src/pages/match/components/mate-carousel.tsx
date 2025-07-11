@@ -6,7 +6,7 @@ import { useSlide } from '@pages/match/hooks/useSlide';
 import { getSlideTransformStyle } from '@pages/match/styles/get-slide-transformstyle';
 
 const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: MateCarouselProps) => {
-  const { handleTouchStart, handleTouchEnd, handleMouseDown, handleMouseUp } = useSlide({
+  const { handleTouchStart, handleTouchEnd, handleMouseDown } = useSlide({
     length: mates.length,
     currentIndex,
     onChange: onDotClick,
@@ -22,7 +22,6 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
       >
         {mates.map((mate) => (
           <SlideItem isGroupMatching={isGroupMatching} key={mate.id} mate={mate} />
