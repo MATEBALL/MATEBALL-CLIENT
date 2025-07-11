@@ -9,13 +9,15 @@ export interface GameMatchItemProps {
 
 export interface GameMatchListProps {
   selectedIdx: number | null;
-  onSelect: (index: number) => void;
+  onSelect: (idx: number) => void;
+  matches: GameScheduleItem[];
 }
 
 export interface GameMatchBottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
-  dateText: string;
+  date: string;
+  gameSchedule: GameScheduleItem[];
 }
 
 export interface GameScheduleItem {

@@ -1,11 +1,5 @@
 import GameMatchItem from '@components/bottom-sheet/game-match/game-match-item';
-import type { GameScheduleItem } from '@components/bottom-sheet/game-match/types/game-type';
-
-interface GameMatchListProps {
-  selectedIdx: number | null;
-  onSelect: (idx: number) => void;
-  matches: GameScheduleItem[];
-}
+import type { GameMatchListProps } from '@components/bottom-sheet/game-match/types/game-type';
 
 const GameMatchList = ({ selectedIdx, onSelect, matches }: GameMatchListProps) => {
   return (
