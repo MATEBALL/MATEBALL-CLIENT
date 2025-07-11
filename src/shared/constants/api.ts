@@ -2,7 +2,7 @@ export const BASE_URL = import.meta.env.VITE_API_URL;
 
 export const END_POINT = {
   // 로그인
-  GET_AUTH_LOGIN: '/auth/login?code=',
+  POST_AUTH_LOGIN: '/auth/login?code=',
 
   // 유저 관련
   GET_KAKAO_INFO: '/v1/users/kakao/info',
