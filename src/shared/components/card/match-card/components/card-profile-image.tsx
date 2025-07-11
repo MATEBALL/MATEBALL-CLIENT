@@ -8,8 +8,8 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = defaultProfile;
   };
-
-  const displayImages = getDisplayImages(type, imgUrl);
+  const normalizedImgUrl = Array.isArray(imgUrl) ? imgUrl : [imgUrl];
+  const displayImages = getDisplayImages(type, normalizedImgUrl);
 
   return (
     <div className="flex items-center">

@@ -1,4 +1,4 @@
-import { WEEKDAY } from '@components/calendar/constants/CALENADAR';
+import { WEEKDAY } from '@components/calendar/constants/CALENDAR';
 import { getWeekDays } from '@components/calendar/utils/date-grid';
 import { cn } from '@libs/cn';
 import { format, isSameDay } from 'date-fns';

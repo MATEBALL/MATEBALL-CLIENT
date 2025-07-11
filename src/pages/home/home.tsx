@@ -1,6 +1,6 @@
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import Button from '@components/button/button/button';
-import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENADAR';
+import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import MonthCalendar from '@components/calendar/month-calendar';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import { useTabState } from '@hooks/use-tab-state';

@@ -1,6 +1,6 @@
 import WeekCalendar from '@components/calendar/week-calendar';
 import Icon from '@components/icon/icon';
-import BarTabList from '@components/tab/tab/tab-list';
+import TabList from '@components/tab/tab/tab-list';
 import type { TabType } from '@hooks/use-tab-state';
 
 interface CalendarSectionProps {
@@ -21,7 +21,6 @@ const CalendarSection = ({
   onOpenBottomSheet,
 }: CalendarSectionProps) => {
   const handleTabChange = (type: TabType) => {
-    onDateChange(selectedDate);
     onTabChange(type);
   };
 
@@ -35,7 +34,7 @@ const CalendarSection = ({
         }}
       />
       <section className="mt-[3.5rem] flex justify-between">
-        <BarTabList colorMode="dark" activeType={activeType} onTabChange={handleTabChange} />
+        <TabList colorMode="dark" activeType={activeType} onTabChange={handleTabChange} />
         <button
           type="button"
           className="h-[3.2rem] w-[3.2rem] flex-col-center rounded-[8px] bg-gray-900"

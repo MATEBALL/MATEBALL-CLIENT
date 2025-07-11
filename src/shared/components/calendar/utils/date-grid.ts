@@ -1,4 +1,4 @@
-import { WEEKDAY } from '@components/calendar/constants/CALENADAR';
+import { WEEKDAY } from '@components/calendar/constants/CALENDAR';
 import { addDays, endOfMonth, getDay, isAfter, startOfMonth, startOfWeek } from 'date-fns';
 
 export const getWeekDays = (baseDate: Date): Date[] => {
