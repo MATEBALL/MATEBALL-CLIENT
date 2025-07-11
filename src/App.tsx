@@ -24,7 +24,7 @@ const App = () => {
       <GameMatchBottomSheet
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
-        dateText="7월 17일 화요일"
+        date="2025/07/17"
         gameSchedule={mockGameDatas}
       />
 
