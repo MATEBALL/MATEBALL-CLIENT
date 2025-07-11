@@ -1,5 +1,5 @@
+import { MATCHING_HEADER_MESSAGE } from '@pages/match/constants/matching';
 import type { MateHeaderProps } from '@pages/match/groups/types/mate-type';
-import { MATCHING_HEADER_MESSAGE } from '../constants/matching';
 
 const MateHeader = ({ nickname = '사용자', isGroupMatching }: MateHeaderProps) => (
   <section className="gap-[0.8rem] text-center">

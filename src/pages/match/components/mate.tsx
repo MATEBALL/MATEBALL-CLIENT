@@ -2,7 +2,7 @@ import MateCarousel from '@pages/match/components/mate-carousel';
 import MateFooter from '@pages/match/components/mate-footer';
 import MateHeader from '@pages/match/components/mate-header';
 import type { MateProps } from '@pages/match/groups/types/mate-type';
-import { useMate } from '@pages/match/hooks/useMate';
+import useMate from '@pages/match/hooks/useMate';
 import { useState } from 'react';
 
 const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) => {

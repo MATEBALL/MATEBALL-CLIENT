@@ -2,7 +2,7 @@ import { mockMatchData } from '@mocks/mockMatchData';
 import type { MateCardData } from '@pages/match/groups/types/mate-type';
 import { useEffect, useState } from 'react';
 
-export function useMate(matchId: number) {
+const useMate = (matchId: number) => {
   const [mates, setMates] = useState<MateCardData[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -17,4 +17,6 @@ export function useMate(matchId: number) {
   }, [matchId]);
 
   return { mates, loading };
-}
+};
+
+export default useMate;

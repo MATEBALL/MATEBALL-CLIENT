@@ -2,8 +2,11 @@ import Card from '@components/card/match-card/card';
 import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
 
+interface MateProps extends DetailedCardProps {
+  id: number;
+}
 interface SlideItemProps {
-  mate: DetailedCardProps & { id: number };
+  mate: MateProps;
   isGroupMatching: boolean;
 }
 

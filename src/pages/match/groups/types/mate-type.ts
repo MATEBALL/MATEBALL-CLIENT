@@ -17,8 +17,11 @@ export interface MateFooterProps {
 }
 
 export interface MateHeaderProps {
-  nickname?: string;
+  nickname: string;
   isGroupMatching?: boolean;
 }
 
-export type MateCardData = DetailedCardProps & { id: number; matchId: number };
+export interface MateCardData extends DetailedCardProps {
+  id: number;
+  matchId: number;
+}
