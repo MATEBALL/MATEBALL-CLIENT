@@ -1,13 +1,9 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import { SYNC_MATE } from '../constants/onboarding';
+import type { OnboardingStepProps } from '../types/onboarding';
 
-interface SyncSupportTeamProps {
-  selectedOption: string | null;
-  onSelect: (option: string) => void;
-}
-
-const SyncSupportTeam = ({ selectedOption, onSelect }: SyncSupportTeamProps) => {
+const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="h-full w-full flex-col-between gap-[12.8rem]">
       <div className="flex-col-center gap-[2.4rem]">

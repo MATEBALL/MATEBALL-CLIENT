@@ -1,13 +1,9 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import { MATCHING_TYPE } from '../constants/onboarding';
+import type { OnboardingStepProps } from '../types/onboarding';
 
-interface MatchingType {
-  selectedOption: string | null;
-  onSelect: (option: string) => void;
-}
-
-const MatchingType = ({ selectedOption, onSelect }: MatchingType) => {
+const MatchingType = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="h-full w-full flex-col-between gap-[5.4rem]">
       <div className="flex-col-center gap-[2.4rem]">

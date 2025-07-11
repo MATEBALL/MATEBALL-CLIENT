@@ -1,13 +1,9 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import { NO_TEAM_OPTION, TEAMS } from '../constants/onboarding';
+import type { OnboardingStepProps } from '../types/onboarding';
 
-interface SupportTeamProps {
-  selectedOption: string | null;
-  onSelect: (option: string) => void;
-}
-
-const SupportTeam = ({ selectedOption, onSelect }: SupportTeamProps) => {
+const SupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="h-full w-full flex-col-between gap-[5.4rem]">
       <div className="flex-col-center gap-[2.4rem]">
