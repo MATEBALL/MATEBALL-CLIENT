@@ -38,7 +38,7 @@ const Onboarding = () => {
   const isStepCompleted = (stepName: string) => selections[stepName] !== null;
 
   return (
-    <div className="h-full flex-col-between gap-[1.6rem]">
+    <div>
       <Header onClick={goPrev} />
       {currentStep !== 'START' && (
         <div className="w-full">
@@ -46,120 +46,122 @@ const Onboarding = () => {
         </div>
       )}
 
-      <Funnel>
-        <Step name="START">
-          <Start />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="시작하기" size={'L'} variant={'blue'} onClick={goNext} />
-          </div>
-        </Step>
+      <div className="h-full flex-col-between">
+        <Funnel>
+          <Step name="START">
+            <Start />
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button label="시작하기" size={'L'} variant={'blue'} onClick={goNext} />
+            </div>
+          </Step>
 
-        <Step name="SUPPORT_TEAM">
-          <SupportTeam
-            selectedOption={selections.SUPPORT_TEAM}
-            onSelect={(option) => handleSelect('SUPPORT_TEAM', option)}
-          />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button
-              label="다음으로"
-              size={'L'}
-              variant={'blue'}
-              onClick={goNext}
-              disabled={!isStepCompleted('SUPPORT_TEAM')}
+          <Step name="SUPPORT_TEAM">
+            <SupportTeam
+              selectedOption={selections.SUPPORT_TEAM}
+              onSelect={(option) => handleSelect('SUPPORT_TEAM', option)}
             />
-          </div>
-        </Step>
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button
+                label="다음으로"
+                size={'L'}
+                variant={'blue'}
+                onClick={goNext}
+                disabled={!isStepCompleted('SUPPORT_TEAM')}
+              />
+            </div>
+          </Step>
 
-        <Step name="SYNC_SUPPORT_TEAM">
-          <SyncSupportTeam
-            selectedOption={selections.SYNC_SUPPORT_TEAM}
-            onSelect={(option) => handleSelect('SYNC_SUPPORT_TEAM', option)}
-          />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button
-              label="다음으로"
-              size={'L'}
-              onClick={goNext}
-              disabled={!isStepCompleted('SYNC_SUPPORT_TEAM')}
+          <Step name="SYNC_SUPPORT_TEAM">
+            <SyncSupportTeam
+              selectedOption={selections.SYNC_SUPPORT_TEAM}
+              onSelect={(option) => handleSelect('SYNC_SUPPORT_TEAM', option)}
             />
-          </div>
-        </Step>
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button
+                label="다음으로"
+                size={'L'}
+                onClick={goNext}
+                disabled={!isStepCompleted('SYNC_SUPPORT_TEAM')}
+              />
+            </div>
+          </Step>
 
-        <Step name="VIEWING_STYLE">
-          <ViewingStyle
-            selectedOption={selections.VIEWING_STYLE}
-            onSelect={(option) => handleSelect('VIEWING_STYLE', option)}
-          />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button
-              label="다음으로"
-              size={'L'}
-              onClick={goNext}
-              disabled={!isStepCompleted('VIEWING_STYLE')}
+          <Step name="VIEWING_STYLE">
+            <ViewingStyle
+              selectedOption={selections.VIEWING_STYLE}
+              onSelect={(option) => handleSelect('VIEWING_STYLE', option)}
             />
-          </div>
-        </Step>
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button
+                label="다음으로"
+                size={'L'}
+                onClick={goNext}
+                disabled={!isStepCompleted('VIEWING_STYLE')}
+              />
+            </div>
+          </Step>
 
-        <Step name="GENDER">
-          <Gender
-            selectedOption={selections.GENDER}
-            onSelect={(option) => handleSelect('GENDER', option)}
-          />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button
-              label="다음으로"
-              size={'L'}
-              onClick={goNext}
-              disabled={!isStepCompleted('GENDER')}
+          <Step name="GENDER">
+            <Gender
+              selectedOption={selections.GENDER}
+              onSelect={(option) => handleSelect('GENDER', option)}
             />
-          </div>
-        </Step>
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button
+                label="다음으로"
+                size={'L'}
+                onClick={goNext}
+                disabled={!isStepCompleted('GENDER')}
+              />
+            </div>
+          </Step>
 
-        <Step name="MATCHING_TYPE">
-          <MatchingType
-            selectedOption={selections.MATCHING_TYPE}
-            onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
-          />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button
-              label="다음으로"
-              size={'L'}
-              onClick={goNext}
-              disabled={!isStepCompleted('MATCHING_TYPE')}
+          <Step name="MATCHING_TYPE">
+            <MatchingType
+              selectedOption={selections.MATCHING_TYPE}
+              onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
             />
-          </div>
-        </Step>
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button
+                label="다음으로"
+                size={'L'}
+                onClick={goNext}
+                disabled={!isStepCompleted('MATCHING_TYPE')}
+              />
+            </div>
+          </Step>
 
-        <Step name="GROUP_ROLE">
-          <GroupRole
-            selectedOption={selections.GROUP_ROLE}
-            onSelect={(option) => handleSelect('GROUP_ROLE', option)}
-          />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button
-              label="다음으로"
-              size={'L'}
-              onClick={goNext}
-              disabled={!isStepCompleted('GROUP_ROLE')}
+          <Step name="GROUP_ROLE">
+            <GroupRole
+              selectedOption={selections.GROUP_ROLE}
+              onSelect={(option) => handleSelect('GROUP_ROLE', option)}
             />
-          </div>
-        </Step>
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button
+                label="다음으로"
+                size={'L'}
+                onClick={goNext}
+                disabled={!isStepCompleted('GROUP_ROLE')}
+              />
+            </div>
+          </Step>
 
-        <Step name="DATE_SELECT">
-          <DateSelect
-            onComplete={() => {
-              goNext();
-            }}
-          />
-        </Step>
+          <Step name="DATE_SELECT">
+            <DateSelect
+              onComplete={() => {
+                goNext();
+              }}
+            />
+          </Step>
 
-        <Step name="COMPLETE">
-          <Complete />
-          <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="메인 화면으로 이동하기" size={'L'} onClick={goNext} />
-          </div>
-        </Step>
-      </Funnel>
+          <Step name="COMPLETE">
+            <Complete />
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button label="메인 화면으로 이동하기" size={'L'} onClick={goNext} />
+            </div>
+          </Step>
+        </Funnel>
+      </div>
     </div>
   );
 };
