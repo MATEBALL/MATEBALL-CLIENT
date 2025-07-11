@@ -1,35 +1,26 @@
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
-import BarTabItem from '@components/tab/tab/tab-item';
+import TabContent, { type TabType } from '@components/tab/tab/tab-content';
+import TabItem from '@components/tab/tab/tab-item';
 import { cn } from '@libs/cn';
 import { useState } from 'react';
 
-interface BarTabListProps {
+interface TabListProps {
   colorMode: TabStyleKey;
 }
 
-const BarTabList = ({ colorMode }: BarTabListProps) => {
-  const types = ['1:1', '그룹'];
-  const [activeType, setActiveType] = useState('1:1');
+const TabList = ({ colorMode }: TabListProps) => {
+  const types: TabType[] = [TAB_TYPES.SINGLE, TAB_TYPES.GROUP];
+  const [activeType, setActiveType] = useState<TabType>(TAB_TYPES.SINGLE);
 
   const tabStyle = tabStyleMap[colorMode];
-
-  const renderTabContent = () => {
-    switch (activeType) {
-      case '1:1':
-        return <OneToOneTabContent />;
-      case '그룹':
-        return <GroupTabContent />;
-      default:
-        return null;
-    }
-  };
 
   return (
     <div>
       <div className={cn('flex items-center justify-start', tabStyle.gap)}>
         {types.map((label) => (
-          <BarTabItem
+          <TabItem
             key={label}
             label={label}
             isActive={activeType === label}
@@ -39,12 +30,11 @@ const BarTabList = ({ colorMode }: BarTabListProps) => {
         ))}
       </div>
 
-      <div className="mt-4">{renderTabContent()}</div>
+      <div className="mt-4">
+        <TabContent activeType={activeType} />
+      </div>
     </div>
   );
 };
 
-const OneToOneTabContent = () => <div>1:1 매칭 탭 콘텐츠입니다</div>;
-const GroupTabContent = () => <div>그룹 매칭 탭 콘텐츠입니다</div>;
-
-export default BarTabList;
+export default TabList;
