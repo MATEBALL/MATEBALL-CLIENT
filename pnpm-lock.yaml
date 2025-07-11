@@ -34,7 +34,7 @@ importers:
         version: 1.3.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       axios:
         specifier: ^1.10.0
-        version: 1.10.0
+        version: 1.10.0(debug@4.4.1)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -174,6 +174,9 @@ importers:
       vite:
         specifier: ^6.3.5
         version: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)
+      vite-plugin-mkcert:
+        specifier: ^1.17.8
+        version: 1.17.8(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3))
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3))
@@ -3375,6 +3378,12 @@ packages:
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
+  vite-plugin-mkcert@1.17.8:
+    resolution: {integrity: sha512-S+4tNEyGqdZQ3RLAG54ETeO2qyURHWrVjUWKYikLAbmhh/iJ+36gDEja4OWwFyXNuvyXcZwNt5TZZR9itPeG5Q==}
+    engines: {node: '>=v16.7.0'}
+    peerDependencies:
+      vite: '>=3'
+
   vite-tsconfig-paths@5.1.4:
     resolution: {integrity: sha512-cYj0LRuLV2c2sMqhqhGpaO3LretdtMn/BVX4cPLanIZuwwrkVl+lK84E/miEXkCHWXuq65rhNN4rXsBcOB3S4w==}
     peerDependencies:
@@ -5024,9 +5033,9 @@ snapshots:
 
   axe-core@4.10.3: {}
 
-  axios@1.10.0:
+  axios@1.10.0(debug@4.4.1):
     dependencies:
-      follow-redirects: 1.15.9
+      follow-redirects: 1.15.9(debug@4.4.1)
       form-data: 4.0.3
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -5572,12 +5581,18 @@ snapshots:
   flatted@3.3.3: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   follow-redirects@1.15.9(debug@4.4.1):
     optionalDependencies:
       debug: 4.4.1(supports-color@10.0.0)
 =======
   follow-redirects@1.15.9: {}
 >>>>>>> 205c8c7 (chore: 충돌해결(#83))
+=======
+  follow-redirects@1.15.9(debug@4.4.1):
+    optionalDependencies:
+      debug: 4.4.1
+>>>>>>> 71704b9 (chore: 의존성 수정(#83))
 
   foreground-child@3.3.1:
     dependencies:
@@ -6610,17 +6625,27 @@ snapshots:
       - yaml
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   vite-plugin-mkcert@1.17.8(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)):
     dependencies:
       axios: 1.10.0(debug@4.4.1)
       debug: 4.4.1(supports-color@10.0.0)
+=======
+  vite-plugin-mkcert@1.17.8(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)):
+    dependencies:
+      axios: 1.10.0(debug@4.4.1)
+      debug: 4.4.1
+>>>>>>> 71704b9 (chore: 의존성 수정(#83))
       picocolors: 1.1.1
       vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
 =======
 >>>>>>> 205c8c7 (chore: 충돌해결(#83))
+=======
+>>>>>>> 71704b9 (chore: 의존성 수정(#83))
   vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)):
     dependencies:
       debug: 4.4.1(supports-color@10.0.0)
