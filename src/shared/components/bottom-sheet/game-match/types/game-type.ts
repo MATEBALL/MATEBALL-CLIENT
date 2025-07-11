@@ -18,6 +18,7 @@ export interface GameMatchBottomSheetProps {
   onClose: () => void;
   date: string;
   gameSchedule: GameScheduleItem[];
+  onClick?: (selectedId: number | null) => void;
 }
 
 export interface GameScheduleItem {
@@ -34,4 +35,8 @@ export interface GameScheduleResponse {
   data: {
     gameSchedule: GameScheduleItem[];
   };
+}
+
+export interface GameMatchFooterProps {
+  onSubmit: () => void;
 }

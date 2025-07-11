@@ -18,6 +18,11 @@ const GameMatchBottomSheet = ({
     onClose();
   };
 
+  const handleSubmit = () => {
+    // TODO: 선택된 경기(selectedIdx)에 대한 처리 로직 추가
+    console.log('선택된 경기 ID:', selectedIdx !== null ? gameSchedule[selectedIdx]?.id : null);
+  };
+
   return (
     <BottomSheet isOpen={isOpen} onClose={handleClose} showIndicator gap="gap-[1.6rem]">
       <div className="w-full flex-col">
@@ -31,7 +36,7 @@ const GameMatchBottomSheet = ({
         </div>
       </div>
 
-      <GameMatchFooter />
+      <GameMatchFooter onSubmit={handleSubmit} />
     </BottomSheet>
   );
 };

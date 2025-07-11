@@ -1,7 +1,8 @@
+import type { GameMatchFooterProps } from '@components/bottom-sheet/game-match/types/game-type';
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 
-const GameMatchFooter = () => {
+const GameMatchFooter = ({ onSubmit }: GameMatchFooterProps) => {
   return (
     <section className="w-full flex-col-center gap-[1.2rem]">
       <div className="flex-row-center gap-[0.8rem] text-gray-600">
@@ -9,7 +10,7 @@ const GameMatchFooter = () => {
         <span className="cap_12_m">하루에 한 경기만 매칭 생성이 가능해요.</span>
       </div>
       <div className="w-full p-[1.6rem]">
-        <Button className="w-full" label="맞춤 매칭 생성하기" />
+        <Button className="w-full" label="맞춤 매칭 생성하기" onClick={onSubmit} />
       </div>
     </section>
   );
