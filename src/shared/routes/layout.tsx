@@ -2,7 +2,7 @@ import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
 import { NO_HEADER_PATHS } from '@constants/header';
-import Loading from '@pages/loading/loading';
+// import Loading from '@pages/loading/loading';
 import { ROUTES } from '@routes/routes-config';
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex-col">
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div />}>
         {showHeader && <Header />}
         <main className="flex-grow">
           <Outlet />
