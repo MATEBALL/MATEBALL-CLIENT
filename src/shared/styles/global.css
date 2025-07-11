@@ -11,23 +11,10 @@
   }
 
   #root {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 9adc495 (fix: home 헤더 색상 및 sticky 추가(#83))
     height: 100%;
     display: flex;
     flex-direction: column;
   }
-<<<<<<< HEAD
-=======
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
->>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
-=======
->>>>>>> 9adc495 (fix: home 헤더 색상 및 sticky 추가(#83))
 
   html {
     font-size: 62.5%;
@@ -42,15 +29,7 @@
   body {
     height: 100%;
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
-=======
-
->>>>>>> 9adc495 (fix: home 헤더 색상 및 sticky 추가(#83))
   body {
     font-family:
       "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,

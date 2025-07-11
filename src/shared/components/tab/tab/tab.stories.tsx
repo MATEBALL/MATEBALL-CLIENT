@@ -1,34 +1,14 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import TabList from '@components/tab/tab/tab-list';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const meta: Meta<typeof TabList> = {
   title: 'common/tab/TabList',
   component: TabList,
-=======
-import BarTabList from '@components/tab/tab/tab-list';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
-const meta: Meta<typeof BarTabList> = {
-  title: 'common/tab/BarTabList',
-  component: BarTabList,
->>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
-=======
-import TabList from '@components/tab/tab/tab-list';
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
-const meta: Meta<typeof TabList> = {
-  title: 'common/tab/TabList',
-  component: TabList,
->>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: `
-<<<<<<< HEAD
-<<<<<<< HEAD
 **TabList 컴포넌트**
 
 홈/그룹 모드에 따라 탭 간 간격 및 색상이 달라지는 수평 탭 컴포넌트입니다.  
@@ -36,23 +16,6 @@ const meta: Meta<typeof TabList> = {
 
 - \`colorMode='dark'\`일 때 간격: \`gap-[2.4rem]\`
 - \`colorMode='light\`일 때 간격: \`gap-[0.8rem]\`
-=======
-**BarTabList 컴포넌트**
-=======
-**TabList 컴포넌트**
->>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
-
-홈/그룹 모드에 따라 탭 간 간격 및 색상이 달라지는 수평 탭 컴포넌트입니다.  
-내부 상태로 현재 활성 탭을 관리하며, 각 탭은 \`TabItem\`으로 구성됩니다.
-
-<<<<<<< HEAD
-- \`colorMode='home'\`일 때 간격: \`gap-[2.4rem]\`
-- \`colorMode='group'\`일 때 간격: \`gap-[0.8rem]\`
->>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
-=======
-- \`colorMode='dark'\`일 때 간격: \`gap-[2.4rem]\`
-- \`colorMode='light'\`일 때 간격: \`gap-[0.8rem]\`
->>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
 - 기본 탭 목록: ['1:1', '그룹'] (컴포넌트 내부에서 고정)
 - 외부 props로는 \`colorMode\`만 받습니다.
         `,
@@ -62,30 +25,14 @@ const meta: Meta<typeof TabList> = {
   argTypes: {
     colorMode: {
       control: { type: 'radio' },
-<<<<<<< HEAD
-<<<<<<< HEAD
       options: ['dark', 'light'],
-=======
-      options: ['home', 'group'],
->>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
-=======
-      options: ['dark', 'light'],
->>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
       description: '탭 색상 스타일을 결정하는 모드',
     },
   },
 };
 
 export default meta;
-<<<<<<< HEAD
-<<<<<<< HEAD
 type Story = StoryObj<typeof TabList>;
-=======
-type Story = StoryObj<typeof BarTabList>;
->>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
-=======
-type Story = StoryObj<typeof TabList>;
->>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
 
 export const GroupMode: Story = {
   args: {

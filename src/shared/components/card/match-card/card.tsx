@@ -11,11 +11,7 @@ const Card = (props: CardProps) => {
 
   const finalColor = getColorType(status, color);
 
-<<<<<<< HEAD
-  const introductionClass = type === 'detailed' ? 'cap_14_m mt-[1.6rem]' : 'cap_14_m mt-[1.6rem]';
-=======
   const introductionClass = 'cap_14_m mt-[1.6rem]';
->>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
   const gameInfoClass = type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]';
   const dividerClass = 'border-gray-300';
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
@@ -23,20 +19,6 @@ const Card = (props: CardProps) => {
   return (
     <div className={cn(cardVariants({ type, color: finalColor }), className)}>
       <CardHeader {...props} />
-<<<<<<< HEAD
-      <div className={cn(type === 'detailed' && 'flex flex-col gap-[1.2rem]')}>
-        {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
-
-        <CardGameInfo className={gameInfoClass} {...props} />
-
-        {type === 'detailed' && (
-          <div>
-            <hr className={dividerClass} />
-            <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
-          </div>
-        )}
-      </div>
-=======
 
       {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
 
@@ -48,7 +30,6 @@ const Card = (props: CardProps) => {
           <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
         </>
       )}
->>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
     </div>
   );
 };

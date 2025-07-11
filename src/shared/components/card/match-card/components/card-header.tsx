@@ -64,20 +64,6 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={props.chips} />
             </div>
           </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-          {props.status && (
-            <div className="ml-auto">
-              <ChipState label={props.status} colorType={props.color} />
-            </div>
-          )}
-=======
-          <div className="ml-auto">
-            <ChipState label={props.status} />
-          </div>
->>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
-=======
->>>>>>> d70367a (feat: 매칭 목록 및 필터링 구현(#83))
         </div>
       );
   }

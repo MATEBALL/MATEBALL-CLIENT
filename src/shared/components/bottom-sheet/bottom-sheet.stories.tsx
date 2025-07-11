@@ -3,10 +3,7 @@ import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-<<<<<<< HEAD
 import { MemoryRouter } from 'react-router-dom';
-=======
->>>>>>> 9bbf753 (feat: Bottom Sheet 공통 컴포넌트 구현 (#102))
 
 const meta: Meta<typeof BottomSheet> = {
   title: 'COMMON/BottomSheet',
@@ -71,7 +68,6 @@ export const RequestWarning: Story = {
     const { isOpen, open, close } = useBottomSheet();
 
     return (
-<<<<<<< HEAD
       <MemoryRouter>
         <div className="fixed top-4 left-4 justify-center">
           <Button label="바텀시트 열기" onClick={open} />
@@ -83,17 +79,6 @@ export const RequestWarning: Story = {
           />
         </div>
       </MemoryRouter>
-=======
-      <div className="fixed top-4 left-4 justify-center">
-        <Button label="바텀시트 열기" onClick={open} />
-        <BottomSheetModal
-          isOpen={isOpen}
-          onClose={close}
-          description="그룹 매칭은 최대 2건까지 신청할 수 있어요."
-          subDescription="단, 하루에 한 경기만 매칭이 성사되며 같은 날짜의 중복 매칭은 불가능해요!"
-        />
-      </div>
->>>>>>> 9bbf753 (feat: Bottom Sheet 공통 컴포넌트 구현 (#102))
     );
   },
 };
