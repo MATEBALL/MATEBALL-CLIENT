@@ -2,23 +2,21 @@ import MatchingWaitingView from '@pages/result/components/matching-agree-view';
 import MatchingFailView from '@pages/result/components/matching-fail-view';
 import MatchingSuccessView from '@pages/result/components/matching-success-view';
 import SentView from '@pages/result/components/sent-view';
-import { useSearchParams } from 'react-router-dom';
+import { ROUTES } from '@routes/routes-config';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 const ResultPage = () => {
   const [params] = useSearchParams();
   const type = params.get('type');
   const mode = params.get('mode');
-
-  // TODO: 실제 유저 정보에서 받아올 것
-  const userNickname = '두밥비';
+  const isGroupMatching = mode?.toLowerCase() === 'group';
 
   if (type === 'sent') {
-    const isGroupMatching = mode?.toLowerCase() === 'group';
-    return <SentView isGroupMatching={isGroupMatching} userNickname={userNickname} />;
+    return <SentView isGroupMatching={isGroupMatching} />;
   }
 
   if (type === 'success') {
-    return <MatchingSuccessView />;
+    return <MatchingSuccessView isGroupMatching={isGroupMatching} />;
   }
 
   if (type === 'agree') {
@@ -29,7 +27,7 @@ const ResultPage = () => {
     return <MatchingFailView />;
   }
 
-  return <div>잘못된 접근입니다</div>;
+  return <Navigate to={ROUTES.ERROR} replace />;
 };
 
 export default ResultPage;

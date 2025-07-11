@@ -13,15 +13,15 @@ const MatchingAgreeView = () => {
 
   return (
     <div className="h-full flex-col-between gap-[2.4rem] px-[1.6rem]">
-      <div className="pt-[4rem]">
+      <div className="flex-col-center gap-[2.4rem] pt-[4rem]">
         <h2 className="title_24_sb text-center">매칭 수락이 완료되었습니다.</h2>
-        <div className="flex-col gap-[1.6rem]">
-          <Lottie src={LOTTIE_PATH.AGREE} loop />
+        <div className="flex-col-center gap-[1.6rem]">
+          <Lottie src={LOTTIE_PATH.AGREE} loop className="size-[16rem]" />
           <MatchCurrentCard count={matchedCount} />
         </div>
         <p className="body_16_m text-center text-gray-800">
-          잘 맞는 메이트들의 요청이 도착하면 알려드릴게요. <br />
-          ‘매칭 현황’에서 실시간으로 확인할 수 있어요.
+          이제 그룹원이 되어 요청을 수락할 수 있어요. <br />
+          ‘매칭 현황’에서 확인해보세요!
         </p>
       </div>
       <div className="flex-row-center gap-[0.8rem] p-[1.6rem]">
