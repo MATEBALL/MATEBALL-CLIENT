@@ -39,4 +39,5 @@ export interface GameScheduleResponse {
 
 export interface GameMatchFooterProps {
   onSubmit: () => void;
+  disabled: boolean;
 }

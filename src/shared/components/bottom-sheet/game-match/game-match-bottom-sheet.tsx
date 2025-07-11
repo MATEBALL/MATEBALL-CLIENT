@@ -17,7 +17,7 @@ const GameMatchBottomSheet = ({
     setSelectedIdx(null);
     onClose();
   };
-
+  const disabled = selectedIdx === null;
   const handleSubmit = () => {
     // TODO: 선택된 경기(selectedIdx)에 대한 처리 로직 추가
     console.log('선택된 경기 ID:', selectedIdx !== null ? gameSchedule[selectedIdx]?.id : null);
@@ -36,7 +36,7 @@ const GameMatchBottomSheet = ({
         </div>
       </div>
 
-      <GameMatchFooter onSubmit={handleSubmit} />
+      <GameMatchFooter disabled={disabled} onSubmit={handleSubmit} />
     </BottomSheet>
   );
 };
