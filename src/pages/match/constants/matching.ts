@@ -24,6 +24,11 @@ export const MATCHING_DESCRIPTION = {
   },
 };
 
+export const MATCHING_SUCCESS_TITLE = {
+  group: '그룹 매칭이 성사되었어요!',
+  single: '매칭이 성사되었어요!',
+};
+
 export const isInvalidMatchId = (id: string | undefined): boolean => {
   return !id || Number.isNaN(Number(id));
 };
