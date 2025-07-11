@@ -1,18 +1,24 @@
 import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
 import Mate from '@pages/match/components/mate';
+import { isInvalidMatchId } from '@pages/match/constants/matching';
+import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 const SinglePage = () => {
   const { matchId } = useParams();
   const numericMatchId = Number(matchId);
   const [showModal, setShowModal] = useState(false);
 
+  if (isInvalidMatchId(matchId)) {
+    return <Navigate to={ROUTES.ERROR} replace />;
+  }
+
   return (
     <>
       <Mate
         isGroupMatching={false}
-        matchId={numericMatchId!}
+        matchId={numericMatchId}
         onRequestClick={() => setShowModal(true)}
       />
       {showModal && (

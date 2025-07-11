@@ -12,3 +12,7 @@ export const MATCHING_HEADER_MESSAGE = {
   group: (nickname: string) => `${nickname}님과 딱 맞는 그룹원이에요!`,
   single: (nickname: string) => `${nickname}님과 딱 맞는 메이트예요!`,
 };
+
+export const isInvalidMatchId = (id: string | undefined): boolean => {
+  return !id || Number.isNaN(Number(id));
+};
