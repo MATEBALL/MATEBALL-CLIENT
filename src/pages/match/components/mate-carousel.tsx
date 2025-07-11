@@ -18,11 +18,17 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
     onChange: onDotClick,
   });
 
+  const getSlideTransformStyle = (index: number): React.CSSProperties => ({
+    transform: `translateX(-${index * 100}%)`,
+  });
+
   return (
     <section className="w-full flex-col gap-[1.6rem] overflow-hidden">
       <div
+        role="presentation"
+        aria-hidden="true"
         className={cn('flex transition-transform duration-300 ease-in-out')}
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        style={getSlideTransformStyle(currentIndex)}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
