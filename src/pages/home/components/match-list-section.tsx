@@ -1,8 +1,8 @@
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyState from '@components/ui/empty-state';
-import { mockMateGroup } from '@pages/home/mocks/mockMateGroup';
-import { mockMateSingle } from '@pages/home/mocks/mockMateSingle';
+import { mockMateGroup } from '@mocks/mockMateGroup';
+import { mockMateSingle } from '@mocks/mockMateSingle';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { format } from 'date-fns';
 import { useMemo } from 'react';
