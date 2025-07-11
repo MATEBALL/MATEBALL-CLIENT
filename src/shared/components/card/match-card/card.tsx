@@ -8,7 +8,7 @@ import { cn } from '@libs/cn';
 const Card = (props: CardProps) => {
   const { type, className, color } = props;
 
-  const introductionClass = 'cap_14_m mt-[1.6rem]';
+  const introductionClass = type === 'detailed' ? 'cap_14_m mt-[1.6rem]' : 'cap_14_m mt-[1.6rem]';
   const gameInfoClass = type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]';
   const dividerClass = 'border-gray-300';
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
@@ -16,17 +16,18 @@ const Card = (props: CardProps) => {
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
       <CardHeader {...props} />
+      <div className={cn(type === 'detailed' && 'flex flex-col gap-[1.2rem]')}>
+        {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
 
-      {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
+        <CardGameInfo className={gameInfoClass} {...props} />
 
-      <CardGameInfo className={gameInfoClass} {...props} />
-
-      {type === 'detailed' && (
-        <>
-          <hr className={dividerClass} />
-          <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
-        </>
-      )}
+        {type === 'detailed' && (
+          <div>
+            <hr className={dividerClass} />
+            <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

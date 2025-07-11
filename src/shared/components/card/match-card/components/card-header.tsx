@@ -64,9 +64,11 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={props.chips} />
             </div>
           </div>
-          <div className="ml-auto">
-            <ChipState label={props.status} />
-          </div>
+          {props.status && (
+            <div className="ml-auto">
+              <ChipState label={props.status} colorType={props.color} />
+            </div>
+          )}
         </div>
       );
   }
