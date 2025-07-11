@@ -1,9 +1,7 @@
-import BottomSheet from '@components/bottom-sheet/bottom-sheet';
-import Button from '@components/button/button/button';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
-import MonthCalendar from '@components/calendar/month-calendar';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import { useTabState } from '@hooks/use-tab-state';
+import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
 import MatchListSection from '@pages/home/components/match-list-section';
 import TopSection from '@pages/home/components/top-section';
@@ -18,10 +16,11 @@ const Home = () => {
   const [baseWeekDate, setBaseWeekDate] = useState(
     addDays(selectedDate, WEEK_CALENDAR_START_OFFSET),
   );
-  const [isOpen, setIsOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
-  const handleToggleBottomSheet = () => {
-    setIsOpen((prev) => !prev);
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date);
+    setBaseWeekDate(date);
   };
 
   return (
@@ -33,7 +32,7 @@ const Home = () => {
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
         baseWeekDate={baseWeekDate}
-        onOpenBottomSheet={handleToggleBottomSheet}
+        onOpenBottomSheet={() => setIsBottomSheetOpen(true)}
       />
       <MatchListSection
         activeType={activeType}
@@ -41,26 +40,13 @@ const Home = () => {
         isGroup={isGroup}
         selectedDate={selectedDate}
       />
-      <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <div className="p-[1.6rem]">
-          <MonthCalendar
-            value={selectedDate}
-            onWeekChange={(date) => {
-              setSelectedDate(date);
-              setBaseWeekDate(date);
-            }}
-            onMonthChange={setSelectedDate}
-          />
-        </div>
-        <div className="p-[1.6rem]">
-          <Button
-            label="날짜 선택하기"
-            size="L"
-            className="w-full"
-            onClick={handleToggleBottomSheet}
-          />
-        </div>
-      </BottomSheet>
+      <CalendarBottomSheet
+        isOpen={isBottomSheetOpen}
+        onClose={() => setIsBottomSheetOpen(false)}
+        selectedDate={selectedDate}
+        onDateSelect={handleDateSelect}
+        onWeekChange={handleDateSelect}
+      />
     </div>
   );
 };
