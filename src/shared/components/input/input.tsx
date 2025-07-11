@@ -8,12 +8,12 @@ import { defineInputState } from '@/shared/utils/define-input-state';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 <<<<<<< HEAD
 <<<<<<< HEAD
-  label?: string;
-  isError?: boolean;
-  isValid?: boolean;
-  defaultMessage?: string;
-  validationMessage?: string;
-  ref?: React.Ref<HTMLInputElement>;
+  label?: string
+isError?: boolean
+isValid?: boolean;
+defaultMessage?: string;
+validationMessage?: string;
+ref?: React.Ref<HTMLInputElement>;
 }
 
 const Input = ({
@@ -27,18 +27,18 @@ const Input = ({
   ref,
   ...props
 }: InputProps) => {
-=======
-  placeholder: string;
-=======
+  =======
+  placeholder: string
+  =======
 >>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
-  label?: string;
-  isError?: boolean;
+  label?: string
+  isError?: boolean
   isValid?: boolean;
   icon?: string;
   defaultMessage?: string;
   validationMessage?: string;
   ref?: React.Ref<HTMLInputElement>;
-}
+};
 
 <<<<<<< HEAD
 const Input = ({ placeholder, label, id, ...props }: InputProps) => {

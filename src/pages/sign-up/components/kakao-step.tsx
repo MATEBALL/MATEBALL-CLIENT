@@ -6,15 +6,15 @@ import { isAdult } from '@pages/sign-up/utils/age-calculate';
 
 const KakaoStep = () => {
   const data = mockKaKaoData;
-<<<<<<< HEAD
+  <<<<<<< HEAD
 <<<<<<< HEAD
   const isUnderage = !isAdult(data.birthYear);
-=======
+  =======
   const isValid = !isAdult(data.birthYear);
->>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
+  >>>>>>> 1bba458 (feat: 닉네임 react-hook-form 연결 (#95))
 =======
   const isUnderage = !isAdult(data.birthYear);
->>>>>>> 6a3c3a6 (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
+  >>>>>>> 6a3c3a6 (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))
 
   return (
     <div className="h-full flex-col-between">

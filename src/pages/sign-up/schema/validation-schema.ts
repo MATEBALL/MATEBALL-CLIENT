@@ -8,7 +8,7 @@ import {
   NICKNAME_REGEX,
 <<<<<<< HEAD
 <<<<<<< HEAD
-} from '@pages/sign-up/constants/validation';
+} from '@pages/sign-up/constants/validation'
 import { z } from 'zod';
 
 export const NicknameSchema = z.object({
@@ -43,7 +43,7 @@ export const NicknameSchema = z.object({
 
 export type NicknameFormValues = z.infer<typeof NicknameSchema>;
 =======
-} from '@components/input/constants/validation';
+} from '@components/input/constants/validation'
 import { z } from 'zod';
 
 export const NicknameSchema = z
@@ -64,7 +64,7 @@ export const NicknameSchema = z
   });
 >>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
 =======
-} from '@pages/sign-up/constants/validation';
+} from '@pages/sign-up/constants/validation'
 import { z } from 'zod';
 
 export const NicknameSchema = z.object({

@@ -5,19 +5,19 @@ interface ProfileCardProps {
   data: string | number;
 <<<<<<< HEAD
 <<<<<<< HEAD
-  isUnderage?: boolean;
+  isUnderage?: boolean
 }
 
 const ProfileCard = ({ title, data, isUnderage, ...props }: ProfileCardProps) => {
-=======
-  isValid?: boolean;
-}
+  =======
+  isValid?: boolean
+};
 
 const ProfileCard = ({ title, data, isValid, ...props }: ProfileCardProps) => {
->>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
+  >>>>>>> 2932e7c (feat: 회원가입 페이지 뷰 구현 (#78))
 =======
-  isUnderage?: boolean;
-}
+  isUnderage?: boolean
+};
 
 const ProfileCard = ({ title, data, isUnderage, ...props }: ProfileCardProps) => {
 >>>>>>> 6a3c3a6 (feat: 로그인 페이지 뷰 구현 및 카카오 로그인 api 연결 (#71))

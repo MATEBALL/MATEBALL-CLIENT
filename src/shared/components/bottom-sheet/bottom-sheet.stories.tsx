@@ -96,7 +96,7 @@ export const RequestWarning: Story = {
         />
       </div>
 >>>>>>> 9bbf753 (feat: Bottom Sheet 공통 컴포넌트 구현 (#102))
-    );
+    )
   },
 };
 

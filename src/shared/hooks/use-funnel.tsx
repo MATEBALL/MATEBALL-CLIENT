@@ -9,87 +9,89 @@ interface FunnelProps {
 interface StepProps {
 <<<<<<< HEAD
 <<<<<<< HEAD
-  name: string;
+  name: string
 =======
 >>>>>>> b49684f (feat: use-funnel 훅 구현 (#89))
 =======
-  name: string;
+  name: string
 >>>>>>> a8ad93c (fix: use-funnel 훅 개선 (#101))
-  children: ReactNode;
+  children: ReactNode
 }
 
 export const useFunnel = <T extends readonly string[]>(steps: T, completePath: string) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
-  const stepFromUrl = searchParams.get('step');
-  const isValidStep = stepFromUrl && steps.includes(stepFromUrl as T[number]);
-  const currentIndex = isValidStep ? steps.indexOf(stepFromUrl as T[number]) : 0;
-  const currentStep = steps[currentIndex];
+    const stepFromUrl = searchParams.get('step');
+    const isValidStep = stepFromUrl && steps.includes(stepFromUrl as T[number]);
+    const currentIndex = isValidStep ? steps.indexOf(stepFromUrl as T[number]) : 0;
+    const currentStep = steps[currentIndex];
 
-  useEffect(() => {
-<<<<<<< HEAD
+    useEffect(() => {
+      <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> a8ad93c (fix: use-funnel 훅 개선 (#101))
-    if (!stepFromUrl) {
-      setSearchParams({ step: steps[0] }, { replace: true });
-      return;
-    }
+      if (!stepFromUrl) {
+        setSearchParams({ step: steps[0] }, { replace: true });
+        return;
+      }
 
-<<<<<<< HEAD
+      <<<<<<< HEAD
+      if (!isValidStep) {
+        navigate(ROUTES.ERROR, { replace: true });
+      }
+    }, [stepFromUrl, isValidStep, setSearchParams, steps, navigate]);
+    =======
     if (!isValidStep) {
       navigate(ROUTES.ERROR, { replace: true });
     }
-  }, [stepFromUrl, isValidStep, setSearchParams, steps, navigate]);
-=======
-    if (!isValidStep) {
-      navigate(ROUTES.ERROR, { replace: true });
-    }
-  }, [isValidStep, navigate]);
+  },
+  [isValidStep, navigate];
+)
 >>>>>>> b49684f (feat: use-funnel 훅 구현 (#89))
 =======
-    if (!isValidStep) {
-      navigate(ROUTES.ERROR, { replace: true });
-    }
-  }, [stepFromUrl, isValidStep, setSearchParams, steps, navigate]);
+if (!isValidStep) {
+  navigate(ROUTES.ERROR, { replace: true });
+}
+}, [stepFromUrl, isValidStep, setSearchParams, steps, navigate])
 >>>>>>> a8ad93c (fix: use-funnel 훅 개선 (#101))
 
-  const goTo = useCallback(
-    (step: T[number]) => {
-      if (!steps.includes(step)) return;
-      setSearchParams({ step }, { replace: true });
-    },
-    [setSearchParams, steps],
-  );
+const goTo = useCallback(
+  (step: T[number]) => {
+    if (!steps.includes(step)) return;
+    setSearchParams({ step }, { replace: true });
+  },
+  [setSearchParams, steps],
+);
 
-  const goNext = useCallback(() => {
-    const next = steps[currentIndex + 1];
-    if (next) {
-      goTo(next);
-    } else {
-      navigate(completePath);
-    }
-  }, [currentIndex, steps, goTo, navigate, completePath]);
+const goNext = useCallback(() => {
+  const next = steps[currentIndex + 1];
+  if (next) {
+    goTo(next);
+  } else {
+    navigate(completePath);
+  }
+}, [currentIndex, steps, goTo, navigate, completePath]);
 
-  const goPrev = useCallback(() => {
-    const prev = steps[currentIndex - 1];
-    if (prev) {
-      goTo(prev);
-    } else {
-      navigate(-1);
-    }
-  }, [currentIndex, steps, goTo, navigate]);
+const goPrev = useCallback(() => {
+  const prev = steps[currentIndex - 1];
+  if (prev) {
+    goTo(prev);
+  } else {
+    navigate(-1);
+  }
+}, [currentIndex, steps, goTo, navigate]);
 
-  const Funnel = ({ children }: FunnelProps) => {
-    const childrenArray = Children.toArray(children) as ReactElement<{ name: string }>[];
-    const matched = childrenArray.find((child) => child.props.name === currentStep);
-    return <>{matched}</>;
-  };
+const Funnel = ({ children }: FunnelProps) => {
+  const childrenArray = Children.toArray(children) as ReactElement<{ name: string }>[];
+  const matched = childrenArray.find((child) => child.props.name === currentStep);
+  return <>{matched}</>;
+};
 
-  const Step = ({ children }: StepProps) => <>{children}</>;
+const Step = ({ children }: StepProps) => <>{children}</>;
 
-  return {
+return {
     currentStep,
     currentIndex,
     steps,
@@ -99,4 +101,4 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
     Funnel,
     Step,
   };
-};
+}

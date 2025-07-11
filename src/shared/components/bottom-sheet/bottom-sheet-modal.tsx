@@ -11,10 +11,10 @@ interface BottomSheetModalProps {
   onClose: () => void;
   description: string;
 <<<<<<< HEAD
-  subDescription: string | string[];
-  isGroupMatching?: boolean;
+  subDescription: string | string[]
+isGroupMatching?: boolean
 =======
-  subDescription: string;
+  subDescription: string
 >>>>>>> 9bbf753 (feat: Bottom Sheet 공통 컴포넌트 구현 (#102))
 }
 
@@ -70,6 +70,6 @@ const BottomSheetModal = ({
       </div>
     </BottomSheet>
   );
-};
+}
 
 export default BottomSheetModal;

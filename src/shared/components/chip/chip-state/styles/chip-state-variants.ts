@@ -16,19 +16,25 @@ export const chipStateVariants = cva(
 =======
         main: 'bg-main-900 text-gray-white',
         gray: 'bg-gray-200 text-gray-700',
-      },
+},
     },
-    defaultVariants: {
-      colorType: 'gray',
->>>>>>> 67606d8 (fix: chip state (#80))
+    defaultVariants:
+{
+  colorType: 'gray',
+>>>>>>> 67606d8 (fix: chip state (#80)
+  )
 =======
         active: 'bg-main-900 text-gray-white',
         inactive: 'bg-gray-200 text-gray-700',
-      },
+}
+,
     },
-    defaultVariants: {
-      colorType: 'inactive',
->>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77))
-    },
+    defaultVariants:
+{
+  colorType: 'inactive',
+>>>>>>> 980e243 (feat: card 공통 컴포넌트 구현 (#77)
+  )
+}
+,
   },
-);
+)

@@ -15,5 +15,6 @@ export const userMutations = {
       mutationFn: ({ nickname }: { nickname: string }) =>
         post(END_POINT.POST_INFO_NICKNAME, { nickname }),
 >>>>>>> eb06153 (feat: query 패턴 세팅 (#84))
-    }),
-};
+    }
+),
+}
