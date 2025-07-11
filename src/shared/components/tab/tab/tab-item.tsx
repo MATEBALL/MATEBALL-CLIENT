@@ -15,10 +15,10 @@ const TabItem = ({ label, isActive, style, onClick }: TabItemProps) => {
       data-active={isActive}
       onClick={onClick}
       className={cn(
-        'w-[4.8rem] border-b-[2px]',
         isActive ? style.borderActive : style.borderInactive,
-        style.height,
-        'flex-row-center cursor-pointer whitespace-nowrap',
+        style.size,
+        style.borderThickness,
+        'flex-row-center cursor-pointer whitespace-nowrap py-[0.6rem]',
       )}
     >
       <span
