@@ -7,10 +7,9 @@ import { useNavigate } from 'react-router-dom';
 
 interface SentViewProps {
   isGroupMatching?: boolean;
-  userNickname: string;
 }
 
-const SentView = ({ isGroupMatching = true, userNickname }: SentViewProps) => {
+const SentView = ({ isGroupMatching = true }: SentViewProps) => {
   const navigate = useNavigate();
 
   return (
@@ -21,11 +20,9 @@ const SentView = ({ isGroupMatching = true, userNickname }: SentViewProps) => {
           <Lottie src={LOTTIE_PATH.SEND} loop />
         </div>
         <p className="body_16_m text-center text-gray-600">
-          {isGroupMatching
-            ? MATCHING_COMPLETE_MESSAGE.group
-            : MATCHING_COMPLETE_MESSAGE.single(userNickname)}
+          {isGroupMatching ? MATCHING_COMPLETE_MESSAGE.group : MATCHING_COMPLETE_MESSAGE.single}
           <br />
-          ‘매칭 현황’에서 실시간으로 확인할 수 있어요.
+          진행 과정은 ‘매칭 현황'에서 확인할 수 있어요!
         </p>
       </section>
       <div className="flex-row-center gap-[0.8rem] p-[1.6rem]">

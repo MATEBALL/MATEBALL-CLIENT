@@ -24,8 +24,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
           <Lottie src={LOTTIE_PATH.SUCCESS} loop />
         </div>
         <p className="body_16_m text-center text-gray-600">
-          이제 매칭된 메이트와 소통할 수 있어요! <br />
-          아래 버튼을 눌러 채팅방으로 입장해주세요.
+          이제 메이트와 소통할 수 있어요! <br />첫 인사를 건네볼까요?
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
