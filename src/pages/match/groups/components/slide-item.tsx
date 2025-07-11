@@ -17,7 +17,7 @@ const SlideItem = ({ mate, isGroupMatching }: SlideItemProps) => (
       !isGroupMatching && 'pb-[1.6rem]',
     )}
   >
-    <Card className="w-full" {...mate} type="detailed" />
+    <Card {...mate} type="detailed" />
   </div>
 );
 
