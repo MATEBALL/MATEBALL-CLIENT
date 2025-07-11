@@ -36,7 +36,7 @@ const Onboarding = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="flex h-[100svh] flex-col justify-between">
       <OnboardingHeader onClick={goPrev} />
       {currentStep !== 'START' && (
         <div className="w-full">

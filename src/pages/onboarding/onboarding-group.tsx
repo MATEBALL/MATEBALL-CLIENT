@@ -26,7 +26,7 @@ const OnboardingGroup = () => {
   const isStepCompleted = (stepName: string) => selections[stepName] !== null;
 
   return (
-    <div>
+    <div className="flex h-[100dvh] flex-col justify-between">
       <OnboardingHeader onClick={goPrev} />
       {currentStep !== 'START' && (
         <div className="w-full">
