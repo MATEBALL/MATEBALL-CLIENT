@@ -1,5 +1,10 @@
 import { cn } from '@libs/cn';
-import type { CarouselIndicatorProps } from '@pages/match/groups/types/carousel-indicator';
+
+export interface CarouselIndicatorProps {
+  ids: string[];
+  currentIndex: number;
+  onDotClick?: (index: number) => void;
+}
 
 const CarouselIndicator = ({ ids, currentIndex, onDotClick }: CarouselIndicatorProps) => {
   return (

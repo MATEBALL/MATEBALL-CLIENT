@@ -1,5 +1,10 @@
-import type { UseSlideProps } from '@pages/match/groups/types/carousel-indicator';
 import { useRef } from 'react';
+
+interface UseSlideProps {
+  length: number;
+  currentIndex: number;
+  onChange: (index: number) => void;
+}
 
 export const useSlide = ({ length, currentIndex, onChange }: UseSlideProps) => {
   const startXRef = useRef<number | null>(null);

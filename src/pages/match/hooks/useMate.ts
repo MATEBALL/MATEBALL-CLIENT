@@ -1,6 +1,11 @@
 import { mockMatchData } from '@mocks/mockMatchData';
-import type { MateCardData } from '@pages/match/groups/types/mate-type';
+import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import { useEffect, useState } from 'react';
+
+export interface MateCardData extends DetailedCardProps {
+  id: number;
+  matchId: number;
+}
 
 const useMate = (matchId: number) => {
   const [mates, setMates] = useState<MateCardData[]>([]);

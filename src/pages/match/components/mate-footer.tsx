@@ -1,7 +1,11 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import { MATCHING_NOTICE } from '@pages/match/constants/matching';
-import type { MateFooterProps } from '@pages/match/groups/types/mate-type';
+
+interface MateFooterProps {
+  isGroupMatching: boolean;
+  onRequestClick: () => void;
+}
 
 const MateFooter = ({ isGroupMatching, onRequestClick }: MateFooterProps) => (
   <section className="flex-col-center gap-[0.4rem] w-full">
