@@ -1,7 +1,4 @@
-interface MateHeaderProps {
-  nickname?: string;
-  isGroupMatching?: boolean;
-}
+import type { MateHeaderProps } from '@pages/match/groups/types/mate-type';
 
 const MateHeader = ({ nickname, isGroupMatching }: MateHeaderProps) => (
   <section className="gap-[0.8rem] text-center">

@@ -1,25 +1,15 @@
-import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
 import CarouselIndicator from '@pages/match/groups/components/carousel_indicator';
 import SlideItem from '@pages/match/groups/components/slide-item';
+import type { MateCarouselProps } from '@pages/match/groups/types/carousel-indicator';
 import { useSlide } from '@pages/match/hooks/useSlide';
-
-interface MateCarouselProps {
-  mates: (DetailedCardProps & { id: number })[];
-  currentIndex: number;
-  onDotClick: (index: number) => void;
-  isGroupMatching: boolean;
-}
+import { getSlideTransformStyle } from '@pages/match/styles/get-slide-transformstyle';
 
 const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: MateCarouselProps) => {
   const { handleTouchStart, handleTouchEnd, handleMouseDown, handleMouseUp } = useSlide({
     length: mates.length,
     currentIndex,
     onChange: onDotClick,
-  });
-
-  const getSlideTransformStyle = (index: number): React.CSSProperties => ({
-    transform: `translateX(-${index * 100}%)`,
   });
 
   return (

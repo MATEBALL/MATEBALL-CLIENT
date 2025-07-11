@@ -1,11 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import { MATCHING_NOTICE } from '@pages/match/constants/matching';
-
-interface MateFooterProps {
-  isGroupMatching: boolean;
-  onRequestClick: () => void;
-}
+import type { MateFooterProps } from '@pages/match/groups/types/mate-type';
 
 const MateFooter = ({ isGroupMatching, onRequestClick }: MateFooterProps) => (
   <section className="-translate-x-1/2 fixed bottom-0 left-1/2 w-full max-w-[430px] gap-[0.4rem]">
