@@ -1,16 +1,15 @@
+import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
 import { useState } from 'react';
 
-export type TabType = '1:1' | '그룹';
-
 export const useTabState = () => {
-  const [activeType, setActiveType] = useState<TabType>('1:1');
+  const [activeType, setActiveType] = useState<TabType>(TAB_TYPES.SINGLE);
 
   const changeTab = (type: TabType) => {
     setActiveType(type);
   };
 
-  const isOneOnOne = activeType === '1:1';
-  const isGroup = activeType === '그룹';
+  const isOneOnOne = activeType === TAB_TYPES.SINGLE;
+  const isGroup = activeType === TAB_TYPES.GROUP;
 
   return {
     activeType,

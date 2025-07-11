@@ -15,7 +15,7 @@ const Layout = () => {
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
-    <div className="scrollbar-hide flex min-h-screen flex-col overflow-auto">
+    <div className="h-screen flex-col">
       {showHeader && <Header />}
       <main className="flex-grow">
         <Suspense fallback={<Loading />}>
