@@ -1,7 +1,6 @@
 import { buttonGameVariants } from '@components/button/button-game/styles/button-game-variants';
 import ChipInfo from '@components/chip/chip-info';
 import { cn } from '@libs/cn';
-import { useState } from 'react';
 
 interface ButtonGameProps {
   onClick?: () => void;
@@ -11,6 +10,7 @@ interface ButtonGameProps {
   stadium: string;
   awayTeam: string;
   homeTeam: string;
+  selected?: boolean;
 }
 
 const ButtonGame = ({
@@ -21,20 +21,18 @@ const ButtonGame = ({
   stadium,
   awayTeam,
   homeTeam,
+  selected = false,
 }: ButtonGameProps) => {
-  const [variant, setVariant] = useState<'selected' | 'default'>('default');
-
-  const handleClick = () => {
-    setVariant((prev) => (prev === 'default' ? 'selected' : 'default'));
-    onClick?.();
-  };
-
   return (
     <button
       type="button"
-      onClick={handleClick}
+      onClick={onClick}
       aria-label={ariaLabel ?? `${awayTeam} VS ${homeTeam}`}
-      className={cn(buttonGameVariants({ variant }), className, 'flex-row-between')}
+      className={cn(
+        buttonGameVariants({ variant: selected ? 'selected' : 'default' }),
+        className,
+        'flex-row-between',
+      )}
     >
       <span>
         {awayTeam} VS {homeTeam}
