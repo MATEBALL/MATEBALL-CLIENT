@@ -3,14 +3,11 @@ import Icon from '@components/icon/icon';
 import { NO_TEAM_OPTION, TEAMS } from '../constants/onboarding';
 
 interface SupportTeamProps {
-  selectedTeam: string | null;
-  onSelect: (team: string) => void;
+  selectedOption: string | null;
+  onSelect: (option: string) => void;
 }
 
-const SupportTeam = ({ selectedTeam, onSelect }: SupportTeamProps) => {
-  const handleClick = (team: string) => {
-    onSelect(team);
-  };
+const SupportTeam = ({ selectedOption, onSelect }: SupportTeamProps) => {
   return (
     <div className="h-full w-full flex-col-between gap-[5.4rem]">
       <div className="flex-col-center gap-[2.4rem]">
@@ -21,21 +18,21 @@ const SupportTeam = ({ selectedTeam, onSelect }: SupportTeamProps) => {
       </div>
 
       <div className="mb-[1.6rem] grid w-full grid-cols-2 gap-x-[1.2rem] gap-y-[0.8rem] px-[1.6rem]">
-        {TEAMS.map((team) => (
+        {TEAMS.map((option) => (
           <Button
-            key={team}
-            label={team}
+            key={option}
+            label={option}
             size={'setting_M'}
-            onClick={() => handleClick(team)}
-            variant={selectedTeam === team ? 'skyblueBorder' : 'white'}
+            onClick={() => onSelect(option)}
+            variant={selectedOption === option ? 'skyblueBorder' : 'white'}
           />
         ))}
         <div className="col-span-2">
           <Button
             label={NO_TEAM_OPTION}
             size={'setting_M'}
-            onClick={() => handleClick(NO_TEAM_OPTION)}
-            variant={selectedTeam === NO_TEAM_OPTION ? 'skyblueBorder' : 'white'}
+            onClick={() => onSelect(NO_TEAM_OPTION)}
+            variant={selectedOption === NO_TEAM_OPTION ? 'skyblueBorder' : 'white'}
           />
         </div>
       </div>

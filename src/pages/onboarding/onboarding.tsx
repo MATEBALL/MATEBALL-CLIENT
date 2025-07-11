@@ -52,8 +52,8 @@ const Onboarding = () => {
 
         <Step name="SUPPORT_TEAM">
           <SupportTeam
-            selectedTeam={selections.SUPPORT_TEAM}
-            onSelect={(team) => handleSelect('SUPPORT_TEAM', team)}
+            selectedOption={selections.SUPPORT_TEAM}
+            onSelect={(option) => handleSelect('SUPPORT_TEAM', option)}
           />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
             <Button
