@@ -1,14 +1,13 @@
-export const ONBOARDING_STEPS = [
+export const FIRST_FUNNEL_STEPS = [
   'START',
   'SUPPORT_TEAM',
   'SYNC_SUPPORT_TEAM',
   'VIEWING_STYLE',
   'GENDER',
   'MATCHING_TYPE',
-  'GROUP_ROLE',
-  'DATE_SELECT',
-  'COMPLETE',
 ] as const;
+
+export const GROUP_FUNNEL_STEPS = ['GROUP_ROLE', 'DATE_SELECT', 'COMPLETE'] as const;
 
 export const TEAMS = [
   'KIA 타이거즈',

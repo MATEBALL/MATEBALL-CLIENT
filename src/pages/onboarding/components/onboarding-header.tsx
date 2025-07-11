@@ -1,10 +1,10 @@
 import Icon from '@components/icon/icon';
 
-interface HeaderProps {
+interface OnboardingHeaderProps {
   onClick: () => void;
 }
 
-const Header = ({ onClick }: HeaderProps) => {
+const OnboardingHeader = ({ onClick }: OnboardingHeaderProps) => {
   return (
     <div className="flex w-full justify-start py-[0.4rem]">
       <Icon
@@ -18,4 +18,4 @@ const Header = ({ onClick }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default OnboardingHeader;
