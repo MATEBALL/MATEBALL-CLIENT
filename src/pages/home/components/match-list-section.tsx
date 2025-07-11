@@ -1,6 +1,6 @@
 import ButtonCreate from '@components/button/button-create/button-create';
+import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyState from '@components/ui/empty-state';
-import type { TabType } from '@hooks/use-tab-state';
 import { mockMateGroup } from '@pages/home/mocks/mockMateGroup';
 import { mockMateSingle } from '@pages/home/mocks/mockMateSingle';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';

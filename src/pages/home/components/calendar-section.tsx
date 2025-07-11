@@ -1,6 +1,6 @@
 import WeekCalendar from '@components/calendar/week-calendar';
+import type { TabType } from '@components/tab/tab/constants/tab-type';
 import TabList from '@components/tab/tab/tab-list';
-import type { TabType } from '@hooks/use-tab-state';
 import CalendarButton from '@pages/home/components/calendar-button';
 
 interface CalendarSectionProps {

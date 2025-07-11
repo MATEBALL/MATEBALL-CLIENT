@@ -1,8 +1,8 @@
+import type { TabType } from '@components/tab/tab/constants/tab-type';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
 import TabItem from '@components/tab/tab/tab-item';
-import type { TabType } from '@hooks/use-tab-state';
 import { cn } from '@libs/cn';
 
 interface TabListProps {
