@@ -147,8 +147,9 @@ const Onboarding = () => {
 
         <Step name="DATE_SELECT">
           <DateSelect
-          // selectedOption={selections.DATE_SELECT}
-          // onSelect={(option) => handleSelect('DATE_SELECT', option)}
+            onComplete={() => {
+              goNext();
+            }}
           />
         </Step>
 
