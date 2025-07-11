@@ -1,15 +1,23 @@
 import GameMatchItem from '@components/bottom-sheet/game-match/game-match-item';
-import { mockGameDatas } from '@mocks/mockGameData';
-import type { GameMatchListProps } from '@components/bottom-sheet/game-match/types/game-type';
+import type { GameScheduleItem } from '@components/bottom-sheet/game-match/types/game-type';
 
-const GameMatchList = ({ selectedIdx, onSelect }: GameMatchListProps) => {
+interface GameMatchListProps {
+  selectedIdx: number;
+  onSelect: (idx: number) => void;
+  matches: GameScheduleItem[];
+}
+
+const GameMatchList = ({ selectedIdx, onSelect, matches }: GameMatchListProps) => {
   return (
-    <div className="w-full flex-col-center gap-[0.8rem]">
-      {mockGameDatas.map((match, idx) => (
+    <div className="w-full flex-col gap-[0.8rem]">
+      {matches.map((match, idx) => (
         <GameMatchItem
-          key={idx}
+          key={match.id}
           isSelected={idx === selectedIdx}
-          {...match}
+          away={match.awayTeam}
+          home={match.homeTeam}
+          time={match.gameTime}
+          stadium={match.stadium}
           onClick={() => onSelect(idx)}
         />
       ))}

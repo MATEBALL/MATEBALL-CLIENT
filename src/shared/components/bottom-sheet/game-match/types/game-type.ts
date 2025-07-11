@@ -15,4 +15,21 @@ export interface GameMatchListProps {
 export interface GameMatchBottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
+  dateText: string;
+}
+
+export interface GameScheduleItem {
+  id: number;
+  awayTeam: string;
+  homeTeam: string;
+  gameTime: string;
+  stadium: string;
+}
+
+export interface GameScheduleResponse {
+  status: number;
+  message: string;
+  data: {
+    gameSchedule: GameScheduleItem[];
+  };
 }

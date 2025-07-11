@@ -5,6 +5,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { RouterProvider } from 'react-router-dom';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
+import { mockGameDatas } from '@mocks/mockGameData';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,12 @@ const App = () => {
         바텀시트 열기
       </button>
 
-      <GameMatchBottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <GameMatchBottomSheet
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        dateText="7월 17일 화요일"
+        gameSchedule={mockGameDatas}
+      />
 
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
