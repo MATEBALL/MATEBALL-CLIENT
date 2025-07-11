@@ -18,10 +18,15 @@ const GameMatchBottomSheet = ({
   date,
   gameSchedule,
 }: GameMatchBottomSheetProps) => {
-  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+
+  const handleClose = () => {
+    setSelectedIdx(null);
+    onClose();
+  };
 
   return (
-    <BottomSheet isOpen={isOpen} onClose={onClose} showIndicator gap="gap-[1.6rem]">
+    <BottomSheet isOpen={isOpen} onClose={handleClose} showIndicator gap="gap-[1.6rem]">
       <div className="w-full flex-col">
         <div className="w-full flex-col gap-[1.3rem] px-[1.6rem]">
           <div className="body_16_m text-gray-black">{formatDateWeekday(date)}</div>

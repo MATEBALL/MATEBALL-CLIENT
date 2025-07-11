@@ -8,7 +8,7 @@ export interface GameMatchItemProps {
 }
 
 export interface GameMatchListProps {
-  selectedIdx: number;
+  selectedIdx: number | null;
   onSelect: (index: number) => void;
 }
 

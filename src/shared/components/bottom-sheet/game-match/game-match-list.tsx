@@ -2,7 +2,7 @@ import GameMatchItem from '@components/bottom-sheet/game-match/game-match-item';
 import type { GameScheduleItem } from '@components/bottom-sheet/game-match/types/game-type';
 
 interface GameMatchListProps {
-  selectedIdx: number;
+  selectedIdx: number | null;
   onSelect: (idx: number) => void;
   matches: GameScheduleItem[];
 }
