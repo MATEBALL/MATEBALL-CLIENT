@@ -13,3 +13,4 @@ export const NICKNAME_SUCCESS_MESSAGE = '사용 가능한 닉네임이에요.';
 export const BIRTHYEAR_RULE_MESSAGE = '4자리 숫자만 입력 가능';
 
 export const BIRTHYEAR_SUCCESS_MESSAGE = '올바른 입력 값이에요.';
+

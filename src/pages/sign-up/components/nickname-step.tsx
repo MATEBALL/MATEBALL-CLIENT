@@ -26,7 +26,8 @@ const NicknameStep = () => {
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
 
   const onSubmit = (data: NicknameFormValues) => {
-    console.log('닉네임 제출됨:', data.nickname);
+    console.log(data.nickname);
+
   };
 
   const { onBlur, ref, ...inputProps } = register('nickname');
