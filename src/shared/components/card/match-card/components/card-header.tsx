@@ -3,9 +3,12 @@ import CardProfile from '@components/card/match-card/components/card-profile-ima
 import type { CardProps } from '@components/card/match-card/types/card';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
+import { useLocation } from 'react-router-dom';
 
 const CardHeader = (props: CardProps) => {
   const { type } = props;
+  const location = useLocation();
+  const isCreatePage = location.pathname === '/match/create';
 
   switch (type) {
     case 'single':
@@ -23,9 +26,11 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={props.chips ?? []} />
             </div>
           </div>
-          <div className="ml-auto">
-            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
-          </div>
+          {!isCreatePage && (
+            <div className="ml-auto">
+              <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
+            </div>
+          )}
         </div>
       );
 
@@ -43,9 +48,11 @@ const CardHeader = (props: CardProps) => {
               <CardProfile type="group" imgUrl={props.imgUrl} />
             </div>
           </div>
-          <div className="ml-auto">
-            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
-          </div>
+          {!isCreatePage && (
+            <div className="ml-auto">
+              <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
+            </div>
+          )}
         </div>
       );
 
