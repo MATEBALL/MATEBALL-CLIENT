@@ -13,13 +13,13 @@ const MatchingFailView = () => {
         <h2 className="title_24_sb text-gray-white">요청을 거절하셨습니다.</h2>
         <Lottie src={LOTTIE_PATH.FAIL} loop />
         <p className="body_16_m text-center text-gray-600">
-          잘 맞는 메이트의 요청이 도착하면 알려드릴게요. <br />
-          ‘매칭 현황’에서 실시간으로 확인할 수 있어요!
+          딱! 맞는 메이트의 요청이 도착하면 <br />
+          ‘매칭 현황’에서 확인할 수 있어요.
         </p>
-        </section>
-        <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-          <Button label="매칭현황 보기" className="w-full" onClick={() => navigate(ROUTES.MATCH)} />
-        </section>
+      </section>
+      <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
+        <Button label="매칭현황 보기" className="w-full" onClick={() => navigate(ROUTES.MATCH)} />
+      </section>
     </div>
   );
 };
