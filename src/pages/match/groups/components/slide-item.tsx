@@ -5,6 +5,7 @@ import { cn } from '@libs/cn';
 interface MateProps extends DetailedCardProps {
   id: number;
 }
+
 interface SlideItemProps {
   mate: MateProps;
   isGroupMatching: boolean;
