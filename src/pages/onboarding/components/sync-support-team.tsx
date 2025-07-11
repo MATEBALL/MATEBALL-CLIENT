@@ -5,8 +5,8 @@ import type { OnboardingStepProps } from '../types/onboarding';
 
 const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
-    <div className="mt-[3.2rem] h-full w-full flex-col-between gap-[12.8rem]">
-      <div className="flex-col-center gap-[2.4rem]">
+    <div className="onboarding-layout gap-[12.8rem]">
+      <div className="onboarding-title">
         <Icon name="graphic-cheer-team" width={10.4} height={10.4} />
         <p className="head_20_sb text-center text-gray-black">
           메이트와 선호하는
@@ -14,7 +14,7 @@ const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
           응원 팀이 같으면 좋을까요?
         </p>
       </div>
-      <div className="w-full flex-col gap-[0.8rem] px-[1.6rem]">
+      <div className="onboarding-inner">
         {SYNC_MATE.map((option) => (
           <Button
             key={option}

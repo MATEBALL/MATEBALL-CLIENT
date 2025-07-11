@@ -51,7 +51,7 @@ const Onboarding = () => {
         <Funnel>
           <Step name="START">
             <Start />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button label="시작하기" size={'L'} variant={'blue'} onClick={goNext} />
             </div>
           </Step>
@@ -61,7 +61,7 @@ const Onboarding = () => {
               selectedOption={selections.SUPPORT_TEAM}
               onSelect={(option) => handleSelect('SUPPORT_TEAM', option)}
             />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button
                 label="다음으로"
                 size={'L'}
@@ -77,7 +77,7 @@ const Onboarding = () => {
               selectedOption={selections.SYNC_SUPPORT_TEAM}
               onSelect={(option) => handleSelect('SYNC_SUPPORT_TEAM', option)}
             />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button
                 label="다음으로"
                 size={'L'}
@@ -92,7 +92,7 @@ const Onboarding = () => {
               selectedOption={selections.VIEWING_STYLE}
               onSelect={(option) => handleSelect('VIEWING_STYLE', option)}
             />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button
                 label="다음으로"
                 size={'L'}
@@ -107,7 +107,7 @@ const Onboarding = () => {
               selectedOption={selections.GENDER}
               onSelect={(option) => handleSelect('GENDER', option)}
             />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button
                 label="다음으로"
                 size={'L'}
@@ -122,7 +122,7 @@ const Onboarding = () => {
               selectedOption={selections.MATCHING_TYPE}
               onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
             />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button
                 label="다음으로"
                 size={'L'}
@@ -140,7 +140,7 @@ const Onboarding = () => {
 
           <Step name="COMPLETE">
             <Complete />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button label="메인 화면으로 이동하기" size={'L'} onClick={goNext} />
             </div>
           </Step>

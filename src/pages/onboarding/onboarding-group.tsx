@@ -43,7 +43,7 @@ const OnboardingGroup = () => {
               selectedOption={selections.GROUP_ROLE}
               onSelect={(option) => handleSelect('GROUP_ROLE', option)}
             />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button
                 label="다음으로"
                 size={'L'}
@@ -63,7 +63,7 @@ const OnboardingGroup = () => {
 
           <Step name="COMPLETE">
             <Complete />
-            <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <div className="onboarding-footer">
               <Button label="메인 화면으로 이동하기" size={'L'} onClick={goNext} />
             </div>
           </Step>

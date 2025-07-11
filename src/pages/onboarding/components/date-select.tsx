@@ -70,7 +70,7 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
   };
 
   return (
-    <div className="mt-[3.2rem] h-full w-full flex-col-between pb-[9.4rem]">
+    <div className="onboarding-layout pb-[9.4rem]">
       <div className="flex-col-center">
         <p className="head_20_sb text-gray-black">어떤 경기를 직관하고 싶으신가요?</p>
         <p className="cap_14_m text-gray-600">

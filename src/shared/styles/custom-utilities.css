@@ -52,4 +52,20 @@
   .signup-layout {
     @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
   }
+
+  .onboarding-layout {
+    @apply mt-[3.2rem] h-full w-full flex flex-col justify-between items-center;
+  }
+
+  .onboarding-inner {
+    @apply w-full flex flex-col gap-[0.8rem] px-[1.6rem];
+  }
+
+  .onboarding-title {
+    @apply flex flex-col justify-center items-center gap-[2.4rem];
+  }
+
+  .onboarding-footer {
+    @apply sticky bottom-0 w-full p-[1.6rem];
+  }
 }

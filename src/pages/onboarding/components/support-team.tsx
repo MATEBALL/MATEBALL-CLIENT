@@ -5,8 +5,8 @@ import type { OnboardingStepProps } from '../types/onboarding';
 
 const SupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
-    <div className="mt-[3.2rem] h-full w-full flex-col-between gap-[5.4rem]">
-      <div className="flex-col-center gap-[2.4rem]">
+    <div className="onboarding-layout gap-[5.4rem]">
+      <div className="onboarding-title">
         <Icon name="graphic-team" width={10.4} height={10.4} />
         <p className="head_20_sb text-center text-gray-black">
           가장 먼저, 응원하시는 팀을 알려주세요!
