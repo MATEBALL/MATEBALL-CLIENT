@@ -3,17 +3,16 @@ import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
 
 const GameMatchItem = ({ isSelected, away, home, time, stadium, onClick }: GameMatchItemProps) => {
+  const stateClass = isSelected ? 'game-match-selected' : 'game-match-default';
+
   return (
     <button
       type="button"
-      className={cn(
-        'w-full flex-row-between cursor-pointer rounded-[12px] px-[2rem] py-[1.2rem] outline-1 outline-solid outline-offset-[-1px]',
-        isSelected ? 'bg-main-200 outline-main-900' : 'bg-gray-white outline-gray-300',
-      )}
+      className={cn('game-match-item', stateClass)}
       data-property={isSelected ? 'selected' : 'default'}
       onClick={onClick}
     >
-      <div className="body_16_m flex-row gap-1 text-gray-black">
+      <div className="body_16_m flex-row gap-[0.4rem] text-gray-black">
         <span>{away}</span>
         <span>VS</span>
         <span>{home}</span>
