@@ -12,6 +12,11 @@ const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  server: {
+    port: 443,
+    host: 'dev.mateball.co.kr',
+    https: {},
+  },
   plugins: [
     mkcert(),
     react(),
