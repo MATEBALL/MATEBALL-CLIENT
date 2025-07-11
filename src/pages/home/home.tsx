@@ -20,6 +20,10 @@ const Home = () => {
   );
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleToggleBottomSheet = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <div className="pb-[5.6rem]">
       <TopSection />
@@ -29,7 +33,7 @@ const Home = () => {
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
         baseWeekDate={baseWeekDate}
-        onOpenBottomSheet={() => setIsOpen(true)}
+        onOpenBottomSheet={handleToggleBottomSheet}
       />
       <MatchListSection
         activeType={activeType}
@@ -53,7 +57,7 @@ const Home = () => {
             label="날짜 선택하기"
             size="L"
             className="w-full"
-            onClick={() => setIsOpen(false)}
+            onClick={handleToggleBottomSheet}
           />
         </div>
       </BottomSheet>
