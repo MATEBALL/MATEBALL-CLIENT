@@ -20,6 +20,12 @@ const BottomSheetModal = ({
 }: BottomSheetModalProps) => {
   const navigate = useNavigate();
 
+  const handleRequestClick = () => {
+    const mode = isGroupMatching ? 'group' : 'single';
+    navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
+    onClose();
+  };
+
   return (
     <BottomSheet showIndicator={false} isOpen={isOpen} onClose={onClose}>
       <div className="mx-auto flex-col-center gap-[0.4rem] px-[5rem] pt-[3.2rem] text-center">
@@ -32,14 +38,7 @@ const BottomSheetModal = ({
 
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
         <Button label="다음에 할래요" variant="skyblue" onClick={onClose} />
-        <Button
-          label="요청할래요"
-          onClick={() => {
-            const mode = isGroupMatching ? 'group' : 'single';
-            navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
-            onClose();
-          }}
-        />
+        <Button label="요청할래요" onClick={handleRequestClick} />
       </div>
     </BottomSheet>
   );
