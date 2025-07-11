@@ -1,6 +1,6 @@
+import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
 import CarouselIndicator from '@pages/match/groups/components/carousel_indicator';
-import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import SlideItem from '@pages/match/groups/components/slide-item';
 import { useSlide } from '@pages/match/hooks/useSlide';
 import { getSlideTransformStyle } from '@pages/match/styles/get-slide-transformstyle';

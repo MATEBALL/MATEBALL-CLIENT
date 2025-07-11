@@ -1,5 +1,5 @@
-import { mockMatchData } from '@mocks/mockMatchData';
 import type { DetailedCardProps } from '@components/card/match-card/types/card';
+import { mockMatchData } from '@mocks/mockMatchData';
 import { useEffect, useState } from 'react';
 
 export interface MateCardData extends DetailedCardProps {

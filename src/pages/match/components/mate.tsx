@@ -16,7 +16,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
   const nickname = '두밥비';
   return (
     <div className="h-full flex-col-between">
-      <section className='flex-col-center gap-[4rem] pt-[4rem]'>
+      <section className="flex-col-center gap-[4rem] pt-[4rem]">
         <MateHeader nickname={nickname} isGroupMatching={isGroupMatching} />
         <MateCarousel
           mates={mates}

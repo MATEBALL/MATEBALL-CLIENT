@@ -20,10 +20,7 @@ const CarouselIndicator = ({ ids, currentIndex, onDotClick }: CarouselIndicatorP
             aria-label={`슬라이드 ${index + 1}`}
             aria-current={isActive ? 'true' : undefined}
             onClick={() => onDotClick?.(index)}
-            className={cn(
-              'size-[0.8rem] rounded-full transition-all duration-200',
-              dotColorClass,
-            )}
+            className={cn('size-[0.8rem] rounded-full transition-all duration-200', dotColorClass)}
           />
         );
       })}
