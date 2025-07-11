@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
@@ -18,6 +19,9 @@ const TabList = ({ colorMode }: TabListProps) => {
   const tabStyle = tabStyleMap[colorMode];
 
 =======
+=======
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
+>>>>>>> 94cf350 (feat: tab 공통 컴포넌트 구현 (#96))
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
 import TabItem from '@components/tab/tab/tab-item';
@@ -31,7 +35,8 @@ interface TabListProps {
 }
 
 const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
-  const types: TabType[] = ['1:1', '그룹'];
+  const types: TabType[] = [TAB_TYPES.SINGLE, TAB_TYPES.GROUP];
+
   const tabStyle = tabStyleMap[colorMode];
 
 <<<<<<< HEAD
@@ -74,6 +79,7 @@ const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
 >>>>>>> ce4c8b9 (feat: tab 공통 컴포넌트 구현)
 =======
   return (
+<<<<<<< HEAD
     <div className={cn('flex items-center justify-start', tabStyle.gap)}>
       {types.map((label) => (
         <TabItem
@@ -85,10 +91,25 @@ const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
         />
       ))}
 >>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
+=======
+    <div>
+      <div className={cn('flex items-center justify-start', tabStyle.gap)}>
+        {types.map((label) => (
+          <TabItem
+            key={label}
+            label={label}
+            isActive={activeType === label}
+            style={tabStyle}
+            onClick={() => onTabChange(label)}
+          />
+        ))}
+      </div>
+>>>>>>> 94cf350 (feat: tab 공통 컴포넌트 구현 (#96))
     </div>
   );
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 export default TabList;
@@ -101,3 +122,6 @@ export default BarTabList;
 =======
 export default TabList;
 >>>>>>> 0e4f982 (feat: tab 반영, usetab 훅 작성(#83))
+=======
+export default TabList;
+>>>>>>> 94cf350 (feat: tab 공통 컴포넌트 구현 (#96))
