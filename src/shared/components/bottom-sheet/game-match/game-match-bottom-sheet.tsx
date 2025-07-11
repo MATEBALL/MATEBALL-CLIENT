@@ -2,11 +2,7 @@ import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-footer';
 import { useState } from 'react';
-
-interface GameMatchBottomSheetProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import type { GameMatchBottomSheetProps } from '@components/bottom-sheet/game-match/types/game-type';
 
 const GameMatchBottomSheet = ({ isOpen, onClose }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState(2);

@@ -1,14 +1,6 @@
 import { cn } from '@libs/cn';
 import Icon from '@components/icon/icon';
-
-interface GameMatchItemProps {
-  isSelected?: boolean;
-  away: string;
-  home: string;
-  time: string;
-  stadium: string;
-  onClick?: () => void;
-}
+import type { GameMatchItemProps } from '@components/bottom-sheet/game-match/types/game-type';
 
 const GameMatchItem = ({ isSelected, away, home, time, stadium, onClick }: GameMatchItemProps) => {
   return (
