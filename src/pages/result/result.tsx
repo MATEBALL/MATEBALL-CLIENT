@@ -12,6 +12,7 @@ const ResultPage = () => {
   const mode = params.get('mode');
   const isGroupMatching = mode?.toLowerCase() === 'group';
 
+
   if (type === 'sent') {
     return <SentView isGroupMatching={isGroupMatching} />;
   }

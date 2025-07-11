@@ -43,7 +43,6 @@ export const getHeaderContent = (
     );
   }
 
-
   if (isFail) {
     return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }
