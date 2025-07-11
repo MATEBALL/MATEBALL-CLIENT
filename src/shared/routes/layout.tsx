@@ -10,13 +10,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 const Layout = () => {
   const { pathname } = useLocation();
 
-  const showBottomNav = [
-    ROUTES.HOME,
-    ROUTES.MATCH,
-    ROUTES.CHAT,
-    ROUTES.PROFILE,
-    ROUTES.ERROR,
-  ].includes(pathname);
+  const showBottomNav = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT, ROUTES.PROFILE].includes(pathname);
 
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
