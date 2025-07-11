@@ -1,4 +1,3 @@
-
 export const formatDateWeekday = (dateString: string): string => {
   const date = new Date(dateString);
   const month = date.getMonth() + 1;
