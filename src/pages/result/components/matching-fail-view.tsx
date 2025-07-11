@@ -8,7 +8,7 @@ const MatchingFailView = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-full flex-col-between bg-gray-black">
+    <div className="h-full flex-col-between">
       <section className="flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
         <h2 className="title_24_sb text-gray-white">요청을 거절하셨습니다.</h2>
         <Lottie src={LOTTIE_PATH.FAIL} loop />
@@ -18,7 +18,7 @@ const MatchingFailView = () => {
         </p>
       </section>
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button label="매칭현황 보기" className="w-full" onClick={() => navigate(ROUTES.MATCH)} />
+        <Button label="매칭 현황 보기" className="w-full" onClick={() => navigate(ROUTES.MATCH)} />
       </section>
     </div>
   );

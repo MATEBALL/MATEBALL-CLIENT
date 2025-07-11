@@ -8,15 +8,12 @@ const Header = () => {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const isFail = urlParams.has('fail');
-
   const isSignUp = location.pathname.includes(ROUTES.SIGNUP);
-  const isResultFail = location.pathname === '/result' && urlParams.get('type') === 'fail';
 
   return (
     <header
       className={clsx('h-[5.6rem] py-[1.55rem] pl-[2rem]', {
         'bg-gray-white': isSignUp,
-        'bg-gray-black': isResultFail,
       })}
     >
       {getHeaderContent(location.pathname, isFail, navigate)}
