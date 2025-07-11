@@ -3,8 +3,6 @@ import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
 
-// 유저 도메인 관련 쿼리
-
 export const userQueries = {
   ALL: () => queryOptions({ queryKey: USER_KEY.ALL }),
 

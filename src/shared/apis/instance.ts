@@ -21,7 +21,7 @@ instance.interceptors.response.use(
     const statusCode = error.response?.status;
 
     if (statusCode === HTTP_STATUS.UNAUTHORIZED) {
-      window.location.replace(ROUTES.SIGNUP);
+      window.location.replace(ROUTES.LOGIN);
     }
 
     if (error.response) {

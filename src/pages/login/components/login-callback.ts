@@ -1,20 +1,47 @@
-import { getKakaoLogin } from '@apis/auth';
+import { postKakaoLogin } from '@apis/auth/auth';
+import { get } from '@apis/http';
+import { END_POINT } from '@constants/api'; // ✅ 다시 사용됨
+import { HTTP_STATUS } from '@constants/response';
+import { ROUTES } from '@routes/routes-config';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import type { getUserInfoResponse } from '@/shared/types/user-types';
 
 export const LoginCallback = () => {
   const code = new URL(window.location.href).searchParams.get('code');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (code) {
-      getKakaoLogin(code)
-        .then((res) => {
-          console.log('카카오 로그인 성공', res);
-        })
-        .catch((err) => {
-          console.error('카카오 로그인 실패', err);
-        });
-    }
-  }, [code]);
+    const handleLogin = async () => {
+      if (!code) {
+        console.error('인가 코드 없음');
+        navigate(ROUTES.ERROR);
+        return;
+      }
+
+      try {
+        const loginRes = await postKakaoLogin(code);
+
+        if (loginRes.status === HTTP_STATUS.OK) {
+          const userInfo = await get<getUserInfoResponse>(END_POINT.GET_USERS_INFO);
+
+          if (userInfo.nickname === null) {
+            navigate(ROUTES.SIGNUP);
+          } else {
+            navigate(ROUTES.HOME);
+          }
+        } else {
+          console.error('로그인 실패');
+          navigate(ROUTES.ERROR);
+        }
+      } catch (err) {
+        console.error('카카오 로그인 실패', err);
+        navigate(ROUTES.ERROR);
+      }
+    };
+
+    handleLogin();
+  }, [code, navigate]);
 
   return null;
 };
