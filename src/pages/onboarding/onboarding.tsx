@@ -1,6 +1,7 @@
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import { ROUTES } from '@routes/routes-config';
+import { useState } from 'react';
 import Complete from './components/complete';
 import Gender from './components/gender';
 import Header from './components/header';
@@ -17,6 +18,21 @@ const Onboarding = () => {
     ONBOARDING_STEPS,
     ROUTES.HOME,
   );
+
+  const [selections, setSelections] = useState<Record<string, string | null>>({
+    SUPPORT_TEAM: null,
+    SYNC_SUPPORT_TEAM: null,
+    VIEWING_STYLE: null,
+    GENDER: null,
+    MATCHING_TYPE: null,
+  });
+
+  const handleSelect = (stepName: string, value: string) => {
+    setSelections((prev) => ({ ...prev, [stepName]: value }));
+  };
+
+  const isStepCompleted = (stepName: string) => selections[stepName] !== null;
+
   return (
     <div className="h-full flex-col-between gap-[1.6rem]">
       <Header onClick={goPrev} />
@@ -35,35 +51,71 @@ const Onboarding = () => {
         </Step>
 
         <Step name="SUPPORT_TEAM">
-          <SupportTeam />
+          <SupportTeam
+            selectedTeam={selections.SUPPORT_TEAM}
+            onSelect={(team) => handleSelect('SUPPORT_TEAM', team)}
+          />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="다음으로" size={'L'} variant={'blue'} onClick={goNext} />
+            <Button
+              label="다음으로"
+              size={'L'}
+              variant={'blue'}
+              onClick={goNext}
+              disabled={!isStepCompleted('SUPPORT_TEAM')}
+            />
           </div>
         </Step>
 
         <Step name="SYNC_SUPPORT_TEAM">
-          <SyncSupportTeam />
+          <SyncSupportTeam
+            selectedOption={selections.SYNC_SUPPORT_TEAM}
+            onSelect={(option) => handleSelect('SYNC_SUPPORT_TEAM', option)}
+          />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="다음으로" size={'L'} onClick={goNext} />
+            <Button
+              label="다음으로"
+              size={'L'}
+              onClick={goNext}
+              disabled={!isStepCompleted('SYNC_SUPPORT_TEAM')}
+            />
           </div>
         </Step>
 
         <Step name="VIEWING_STYLE">
-          <ViewingStyle />
+          <ViewingStyle
+            selectedOption={selections.VIEWING_STYLE}
+            onSelect={(option) => handleSelect('VIEWING_STYLE', option)}
+          />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="다음으로" size={'L'} onClick={goNext} />
+            <Button
+              label="다음으로"
+              size={'L'}
+              onClick={goNext}
+              disabled={!isStepCompleted('VIEWING_STYLE')}
+            />
           </div>
         </Step>
 
         <Step name="GENDER">
-          <Gender />
+          <Gender
+            selectedOption={selections.GENDER}
+            onSelect={(option) => handleSelect('GENDER', option)}
+          />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
-            <Button label="다음으로" size={'L'} onClick={goNext} />
+            <Button
+              label="다음으로"
+              size={'L'}
+              onClick={goNext}
+              disabled={!isStepCompleted('GENDER')}
+            />
           </div>
         </Step>
 
         <Step name="MATCHING_TYPE">
-          <MatchingType />
+          <MatchingType
+            selectedOption={selections.MATCHING_TYPE}
+            onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
+          />
           <div className="sticky bottom-0 w-full p-[1.6rem]">
             <Button label="다음으로" size={'L'} onClick={goNext} />
           </div>

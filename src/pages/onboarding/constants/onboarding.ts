@@ -22,3 +22,11 @@ export const TEAMS = [
 ];
 
 export const NO_TEAM_OPTION = '응원하는 팀이 없어요.';
+
+export const SYNC_MATE = ['같은 팀 메이트와 보고 싶어요', '상관없어요'];
+
+export const VIEWING_STYLE = ['열정 응원러', '경기 집중러', '직관 먹방러'];
+
+export const GENDER = ['남성', '여성', '상관없어요'];
+
+export const MATCHING_TYPE = ['1:1 매칭', '그룹 매칭'];

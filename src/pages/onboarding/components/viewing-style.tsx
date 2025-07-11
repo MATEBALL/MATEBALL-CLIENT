@@ -1,7 +1,13 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
+import { VIEWING_STYLE } from '../constants/onboarding';
 
-const ViewingStyle = () => {
+interface ViewingStyleProps {
+  selectedOption: string | null;
+  onSelect: (option: string) => void;
+}
+
+const ViewingStyle = ({ selectedOption, onSelect }: ViewingStyleProps) => {
   return (
     <div className="h-full w-full flex-col-between gap-[5.4rem]">
       <div className="flex-col-center gap-[2.4rem]">
@@ -15,9 +21,15 @@ const ViewingStyle = () => {
       </div>
 
       <div className="w-full flex-col gap-[0.8rem] px-[1.6rem]">
-        <Button label="열정 응원러" size={'setting_L'} variant={'white'} />
-        <Button label="경기 집중러" size={'setting_L'} variant={'white'} />
-        <Button label="직관 먹방러" size={'setting_L'} variant={'white'} />
+        {VIEWING_STYLE.map((option) => (
+          <Button
+            key={option}
+            label={option}
+            size={'setting_L'}
+            variant={selectedOption === option ? 'skyblueBorder' : 'white'}
+            onClick={() => onSelect(option)}
+          />
+        ))}
       </div>
     </div>
   );

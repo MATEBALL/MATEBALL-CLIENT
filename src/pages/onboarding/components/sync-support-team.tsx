@@ -1,7 +1,13 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
+import { SYNC_MATE } from '../constants/onboarding';
 
-const SyncSupportTeam = () => {
+interface SyncSupportTeamProps {
+  selectedOption: string | null;
+  onSelect: (option: string) => void;
+}
+
+const SyncSupportTeam = ({ selectedOption, onSelect }: SyncSupportTeamProps) => {
   return (
     <div className="h-full w-full flex-col-between gap-[12.8rem]">
       <div className="flex-col-center gap-[2.4rem]">
@@ -13,8 +19,15 @@ const SyncSupportTeam = () => {
         </p>
       </div>
       <div className="w-full flex-col gap-[0.8rem] px-[1.6rem]">
-        <Button label="같은 팀 메이트와 보고 싶어요" size={'setting_L'} variant={'white'} />
-        <Button label="상관없어요" size={'setting_L'} variant={'white'} />
+        {SYNC_MATE.map((option) => (
+          <Button
+            key={option}
+            label={option}
+            size={'setting_L'}
+            variant={selectedOption === option ? 'skyblueBorder' : 'white'}
+            onClick={() => onSelect(option)}
+          />
+        ))}
       </div>
     </div>
   );

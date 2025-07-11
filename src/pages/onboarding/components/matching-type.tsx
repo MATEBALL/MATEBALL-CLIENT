@@ -1,7 +1,13 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
+import { MATCHING_TYPE } from '../constants/onboarding';
 
-const MatchingType = () => {
+interface MatchingType {
+  selectedOption: string | null;
+  onSelect: (option: string) => void;
+}
+
+const MatchingType = ({ selectedOption, onSelect }: MatchingType) => {
   return (
     <div className="h-full w-full flex-col-between gap-[5.4rem]">
       <div className="flex-col-center gap-[2.4rem]">
@@ -16,8 +22,15 @@ const MatchingType = () => {
       </div>
 
       <div className="w-full flex-col gap-[0.8rem] px-[1.6rem]">
-        <Button label="1:1 매칭" size={'setting_L'} variant={'white'} />
-        <Button label="그룹 매칭" size={'setting_L'} variant={'white'} />
+        {MATCHING_TYPE.map((option) => (
+          <Button
+            key={option}
+            label={option}
+            size={'setting_L'}
+            variant={selectedOption === option ? 'skyblueBorder' : 'white'}
+            onClick={() => onSelect(option)}
+          />
+        ))}
       </div>
     </div>
   );
