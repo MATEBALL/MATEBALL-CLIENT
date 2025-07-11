@@ -1,6 +1,5 @@
 import ErrorView from '@pages/error/error-view';
 import { LoginCallback } from '@pages/login/components/login-callback';
-// import Splash from '@pages/login/components/splash';
 import Layout from '@routes/layout';
 import {
   ChatList,
