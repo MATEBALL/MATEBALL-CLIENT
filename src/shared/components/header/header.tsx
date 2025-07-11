@@ -11,12 +11,13 @@ const Header = () => {
 
   const isSignUp = location.pathname.includes(ROUTES.SIGNUP);
   const isHome = location.pathname === ROUTES.HOME;
+  const isResultFail = location.pathname === '/result' && urlParams.get('type') === 'fail';
 
   return (
     <header
-      className={clsx('header-layout', {
-        'bg-gray-black': isHome,
+      className={clsx('h-[5.6rem] py-[1.55rem] pl-[2rem]', {
         'bg-gray-white': isSignUp,
+        'bg-gray-black': isResultFail || isHome,
       })}
     >
       {getHeaderContent(location.pathname, isFail, navigate)}

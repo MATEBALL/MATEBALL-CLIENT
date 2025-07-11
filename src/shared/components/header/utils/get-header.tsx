@@ -27,11 +27,10 @@ export const getHeaderContent = (
     );
   }
 
-  if (pathname === ROUTES.MATCH) {
-    return <h1 className="head_20_sb text-gray-black">매칭현황</h1>;
-  }
+  const urlParams = new URLSearchParams(location.search);
+  const isResultFail = location.pathname === '/result' && urlParams.get('type') === 'fail';
 
-  if (isFail) {
+  if (isFail || isResultFail) {
     return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }
 
