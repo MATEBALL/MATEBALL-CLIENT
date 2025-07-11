@@ -4,7 +4,11 @@ import ProfileCard from '@pages/sign-up/components/profile-card';
 import { AGE_LIMIT_MESSAGE, AGE_NOTICE, NOTICE } from '@pages/sign-up/constants/NOTICE';
 import { isAdult } from '@pages/sign-up/utils/age-calculate';
 
-const KakaoStep = () => {
+interface KakaoStepProps {
+  goNext: () => void;
+}
+
+const KakaoStep = ({ goNext }: KakaoStepProps) => {
   const data = mockKaKaoData;
   const isUnderage = !isAdult(data.birthYear);
 
@@ -33,7 +37,13 @@ const KakaoStep = () => {
           )}
         </div>
       </div>
-      <Button label="다음으로" className="w-full" ariaLabel="다음으로" disabled={isUnderage} />
+      <Button
+        label="다음으로"
+        className="w-full"
+        ariaLabel="다음으로"
+        disabled={isUnderage}
+        onClick={goNext}
+      />
     </div>
   );
 };
