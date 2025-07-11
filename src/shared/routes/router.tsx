@@ -1,5 +1,6 @@
 import ErrorView from '@pages/error/error-view';
 import { LoginCallback } from '@pages/login/components/login-callback';
+// import Splash from '@pages/login/components/splash';
 import Layout from '@routes/layout';
 import {
   ChatList,
@@ -21,6 +22,7 @@ import { ROUTES } from '@routes/routes-config';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
+  // { path: '/', element: <Splash /> },
   {
     path: ROUTES.LAYOUT,
     element: <Layout />,
