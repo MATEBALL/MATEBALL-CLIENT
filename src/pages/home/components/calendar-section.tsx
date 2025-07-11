@@ -1,7 +1,7 @@
 import WeekCalendar from '@components/calendar/week-calendar';
-import Icon from '@components/icon/icon';
 import TabList from '@components/tab/tab/tab-list';
 import type { TabType } from '@hooks/use-tab-state';
+import CalendarButton from '@pages/home/components/calendar-button';
 
 interface CalendarSectionProps {
   activeType: TabType;
@@ -35,13 +35,7 @@ const CalendarSection = ({
       />
       <section className="mt-[3.5rem] flex justify-between">
         <TabList colorMode="dark" activeType={activeType} onTabChange={handleTabChange} />
-        <button
-          type="button"
-          className="h-[3.2rem] w-[3.2rem] flex-col-center rounded-[8px] bg-gray-900"
-          onClick={onOpenBottomSheet}
-        >
-          <Icon name="ic-calendar" size={2.4} className="cursor-pointer text-gray-white" />
-        </button>
+        <CalendarButton onOpenBottomSheet={onOpenBottomSheet} />
       </section>
     </section>
   );

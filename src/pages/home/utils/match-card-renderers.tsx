@@ -4,13 +4,18 @@ import type {
   GroupCardProps,
   SingleCardProps,
 } from '@components/card/match-card/types/card';
+import { formatToKoreanDate } from './date-format';
 
-export type SingleMatch = SingleCardProps & { id: string | number };
-export type GroupMatch = GroupCardProps & { id: string | number };
+export interface SingleMatch extends SingleCardProps {
+  id: string | number;
+}
+export interface GroupMatch extends GroupCardProps {
+  id: string | number;
+}
 
 export const getCommonProps = (match: SingleMatch | GroupMatch) => ({
   nickname: match.nickname,
-  date: match.date,
+  date: formatToKoreanDate(match.date),
   imgUrl: match.imgUrl,
   awayTeam: match.awayTeam,
   homeTeam: match.homeTeam,
@@ -27,7 +32,7 @@ export const renderSingleCard = (match: SingleMatch) => (
     gender={match.gender}
     team={match.team}
     style={match.style}
-    chips={[match.team as ChipColor, match.style as ChipColor]}
+    chips={[match.team, match.style] as ChipColor[]}
   />
 );
 
@@ -35,11 +40,31 @@ export const renderGroupCard = (match: GroupMatch) => (
   <Card key={match.id} type="group" {...getCommonProps(match)} count={match.count} />
 );
 
-export const renderMatchCards = (matches: (SingleMatch | GroupMatch)[], isOneOnOne: boolean) => {
-  return matches.map((match) => {
-    if (isOneOnOne) {
-      return renderSingleCard(match as SingleMatch);
-    }
-    return renderGroupCard(match as GroupMatch);
-  });
+const isSingleMatch = (match: unknown): match is SingleMatch => {
+  return (
+    typeof match === 'object' &&
+    match !== null &&
+    'age' in match &&
+    'gender' in match &&
+    'team' in match &&
+    'style' in match
+  );
+};
+
+const isGroupMatch = (match: unknown): match is GroupMatch => {
+  return typeof match === 'object' && match !== null && 'count' in match && !('age' in match);
+};
+
+export const renderMatchCards = (matches: unknown[], isOneOnOne: boolean) => {
+  return matches
+    .map((match) => {
+      if (isOneOnOne && isSingleMatch(match)) {
+        return renderSingleCard(match);
+      }
+      if (!isOneOnOne && isGroupMatch(match)) {
+        return renderGroupCard(match);
+      }
+      return null;
+    })
+    .filter(Boolean);
 };

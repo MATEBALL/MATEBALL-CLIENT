@@ -2,12 +2,14 @@ import { profileVariants } from '@components/card/match-card/styles/card-variant
 import type { CardProfileProps } from '@components/card/match-card/types/card';
 import { getDisplayImages } from '@components/card/match-card/utils/get-display-images';
 import { cn } from '@libs/cn';
-import defaultProfile from '@svg/profile.svg';
 
 const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
+  const DEFAULT_PROFILE_URL = '/svgs/profile.svg';
+
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = defaultProfile;
+    e.currentTarget.src = DEFAULT_PROFILE_URL;
   };
+
   const normalizedImgUrl = Array.isArray(imgUrl) ? imgUrl : [imgUrl];
   const displayImages = getDisplayImages(type, normalizedImgUrl);
 

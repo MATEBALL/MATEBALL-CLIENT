@@ -1,4 +1,4 @@
-import defaultProfile from '@svg/profile.svg';
+const DEFAULT_PROFILE_URL = '/svgs/profile.svg';
 
 export function getDisplayImages(type: string, imgUrl: string[] = []): string[] {
   if (type === 'group') {
@@ -9,7 +9,7 @@ export function getDisplayImages(type: string, imgUrl: string[] = []): string[] 
   }
 
   if (!imgUrl || imgUrl.length === 0) {
-    return [defaultProfile];
+    return [DEFAULT_PROFILE_URL];
   }
 
   return imgUrl.slice(0, 1);
