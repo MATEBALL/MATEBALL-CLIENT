@@ -5,7 +5,7 @@ import type { OnboardingStepProps } from '../types/onboarding';
 
 const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
-    <div className="h-full w-full flex-col-between gap-[12.8rem]">
+    <div className="mt-[3.2rem] h-full w-full flex-col-between gap-[12.8rem]">
       <div className="flex-col-center gap-[2.4rem]">
         <Icon name="graphic-cheer-team" width={10.4} height={10.4} />
         <p className="head_20_sb text-center text-gray-black">

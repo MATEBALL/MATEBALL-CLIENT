@@ -6,7 +6,7 @@ interface OnboardingHeaderProps {
 
 const OnboardingHeader = ({ onClick }: OnboardingHeaderProps) => {
   return (
-    <div className="flex w-full justify-start py-[0.4rem]">
+    <div className="flex h-[5.6rem] w-full justify-start py-[0.4rem]">
       <Icon
         name="ic-arrow-left-24"
         width={4.8}

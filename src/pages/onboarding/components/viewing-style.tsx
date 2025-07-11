@@ -5,7 +5,7 @@ import type { OnboardingStepProps } from '../types/onboarding';
 
 const ViewingStyle = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
-    <div className="h-full w-full flex-col-between gap-[5.4rem]">
+    <div className="mt-[3.2rem] h-full w-full flex-col-between gap-[5.4rem]">
       <div className="flex-col-center gap-[2.4rem]">
         <Icon name="graphic-watching" width={10.4} height={10.4} />
         <div className="flex-col-center gap-[0.8rem]">

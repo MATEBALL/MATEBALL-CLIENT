@@ -26,13 +26,15 @@ const OnboardingGroup = () => {
   const isStepCompleted = (stepName: string) => selections[stepName] !== null;
 
   return (
-    <div className="flex h-[100dvh] flex-col justify-between">
-      <OnboardingHeader onClick={goPrev} />
-      {currentStep !== 'START' && (
-        <div className="w-full">
-          <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
-        </div>
-      )}
+    <div className="flex h-[100svh] flex-col">
+      <div className="sticky top-0 bg-background">
+        <OnboardingHeader onClick={goPrev} />
+        {currentStep !== 'START' && (
+          <div className="w-full">
+            <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
+          </div>
+        )}
+      </div>
 
       <div className="h-full flex-col-between">
         <Funnel>
