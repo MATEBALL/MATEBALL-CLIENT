@@ -44,13 +44,8 @@ export const getHeaderContent = (
     );
   }
 
-  if (pathname === ROUTES.MATCH) {
-    return <h1 className="head_20_sb text-gray-black">매칭현황</h1>;
-  }
 
-  const isResultFail = pathname === ROUTES.RESULT && urlParams.get('type') === 'fail';
-
-  if (isFail || isResultFail) {
+  if (isFail) {
     return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }
 
