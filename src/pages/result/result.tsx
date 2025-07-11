@@ -14,11 +14,11 @@ const ResultPage = () => {
   }
 
   if (type === 'success') {
-  return <>매칭 성공 화면</>;
+    return <>매칭 성공 화면</>;
   }
 
   if (type === 'fail') {
-  return <>매칭 실패 화면</>;
+    return <>매칭 실패 화면</>;
   }
 
   return <div>잘못된 접근입니다</div>;

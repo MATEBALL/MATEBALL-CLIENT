@@ -12,7 +12,9 @@ const SentView = ({ isGroupMatching = true, userNickname }: SentViewProps) => {
   return (
     <div className="relative max-h-screen flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem] pb-[8rem]">
       <h2 className="title_24_sb">매칭 요청이 전송되었어요!</h2>
-      <Lottie src={LOTTIE_PATH.SEND} loop />
+      <div className="flex h-[16rem] w-[16rem] items-center justify-center">
+        <Lottie src={LOTTIE_PATH.SEND} loop />
+      </div>
       <p className="body_16_m text-center text-gray-600">
         {isGroupMatching
           ? MATCHING_COMPLETE_MESSAGE.group
