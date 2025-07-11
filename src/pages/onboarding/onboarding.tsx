@@ -3,6 +3,7 @@ import { useFunnel } from '@hooks/use-funnel';
 import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Complete from './components/complete';
 import Gender from './components/gender';
 import MatchingType from './components/matching-type';
 import OnboardingHeader from './components/onboarding-header';
@@ -134,6 +135,13 @@ const Onboarding = () => {
                 }}
                 disabled={!isStepCompleted('MATCHING_TYPE')}
               />
+            </div>
+          </Step>
+
+          <Step name="COMPLETE">
+            <Complete />
+            <div className="sticky bottom-0 w-full p-[1.6rem]">
+              <Button label="메인 화면으로 이동하기" size={'L'} onClick={goNext} />
             </div>
           </Step>
         </Funnel>

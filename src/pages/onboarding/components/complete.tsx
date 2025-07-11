@@ -3,7 +3,7 @@ import { Lottie } from '@toss/lottie';
 
 const Complete = () => {
   return (
-    <div className="flex-col-center gap-[4rem]">
+    <div className="mt-[1.6rem] flex-col-center gap-[4rem]">
       <p className="title_24_sb text-center text-gray-black">
         매칭 조건 설정이
         <br />

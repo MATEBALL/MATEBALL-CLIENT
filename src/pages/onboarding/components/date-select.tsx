@@ -3,8 +3,10 @@ import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
 import ButtonGame from '@components/button/button-game/button-game';
 import MonthCalendar from '@components/calendar/month-calendar';
+import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
-import { addDays, startOfDay } from 'date-fns';
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 
 const mockGames = [
@@ -50,7 +52,9 @@ interface DateSelectProps {
 }
 
 const DateSelect = ({ onComplete }: DateSelectProps) => {
-  const [selectedDate, setSelectedDate] = useState<Date>(addDays(startOfDay(new Date()), 2));
+  const initailSelectedDate = getInitialSelectedDate(new Date());
+
+  const [selectedDate, setSelectedDate] = useState<Date>(initailSelectedDate);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
 
   const { isOpen, open, close } = useBottomSheet();
@@ -83,7 +87,9 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
       <BottomSheet isOpen={isOpen} onClose={close}>
         <div className="flex-col gap-[1.6rem]">
           <div className="flex-col gap-[1.3rem] px-[1.6rem] pt-[1.6rem]">
-            <p className="cap_14_m text-gray-black">7월 17일 화요일</p>
+            <p className="cap_14_m text-gray-black">
+              {format(selectedDate, 'M월 d일 EEEE', { locale: ko })}
+            </p>
             <div className="flex-col-center gap-[0.8rem]">
               {mockGames.map((game) => (
                 <ButtonGame

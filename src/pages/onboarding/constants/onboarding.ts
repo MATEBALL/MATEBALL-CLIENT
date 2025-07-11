@@ -5,6 +5,7 @@ export const FIRST_FUNNEL_STEPS = [
   'VIEWING_STYLE',
   'GENDER',
   'MATCHING_TYPE',
+  'COMPLETE',
 ] as const;
 
 export const GROUP_FUNNEL_STEPS = ['GROUP_ROLE', 'DATE_SELECT', 'COMPLETE'] as const;
