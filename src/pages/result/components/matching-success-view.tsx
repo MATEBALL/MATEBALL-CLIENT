@@ -3,14 +3,21 @@ import { LOTTIE_PATH } from '@constants/lotties';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
+import { MATCHING_SUCCESS_TITLE } from '@pages/match/constants/matching';
 
-const MatchingSuccessView = () => {
+interface MatchingSuccessViewProps {
+  isGroupMatching: boolean;
+}
+
+const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const navigate = useNavigate();
 
   return (
     <div className="h-full flex-col-between">
       <div className="flex-col-center gap-[4rem] rounded-full px-[1.6rem] pt-[4rem] pb-[8rem]">
-        <h2 className="title_24_sb text-center">매칭이 성사되었어요!</h2>
+        <h2 className="title_24_sb text-center">
+          {isGroupMatching ? MATCHING_SUCCESS_TITLE.group : MATCHING_SUCCESS_TITLE.single}
+        </h2>
         <div className="relative">
           <div className="matching-success-background" />
           <div className="matching-lottie-gradient" />
@@ -22,6 +29,7 @@ const MatchingSuccessView = () => {
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
+        {/* TODO: onClick 로직 수정 */}
         <Button label="채팅방 입장하기" className="w-full" onClick={() => navigate(ROUTES.MATCH)} />
       </div>
     </div>
