@@ -15,7 +15,7 @@ export const instance = axios.create({
 
 instance.interceptors.response.use(
   (response) => {
-    return response.data.data;
+    return response.data;
   },
   (error: AxiosError) => {
     const statusCode = error.response?.status;
