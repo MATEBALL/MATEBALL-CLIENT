@@ -5,6 +5,7 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
+import mkcert from 'vite-plugin-mkcert';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const dirname =
@@ -12,6 +13,7 @@ const dirname =
 
 export default defineConfig({
   plugins: [
+    mkcert(),
     react(),
     svgSprite({
       iconDirs: [resolve(dirname, 'src/shared/assets/svgs')],
@@ -26,8 +28,6 @@ export default defineConfig({
       {
         extends: true,
         plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon#storybooktest
           storybookTest({
             configDir: path.join(dirname, '.storybook'),
           }),
