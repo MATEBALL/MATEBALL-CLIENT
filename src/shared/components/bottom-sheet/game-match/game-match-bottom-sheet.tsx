@@ -1,9 +1,24 @@
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-footer';
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
-import type { GameMatchBottomSheetProps } from '@components/bottom-sheet/game-match/types/game-type';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { useState } from 'react';
+
+interface GameScheduleItem {
+  id: number;
+  awayTeam: string;
+  homeTeam: string;
+  gameTime: string;
+  stadium: string;
+}
+
+interface GameMatchBottomSheetProps {
+  isOpen: boolean;
+  onClose: () => void;
+  date: string;
+  gameSchedule: GameScheduleItem[];
+  onClick?: (selectedId: number | null) => void;
+}
 
 const GameMatchBottomSheet = ({
   isOpen,

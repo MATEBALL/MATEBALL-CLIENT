@@ -1,6 +1,10 @@
-import type { GameMatchFooterProps } from '@components/bottom-sheet/game-match/types/game-type';
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
+
+interface GameMatchFooterProps {
+  onSubmit: () => void;
+  disabled: boolean;
+}
 
 const GameMatchFooter = ({ onSubmit, disabled }: GameMatchFooterProps) => {
   return (

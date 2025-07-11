@@ -1,6 +1,14 @@
-import type { GameMatchItemProps } from '@components/bottom-sheet/game-match/types/game-type';
 import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
+
+interface GameMatchItemProps {
+  isSelected?: boolean;
+  away: string;
+  home: string;
+  time: string;
+  stadium: string;
+  onClick?: () => void;
+}
 
 const GameMatchItem = ({ isSelected, away, home, time, stadium, onClick }: GameMatchItemProps) => {
   const stateClass = isSelected ? 'game-match-selected' : 'game-match-default';
