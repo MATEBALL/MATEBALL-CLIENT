@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import TabList from '@components/tab/tab/tab-list';
-import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import Card from '@components/card/match-card/card';
 import type { CardProps } from '@components/card/match-card/types/card';
+import FillTabList from '@components/tab/fill-tab/fill-tab-list';
+import TabList from '@components/tab/tab/tab-list';
+import { useState } from 'react';
 
 const Match = () => {
   const [filter, setFilter] = useState<string>('전체');
@@ -90,8 +90,12 @@ const Match = () => {
                   <FillTabList tabs={fillTabItems} onChange={setFilter} />
                 </div>
                 <div className="flex-col gap-[0.8rem]">
-                  {filterCards(singleMockData).map((card, idx) => (
-                    <Card key={idx} {...card} className="w-full" />
+                  {filterCards(singleMockData).map((card) => (
+                    <Card
+                      key={`${card.type}-${card.nickname}-${card.date}-${card.status}`}
+                      {...card}
+                      className="w-full"
+                    />
                   ))}
                 </div>
               </>
@@ -102,8 +106,12 @@ const Match = () => {
                   <FillTabList tabs={fillTabItems} onChange={setFilter} />
                 </div>
                 <div className="flex-col gap-[0.8rem]">
-                  {filterCards(groupMockData).map((card, idx) => (
-                    <Card key={idx} {...card} className="w-full" />
+                  {filterCards(groupMockData).map((card) => (
+                    <Card
+                      key={`${card.type}-${card.nickname}-${card.date}-${card.status}`}
+                      {...card}
+                      className="w-full"
+                    />
                   ))}
                 </div>
               </>
