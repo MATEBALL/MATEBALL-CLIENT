@@ -1,12 +1,18 @@
 import FillTabItem from '@components/tab/fill-tab/fill-tab-item';
 import { useState } from 'react';
 
-interface TabListProps {
+interface FillTabListProps {
   tabs: string[];
+  onChange?: (tab: string) => void;
 }
 
-const FillTabList = ({ tabs }: TabListProps) => {
+const FillTabList = ({ tabs, onChange }: FillTabListProps) => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    onChange?.(tab);
+  };
 
   return (
     <div className="flex gap-[0.8rem]">
@@ -15,7 +21,7 @@ const FillTabList = ({ tabs }: TabListProps) => {
           key={title}
           title={title}
           isActive={activeTab === title}
-          onClick={() => setActiveTab(title)}
+          onClick={() => handleTabClick(title)}
         />
       ))}
     </div>
