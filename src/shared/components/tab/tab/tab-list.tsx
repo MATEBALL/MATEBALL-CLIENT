@@ -8,9 +8,10 @@ import { useState } from 'react';
 
 interface TabListProps {
   colorMode: TabStyleKey;
+  contentMap: Record<TabType, React.ReactNode>;
 }
 
-const TabList = ({ colorMode }: TabListProps) => {
+const TabList = ({ colorMode, contentMap }: TabListProps) => {
   const types: TabType[] = [TAB_TYPES.SINGLE, TAB_TYPES.GROUP];
   const [activeType, setActiveType] = useState<TabType>(TAB_TYPES.SINGLE);
 
@@ -31,7 +32,7 @@ const TabList = ({ colorMode }: TabListProps) => {
       </div>
 
       <div className="mt-4">
-        <TabContent activeType={activeType} />
+        <TabContent activeType={activeType} contentMap={contentMap} />
       </div>
     </div>
   );
