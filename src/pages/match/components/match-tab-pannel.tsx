@@ -73,5 +73,4 @@ const getCardColor = (status?: string): 'active' | 'inactive' => {
   );
 };
 
-
 export default MatchTabPanel;
