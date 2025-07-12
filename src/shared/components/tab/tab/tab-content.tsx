@@ -1,19 +1,12 @@
 export type TabType = '1:1' | '그룹';
 
-export type TabContentProps = {
+export interface TabContentProps {
   activeType: TabType;
-};
+  contentMap: Record<TabType, React.ReactNode>;
+}
 
-const TabContent = ({ activeType }: TabContentProps) => {
-  if (activeType === '1:1') {
-    return <div>1:1 매칭 탭 콘텐츠입니다</div>;
-  }
-
-  if (activeType === '그룹') {
-    return <div>그룹 매칭 탭 콘텐츠입니다</div>;
-  }
-
-  return null;
+const TabContent = ({ activeType, contentMap }: TabContentProps) => {
+  return <>{contentMap[activeType]}</>;
 };
 
 export default TabContent;
