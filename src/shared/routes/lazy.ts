@@ -22,4 +22,4 @@ export const EditProfile = lazy(() => import('@pages/profile/edit-profile/edit-p
 
 // Chat
 export const ChatList = lazy(() => import('@pages/chat/chat-list'));
-export const ChatRoom = lazy(() => import('@pages/chat/components/chat-room/chat-room'));
+export const ChatRoom = lazy(() => import('@pages/chat/components/chat-room'));
