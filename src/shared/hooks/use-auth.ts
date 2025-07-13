@@ -5,11 +5,13 @@ const useAuth = () => {
   const { data, isLoading, isError } = useQuery(userQueries.USER_INFO());
 
   const isAuthenticated = !!data?.nickname;
+  const needsSignup = data && data.nickname === null;
 
   return {
     isAuthenticated,
     isLoading,
     isError,
+    needsSignup,
   };
 };
 
