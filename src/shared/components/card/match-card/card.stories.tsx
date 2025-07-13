@@ -1,10 +1,19 @@
 import Card from '@components/card/match-card/card';
 import type { CardProps } from '@components/card/match-card/types/card';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Card> = {
   title: 'COMMON/Card/MatchCard',
   component: Card,
+
+  decorators: [
+    (Story) => (
+      <MemoryRouter initialEntries={['/match']}>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   parameters: {
     layout: 'centered',
     docs: {
@@ -43,6 +52,10 @@ const meta: Meta<typeof Card> = {
 ### Group 전용 Props:
 
 - count: 매칭된 인원 수
+
+### Create 페이지에서의 동작:
+
+Create 페이지(/match/create)에서는 ChipState(매칭률, 상태)가 표시되지 않습니다.
 `,
       },
     },
@@ -160,6 +173,7 @@ const meta: Meta<typeof Card> = {
 export default meta;
 type Story = StoryObj<CardProps>;
 
+// 기본 스토리들 - Meta의 공통 Router 사용 (/match 경로)
 export const Single: Story = {
   args: {
     type: 'single',
@@ -177,6 +191,8 @@ export const Single: Story = {
     ],
     chips: ['키움', '열정응원러'],
     status: '매칭 완료',
+    color: 'active',
+    matchRate: 88,
   },
 };
 
@@ -190,7 +206,7 @@ export const Detailed: Story = {
     team: 'LG',
     awayTeam: 'LG',
     homeTeam: '두산',
-    style: '경기장',
+    style: '조용응원러',
     date: '11월 11일',
     introduction: '야구장에서 함께 응원해요! 치킨과 맥주 좋아합니다 🍺',
     matchRate: 85,
@@ -199,6 +215,7 @@ export const Detailed: Story = {
     ],
     chips: ['키움', '열정응원러'],
     status: '매칭 완료',
+    color: 'active',
   },
 };
 
@@ -217,5 +234,7 @@ export const Group: Story = {
       'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face',
     ],
     status: '매칭 완료',
+    color: 'inactive',
+    matchRate: 75,
   },
 };

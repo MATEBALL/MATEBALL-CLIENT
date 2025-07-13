@@ -1,5 +1,4 @@
 import type { Preview } from '@storybook/react-vite';
-import { MemoryRouter } from 'react-router-dom';
 import '../src/shared/styles/story-style.css';
 
 const preview: Preview = {
@@ -12,12 +11,6 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story) => (
-      <MemoryRouter initialEntries={['/']}>
-        <Story />
-      </MemoryRouter>
-    ),
-
     (Story) => (
       <div className="flex-row-center py-12">
         <Story />
