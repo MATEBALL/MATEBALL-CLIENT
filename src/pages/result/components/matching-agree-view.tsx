@@ -17,7 +17,7 @@ const MatchingAgreeView = () => {
         <h2 className="title_24_sb text-center">매칭 수락이 완료되었습니다.</h2>
         <div className="flex-col-center gap-[1.6rem]">
           <div className="h-[16rem] w-[16rem] flex-row-center">
-            <Lottie src={LOTTIE_PATH.AGREE} loop={true} className="width-[16rem]" />
+            <Lottie src={LOTTIE_PATH.AGREE} loop={true} className="w-[16rem]" />
           </div>
           <MatchCurrentCard count={matchedCount} />
         </div>
@@ -27,7 +27,11 @@ const MatchingAgreeView = () => {
         </p>
       </div>
       <div className="flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button label="메이트 더 찾아보기" variant="skyblue" onClick={() => navigate(-1)} />
+        <Button
+          label="메이트 더 찾아보기"
+          variant="skyblue"
+          onClick={() => navigate(ROUTES.HOME)}
+        />
         <Button label="매칭 현황 보기" onClick={() => navigate(ROUTES.MATCH)} />
       </div>
     </div>

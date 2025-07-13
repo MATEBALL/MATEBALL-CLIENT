@@ -13,7 +13,24 @@ export const getHeaderContent = (
   };
 
   const handleBackClick = () => {
-    if (navigate) navigate(-1);
+    const type = urlParams.get('type');
+    const mode = urlParams.get('mode');
+
+    const goHomeTypes = type === 'sent' && (mode === 'group' || mode === 'single');
+    const goMatchTypes = ['fail', 'agree', 'success', 'receive'].includes(type ?? '');
+
+    if (pathname === ROUTES.RESULT) {
+      if (goHomeTypes) {
+        navigate?.(ROUTES.HOME);
+        return;
+      }
+      if (goMatchTypes) {
+        navigate?.(ROUTES.MATCH);
+        return;
+      }
+    }
+
+    navigate?.(-1);
   };
 
   if (pathname === ROUTES.HOME) {
