@@ -4,7 +4,7 @@ import { singleMockData, groupMockData } from '@mocks/matchCardData';
 const Match = () => {
 
   return (
-    <div className="flex-col">
+    <div className="flex-col h-[100dvh] overflow-hidden">
       <section className="px-[1.6rem]">
         <TabList
           colorMode="light"
