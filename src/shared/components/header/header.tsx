@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const isFail = urlParams.get('type') === 'fail';
   const isSignUp = pathname.includes(ROUTES.SIGNUP);

@@ -25,8 +25,7 @@ export const getHeaderContent = (
       if (goMatchTypes.includes(type)) {
         navigate(ROUTES.MATCH);
         return;
-      } 
-
+      }
     }
 
     navigate(-1);
