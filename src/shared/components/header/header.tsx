@@ -16,7 +16,7 @@ const Header = () => {
         'bg-gray-white': isSignUp,
       })}
     >
-      {getHeaderContent(location.pathname, isFail, navigate)}
+      {getHeaderContent(location.pathname, urlParams, isFail, navigate)}
     </header>
   );
 };

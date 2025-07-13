@@ -4,6 +4,7 @@ import type { NavigateFunction } from 'react-router-dom';
 
 export const getHeaderContent = (
   pathname: string,
+  urlParams: URLSearchParams,
   isFail: boolean,
   navigate?: NavigateFunction,
 ) => {
@@ -27,9 +28,11 @@ export const getHeaderContent = (
     );
   }
 
-  const urlParams = new URLSearchParams(location.search);
-  const isResultFail = location.pathname === '/result' && urlParams.get('type') === 'fail';
+  if (pathname === ROUTES.MATCH) {
+    return <h1 className="head_20_sb text-gray-black">매칭현황</h1>;
+  }
 
+  const isResultFail = pathname === ROUTES.RESULT && urlParams.get('type') === 'fail';
   if (isFail || isResultFail) {
     return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }
