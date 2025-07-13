@@ -48,7 +48,19 @@ export interface DetailedCardProps extends BaseCardProps {
   style: string;
 }
 
-export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps;
+export interface UserCardProps {
+  type: 'user';
+  nickname: string;
+  imgUrl: string[];
+  chips: ChipColor[];
+  age: string;
+  gender: string;
+  introduction: string;
+  className?: string;
+  color?: 'active' | 'inactive';
+}
+
+export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
 
 export interface CardProfileProps {
   type: 'single' | 'group' | 'detailed';

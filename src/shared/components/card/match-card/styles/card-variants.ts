@@ -5,7 +5,12 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
     type: {
       single: 'h-[12.2rem] p-[1.6rem]',
       group: 'h-[12.9rem] p-[2rem]',
+<<<<<<< HEAD
       detailed: 'p-[2rem] shadow-1',
+=======
+      detailed: 'gap-[1.2rem] p-[2rem] shadow-1',
+      user: 'p-[2rem] shadow-1',
+>>>>>>> b4e60b6 (feat: 카드 컴포넌트 타입 추가 (#126))
     },
     color: {
       active: 'border-[1px] border-main-600 bg-main-200',
