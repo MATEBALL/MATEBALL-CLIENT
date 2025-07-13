@@ -48,12 +48,14 @@ export interface UserCardProps {
   type: 'user';
   nickname: string;
   imgUrl: string[];
-  chips: ChipColor[];
+  team: string;
+  style: string;
   age: string;
   gender: string;
   introduction: string;
   className?: string;
   color?: 'active' | 'inactive';
+  chips: ChipColor[];
 }
 
 export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
