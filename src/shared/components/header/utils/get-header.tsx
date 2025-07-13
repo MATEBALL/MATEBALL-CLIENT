@@ -6,30 +6,29 @@ export const getHeaderContent = (
   pathname: string,
   urlParams: URLSearchParams,
   isFail: boolean,
-  navigate?: NavigateFunction,
+  navigate: NavigateFunction,
 ) => {
   const handleLogoClick = () => {
-    if (navigate) navigate(ROUTES.HOME);
+    navigate(ROUTES.HOME);
   };
 
   const handleBackClick = () => {
     const type = urlParams.get('type');
-
-    const goHomeTypes = type === 'sent';
     const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
 
     if (pathname === ROUTES.RESULT) {
-      if (goHomeTypes) {
-        navigate?.(ROUTES.HOME);
+      if (type === 'sent') {
+        navigate(ROUTES.HOME);
         return;
       }
-      if (goMatchTypes) {
-        navigate?.(ROUTES.MATCH);
+
+      if (goMatchTypes.includes('type')) {
+        navigate(ROUTES.MATCH);
         return;
       }
     }
 
-    navigate?.(-1);
+    navigate(-1);
   };
 
   if (pathname === ROUTES.HOME) {
