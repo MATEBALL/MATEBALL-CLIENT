@@ -1,5 +1,11 @@
+import ChatCard from '@pages/chat/components/chat-card/chat-card';
+
 const ChatList = () => {
-  return <div>채팅목록</div>;
+  return (
+    <div>
+      <ChatCard />
+    </div>
+  );
 };
 
 export default ChatList;
