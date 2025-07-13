@@ -1,4 +1,4 @@
-import Icon from '@components/icon/icon';
+import ProfileImages from '@pages/chat/utils/get-profile-images';
 
 interface ChatCardProps {
   chat: {
@@ -14,8 +14,8 @@ interface ChatCardProps {
 
 const ChatCard = ({ chat }: ChatCardProps) => {
   return (
-    <section className="flex gap-[1.2rem] rounded-[12px] bg-gray-white p-[1.6rem]">
-      <Icon name="chat-profile" size={4.8} />
+    <section className="flex cursor-pointer gap-[1.2rem] rounded-[12px] bg-gray-white p-[1.6rem]">
+      {ProfileImages(chat.type)}
       <div className="w-full flex-col gap-[0.4rem]">
         <div className="w-full flex-row-between">
           <div className="flex gap-[0.4rem]">
