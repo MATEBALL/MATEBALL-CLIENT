@@ -28,7 +28,11 @@ export const getHeaderContent = (
   }
 
   if (pathname === ROUTES.MATCH) {
-    return <h1 className="head_20_sb text-gray-black">매칭현황</h1>;
+    return <h1 className="head_20_sb text-gray-black">매칭 현황</h1>;
+  }
+
+  if (pathname === ROUTES.PROFILE) {
+    return <h1 className="head_20_sb text-gray-black">내 정보</h1>;
   }
 
   if (isFail) {

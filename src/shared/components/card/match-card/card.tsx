@@ -17,9 +17,11 @@ const Card = (props: CardProps) => {
     <div className={cn(cardVariants({ type, color }), className)}>
       <CardHeader {...props} />
       <div className={cn(type === 'detailed' && 'flex flex-col gap-[1.2rem]')}>
-        {type === 'detailed' && <p className={introductionClass}>{props.introduction}</p>}
+        {(type === 'detailed' || type === 'user') && (
+          <p className={introductionClass}>{props.introduction}</p>
+        )}
 
-        <CardGameInfo className={gameInfoClass} {...props} />
+        {type !== 'user' && <CardGameInfo className={gameInfoClass} {...props} />}
 
         {type === 'detailed' && (
           <div>

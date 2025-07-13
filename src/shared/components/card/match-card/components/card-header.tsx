@@ -71,6 +71,24 @@ const CardHeader = (props: CardProps) => {
           )}
         </div>
       );
+
+    case 'user':
+      return (
+        <div className="flex">
+          <CardProfile type="single" imgUrl={props.imgUrl} />
+          <div>
+            <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
+              <div className="body_16_b">{props.nickname}</div>
+              <div className="cap_12_m text-gray-600">
+                {props.age}세 | {props.gender}
+              </div>
+            </div>
+            <div className="ml-[1.2rem] flex-row gap-[0.8rem]">
+              <ChipList names={props.chips} />
+            </div>
+          </div>
+        </div>
+      );
   }
 };
 

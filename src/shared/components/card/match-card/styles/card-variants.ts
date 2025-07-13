@@ -6,6 +6,7 @@ export const cardVariants = cva('relative w-[34.3rem] rounded-[12px] bg-white', 
       single: 'h-[12.2rem] p-[1.6rem]',
       group: 'h-[12.9rem] p-[2rem]',
       detailed: 'gap-[1.2rem] p-[2rem] shadow-1',
+      user: 'p-[2rem] shadow-1',
     },
     color: {
       active: 'border-[1px] border-main-600 bg-main-200',
