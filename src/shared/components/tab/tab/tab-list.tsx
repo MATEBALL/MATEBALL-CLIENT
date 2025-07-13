@@ -4,14 +4,16 @@ import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
 import TabItem from '@components/tab/tab/tab-item';
 import { cn } from '@libs/cn';
+import type { ReactNode } from 'react';
 
 interface TabListProps {
   colorMode: TabStyleKey;
   activeType: TabType;
   onTabChange: (type: TabType) => void;
+  contentMap?: Partial<Record<TabType, ReactNode>>;
 }
 
-const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
+const TabList = ({ colorMode, activeType, onTabChange, contentMap }: TabListProps) => {
   const types: TabType[] = [TAB_TYPES.SINGLE, TAB_TYPES.GROUP];
 
   const tabStyle = tabStyleMap[colorMode];
@@ -29,6 +31,7 @@ const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
           />
         ))}
       </div>
+      {contentMap?.[activeType]}
     </div>
   );
 };
