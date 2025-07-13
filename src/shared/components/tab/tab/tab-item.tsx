@@ -1,14 +1,14 @@
 import type { TabStyleValue } from '@components/tab/tab/styles/tab-style';
 import { cn } from '@libs/cn';
 
-interface BarTabItemProps {
+interface TabItemProps {
   label: string;
   isActive: boolean;
   style: TabStyleValue;
   onClick?: () => void;
 }
 
-const BarTabItem = ({ label, isActive, style, onClick }: BarTabItemProps) => {
+const TabItem = ({ label, isActive, style, onClick }: TabItemProps) => {
   return (
     <button
       type="button"
@@ -18,7 +18,7 @@ const BarTabItem = ({ label, isActive, style, onClick }: BarTabItemProps) => {
         'w-[4.8rem] border-b-[2px]',
         isActive ? style.borderActive : style.borderInactive,
         style.height,
-        'flex-row-center cursor-pointer whitespace-nowrap py-[0.6rem]',
+        'flex-row-center cursor-pointer whitespace-nowrap',
       )}
     >
       <span
@@ -34,4 +34,4 @@ const BarTabItem = ({ label, isActive, style, onClick }: BarTabItemProps) => {
   );
 };
 
-export default BarTabItem;
+export default TabItem;

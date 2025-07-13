@@ -14,7 +14,7 @@ const Layout = () => {
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="h-screen flex-col">
       {showHeader && <Header />}
       <main className="flex-grow">
         <Suspense fallback={<div />}>

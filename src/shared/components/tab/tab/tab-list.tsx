@@ -1,18 +1,18 @@
+import type { TabType } from '@components/tab/tab/constants/tab-type';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { TabStyleKey } from '@components/tab/tab/styles/tab-style';
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
-import TabContent, { type TabType } from '@components/tab/tab/tab-content';
 import TabItem from '@components/tab/tab/tab-item';
 import { cn } from '@libs/cn';
-import { useState } from 'react';
 
 interface TabListProps {
   colorMode: TabStyleKey;
+  activeType: TabType;
+  onTabChange: (type: TabType) => void;
 }
 
-const TabList = ({ colorMode }: TabListProps) => {
+const TabList = ({ colorMode, activeType, onTabChange }: TabListProps) => {
   const types: TabType[] = [TAB_TYPES.SINGLE, TAB_TYPES.GROUP];
-  const [activeType, setActiveType] = useState<TabType>(TAB_TYPES.SINGLE);
 
   const tabStyle = tabStyleMap[colorMode];
 
@@ -25,13 +25,9 @@ const TabList = ({ colorMode }: TabListProps) => {
             label={label}
             isActive={activeType === label}
             style={tabStyle}
-            onClick={() => setActiveType(label)}
+            onClick={() => onTabChange(label)}
           />
         ))}
-      </div>
-
-      <div className="mt-4">
-        <TabContent activeType={activeType} />
       </div>
     </div>
   );
