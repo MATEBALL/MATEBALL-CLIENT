@@ -16,13 +16,12 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "strict": true, 
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "noUncheckedIndexedAccess": true,
 
     /* path alias */
     "baseUrl": ".",
@@ -36,7 +35,6 @@
       "@mocks/*": ["./src/shared/mocks/*"],
       "@hooks/*": ["./src/shared/hooks/*"],
       "@types/*": ["./src/shared/types/*"],
-      "@schemas/*": ["./src/shared/types/*"],
       "@routes/*": ["./src/shared/routes/*"],
       "@img/*": ["./src/shared/assets/images/*"],
       "@svg/*": ["./src/shared/assets/svgs/*"],
