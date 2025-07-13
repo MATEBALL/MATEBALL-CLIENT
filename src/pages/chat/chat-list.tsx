@@ -1,5 +1,5 @@
 import { mockChatData } from '@mocks/mockChatData';
-import ChatCard from '@pages/chat/components/chat-card/chat-card';
+import ChatCard from '@pages/chat/components/chat-card';
 
 const ChatList = () => {
   return (
