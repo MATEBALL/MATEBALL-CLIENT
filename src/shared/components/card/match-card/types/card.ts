@@ -1,7 +1,7 @@
 import type { chipVariants } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 
-type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
+export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
 export interface BaseCardProps {
   type: 'single' | 'group' | 'detailed';
