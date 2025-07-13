@@ -1,12 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@libs/cn';
 import Button from '@components/button/button/button';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import Card from '@components/card/match-card/card';
 import type { ChipColor } from '@components/card/match-card/types/card';
+import { ROUTES } from '@routes/routes-config';
 
 interface MatchingReceiveViewProps {
-  onRejectClick: () => void;
-  onAcceptClick: () => void;
   isGroupMatching?: boolean;
 }
 
@@ -29,10 +29,18 @@ const mockMate = {
 };
 
 const MatchingReceiveView = ({
-  onRejectClick,
-  onAcceptClick,
   isGroupMatching = true,
 }: MatchingReceiveViewProps) => {
+  const navigate = useNavigate();
+
+  const handleReject = () => {
+    navigate(`${ROUTES.RESULT}?type=fail`);
+  };
+
+  const handleAccept = () => {
+    navigate(`${ROUTES.RESULT}?type=agree`);
+  };
+
   return (
     <div className="h-full flex-col-between overflow-hidden">
       <div className="flex-col-center gap-[4rem] pt-[4rem]">
@@ -47,18 +55,15 @@ const MatchingReceiveView = ({
           </p>
         </section>
 
-        <div
-          className={cn(
-            'box-border w-full flex-row-center px-[1.6rem] pb-[1.6rem]',
-          )}
-        >
+        <div className={cn('box-border w-full flex-row-center px-[1.6rem] pb-[1.6rem]')}>
           <Card {...mockMate} type="detailed" />
         </div>
       </div>
-        <section className="flex-row-center w-full gap-[0.8rem] p-[1.6rem]">
-          <Button size="L" variant='skyblue' className="w-full" label="요청 거절하기" onClick={onRejectClick} />
-          <Button size="L" className="w-full" label="요청 수락하기" onClick={onAcceptClick} />
-        </section>
+
+      <section className="flex-row-center w-full gap-[0.8rem] p-[1.6rem]">
+        <Button size="L" variant="skyblue" className="w-full" label="요청 거절하기" onClick={handleReject} />
+        <Button size="L" className="w-full" label="요청 수락하기" onClick={handleAccept} />
+      </section>
     </div>
   );
 };
