@@ -1,10 +1,10 @@
 import Card from '@components/card/match-card/card';
-import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import type { CardProps } from '@components/card/match-card/types/card';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { ROUTES } from '@routes/routes-config';
+import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import { cn } from '@libs/cn';
+import { ROUTES } from '@routes/routes-config';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface MatchTabPanelProps {
   cards: CardProps[];
@@ -23,14 +23,12 @@ const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
     if (['매칭 실패'].includes(status)) return '실패';
     return '';
   };
-const getCardColor = (status?: string): 'active' | 'inactive' => {
-  const inactiveStatuses = ['승인대기중', '요청대기중', '대기중', '매칭 실패'];
-  return inactiveStatuses.includes(status ?? '') ? 'inactive' : 'active';
-};
+  const getCardColor = (status?: string): 'active' | 'inactive' => {
+    const inactiveStatuses = ['승인대기중', '요청대기중', '대기중', '매칭 실패'];
+    return inactiveStatuses.includes(status ?? '') ? 'inactive' : 'active';
+  };
   const filteredCards =
-    filter === '전체'
-      ? cards
-      : cards.filter((card) => statusToCategory(card.status) === filter);
+    filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
 
   const handleCardClick = (card: CardProps) => {
     if (statusToCategory(card.status) === '완료') {
@@ -39,11 +37,11 @@ const getCardColor = (status?: string): 'active' | 'inactive' => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="pt-[2.4rem] pb-[2rem] shrink-0">
+    <div className="h-full flex-col">
+      <div className="shrink-0 pt-[2.4rem] pb-[2rem]">
         <FillTabList tabs={fillTabItems} onChange={setFilter} />
       </div>
-      <div className="flex-col flex-1 overflow-y-auto gap-[0.8rem]">
+      <div className="flex-1 flex-col gap-[0.8rem] overflow-y-auto">
         {filteredCards.map((card) => {
           return (
             <div key={`${card.nickname}-${card.date}-${card.type}`}>
@@ -62,6 +60,5 @@ const getCardColor = (status?: string): 'active' | 'inactive' => {
     </div>
   );
 };
-
 
 export default MatchTabPanel;

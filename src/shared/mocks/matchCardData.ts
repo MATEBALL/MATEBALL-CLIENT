@@ -105,7 +105,6 @@ export const singleMockData: CardProps[] = [
   },
 ];
 
-
 export const groupMockData: CardProps[] = [
   {
     id: 1,

@@ -1,10 +1,10 @@
 import TabList from '@components/tab/tab/tab-list';
+import { groupMockData, singleMockData } from '@mocks/matchCardData';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
-import { singleMockData, groupMockData } from '@mocks/matchCardData';
-const Match = () => {
 
+const Match = () => {
   return (
-    <div className="flex-col h-[100dvh] overflow-hidden">
+    <div className="h-[100dvh] flex-col overflow-hidden">
       <section className="px-[1.6rem]">
         <TabList
           colorMode="light"
