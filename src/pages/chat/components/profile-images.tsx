@@ -1,6 +1,9 @@
 import Icon from '@components/icon/icon';
 
-const ProfileImages = (type: string) => {
+interface ProfileImagesProps {
+  type: 'single' | 'group';
+}
+const ProfileImages = ({ type }: ProfileImagesProps) => {
   if (type === 'group') {
     return (
       <div className="flex-col">
@@ -14,9 +17,9 @@ const ProfileImages = (type: string) => {
         </div>
       </div>
     );
-  } else {
-    return <Icon name="chat-profile" size={4.8} />;
   }
+
+  return <Icon name="chat-profile" size={4.8} />;
 };
 
 export default ProfileImages;
