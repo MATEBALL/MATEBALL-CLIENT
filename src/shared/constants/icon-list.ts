@@ -1,3 +1,4 @@
+
 export const iconNames = [
   'chat-profile',
   'ic-arrow-left-18',
@@ -28,7 +29,11 @@ export const iconNames = [
   'ic-x',
   'logo-gray',
   'logo',
+<<<<<<< HEAD
   'profile',
+=======
+  'profile'
+>>>>>>> a1896fe (fix: 파일 경로들 수정 (#125))
 ] as const;
-
+ 
 export type IconName = (typeof iconNames)[number];
