@@ -1,4 +1,4 @@
-import MatchingWaitingView from '@pages/result/components/matching-agree-view';
+import MatchingAgreeView from '@pages/result/components/matching-agree-view';
 import MatchingFailView from '@pages/result/components/matching-fail-view';
 import MatchingReceiveView from '@pages/result/components/matching-receive-view';
 import MatchingSuccessView from '@pages/result/components/matching-success-view';
@@ -21,7 +21,7 @@ const ResultPage = () => {
   }
 
   if (type === 'agree') {
-    return <MatchingWaitingView />;
+    return <MatchingAgreeView />;
   }
 
   if (type === 'fail') {
@@ -29,14 +29,7 @@ const ResultPage = () => {
   }
 
   if (type === 'received') {
-    return (
-      <MatchingReceiveView
-        onRejectClick={() => console.log('거절')}
-        onAcceptClick={() => console.log('수락')}
-        isGroupMatching={isGroupMatching}
-        // 추후 props: userData, onAccept, onReject 등 추가
-      />
-    );
+    return <MatchingReceiveView isGroupMatching={isGroupMatching} />;
   }
 
   return <Navigate to={ROUTES.ERROR} replace />;
