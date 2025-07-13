@@ -20,7 +20,7 @@ const CardHeader = (props: CardProps) => {
               </div>
             </div>
             <div className="pl-[1.2rem]">
-              <ChipList names={props.chips} />
+              <ChipList names={props.chips ?? []} />
             </div>
           </div>
           <div className="ml-auto">
