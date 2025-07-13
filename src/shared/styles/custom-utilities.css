@@ -52,4 +52,16 @@
   .signup-layout {
     @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
   }
+
+  .game-match-item {
+    @apply w-full flex flex-row justify-between cursor-pointer rounded-[12px] px-[2rem] py-[1.2rem] outline-1 outline-solid outline-offset-[-1px];
+  }
+
+  .game-match-selected {
+    @apply bg-main-200 outline-main-900;
+  }
+
+  .game-match-default {
+    @apply bg-gray-white outline-gray-300;
+  }
 }

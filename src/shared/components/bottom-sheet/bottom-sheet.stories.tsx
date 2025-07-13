@@ -1,7 +1,9 @@
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
+import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -79,6 +81,32 @@ export const RequestWarning: Story = {
           />
         </div>
       </MemoryRouter>
+    );
+  },
+};
+
+export const GameMatch: Story = {
+  render: () => {
+    const { isOpen, open, close } = useBottomSheet();
+
+    const mockGameDatas = [
+      { id: 1, awayTeam: 'LG', homeTeam: '두산', gameTime: '18:30', stadium: '잠실' },
+      { id: 2, awayTeam: 'SSG', homeTeam: 'NC', gameTime: '18:30', stadium: '문학' },
+      { id: 3, awayTeam: '한화', homeTeam: '키움', gameTime: '18:30', stadium: '대전' },
+      { id: 4, awayTeam: '롯데', homeTeam: 'KT', gameTime: '18:30', stadium: '사직' },
+      { id: 5, awayTeam: '삼성', homeTeam: 'KIA', gameTime: '18:30', stadium: '대구' },
+    ];
+
+    return (
+      <div className="fixed top-4 left-4 justify-center">
+        <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
+        <GameMatchBottomSheet
+          isOpen={isOpen}
+          onClose={close}
+          date="2025/07/17"
+          gameSchedule={mockGameDatas}
+        />
+      </div>
     );
   },
 };
