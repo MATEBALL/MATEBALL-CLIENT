@@ -22,6 +22,7 @@ import { ROUTES } from '@routes/routes-config';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter([
+  // { path: '/', element: <Splash /> },
   {
     path: ROUTES.LAYOUT,
     element: <Layout />,

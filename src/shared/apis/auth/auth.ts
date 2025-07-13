@@ -1,4 +1,6 @@
-import { get } from '@apis/http';
+import { instance } from '@apis/instance';
 import { END_POINT } from '@constants/api';
 
-export const getKakaoLogin = (code: string) => get(`${END_POINT.GET_AUTH_LOGIN}${code}`);
+export const postKakaoLogin = (code: string) => {
+  return instance.post(END_POINT.POST_AUTH_LOGIN, { code });
+};
