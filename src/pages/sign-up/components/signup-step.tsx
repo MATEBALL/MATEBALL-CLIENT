@@ -85,14 +85,26 @@ const SignupStep = () => {
                 variant={genderValue === '여성' ? 'skyblueBorder' : 'white'}
                 label="여성"
                 icon="ic-female"
+<<<<<<< HEAD
                 className="flex w-full gap-[0.4rem] bg-background"
+=======
+                iconSize="24"
+                iconPosition="right"
+                className="w-full bg-background"
+>>>>>>> 775437c (feat: 버튼 컴포넌트 left, right 조건 추가 (#135))
                 onClick={() => handleGenderClick('여성')}
               />
               <Button
                 variant={genderValue === '남성' ? 'skyblueBorder' : 'white'}
                 label="남성"
                 icon="ic-male"
+<<<<<<< HEAD
                 className="flex w-full gap-[0.4rem] bg-background"
+=======
+                iconSize="24"
+                iconPosition="right"
+                className="w-full bg-background"
+>>>>>>> 775437c (feat: 버튼 컴포넌트 left, right 조건 추가 (#135))
                 onClick={() => handleGenderClick('남성')}
               />
             </div>

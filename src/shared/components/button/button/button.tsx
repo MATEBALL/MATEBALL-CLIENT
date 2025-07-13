@@ -44,7 +44,6 @@ const Button = ({
     >
       {icon && <Icon name={icon} size={iconSize} className={iconColor} />}
       {label}
-      {icon && <Icon name={icon} size={iconSize} className={iconColor} />}
     </button>
   );
 };
