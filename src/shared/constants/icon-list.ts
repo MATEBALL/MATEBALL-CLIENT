@@ -1,5 +1,7 @@
+
 export const iconNames = [
   'chat-profile',
+  'graphic-empty',
   'ic-arrow-left-18',
   'ic-arrow-left-24',
   'ic-arrow-left-white',
@@ -14,12 +16,14 @@ export const iconNames = [
   'ic-check-filled',
   'ic-clock',
   'ic-error-filled',
+  'ic-female',
   'ic-home-filled',
   'ic-home-lined',
   'ic-indicator',
   'ic-info-filled',
   'ic-kakao-logo',
   'ic-location',
+  'ic-male',
   'ic-matchinglist-filled',
   'ic-matchinglist-lined',
   'ic-my-filled',
@@ -29,6 +33,7 @@ export const iconNames = [
   'logo-gray',
   'logo',
   'profile',
+  'logo'
 ] as const;
-
+ 
 export type IconName = (typeof iconNames)[number];
