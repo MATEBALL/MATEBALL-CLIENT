@@ -11,7 +11,6 @@ const Layout = () => {
   const { pathname } = useLocation();
 
   const showBottomNav = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT, ROUTES.PROFILE].includes(pathname);
-
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
