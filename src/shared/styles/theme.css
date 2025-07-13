@@ -73,6 +73,7 @@
 
   /* Z-Index */
   --z-header: 6;
+  --z-bottom-nav: 8;
   --z-home-calendar-section: 5;
   --z-modal: 7;
   --z-card-profile-1: 4;
@@ -150,5 +151,12 @@
     font-weight: 500;
     font-size: 1.2rem;
     line-height: 1.8rem;
+  }
+
+  .scrollbar-hide {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
   }
 }

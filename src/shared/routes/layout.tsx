@@ -15,15 +15,15 @@ const Layout = () => {
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
-    <div className="flex h-screen flex-col">
-      {showHeader && <Header />}
-      <main className="flex-grow">
-        <Suspense fallback={<Loading />}>
+    <div className="h-screen flex-col">
+      <Suspense fallback={<Loading />}>
+        {showHeader && <Header />}
+        <main className="flex-grow">
           <Outlet />
-        </Suspense>
-      </main>
-      {pathname === ROUTES.HOME && <Footer />}
-      {showBottomNav && <BottomNavigation />}
+        </main>
+        {pathname === ROUTES.HOME && <Footer />}
+        {showBottomNav && <BottomNavigation />}
+      </Suspense>
     </div>
   );
 };

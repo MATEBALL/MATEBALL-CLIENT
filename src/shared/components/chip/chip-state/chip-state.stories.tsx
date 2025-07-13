@@ -35,13 +35,13 @@ type Story = StoryObj<typeof ChipState>;
 
 export const Default: Story = {
   args: {
-    label: '요청 대기 중',
+    status: '요청 대기 중',
   },
 };
 
 export const MainColor: Story = {
   args: {
-    label: '승인 완료',
+    status: '승인 완료',
     colorType: 'active',
   },
 };
