@@ -29,6 +29,8 @@ const meta: Meta<typeof Button> = {
   → 설정 안 하면 기본값: **M**
 
 ### 🛠 선택적 props
+- \`icon\`: 아이콘 이름 (예: \`check\`, \`plus\`)
+- \`iconSize\`: 아이콘 크기 (예: \`1.6\`,)
 - \`disabled\`: 버튼 비활성화 여부
 - \`onClick\`: 버튼 클릭 이벤트
 - \`ariaLabel\`: 접근성 라벨
@@ -68,6 +70,8 @@ const meta: Meta<typeof Button> = {
       control: 'text',
       description: 'Additional CSS classes',
     },
+    icon: { control: 'text', description: 'Optional icon name' },
+    iconSize: { control: 'text', description: 'Optional icon size (e.g., "20px")' },
   },
 };
 
