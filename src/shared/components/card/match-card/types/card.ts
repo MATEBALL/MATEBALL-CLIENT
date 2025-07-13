@@ -4,6 +4,7 @@ import type { VariantProps } from 'class-variance-authority';
 type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
 export interface BaseCardProps {
+  id: number;
   type: 'single' | 'group' | 'detailed';
   className?: string;
   nickname: string;

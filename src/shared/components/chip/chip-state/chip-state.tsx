@@ -4,7 +4,7 @@ import type { VariantProps } from 'class-variance-authority';
 
 type ChipColorType = NonNullable<VariantProps<typeof chipStateVariants>['colorType']>;
 
-interface ChipStateProps {
+export interface ChipStateProps {
   label?: string;
   rate?: number;
   colorType?: ChipColorType;
