@@ -25,7 +25,7 @@ const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProp
   const endDate = endOfMonth(value);
 
   return (
-    <div className="flex-col gap-[1.2rem]">
+    <div className="w-full flex-col gap-[1.2rem]">
       <div className="flex-row-center gap-[2.4rem]">
         <Icon
           name="ic-arrow-left"

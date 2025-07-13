@@ -33,19 +33,21 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
   };
 
   return (
-    <div className="onboarding-layout pb-[9.4rem]">
-      <div className="flex-col-center">
+    <div className="h-full w-full flex-col-between px-[1.6rem] pt-[1.6rem]">
+      <div className="flex-col-center gap-[0.8rem]">
         <p className="head_20_sb text-gray-black">어떤 경기를 직관하고 싶으신가요?</p>
         <p className="cap_14_m text-gray-600">
           단, 직관 준비를 위해 2일 이후 날짜부터 선택 가능해요.
         </p>
       </div>
 
-      <MonthCalendar
-        value={selectedDate}
-        onWeekChange={handleDateSelect}
-        onMonthChange={handleDateSelect}
-      />
+      <div className="w-full flex-col-center flex-grow">
+        <MonthCalendar
+          value={selectedDate}
+          onWeekChange={handleDateSelect}
+          onMonthChange={handleDateSelect}
+        />
+      </div>
 
       <BottomSheet isOpen={isOpen} onClose={close}>
         <div className="flex-col gap-[1.6rem]">
