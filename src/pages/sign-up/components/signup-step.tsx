@@ -86,8 +86,7 @@ const SignupStep = () => {
                 label="여성"
                 icon="ic-female"
                 iconSize="24"
-                iconPosition="right"
-                className="w-full bg-background"
+                className="flex w-full gap-[0.4rem] bg-background"
                 onClick={() => handleGenderClick('여성')}
               />
               <Button
@@ -95,8 +94,7 @@ const SignupStep = () => {
                 label="남성"
                 icon="ic-male"
                 iconSize="24"
-                iconPosition="right"
-                className="w-full bg-background"
+                className="flex w-full gap-[0.4rem] bg-background"
                 onClick={() => handleGenderClick('남성')}
               />
             </div>
