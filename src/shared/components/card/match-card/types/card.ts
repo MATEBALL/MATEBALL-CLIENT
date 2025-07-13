@@ -63,8 +63,8 @@ export interface UserCardProps {
 export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
 
 export interface CardProfileProps {
-  type: 'single' | 'group' | 'detailed';
-  imgUrl: string | string[];
+  type: 'single' | 'group' | 'detailed' | 'user';
+  imgUrl: string[];
 }
 
 export interface CardGameInfoProps {
