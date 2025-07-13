@@ -14,11 +14,7 @@ const MatchCardSection = ({ matchData }: MatchCardSectionProps) => {
     className: 'w-full',
   };
 
-  return (
-    <div className="w-full">
-      <Card {...cardProps} />
-    </div>
-  );
+  return <Card className="w-full" {...cardProps} />;
 };
 
 export default MatchCardSection;

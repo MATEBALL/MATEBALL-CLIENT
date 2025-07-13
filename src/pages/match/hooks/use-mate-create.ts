@@ -5,43 +5,34 @@ import type {
 } from '@components/card/match-card/types/card';
 import { mockMateGroup } from '@mocks/mockMateGroup';
 import { mockMateSingle } from '@mocks/mockMateSingle';
-import { useEffect, useState } from 'react';
 
 export type MatchCardData =
   | (SingleCardProps & { id: number; type: 'single' })
   | (GroupCardProps & { id: number; type: 'group' });
 
 const useMatchCreate = (matchId: number, type: 'single' | 'group') => {
-  const [matchData, setMatchData] = useState<MatchCardData | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let result: MatchCardData | null = null;
-
+  const getMatchData = (): MatchCardData | null => {
     if (type === 'single') {
       const singleMatch = mockMateSingle.find((m) => m.id === matchId);
-      if (singleMatch) {
-        result = {
-          ...singleMatch,
-          type: 'single',
-          chips: [singleMatch.team, singleMatch.style] as ChipColor[],
-        };
-      }
-    } else {
-      const groupMatch = mockMateGroup.find((m) => m.id === matchId);
-      if (groupMatch) {
-        result = {
-          ...groupMatch,
-          type: 'group',
-        };
-      }
+      return singleMatch
+        ? {
+            ...singleMatch,
+            type: 'single',
+            chips: [singleMatch.team, singleMatch.style] as ChipColor[],
+          }
+        : null;
     }
 
-    setMatchData(result);
-    setLoading(false);
-  }, [matchId, type]);
+    const groupMatch = mockMateGroup.find((m) => m.id === matchId);
+    return groupMatch
+      ? {
+          ...groupMatch,
+          type: 'group',
+        }
+      : null;
+  };
 
-  return { matchData, loading };
+  return { matchData: getMatchData() };
 };
 
 export default useMatchCreate;

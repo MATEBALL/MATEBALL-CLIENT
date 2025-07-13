@@ -1,10 +1,10 @@
-interface HeaderProps {
+interface MatchGuideSectionProps {
   nickname: string;
 }
 
-const Header = ({ nickname }: HeaderProps) => {
+const MatchGuideSection = ({ nickname }: MatchGuideSectionProps) => {
   return (
-    <header className="flex-col-center gap-[0.8rem] text-center">
+    <section className="flex-col-center gap-[0.8rem] text-center">
       <h1 className="title_24_sb">
         {nickname} 님을 위한
         <br />
@@ -15,8 +15,8 @@ const Header = ({ nickname }: HeaderProps) => {
         <br />
         '매칭 현황'에서 확인할 수 있어요.
       </p>
-    </header>
+    </section>
   );
 };
 
-export default Header;
+export default MatchGuideSection;

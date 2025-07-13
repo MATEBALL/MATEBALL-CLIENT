@@ -33,7 +33,3 @@ export const MAX_CREATE_DESCRIPTION = {
   single: '동시에 진행할 수 있는 1:1 매칭은 최대 3개예요.',
 
 };
-
-export const isInvalidMatchId = (id: string | undefined): boolean => {
-  return !id || Number.isNaN(Number(id));
-};

@@ -8,7 +8,7 @@ export const mockMateSingle = [
     style: '열정응원러',
     awayTeam: 'LG',
     homeTeam: '두산',
-    stadium: '잠실실경기장',
+    stadium: '잠실경기장',
     date: '2025-07-22',
     matchRate: 90,
     imgUrl: 'https://example.jpg',
