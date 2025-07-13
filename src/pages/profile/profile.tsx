@@ -4,7 +4,7 @@ import Footer from '@components/footer/footer';
 
 const Profile = () => {
   return (
-    <div>
+    <div className="h-full flex-col-between">
       <div className="w-full flex-col-center gap-[1.6rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
         <Card
           type="user"
