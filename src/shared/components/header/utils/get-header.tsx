@@ -4,15 +4,31 @@ import type { NavigateFunction } from 'react-router-dom';
 
 export const getHeaderContent = (
   pathname: string,
+  urlParams: URLSearchParams,
   isFail: boolean,
-  navigate?: NavigateFunction,
+  navigate: NavigateFunction,
 ) => {
   const handleLogoClick = () => {
     if (navigate) navigate(ROUTES.HOME);
   };
 
   const handleBackClick = () => {
-    if (navigate) navigate(-1);
+    const type = urlParams.get('type') ?? '';
+    const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
+
+    if (pathname === ROUTES.RESULT) {
+      if (type === 'sent') {
+        navigate(ROUTES.HOME);
+        return;
+      }
+
+      if (goMatchTypes.includes(type)) {
+        navigate(ROUTES.MATCH);
+        return;
+      }
+    }
+
+    navigate(-1);
   };
 
   if (pathname === ROUTES.HOME) {
