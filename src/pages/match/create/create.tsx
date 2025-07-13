@@ -5,13 +5,12 @@ import Header from '@pages/match/create/components/header';
 import MatchCardSection from '@pages/match/create/components/match-card-section';
 import useMatchCreate, { type MatchCardData } from '@pages/match/hooks/useMateCreate';
 import { ROUTES } from '@routes/routes-config';
-import { Navigate, useSearchParams } from 'react-router-dom';
+import { Navigate, useParams, useSearchParams } from 'react-router-dom';
 
 const Create = () => {
   const [searchParams] = useSearchParams();
   const matchType = (searchParams.get('type') || 'single') as 'single' | 'group';
-  //const { matchId } = useParams();
-  const matchId = 1; //api 연동 후 삭제될 부분
+  const { matchId } = useParams();
   const numericMatchId = Number(matchId) || 1;
   const { matchData, loading } = useMatchCreate(numericMatchId, matchType);
 
