@@ -1,4 +1,3 @@
-import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
 import DateSelect from '@pages/onboarding/components/date-select';
