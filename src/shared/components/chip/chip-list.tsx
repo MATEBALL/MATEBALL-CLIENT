@@ -2,7 +2,7 @@ import Chip from '@components/chip/chip';
 import type { chipVariants } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 
-type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
+export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
 interface ChipListProps {
   names: ChipColor[];

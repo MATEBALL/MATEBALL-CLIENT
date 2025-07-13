@@ -1,4 +1,4 @@
-import { COPYRIGHT_NOTICE, MATCHING_PLATFORM_NOTICE } from '@components/footer/constants/legel';
+import { COPYRIGHT_NOTICE, MATCHING_PLATFORM_NOTICE } from '@components/footer/constants/legal';
 import Icon from '@components/icon/icon';
 import { EXTERNAL_LINKS } from '@constants/links';
 
