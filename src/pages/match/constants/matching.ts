@@ -27,6 +27,11 @@ export const MATCHING_DESCRIPTION = {
 export const MATCHING_SUCCESS_TITLE = {
   group: '그룹 매칭이 성사되었어요!',
   single: '매칭이 성사되었어요!',
+}
+export const MAX_CREATE_DESCRIPTION = {
+  group: '동시에 진행할 수 있는 그룹 매칭은 최대 2개예요.',
+  single: '동시에 진행할 수 있는 1:1 매칭은 최대 3개예요.',
+
 };
 
 export const isInvalidMatchId = (id: string | undefined): boolean => {
