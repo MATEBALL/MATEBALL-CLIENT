@@ -1,15 +1,18 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import { MATCHING_COMPLETE_MESSAGE } from '@pages/match/constants/matching';
-import { useNavigationHandlers } from '@pages/result/constants/result-navigation';
+import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
+import { useNavigate } from 'react-router-dom';
 
 interface SentViewProps {
   isGroupMatching?: boolean;
 }
 
 const SentView = ({ isGroupMatching = true }: SentViewProps) => {
-  const { handleGoHome, handleGoMatch } = useNavigationHandlers();
+  const navigate = useNavigate();
+  const handleGoHome = () => navigate(ROUTES.HOME);
+  const handleGoMatch = () => navigate(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">

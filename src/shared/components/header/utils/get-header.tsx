@@ -14,10 +14,9 @@ export const getHeaderContent = (
 
   const handleBackClick = () => {
     const type = urlParams.get('type');
-    const mode = urlParams.get('mode');
 
-    const goHomeTypes = type === 'sent' && (mode === 'group' || mode === 'single');
-    const goMatchTypes = ['fail', 'agree', 'success', 'receive'].includes(type ?? '');
+    const goHomeTypes = type === 'sent';
+    const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
 
     if (pathname === ROUTES.RESULT) {
       if (goHomeTypes) {
