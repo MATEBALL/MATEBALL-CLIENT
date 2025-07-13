@@ -1,4 +1,3 @@
-import type { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { chipVariants } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 

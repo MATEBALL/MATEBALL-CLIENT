@@ -12,7 +12,7 @@ const Card = (props: CardProps) => {
   const finalColor = getColorType(status, color);
 
   const introductionClass = 'cap_14_m mt-[1.6rem]';
-  const gameInfoClass = type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]';
+  const gameInfoClass = type === 'detailed' ? '' : 'mt-[0.4rem]';
   const dividerClass = 'border-gray-300';
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
 
