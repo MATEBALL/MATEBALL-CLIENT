@@ -1,9 +1,7 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import { MATCHING_COMPLETE_MESSAGE } from '@pages/match/constants/matching';
-import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
-import { useNavigate } from 'react-router-dom';
 
 interface SentViewProps {
   isGroupMatching?: boolean;
