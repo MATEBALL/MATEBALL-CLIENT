@@ -87,7 +87,11 @@
 
   .matching-success-background {
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35rem] h-[35rem] blur-3xl rounded-full -z-20;
-    background: radial-gradient(67.17% 67.17% at 33.26% 84.78%, #c1ffbb 5%, #bcf3ff 88.05%);
+    background: radial-gradient(
+      67.17% 67.17% at 33.26% 84.78%,
+      #c1ffbb 5%,
+      #bcf3ff 88.05%
+    );
   }
 
   .matching-lottie-gradient {
@@ -100,7 +104,7 @@
   }
 
   .onboarding-layout {
-    @apply mt-[3.2rem] h-full w-full flex flex-col justify-between items-center;
+    @apply mt-[3.2rem] w-full flex flex-col justify-between items-center;
   }
 
   .onboarding-inner {

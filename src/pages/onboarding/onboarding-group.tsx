@@ -1,4 +1,3 @@
-import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
 import DateSelect from '@pages/onboarding/components/date-select';
@@ -23,8 +22,6 @@ const OnboardingGroup = () => {
     setSelections((prev) => ({ ...prev, [stepName]: value }));
   };
 
-  const isStepCompleted = (stepName: string) => selections[stepName] !== null;
-
   return (
     <div className="flex h-[100svh] flex-col">
       <div className="sticky top-0 bg-background">
@@ -43,14 +40,6 @@ const OnboardingGroup = () => {
               selectedOption={selections.GROUP_ROLE}
               onSelect={(option) => handleSelect('GROUP_ROLE', option)}
             />
-            <div className="onboarding-footer">
-              <Button
-                label="다음으로"
-                size={'L'}
-                onClick={goNext}
-                disabled={!isStepCompleted('GROUP_ROLE')}
-              />
-            </div>
           </Step>
 
           <Step name="DATE_SELECT">
@@ -63,9 +52,6 @@ const OnboardingGroup = () => {
 
           <Step name="COMPLETE">
             <Complete />
-            <div className="onboarding-footer">
-              <Button label="메인 화면으로 이동하기" size={'L'} onClick={goNext} />
-            </div>
           </Step>
         </Funnel>
       </div>
