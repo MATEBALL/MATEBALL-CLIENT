@@ -1,6 +1,6 @@
 import Button from '@components/button/button/button';
+import Card from '@components/card/match-card/card';
 import { mockMateReceive } from '@mocks/mockMatchReceiveData';
-import MatchingReceiveCard from '@pages/result/components/matching-receive-card';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
               : MATCHING_HEADER_MESSAGE.single.subDescription}
           </p>
         </section>
-        <MatchingReceiveCard {...mockMateReceive} type="detailed" className="w-full" />
+        <Card {...mockMateReceive} type="detailed" className="w-full" />
       </div>
 
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">

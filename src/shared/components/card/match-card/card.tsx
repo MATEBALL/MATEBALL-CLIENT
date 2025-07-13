@@ -12,9 +12,14 @@ const Card = (props: CardProps) => {
 
   const finalColor = getColorType(status, color);
 
-  const introductionClass = 'cap_14_m mt-[1.6rem]';
-  const gameInfoClass = clsx({ 'mt-[0.4rem]': type !== 'detailed' });
-  const dividerClass = 'border-gray-300';
+  const introductionClass = 'cap_14_m mt-[1.6rem] mb-[1.6rem]';
+  const gameInfoClass = clsx({
+    'mt-[0.4rem]': type !== 'detailed',
+    'mt-[1.6rem] mb-[1.6rem]': type === 'detailed',
+  });
+
+  const dividerClass = cn('border-gray-300', type === 'detailed' && 'mt-[1.6rem]');
+
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
 
   return (
