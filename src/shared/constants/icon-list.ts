@@ -1,4 +1,3 @@
-
 export const iconNames = [
   'graphic-empty',
   'ic-arrow-left-18',
@@ -30,7 +29,7 @@ export const iconNames = [
   'ic-plus',
   'ic-x',
   'logo-gray',
-  'logo'
+  'logo',
 ] as const;
- 
+
 export type IconName = (typeof iconNames)[number];
