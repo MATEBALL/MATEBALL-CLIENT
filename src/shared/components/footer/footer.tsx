@@ -3,7 +3,7 @@ import Icon from '@components/icon/icon';
 
 const Footer = () => {
   return (
-    <footer className="cap_12_m h-[30.6rem] flex-col gap-[4.8rem] px-[3.2rem] py-[1.6rem]">
+    <footer className="cap_12_m h-[30.6rem] flex-col gap-[4.8rem] px-[1.6rem] py-[3.2rem]">
       <div className="flex-col gap-[0.8rem]">
         <Icon name="logo-gray" width={9.2} height={2.5} className="text-gray-700" />
         <div className="flex-col gap-[0.4rem] text-gray-700">
