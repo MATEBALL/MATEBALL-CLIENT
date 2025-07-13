@@ -2,9 +2,9 @@ import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
 import { NO_HEADER_PATHS } from '@constants/header';
+import { cn } from '@libs/cn';
 // import Loading from '@pages/loading/loading';
 import { ROUTES } from '@routes/routes-config';
-import { cn } from '@libs/cn';
 import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
