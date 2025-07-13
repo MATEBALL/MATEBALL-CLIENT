@@ -1,8 +1,8 @@
+import { WEEKDAY } from '@components/calendar/constants/CALENDAR';
 import { getWeekDays } from '@components/calendar/utils/date-grid';
 import { cn } from '@libs/cn';
 import { format, isSameDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { WEEKDAY } from '@/shared/components/calendar/constants/calendar';
 import { calendarDayVariants } from '@/shared/components/calendar/styles/calendar-day-variants';
 
 interface WeekCalendarProps {

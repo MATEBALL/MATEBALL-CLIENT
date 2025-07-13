@@ -1,35 +1,37 @@
+import type { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { chipVariants } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 
-type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
+type ColorType = NonNullable<VariantProps<typeof cardVariants>['color']>;
+export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
 export interface BaseCardProps {
   type: 'single' | 'group' | 'detailed';
   className?: string;
   nickname: string;
   date: string;
-  imgUrl: string[];
-  chips: ChipColor[];
+  imgUrl: string | string[];
   awayTeam: string;
   homeTeam: string;
   stadium: string;
   status?: string;
+  color?: ColorType;
 }
 
 export interface SingleCardProps extends BaseCardProps {
   type: 'single';
   age: string;
   gender: string;
-  color: 'active' | 'inactive';
   chips: ChipColor[];
   team: string;
   style: string;
+  matchRate?: number;
 }
 
 export interface GroupCardProps extends BaseCardProps {
   type: 'group';
   count: number;
-  color: 'active' | 'inactive';
+  matchRate?: number;
 }
 
 export interface DetailedCardProps extends BaseCardProps {
@@ -38,7 +40,6 @@ export interface DetailedCardProps extends BaseCardProps {
   gender: string;
   introduction: string;
   matchRate: number;
-  color?: 'active' | 'inactive';
   chips: ChipColor[];
   team: string;
   style: string;
@@ -48,7 +49,7 @@ export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps;
 
 export interface CardProfileProps {
   type: 'single' | 'group' | 'detailed';
-  imgUrl: string[];
+  imgUrl: string | string[];
 }
 
 export interface CardGameInfoProps {

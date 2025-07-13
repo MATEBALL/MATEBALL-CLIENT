@@ -50,7 +50,11 @@
   }
 
   .signup-layout {
-    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
+    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem] h-full;
+  }
+
+  .header-layout {
+    @apply sticky top-0 z-[var(--z-header)] h-[5.6rem] py-[1.55rem] pl-[2rem];
   }
 
   .onboarding-layout {
