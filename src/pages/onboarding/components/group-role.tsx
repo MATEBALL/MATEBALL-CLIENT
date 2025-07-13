@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { GROUP_ROLE } from '../constants/onboarding';
-import type { OnboardingStepProps } from '../types/onboarding';
+import { GROUP_ROLE } from '@pages/onboarding/constants/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
 
 const GroupRole = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (

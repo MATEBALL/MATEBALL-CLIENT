@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { NO_TEAM_OPTION, TEAMS } from '../constants/onboarding';
-import type { OnboardingStepProps } from '../types/onboarding';
+import { NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
 
 const SupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (

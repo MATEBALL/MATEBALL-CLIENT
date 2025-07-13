@@ -1,13 +1,13 @@
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
+import Complete from '@pages/onboarding/components/complete';
+import DateSelect from '@pages/onboarding/components/date-select';
+import GroupRole from '@pages/onboarding/components/group-role';
+import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
+import ProgressBar from '@pages/onboarding/components/progress-bar';
+import { GROUP_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
 import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
-import Complete from './components/complete';
-import DateSelect from './components/date-select';
-import GroupRole from './components/group-role';
-import OnboardingHeader from './components/onboarding-header';
-import ProgressBar from './components/progress-bar';
-import { GROUP_FUNNEL_STEPS } from './constants/onboarding';
 
 const OnboardingGroup = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(

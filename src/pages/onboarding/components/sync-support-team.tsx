@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { SYNC_MATE } from '../constants/onboarding';
-import type { OnboardingStepProps } from '../types/onboarding';
+import { SYNC_MATE } from '@pages/onboarding/constants/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
 
 const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (

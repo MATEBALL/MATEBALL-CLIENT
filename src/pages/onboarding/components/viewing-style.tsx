@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { VIEWING_STYLE } from '../constants/onboarding';
-import type { OnboardingStepProps } from '../types/onboarding';
+import { VIEWING_STYLE } from '@pages/onboarding/constants/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
 
 const ViewingStyle = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (

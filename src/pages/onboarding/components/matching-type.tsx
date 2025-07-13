@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { MATCHING_TYPE } from '../constants/onboarding';
-import type { OnboardingStepProps } from '../types/onboarding';
+import { MATCHING_TYPE } from '@pages/onboarding/constants/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
 
 const MatchingType = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (

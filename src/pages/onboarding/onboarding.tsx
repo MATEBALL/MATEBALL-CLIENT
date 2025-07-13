@@ -1,18 +1,18 @@
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
+import Complete from '@pages/onboarding/components/complete';
+import Gender from '@pages/onboarding/components/gender';
+import MatchingType from '@pages/onboarding/components/matching-type';
+import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
+import ProgressBar from '@pages/onboarding/components/progress-bar';
+import Start from '@pages/onboarding/components/start';
+import SupportTeam from '@pages/onboarding/components/support-team';
+import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
+import ViewingStyle from '@pages/onboarding/components/viewing-style';
+import { FIRST_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
 import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Complete from './components/complete';
-import Gender from './components/gender';
-import MatchingType from './components/matching-type';
-import OnboardingHeader from './components/onboarding-header';
-import ProgressBar from './components/progress-bar';
-import Start from './components/start';
-import SupportTeam from './components/support-team';
-import SyncSupportTeam from './components/sync-support-team';
-import ViewingStyle from './components/viewing-style';
-import { FIRST_FUNNEL_STEPS } from './constants/onboarding';
 
 const Onboarding = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(

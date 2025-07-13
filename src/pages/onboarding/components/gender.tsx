@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { GENDER } from '../constants/onboarding';
-import type { OnboardingStepProps } from '../types/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding//types/onboarding';
+import { GENDER } from '@pages/onboarding/constants/onboarding';
 
 const Gender = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
