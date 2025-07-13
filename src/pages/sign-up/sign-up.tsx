@@ -3,7 +3,7 @@ import SignupStep from '@pages/sign-up/components/signup-step';
 const SignUp = () => {
   return (
     <div className="signup-layout bg-gray-white">
-      <SignupStep  />
+      <SignupStep />
     </div>
   );
 };
