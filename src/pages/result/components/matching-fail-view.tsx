@@ -11,7 +11,9 @@ const MatchingFailView = () => {
     <div className="h-full flex-col-between">
       <section className="flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
         <h2 className="title_24_sb text-gray-white">요청을 거절하셨습니다.</h2>
-        <Lottie src={LOTTIE_PATH.FAIL} loop />
+        <div className="h-[16rem] w-[16rem] flex-row-center">
+          <Lottie src={LOTTIE_PATH.FAIL} loop={true} className="width-[16rem]" />
+        </div>
         <p className="body_16_m text-center text-gray-600">
           딱! 맞는 메이트의 요청이 도착하면 <br />
           ‘매칭 현황’에서 확인할 수 있어요.

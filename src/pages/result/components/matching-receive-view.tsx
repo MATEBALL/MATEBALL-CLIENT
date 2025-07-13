@@ -1,7 +1,7 @@
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
-import type { ChipColor } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
+import { mockMateReceive } from '@mocks/mockMatchReceiveData';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
@@ -9,24 +9,6 @@ import { useNavigate } from 'react-router-dom';
 interface MatchingReceiveViewProps {
   isGroupMatching?: boolean;
 }
-
-const mockMate = {
-  id: 1,
-  type: 'detailed',
-  nickname: '두밥비',
-  date: '2025-07-20',
-  imgUrl: ['/images/profile-1.png'],
-  chips: ['LG', '열정응원러'] as ChipColor[],
-  awayTeam: 'LG',
-  homeTeam: '두산',
-  stadium: '잠실야구장',
-  age: '20',
-  gender: '여성',
-  team: 'lg',
-  style: '열정응원러',
-  introduction: '잠실더비전 보러가고파요',
-  matchRate: 99,
-};
 
 const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
   const navigate = useNavigate();
@@ -52,7 +34,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
         </section>
 
         <div className={cn('box-border w-full flex-row-center px-[1.6rem] pb-[1.6rem]')}>
-          <Card {...mockMate} type="detailed" />
+          <Card {...mockMateReceive} type="detailed" />
         </div>
       </div>
 

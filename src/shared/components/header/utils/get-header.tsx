@@ -33,6 +33,7 @@ export const getHeaderContent = (
   }
 
   const isResultFail = pathname === ROUTES.RESULT && urlParams.get('type') === 'fail';
+
   if (isFail || isResultFail) {
     return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }

@@ -21,7 +21,9 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
         <div className="relative">
           <div className="matching-success-background" />
           <div className="matching-lottie-gradient" />
-          <Lottie src={LOTTIE_PATH.SUCCESS} loop />
+          <div className="h-[16rem] w-[16rem] flex-row-center">
+            <Lottie src={LOTTIE_PATH.SUCCESS} loop={true} className="width-[16rem]" />
+          </div>
         </div>
         <p className="body_16_m text-center text-gray-600">
           이제 메이트와 소통할 수 있어요! <br />첫 인사를 건네볼까요?

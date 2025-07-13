@@ -16,7 +16,9 @@ const MatchingAgreeView = () => {
       <div className="flex-col-center gap-[2.4rem] pt-[4rem]">
         <h2 className="title_24_sb text-center">매칭 수락이 완료되었습니다.</h2>
         <div className="flex-col-center gap-[1.6rem]">
-          <Lottie src={LOTTIE_PATH.AGREE} loop className="size-[16rem]" />
+          <div className="h-[16rem] w-[16rem] flex-row-center">
+            <Lottie src={LOTTIE_PATH.AGREE} loop={true} className="width-[16rem]" />
+          </div>
           <MatchCurrentCard count={matchedCount} />
         </div>
         <p className="body_16_m text-center text-gray-800">
