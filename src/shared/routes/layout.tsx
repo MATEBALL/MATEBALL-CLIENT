@@ -9,13 +9,13 @@ import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
-  const { pathname } = useLocation();
-  const params = new URLSearchParams(location.search);
+  const { pathname, search } = useLocation();
+  const params = new URLSearchParams(search);
 
-  const isResultFail = location.pathname === ROUTES.RESULT && params.get('type') === 'fail';
+  const isResultFail = pathname === ROUTES.RESULT && params.get('type') === 'fail';
 
   const showBottomNav = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT, ROUTES.PROFILE].includes(pathname);
-  const showHeader = !NO_HEADER_PATHS.includes(location.pathname);
+  const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
     <div className={cn('h-screen flex-col', isResultFail && 'bg-gray-black')}>
