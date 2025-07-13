@@ -34,7 +34,7 @@ const CalendarSection = ({
         }}
       />
       <section className="mt-[3.5rem] flex justify-between">
-        <TabList colorMode="dark" activeType={activeType} onTabChange={handleTabChange} />
+        <TabList colorMode="home" activeType={activeType} onTabChange={handleTabChange} />
         <CalendarButton onOpenBottomSheet={onOpenBottomSheet} />
       </section>
     </section>
