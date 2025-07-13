@@ -1,6 +1,6 @@
 import { getHeaderContent } from '@components/header/utils/get-header';
-import clsx from 'clsx';
 import { ROUTES } from '@routes/routes-config';
+import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
