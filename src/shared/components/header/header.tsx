@@ -13,9 +13,9 @@ const Header = () => {
 
   return (
     <header
-      className={clsx('h-[5.6rem] py-[1.55rem] pl-[2rem]', {
-        'bg-gray-white': isSignUp,
+      className={clsx('header-layout', {
         'bg-gray-black': isFail || isHome,
+        'bg-gray-white': isSignUp,
       })}
     >
       {getHeaderContent(location.pathname, urlParams, isFail, navigate)}

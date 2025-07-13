@@ -9,7 +9,7 @@ export const getHeaderContent = (
   navigate: NavigateFunction,
 ) => {
   const handleLogoClick = () => {
-    navigate(ROUTES.HOME);
+    if (navigate) navigate(ROUTES.HOME);
   };
 
   const handleBackClick = () => {
@@ -41,6 +41,10 @@ export const getHeaderContent = (
         className="cursor-pointer"
       />
     );
+  }
+
+  if (pathname === ROUTES.MATCH) {
+    return <h1 className="head_20_sb text-gray-black">매칭현황</h1>;
   }
 
   if (isFail) {
