@@ -10,7 +10,7 @@ const Complete = () => {
         모두 완료되었어요.
       </p>
 
-      <Lottie src={LOTTIE_PATH.AGREE} loop={true} width={160} height={160} />
+      <Lottie src={LOTTIE_PATH.AGREE} loop={true} width="16rem" height="16rem" />
 
       <p className="body_16_m text-center text-gray-600">
         날짜를 선택해 맞춤 매칭을 생성하거나
