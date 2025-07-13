@@ -2,7 +2,6 @@ import MatchingAgreeView from '@pages/result/components/matching-agree-view';
 import MatchingFailView from '@pages/result/components/matching-fail-view';
 import MatchingReceiveView from '@pages/result/components/matching-receive-view';
 import MatchingSuccessView from '@pages/result/components/matching-success-view';
-import MatchingReceiveView from '@pages/result/components/matching-receive-view';
 import SentView from '@pages/result/components/sent-view';
 import { ROUTES } from '@routes/routes-config';
 import { Navigate, useSearchParams } from 'react-router-dom';
