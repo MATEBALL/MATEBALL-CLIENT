@@ -9,7 +9,7 @@ export interface BaseCardProps {
   nickname: string;
   date: string;
   imgUrl: string[];
-  chips: ChipColor[];
+  chips?: ChipColor[];
   awayTeam: string;
   homeTeam: string;
   stadium: string;
@@ -20,16 +20,18 @@ export interface SingleCardProps extends BaseCardProps {
   type: 'single';
   age: string;
   gender: string;
-  color: 'active' | 'inactive';
-  chips: ChipColor[];
+  color?: 'active' | 'inactive';
+  chips?: ChipColor[];
   team: string;
   style: string;
+  matchRate?: number;
 }
 
 export interface GroupCardProps extends BaseCardProps {
   type: 'group';
   count: number;
-  color: 'active' | 'inactive';
+  color?: 'active' | 'inactive';
+  matchRate?: number;
 }
 
 export interface DetailedCardProps extends BaseCardProps {
