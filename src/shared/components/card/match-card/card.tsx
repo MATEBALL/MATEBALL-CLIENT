@@ -4,12 +4,13 @@ import CardMatchingRate from '@components/card/match-card/components/card-matchi
 import { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
+import clsx from 'clsx';
 
 const Card = (props: CardProps) => {
   const { type, className, color } = props;
 
   const introductionClass = type === 'detailed' ? 'cap_14_m mt-[1.6rem]' : 'cap_14_m mt-[1.6rem]';
-  const gameInfoClass = type === 'detailed' ? '' : 'mt-[0.4rem]';
+  const gameInfoClass = clsx({ 'mt-[0.4rem]': type !== 'detailed' });
   const dividerClass = 'border-gray-300';
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
 

@@ -1,6 +1,6 @@
 import { getHeaderContent } from '@components/header/utils/get-header';
+import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
-import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
@@ -11,11 +11,7 @@ const Header = () => {
   const isSignUp = location.pathname.includes(ROUTES.SIGNUP);
 
   return (
-    <header
-      className={clsx('h-[5.6rem] py-[1.55rem] pl-[2rem]', {
-        'bg-gray-white': isSignUp,
-      })}
-    >
+    <header className={cn('h-[5.6rem] py-[1.55rem] pl-[2rem]', isSignUp && 'bg-gray-white')}>
       {getHeaderContent(location.pathname, urlParams, isFail, navigate)}
     </header>
   );
