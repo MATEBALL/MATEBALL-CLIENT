@@ -1,4 +1,3 @@
-
 export const iconNames = [
   'chat-profile',
   'graphic-empty',
@@ -35,5 +34,5 @@ export const iconNames = [
   'profile',
   'logo'
 ] as const;
- 
+
 export type IconName = (typeof iconNames)[number];
