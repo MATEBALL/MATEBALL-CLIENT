@@ -52,9 +52,9 @@ interface DateSelectProps {
 }
 
 const DateSelect = ({ onComplete }: DateSelectProps) => {
-  const initailSelectedDate = getInitialSelectedDate(new Date());
+  const initialSelectedDate = getInitialSelectedDate(new Date());
 
-  const [selectedDate, setSelectedDate] = useState<Date>(initailSelectedDate);
+  const [selectedDate, setSelectedDate] = useState<Date>(initialSelectedDate);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
 
   const { isOpen, open, close } = useBottomSheet();
