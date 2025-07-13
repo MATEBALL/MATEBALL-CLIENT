@@ -5,11 +5,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const {pathname} = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const isFail = urlParams.get('type') === 'fail';
-  const isSignUp = location.pathname.includes(ROUTES.SIGNUP);
-  const isHome = location.pathname === ROUTES.HOME;
+  const isSignUp = pathname.includes(ROUTES.SIGNUP);
+  const isHome = pathname === ROUTES.HOME;
 
   return (
     <header
@@ -18,7 +18,7 @@ const Header = () => {
         'bg-gray-white': isSignUp,
       })}
     >
-      {getHeaderContent(location.pathname, urlParams, isFail, navigate)}
+      {getHeaderContent(pathname, urlParams, isFail, navigate)}
     </header>
   );
 };

@@ -13,7 +13,7 @@ export const getHeaderContent = (
   };
 
   const handleBackClick = () => {
-    const type = urlParams.get('type');
+    const type = urlParams.get('type') ?? '';
     const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
 
     if (pathname === ROUTES.RESULT) {
@@ -22,10 +22,11 @@ export const getHeaderContent = (
         return;
       }
 
-      if (goMatchTypes.includes('type')) {
+      if (goMatchTypes.includes(type)) {
         navigate(ROUTES.MATCH);
         return;
-      }
+      } 
+
     }
 
     navigate(-1);
