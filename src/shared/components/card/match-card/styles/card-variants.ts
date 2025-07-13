@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-export const cardVariants = cva('relative w-[34.3rem] rounded-[12px] bg-white', {
+export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
   variants: {
     type: {
       single: 'h-[12.2rem] p-[1.6rem]',
