@@ -16,14 +16,14 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex-col">
-      {showHeader && <Header />}
-      <main className="flex-grow">
-        <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
+        {showHeader && <Header />}
+        <main className="flex-grow">
           <Outlet />
-        </Suspense>
-      </main>
-      {pathname === ROUTES.HOME && <Footer />}
-      {showBottomNav && <BottomNavigation />}
+        </main>
+        {pathname === ROUTES.HOME && <Footer />}
+        {showBottomNav && <BottomNavigation />}
+      </Suspense>
     </div>
   );
 };
