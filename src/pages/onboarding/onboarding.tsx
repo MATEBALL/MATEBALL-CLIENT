@@ -130,7 +130,7 @@ const Onboarding = () => {
                   if (selections.MATCHING_TYPE === '1:1 매칭') {
                     goNext();
                   } else if (selections.MATCHING_TYPE === '그룹 매칭') {
-                    navigate('/onboarding/group');
+                    navigate(ROUTES.ONBOARDING_GROUP);
                   }
                 }}
                 disabled={!isStepCompleted('MATCHING_TYPE')}
