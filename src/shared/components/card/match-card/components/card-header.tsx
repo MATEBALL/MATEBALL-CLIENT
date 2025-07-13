@@ -8,7 +8,7 @@ import { useLocation } from 'react-router-dom';
 const CardHeader = (props: CardProps) => {
   const { type } = props;
   const location = useLocation();
-  const isCreatePage = location.pathname === '/match/create';
+  const isCreatePage = location.pathname.startsWith('/match/create');
 
   switch (type) {
     case 'single':
