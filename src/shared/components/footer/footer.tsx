@@ -13,7 +13,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex-col gap-[0.8rem] text-gray-600">
-        <p>{MATCHING_PLATFORM_NOTICE}</p>
+        <p className="whitespace-pre-line">{MATCHING_PLATFORM_NOTICE}</p>
         <div className="flex-row gap-[0.8rem] py-[0.4rem]">
           <a
             href={EXTERNAL_LINKS.PRIVACY_POLICY}
