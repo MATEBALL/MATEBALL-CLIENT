@@ -1,10 +1,9 @@
 import Button from '@components/button/button/button';
-import Card from '@components/card/match-card/card';
-import { cn } from '@libs/cn';
 import { mockMateReceive } from '@mocks/mockMatchReceiveData';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
+import MatchingReceiveCard from './matching-receive-card';
 
 interface MatchingReceiveViewProps {
   isGroupMatching?: boolean;
@@ -23,7 +22,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   return (
     <div className="h-full flex-col-between overflow-hidden">
-      <div className="flex-col-center gap-[4rem] pt-[4rem]">
+      <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
         <section className="gap-[0.8rem] text-center">
           <h1 className="title_24_sb text-gray-black">{MATCHING_HEADER_MESSAGE.description}</h1>
           <p className="body_16_m text-gray-600">
@@ -32,10 +31,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
               : MATCHING_HEADER_MESSAGE.single.subDescription}
           </p>
         </section>
-
-        <div className={cn('box-border w-full flex-row-center px-[1.6rem] pb-[1.6rem]')}>
-          <Card {...mockMateReceive} type="detailed" />
-        </div>
+        <MatchingReceiveCard {...mockMateReceive} type="detailed" className="w-full" />
       </div>
 
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
