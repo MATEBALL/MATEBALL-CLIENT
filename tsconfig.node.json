@@ -12,6 +12,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "noUncheckedIndexedAccess": true,
 
     /* Linting */
     "strict": true,
