@@ -1,5 +1,6 @@
 import TabList from '@components/tab/tab/tab-list';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { useState } from 'react';
 
 const meta: Meta<typeof TabList> = {
   title: 'common/tab/TabList',
@@ -35,19 +36,39 @@ export default meta;
 type Story = StoryObj<typeof TabList>;
 
 export const HomeMode: Story = {
+  render: (args) => {
+    const [activeType, setActiveType] = useState<'1:1' | '그룹'>('1:1');
+
+    return (
+      <div className="bg-gray-700 p-4">
+        <TabList
+          {...args}
+          activeType={activeType}
+          onTabChange={setActiveType}
+        />
+      </div>
+    );
+  },
   args: {
     colorMode: 'home',
   },
-  decorators: [
-    (Story) => (
-      <div className="bg-gray-700">
-        <Story />
-      </div>
-    ),
-  ],
 };
 
+
 export const MatchMode: Story = {
+  render: (args) => {
+    const [activeType, setActiveType] = useState<'1:1' | '그룹'>('1:1');
+
+    return (
+      <div className="bg-white p-4">
+        <TabList
+          {...args}
+          activeType={activeType}
+          onTabChange={setActiveType}
+        />
+      </div>
+    );
+  },
   args: {
     colorMode: 'match',
   },
