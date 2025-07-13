@@ -15,6 +15,7 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   icon?: string;
   iconColor?: string;
   iconSize?: string;
+  iconPosition?: 'left' | 'right';
 }
 
 const Button = ({
@@ -27,6 +28,7 @@ const Button = ({
   icon,
   iconColor,
   iconSize,
+  iconPosition = 'right',
   onClick,
   ariaLabel,
 }: ButtonProps) => {
@@ -42,8 +44,13 @@ const Button = ({
         className,
       )}
     >
+      {icon && iconPosition === 'left' && (
+        <Icon name={icon} size={iconSize} className={iconColor} />
+      )}
       {label}
-      {icon && <Icon name={icon} size={iconSize} className={iconColor} />}
+      {icon && iconPosition === 'right' && (
+        <Icon name={icon} size={iconSize} className={cn(iconColor)} />
+      )}
     </button>
   );
 };
