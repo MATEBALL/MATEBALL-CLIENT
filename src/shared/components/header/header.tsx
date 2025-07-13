@@ -19,7 +19,7 @@ const Header = () => {
         'bg-gray-black': isResultFail || isHome,
       })}
     >
-      {getHeaderContent(location.pathname, isFail, navigate)}
+      {getHeaderContent(location.pathname, urlParams, isFail, navigate)}
     </header>
   );
 };
