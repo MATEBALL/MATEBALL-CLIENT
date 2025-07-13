@@ -1,9 +1,9 @@
 import Button from '@components/button/button/button';
 import { mockMateReceive } from '@mocks/mockMatchReceiveData';
+import MatchingReceiveCard from '@pages/result/components/matching-receive-card';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
-import MatchingReceiveCard from './matching-receive-card';
 
 interface MatchingReceiveViewProps {
   isGroupMatching?: boolean;
