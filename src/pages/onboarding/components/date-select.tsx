@@ -5,47 +5,10 @@ import ButtonGame from '@components/button/button-game/button-game';
 import MonthCalendar from '@components/calendar/month-calendar';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
+import { mockGameDatas } from '@mocks/mockGameData';
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { useState } from 'react';
-
-const mockGames = [
-  {
-    id: 1,
-    awayTeam: 'LG',
-    homeTeam: '두산',
-    gameTime: '18:30',
-    stadium: '경기장',
-  },
-  {
-    id: 2,
-    awayTeam: 'LG',
-    homeTeam: '두산',
-    gameTime: '18:30',
-    stadium: '경기장',
-  },
-  {
-    id: 3,
-    awayTeam: 'LG',
-    homeTeam: '두산',
-    gameTime: '18:30',
-    stadium: '경기장',
-  },
-  {
-    id: 4,
-    awayTeam: 'LG',
-    homeTeam: '두산',
-    gameTime: '18:30',
-    stadium: '경기장',
-  },
-  {
-    id: 5,
-    awayTeam: 'LG',
-    homeTeam: '두산',
-    gameTime: '18:30',
-    stadium: '경기장',
-  },
-];
 
 interface DateSelectProps {
   onComplete: () => void;
@@ -91,7 +54,7 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
               {format(selectedDate, 'M월 d일 EEEE', { locale: ko })}
             </p>
             <div className="flex-col-center gap-[0.8rem]">
-              {mockGames.map((game) => (
+              {mockGameDatas.map((game) => (
                 <ButtonGame
                   key={game.id}
                   awayTeam={game.awayTeam}
