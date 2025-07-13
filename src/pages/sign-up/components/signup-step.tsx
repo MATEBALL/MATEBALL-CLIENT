@@ -12,7 +12,7 @@ import { BIRTH_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constant
 import { type NicknameFormValues, NicknameSchema } from '@pages/sign-up/schema/validation-schema';
 import { useForm } from 'react-hook-form';
 
-const NicknameStep = () => {
+const SignupStep = () => {
   const {
     register,
     handleSubmit,
@@ -59,7 +59,6 @@ const NicknameStep = () => {
           <Input
             placeholder={NICKNAME_PLACEHOLDER}
             label="닉네임"
-            icon="ic-x"
             defaultMessage={isNicknameValid ? NICKNAME_SUCCESS_MESSAGE : NICKNAME_RULE_MESSAGE}
             validationMessage={errors.nickname?.message}
             isError={!!errors.nickname}
@@ -71,7 +70,6 @@ const NicknameStep = () => {
           <Input
             placeholder={BIRTH_PLACEHOLDER}
             label="생년"
-            icon="ic-x"
             defaultMessage={isBirthYearValid ? BIRTHYEAR_SUCCESS_MESSAGE : BIRTHYEAR_RULE_MESSAGE}
             validationMessage={errors.birthYear?.message}
             isError={!!errors.birthYear}
@@ -113,4 +111,4 @@ const NicknameStep = () => {
   );
 };
 
-export default NicknameStep;
+export default SignupStep;
