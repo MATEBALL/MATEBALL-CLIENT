@@ -59,7 +59,7 @@ export interface UserCardProps {
 export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
 
 export interface CardProfileProps {
-  type: 'single' | 'group' | 'detailed';
+  type: 'single' | 'group' | 'detailed' | 'user';
   imgUrl: string[];
 }
 

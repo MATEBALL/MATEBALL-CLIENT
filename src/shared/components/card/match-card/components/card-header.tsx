@@ -75,7 +75,7 @@ const CardHeader = (props: CardProps) => {
     case 'user':
       return (
         <div className="flex">
-          <CardProfile type="single" imgUrl={props.imgUrl} />
+          <CardProfile type="user" imgUrl={props.imgUrl} />
           <div>
             <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
