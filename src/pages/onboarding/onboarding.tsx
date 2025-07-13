@@ -16,6 +16,8 @@ import {
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Onboarding = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
