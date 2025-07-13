@@ -17,6 +17,7 @@ export interface BaseCardProps {
   stadium: string;
   status?: string;
   color?: ColorType;
+  onClick?: () => void;
 }
 
 export interface SingleCardProps extends BaseCardProps {
