@@ -40,7 +40,7 @@ const Onboarding = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="h-full flex-col">
+    <div className="h-svh flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={goPrev} />
         {currentStep !== 'START' && (
@@ -50,7 +50,7 @@ const Onboarding = () => {
         )}
       </div>
 
-      <div className="flex-col-between flex-grow">
+      <div className="flex-1 flex-col-between">
         <Funnel>
           <Step name="START">
             <Start />
