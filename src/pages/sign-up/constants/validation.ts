@@ -19,3 +19,16 @@ export const NICKNAME_REGEX = {
 };
 
 export const NICKNAME_PLACEHOLDER = '2-6자 이내의 닉네임을 입력하세요.';
+
+export const BIRTH_PLACEHOLDER = '생년을 YYYY 형태로 입력하세요.';
+
+export const BIRTH_ERROR_MESSAGES = {
+  LENGTH: '4자리 입력만 가능해요.',
+  NUMBER: '숫자만 입력 가능해요.',
+};
+
+export const GENDER_ERROR_MESSAGES = {
+  REQUIRED: '성별을 선택해주세요.',
+};
+
+export const GENDER_OPTIONS = ['남성', '여성'] as const;

@@ -9,7 +9,7 @@ export const buttonVariants = cva(
         gray: 'bg-gray-400 text-white',
         skyblue: 'bg-main-200 text-main-900',
         white: 'border border-transparent bg-white text-gray-700',
-        skyblueBorder: 'border border-main-900 bg-main-200 text-main-900',
+        skyblueBorder: 'bg-main-200 text-main-900 outline outline-main-900',
       },
       size: {
         M: 'w-full px-[0.8rem] py-[1.2rem]',

@@ -9,7 +9,6 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   isError?: boolean;
   isValid?: boolean;
-  icon?: string;
   defaultMessage?: string;
   validationMessage?: string;
   ref?: React.Ref<HTMLInputElement>;
@@ -20,7 +19,6 @@ const Input = ({
   isValid,
   id,
   label,
-  icon,
   validationMessage,
   defaultMessage,
   onBlur,
@@ -59,7 +57,6 @@ const Input = ({
           }}
           {...props}
         />
-        {isFocused && icon && <Icon name={icon} />}
       </div>
       {messageToShow && (
         <div className="flex-row gap-[0.8rem]">

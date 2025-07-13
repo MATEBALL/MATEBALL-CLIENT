@@ -1,11 +1,9 @@
-import NicknameStep from '@pages/sign-up/components/nickname-step';
+import SignupStep from '@pages/sign-up/components/signup-step';
 
 const SignUp = () => {
-  const isNicknameStep = 'nickname';
-
   return (
-    <div className={`signup-layout ${isNicknameStep ? 'bg-gray-white' : ''}`}>
-      <NicknameStep />
+    <div className="signup-layout bg-gray-white">
+      <SignupStep />
     </div>
   );
 };
