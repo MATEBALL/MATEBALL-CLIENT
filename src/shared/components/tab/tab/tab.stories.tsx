@@ -41,11 +41,7 @@ export const HomeMode: Story = {
 
     return (
       <div className="bg-gray-700 p-4">
-        <TabList
-          {...args}
-          activeType={activeType}
-          onTabChange={setActiveType}
-        />
+        <TabList {...args} activeType={activeType} onTabChange={setActiveType} />
       </div>
     );
   },
@@ -54,18 +50,13 @@ export const HomeMode: Story = {
   },
 };
 
-
 export const MatchMode: Story = {
   render: (args) => {
     const [activeType, setActiveType] = useState<'1:1' | '그룹'>('1:1');
 
     return (
       <div className="bg-white p-4">
-        <TabList
-          {...args}
-          activeType={activeType}
-          onTabChange={setActiveType}
-        />
+        <TabList {...args} activeType={activeType} onTabChange={setActiveType} />
       </div>
     );
   },
