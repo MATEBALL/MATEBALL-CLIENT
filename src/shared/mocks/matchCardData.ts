@@ -119,7 +119,6 @@ export const groupMockData: CardProps[] = [
     count: 1,
     imgUrl: ['https://example.jpg', 'https://example.jpg'],
     color: 'inactive',
-    chips: ['두산'],
   },
   {
     id: 2,
@@ -133,7 +132,6 @@ export const groupMockData: CardProps[] = [
     count: 0,
     imgUrl: ['https://example.jpg'],
     color: 'inactive',
-    chips: ['두산'],
   },
   {
     id: 3,
@@ -147,7 +145,6 @@ export const groupMockData: CardProps[] = [
     count: 2,
     imgUrl: ['https://example.jpg', 'https://example.jpg', 'https://example.jpg'],
     color: 'inactive',
-    chips: ['두산'],
   },
   {
     id: 4,
@@ -161,6 +158,5 @@ export const groupMockData: CardProps[] = [
     count: 0,
     imgUrl: ['https://example.jpg'],
     color: 'inactive',
-    chips: ['두산'],
   },
 ];
