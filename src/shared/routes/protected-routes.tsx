@@ -15,7 +15,7 @@ import {
 import { ROUTES } from '@routes/routes-config';
 
 export const protectedRoutes = [
-  { path: ROUTES.MATCH_CREATE, element: <Create /> },
+  { path: ROUTES.MATCH_CREATE(), element: <Create /> },
   { path: ROUTES.HOME, element: <Home /> },
   { path: ROUTES.MATCH_SINGLE(), element: <Single /> },
   { path: ROUTES.GROUP_MATES(), element: <GroupMates /> },
