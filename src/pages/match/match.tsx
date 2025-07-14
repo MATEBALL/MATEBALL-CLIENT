@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import TabList from '@components/tab/tab/tab-list';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
 import { singleMockData, groupMockData } from '@mocks/matchCardData';
@@ -15,8 +14,7 @@ const Match = () => {
           }}
         />
       </section>
-
-      <section className="scrollbar-hide flex-1 overflow-y-auto">{contentMap[activeType]}</section>
+      <section className="scrollbar-hide overflow-y-auto">{contentMap[activeType]}</section>
     </div>
   );
 };
