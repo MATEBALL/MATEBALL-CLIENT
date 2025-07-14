@@ -79,7 +79,7 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
 
           <div className="flex-col-center gap-[1.2rem]">
             <div className="flex-row-center gap-[0.8rem]">
-              <Icon name="ic-caution" size={1.8} />
+              <Icon name="caution" size={1.8} />
               <p className="cap_12_m text-gray-600">하루에 한 경기만 매칭 생성이 가능해요.</p>
             </div>
             <div className="w-full p-[1.6rem]">

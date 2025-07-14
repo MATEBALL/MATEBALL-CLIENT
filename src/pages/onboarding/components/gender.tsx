@@ -7,7 +7,7 @@ const Gender = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="onboarding-layout gap-[5.4rem]">
       <div className="onboarding-title">
-        <Icon name="graphic-gender" width={10.4} height={10.4} />
+        <Icon name="gender" width={10.4} height={10.4} />
         <div className="flex-col-center gap-[0.8rem]">
           <p className="head_20_sb text-center text-gray-black">선호하는 메이트의 성별이 있나요?</p>
         </div>

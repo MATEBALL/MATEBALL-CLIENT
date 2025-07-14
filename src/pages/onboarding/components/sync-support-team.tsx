@@ -7,7 +7,7 @@ const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="onboarding-layout gap-[12.8rem]">
       <div className="onboarding-title">
-        <Icon name="graphic-cheer-team" width={10.4} height={10.4} />
+        <Icon name="cheer-team" width={10.4} height={10.4} />
         <p className="head_20_sb text-center text-gray-black">
           메이트와 선호하는
           <br />
