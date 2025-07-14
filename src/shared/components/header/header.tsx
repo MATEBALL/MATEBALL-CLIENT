@@ -11,12 +11,14 @@ const Header = () => {
 
   const isSignUp = location.pathname.includes(ROUTES.SIGNUP);
   const isHome = location.pathname === ROUTES.HOME;
+  const isMatch = location.pathname === ROUTES.MATCH;
 
   return (
     <header
       className={clsx('header-layout', {
         'bg-gray-black': isHome,
         'bg-gray-white': isSignUp,
+        'bg-gray-100': isMatch,
       })}
     >
       {getHeaderContent(location.pathname, isFail, navigate)}
