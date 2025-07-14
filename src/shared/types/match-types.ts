@@ -179,6 +179,15 @@ export interface getDirectMatchListResponse {
 }
 
 /**
+ * 1:1 매칭 현황 조회
+ * get
+ * /v1/users/match-stage/group?
+ */
+export interface getSingleMatchMate {
+  mates: directMatchMate[];
+}
+
+/**
  * 그룹 매칭 현황 조회
  * get
  * /v1/users/match-stage/group?

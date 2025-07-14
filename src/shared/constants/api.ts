@@ -13,20 +13,20 @@ export const END_POINT = {
   GET_GAME_SCHEDULE: '/v1/users/game/schedule',
 
   // 매칭
-  GET_USERS_NUM_COUNT: '/v1/users/num-count/{matchId}',
-  GET_DIRECT_RESULT: '/v1/users/direct/{matchId}',
-  GET_DIRECT_LIST: '/v1/users/direct?date=',
-  GET_GROUP_LIST: '/v1/users/group?date=',
-  GET_GROUP_RESULT: '/v1/users/group/{matchId}',
+  GET_USERS_NUM_COUNT: (matchId: number | string) => `/v1/users/num-count/${matchId}`,
+  GET_SINGLE_RESULT: (matchId: number | string) => `/v1/users/direct/${matchId}`,
+  GET_SINGLE_LIST: (date: string) => `/v1/users/direct?date=${date}`,
+  GET_GROUP_LIST: (date: string) => `/v1/users/group?date=${date}`,
+  GET_GROUP_RESULT: (matchId: number | string) => `/v1/users/group/${matchId}`,
 
   POST_MATCH: '/v1/users/match',
   POST_MATCH_CONDITION: '/v1/users/match-condition',
 
-  GET_DIRECT_STATUS: '/v1/users/match-stage/direct?status=',
-  GET_GROUP_STATUS: '/v1/users/match-stage/group?status=',
+  GET_SINGLE_STATUS: (status: string) => `/v1/users/match-stage/direct?status=${status}`,
+  GET_GROUP_STATUS: (status: string) => `/v1/users/match-stage/group?status=${status}`,
 
-  GET_MATCH_DETAIL: '/v1/users/match-detail/{matchId}',
-  POST_MATCH_REQUEST: '/v1/users/match-request/{matchId}',
-  PATCH_MATCH_ACCEPT: '/v1/users/match-accept/{matchId}',
-  PATCH_MATCH_REJECT: '/v1/users/match-reject/{matchId}',
+  GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match-detail/${matchId}`,
+  POST_MATCH_REQUEST: (matchId: number | string) => `/v1/users/match-request/${matchId}`,
+  PATCH_MATCH_ACCEPT: (matchId: number | string) => `/v1/users/match-accept/${matchId}`,
+  PATCH_MATCH_REJECT: (matchId: number | string) => `/v1/users/match-reject/${matchId}`,
 };
