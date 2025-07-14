@@ -2,6 +2,7 @@ import { get } from '@apis/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
+import type { getUserInfoResponse } from '@/shared/types/user-types';
 
 export const userQueries = {
   ALL: () => queryOptions({ queryKey: USER_KEY.ALL }),
@@ -13,7 +14,7 @@ export const userQueries = {
     }),
 
   USER_INFO: () =>
-    queryOptions({
+    queryOptions<getUserInfoResponse>({
       queryKey: USER_KEY.INFO(),
       queryFn: () => get(END_POINT.GET_USERS_INFO),
     }),
