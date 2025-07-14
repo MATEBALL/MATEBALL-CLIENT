@@ -16,7 +16,7 @@ const Layout = () => {
   const showHeader = !NO_HEADER_PATHS.includes(pathname);
 
   return (
-    <div className={cn('h-screen flex-col', isFail && 'bg-gray-black')}>
+    <div className={cn('h-full flex-col', isFail && 'bg-gray-black')}>
       {showHeader && <Header />}
       <main className="flex-grow">
         <Outlet />

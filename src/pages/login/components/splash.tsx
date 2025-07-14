@@ -20,7 +20,7 @@ const Splash = () => {
       className="h-full w-full flex-col-center bg-main-900"
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ delay: 0.8, duration: 0.3, ease: 'easeOut' }}
+      transition={{ delay: 1, duration: 0.5, ease: 'easeOut' }}
     >
       <Icon name="logo" width={19} height={5.3} />
     </motion.div>
