@@ -26,7 +26,7 @@ const MatchingAgreeView = () => {
           ‘매칭 현황’에서 확인해보세요!
         </p>
       </div>
-      <div className="flex-row-center gap-[0.8rem] p-[1.6rem]">
+      <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
         <Button
           label="메이트 더 찾아보기"
           variant="skyblue"
