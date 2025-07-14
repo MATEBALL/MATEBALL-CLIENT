@@ -16,7 +16,7 @@ const Match = () => {
           }}
         />
       </section>
-      <section className="scrollbar-hide overflow-y-auto">
+      <section>
         <TabContent activeType={activeType} contentMap={contentMap} />
       </section>
     </div>
