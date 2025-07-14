@@ -72,7 +72,7 @@ export interface directMatchMate extends baseMate {
 }
 
 /**
- * 매칭 상세 보기용 Mate 
+ * 매칭 상세 보기용 Mate
  * @extends baseMate
  */
 export interface matchDetailMate extends baseMate {

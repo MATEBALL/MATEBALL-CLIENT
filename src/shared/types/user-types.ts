@@ -1,3 +1,6 @@
+/**
+ * 유저 정보 조회 응답
+ */
 export interface getUserInfoResponse {
   nickname: string | null;
   age: string | null;
@@ -8,11 +11,17 @@ export interface getUserInfoResponse {
   imgUrl: string | null;
 }
 
+/**
+ * 유저 정보 등록 요청
+ */
 export interface postUserInfoRequest {
   gender: string;
   birthYear: number;
 }
 
+/**
+ * 유저 닉네임 등록 요청
+ */
 export interface postUserInfoNicknameRequest {
   nickname: string;
 }
