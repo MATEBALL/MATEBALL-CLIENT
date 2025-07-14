@@ -9,7 +9,7 @@ const SupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
       <div className="onboarding-title">
         <Icon name="graphic-team" width={10.4} height={10.4} />
         <p className="head_20_sb text-center text-gray-black">
-          가장 먼저, 응원하시는 팀을 알려주세요!
+          가장 먼저, 응원하는 팀을 알려주세요!
         </p>
       </div>
 
