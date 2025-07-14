@@ -15,7 +15,6 @@ export const singleMockData: CardProps[] = [
     date: '2025-07-22',
     status: '승인대기중',
     imgUrl: ['https://example.jpg'],
-    color: 'active',
     chips: ['두산', '직관먹방러'],
   },
   {
@@ -32,7 +31,6 @@ export const singleMockData: CardProps[] = [
     date: '2025-07-22',
     status: '요청대기중',
     imgUrl: ['https://example.jpg'],
-    color: 'active',
     chips: ['두산', '직관먹방러'],
   },
   {
@@ -49,7 +47,6 @@ export const singleMockData: CardProps[] = [
     date: '2025-07-22',
     status: '새요청',
     imgUrl: ['https://example.jpg'],
-    color: 'active',
     chips: ['두산', '직관먹방러'],
   },
   {
@@ -66,7 +63,6 @@ export const singleMockData: CardProps[] = [
     date: '2025-07-22',
     status: '대기중',
     imgUrl: ['https://example.jpg'],
-    color: 'active',
     chips: ['두산', '직관먹방러'],
   },
   {
@@ -83,7 +79,6 @@ export const singleMockData: CardProps[] = [
     date: '2025-07-22',
     status: '매칭 실패',
     imgUrl: ['https://example.jpg'],
-    color: 'active',
     chips: ['두산', '직관먹방러'],
   },
   {
@@ -100,7 +95,6 @@ export const singleMockData: CardProps[] = [
     date: '2025-07-22',
     status: '매칭 완료',
     imgUrl: ['https://example.jpg'],
-    color: 'active',
     chips: ['두산', '직관먹방러'],
   },
 ];
@@ -117,7 +111,6 @@ export const groupMockData: CardProps[] = [
     status: '새요청',
     count: 1,
     imgUrl: ['https://example.jpg', 'https://example.jpg'],
-    color: 'inactive',
   },
   {
     id: 2,
@@ -130,7 +123,6 @@ export const groupMockData: CardProps[] = [
     status: '요청대기중',
     count: 0,
     imgUrl: ['https://example.jpg'],
-    color: 'inactive',
   },
   {
     id: 3,
@@ -143,7 +135,6 @@ export const groupMockData: CardProps[] = [
     status: '승인 완료',
     count: 2,
     imgUrl: ['https://example.jpg', 'https://example.jpg', 'https://example.jpg'],
-    color: 'inactive',
   },
   {
     id: 4,
@@ -156,6 +147,5 @@ export const groupMockData: CardProps[] = [
     status: '매칭 실패',
     count: 0,
     imgUrl: ['https://example.jpg'],
-    color: 'inactive',
   },
 ];
