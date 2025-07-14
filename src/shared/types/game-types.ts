@@ -5,7 +5,6 @@ export interface getGameScheduleResponse {
   gameSchedule: Game[];
 }
 
-
 /**
  * 단일 경기 정보
  */
