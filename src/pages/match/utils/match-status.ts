@@ -13,5 +13,4 @@ export const getCardColor = (status?: string): 'active' | 'inactive' => {
   return 'active';
 };
 
-
 export const fillTabItems = ['전체', '대기 중', '완료', '실패'];
