@@ -3,12 +3,9 @@ import CardProfile from '@components/card/match-card/components/card-profile-ima
 import type { CardProps } from '@components/card/match-card/types/card';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
-import { useLocation } from 'react-router-dom';
 
 const CardHeader = (props: CardProps) => {
   const { type } = props;
-  const location = useLocation();
-  const isCreatePage = location.pathname.startsWith('/match/create');
 
   switch (type) {
     case 'single':
@@ -26,11 +23,9 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={props.chips ?? []} />
             </div>
           </div>
-          {!isCreatePage && (
-            <div className="ml-auto">
-              <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
-            </div>
-          )}
+          <div className="ml-auto">
+            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
+          </div>
         </div>
       );
 
@@ -48,11 +43,9 @@ const CardHeader = (props: CardProps) => {
               <CardProfile type="group" imgUrl={props.imgUrl} />
             </div>
           </div>
-          {!isCreatePage && (
-            <div className="ml-auto">
-              <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
-            </div>
-          )}
+          <div className="ml-auto">
+            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
+          </div>
         </div>
       );
 
@@ -60,6 +53,24 @@ const CardHeader = (props: CardProps) => {
       return (
         <div className="flex">
           <CardProfile type="detailed" imgUrl={props.imgUrl} />
+          <div>
+            <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
+              <div className="body_16_b">{props.nickname}</div>
+              <div className="cap_12_m text-gray-600">
+                {props.age}세 | {props.gender}
+              </div>
+            </div>
+            <div className="ml-[1.2rem] flex-row gap-[0.8rem]">
+              <ChipList names={props.chips} />
+            </div>
+          </div>
+        </div>
+      );
+
+    case 'user':
+      return (
+        <div className="flex">
+          <CardProfile type="user" imgUrl={props.imgUrl} />
           <div>
             <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
