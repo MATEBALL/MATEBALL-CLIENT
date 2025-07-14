@@ -24,7 +24,6 @@ export const LoginCallback = () => {
 
         if (loginRes.status === HTTP_STATUS.OK) {
           const userInfo = await get<getUserStatusResponse>(END_POINT.GET_USER_STATUS);
-          console.log(userInfo.nickname);
           if (userInfo.nickname === false) {
             navigate(ROUTES.SIGNUP);
           }
