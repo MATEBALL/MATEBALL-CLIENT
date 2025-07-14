@@ -5,6 +5,7 @@ import { mockProfileData } from '@mocks/mockProfileData';
 
 const Profile = () => {
   const { nickname, imgUrl, team, style, age, gender, introduction } = mockProfileData;
+
   return (
     <div className="h-full flex-col-between">
       <div className="w-full flex-col-center gap-[1.6rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
@@ -19,7 +20,7 @@ const Profile = () => {
           introduction={introduction}
           chips={[team, style]}
         />
-        <Button size={'L'} label="매칭 조건 재설정 하기" />
+        <Button size="L" label="매칭 조건 재설정 하기" />
       </div>
       <Footer />
     </div>
