@@ -37,10 +37,7 @@ export const iconNames = [
   'ic-x',
   'logo-gray',
   'logo',
-<<<<<<< HEAD
   'profile',
-=======
->>>>>>> 205c8c7 (chore: 충돌해결(#83))
 ] as const;
 
 export type IconName = (typeof iconNames)[number];

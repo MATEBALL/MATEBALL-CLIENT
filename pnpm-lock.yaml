@@ -5580,19 +5580,9 @@ snapshots:
 
   flatted@3.3.3: {}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   follow-redirects@1.15.9(debug@4.4.1):
     optionalDependencies:
       debug: 4.4.1(supports-color@10.0.0)
-=======
-  follow-redirects@1.15.9: {}
->>>>>>> 205c8c7 (chore: 충돌해결(#83))
-=======
-  follow-redirects@1.15.9(debug@4.4.1):
-    optionalDependencies:
-      debug: 4.4.1
->>>>>>> 71704b9 (chore: 의존성 수정(#83))
 
   foreground-child@3.3.1:
     dependencies:
@@ -6624,28 +6614,15 @@ snapshots:
       - tsx
       - yaml
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   vite-plugin-mkcert@1.17.8(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)):
     dependencies:
       axios: 1.10.0(debug@4.4.1)
       debug: 4.4.1(supports-color@10.0.0)
-=======
-  vite-plugin-mkcert@1.17.8(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)):
-    dependencies:
-      axios: 1.10.0(debug@4.4.1)
-      debug: 4.4.1
->>>>>>> 71704b9 (chore: 의존성 수정(#83))
       picocolors: 1.1.1
       vite: 6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)
     transitivePeerDependencies:
       - supports-color
 
-<<<<<<< HEAD
-=======
->>>>>>> 205c8c7 (chore: 충돌해결(#83))
-=======
->>>>>>> 71704b9 (chore: 의존성 수정(#83))
   vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.3.5(@types/node@24.0.10)(jiti@2.4.2)(lightningcss@1.30.1)(tsx@4.20.3)):
     dependencies:
       debug: 4.4.1(supports-color@10.0.0)
