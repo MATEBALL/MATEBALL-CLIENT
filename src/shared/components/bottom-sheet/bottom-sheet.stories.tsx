@@ -3,7 +3,7 @@ import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
-
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -98,15 +98,18 @@ export const GameMatch: Story = {
     ];
 
     return (
-      <div className="fixed top-4 left-4 justify-center">
-        <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
-        <GameMatchBottomSheet
-          isOpen={isOpen}
-          onClose={close}
-          date="2025/07/17"
-          gameSchedule={mockGameDatas}
-        />
-      </div>
+      <MemoryRouter>
+        <div className="fixed top-4 left-4 justify-center">
+          <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
+          <GameMatchBottomSheet
+            isOpen={isOpen}
+            onClose={close}
+            date="2025/07/17"
+            gameSchedule={mockGameDatas}
+            activeType={TAB_TYPES.SINGLE}
+          />
+        </div>
+      </MemoryRouter>
     );
   },
 };
