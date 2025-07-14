@@ -10,8 +10,6 @@ interface MatchTabPanelProps {
   cards: CardProps[];
 }
 
-const fillTabItems = ['전체', '대기 중', '완료', '실패'];
-
 const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
   const [filter, setFilter] = useState<string>('전체');
   const navigate = useNavigate();
