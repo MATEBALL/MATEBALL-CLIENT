@@ -16,7 +16,7 @@ export interface getUserInfoResponse {
 /**
  * 유저 정보 등록 요청
  * post
- * /v1/users/info 
+ * /v1/users/info
  */
 export interface postUserInfoRequest {
   gender: string;
