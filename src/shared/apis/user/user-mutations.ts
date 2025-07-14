@@ -1,4 +1,4 @@
-import { post } from '@apis/http';
+import { post } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';

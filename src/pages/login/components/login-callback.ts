@@ -1,5 +1,5 @@
 import { postKakaoLogin } from '@apis/auth/auth';
-import { get } from '@apis/http';
+import { get } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { HTTP_STATUS } from '@constants/response';
 import { ROUTES } from '@routes/routes-config';

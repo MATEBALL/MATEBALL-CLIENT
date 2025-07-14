@@ -1,4 +1,4 @@
-import { instance } from '@apis/instance';
+import { instance } from '@apis/base/instance';
 import { END_POINT } from '@constants/api';
 
 export const postKakaoLogin = (code: string) => {

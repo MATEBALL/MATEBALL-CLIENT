@@ -1,4 +1,4 @@
-import { patch, post } from '@apis/http';
+import { patch, post } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';

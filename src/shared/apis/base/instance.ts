@@ -3,7 +3,7 @@ import { ROUTES } from '@routes/routes-config';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 import type { responseTypes } from '@/shared/types/base-types';
-import { HTTP_STATUS, RESPONSE_MESSAGE } from '../constants/response';
+import { HTTP_STATUS, RESPONSE_MESSAGE } from '../../constants/response';
 
 export const instance = axios.create({
   baseURL: BASE_URL,

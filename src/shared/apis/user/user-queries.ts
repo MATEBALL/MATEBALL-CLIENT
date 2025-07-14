@@ -1,4 +1,4 @@
-import { get } from '@apis/http';
+import { get } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
