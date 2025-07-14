@@ -17,7 +17,8 @@ interface DateSelectProps {
 const DateSelect = ({ onComplete }: DateSelectProps) => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
 
-  const [selectedDate, setSelectedDate] = useState<Date>(initialSelectedDate);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
+  const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
   const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
 
   const { isOpen, open, close } = useBottomSheet();
@@ -26,6 +27,11 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
     setSelectedDate(date);
     setSelectedGameId(null);
     open();
+  };
+
+  const handleMonthChange = (date: Date) => {
+    setCurrentMonth(date);
+    setSelectedDate(null);
   };
 
   const handleGameClick = (id: number) => {
@@ -43,9 +49,10 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
 
       <div className="w-full flex-col-center flex-grow">
         <MonthCalendar
-          value={selectedDate}
+          value={currentMonth}
+          selectedDate={selectedDate}
           onWeekChange={handleDateSelect}
-          onMonthChange={handleDateSelect}
+          onMonthChange={handleMonthChange}
         />
       </div>
 
@@ -53,7 +60,7 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
         <div className="flex-col gap-[1.6rem]">
           <div className="flex-col gap-[1.3rem] px-[1.6rem] pt-[1.6rem]">
             <p className="cap_14_m text-gray-black">
-              {format(selectedDate, 'M월 d일 EEEE', { locale: ko })}
+              {selectedDate && format(selectedDate, 'M월 d일 EEEE', { locale: ko })}
             </p>
             <div className="flex-col-center gap-[0.8rem]">
               {mockGameDatas.map((game) => (

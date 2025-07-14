@@ -15,11 +15,17 @@ import { calendarDayVariants } from '@/shared/components/calendar/styles/calenda
 
 interface MonthCalendarProps {
   value: Date;
+  selectedDate?: Date | null;
   onWeekChange: (date: Date) => void;
   onMonthChange: (date: Date) => void;
 }
 
-const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProps) => {
+const MonthCalendar = ({
+  value,
+  selectedDate,
+  onWeekChange,
+  onMonthChange,
+}: MonthCalendarProps) => {
   const days = getMonthGrid(value);
   const startDate = startOfMonth(value);
   const endDate = endOfMonth(value);
@@ -55,7 +61,7 @@ const MonthCalendar = ({ value, onWeekChange, onMonthChange }: MonthCalendarProp
         </div>
         <div className="cap_14_m grid grid-cols-7 justify-items-center gap-y-[0.4rem]">
           {days.map((day) => {
-            const isSelected = isSameDay(day, value);
+            const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
             const isMonday = day.getDay() === WEEKDAY.MONDAY;
             const isDisabled = isPast || isMonday;
