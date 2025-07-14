@@ -32,16 +32,15 @@ const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
 
       <div className="flex-col gap-[0.8rem] px-[1.6rem]">
         {filteredCards.map((card) => (
-          <div key={`${card.nickname}-${card.date}-${card.type}`}>
-            <Card
-              {...card}
-              color={getCardColor(card.status)}
-              onClick={() => handleCardClick(card)}
-              className={cn('w-full', {
-                'cursor-pointer': card.status === '매칭 완료',
-              })}
-            />
-          </div>
+          <Card
+            key={card.id}
+            {...card}
+            color={getCardColor(card.status)}
+            onClick={() => handleCardClick(card)}
+            className={cn('w-full', {
+              'cursor-pointer': card.status === '매칭 완료',
+            })}
+          />
         ))}
       </div>
     </div>
