@@ -16,6 +16,7 @@ const Header = () => {
       className={clsx('header-layout', {
         'bg-gray-black': isFail || isHome,
         'bg-gray-white': isSignUp,
+        'bg-gray-100': isMatch,
       })}
     >
       {getHeaderContent(pathname, urlParams, isFail, navigate)}
