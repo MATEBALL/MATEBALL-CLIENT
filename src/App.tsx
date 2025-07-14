@@ -10,7 +10,6 @@ const App = () => {
     <GlobalErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        {/* TODO: 토스트 컨테이너 등 추가 */}
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </GlobalErrorBoundary>
