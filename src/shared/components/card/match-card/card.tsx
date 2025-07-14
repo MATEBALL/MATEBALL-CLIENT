@@ -5,21 +5,15 @@ import { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProps } from '@components/card/match-card/types/card';
 import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import { cn } from '@libs/cn';
-import clsx from 'clsx';
 
 const Card = (props: CardProps) => {
   const { type, className, color, status } = props;
 
   const finalColor = getColorType(status, color);
 
-  const introductionClass = 'cap_14_m mt-[1.6rem] mb-[1.6rem]';
-  const gameInfoClass = clsx({
-    'mt-[0.4rem]': type !== 'detailed',
-    'mt-[1.6rem] mb-[1.6rem]': type === 'detailed',
-  });
-
-  const dividerClass = cn('border-gray-300', type === 'detailed' && 'mt-[1.6rem]');
-
+  const introductionClass = 'cap_14_m mt-[1.6rem]';
+  const gameInfoClass = type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]';
+  const dividerClass = 'outline outline-[1px] outline-gray-300';
   const matchingRateClass = 'mt-[1.6rem] ml-auto';
 
   return (
