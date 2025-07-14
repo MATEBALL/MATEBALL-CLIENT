@@ -2,9 +2,19 @@ import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import type { TabType } from '@components/tab/tab/tab-content';
 import TabContent from '@components/tab/tab/tab-content';
 import TabList from '@components/tab/tab/tab-list';
+import { groupMockData, singleMockData } from '@mocks/matchCardData';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
-import { singleMockData, groupMockData } from '@mocks/matchCardData';
+import { fillTabItems } from '@pages/match/utils/match-status';
+import { useState } from 'react';
+
 const Match = () => {
+  const [activeType, setActiveType] = useState<TabType>('1:1');
+  const [filter, setFilter] = useState('전체');
+
+  const contentMap = {
+    '1:1': <MatchTabPanel cards={singleMockData} filter={filter} />,
+    그룹: <MatchTabPanel cards={groupMockData} filter={filter} />,
+  };
 
   return (
     <div className="h-full flex-col overflow-hidden">
