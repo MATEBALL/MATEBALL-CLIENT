@@ -1,4 +1,4 @@
-import { instance } from './instance';
+import { instance } from '@apis/base/instance';
 export async function get<T>(...args: Parameters<typeof instance.get>): Promise<T> {
   const res = await instance.get<T>(...args);
   return res.data;
