@@ -16,6 +16,6 @@ export const userQueries = {
   USER_INFO: () =>
     queryOptions<getUserInfoResponse>({
       queryKey: USER_KEY.INFO(),
-      queryFn: () => get(END_POINT.GET_USERS_INFO),
+      queryFn: () => get(END_POINT.USER_INFO),
     }),
 };
