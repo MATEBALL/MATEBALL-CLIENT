@@ -13,6 +13,6 @@ export const authQueries = {
   USER_STATUS: () =>
     queryOptions<getUserStatusResponse>({
       queryKey: USER_KEY.INFO(),
-      queryFn: () => get(END_POINT.GET_USER_INFO),
+      queryFn: () => get(END_POINT.GET_USER_STATUS),
     }),
 };
