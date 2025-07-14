@@ -38,8 +38,6 @@ export const handleButtonClick = (
         setTimeout(() => {
           navigate(ROUTES.ONBOARDING_GROUP);
         }, 300);
-      } else {
-        navigate(ROUTES.ONBOARDING_GROUP);
       }
     }
   } else if (currentStep === 'COMPLETE') {
