@@ -27,7 +27,6 @@ const Match = () => {
             <FillTabList tabs={fillTabItems} onChange={setFilter} />
           </div>
         </div>
-
         <TabContent activeType={activeType} contentMap={contentMap} />
       </div>
     </div>

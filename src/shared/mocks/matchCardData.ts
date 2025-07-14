@@ -120,7 +120,7 @@ export const groupMockData: CardProps[] = [
     homeTeam: '두산',
     stadium: '경기장',
     date: '2025-07-22',
-    status: '요청대기중',
+    status: '요청 대기 중',
     count: 2,
     imgUrl: ['https://example.jpg'],
   },

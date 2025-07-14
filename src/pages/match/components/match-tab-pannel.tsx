@@ -10,6 +10,13 @@ interface MatchTabPanelProps {
   filter: string;
 }
 
+const CLICKABLE_STATUS_MAP: Record<string, string> = {
+  '매칭 완료': 'success',
+  '승인 완료': 'agree',
+  '새 요청': 'received',
+  '매칭 실패': 'fail',
+};
+
 const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const navigate = useNavigate();
 
@@ -17,23 +24,29 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
     filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
 
   const handleCardClick = (card: CardProps) => {
-    if (statusToCategory(card.status) === '완료') {
-      navigate(`${ROUTES.RESULT}?type=success`);
+    const query = CLICKABLE_STATUS_MAP[card.status ?? ''];
+    if (query) {
+      navigate(`${ROUTES.RESULT}?type=${query}`);
     }
+  };
+
+  const isClickable = (status?: string) => {
+    return Boolean(CLICKABLE_STATUS_MAP[status ?? '']);
   };
 
   return (
     <div className="flex-col gap-[0.8rem] px-[1.6rem] pt-[10rem] pb-[3rem]">
       {filteredCards.map((card) => (
-        <Card
+        <button
+          type="button"
           key={card.id}
-          {...card}
-          color={getCardColor(card.status)}
-          onClick={() => handleCardClick(card)}
+          onClick={isClickable(card.status) ? () => handleCardClick(card) : undefined}
           className={cn('w-full', {
-            'cursor-pointer': card.status === '매칭 완료',
+            'cursor-pointer': isClickable(card.status),
           })}
-        />
+        >
+          <Card {...card} color={getCardColor(card.status)} className="w-full" />
+        </button>
       ))}
     </div>
   );
