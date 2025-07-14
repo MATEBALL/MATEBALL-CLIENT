@@ -40,7 +40,7 @@ export const matchQueries = {
   SINGLE_MATCH_LIST: (date: string) =>
     queryOptions<getSingleMatchListResponse>({
       queryKey: MATCH_KEY.SINGLE_LIST(date),
-      queryFn: () => get(`${END_POINT.GET_SINGLE_LIST}${date}`),
+      queryFn: () => get(END_POINT.GET_SINGLE_LIST(date)),
     }),
 
   /**
@@ -49,7 +49,7 @@ export const matchQueries = {
   GROUP_MATCH_LIST: (date: string) =>
     queryOptions<getGroupMatchListResponse>({
       queryKey: MATCH_KEY.GROUP_LIST(date),
-      queryFn: () => get(`${END_POINT.GET_GROUP_LIST}${date}`),
+      queryFn: () => get(END_POINT.GET_GROUP_LIST(date)),
     }),
 
   /**
@@ -67,7 +67,7 @@ export const matchQueries = {
   SINGLE_MATCH_STATUS: (status: string) =>
     queryOptions<getSingleMatchMate>({
       queryKey: MATCH_KEY.SINGLE_STATUS(status),
-      queryFn: () => get(`${END_POINT.GET_SINGLE_STATUS}${status}`),
+      queryFn: () => get(END_POINT.GET_SINGLE_STATUS(status)),
     }),
 
   /**
@@ -76,7 +76,7 @@ export const matchQueries = {
   GROUP_MATCH_STATUS: (status: string) =>
     queryOptions<getGroupMatchMate>({
       queryKey: MATCH_KEY.GROUP_STATUS(status),
-      queryFn: () => get(`${END_POINT.GET_GROUP_STATUS}${status}`),
+      queryFn: () => get(END_POINT.GET_GROUP_STATUS(status)),
     }),
 
   /**
