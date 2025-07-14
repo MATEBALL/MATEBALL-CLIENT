@@ -110,7 +110,7 @@ export const groupMockData: CardProps[] = [
     stadium: '경기장',
     date: '2025-07-22',
     status: '새요청',
-    count: 1,
+    count: 2,
     imgUrl: ['https://example.jpg', 'https://example.jpg'],
   },
   {
@@ -122,7 +122,7 @@ export const groupMockData: CardProps[] = [
     stadium: '경기장',
     date: '2025-07-22',
     status: '요청대기중',
-    count: 0,
+    count: 2,
     imgUrl: ['https://example.jpg'],
   },
   {
@@ -146,7 +146,7 @@ export const groupMockData: CardProps[] = [
     stadium: '경기장',
     date: '2025-07-22',
     status: '매칭 실패',
-    count: 0,
+    count: 3,
     imgUrl: ['https://example.jpg'],
   },
 ];
