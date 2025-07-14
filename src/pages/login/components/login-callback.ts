@@ -23,7 +23,7 @@ export const LoginCallback = () => {
         const loginRes = await postKakaoLogin(code);
 
         if (loginRes.status === HTTP_STATUS.OK) {
-          const userInfo = await get<getUserInfoResponse>(END_POINT.GET_USERS_INFO);
+          const userInfo = await get<getUserInfoResponse>(END_POINT.USER_INFO);
 
           if (userInfo.nickname === null) {
             navigate(ROUTES.SIGNUP);
