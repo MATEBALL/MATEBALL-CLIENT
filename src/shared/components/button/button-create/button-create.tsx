@@ -27,7 +27,7 @@ const ButtonCreate = ({
         className,
       )}
     >
-      <Icon name="ic-plus" width={1.6} height={1.6} />
+      <Icon name="plus" width={1.6} height={1.6} />
       {label}
     </button>
   );

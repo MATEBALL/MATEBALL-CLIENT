@@ -38,8 +38,8 @@ const ButtonGame = ({
         {awayTeam} VS {homeTeam}
       </span>
       <span className="flex-row-center gap-[0.4rem] text-gray-600">
-        <ChipInfo icon="ic-clock" size={1.85} text={gameTime} iconColor="text-gray-500" />
-        <ChipInfo icon="ic-location" size={1.6} text={stadium} iconColor="text-gray-500" />
+        <ChipInfo icon="clock" size={1.85} text={gameTime} iconColor="text-gray-500" />
+        <ChipInfo icon="location" size={1.6} text={stadium} iconColor="text-gray-500" />
       </span>
     </button>
   );

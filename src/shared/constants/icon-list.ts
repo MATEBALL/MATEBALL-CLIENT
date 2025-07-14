@@ -1,4 +1,3 @@
-
 export const iconNames = [
   'arrow-left-18',
   'arrow-left-24',
@@ -37,7 +36,7 @@ export const iconNames = [
   'my-lined',
   'plus',
   'team',
-  'watching'
+  'watching',
 ] as const;
- 
+
 export type IconName = (typeof iconNames)[number];

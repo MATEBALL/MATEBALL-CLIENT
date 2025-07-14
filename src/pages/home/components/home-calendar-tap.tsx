@@ -25,7 +25,7 @@ const HomeCalendarTap = () => {
           <div>그룹</div>
         </div>
         <div className="h-[3.2rem] w-[3.2rem] flex-col-center rounded-[8px] bg-gray-900">
-          <Icon name="ic-calendar" size={2.4} className=" text-white" />
+          <Icon name="calendar" size={2.4} className="text-white" />
         </div>
       </div>
     </div>
