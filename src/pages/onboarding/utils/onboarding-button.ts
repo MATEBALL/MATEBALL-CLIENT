@@ -25,11 +25,23 @@ export const handleButtonClick = (
   selections: Record<string, string | null>,
   goNext: () => void,
   navigate: NavigateFunction,
+  setProgressOverride?: (step: number) => void,
 ) => {
   if (currentStep === 'START') {
     goNext();
   } else if (currentStep === 'MATCHING_TYPE') {
-    selections.MATCHING_TYPE === '1:1 매칭' ? goNext() : navigate(ROUTES.ONBOARDING_GROUP);
+    if (selections.MATCHING_TYPE === '1:1 매칭') {
+      goNext();
+    } else {
+      if (setProgressOverride) {
+        setProgressOverride(0);
+        setTimeout(() => {
+          navigate(ROUTES.ONBOARDING_GROUP);
+        }, 300);
+      } else {
+        navigate(ROUTES.ONBOARDING_GROUP);
+      }
+    }
   } else if (currentStep === 'COMPLETE') {
     navigate(ROUTES.HOME);
   } else {

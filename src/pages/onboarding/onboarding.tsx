@@ -55,13 +55,18 @@ const Onboarding = () => {
     localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(selections));
   }, [selections]);
 
+  const [progressOverride, setProgressOverride] = useState<number | null>(null);
+
   return (
     <div className="h-svh flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={goPrev} />
         {currentStep !== 'START' && (
           <div className="w-full">
-            <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
+            <ProgressBar
+              currentStep={progressOverride ?? currentIndex}
+              totalSteps={steps.length - 1}
+            />
           </div>
         )}
       </div>
@@ -118,7 +123,9 @@ const Onboarding = () => {
             size="L"
             variant="blue"
             disabled={isButtonDisabled(currentStep, selections)}
-            onClick={() => handleButtonClick(currentStep, selections, goNext, navigate)}
+            onClick={() =>
+              handleButtonClick(currentStep, selections, goNext, navigate, setProgressOverride)
+            }
           />
         </div>
       </div>
