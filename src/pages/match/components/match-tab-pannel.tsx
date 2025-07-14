@@ -12,7 +12,7 @@ interface MatchTabPanelProps {
 }
 
 const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
-  const [filter, setFilter] = useState<string>('전체');
+  const [filter, setFilter] = useState('전체');
   const navigate = useNavigate();
 
   const filteredCards =
