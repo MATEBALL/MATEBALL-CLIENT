@@ -10,7 +10,7 @@ const Create = () => {
   const [searchParams] = useSearchParams();
   const matchType = searchParams.get('type') === 'group' ? 'group' : 'single';
   const { matchId } = useParams();
-  const numericMatchId = Number(matchId) || 1;
+  const numericMatchId = Number(matchId);
   const { matchData } = useMatchCreate(numericMatchId, matchType);
 
   if (isInvalidMatchId(matchId?.toString())) {
@@ -19,10 +19,10 @@ const Create = () => {
 
   return (
     <div className="h-full flex-col-between gap-[2.4rem] px-[1.6rem] pt-[9.6rem]">
-      <main className="w-full flex-col-center gap-[4rem]">
+      <div className="w-full flex-col-center gap-[4rem]">
         <MatchGuideSection nickname={matchData?.nickname || ''} />
         {matchData && <MatchCardSection matchData={matchData} />}
-      </main>
+      </div>
       <ButtonSection matchType={matchType} />
     </div>
   );

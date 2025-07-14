@@ -13,20 +13,20 @@ export type MatchCardData =
 const useMatchCreate = (matchId: number, type: 'single' | 'group') => {
   const getMatchData = (): MatchCardData | null => {
     if (type === 'single') {
-      const singleMatch = mockMateSingle.find((m) => m.id === matchId);
-      return singleMatch
+      const foundSingleMatch = mockMateSingle.find((m) => m.id === matchId);
+      return foundSingleMatch
         ? {
-            ...singleMatch,
+            ...foundSingleMatch,
             type: 'single',
-            chips: [singleMatch.team, singleMatch.style] as ChipColor[],
+            chips: [foundSingleMatch.team, foundSingleMatch.style] as ChipColor[],
           }
         : null;
     }
 
-    const groupMatch = mockMateGroup.find((m) => m.id === matchId);
-    return groupMatch
+    const foundGroupMatch = mockMateGroup.find((m) => m.id === matchId);
+    return foundGroupMatch
       ? {
-          ...groupMatch,
+          ...foundGroupMatch,
           type: 'group',
         }
       : null;

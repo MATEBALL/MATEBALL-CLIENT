@@ -20,7 +20,7 @@ const ButtonSection = ({ matchType }: ButtonSectionProps) => {
   };
 
   return (
-    <aside className="w-full">
+    <div className="w-full">
       <section className="flex-row-center gap-[0.8rem]">
         <Icon name="ic-caution" size={1.8} className="text-gray-600" />
         <p className="cap_12_m text-gray-600">{MAX_CREATE_DESCRIPTION[matchType]}</p>
@@ -41,7 +41,7 @@ const ButtonSection = ({ matchType }: ButtonSectionProps) => {
           onClick={handleGoToMatch}
         />
       </section>
-    </aside>
+    </div>
   );
 };
 
