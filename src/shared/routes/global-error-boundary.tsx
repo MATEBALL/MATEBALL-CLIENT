@@ -1,7 +1,7 @@
+import ErrorView from '@pages/error/error-view';
+import Loading from '@pages/loading/loading';
 import { type ReactNode, Suspense } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
-import Loading from '@pages/loading/loading';
-import ErrorView from '@pages/error/error-view';
 
 interface GlobalErrorBoundaryProps {
   children: ReactNode;
