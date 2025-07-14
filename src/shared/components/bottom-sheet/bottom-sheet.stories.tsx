@@ -3,7 +3,7 @@ import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
-
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router-dom';
 
