@@ -31,10 +31,7 @@ export const iconNames = [
   'ic-x',
   'logo-gray',
   'logo',
-<<<<<<< HEAD
   'profile',
-=======
->>>>>>> 775437c (feat: 버튼 컴포넌트 left, right 조건 추가 (#135))
 ] as const;
 
 export type IconName = (typeof iconNames)[number];
