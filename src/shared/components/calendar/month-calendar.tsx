@@ -15,7 +15,7 @@ import { calendarDayVariants } from '@/shared/components/calendar/styles/calenda
 
 interface MonthCalendarProps {
   value: Date;
-  selectedDate: Date | null;
+  selectedDate?: Date | null;
   onWeekChange: (date: Date) => void;
   onMonthChange: (date: Date) => void;
 }
