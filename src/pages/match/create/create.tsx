@@ -8,24 +8,23 @@ import { Navigate, useParams, useSearchParams } from 'react-router-dom';
 
 const Create = () => {
   const [searchParams] = useSearchParams();
-  const matchType = searchParams.get('type') === 'group' ? 'group' : 'single';
   const { matchId } = useParams();
+  const matchTypeParam = searchParams.get('type');
+  const matchType =
+    matchTypeParam === 'single' || matchTypeParam === 'group' ? matchTypeParam : undefined;
+
   const numericMatchId = Number(matchId);
   const { matchData } = useMatchCreate(numericMatchId, matchType);
 
-  if (isInvalidMatchId(matchId?.toString())) {
+  if (!matchData || isInvalidMatchId(matchId?.toString()) || !matchType) {
     return <Navigate to={ROUTES.ERROR} replace />;
   }
 
   return (
     <div className="h-full flex-col-between gap-[2.4rem] px-[1.6rem] pt-[9.6rem]">
       <div className="w-full flex-col-center gap-[4rem]">
-        {matchData?.nickname && (
-          <>
-            <MatchGuideSection nickname={matchData.nickname} />
-            <MatchCardSection matchData={matchData} />
-          </>
-        )}
+        <MatchGuideSection nickname={matchData.nickname} />
+        <MatchCardSection matchData={matchData} />
       </div>
       <ButtonSection matchType={matchType} />
     </div>

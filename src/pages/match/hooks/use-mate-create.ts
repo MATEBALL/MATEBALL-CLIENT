@@ -10,7 +10,7 @@ export type MatchCardData =
   | (SingleCardProps & { id: number; type: 'single' })
   | (GroupCardProps & { id: number; type: 'group' });
 
-const useMatchCreate = (matchId: number, type: 'single' | 'group') => {
+const useMatchCreate = (matchId: number, type: 'single' | 'group' | null | undefined) => {
   const getMatchData = (): MatchCardData | null => {
     if (type === 'single') {
       const foundSingleMatch = mockMateSingle.find((m) => m.id === matchId);
@@ -23,10 +23,10 @@ const useMatchCreate = (matchId: number, type: 'single' | 'group') => {
         : null;
     }
 
-    const foundGroupMatch = mockMateGroup.find((m) => m.id === matchId);
-    return foundGroupMatch
+    const groupMatch = mockMateGroup.find((m) => m.id === matchId);
+    return groupMatch
       ? {
-          ...foundGroupMatch,
+          ...groupMatch,
           type: 'group',
         }
       : null;
