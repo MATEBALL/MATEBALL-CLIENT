@@ -6,6 +6,7 @@ import { mockMateSingle } from '@mocks/mockMateSingle';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { format } from 'date-fns';
 import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface MatchListSectionProps {
   activeType: TabType;
@@ -15,16 +16,28 @@ interface MatchListSectionProps {
   onOpenGameInfoBottomSheet: () => void;
 }
 
+
 const MatchListSection = ({
   isOneOnOne,
   selectedDate,
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
+
+  const navigate = useNavigate();
+
   const filteredMatches = useMemo(() => {
     const formattedDate = format(selectedDate, 'yyyy-MM-dd');
     const sourceData = isOneOnOne ? mockMateSingle : mockMateGroup;
     return sourceData.filter((match) => match.date === formattedDate);
   }, [selectedDate, isOneOnOne]);
+
+  const handleCardClick = (matchId: number) => {
+    if (isOneOnOne) {
+      navigate(`/match/single/${matchId}?type=sent&mode=single`);
+    } else {
+      navigate(`/match/groups/mates/${matchId}?type=sent&mode=group`);
+    }
+  };
 
   return (
     <section className="p-[1.6rem]">
@@ -35,7 +48,9 @@ const MatchListSection = ({
       />
 
       {filteredMatches.length > 0 ? (
-        <div className="mt-[2rem] space-y-3">{renderMatchCards(filteredMatches, isOneOnOne)}</div>
+        <div className="mt-[2rem] space-y-3">
+          {renderMatchCards(filteredMatches, isOneOnOne, handleCardClick)}
+        </div>
       ) : (
         <EmptyState
           className="mt-[4rem]"
