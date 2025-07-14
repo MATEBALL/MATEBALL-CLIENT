@@ -25,12 +25,12 @@ const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="flex-col gap-[0.8rem] pt-[2.4rem]">
+    <div className="h-full flex-col gap-[0.8rem] pt-[1.2rem]">
       <div className="px-[1.6rem] pb-[2rem]">
         <FillTabList tabs={fillTabItems} onChange={setFilter} />
       </div>
 
-      <div className="flex-col gap-[0.8rem] px-[1.6rem]">
+      <div className="flex-col gap-[0.8rem] px-[1.6rem] pb-[15rem]">
         {filteredCards.map((card) => (
           <Card
             key={card.id}
