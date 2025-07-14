@@ -18,7 +18,7 @@ import {
   Single,
 } from '@routes/lazy';
 import { ROUTES } from '@routes/routes-config';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   // { path: '/', element: <Splash /> },
@@ -42,12 +42,12 @@ export const router = createBrowserRouter([
       { path: ROUTES.CHAT_ROOM(), element: <ChatRoom /> },
       { path: ROUTES.RESULT, element: <Result /> },
       {
-        path: '*',
-        element: <Navigate to={ROUTES.ERROR} replace />,
-      },
-      {
         path: '/error',
         element: <ErrorView />,
+      },
+      {
+        path: '*',
+        element: <ErrorView message={`존재하지 않는 페이지입니다.\nURL을 다시 확인해 주세요.`} />,
       },
     ],
   },

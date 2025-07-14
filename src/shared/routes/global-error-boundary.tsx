@@ -7,9 +7,9 @@ interface GlobalErrorBoundaryProps {
   children: ReactNode;
 }
 
+// TODO: 에러 정보 (error.message 등), 토스트 메시지 등 활용
 const GlobalFallback = ({ error }: FallbackProps) => {
-  console.error('Global Error:', error);
-  return <ErrorView />;
+  return <ErrorView message={error.message} />;
 };
 
 export const GlobalErrorBoundary = ({ children }: GlobalErrorBoundaryProps) => {
