@@ -10,3 +10,5 @@ export const getCardColor = (status?: string): 'active' | 'inactive' => {
   const inactiveStatuses = ['승인대기중', '요청대기중', '대기중', '매칭 실패'];
   return inactiveStatuses.includes(status ?? '') ? 'inactive' : 'active';
 };
+
+export const fillTabItems = ['전체', '대기 중', '완료', '실패'];
