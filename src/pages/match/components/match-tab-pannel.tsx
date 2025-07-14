@@ -8,10 +8,10 @@ import { cn } from '@libs/cn';
 
 interface MatchTabPanelProps {
   cards: CardProps[];
+  filter: string;
 }
 
-const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
-  const [filter, setFilter] = useState('전체');
+const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const navigate = useNavigate();
 
   const statusToCategory = (status?: string): '대기 중' | '완료' | '실패' | '' => {

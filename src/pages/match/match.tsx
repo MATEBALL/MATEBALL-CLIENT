@@ -1,3 +1,4 @@
+import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import type { TabType } from '@components/tab/tab/tab-content';
 import TabContent from '@components/tab/tab/tab-content';
 import TabList from '@components/tab/tab/tab-list';
@@ -18,7 +19,7 @@ const Match = () => {
       </section>
       <section>
         <TabContent activeType={activeType} contentMap={contentMap} />
-      </section>
+      </div>
     </div>
   );
 };
