@@ -18,7 +18,7 @@ const useMatchCreate = (matchId: number, type: 'single' | 'group' | null | undef
         ? {
             ...foundSingleMatch,
             type: 'single',
-            imgUrl: [foundSingleMatch.imgUrl], 
+            imgUrl: [foundSingleMatch.imgUrl],
             chips: [foundSingleMatch.team, foundSingleMatch.style] as ChipColor[],
           }
         : null;

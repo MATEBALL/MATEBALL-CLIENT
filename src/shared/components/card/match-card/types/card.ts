@@ -6,6 +6,7 @@ type ColorType = NonNullable<VariantProps<typeof cardVariants>['color']>;
 export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
 export interface BaseCardProps {
+  id: number;
   type: 'single' | 'group' | 'detailed';
   className?: string;
   nickname: string;
@@ -17,6 +18,7 @@ export interface BaseCardProps {
   stadium: string;
   status?: string;
   color?: ColorType;
+  onClick?: () => void;
 }
 
 export interface SingleCardProps extends BaseCardProps {
