@@ -18,7 +18,7 @@ import { ROUTES } from '@routes/routes-config';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const getStoredSelections = (): Record<string, string | null> => {
+const getStoredSelection = (): Record<string, string | null> => {
   try {
     const stored = localStorage.getItem(ONBOARDING_GROUP_STORAGE_KEY);
     return stored ? JSON.parse(stored) : {};
@@ -35,21 +35,20 @@ const OnboardingGroup = () => {
 
   const navigate = useNavigate();
 
-  const [selections, setSelections] = useState<Record<string, string | null>>(() => {
-    const stored = getStoredSelections();
+  const [selection, setSelection] = useState<Record<string, string | null>>(() => {
+    const stored = getStoredSelection();
     return {
       GROUP_ROLE: stored.GROUP_ROLE ?? null,
-      DATE_SELECT: stored.DATE_SELECT ?? null,
     };
   });
 
   const handleSelect = (stepName: string, value: string) => {
-    setSelections((prev) => ({ ...prev, [stepName]: value }));
+    setSelection((prev) => ({ ...prev, [stepName]: value }));
   };
 
   useEffect(() => {
-    localStorage.setItem(ONBOARDING_GROUP_STORAGE_KEY, JSON.stringify(selections));
-  }, [selections]);
+    localStorage.setItem(ONBOARDING_GROUP_STORAGE_KEY, JSON.stringify(selection));
+  }, [selection]);
 
   return (
     <div className="h-full flex-col">
@@ -66,7 +65,7 @@ const OnboardingGroup = () => {
         <Funnel>
           <Step name="GROUP_ROLE">
             <GroupRole
-              selectedOption={selections.GROUP_ROLE}
+              selectedOption={selection.GROUP_ROLE}
               onSelect={(option) => handleSelect('GROUP_ROLE', option)}
             />
           </Step>
@@ -89,8 +88,8 @@ const OnboardingGroup = () => {
             label={getButtonLabel(currentStep)}
             size="L"
             variant="blue"
-            disabled={isButtonDisabled(currentStep, selections)}
-            onClick={() => handleButtonClick(currentStep, selections, goNext, navigate)}
+            disabled={isButtonDisabled(currentStep, selection)}
+            onClick={() => handleButtonClick(currentStep, selection, goNext, navigate)}
           />
         </div>
       </div>
