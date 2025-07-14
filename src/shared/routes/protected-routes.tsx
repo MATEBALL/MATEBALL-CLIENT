@@ -8,6 +8,7 @@ import {
   Home,
   Match,
   Onboarding,
+  OnboardingGroup,
   Profile,
   Result,
   Single,
