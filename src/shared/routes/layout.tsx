@@ -5,7 +5,6 @@ import { NO_HEADER_PATHS } from '@constants/header';
 import { cn } from '@libs/cn';
 // import Loading from '@pages/loading/loading';
 import { ROUTES } from '@routes/routes-config';
-import { Suspense } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
@@ -19,14 +18,12 @@ const Layout = () => {
 
   return (
     <div className={cn('h-screen flex-col', isFail && 'bg-gray-black')}>
-      <Suspense>
-        {showHeader && <Header />}
-        <main className="flex-grow">
-          <Outlet />
-        </main>
-        {pathname === ROUTES.HOME && <Footer />}
-        {showBottomNav && <BottomNavigation />}
-      </Suspense>
+      {showHeader && <Header />}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      {pathname === ROUTES.HOME && <Footer />}
+      {showBottomNav && <BottomNavigation />}
     </div>
   );
 };

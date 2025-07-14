@@ -15,6 +15,6 @@ const App = () => {
       </QueryClientProvider>
     </GlobalErrorBoundary>
   );
-}
+};
 
 export default App;
