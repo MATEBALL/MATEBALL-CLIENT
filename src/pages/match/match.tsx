@@ -1,3 +1,5 @@
+import type { TabType } from '@components/tab/tab/tab-content';
+import TabContent from '@components/tab/tab/tab-content';
 import TabList from '@components/tab/tab/tab-list';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
 import { singleMockData, groupMockData } from '@mocks/matchCardData';
@@ -14,7 +16,9 @@ const Match = () => {
           }}
         />
       </section>
-      <section className="scrollbar-hide overflow-y-auto">{contentMap[activeType]}</section>
+      <section className="scrollbar-hide overflow-y-auto">
+        <TabContent activeType={activeType} contentMap={contentMap} />
+      </section>
     </div>
   );
 };
