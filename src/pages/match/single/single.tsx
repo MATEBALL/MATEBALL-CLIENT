@@ -1,6 +1,7 @@
 import BottomSheetModal from '@components/bottom-sheet/bottom-sheet-modal';
 import Mate from '@pages/match/components/mate';
-import { isInvalidMatchId, MATCHING_DESCRIPTION } from '@pages/match/constants/matching';
+import { MATCHING_DESCRIPTION } from '@pages/match/constants/matching';
+import { isInvalidMatchId } from '@pages/match/utils/match-validators';
 import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
