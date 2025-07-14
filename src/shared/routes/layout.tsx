@@ -1,22 +1,15 @@
 import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
-<<<<<<< HEAD
 import { NO_HEADER_PATHS, SHOW_BOTTOM_NAVIGATE_PATHS } from '@constants/header';
-=======
-import { NO_HEADER_PATHS } from '@constants/header';
-// import Loading from '@pages/loading/loading';
->>>>>>> 953ff31 (feat: 채팅방 카드 퍼블리싱 (#125))
-import { ROUTES } from '@routes/routes-config';
-import { Suspense } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
 import { cn } from '@libs/cn';
+import { ROUTES } from '@routes/routes-config';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
   const { pathname, search } = useLocation();
   const params = new URLSearchParams(search);
 
-<<<<<<< HEAD
   const isFail = pathname === ROUTES.RESULT && params.get('type') === 'fail';
 
   const showBottomNav = SHOW_BOTTOM_NAVIGATE_PATHS.includes(pathname);
@@ -24,24 +17,12 @@ const Layout = () => {
 
   return (
     <div className={cn('h-screen flex-col', isFail && 'bg-gray-black')}>
-      <Suspense>
-        {showHeader && <Header />}
-        <main className="flex-grow">
-=======
-  const showBottomNav = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT, ROUTES.PROFILE].includes(pathname);
-  const showHeader = !NO_HEADER_PATHS.includes(pathname);
-
-  return (
-    <div className="flex h-screen flex-col">
       {showHeader && <Header />}
       <main className="flex-grow">
-        <Suspense fallback={<div />}>
->>>>>>> 953ff31 (feat: 채팅방 카드 퍼블리싱 (#125))
-          <Outlet />
-        </main>
-        {pathname === ROUTES.HOME && <Footer />}
-        {showBottomNav && <BottomNavigation />}
-      </Suspense>
+        <Outlet />
+      </main>
+      {pathname === ROUTES.HOME && <Footer />}
+      {showBottomNav && <BottomNavigation />}
     </div>
   );
 };
