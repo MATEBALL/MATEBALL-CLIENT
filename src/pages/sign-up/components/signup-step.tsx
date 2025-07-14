@@ -43,21 +43,32 @@ const SignupStep = () => {
   const nicknameMutation = useMutation(userMutations.NICKNAME());
   const userInfoMutation = useMutation(userMutations.USER_INFO());
 
-  const onSubmit = async (data: NicknameFormValues) => {
-    try {
-      await nicknameMutation.mutateAsync({ nickname: data.nickname });
-
-      await userInfoMutation.mutateAsync({
-        gender: data.gender,
-        birthYear: Number(data.birthYear),
-      });
-
-      await queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
-
-      navigate(ROUTES.HOME);
-    } catch (error) {
-      console.error(error);
-    }
+  const onSubmit = (data: NicknameFormValues) => {
+    nicknameMutation.mutate(
+      { nickname: data.nickname },
+      {
+        onSuccess: () => {
+          userInfoMutation.mutate(
+            {
+              gender: data.gender,
+              birthYear: Number(data.birthYear),
+            },
+            {
+              onSuccess: () => {
+                queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
+                navigate(ROUTES.HOME);
+              },
+              onError: (error) => {
+                console.error(error);
+              },
+            },
+          );
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      },
+    );
   };
 
   const { onBlur: onNicknameBlur, ref: nicknameRef, ...nicknameInputProps } = register('nickname');
