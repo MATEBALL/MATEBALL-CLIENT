@@ -7,3 +7,12 @@ export interface getUserInfoResponse {
   introduction: string | null;
   imgUrl: string | null;
 }
+
+export interface postUserInfoRequest {
+  gender: string;
+  birthYear: number;
+}
+
+export interface postUserInfoNicknameRequest {
+  nickname: string;
+}
