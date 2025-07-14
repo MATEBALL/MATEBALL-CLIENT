@@ -47,6 +47,10 @@ export const getHeaderContent = (
     return <h1 className="head_20_sb text-gray-black">매칭현황</h1>;
   }
 
+  if (pathname === ROUTES.CHAT) {
+    return <h1 className="head_20_sb text-gray-black">채팅</h1>;
+  }
+
   if (isFail) {
     return <Icon name="ic-arrow-left-white" onClick={handleBackClick} width={2.4} height={2.4} />;
   }
