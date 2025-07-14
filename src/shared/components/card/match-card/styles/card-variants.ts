@@ -8,7 +8,7 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
       detailed: 'p-[2rem] shadow-1',
     },
     color: {
-      active: 'border-[1px] border-main-600 bg-main-200',
+      active: 'bg-main-200 outline outline-[1px] outline-main-600',
       inactive: 'bg-white',
     },
   },
@@ -18,12 +18,12 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
   },
 });
 
-export const profileVariants = cva('aspect-square rounded-full border-[1px] object-cover', {
+export const profileVariants = cva('aspect-square rounded-full object-cover', {
   variants: {
     type: {
-      single: 'h-[6rem] border-gray-900',
-      group: 'h-[2.8rem] border-main-600',
-      detailed: 'h-[8.2rem] border-gray-900',
+      single: 'h-[6rem] outline outline-[1px] outline-gray-900',
+      group: 'h-[2.8rem] outline outline-[1px] outline-main-600',
+      detailed: 'h-[8.2rem] outline outline-[1px] outline-gray-900',
     },
   },
   defaultVariants: {
