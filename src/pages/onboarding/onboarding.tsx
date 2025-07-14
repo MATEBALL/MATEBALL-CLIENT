@@ -43,10 +43,6 @@ const Onboarding = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(selections));
-  }, [selections]);
-
   const [progressOverride, setProgressOverride] = useState<number | null>(null);
 
   useEffect(() => {
