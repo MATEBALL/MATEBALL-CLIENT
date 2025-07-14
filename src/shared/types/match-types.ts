@@ -90,19 +90,25 @@ export interface matchDetailMate extends baseMate {
 //
 
 /**
- * 매칭 수 조회 응답
+ * 매칭된 인원 조회 응답
+ * get
+ * /v1/users/num-count/{matchId}
  */
 export interface getMatchCountResponse {
   count: number;
 }
 
 /**
- * 단일 매칭 결과 응답
+ * 1:1 매칭 결과 응답
+ * get
+ * /v1/users/direct/{matchId}
  */
 export interface getSingleMatchResultResponse extends singleMatchResult {}
 
 /**
- * 단일 매칭 리스트 조회 응답
+ * 1:1 매칭 리스트 조회 응답
+ * get
+ * /v1/users/direct?data=
  */
 export interface getSingleMatchListResponse {
   mates: singleMatchMate[];
@@ -110,6 +116,8 @@ export interface getSingleMatchListResponse {
 
 /**
  * 그룹 매칭 리스트 조회 응답
+ * get
+ * /v1/users/group?data=
  */
 export interface getGroupMatchListResponse {
   mates: groupMatchMate[];
@@ -117,6 +125,8 @@ export interface getGroupMatchListResponse {
 
 /**
  * 그룹 매칭 상세 결과 응답
+ * get
+ * /v1/users/group/{matchId}
  */
 export interface getGroupMatchResultResponse {
   id: number;
@@ -130,6 +140,8 @@ export interface getGroupMatchResultResponse {
 
 /**
  * 매칭 생성 요청
+ * post
+ * /v1/users/match
  */
 export interface postMatchCreateRequest {
   gameId: number;
@@ -138,6 +150,8 @@ export interface postMatchCreateRequest {
 
 /**
  * 매칭 생성 응답
+ * post
+ * /v1/users/match
  */
 export interface postMatchCreateResponse {
   matchId: number;
@@ -145,6 +159,8 @@ export interface postMatchCreateResponse {
 
 /**
  * 매칭 조건 설정 요청
+ * post
+ * /v1/users/match-condition
  */
 export interface postMatchConditionRequest {
   team: string;
@@ -154,14 +170,18 @@ export interface postMatchConditionRequest {
 }
 
 /**
- * 일대일 매칭 현황 리스트 조회 응답
+ * 1:1 매칭 현황 리스트 조회 응답
+ * get
+ * /v1/users/match-stage/direct?
  */
 export interface getDirectMatchListResponse {
   mates: directMatchMate[];
 }
 
 /**
- * 그룹 매칭 현황 Mate (요청 상태 포함)
+ * 그룹 매칭 현황 조회
+ * get
+ * /v1/users/match-stage/group?
  */
 export interface getGroupMatchMate {
   id: number;
@@ -173,4 +193,28 @@ export interface getGroupMatchMate {
   status: string;
   count: number;
   imgUrl: string[];
+}
+
+/**
+ * 매칭 요청 상세조회용 Mate
+ * get
+ * /v1/users/match-detail/{matchId}
+ */
+export interface matchDetailMateSimple extends baseMate {
+  age: string;
+  gender: string;
+  team: string;
+  style: string;
+  introduction: string;
+  imgUrl: string;
+  matchRate: number;
+}
+
+/**
+ * 매칭 요청 상세조회 응답
+ * get
+ * /v1/users/match-detail/{matchId}
+ */
+export interface getMatchDetailResponse {
+  mates: matchDetailMateSimple[];
 }

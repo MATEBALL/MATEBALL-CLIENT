@@ -1,5 +1,7 @@
 /**
  * 유저 정보 조회 응답
+ * get
+ * /v1/users/info
  */
 export interface getUserInfoResponse {
   nickname: string | null;
@@ -13,6 +15,8 @@ export interface getUserInfoResponse {
 
 /**
  * 유저 정보 등록 요청
+ * post
+ * /v1/users/info 
  */
 export interface postUserInfoRequest {
   gender: string;
@@ -21,6 +25,8 @@ export interface postUserInfoRequest {
 
 /**
  * 유저 닉네임 등록 요청
+ * post
+ * /v1/users/info/nickname
  */
 export interface postUserInfoNicknameRequest {
   nickname: string;
