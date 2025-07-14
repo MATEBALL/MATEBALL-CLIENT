@@ -1,4 +1,5 @@
 import { buttonVariants } from '@components/button/button/styles/button-variants';
+import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 
@@ -11,6 +12,9 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   onClick?: () => void;
   ariaLabel?: string;
   type?: ButtonType;
+  icon?: string;
+  iconColor?: string;
+  iconSize?: string;
 }
 
 const Button = ({
@@ -20,6 +24,9 @@ const Button = ({
   size,
   className,
   disabled,
+  icon,
+  iconColor,
+  iconSize,
   onClick,
   ariaLabel,
 }: ButtonProps) => {
@@ -35,6 +42,7 @@ const Button = ({
         className,
       )}
     >
+      {icon && <Icon name={icon} size={iconSize} className={iconColor} />}
       {label}
     </button>
   );
