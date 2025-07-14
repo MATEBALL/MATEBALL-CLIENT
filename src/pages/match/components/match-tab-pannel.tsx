@@ -1,15 +1,16 @@
 import Card from '@components/card/match-card/card';
-import type { CardProps } from '@components/card/match-card/types/card';
+import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
 import { getCardColor, statusToCategory } from '@pages/match/utils/match-status';
 import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
 
+type MatchableCardProps = SingleCardProps | GroupCardProps;
+
 interface MatchTabPanelProps {
-  cards: CardProps[];
+  cards: MatchableCardProps[];
   filter: string;
 }
-
 const CLICKABLE_STATUS_MAP: Record<string, string> = {
   '매칭 완료': 'success',
   '승인 완료': 'agree',
@@ -23,7 +24,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const filteredCards =
     filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
 
-  const handleCardClick = (card: CardProps) => {
+  const handleCardClick = (card: MatchableCardProps) => {
     const query = CLICKABLE_STATUS_MAP[card.status ?? ''];
     if (query) {
       navigate(`${ROUTES.RESULT}?type=${query}`);

@@ -1,6 +1,6 @@
-import type { CardProps } from '@components/card/match-card/types/card';
+import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
 
-export const singleMockData: CardProps[] = [
+export const singleMockData: SingleCardProps[] = [
   {
     id: 1,
     type: 'single',
@@ -99,7 +99,7 @@ export const singleMockData: CardProps[] = [
   },
 ];
 
-export const groupMockData: CardProps[] = [
+export const groupMockData: GroupCardProps[] = [
   {
     id: 1,
     type: 'group',
