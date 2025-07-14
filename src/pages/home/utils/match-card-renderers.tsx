@@ -7,10 +7,10 @@ import type {
 import { formatToKoreanDate } from './date-format';
 
 export interface SingleMatch extends SingleCardProps {
-  id: string | number;
+  id: number;
 }
 export interface GroupMatch extends GroupCardProps {
-  id: string | number;
+  id: number;
 }
 
 export const getCommonProps = (match: SingleMatch | GroupMatch) => ({
@@ -25,6 +25,7 @@ export const getCommonProps = (match: SingleMatch | GroupMatch) => ({
 
 export const renderSingleCard = (match: SingleMatch) => (
   <Card
+    id={match.id}
     key={match.id}
     type="single"
     {...getCommonProps(match)}
@@ -37,7 +38,7 @@ export const renderSingleCard = (match: SingleMatch) => (
 );
 
 export const renderGroupCard = (match: GroupMatch) => (
-  <Card key={match.id} type="group" {...getCommonProps(match)} count={match.count} />
+  <Card id={match.id} key={match.id} type="group" {...getCommonProps(match)} count={match.count} />
 );
 
 const isSingleMatch = (match: unknown): match is SingleMatch => {
