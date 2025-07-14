@@ -9,15 +9,24 @@ import Start from '@pages/onboarding/components/start';
 import SupportTeam from '@pages/onboarding/components/support-team';
 import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
-import { FIRST_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
+import { FIRST_FUNNEL_STEPS, ONBOARDING_STORAGE_KEY } from '@pages/onboarding/constants/onboarding';
 import {
   getButtonLabel,
   handleButtonClick,
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+const getStoredSelections = (): Record<string, string | null> => {
+  try {
+    const stored = localStorage.getItem(ONBOARDING_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+  } catch {
+    return {};
+  }
+};
 
 const Onboarding = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
@@ -25,12 +34,15 @@ const Onboarding = () => {
     ROUTES.HOME,
   );
 
-  const [selections, setSelections] = useState<Record<string, string | null>>({
-    SUPPORT_TEAM: null,
-    SYNC_SUPPORT_TEAM: null,
-    VIEWING_STYLE: null,
-    GENDER: null,
-    MATCHING_TYPE: null,
+  const [selections, setSelections] = useState<Record<string, string | null>>(() => {
+    const stored = getStoredSelections();
+    return {
+      SUPPORT_TEAM: stored.SUPPORT_TEAM ?? null,
+      SYNC_SUPPORT_TEAM: stored.SYNC_SUPPORT_TEAM ?? null,
+      VIEWING_STYLE: stored.VIEWING_STYLE ?? null,
+      GENDER: stored.GENDER ?? null,
+      MATCHING_TYPE: stored.MATCHING_TYPE ?? null,
+    };
   });
 
   const handleSelect = (stepName: string, value: string) => {
@@ -38,6 +50,10 @@ const Onboarding = () => {
   };
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(selections));
+  }, [selections]);
 
   return (
     <div className="h-svh flex-col">

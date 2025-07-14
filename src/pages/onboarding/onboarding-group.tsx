@@ -5,15 +5,27 @@ import DateSelect from '@pages/onboarding/components/date-select';
 import GroupRole from '@pages/onboarding/components/group-role';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
-import { GROUP_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
+import {
+  GROUP_FUNNEL_STEPS,
+  ONBOARDING_GROUP_STORAGE_KEY,
+} from '@pages/onboarding/constants/onboarding';
 import {
   getButtonLabel,
   handleButtonClick,
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+const getStoredSelections = (): Record<string, string | null> => {
+  try {
+    const stored = localStorage.getItem(ONBOARDING_GROUP_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+  } catch {
+    return {};
+  }
+};
 
 const OnboardingGroup = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
@@ -23,13 +35,21 @@ const OnboardingGroup = () => {
 
   const navigate = useNavigate();
 
-  const [selections, setSelections] = useState<Record<string, string | null>>({
-    GROUP_ROLE: null,
+  const [selections, setSelections] = useState<Record<string, string | null>>(() => {
+    const stored = getStoredSelections();
+    return {
+      GROUP_ROLE: stored.GROUP_ROLE ?? null,
+      DATE_SELECT: stored.DATE_SELECT ?? null,
+    };
   });
 
   const handleSelect = (stepName: string, value: string) => {
     setSelections((prev) => ({ ...prev, [stepName]: value }));
   };
+
+  useEffect(() => {
+    localStorage.setItem(ONBOARDING_GROUP_STORAGE_KEY, JSON.stringify(selections));
+  }, [selections]);
 
   return (
     <div className="h-full flex-col">
