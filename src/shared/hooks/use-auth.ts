@@ -4,6 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 const useAuth = () => {
   const { data, isLoading, isError } = useQuery(authQueries.USER_STATUS());
 
+  console.log(data);
+
   const isAuthenticated = !!data?.nickname;
 
   // TODO: 로그인한 유저가 홈에 왔는데 매칭 조건 설정 전이면 false
