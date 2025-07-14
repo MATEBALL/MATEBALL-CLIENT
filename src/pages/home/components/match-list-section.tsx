@@ -16,7 +16,6 @@ interface MatchListSectionProps {
   onOpenGameInfoBottomSheet: () => void;
 }
 
-
 const MatchListSection = ({
   isOneOnOne,
   selectedDate,
