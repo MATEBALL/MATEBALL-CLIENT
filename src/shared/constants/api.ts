@@ -6,7 +6,7 @@ export const END_POINT = {
 
   // 유저 관련
   GET_KAKAO_INFO: '/v1/users/kakao/info',
-  GET_USERS_INFO: '/v1/users/info',
+  USER_INFO: '/v1/users/info',
   POST_INFO_NICKNAME: '/v1/users/info/nickname',
 
   // 경기 관련

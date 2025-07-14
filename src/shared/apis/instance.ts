@@ -2,8 +2,8 @@ import { BASE_URL } from '@constants/api';
 import { ROUTES } from '@routes/routes-config';
 import type { AxiosError } from 'axios';
 import axios from 'axios';
+import type { responseTypes } from '@/shared/types/base-types';
 import { HTTP_STATUS, RESPONSE_MESSAGE } from '../constants/response';
-import type { errorResponseTypes } from '../types/base-types';
 
 export const instance = axios.create({
   baseURL: BASE_URL,
@@ -25,7 +25,7 @@ instance.interceptors.response.use(
     }
 
     if (error.response) {
-      const { status, message } = error.response.data as errorResponseTypes;
+      const { status, message } = error.response.data as responseTypes;
       const displayMessage = RESPONSE_MESSAGE[status] || message || '알 수 없는 오류입니다.';
       console.log(displayMessage);
     } else {
