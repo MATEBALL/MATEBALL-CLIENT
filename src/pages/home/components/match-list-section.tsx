@@ -12,11 +12,14 @@ interface MatchListSectionProps {
   isOneOnOne: boolean;
   isGroup: boolean;
   selectedDate: Date;
-  onOpenGameInfoBottomSheet:() => void;
-
+  onOpenGameInfoBottomSheet: () => void;
 }
 
-const MatchListSection = ({ isOneOnOne, selectedDate,onOpenGameInfoBottomSheet }: MatchListSectionProps) => {
+const MatchListSection = ({
+  isOneOnOne,
+  selectedDate,
+  onOpenGameInfoBottomSheet,
+}: MatchListSectionProps) => {
   const filteredMatches = useMemo(() => {
     const formattedDate = format(selectedDate, 'yyyy-MM-dd');
     const sourceData = isOneOnOne ? mockMateSingle : mockMateGroup;
@@ -25,7 +28,11 @@ const MatchListSection = ({ isOneOnOne, selectedDate,onOpenGameInfoBottomSheet }
 
   return (
     <section className="p-[1.6rem]">
-      <ButtonCreate label="맞춤 매칭 생성하기" className="ml-auto" onClick={onOpenGameInfoBottomSheet} />
+      <ButtonCreate
+        label="맞춤 매칭 생성하기"
+        className="ml-auto"
+        onClick={onOpenGameInfoBottomSheet}
+      />
 
       {filteredMatches.length > 0 ? (
         <div className="mt-[2rem] space-y-3">{renderMatchCards(filteredMatches, isOneOnOne)}</div>
