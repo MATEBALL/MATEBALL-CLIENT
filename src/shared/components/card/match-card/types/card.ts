@@ -48,11 +48,25 @@ export interface DetailedCardProps extends BaseCardProps {
   style: string;
 }
 
-export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps;
+export interface UserCardProps {
+  type: 'user';
+  nickname: string;
+  imgUrl: string[];
+  team: string;
+  style: string;
+  age: string;
+  gender: string;
+  introduction: string;
+  className?: string;
+  color?: 'active' | 'inactive';
+  chips: ChipColor[];
+}
+
+export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
 
 export interface CardProfileProps {
-  type: 'single' | 'group' | 'detailed';
-  imgUrl: string | string[];
+  type: 'single' | 'group' | 'detailed' | 'user';
+  imgUrl: string[];
 }
 
 export interface CardGameInfoProps {
