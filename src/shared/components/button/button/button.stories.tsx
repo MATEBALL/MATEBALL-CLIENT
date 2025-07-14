@@ -72,6 +72,7 @@ const meta: Meta<typeof Button> = {
     },
     icon: { control: 'text', description: 'Optional icon name' },
     iconSize: { control: 'text', description: 'Optional icon size (e.g., "20px")' },
+    iconColor: { control: 'text', description: 'Optional icon color class (e.g., "text-gray-800")' },
   },
 };
 
