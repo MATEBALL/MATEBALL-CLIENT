@@ -8,6 +8,7 @@ import {
   Home,
   Match,
   Onboarding,
+  OnboardingGroup,
   Profile,
   Result,
   Single,
@@ -27,4 +28,5 @@ export const protectedRoutes = [
   { path: ROUTES.CHAT_ROOM(), element: <ChatRoom /> },
   { path: ROUTES.RESULT, element: <Result /> },
   { path: ROUTES.ONBOARDING, element: <Onboarding /> },
+  { path: ROUTES.ONBOARDING_GROUP, element: <OnboardingGroup /> },
 ];

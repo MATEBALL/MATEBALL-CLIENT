@@ -1,6 +1,12 @@
 export const iconNames = [
-  'chat-profile',
+  'graphic-cheer-team',
   'graphic-empty',
+  'graphic-gender',
+  'graphic-group-role',
+  'graphic-matching',
+  'graphic-team',
+  'graphic-watching',
+  'chat-profile',
   'ic-arrow-left-18',
   'ic-arrow-left-24',
   'ic-arrow-left-white',

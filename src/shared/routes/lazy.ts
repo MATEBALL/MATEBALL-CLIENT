@@ -9,6 +9,7 @@ export const Home = lazy(() => import('@pages/home/home'));
 
 // Matching
 export const Onboarding = lazy(() => import('@pages/onboarding/onboarding'));
+export const OnboardingGroup = lazy(() => import('@pages/onboarding/onboarding-group'));
 export const Create = lazy(() => import('@pages/match/create/create'));
 export const Single = lazy(() => import('@pages/match/single/single'));
 export const GroupMates = lazy(() => import('@pages/match/groups/mates'));

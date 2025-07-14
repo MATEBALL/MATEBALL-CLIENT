@@ -14,7 +14,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
   }
 
@@ -33,9 +33,8 @@
   }
 
   body {
-    font-family:
-      "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-      sans-serif;
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, sans-serif;
     min-width: var(--min-width);
     max-width: var(--max-width);
     margin-left: auto;

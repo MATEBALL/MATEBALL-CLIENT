@@ -5,6 +5,7 @@ export const ROUTES = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   ONBOARDING: '/onboarding',
+  ONBOARDING_GROUP: '/onboarding/group',
   MATCH_CREATE: (id = ':matchId') => `/match/create/${id}`,
   MATCH_SINGLE: (id = ':matchId') => `/match/single/${id}`,
   GROUP_MATES: (id = ':matchId') => `/match/groups/mates/${id}`,
@@ -18,5 +19,4 @@ export const ROUTES = {
   ERROR: '/error',
   LOADING: '/loading',
   SPLASH: '/splash',
-  ONBOARDING_GROUP: '/onboarding/group',
 };
