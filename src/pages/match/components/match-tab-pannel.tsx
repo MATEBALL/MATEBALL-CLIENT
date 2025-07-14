@@ -25,25 +25,26 @@ const MatchTabPanel = ({ cards }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="h-full flex-col gap-[0.8rem] pt-[1.2rem]">
-      <div className="px-[1.6rem] pb-[2rem]">
+    <>
+      <div className="px-[1.6rem] py-[1rem] h-[5.7rem]">
         <FillTabList tabs={fillTabItems} onChange={setFilter} />
       </div>
-
-      <div className="flex-col gap-[0.8rem] px-[1.6rem] pb-[15rem]">
-        {filteredCards.map((card) => (
-          <Card
-            key={card.id}
-            {...card}
-            color={getCardColor(card.status)}
-            onClick={() => handleCardClick(card)}
-            className={cn('w-full', {
-              'cursor-pointer': card.status === '매칭 완료',
-            })}
-          />
-        ))}
+      <div className="h-full flex-col gap-[0.8rem]">
+        <div className="flex-col scrollbar-hide overflow-y-auto gap-[0.8rem] px-[1.6rem]">
+          {filteredCards.map((card) => (
+            <Card
+              key={card.id}
+              {...card}
+              color={getCardColor(card.status)}
+              onClick={() => handleCardClick(card)}
+              className={cn('w-full', {
+                'cursor-pointer': card.status === '매칭 완료',
+              })}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

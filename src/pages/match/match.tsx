@@ -14,11 +14,11 @@ const Match = () => {
   };
 
   return (
-    <div className="h-full flex-col">
-      <section className="shrink-0 px-[1.6rem] pb-[1.2rem]">
+    <div className="h-full flex-col overflow-hidden">
+      <section className="shrink-0 px-[1.6rem]">
         <TabList colorMode="match" activeType={activeType} onTabChange={setActiveType} />
       </section>
-      <section className="scrollbar-hide overflow-y-auto">
+      <section>
         <TabContent activeType={activeType} contentMap={contentMap} />
       </section>
     </div>
