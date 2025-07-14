@@ -33,10 +33,10 @@ const CardHeader = (props: CardProps) => {
       return (
         <div className="flex">
           <div>
-            <div className="subhead_18_sb">
+            <div className="subhead_18_sb text-start">
               {props.nickname} 외 {props.count - 1}명
             </div>
-            <div className="flex flex-row-center gap-[0.8rem] py-[0.4rem]">
+            <div className="flex-row-center gap-[0.8rem] py-[0.4rem]">
               <div className="cap_12_m text-gray-900">
                 매칭된 인원 {props.count}/{GROUP_MAX}
               </div>
