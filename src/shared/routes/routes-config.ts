@@ -18,5 +18,5 @@ export const ROUTES = {
   ERROR: '/error',
   LOADING: '/loading',
   SPLASH: '/splash',
-  ONBOARDING_GROUP: '/onboarding/group'
+  ONBOARDING_GROUP: '/onboarding/group',
 };

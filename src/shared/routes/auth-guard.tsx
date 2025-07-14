@@ -7,7 +7,7 @@ const AuthGuard = () => {
 
   if (needsSignup) return <Navigate to={ROUTES.SIGNUP} replace />;
   if (!isAuthenticated) return <Navigate to={ROUTES.SPLASH} replace />;
-  if (isError) return <Navigate to={ROUTES.ERROR} replace/>
+  if (isError) return <Navigate to={ROUTES.ERROR} replace />;
 
   return <Outlet />;
 };
