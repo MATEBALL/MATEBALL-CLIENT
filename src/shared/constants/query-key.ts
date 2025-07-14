@@ -7,6 +7,10 @@ export const USER_KEY = {
   NICKNAME: () => [...USER_KEY.ALL, 'nickname'] as const,
 } as const;
 
+export const AUTH_KEY = {
+  AUTH: () => ['auth'] as const,
+};
+
 // game domain
 export const GAME_KEY = {
   ALL: ['game'] as const,
