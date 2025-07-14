@@ -5,20 +5,20 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
-import mkcert from 'vite-plugin-mkcert';
+// import mkcert from 'vite-plugin-mkcert';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  server: {
-    port: 443,
-    host: 'dev.mateball.co.kr',
-    https: {},
-  },
+  // server: {
+  //   port: 443,
+  //   host: 'dev.mateball.co.kr',
+  //   https: {},
+  // },
   plugins: [
-    mkcert(),
+    // mkcert(),
     react(),
     svgSprite({
       iconDirs: [resolve(dirname, 'src/shared/assets/svgs')],
