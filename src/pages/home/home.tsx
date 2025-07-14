@@ -1,11 +1,13 @@
+import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import { useTabState } from '@hooks/use-tab-state';
+import { mockGameDatas } from '@mocks/mockGameData';
 import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
 import MatchListSection from '@pages/home/components/match-list-section';
 import TopSection from '@pages/home/components/top-section';
-import { addDays } from 'date-fns';
+import { addDays, format } from 'date-fns';
 import { useState } from 'react';
 
 const Home = () => {
@@ -16,7 +18,8 @@ const Home = () => {
   const [baseWeekDate, setBaseWeekDate] = useState(
     addDays(selectedDate, WEEK_CALENDAR_START_OFFSET),
   );
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [isCalendarBottomSheetOpen, setIsCalendarBottomSheetOpen] = useState(false);
+  const [isGameInfoBottomSheetOpen, setIsGameInfoBottomSheetOpen] = useState(false);
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
@@ -32,20 +35,28 @@ const Home = () => {
         selectedDate={selectedDate}
         onDateChange={setSelectedDate}
         baseWeekDate={baseWeekDate}
-        onOpenBottomSheet={() => setIsBottomSheetOpen(true)}
+        onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
       />
       <MatchListSection
         activeType={activeType}
         isOneOnOne={isOneOnOne}
         isGroup={isGroup}
         selectedDate={selectedDate}
+        onOpenGameInfoBottomSheet={() => setIsGameInfoBottomSheetOpen(true)}
       />
       <CalendarBottomSheet
-        isOpen={isBottomSheetOpen}
-        onClose={() => setIsBottomSheetOpen(false)}
+        isOpen={isCalendarBottomSheetOpen}
+        onClose={() => setIsCalendarBottomSheetOpen(false)}
         selectedDate={selectedDate}
         onDateSelect={handleDateSelect}
         onWeekChange={handleDateSelect}
+      />
+      <GameMatchBottomSheet
+        isOpen={isGameInfoBottomSheetOpen}
+        onClose={() => setIsGameInfoBottomSheetOpen(false)}
+        date={format(selectedDate, 'yyyy-MM-dd')}
+        gameSchedule={mockGameDatas}
+        activeType={activeType}
       />
     </div>
   );

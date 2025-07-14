@@ -2,7 +2,9 @@ import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-footer';
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
+import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface GameScheduleItem {
   id: number;
@@ -18,6 +20,7 @@ interface GameMatchBottomSheetProps {
   date: string;
   gameSchedule: GameScheduleItem[];
   onClick?: (selectedId: number | null) => void;
+  activeType: TabType;
 }
 
 const GameMatchBottomSheet = ({
@@ -25,17 +28,36 @@ const GameMatchBottomSheet = ({
   onClose,
   date,
   gameSchedule,
+  activeType,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+  const matchId = 1; //임시 설정용
+  const navigate = useNavigate();
+  const navigateToMatchCreate = (matchId: number, type: 'single' | 'group') => {
+    navigate(`/match/create/${matchId}?type=${type}`);
+  };
 
   const handleClose = () => {
     setSelectedIdx(null);
     onClose();
   };
+
   const disabled = selectedIdx === null;
+
   const handleSubmit = () => {
-    // TODO: 선택된 경기(selectedIdx)에 대한 처리 로직 추가
-    console.log('선택된 경기 ID:', selectedIdx !== null ? gameSchedule[selectedIdx]?.id : null);
+    if (selectedIdx === null) return;
+
+    const selectedGame = gameSchedule[selectedIdx];
+    if (!selectedGame) return;
+
+    const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
+    navigateToMatchCreate(matchId, queryType);
+    handleClose();
+
+    console.log('선택된 경기 ID:', selectedGame.id);
+    console.log('매치 ID:', matchId);
+    console.log('매치 타입:', queryType);
+    console.log(`네비게이션: /match/create/${matchId}?type=${queryType}`);
   };
 
   return (
