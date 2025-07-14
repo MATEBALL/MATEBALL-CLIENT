@@ -64,15 +64,15 @@ const OnboardingGroup = () => {
           </Step>
         </Funnel>
         {currentStep !== 'DATE_SELECT' && (
-        <div className="sticky bottom-0 w-full p-[1.6rem]">
-          <Button
-            label={getButtonLabel(currentStep)}
-            size="L"
-            variant="blue"
-            disabled={isButtonDisabled(currentStep, selections)}
-            onClick={() => handleButtonClick(currentStep, selections, goNext, navigate)}
-          />
-        </div>
+          <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <Button
+              label={getButtonLabel(currentStep)}
+              size="L"
+              variant="blue"
+              disabled={isButtonDisabled(currentStep, selections)}
+              onClick={() => handleButtonClick(currentStep, selections, goNext, navigate)}
+            />
+          </div>
         )}
       </div>
     </div>
