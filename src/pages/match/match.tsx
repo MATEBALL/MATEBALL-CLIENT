@@ -7,17 +7,16 @@ import { singleMockData, groupMockData } from '@mocks/matchCardData';
 const Match = () => {
 
   return (
-    <div className="flex-col h-[100dvh] overflow-hidden">
-      <section className="px-[1.6rem]">
-        <TabList
-          colorMode="light"
-          contentMap={{
-            '1:1': <MatchTabPanel cards={singleMockData} />,
-            그룹: <MatchTabPanel cards={groupMockData} />,
-          }}
-        />
-      </section>
-      <section>
+    <div className="h-full flex-col overflow-hidden">
+      <div className="scrollbar-hide grow overflow-y-auto">
+        <div className="fixed top-[5.6rem] z-[var(--z-header)] w-full max-w-[43rem] bg-gray-100">
+          <div className="px-[1.6rem]">
+            <TabList colorMode="match" activeType={activeType} onTabChange={setActiveType} />
+          </div>
+          <div className="px-[1.6rem] py-[1rem]">
+            <FillTabList tabs={fillTabItems} onChange={setFilter} />
+          </div>
+        </div>
         <TabContent activeType={activeType} contentMap={contentMap} />
       </div>
     </div>

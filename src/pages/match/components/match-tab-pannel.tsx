@@ -49,27 +49,20 @@ const getCardColor = (status?: string): 'active' | 'inactive' => {
   };
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="pt-[2.4rem] pb-[2rem] shrink-0">
-        <FillTabList tabs={fillTabItems} onChange={setFilter} />
-      </div>
-      <div className="flex-col flex-1 overflow-y-auto gap-[0.8rem]">
-        {filteredCards.map((card) => {
-          return (
-            <div key={`${card.nickname}-${card.date}-${card.type}`}>
-              <Card
-                {...card}
-                color={getCardColor(card.status)}
-                onClick={() => handleCardClick(card)}
-                className={cn('w-full', {
-                  'cursor-pointer': card.status === '매칭 완료',
-                })}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </>
+    <div className="flex-col gap-[0.8rem] px-[1.6rem] pt-[10rem] pb-[3rem]">
+      {filteredCards.map((card) => (
+        <button
+          type="button"
+          key={card.id}
+          onClick={isClickable(card.status) ? () => handleCardClick(card) : undefined}
+          className={cn('w-full', {
+            'cursor-pointer': isClickable(card.status),
+          })}
+        >
+          <Card {...card} color={getCardColor(card.status)} className="w-full" />
+        </button>
+      ))}
+    </div>
   );
 };
 
