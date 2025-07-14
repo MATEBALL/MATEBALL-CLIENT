@@ -98,15 +98,18 @@ export const GameMatch: Story = {
     ];
 
     return (
-      <div className="fixed top-4 left-4 justify-center">
-        <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
-        <GameMatchBottomSheet
-          isOpen={isOpen}
-          onClose={close}
-          date="2025/07/17"
-          gameSchedule={mockGameDatas}
-        />
-      </div>
+      <MemoryRouter>
+        <div className="fixed top-4 left-4 justify-center">
+          <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
+          <GameMatchBottomSheet
+            isOpen={isOpen}
+            onClose={close}
+            date="2025/07/17"
+            gameSchedule={mockGameDatas}
+            activeType={TAB_TYPES.SINGLE}
+          />
+        </div>
+      </MemoryRouter>
     );
   },
 };
