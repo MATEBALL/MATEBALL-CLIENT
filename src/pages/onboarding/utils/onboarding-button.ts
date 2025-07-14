@@ -6,7 +6,7 @@ export const getButtonLabel = (currentStep: string) => {
     case 'START':
       return '시작하기';
     case 'COMPLETE':
-      return '메인 화면으로 이동하기';
+      return '메이트 더 찾아보기';
     default:
       return '다음으로';
   }

@@ -9,7 +9,7 @@ const Start = () => {
       <p className="body_16_m text-center text-gray-600">
         원하는 조건을 선택하고
         <br />
-        나와 딱 맞는 직관 메이트를 찾아보세요.
+        나와 딱! 맞는 직관 메이트를 찾아보세요.
       </p>
     </div>
   );
