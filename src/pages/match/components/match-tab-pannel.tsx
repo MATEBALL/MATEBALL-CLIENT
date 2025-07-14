@@ -11,6 +11,13 @@ interface MatchTabPanelProps {
   filter: string;
 }
 
+const CLICKABLE_STATUS_MAP: Record<string, string> = {
+  '매칭 완료': 'success',
+  '승인 완료': 'agree',
+  '새 요청': 'received',
+  '매칭 실패': 'fail',
+};
+
 const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const navigate = useNavigate();
 
@@ -31,9 +38,14 @@ const getCardColor = (status?: string): 'active' | 'inactive' => {
       : cards.filter((card) => statusToCategory(card.status) === filter);
 
   const handleCardClick = (card: CardProps) => {
-    if (statusToCategory(card.status) === '완료') {
-      navigate(`${ROUTES.RESULT}?type=success`);
+    const query = CLICKABLE_STATUS_MAP[card.status ?? ''];
+    if (query) {
+      navigate(`${ROUTES.RESULT}?type=${query}`);
     }
+  };
+
+  const isClickable = (status?: string) => {
+    return Boolean(CLICKABLE_STATUS_MAP[status ?? '']);
   };
 
   return (
