@@ -82,7 +82,7 @@ const OnboardingGroup = () => {
             <Complete />
           </Step>
         </Funnel>
-
+        {currentStep !== 'DATE_SELECT' && (
         <div className="sticky bottom-0 w-full p-[1.6rem]">
           <Button
             label={getButtonLabel(currentStep)}
@@ -92,6 +92,7 @@ const OnboardingGroup = () => {
             onClick={() => handleButtonClick(currentStep, selection, goNext, navigate)}
           />
         </div>
+        )}
       </div>
     </div>
   );
