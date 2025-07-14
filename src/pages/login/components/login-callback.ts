@@ -1,6 +1,6 @@
 import { postKakaoLogin } from '@apis/auth/auth';
 import { get } from '@apis/http';
-import { END_POINT } from '@constants/api'; // ✅ 다시 사용됨
+import { END_POINT } from '@constants/api';
 import { HTTP_STATUS } from '@constants/response';
 import { ROUTES } from '@routes/routes-config';
 import { useEffect } from 'react';

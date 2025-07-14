@@ -10,7 +10,7 @@ const Login = () => {
       className="h-screen flex-col-between px-[1.6rem] pt-[8rem] pb-[4.8rem]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
+      transition={{ duration: 0.3, ease: 'easeIn' }}
     >
       <div className="w-[29.5rem] flex-col-center">
         <Icon name="logo-gray" width={16.5} height={4.5} className="text-main-900" />
