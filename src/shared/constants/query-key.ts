@@ -31,7 +31,8 @@ export const MATCH_KEY = {
   GROUP_STATUS: (status: string) => [...MATCH_KEY.ALL, 'groupStatus', status] as const,
 
   MATCH_DETAIL: (matchId: number) => [...MATCH_KEY.ALL, 'matchDetail', matchId] as const,
-  POST_MATCH_REQUEST: (matchId: number) => [...MATCH_KEY.ALL, 'postMatchRequest', matchId] as const,
-  PATCH_MATCH_ACCEPT: (matchId: number) => [...MATCH_KEY.ALL, 'patchMatchAccept', matchId] as const,
-  PATCH_MATCH_REJECT: (matchId: number) => [...MATCH_KEY.ALL, 'patchMatchReject', matchId] as const,
+  POST_MATCH_REQUEST: (key?: string) => [...MATCH_KEY.ALL, 'postMatchRequest', key] as const,
+  PATCH_MATCH_ACCEPT: (key?: string) => [...MATCH_KEY.ALL, 'patchMatchAccept', key] as const,
+  PATCH_MATCH_REJECT: (key?: string) => [...MATCH_KEY.ALL, 'patchMatchReject', key] as const,
+  PATCH_MATCH_STAGE: (key?: string) => [...MATCH_KEY.ALL, 'patchMatchStage', key] as const,
 } as const;

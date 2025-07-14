@@ -13,7 +13,7 @@ import type {
   getSingleMatchResultResponse,
 } from '@/shared/types/match-types';
 
-export const userQueries = {
+export const matchQueries = {
   ALL: () => queryOptions({ queryKey: MATCH_KEY.ALL }),
 
   /**

@@ -29,4 +29,5 @@ export const END_POINT = {
   POST_MATCH_REQUEST: (matchId: number | string) => `/v1/users/match-request/${matchId}`,
   PATCH_MATCH_ACCEPT: (matchId: number | string) => `/v1/users/match-accept/${matchId}`,
   PATCH_MATCH_REJECT: (matchId: number | string) => `/v1/users/match-reject/${matchId}`,
+  PATCH_MATCH_STAGE: (matchId: number | string) => `/v1/users/match-stage/${matchId}`,
 };

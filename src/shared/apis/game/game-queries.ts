@@ -4,7 +4,7 @@ import { GAME_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
 import type { getGameScheduleResponse } from '@/shared/types/game-types';
 
-export const userQueries = {
+export const gameQueries = {
   ALL: () => queryOptions({ queryKey: GAME_KEY.ALL }),
 
   GAME_LIST: () =>
