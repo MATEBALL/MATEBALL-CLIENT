@@ -69,7 +69,7 @@ const getCardColor = (status?: string): 'active' | 'inactive' => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
 
