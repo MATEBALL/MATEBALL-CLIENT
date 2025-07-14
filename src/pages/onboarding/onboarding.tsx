@@ -18,15 +18,7 @@ import {
 import { ROUTES } from '@routes/routes-config';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const getStoredSelections = (): Record<string, string | null> => {
-  try {
-    const stored = localStorage.getItem(ONBOARDING_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : {};
-  } catch {
-    return {};
-  }
-};
+import { getStoredData } from './utils/onboarding-storage';
 
 const Onboarding = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
@@ -35,7 +27,7 @@ const Onboarding = () => {
   );
 
   const [selections, setSelections] = useState<Record<string, string | null>>(() => {
-    const stored = getStoredSelections();
+    const stored = getStoredData(ONBOARDING_STORAGE_KEY);
     return {
       SUPPORT_TEAM: stored.SUPPORT_TEAM ?? null,
       SYNC_SUPPORT_TEAM: stored.SYNC_SUPPORT_TEAM ?? null,

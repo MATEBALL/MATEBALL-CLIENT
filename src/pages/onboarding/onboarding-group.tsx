@@ -17,15 +17,7 @@ import {
 import { ROUTES } from '@routes/routes-config';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const getStoredSelection = (): Record<string, string | null> => {
-  try {
-    const stored = localStorage.getItem(ONBOARDING_GROUP_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : {};
-  } catch {
-    return {};
-  }
-};
+import { getStoredData } from './utils/onboarding-storage';
 
 const OnboardingGroup = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
@@ -36,7 +28,7 @@ const OnboardingGroup = () => {
   const navigate = useNavigate();
 
   const [selection, setSelection] = useState<Record<string, string | null>>(() => {
-    const stored = getStoredSelection();
+    const stored = getStoredData(ONBOARDING_GROUP_STORAGE_KEY);
     return {
       GROUP_ROLE: stored.GROUP_ROLE ?? null,
     };
