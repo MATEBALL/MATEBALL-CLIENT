@@ -38,3 +38,10 @@ export const MATCHING_GUIDE_MESSAGE_TITLE = (nickname: string) =>
 
 export const MATCHING_GUIDE_MESSAGE_DESCRIPTION =
   '딱! 맞는 메이트의 요청이 도착하면\n' + "'매칭 현황'에서 확인할 수 있어요.";
+
+export const CLICKABLE_STATUS_MAP: Record<string, string> = {
+  '매칭 완료': 'success',
+  '승인 완료': 'agree',
+  '새 요청': 'received',
+  '매칭 실패': 'fail',
+};

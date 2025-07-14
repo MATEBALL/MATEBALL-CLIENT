@@ -1,27 +1,23 @@
-import type { VariantProps } from 'class-variance-authority';
-import type { chipStateVariants } from '../../../chip/chip-state/styles/chip-state-variants';
+import type { ChipColorType } from '@components/card/match-card/types/card';
 
-type ColorType = NonNullable<VariantProps<typeof chipStateVariants>['colorType']>;
+export const getColorType = (status?: string, explicitColorType?: ChipColorType): ChipColorType => {
+  if (explicitColorType) return explicitColorType;
+  if (!status) return 'inactive';
 
-export const STATUS_COLOR_MAP: Record<string, ColorType> = {
-  // active
-  '매칭 완료': 'active',
-  '새 요청': 'active',
-  '승인 완료': 'active',
-
-  // inactive
-  '승인 대기 중': 'inactive',
-  '요청 대기 중': 'inactive',
-  '매칭 실패': 'inactive',
-};
-
-export const getColorType = (status?: string, explicitColorType?: ColorType): ColorType => {
-  if (explicitColorType) {
-    return explicitColorType;
+  if (status.includes('매칭 완료') || status.includes('새 요청')) {
+    return 'active';
   }
 
-  if (status && STATUS_COLOR_MAP[status]) {
-    return STATUS_COLOR_MAP[status];
+  if (status.includes('승인 완료')) {
+    return 'outline';
+  }
+
+  if (status.includes('실패')) {
+    return 'dark';
+  }
+
+  if (status.includes('대기')) {
+    return 'inactive';
   }
 
   return 'inactive';

@@ -1,5 +1,5 @@
 import { getColorType } from '@components/card/match-card/utils/get-color-type';
-import { chipStateVariants } from '@components/chip/chip-state/styles/chip-state-variants';
+import { chipStateVariants } from '@components/chip/styles/chip-state-variants';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
 

@@ -1,4 +1,3 @@
-// Match.tsx (수정됨)
 import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import type { TabType } from '@components/tab/tab/tab-content';
 import TabContent from '@components/tab/tab/tab-content';

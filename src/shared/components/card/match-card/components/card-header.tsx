@@ -24,7 +24,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
           <div className="ml-auto">
-            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
+            <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
           </div>
         </div>
       );
@@ -44,7 +44,7 @@ const CardHeader = (props: CardProps) => {
             </div>
           </div>
           <div className="ml-auto">
-            <ChipState status={props.status} rate={props.matchRate} colorType={props.color} />
+            <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
           </div>
         </div>
       );

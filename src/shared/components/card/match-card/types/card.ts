@@ -1,12 +1,15 @@
 import type { cardVariants } from '@components/card/match-card/styles/card-variants';
+import type { chipStateVariants } from '@components/chip/styles/chip-state-variants';
 import type { chipVariants } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 
+export type ChipColorType = NonNullable<VariantProps<typeof chipStateVariants>['colorType']>;
 type ColorType = NonNullable<VariantProps<typeof cardVariants>['color']>;
 export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
 
 export interface BaseCardProps {
   id: number;
+  chipColor?: ChipColorType;
   type: 'single' | 'group' | 'detailed';
   className?: string;
   nickname: string;
@@ -26,6 +29,7 @@ export interface SingleCardProps extends BaseCardProps {
   age: string;
   gender: string;
   color?: 'active' | 'inactive';
+  chipColor?: ChipColorType;
   chips?: ChipColor[];
   team: string;
   style: string;
