@@ -67,15 +67,15 @@ const isGroupMatch = (match: unknown): match is GroupMatch => {
 
 export const renderMatchCards = (
   matches: unknown[],
-  isOneOnOne: boolean,
+  isSingle: boolean,
   onCardClick: (matchId: number) => void,
 ) => {
   return matches
     .map((match) => {
-      if (isOneOnOne && isSingleMatch(match)) {
+      if (isSingle && isSingleMatch(match)) {
         return renderSingleCard(match, onCardClick);
       }
-      if (!isOneOnOne && isGroupMatch(match)) {
+      if (!isSingle && isGroupMatch(match)) {
         return renderGroupCard(match, onCardClick);
       }
       return null;
