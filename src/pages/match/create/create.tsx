@@ -1,4 +1,4 @@
-import { matchQueries } from '@apis/match/match-queries';
+//import { matchQueries } from '@apis/match/match-queries';
 import ButtonSection from '@pages/match/create/components/button-section';
 import MatchCardSection from '@pages/match/create/components/match-card-section';
 import MatchGuideSection from '@pages/match/create/components/match-guide-section';
@@ -21,7 +21,7 @@ const Create = () => {
   if (!matchData || isInvalidMatchId(matchId?.toString()) || !matchType) {
     return <Navigate to={ROUTES.ERROR} replace />;
   }
-  const id = 55;
+  //const id = 55;
   //const { data } = useQuery(matchQueries.SINGLE_MATCH_RESULT(id));
   //console.log(data);
 
