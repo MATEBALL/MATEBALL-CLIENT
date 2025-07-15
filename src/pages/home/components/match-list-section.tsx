@@ -1,10 +1,11 @@
+import { matchQueries } from '@apis/match/match-queries';
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyState from '@components/ui/empty-state';
 import { mockMateGroup } from '@mocks/mockMateGroup';
-import { mockMateSingle } from '@mocks/mockMateSingle';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { ROUTES } from '@routes/routes-config';
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -23,12 +24,17 @@ const MatchListSection = ({
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
   const navigate = useNavigate();
+  const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+
+  const { data: singleMatchData } = useQuery({
+    ...matchQueries.SINGLE_MATCH_LIST(formattedDate),
+    enabled: isSingle,
+  });
 
   const filteredMatches = useMemo(() => {
-    const formattedDate = format(selectedDate, 'yyyy-MM-dd');
-    const sourceData = isSingle ? mockMateSingle : mockMateGroup;
-    return sourceData.filter((match) => match.date === formattedDate);
-  }, [selectedDate, isSingle]);
+    if (isSingle) return singleMatchData?.mates ?? [];
+    return mockMateGroup.filter((match) => match.date === formattedDate);
+  }, [isSingle, singleMatchData, formattedDate]);
 
   const handleCardClick = (matchId: number) => {
     if (isSingle) {
