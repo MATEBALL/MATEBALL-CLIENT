@@ -8,7 +8,8 @@ export const USER_KEY = {
 } as const;
 
 export const AUTH_KEY = {
-  AUTH: () => ['auth'] as const,
+  ALL: ['auth'] as const,
+  AUTH: () => [...AUTH_KEY.ALL, 'status'] as const,
 };
 
 // game domain
