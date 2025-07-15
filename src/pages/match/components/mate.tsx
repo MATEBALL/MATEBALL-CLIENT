@@ -13,7 +13,8 @@ interface MateProps {
 const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) => {
   const { mates } = useMate(matchId);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const nickname = '두밥비';
+  const nickname = '두밥비'; //로그인한 사용자 닉네임
+
   return (
     <div className="h-full flex-col-between overflow-hidden">
       <section className="flex-col-center gap-[4rem] pt-[4rem]">

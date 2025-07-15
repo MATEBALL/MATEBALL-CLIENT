@@ -53,11 +53,6 @@ const GameMatchBottomSheet = ({
     const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
     navigateToMatchCreate(matchId, queryType);
     handleClose();
-
-    console.log('선택된 경기 ID:', selectedGame.id);
-    console.log('매치 ID:', matchId);
-    console.log('매치 타입:', queryType);
-    console.log(`네비게이션: /match/create/${matchId}?type=${queryType}`);
   };
 
   return (
