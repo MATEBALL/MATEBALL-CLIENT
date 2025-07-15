@@ -14,10 +14,10 @@ import {
   handleButtonClick,
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
+import { getStoredData } from '@pages/onboarding/utils/onboarding-storage';
 import { ROUTES } from '@routes/routes-config';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getStoredData } from './utils/onboarding-storage';
 
 const OnboardingGroup = () => {
   const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
