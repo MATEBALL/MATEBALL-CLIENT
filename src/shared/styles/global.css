@@ -16,7 +16,8 @@
     min-height: 100dvh;
   }
 
-  html, body {
+  html,
+  body {
     font-size: 62.5%;
     font-family:
       "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
