@@ -21,7 +21,7 @@ const Create = () => {
   }
 
   return (
-    <div className="h-full flex-col-between gap-[2.4rem] px-[1.6rem] pt-[9.6rem]">
+    <div className="h-svh flex-col-between gap-[2.4rem] px-[1.6rem] pt-[9.6rem]">
       <div className="w-full flex-col-center gap-[4rem]">
         <MatchGuideSection nickname={matchData.nickname} />
         <MatchCardSection matchData={matchData} />
