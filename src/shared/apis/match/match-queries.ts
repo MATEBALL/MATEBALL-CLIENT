@@ -26,20 +26,29 @@ export const matchQueries = {
     }),
 
   /**
-   *  일대일 매칭 생성 결과 조회
+   * 일대일 매칭 결과 조회
    */
   SINGLE_MATCH_RESULT: (matchId: number) =>
     queryOptions<getSingleMatchResultResponse>({
-      queryKey: MATCH_KEY.SINGLE_RESULT(matchId),
+      queryKey: MATCH_KEY.RESULT.SINGLE(matchId),
       queryFn: () => get(END_POINT.GET_SINGLE_RESULT(matchId)),
     }),
 
   /**
-   *  일대일 매칭 리스트 조회
+   * 그룹 매칭 결과 조회
+   */
+  GROUP_MATCH_RESULT: (matchId: number) =>
+    queryOptions<getGroupMatchResultResponse>({
+      queryKey: MATCH_KEY.RESULT.GROUP(matchId),
+      queryFn: () => get(END_POINT.GET_GROUP_RESULT(matchId)),
+    }),
+
+  /**
+   * 일대일 매칭 리스트 조회
    */
   SINGLE_MATCH_LIST: (date: string) =>
     queryOptions<getSingleMatchListResponse>({
-      queryKey: MATCH_KEY.SINGLE_LIST(date),
+      queryKey: MATCH_KEY.LIST.SINGLE(date),
       queryFn: () => get(END_POINT.GET_SINGLE_LIST(date)),
     }),
 
@@ -48,17 +57,8 @@ export const matchQueries = {
    */
   GROUP_MATCH_LIST: (date: string) =>
     queryOptions<getGroupMatchListResponse>({
-      queryKey: MATCH_KEY.GROUP_LIST(date),
+      queryKey: MATCH_KEY.LIST.GROUP(date),
       queryFn: () => get(END_POINT.GET_GROUP_LIST(date)),
-    }),
-
-  /**
-   * 그룹 매칭 생성 결과 조회
-   */
-  GROUP_MATCH_RESULT: (matchId: number) =>
-    queryOptions<getGroupMatchResultResponse>({
-      queryKey: MATCH_KEY.GROUP_RESULT(matchId),
-      queryFn: () => get(END_POINT.GET_GROUP_RESULT(matchId)),
     }),
 
   /**
@@ -66,7 +66,7 @@ export const matchQueries = {
    */
   SINGLE_MATCH_STATUS: (status: string) =>
     queryOptions<getSingleMatchMate>({
-      queryKey: MATCH_KEY.SINGLE_STATUS(status),
+      queryKey: MATCH_KEY.STATUS.SINGLE(status),
       queryFn: () => get(END_POINT.GET_SINGLE_STATUS(status)),
     }),
 
@@ -75,7 +75,7 @@ export const matchQueries = {
    */
   GROUP_MATCH_STATUS: (status: string) =>
     queryOptions<getGroupMatchMate>({
-      queryKey: MATCH_KEY.GROUP_STATUS(status),
+      queryKey: MATCH_KEY.STATUS.GROUP(status),
       queryFn: () => get(END_POINT.GET_GROUP_STATUS(status)),
     }),
 
@@ -84,7 +84,7 @@ export const matchQueries = {
    */
   MATCH_DETAIL: (matchId: number) =>
     queryOptions<getMatchDetailResponse>({
-      queryKey: MATCH_KEY.MATCH_DETAIL(matchId),
+      queryKey: MATCH_KEY.DETAIL(matchId),
       queryFn: () => get(END_POINT.GET_MATCH_DETAIL(matchId)),
     }),
 };
