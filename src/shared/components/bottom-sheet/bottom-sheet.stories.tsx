@@ -5,6 +5,7 @@ import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import Button from '@components/button/button/button';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof BottomSheet> = {
@@ -97,19 +98,33 @@ export const GameMatch: Story = {
       { id: 5, awayTeam: '삼성', homeTeam: 'KIA', gameTime: '18:30', stadium: '대구' },
     ];
 
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false, 
+          staleTime: Infinity, 
+        },
+        mutations: {
+          retry: false,
+        },
+      },
+    });
+
     return (
-      <MemoryRouter>
-        <div className="fixed top-4 left-4 justify-center">
-          <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
-          <GameMatchBottomSheet
-            isOpen={isOpen}
-            onClose={close}
-            date="2025/07/17"
-            gameSchedule={mockGameDatas}
-            activeType={TAB_TYPES.SINGLE}
-          />
-        </div>
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter>
+          <div className="fixed top-4 left-4 justify-center">
+            <Button className="w-full" label="게임 매치 바텀시트 열기" onClick={open} />
+            <GameMatchBottomSheet
+              isOpen={isOpen}
+              onClose={close}
+              date="2025/07/17"
+              gameSchedule={mockGameDatas}
+              activeType={TAB_TYPES.SINGLE}
+            />
+          </div>
+        </MemoryRouter>
+      </QueryClientProvider>
     );
   },
 };

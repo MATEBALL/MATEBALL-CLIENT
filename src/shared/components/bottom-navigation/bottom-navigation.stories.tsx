@@ -72,7 +72,7 @@ export const Default: Story = {
     },
   },
 
-};
 
+};
 
 

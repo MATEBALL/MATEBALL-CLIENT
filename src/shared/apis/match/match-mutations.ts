@@ -3,9 +3,6 @@ import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
-<<<<<<< HEAD
-import type { postMatchConditionRequest, postMatchCreateRequest } from '@/shared/types/match-types';
-=======
 import type {
   postMatchConditionRequest,
   postMatchCreateRequest,
