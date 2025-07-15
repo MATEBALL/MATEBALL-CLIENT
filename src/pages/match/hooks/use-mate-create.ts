@@ -22,8 +22,6 @@ const useMatchCreate = (matchId: number, type: 'single' | 'group' | null | undef
     matchQueries.GROUP_MATCH_RESULT(matchId),
   );
 
-  console.log(mateGroup);
-
   const getMatchData = (): MatchCardData | null => {
     if (type === 'single') {
       const foundSingleMatch = mockMateSingle.find((m) => m.id === matchId);

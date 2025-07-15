@@ -61,7 +61,6 @@ const GameMatchBottomSheet = ({
       {
         onSuccess: (response) => {
           const createdMatchId = response.matchId.toString();
-          console.log('성공', createdMatchId);
           navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
           handleClose();
         },
