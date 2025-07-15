@@ -12,7 +12,7 @@ const Login = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeIn' }}
     >
-      <div className="w-[29.5rem] flex-col-center">
+      <div className="flex-col-center">
         <Icon name="logo-gray" width={16.5} height={4.5} className="text-main-900" />
         <div className="h-[33.1rem] w-[33.1rem]">
           <Lottie src={LOTTIE_PATH.LOGIN} loop={true} />
