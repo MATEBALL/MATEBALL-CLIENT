@@ -31,7 +31,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="flex-col gap-[0.8rem] px-[1.6rem] pt-[10rem] pb-[3rem]">
+    <div className="flex-1 flex-col gap-[0.8rem] overflow-y-auto px-[1.6rem] pb-[3rem]">
       {filteredCards.map((card) => (
         <button
           type="button"
