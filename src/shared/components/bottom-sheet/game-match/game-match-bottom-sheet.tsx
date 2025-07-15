@@ -1,8 +1,10 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-footer';
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,16 +34,17 @@ const GameMatchBottomSheet = ({
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const navigate = useNavigate();
-  const navigateToMatchCreate = (matchId: number, type: 'single' | 'group') => {
-    navigate(`/match/create/${matchId}?type=${type}`);
-  };
+
+  const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
+
+  const disabled = selectedIdx === null || createMatchMutation.isPending;
+  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group'; //postmatchType용
+  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group'; //query용
 
   const handleClose = () => {
     setSelectedIdx(null);
     onClose();
   };
-
-  const disabled = selectedIdx === null;
 
   const handleSubmit = () => {
     if (selectedIdx === null) return;
@@ -49,9 +52,22 @@ const GameMatchBottomSheet = ({
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
 
-    const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
-    navigateToMatchCreate(selectedGame.id, queryType);
-    handleClose();
+    createMatchMutation.mutate(
+      {
+        gameId: selectedGame.id,
+        matchType,
+      },
+      {
+        onSuccess: (response) => {
+          const createdMatchId = response.matchId;
+          navigate(`/match/create/${createdMatchId}?type=${queryType}`);
+          handleClose();
+        },
+        onError: (error) => {
+          console.error('매치 생성 실패:', error);
+        },
+      },
+    );
   };
 
   return (
