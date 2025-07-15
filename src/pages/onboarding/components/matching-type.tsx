@@ -1,27 +1,9 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
-import { useMatchConditionMutation } from '@hooks/use-match-condition';
 import { MATCHING_TYPE } from '@pages/onboarding/constants/onboarding';
-import type { MatchingTypeProps } from '../types/onboarding';
+import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
 
-const MatchingType = ({ selectedOption, onSelect, selections }: MatchingTypeProps) => {
-  const { mutate } = useMatchConditionMutation();
-
-  const handleSelect = (option: string) => {
-    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE, GENDER } = selections;
-    const parsedTeamAllowed = SYNC_SUPPORT_TEAM === '상관없어요' ? null : SYNC_SUPPORT_TEAM;
-
-    if (!SUPPORT_TEAM || !VIEWING_STYLE || !GENDER) return;
-
-    mutate({
-      team: SUPPORT_TEAM,
-      teamAllowed: parsedTeamAllowed,
-      style: VIEWING_STYLE,
-      genderPreference: GENDER,
-    });
-    onSelect(option);
-  };
-
+const MatchingType = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="onboarding-layout gap-[5.4rem]">
       <div className="onboarding-title">
@@ -42,7 +24,7 @@ const MatchingType = ({ selectedOption, onSelect, selections }: MatchingTypeProp
             label={option}
             size={'setting_L'}
             variant={selectedOption === option ? 'skyblueBorder' : 'white'}
-            onClick={() => handleSelect(option)}
+            onClick={() => onSelect(option)}
           />
         ))}
       </div>

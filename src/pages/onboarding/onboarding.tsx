@@ -1,5 +1,6 @@
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
+import { useMatchConditionMutation } from '@hooks/use-match-condition';
 import Complete from '@pages/onboarding/components/complete';
 import Gender from '@pages/onboarding/components/gender';
 import MatchingType from '@pages/onboarding/components/matching-type';
@@ -48,6 +49,8 @@ const Onboarding = () => {
   useEffect(() => {
     localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(selections));
   }, [selections]);
+
+  const { mutate } = useMatchConditionMutation();
 
   return (
     <div className="h-svh flex-col">
@@ -101,7 +104,7 @@ const Onboarding = () => {
             <MatchingType
               selectedOption={selections.MATCHING_TYPE}
               onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
-              selections={selections}
+              // selections={selections}
             />
           </Step>
 
@@ -117,7 +120,14 @@ const Onboarding = () => {
             variant="blue"
             disabled={isButtonDisabled(currentStep, selections)}
             onClick={() =>
-              handleButtonClick(currentStep, selections, goNext, navigate, setProgressOverride)
+              handleButtonClick(
+                currentStep,
+                selections,
+                goNext,
+                navigate,
+                setProgressOverride,
+                mutate,
+              )
             }
           />
         </div>
