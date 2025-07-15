@@ -5,14 +5,18 @@ import DateSelect from '@pages/onboarding/components/date-select';
 import GroupRole from '@pages/onboarding/components/group-role';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
-import { GROUP_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
+import {
+  GROUP_FUNNEL_STEPS,
+  ONBOARDING_GROUP_STORAGE_KEY,
+} from '@pages/onboarding/constants/onboarding';
 import {
   getButtonLabel,
   handleButtonClick,
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
+import { getStoredData } from '@pages/onboarding/utils/onboarding-storage';
 import { ROUTES } from '@routes/routes-config';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const OnboardingGroup = () => {
@@ -23,13 +27,20 @@ const OnboardingGroup = () => {
 
   const navigate = useNavigate();
 
-  const [selections, setSelections] = useState<Record<string, string | null>>({
-    GROUP_ROLE: null,
+  const [selection, setSelection] = useState<Record<string, string | null>>(() => {
+    const stored = getStoredData(ONBOARDING_GROUP_STORAGE_KEY);
+    return {
+      GROUP_ROLE: stored.GROUP_ROLE ?? null,
+    };
   });
 
   const handleSelect = (stepName: string, value: string) => {
-    setSelections((prev) => ({ ...prev, [stepName]: value }));
+    setSelection((prev) => ({ ...prev, [stepName]: value }));
   };
+
+  useEffect(() => {
+    localStorage.setItem(ONBOARDING_GROUP_STORAGE_KEY, JSON.stringify(selection));
+  }, [selection]);
 
   return (
     <div className="h-full flex-col">
@@ -46,7 +57,7 @@ const OnboardingGroup = () => {
         <Funnel>
           <Step name="GROUP_ROLE">
             <GroupRole
-              selectedOption={selections.GROUP_ROLE}
+              selectedOption={selection.GROUP_ROLE}
               onSelect={(option) => handleSelect('GROUP_ROLE', option)}
             />
           </Step>
@@ -69,8 +80,8 @@ const OnboardingGroup = () => {
               label={getButtonLabel(currentStep)}
               size="L"
               variant="blue"
-              disabled={isButtonDisabled(currentStep, selections)}
-              onClick={() => handleButtonClick(currentStep, selections, goNext, navigate)}
+              disabled={isButtonDisabled(currentStep, selection)}
+              onClick={() => handleButtonClick(currentStep, selection, goNext, navigate)}
             />
           </div>
         )}
