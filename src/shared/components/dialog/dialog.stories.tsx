@@ -1,9 +1,17 @@
 import Dialog from '@components/dialog/dialog';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Dialog> = {
   title: 'common/Dialog',
   component: Dialog,
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
   parameters: {
     docs: {
       description: {
