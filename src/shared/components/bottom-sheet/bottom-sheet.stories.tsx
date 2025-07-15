@@ -101,8 +101,8 @@ export const GameMatch: Story = {
     const queryClient = new QueryClient({
       defaultOptions: {
         queries: {
-          retry: false, 
-          staleTime: Infinity, 
+          retry: false,
+          staleTime: Infinity,
         },
         mutations: {
           retry: false,
