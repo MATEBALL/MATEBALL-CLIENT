@@ -1,0 +1,51 @@
+name: Auto Labeler
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check Labels
+        id: labeler
+        uses: jimschubert/labeler-action@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Label and assign by author
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+
+            const config = {
+              'heesunee': { label: '희선', assign: 'heesunee' },
+              'Dubabbi': { label: '소은', assign: 'Dubabbi' },
+              'bongtta': { label: '채은', assign: 'bongtta' },
+              'yeeeww': { label: '예원', assign: 'yeeeww' }
+            };
+
+            const data = config[author];
+            if (data) {
+              await github.rest.issues.addLabels({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                labels: [data.label],
+              });
+
+              await github.rest.issues.addAssignees({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                assignees: [data.assign],
+              });
+            }

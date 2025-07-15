@@ -1,0 +1,101 @@
+@layer utilities {
+  /* flex row 방향 */
+  .flex-row {
+    @apply flex flex-row;
+  }
+
+  .flex-row-center {
+    @apply flex flex-row justify-center items-center;
+  }
+
+  .flex-row-between {
+    @apply flex flex-row justify-between items-center;
+  }
+
+  .flex-row-end {
+    @apply flex flex-row justify-end items-center;
+  }
+
+  .flex-row-items-start {
+    @apply flex flex-row items-start;
+  }
+
+  .flex-row-items-end {
+    @apply flex flex-row items-end;
+  }
+
+  /* flex col 방향 */
+  .flex-col {
+    @apply flex flex-col;
+  }
+
+  .flex-col-center {
+    @apply flex flex-col justify-center items-center;
+  }
+
+  .flex-col-between {
+    @apply flex flex-col justify-between items-center;
+  }
+
+  .flex-col-end {
+    @apply flex flex-col justify-end items-center;
+  }
+
+  .flex-col-items-start {
+    @apply flex flex-col items-start;
+  }
+
+  .flex-col-items-end {
+    @apply flex flex-col items-end;
+  }
+
+  .signup-layout {
+    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem] h-full;
+  }
+
+  .header-layout {
+    @apply sticky top-0 z-[var(--z-header)] h-[5.6rem] py-[1.55rem] pl-[2rem];
+  }
+
+  .onboarding-layout {
+    @apply mt-[3.2rem] h-full w-full flex flex-col justify-between items-center;
+  }
+
+  .onboarding-inner {
+    @apply w-full flex flex-col gap-[0.8rem] px-[1.6rem];
+  }
+
+  .onboarding-title {
+    @apply flex flex-col justify-center items-center gap-[2.4rem];
+  }
+
+  .onboarding-footer {
+    @apply sticky bottom-0 w-full p-[1.6rem];
+  }
+
+  .game-match-item {
+    @apply w-full flex flex-row justify-between cursor-pointer rounded-[12px] px-[2rem] py-[1.2rem] outline-1 outline-solid outline-offset-[-1px];
+  }
+
+  .game-match-selected {
+    @apply bg-main-200 outline-main-900;
+  }
+
+  .game-match-default {
+    @apply bg-gray-white outline-gray-300;
+  }
+
+  .matching-success-background {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35rem] h-[35rem] blur-3xl rounded-full -z-20;
+    background: radial-gradient(67.17% 67.17% at 33.26% 84.78%, #c1ffbb 5%, #bcf3ff 88.05%);
+  }
+
+  .matching-lottie-gradient {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18rem] h-[18rem] rounded-full -z-10;
+    background: radial-gradient(
+      74.24% 74.24% at 50.22% 50.22%,
+      rgba(255, 255, 255, 0) 46.82%,
+      #ffffff 72.4%
+    );
+  }
+}

@@ -21,7 +21,26 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* path alias */
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["./src/pages/*"],
+      "@apis/*": ["./src/shared/apis/*"],
+      "@styles/*": ["./src/shared/styles/*"],
+      "@components/*": ["./src/shared/components/*"],
+      "@libs/*": ["./src/shared/libs/*"],
+      "@constants/*": ["./src/shared/constants/*"],
+      "@mocks/*": ["./src/shared/mocks/*"],
+      "@hooks/*": ["./src/shared/hooks/*"],
+      "@types/*": ["./src/shared/types/*"],
+      "@routes/*": ["./src/shared/routes/*"],
+      "@img/*": ["./src/shared/assets/images/*"],
+      "@svg/*": ["./src/shared/assets/svgs/*"],
+      "@lotties/*": ["./src/shared/assets/lotties/*"],
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }
