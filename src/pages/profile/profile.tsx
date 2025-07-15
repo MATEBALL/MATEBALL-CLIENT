@@ -3,13 +3,12 @@ import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
 import type { ChipColor } from '@components/chip/chip-list';
 import Footer from '@components/footer/footer';
-import ErrorView from '@pages/error/error-view';
 import { useQuery } from '@tanstack/react-query';
 
 const Profile = () => {
   const { data } = useQuery(userQueries.USER_INFO());
 
-  if (!data) return <ErrorView message="아직 최초 매칭 조건이 설정되지 않았어요" />;
+  if (!data) return null;
 
   return (
     <div className="h-full flex-col-between">
