@@ -38,6 +38,24 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    info: (
+      <>
+        기본 다이얼로그 입니다. <br /> 줄바꿈도 가능합니다.
+      </>
+    ),
+    children: (
+      <button
+        type="button"
+        className="subhead_18_sb mt-[1.5rem] inline-flex w-[16.75rem] items-center justify-center rounded-[1.2rem] bg-main-900 py-[1.2rem] text-white transition-colors "
+      >
+        버튼
+      </button>
+    ),
+  },
+};
+
+export const OnlyInfo: Story = {
+  args: {
     info: '내용만 있는 Dialog Component',
   },
 };
