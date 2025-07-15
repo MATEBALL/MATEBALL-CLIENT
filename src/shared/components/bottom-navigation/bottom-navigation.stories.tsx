@@ -5,7 +5,6 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 
-
 const createQueryClient = (userData = { nickname: true, condition: true }) => {
   const client = new QueryClient({
     defaultOptions: {
