@@ -11,9 +11,7 @@ export const gameQueries = {
     queryOptions<getGameScheduleResponse['gameSchedule']>({
       queryKey: GAME_KEY.SCHEDULE(dateStr),
       queryFn: async () => {
-        const res = await get<getGameScheduleResponse>(
-          END_POINT.GET_GAME_SCHEDULE(dateStr),
-        );
+        const res = await get<getGameScheduleResponse>(END_POINT.GET_GAME_SCHEDULE(dateStr));
         return res.gameSchedule ?? [];
       },
     }),

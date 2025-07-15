@@ -1,3 +1,4 @@
+import { gameQueries } from '@apis/game/game-queries';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
@@ -6,10 +7,9 @@ import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
 import MatchListSection from '@pages/home/components/match-list-section';
 import TopSection from '@pages/home/components/top-section';
+import { useQuery } from '@tanstack/react-query';
 import { addDays, format } from 'date-fns';
 import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { gameQueries } from '@apis/game/game-queries';
 
 const Home = () => {
   const { activeType, changeTab, isSingle, isGroup } = useTabState();
