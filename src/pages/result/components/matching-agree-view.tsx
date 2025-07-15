@@ -1,12 +1,14 @@
 import Button from '@components/button/button/button';
 import MatchCurrentCard from '@components/card/match-current-card/match-current-card';
 import { LOTTIE_PATH } from '@constants/lotties';
+import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
 
 const MatchingAgreeView = () => {
   const navigate = useNavigate();
+  usePreventBackNavigation('/match');
 
   // TODO: 실제 매칭된 인원 상태에서 받아오기
   const matchedCount = 3;

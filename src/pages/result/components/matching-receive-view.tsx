@@ -1,5 +1,6 @@
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
+import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { mockMateReceive } from '@mocks/mockMatchReceiveData';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
@@ -11,6 +12,7 @@ interface MatchingReceiveViewProps {
 
 const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
   const navigate = useNavigate();
+  usePreventBackNavigation('/match');
 
   const handleReject = () => {
     navigate(`${ROUTES.RESULT}?type=fail`);
