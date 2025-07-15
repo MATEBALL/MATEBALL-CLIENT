@@ -23,22 +23,31 @@ export const getCommonProps = (match: SingleMatch | GroupMatch) => ({
   matchRate: match.matchRate,
 });
 
-export const renderSingleCard = (match: SingleMatch) => (
-  <Card
-    id={match.id}
-    key={match.id}
-    type="single"
-    {...getCommonProps(match)}
-    age={match.age}
-    gender={match.gender}
-    team={match.team}
-    style={match.style}
-    chips={[match.team, match.style] as ChipColor[]}
-  />
+export const renderSingleCard = (match: SingleMatch, onCardClick: (matchId: number) => void) => (
+  <button type="button" onClick={() => onCardClick(match.id)} className="cursor-pointer">
+    <Card
+      id={match.id}
+      key={match.id}
+      type="single"
+      age={match.age}
+      gender={match.gender}
+      team={match.team}
+      style={match.style}
+      chips={[match.team, match.style] as ChipColor[]}
+      {...getCommonProps(match)}
+    />
+  </button>
 );
-
-export const renderGroupCard = (match: GroupMatch) => (
-  <Card id={match.id} key={match.id} type="group" {...getCommonProps(match)} count={match.count} />
+export const renderGroupCard = (match: GroupMatch, onCardClick: (matchId: number) => void) => (
+  <button type="button" onClick={() => onCardClick(match.id)} className="cursor-pointer">
+    <Card
+      id={match.id}
+      key={match.id}
+      type="group"
+      count={match.count}
+      {...getCommonProps(match)}
+    />
+  </button>
 );
 
 const isSingleMatch = (match: unknown): match is SingleMatch => {
@@ -56,14 +65,18 @@ const isGroupMatch = (match: unknown): match is GroupMatch => {
   return typeof match === 'object' && match !== null && 'count' in match && !('age' in match);
 };
 
-export const renderMatchCards = (matches: unknown[], isOneOnOne: boolean) => {
+export const renderMatchCards = (
+  matches: unknown[],
+  isOneOnOne: boolean,
+  onCardClick: (matchId: number) => void,
+) => {
   return matches
     .map((match) => {
       if (isOneOnOne && isSingleMatch(match)) {
-        return renderSingleCard(match);
+        return renderSingleCard(match, onCardClick);
       }
       if (!isOneOnOne && isGroupMatch(match)) {
-        return renderGroupCard(match);
+        return renderGroupCard(match, onCardClick);
       }
       return null;
     })
