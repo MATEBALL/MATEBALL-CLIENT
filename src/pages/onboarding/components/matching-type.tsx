@@ -1,9 +1,33 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
+import { useMatchConditionMutation } from '@hooks/use-match-condition';
 import { MATCHING_TYPE } from '@pages/onboarding/constants/onboarding';
-import type { OnboardingStepProps } from '@pages/onboarding/types/onboarding';
+import { useEffect } from 'react';
+import type { MatchingTypeProps } from '../types/onboarding';
 
-const MatchingType = ({ selectedOption, onSelect }: OnboardingStepProps) => {
+const MatchingType = ({ selectedOption, onSelect, selections }: MatchingTypeProps) => {
+  const { mutate } = useMatchConditionMutation();
+
+  useEffect(() => {
+    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE, GENDER } = selections;
+    const parsedTeamAllowed = SYNC_SUPPORT_TEAM === '상관없어요' ? null : SYNC_SUPPORT_TEAM;
+    console.log({
+      team: SUPPORT_TEAM,
+      teamAllowed: parsedTeamAllowed,
+      style: VIEWING_STYLE,
+      genderPreference: GENDER,
+    });
+
+    if (!SUPPORT_TEAM || !VIEWING_STYLE || !GENDER) return;
+
+    mutate({
+      team: SUPPORT_TEAM,
+      teamAllowed: parsedTeamAllowed,
+      style: VIEWING_STYLE,
+      genderPreference: GENDER,
+    });
+  }, [selections, mutate]);
+
   return (
     <div className="onboarding-layout gap-[5.4rem]">
       <div className="onboarding-title">
