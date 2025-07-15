@@ -58,7 +58,7 @@ const Home = () => {
         isOpen={isGameInfoBottomSheetOpen}
         onClose={() => setIsGameInfoBottomSheetOpen(false)}
         date={format(selectedDate, 'yyyy-MM-dd')}
-        gameSchedule={data}
+        gameSchedule={data ?? []}
         activeType={activeType}
       />
     </div>
