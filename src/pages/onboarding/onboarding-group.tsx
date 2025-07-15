@@ -43,7 +43,7 @@ const OnboardingGroup = () => {
   }, [selection]);
 
   return (
-    <div className="h-full flex-col">
+    <div className="h-svh flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={goPrev} />
         {currentStep !== 'START' && (

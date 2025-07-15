@@ -10,7 +10,9 @@ const App = () => {
     <GlobalErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <div style={{ fontSize: '16px' }}>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </div>
       </QueryClientProvider>
     </GlobalErrorBoundary>
   );
