@@ -19,7 +19,7 @@ const useMatchCreate = (matchId: number, type: 'single' | 'group' | null | undef
    */
 
   const { data: mateGroup } = useSuspenseQuery<getGroupMatchResultResponse>(
-    matchQueries.GROUP_MATCH_RESULT(matchId),
+    matchQueries.GROUP_MATCH_RESULT(matchId, type === 'group'),
   );
 
   const getMatchData = (): MatchCardData | null => {

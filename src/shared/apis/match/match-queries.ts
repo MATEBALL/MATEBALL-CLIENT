@@ -37,10 +37,11 @@ export const matchQueries = {
   /**
    * 그룹 매칭 결과 조회
    */
-  GROUP_MATCH_RESULT: (matchId: number) =>
+  GROUP_MATCH_RESULT: (matchId: number, enabled = true) =>
     queryOptions<getGroupMatchResultResponse>({
       queryKey: MATCH_KEY.RESULT.GROUP(matchId),
       queryFn: () => get(END_POINT.GET_GROUP_RESULT(matchId)),
+      enabled,
     }),
 
   /**
