@@ -1,6 +1,6 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
-import { useMatchConditionMutation } from '@hooks/use-match-condition';
 import Complete from '@pages/onboarding/components/complete';
 import Gender from '@pages/onboarding/components/gender';
 import MatchingType from '@pages/onboarding/components/matching-type';
@@ -18,6 +18,7 @@ import {
 } from '@pages/onboarding/utils/onboarding-button';
 import { getStoredData } from '@pages/onboarding/utils/onboarding-storage';
 import { ROUTES } from '@routes/routes-config';
+import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,7 +51,7 @@ const Onboarding = () => {
     localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(selections));
   }, [selections]);
 
-  const { mutate } = useMatchConditionMutation();
+  const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   return (
     <div className="h-svh flex-col">
