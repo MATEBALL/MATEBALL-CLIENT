@@ -174,7 +174,7 @@ export interface postMatchConditionRequest {
  * get
  * /v1/users/match-stage/direct?
  */
-export interface getSingleMatchListResponse {
+export interface getSingleMatchStatusResponse {
   mates: singleMatchMate[];
 }
 
