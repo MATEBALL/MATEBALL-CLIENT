@@ -105,7 +105,7 @@ const Onboarding = () => {
           </Step>
 
           <Step name="COMPLETE">
-            <Complete />
+            <Complete selections={selections} />
           </Step>
         </Funnel>
 
