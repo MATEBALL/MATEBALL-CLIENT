@@ -92,9 +92,10 @@
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.12);
   }
 
-  .back-blur {
-    backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.3);
+  .matching-modal-backdrop {
+    @apply fixed top-0 left-0 w-full h-full whitespace-pre-line;
+    background: var(--etc-overlay, rgba(0, 0, 0, 0.3));
+    backdrop-filter: blur(2px);
   }
 
   /* Typography */

@@ -1,12 +1,15 @@
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
+import Dialog from '@components/dialog/dialog';
+import useAuth from '@hooks/use-auth';
 import { useTabState } from '@hooks/use-tab-state';
 import { mockGameDatas } from '@mocks/mockGameData';
 import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
 import MatchListSection from '@pages/home/components/match-list-section';
 import TopSection from '@pages/home/components/top-section';
+import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condition';
 import { addDays, format } from 'date-fns';
 import { useState } from 'react';
 
@@ -20,6 +23,8 @@ const Home = () => {
   );
   const [isCalendarBottomSheetOpen, setIsCalendarBottomSheetOpen] = useState(false);
   const [isGameInfoBottomSheetOpen, setIsGameInfoBottomSheetOpen] = useState(false);
+
+  const { needsMatchingSetup } = useAuth();
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
@@ -58,6 +63,11 @@ const Home = () => {
         gameSchedule={mockGameDatas}
         activeType={activeType}
       />
+      {needsMatchingSetup && (
+        <div className="matching-modal-backdrop z-[var(--z-modal)] flex-col-center ">
+          <Dialog info={MATCHING_MODAL_DESCRIPTION} />
+        </div>
+      )}
     </div>
   );
 };
