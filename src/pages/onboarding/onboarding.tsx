@@ -104,7 +104,6 @@ const Onboarding = () => {
             <MatchingType
               selectedOption={selections.MATCHING_TYPE}
               onSelect={(option) => handleSelect('MATCHING_TYPE', option)}
-              // selections={selections}
             />
           </Step>
 
