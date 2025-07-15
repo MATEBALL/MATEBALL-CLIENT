@@ -3,14 +3,22 @@ import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
+<<<<<<< HEAD
 import type { postMatchConditionRequest, postMatchCreateRequest } from '@/shared/types/match-types';
+=======
+import type {
+  postMatchConditionRequest,
+  postMatchCreateRequest,
+  postMatchCreateResponse,
+} from '@/shared/types/match-types';
+
 
 export const matchMutations = {
   /**
    * 매칭 생성
    */
   CREATE_MATCH: () =>
-    mutationOptions<responseTypes, Error, postMatchCreateRequest>({
+    mutationOptions<postMatchCreateResponse, Error, postMatchCreateRequest>({
       mutationKey: MATCH_KEY.POST.MATCH(),
       mutationFn: ({ gameId, matchType }) => post(END_POINT.POST_MATCH, { gameId, matchType }),
     }),

@@ -37,12 +37,14 @@ const GameMatchBottomSheet = ({
 
   const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
 
+  const disabled = selectedIdx === null || createMatchMutation.isPending;
+  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group'; //postmatchType용
+  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group'; //query용
+  
   const handleClose = () => {
     setSelectedIdx(null);
     onClose();
   };
-
-  const disabled = selectedIdx === null || createMatchMutation.isPending;
 
   const handleSubmit = () => {
     if (selectedIdx === null) return;
