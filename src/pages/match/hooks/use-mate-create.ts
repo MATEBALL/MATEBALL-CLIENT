@@ -1,16 +1,29 @@
+import { matchQueries } from '@apis/match/match-queries';
 import type {
   ChipColor,
   GroupCardProps,
   SingleCardProps,
 } from '@components/card/match-card/types/card';
-import { mockMateGroup } from '@mocks/mockMateGroup';
 import { mockMateSingle } from '@mocks/mockMateSingle';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import type { getGroupMatchResultResponse } from '@/shared/types/match-types';
 
 export type MatchCardData =
   | (SingleCardProps & { id: number; type: 'single' })
   | (GroupCardProps & { id: number; type: 'group' });
 
 const useMatchCreate = (matchId: number, type: 'single' | 'group' | null | undefined) => {
+  /**
+   * 그룹 매칭 생성 결과 useQuery
+   * @returns id, nickname, awayTeam, homeTeam, stadium, date, count, imgUrl[]
+   */
+
+  const { data: mateGroup } = useSuspenseQuery<getGroupMatchResultResponse>(
+    matchQueries.GROUP_MATCH_RESULT(matchId),
+  );
+
+  console.log(mateGroup);
+
   const getMatchData = (): MatchCardData | null => {
     if (type === 'single') {
       const foundSingleMatch = mockMateSingle.find((m) => m.id === matchId);
@@ -24,13 +37,12 @@ const useMatchCreate = (matchId: number, type: 'single' | 'group' | null | undef
         : null;
     }
 
-    const groupMatch = mockMateGroup.find((m) => m.id === matchId);
-    return groupMatch
-      ? {
-          ...groupMatch,
-          type: 'group',
-        }
-      : null;
+    if (!mateGroup) return null;
+
+    return {
+      ...mateGroup,
+      type: 'group',
+    };
   };
 
   return { matchData: getMatchData() };
