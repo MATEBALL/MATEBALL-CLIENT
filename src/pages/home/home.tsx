@@ -11,7 +11,7 @@ import { addDays, format } from 'date-fns';
 import { useState } from 'react';
 
 const Home = () => {
-  const { activeType, changeTab, isOneOnOne, isGroup } = useTabState();
+  const { activeType, changeTab, isSingle, isGroup } = useTabState();
   const entryDate = new Date();
   const initialSelectedDate = getInitialSelectedDate(entryDate);
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
@@ -39,7 +39,7 @@ const Home = () => {
       />
       <MatchListSection
         activeType={activeType}
-        isOneOnOne={isOneOnOne}
+        isSingle={isSingle}
         isGroup={isGroup}
         selectedDate={selectedDate}
         onOpenGameInfoBottomSheet={() => setIsGameInfoBottomSheetOpen(true)}
