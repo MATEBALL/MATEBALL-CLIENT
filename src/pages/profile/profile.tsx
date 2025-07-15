@@ -8,8 +8,6 @@ import { useQuery } from '@tanstack/react-query';
 const Profile = () => {
   const { data } = useQuery(userQueries.USER_INFO());
 
-  console.log(data);
-
   if (!data) return null;
 
   return (
