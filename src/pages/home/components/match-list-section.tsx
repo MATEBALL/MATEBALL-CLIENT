@@ -22,7 +22,6 @@ const MatchListSection = ({
   selectedDate,
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
-
   const navigate = useNavigate();
 
   const filteredMatches = useMemo(() => {
