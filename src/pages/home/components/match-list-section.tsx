@@ -4,7 +4,7 @@ import EmptyState from '@components/ui/empty-state';
 import { mockMateGroup } from '@mocks/mockMateGroup';
 import { mockMateSingle } from '@mocks/mockMateSingle';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
-import { ROUTES } from '@routes/routes-config';    
+import { ROUTES } from '@routes/routes-config';
 import { format } from 'date-fns';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';

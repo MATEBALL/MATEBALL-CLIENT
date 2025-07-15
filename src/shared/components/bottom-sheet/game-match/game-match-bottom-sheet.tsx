@@ -53,7 +53,6 @@ const GameMatchBottomSheet = ({
     const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
     navigateToMatchCreate(matchId, queryType);
     handleClose();
-
   };
 
   return (
