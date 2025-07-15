@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const Login = () => {
   return (
     <motion.div
-      className="h-screen flex-col-between px-[1.6rem] pt-[8rem] pb-[4.8rem]"
+      className="h-svh flex-col-between px-[1.6rem] pt-[8rem] pb-[4.8rem]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3, ease: 'easeIn' }}
