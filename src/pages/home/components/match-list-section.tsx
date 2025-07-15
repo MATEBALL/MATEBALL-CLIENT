@@ -2,7 +2,6 @@ import { matchQueries } from '@apis/match/match-queries';
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyState from '@components/ui/empty-state';
-import { mockMateGroup } from '@mocks/mockMateGroup';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
@@ -31,17 +30,20 @@ const MatchListSection = ({
     enabled: isSingle,
   });
 
+  const { data: groupMatchData } = useQuery({
+    ...matchQueries.GROUP_MATCH_LIST(formattedDate),
+  });
+
   const filteredMatches = useMemo(() => {
-    return isSingle
-      ? (singleMatchData?.mates ?? [])
-      : mockMateGroup.filter((match) => match.date === formattedDate);
-  }, [isSingle, singleMatchData, formattedDate]);
+    console.log(groupMatchData);
+    return isSingle ? (singleMatchData?.mates ?? []) : (groupMatchData?.mates ?? []);
+  }, [isSingle, singleMatchData, groupMatchData]);
 
   const handleCardClick = (matchId: number) => {
     if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {
-      navigate(`${ROUTES.GROUP_MATES(matchId.toString())}?type=sent&mode=group`);
+      navigate(`${ROUTES.GROUP_MATES(matchId.toString())}?type=sent&mode=agroup`);
     }
   };
 
