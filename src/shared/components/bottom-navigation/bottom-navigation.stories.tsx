@@ -71,8 +71,4 @@ export const Default: Story = {
       },
     },
   },
-
-
 };
-
-

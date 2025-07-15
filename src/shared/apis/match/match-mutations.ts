@@ -9,7 +9,6 @@ import type {
   postMatchCreateResponse,
 } from '@/shared/types/match-types';
 
-
 export const matchMutations = {
   /**
    * 매칭 생성
