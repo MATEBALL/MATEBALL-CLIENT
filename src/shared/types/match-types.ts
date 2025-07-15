@@ -61,7 +61,7 @@ export interface groupMatchMate extends matchRateMate {
  * 1:1 매칭 현황에 사용되는 Mate
  * @extends baseMate
  */
-export interface directMatchMate extends baseMate {
+export interface singleMatchMate extends baseMate {
   age: string;
   gender: string;
   team: string;
@@ -174,8 +174,8 @@ export interface postMatchConditionRequest {
  * get
  * /v1/users/match-stage/direct?
  */
-export interface getDirectMatchListResponse {
-  mates: directMatchMate[];
+export interface getSingleMatchListResponse {
+  mates: singleMatchMate[];
 }
 
 /**
@@ -184,7 +184,7 @@ export interface getDirectMatchListResponse {
  * /v1/users/match-stage/group?
  */
 export interface getSingleMatchMate {
-  mates: directMatchMate[];
+  mates: singleMatchMate[];
 }
 
 /**

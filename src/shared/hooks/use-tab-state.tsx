@@ -8,13 +8,13 @@ export const useTabState = () => {
     setActiveType(type);
   };
 
-  const isOneOnOne = activeType === TAB_TYPES.SINGLE;
+  const isSingle = activeType === TAB_TYPES.SINGLE;
   const isGroup = activeType === TAB_TYPES.GROUP;
 
   return {
     activeType,
     changeTab,
-    isOneOnOne,
+    isSingle,
     isGroup,
   };
 };
