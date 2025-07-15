@@ -38,7 +38,7 @@ const Home = () => {
     setSelectedDate(date);
     setBaseWeekDate(date);
   };
- 
+
   const handleComplete = () => {
     navigate(ROUTES.ONBOARDING);
   };
