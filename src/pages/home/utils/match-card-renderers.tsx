@@ -24,7 +24,7 @@ export const getCommonProps = (match: SingleMatch | GroupMatch) => ({
 });
 
 export const renderSingleCard = (match: SingleMatch, onCardClick: (matchId: number) => void) => (
-  <button type="button" onClick={() => onCardClick(match.id)} className="cursor-pointer">
+  <button type="button" onClick={() => onCardClick(match.id)} className="w-full cursor-pointer">
     <Card
       id={match.id}
       key={match.id}
@@ -39,7 +39,7 @@ export const renderSingleCard = (match: SingleMatch, onCardClick: (matchId: numb
   </button>
 );
 export const renderGroupCard = (match: GroupMatch, onCardClick: (matchId: number) => void) => (
-  <button type="button" onClick={() => onCardClick(match.id)} className="cursor-pointer">
+  <button type="button" onClick={() => onCardClick(match.id)} className="w-full cursor-pointer">
     <Card
       id={match.id}
       key={match.id}
@@ -67,15 +67,17 @@ const isGroupMatch = (match: unknown): match is GroupMatch => {
 
 export const renderMatchCards = (
   matches: unknown[],
-  isOneOnOne: boolean,
+  isSingle: boolean,
   onCardClick: (matchId: number) => void,
 ) => {
   return matches
     .map((match) => {
-      if (isOneOnOne && isSingleMatch(match)) {
+
+      if (isSingle && isSingleMatch(match)) {
         return renderSingleCard(match, onCardClick);
       }
-      if (!isOneOnOne && isGroupMatch(match)) {
+      if (!isSingle && isGroupMatch(match)) {
+
         return renderGroupCard(match, onCardClick);
       }
       return null;

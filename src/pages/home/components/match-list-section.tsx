@@ -11,14 +11,14 @@ import { useNavigate } from 'react-router-dom';
 
 interface MatchListSectionProps {
   activeType: TabType;
-  isOneOnOne: boolean;
+  isSingle: boolean;
   isGroup: boolean;
   selectedDate: Date;
   onOpenGameInfoBottomSheet: () => void;
 }
 
 const MatchListSection = ({
-  isOneOnOne,
+  isSingle,
   selectedDate,
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
@@ -26,20 +26,22 @@ const MatchListSection = ({
 
   const filteredMatches = useMemo(() => {
     const formattedDate = format(selectedDate, 'yyyy-MM-dd');
-    const sourceData = isOneOnOne ? mockMateSingle : mockMateGroup;
+    const sourceData = isSingle ? mockMateSingle : mockMateGroup;
     return sourceData.filter((match) => match.date === formattedDate);
-  }, [selectedDate, isOneOnOne]);
+  }, [selectedDate, isSingle]);
 
   const handleCardClick = (matchId: number) => {
-    if (isOneOnOne) {
+    if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {
       navigate(`${ROUTES.GROUP_MATES(matchId.toString())}?type=sent&mode=group`);
     }
   };
 
+
+
   return (
-    <section className="p-[1.6rem]">
+    <section className="p-[1.6rem] ">
       <ButtonCreate
         label="맞춤 매칭 생성하기"
         className="ml-auto"
@@ -48,7 +50,7 @@ const MatchListSection = ({
 
       {filteredMatches.length > 0 ? (
         <div className="mt-[1.6rem] space-y-[0.8rem]">
-          {renderMatchCards(filteredMatches, isOneOnOne, handleCardClick)}
+          {renderMatchCards(filteredMatches, isSingle, handleCardClick)}
         </div>
       ) : (
         <EmptyState

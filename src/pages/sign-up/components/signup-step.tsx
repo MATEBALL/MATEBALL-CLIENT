@@ -1,6 +1,9 @@
+import { authQueries } from '@apis/auth/auth';
+import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import queryClient from '@libs/query-client';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
@@ -10,7 +13,10 @@ import {
 } from '@pages/sign-up/constants/NOTICE';
 import { BIRTH_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
 import { type NicknameFormValues, NicknameSchema } from '@pages/sign-up/schema/validation-schema';
+import { ROUTES } from '@routes/routes-config';
+import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 const SignupStep = () => {
   const {
@@ -25,6 +31,8 @@ const SignupStep = () => {
     defaultValues: { nickname: '', gender: undefined, birthYear: '' },
   });
 
+  const navigate = useNavigate();
+
   const nicknameValue = watch('nickname');
   const birthYearValue = watch('birthYear');
   const genderValue = watch('gender');
@@ -32,8 +40,35 @@ const SignupStep = () => {
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
 
+  const nicknameMutation = useMutation(userMutations.NICKNAME());
+  const userInfoMutation = useMutation(userMutations.USER_INFO());
+
   const onSubmit = (data: NicknameFormValues) => {
-    console.log(data);
+    nicknameMutation.mutate(
+      { nickname: data.nickname },
+      {
+        onSuccess: () => {
+          userInfoMutation.mutate(
+            {
+              gender: data.gender,
+              birthYear: Number(data.birthYear),
+            },
+            {
+              onSuccess: () => {
+                queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
+                navigate(ROUTES.HOME);
+              },
+              onError: (error) => {
+                console.error(error);
+              },
+            },
+          );
+        },
+        onError: (error) => {
+          console.error(error);
+        },
+      },
+    );
   };
 
   const { onBlur: onNicknameBlur, ref: nicknameRef, ...nicknameInputProps } = register('nickname');

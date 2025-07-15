@@ -7,6 +7,7 @@ const useAuth = () => {
 
   const isAuthenticated = !!data?.nickname;
   const isNotMatched = data?.condition === false;
+
   const needsMatchingSetup = isAuthenticated && isNotMatched;
 
   const refreshUserStatus = () => {
@@ -14,6 +15,7 @@ const useAuth = () => {
   };
 
   return { isAuthenticated, isNotMatched, needsMatchingSetup, refreshUserStatus };
+
 };
 
 export default useAuth;

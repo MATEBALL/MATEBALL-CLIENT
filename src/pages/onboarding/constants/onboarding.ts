@@ -34,3 +34,7 @@ export const GENDER = ['남성', '여성', '상관없어요'] as const;
 export const MATCHING_TYPE = ['1:1 매칭', '그룹 매칭'] as const;
 
 export const GROUP_ROLE = ['그룹장', '그룹원'] as const;
+
+export const ONBOARDING_STORAGE_KEY = 'mateball/onboardingSelections';
+
+export const ONBOARDING_GROUP_STORAGE_KEY = 'mateball/onboardingGroupSelections';
