@@ -14,7 +14,9 @@ const Login = () => {
     >
       <div className="w-[29.5rem] flex-col-center">
         <Icon name="logo-gray" width={16.5} height={4.5} className="text-main-900" />
-        <Lottie src={LOTTIE_PATH.LOGIN} loop={true} />
+        <div className="h-[33.1rem] w-[33.1rem]">
+          <Lottie src={LOTTIE_PATH.LOGIN} loop={true} />
+        </div>
         <div className="flex-col-center">
           <h2 className="title_24_sb text-gray-800">나랑 딱! 맞는</h2>
           <h2 className="title_24_sb text-gray-800">직관 메이트와 연결되는 공간</h2>
