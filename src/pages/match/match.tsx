@@ -19,7 +19,7 @@ const Match = () => {
   return (
     <div className="h-full flex-col">
       <div className="scrollbar-hide grow">
-        <nav className="sticky top-[5.6rem] z-[var(--z-home-calendar-section)] w-full bg-gray-100">
+        <nav className="sticky top-[5.6rem] z-[var(--z-under-header-section)] w-full bg-gray-100">
           <TabList
             className="px-[1.6rem]"
             colorMode="match"
