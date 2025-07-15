@@ -4,7 +4,10 @@ import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-foot
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+<<<<<<< HEAD
 import { ROUTES } from '@routes/routes-config';
+=======
+>>>>>>> 9e2d828 (feat: mutate 틀 작성 (#175))
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -39,8 +42,9 @@ const GameMatchBottomSheet = ({
   const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
 
   const disabled = selectedIdx === null || createMatchMutation.isPending;
-  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group'; //postmatchType용
-  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group'; //query용
+  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group'; 
+  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group'; 
+
 
   const handleClose = () => {
     setSelectedIdx(null);
@@ -49,7 +53,6 @@ const GameMatchBottomSheet = ({
 
   const handleSubmit = () => {
     if (selectedIdx === null) return;
-
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
 
