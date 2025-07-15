@@ -17,19 +17,17 @@ const Match = () => {
   };
 
   return (
-    <div className="h-full flex-col">
-      <div className="scrollbar-hide grow">
-        <nav className="sticky top-[5.6rem] z-[var(--z-under-header-section)] w-full bg-gray-100">
-          <TabList
-            className="px-[1.6rem]"
-            colorMode="match"
-            activeType={activeType}
-            onTabChange={setActiveType}
-          />
-          <FillTabList className="px-[1.6rem] py-[1rem]" tabs={fillTabItems} onChange={setFilter} />
-        </nav>
-        <TabContent activeType={activeType} contentMap={contentMap} />
-      </div>
+    <div className="scrollbar-hide h-full grow flex-col">
+      <nav className="sticky top-[5.6rem] z-[var(--z-under-header-section)] w-full bg-gray-100">
+        <TabList
+          className="px-[1.6rem]"
+          colorMode="match"
+          activeType={activeType}
+          onTabChange={setActiveType}
+        />
+        <FillTabList className="px-[1.6rem] py-[1rem]" tabs={fillTabItems} onChange={setFilter} />
+      </nav>
+      <TabContent activeType={activeType} contentMap={contentMap} />
     </div>
   );
 };
