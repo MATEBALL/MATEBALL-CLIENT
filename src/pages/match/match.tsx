@@ -19,14 +19,15 @@ const Match = () => {
   return (
     <div className="h-full flex-col">
       <div className="scrollbar-hide grow">
-        <div className="sticky top-[5.6rem] z-[var(--z-home-calendar-section)] w-full max-w-[43rem] bg-gray-100">
-          <div className="px-[1.6rem]">
-            <TabList colorMode="match" activeType={activeType} onTabChange={setActiveType} />
-          </div>
-          <div className="px-[1.6rem] py-[1rem]">
-            <FillTabList tabs={fillTabItems} onChange={setFilter} />
-          </div>
-        </div>
+        <nav className="sticky top-[5.6rem] z-[var(--z-home-calendar-section)] w-full bg-gray-100">
+          <TabList
+            className="px-[1.6rem]"
+            colorMode="match"
+            activeType={activeType}
+            onTabChange={setActiveType}
+          />
+          <FillTabList className="px-[1.6rem] py-[1rem]" tabs={fillTabItems} onChange={setFilter} />
+        </nav>
         <TabContent activeType={activeType} contentMap={contentMap} />
       </div>
     </div>
