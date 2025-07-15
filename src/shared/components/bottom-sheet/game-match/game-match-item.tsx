@@ -22,7 +22,7 @@ const GameMatchItem = ({ isSelected, away, home, time, stadium, onClick }: GameM
     >
       <div className="body_16_m flex-row gap-[0.4rem] text-gray-black">
         <span>{away}</span>
-        <span>VS</span>
+        <span>vs</span>
         <span>{home}</span>
       </div>
 

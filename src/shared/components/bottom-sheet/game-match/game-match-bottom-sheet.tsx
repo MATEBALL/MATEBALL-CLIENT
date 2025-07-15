@@ -31,7 +31,6 @@ const GameMatchBottomSheet = ({
   activeType,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const matchId = 1; //임시 설정용
   const navigate = useNavigate();
   const navigateToMatchCreate = (matchId: number, type: 'single' | 'group') => {
     navigate(`/match/create/${matchId}?type=${type}`);
@@ -51,7 +50,7 @@ const GameMatchBottomSheet = ({
     if (!selectedGame) return;
 
     const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
-    navigateToMatchCreate(matchId, queryType);
+    navigateToMatchCreate(selectedGame.id, queryType);
     handleClose();
   };
 

@@ -14,10 +14,9 @@ export const AUTH_KEY = {
 
 // game domain
 export const GAME_KEY = {
-  ALL: ['game'] as const,
-
-  SCHEDULE: () => [...GAME_KEY.ALL, 'schedule'] as const,
-} as const;
+  ALL: ['game'],
+  SCHEDULE: (dateStr: string) => ['game', 'schedule', dateStr],
+};
 
 // match domain
 export const MATCH_KEY = {

@@ -7,9 +7,12 @@ import type { getGameScheduleResponse } from '@/shared/types/game-types';
 export const gameQueries = {
   ALL: () => queryOptions({ queryKey: GAME_KEY.ALL }),
 
-  GAME_LIST: () =>
-    queryOptions<getGameScheduleResponse>({
-      queryKey: GAME_KEY.SCHEDULE(),
-      queryFn: () => get(END_POINT.GET_GAME_SCHEDULE),
+  GAME_LIST: (dateStr: string) =>
+    queryOptions<getGameScheduleResponse['gameSchedule']>({
+      queryKey: GAME_KEY.SCHEDULE(dateStr),
+      queryFn: async () => {
+        const res = await get<getGameScheduleResponse>(END_POINT.GET_GAME_SCHEDULE(dateStr));
+        return res.gameSchedule ?? [];
+      },
     }),
 };
