@@ -8,6 +8,8 @@ import { useQuery } from '@tanstack/react-query';
 const Profile = () => {
   const { data } = useQuery(userQueries.USER_INFO());
 
+  console.log(data);
+
   if (!data) return null;
 
   return (
@@ -18,14 +20,11 @@ const Profile = () => {
           nickname={data.nickname ?? ''}
           imgUrl={[data.imgUrl ?? '']}
           team={data.team ?? ''}
-          style={data.style?.replace(/\s+/g, '') ?? ''}
+          style={data.style ?? ''}
           age={data.age ?? ''}
           gender={data.gender ?? ''}
           introduction={data.introduction ?? ''}
-          chips={[
-            (data.team ?? '') as ChipColor,
-            (data.style ?? '').replace(/\s+/g, '') as ChipColor,
-          ]}
+          chips={[(data.team ?? '') as ChipColor, (data.style ?? '') as ChipColor]}
         />
         <Button size="L" label="매칭 조건 재설정 하기" />
       </div>
