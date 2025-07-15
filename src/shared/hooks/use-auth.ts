@@ -1,14 +1,13 @@
 import { authQueries } from '@apis/auth/auth';
-import { useQuery } from '@tanstack/react-query';
-import type { getUserStatusResponse } from '@/shared/types/auth-types';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 const useAuth = () => {
-  const { data, isLoading, isError } = useQuery<getUserStatusResponse>(authQueries.USER_STATUS());
+  const { data } = useSuspenseQuery(authQueries.USER_STATUS());
 
   const isAuthenticated = !!data?.nickname;
   const isNotMatched = data?.condition === false;
 
-  return { isAuthenticated, isLoading, isError, isNotMatched };
+  return { isAuthenticated, isNotMatched };
 };
 
 export default useAuth;
