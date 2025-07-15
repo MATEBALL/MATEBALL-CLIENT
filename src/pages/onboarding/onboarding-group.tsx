@@ -71,7 +71,7 @@ const OnboardingGroup = () => {
           </Step>
 
           <Step name="COMPLETE">
-            <Complete />
+            <Complete selections={selection} />
           </Step>
         </Funnel>
         {currentStep !== 'DATE_SELECT' && (
