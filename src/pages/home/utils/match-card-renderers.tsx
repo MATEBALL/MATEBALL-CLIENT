@@ -29,12 +29,12 @@ export const renderSingleCard = (match: SingleMatch, onCardClick: (matchId: numb
       id={match.id}
       key={match.id}
       type="single"
-      {...getCommonProps(match)}
       age={match.age}
       gender={match.gender}
       team={match.team}
       style={match.style}
       chips={[match.team, match.style] as ChipColor[]}
+      {...getCommonProps(match)}
     />
   </button>
 );
@@ -44,8 +44,8 @@ export const renderGroupCard = (match: GroupMatch, onCardClick: (matchId: number
       id={match.id}
       key={match.id}
       type="group"
-      {...getCommonProps(match)}
       count={match.count}
+      {...getCommonProps(match)}
     />
   </button>
 );
