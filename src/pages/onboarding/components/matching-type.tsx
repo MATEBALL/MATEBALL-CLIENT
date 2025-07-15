@@ -7,7 +7,7 @@ const MatchingType = ({ selectedOption, onSelect }: OnboardingStepProps) => {
   return (
     <div className="onboarding-layout gap-[5.4rem]">
       <div className="onboarding-title">
-        <Icon name="graphic-matching" width={10.4} height={10.4} />
+        <Icon name="matching" width={10.4} height={10.4} />
         <div className="flex-col-center gap-[0.8rem]">
           <p className="head_20_sb text-center text-gray-black">
             거의 다 왔어요.

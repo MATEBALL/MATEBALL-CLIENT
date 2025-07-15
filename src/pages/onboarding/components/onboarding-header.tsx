@@ -8,7 +8,7 @@ const OnboardingHeader = ({ onClick }: OnboardingHeaderProps) => {
   return (
     <div className="flex h-[5.6rem] w-full justify-start py-[0.4rem]">
       <Icon
-        name="ic-arrow-left-24"
+        name="arrow-left-24"
         width={4.8}
         height={4.8}
         onClick={onClick}

@@ -16,7 +16,7 @@ export const Logo: Story = {
     <div className="flex flex-col items-center gap-[2rem]">
       <div className="flex flex-col items-center p-[rem]">
         <p className="head_20_sb mb-2 text-gray-black">LogoSymbol</p>
-        <img src="/svgs/ic-favicon.svg" alt="favicon" width={150} height={150} />
+        <img src="/svgs/favicon.svg" alt="favicon" width={150} height={150} />
       </div>
 
       <div className="flex flex-col items-center">

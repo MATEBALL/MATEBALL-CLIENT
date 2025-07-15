@@ -1,4 +1,5 @@
 import { WEEK_DAY_COLORS, WEEK_DAYS, WEEKDAY } from '@components/calendar/constants/CALENDAR';
+import { calendarDayVariants } from '@components/calendar/styles/calendar-day-variants';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
 import {
@@ -11,7 +12,6 @@ import {
   startOfMonth,
   subMonths,
 } from 'date-fns';
-import { calendarDayVariants } from '@/shared/components/calendar/styles/calendar-day-variants';
 
 interface MonthCalendarProps {
   value: Date;
@@ -34,7 +34,7 @@ const MonthCalendar = ({
     <div className="w-full flex-col gap-[1.2rem]">
       <div className="flex-row-center gap-[2.4rem]">
         <Icon
-          name="ic-arrow-left"
+          name="arrow-left"
           width={3.2}
           height={3.2}
           className="cursor-pointer p-[0.7rem]"
@@ -42,7 +42,7 @@ const MonthCalendar = ({
         />
         <p className="head_20_sb text-center text-gray-black">{format(value, 'yyyy.MM')}</p>
         <Icon
-          name="ic-arrow-left"
+          name="arrow-left"
           width={3.2}
           height={3.2}
           rotate={180}

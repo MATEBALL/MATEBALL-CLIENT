@@ -10,7 +10,7 @@ interface MateFooterProps {
 const MateFooter = ({ isGroupMatching, onRequestClick }: MateFooterProps) => (
   <section className="w-full flex-col-center gap-[0.4rem]">
     <div className="w-full flex-row-center gap-[0.8rem]">
-      <Icon name="ic-caution" size={1.8} />
+      <Icon name="caution" size={1.8} />
       <span className="cap_12_m text-gray-600">
         {isGroupMatching ? MATCHING_NOTICE.group : MATCHING_NOTICE.single}
       </span>

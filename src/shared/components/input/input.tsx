@@ -60,7 +60,7 @@ const Input = ({
       </div>
       {messageToShow && (
         <div className="flex-row gap-[0.8rem]">
-          <Icon name="ic-info-filled" size={2} className={iconColorClass} />
+          <Icon name="info-filled" size={2} className={iconColorClass} />
           <p className={`cap_14_m ${iconColorClass}`}>{messageToShow}</p>
         </div>
       )}

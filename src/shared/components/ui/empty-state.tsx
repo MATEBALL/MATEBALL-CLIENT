@@ -10,7 +10,7 @@ interface EmptyStateProps {
 const EmptyState = ({ text, subText, className }: EmptyStateProps) => {
   return (
     <div className={cn('mt-[2.4rem] flex-col-center', className)}>
-      <Icon name="graphic-empty" size={8.4} />
+      <Icon name="empty" size={8.4} />
       <div className="text-center">
         <h3 className="head_20_sb mt-[2.4rem]">{text}</h3>
         <p className="cap_14_m mt-[0.8rem] text-gray-500">{subText}</p>
