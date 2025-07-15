@@ -22,7 +22,6 @@ const MatchListSection = ({
   selectedDate,
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
-
   const navigate = useNavigate();
 
   const filteredMatches = useMemo(() => {
@@ -40,7 +39,7 @@ const MatchListSection = ({
   };
 
   return (
-    <section className="p-[1.6rem]">
+    <section className="p-[1.6rem] ">
       <ButtonCreate
         label="맞춤 매칭 생성하기"
         className="ml-auto"
