@@ -32,8 +32,9 @@ const MatchListSection = ({
   });
 
   const filteredMatches = useMemo(() => {
-    if (isSingle) return singleMatchData?.mates ?? [];
-    return mockMateGroup.filter((match) => match.date === formattedDate);
+    return isSingle
+      ? (singleMatchData?.mates ?? [])
+      : mockMateGroup.filter((match) => match.date === formattedDate);
   }, [isSingle, singleMatchData, formattedDate]);
 
   const handleCardClick = (matchId: number) => {
