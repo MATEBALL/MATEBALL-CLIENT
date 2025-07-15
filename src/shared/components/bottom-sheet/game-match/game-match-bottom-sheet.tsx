@@ -54,7 +54,6 @@ const GameMatchBottomSheet = ({
     handleClose();
   };
 
-
   return (
     <BottomSheet isOpen={isOpen} onClose={handleClose} showIndicator gap="gap-[1.6rem]">
       <div className="w-full flex-col">
