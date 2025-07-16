@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({
+  base: '/MATEBALL-CLIENT/',
   title: 'MATEBALL CLIENT DOCS',
   description: 'mateball client convention & troubleshootig & docs',
 
