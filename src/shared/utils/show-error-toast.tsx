@@ -8,6 +8,6 @@ export const showErrorToast = (message: string) => {
     autoClose: 900000,
     position: 'bottomCenter',
     className:
-      'min-h-[4.5rem]! bottom-[8.3rem] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900',
+      'min-h-[4.5rem]! w-[34.3rem] bottom-[8.3rem] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900',
   });
 };
