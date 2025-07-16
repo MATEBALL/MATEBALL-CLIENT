@@ -1,3 +1,4 @@
+
 export const iconNames = [
   'arrow-left-18',
   'arrow-left-24',
@@ -28,6 +29,7 @@ export const iconNames = [
   'indicator',
   'info-filled',
   'kakao-logo',
+  'leader',
   'location',
   'logo-gray',
   'logo',
@@ -40,7 +42,7 @@ export const iconNames = [
   'passion',
   'plus',
   'team',
-  'watching',
+  'watching'
 ] as const;
-
+ 
 export type IconName = (typeof iconNames)[number];

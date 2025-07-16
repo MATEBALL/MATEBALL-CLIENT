@@ -62,9 +62,31 @@ export const GENDER = [
   },
 ];
 
-export const MATCHING_TYPE = ['1:1 매칭', '그룹 매칭'] as const;
+export const MATCHING_TYPE = [
+  {
+    id: 1,
+    label: '1:1 매칭',
+    icon: 'my-filled',
+  },
+  {
+    id: 2,
+    label: '그룹 매칭',
+    icon: 'group',
+  },
+];
 
-export const GROUP_ROLE = ['그룹장', '그룹원'] as const;
+export const GROUP_ROLE = [
+  {
+    id: 1,
+    label: '그룹장',
+    icon: 'leader',
+  },
+  {
+    id: 2,
+    label: '그룹원',
+    icon: 'my-filled',
+  },
+];
 
 export const ONBOARDING_STORAGE_KEY = 'mateball/onboardingSelections';
 
