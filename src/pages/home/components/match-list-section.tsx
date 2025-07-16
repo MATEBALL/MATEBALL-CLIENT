@@ -19,6 +19,7 @@ interface MatchListSectionProps {
 
 const MatchListSection = ({
   isSingle,
+  isGroup,
   selectedDate,
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
@@ -32,6 +33,7 @@ const MatchListSection = ({
 
   const { data: groupMatchData } = useQuery({
     ...matchQueries.GROUP_MATCH_LIST(formattedDate),
+    enabled: isGroup,
   });
 
   const filteredMatches = useMemo(() => {
