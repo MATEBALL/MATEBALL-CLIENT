@@ -3,7 +3,9 @@ import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import Button from '@components/button/button/button';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface BottomSheetModalProps {
   isOpen: boolean;
@@ -30,6 +32,16 @@ const BottomSheetModal = ({
         const mode = isGroupMatching ? 'group' : 'single';
         navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
         onClose();
+      },
+      onError: (error: unknown) => {
+        const axiosError = error as AxiosError;
+        const status = axiosError?.response?.status;
+
+        if (status === 429) {
+          showErrorToast('요청 및 생성할 수 있는 매칭 개수를 초과했어요.', { bottom: '5.3rem' });
+        } else if (status === 400) {
+          showErrorToast('같은 날짜에 중복 매칭은 불가능해요.', { bottom: '5.3rem' });
+        }
       },
     });
   };
