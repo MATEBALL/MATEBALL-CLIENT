@@ -6,6 +6,10 @@ import ChipState from '@components/chip/chip-state/chip-state';
 
 const CardHeader = (props: CardProps) => {
   const { type } = props;
+  const { pathname } = useLocation();
+
+  const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
+
 
   switch (type) {
     case 'single':
