@@ -4,6 +4,7 @@ import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-foot
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -59,8 +60,8 @@ const GameMatchBottomSheet = ({
       },
       {
         onSuccess: (response) => {
-          const createdMatchId = response.matchId;
-          navigate(`/match/create/${createdMatchId}?type=${queryType}`);
+          const createdMatchId = response.matchId.toString();
+          navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
           handleClose();
         },
         onError: (error) => {
