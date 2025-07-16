@@ -59,7 +59,13 @@ const BottomSheetModal = ({
       </div>
 
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button label="다음에 할래요" variant="skyblue" onClick={onClose} />
+        <Button
+          label="다음에 할래요"
+          variant="skyblue"
+          onClick={() => {
+            navigate(ROUTES.HOME);
+          }}
+        />
         <Button label="요청할래요" onClick={handleRequestClick} />
       </div>
     </BottomSheet>
