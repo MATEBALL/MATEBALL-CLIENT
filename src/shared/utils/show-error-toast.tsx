@@ -5,7 +5,7 @@ export const showErrorToast = (message: string) => {
   toast({
     text: message,
     icon: <Icon name="error" />,
-    autoClose: 900000,
+    autoClose: 3000,
     position: 'bottomCenter',
     className:
       'min-h-[4.5rem]! w-[34.3rem] bottom-[8.3rem] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900',
