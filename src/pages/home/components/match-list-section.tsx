@@ -44,7 +44,7 @@ const MatchListSection = ({
     if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {
-      navigate(`${ROUTES.GROUP_MATES(matchId.toString())}?type=sent&mode=agroup`);
+      navigate(`${ROUTES.GROUP_MATES(matchId.toString())}?type=sent&mode=group`);
     }
   };
 
