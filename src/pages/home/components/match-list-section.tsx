@@ -37,7 +37,7 @@ const MatchListSection = ({
       : mockMateGroup.filter((match) => match.date === formattedDate);
   }, [isSingle, singleMatchData, formattedDate]);
 
-  const handleCardClick = (matchId: number) => {
+  const handleCardClick = async (matchId: number) => {
     if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {
