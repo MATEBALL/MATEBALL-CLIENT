@@ -1,7 +1,10 @@
 import ButtonSection from '@pages/match/create/components/button-section';
 import MatchCardSection from '@pages/match/create/components/match-card-section';
+<<<<<<< HEAD
 import MatchGuideSection from '@pages/match/create/components/match-guide-section';
 import useMatchCreate from '@pages/match/hooks/use-mate-create';
+=======
+>>>>>>> 8ec3b46 (feat: 빌드 에러 해결 (#197))
 import { isInvalidMatchId } from '@pages/match/utils/match-validators';
 import { ROUTES } from '@routes/routes-config';
 import { Navigate, useParams, useSearchParams } from 'react-router-dom';
