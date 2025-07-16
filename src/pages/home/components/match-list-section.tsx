@@ -35,7 +35,6 @@ const MatchListSection = ({
   });
 
   const filteredMatches = useMemo(() => {
-    console.log(groupMatchData);
     return isSingle ? (singleMatchData?.mates ?? []) : (groupMatchData?.mates ?? []);
   }, [isSingle, singleMatchData, groupMatchData]);
 
