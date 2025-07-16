@@ -12,7 +12,10 @@
     "prepare": "husky install",
     "generate:icons": "tsx src/shared/scripts/generate-icon-list.ts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
@@ -75,6 +78,7 @@
     "vite": "^6.3.5",
     "vite-plugin-mkcert": "^1.17.8",
     "vite-tsconfig-paths": "^5.1.4",
+    "vitepress": "^1.6.3",
     "vitest": "^3.2.4",
     "wrangler": "^4.22.0"
   },
