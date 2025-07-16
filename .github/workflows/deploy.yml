@@ -29,6 +29,7 @@ jobs:
           cache: pnpm
       - uses: actions/configure-pages@v4
       - run: pnpm install --frozen-lockfile
+        working-directory: docs
       - run: pnpm run docs:build
         working-directory: docs
       - uses: actions/upload-pages-artifact@v3
