@@ -83,9 +83,12 @@ export const matchQueries = {
   /**
    * 매칭 요청 상세 조회
    */
-  MATCH_DETAIL: (matchId: number) =>
+  MATCH_DETAIL: (matchId: number, newRequest?: boolean) =>
     queryOptions<getMatchDetailResponse>({
-      queryKey: MATCH_KEY.DETAIL(matchId),
-      queryFn: () => get(END_POINT.GET_MATCH_DETAIL(matchId)),
+      queryKey: [MATCH_KEY.DETAIL(matchId), { newRequest }],
+      queryFn: () => {
+        const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''}`;
+        return get(url);
+      },
     }),
 };
