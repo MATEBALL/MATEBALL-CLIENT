@@ -43,9 +43,7 @@ const Match = () => {
   }));
 
   const contentMap = {
-    '1:1': (
-      <MatchTabPanel key="single" cards={singleCards} filter={filter} />
-    ),
+    '1:1': <MatchTabPanel key="single" cards={singleCards} filter={filter} />,
     그룹: <MatchTabPanel key="group" cards={groupCards} filter={filter} />,
   };
 

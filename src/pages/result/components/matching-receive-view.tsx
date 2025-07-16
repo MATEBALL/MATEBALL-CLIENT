@@ -16,7 +16,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const navigate = useNavigate();
   const { matchId } = useParams();
   const [params] = useSearchParams();
-  const cardType = params.get('cardType');
+  const cardType = params.get('cardtype');
 
   usePreventBackNavigation(ROUTES.MATCH);
 
