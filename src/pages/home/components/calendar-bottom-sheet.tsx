@@ -26,6 +26,7 @@ const CalendarBottomSheet = ({
       <div className="p-[1.6rem]">
         <MonthCalendar
           value={selectedDate}
+          selectedDate={selectedDate}
           onWeekChange={onWeekChange}
           onMonthChange={onDateSelect}
         />
