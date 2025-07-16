@@ -7,6 +7,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const urlParams = new URLSearchParams(location.search);
+
   const isFail = urlParams.get('type') === 'fail';
   const isSignUp = pathname.includes(ROUTES.SIGNUP);
   const isHome = pathname === ROUTES.HOME;
