@@ -23,13 +23,11 @@ const Match = () => {
   const { data: singleData } = useQuery<{ mates: singleMatchMate[] }>({
     ...matchQueries.SINGLE_MATCH_STATUS(statusParam),
     enabled: activeType === '1:1',
-    staleTime: 1000 * 60 * 5,
   });
 
   const { data: groupData } = useQuery<{ mates: getGroupMatchMate[] }>({
     ...matchQueries.GROUP_MATCH_STATUS(statusParam),
     enabled: activeType === '그룹',
-    staleTime: 1000 * 60 * 5,
   });
 
   const singleCards: SingleCardProps[] = (singleData?.mates ?? []).map((card) => ({
