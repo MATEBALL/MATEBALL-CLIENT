@@ -1,7 +1,7 @@
 import { GROUP_MAX } from '@components/card/constants/MATCH';
 
 interface MatchCurrentCardProps {
-  count: number;
+  count?: number;
 }
 
 const MatchCurrentCard = ({ count }: MatchCurrentCardProps) => {
