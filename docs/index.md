@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "⚾ MATEBALL CLIENT"
+  name: "⚾ MATEBALL CLIENT "
   tagline: 메잇볼 클라이언트 팀의 컨벤션, 트러블 슈팅 등 각종 개발 문서를 다루고 있습니다
   actions:
     - theme: brand
