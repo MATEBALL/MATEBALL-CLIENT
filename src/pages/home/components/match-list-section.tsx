@@ -2,7 +2,6 @@ import { matchQueries } from '@apis/match/match-queries';
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyState from '@components/ui/empty-state';
-import { mockMateGroup } from '@mocks/mockMateGroup';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
@@ -20,6 +19,7 @@ interface MatchListSectionProps {
 
 const MatchListSection = ({
   isSingle,
+  isGroup,
   selectedDate,
   onOpenGameInfoBottomSheet,
 }: MatchListSectionProps) => {
@@ -31,11 +31,14 @@ const MatchListSection = ({
     enabled: isSingle,
   });
 
+  const { data: groupMatchData } = useQuery({
+    ...matchQueries.GROUP_MATCH_LIST(formattedDate),
+    enabled: isGroup,
+  });
+
   const filteredMatches = useMemo(() => {
-    return isSingle
-      ? (singleMatchData?.mates ?? [])
-      : mockMateGroup.filter((match) => match.date === formattedDate);
-  }, [isSingle, singleMatchData, formattedDate]);
+    return isSingle ? (singleMatchData?.mates ?? []) : (groupMatchData?.mates ?? []);
+  }, [isSingle, singleMatchData, groupMatchData]);
 
   const handleCardClick = (matchId: number) => {
     if (isSingle) {
