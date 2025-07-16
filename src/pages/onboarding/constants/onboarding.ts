@@ -27,7 +27,23 @@ export const NO_TEAM_OPTION = '응원하는 팀이 없어요.';
 
 export const SYNC_MATE = ['같은 팀 메이트와 보고 싶어요', '상관없어요'] as const;
 
-export const VIEWING_STYLE = ['열정응원러', '경기집중러', '직관먹방러'] as const;
+export const VIEWING_STYLE = [
+  {
+    id: 1,
+    label: '열정응원러',
+    icon: 'passion',
+  },
+  {
+    id: 2,
+    label: '경기집중러',
+    icon: 'focus',
+  },
+  {
+    id: 3,
+    label: '직관먹방러',
+    icon: 'eat',
+  },
+];
 
 export const GENDER = ['남성', '여성', '상관없어요'] as const;
 
