@@ -13,7 +13,7 @@ interface BottomSheetModalProps {
   description: string;
   subDescription: string | string[];
   isGroupMatching?: boolean;
-  matchId: number;
+  matchId?: number;
 }
 
 const BottomSheetModal = ({
@@ -27,6 +27,8 @@ const BottomSheetModal = ({
   const navigate = useNavigate();
 
   const handleRequestClick = () => {
+    if (typeof matchId !== 'number') return;
+
     requestMatch(matchId, {
       onSuccess: () => {
         const mode = isGroupMatching ? 'group' : 'single';

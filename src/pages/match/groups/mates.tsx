@@ -29,7 +29,6 @@ const MatesPage = () => {
           description={MATCHING_DESCRIPTION.group.description}
           subDescription={MATCHING_DESCRIPTION.group.subDescription}
           isGroupMatching={true}
-          matchId={numericMatchId}
         />
       )}
     </>
