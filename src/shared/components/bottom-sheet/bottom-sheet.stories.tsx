@@ -79,6 +79,7 @@ export const RequestWarning: Story = {
             onClose={close}
             description="그룹 매칭은 최대 2건까지 신청할 수 있어요."
             subDescription="단, 하루에 한 경기만 매칭이 성사되며 같은 날짜의 중복 매칭은 불가능해요!"
+            matchId={0}
           />
         </div>
       </MemoryRouter>
