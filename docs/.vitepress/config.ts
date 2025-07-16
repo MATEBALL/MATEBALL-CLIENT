@@ -1,11 +1,13 @@
 import { defineConfig } from 'vitepress';
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'MATEBALL CLIENT DOCS',
   description: 'mateball client convention & troubleshootig & docs',
+
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.svg'}],
+  ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' },
