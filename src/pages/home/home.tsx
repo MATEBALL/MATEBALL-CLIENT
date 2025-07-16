@@ -33,7 +33,7 @@ const Home = () => {
   const dateStr = format(selectedDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     ...gameQueries.GAME_LIST(dateStr),
-    enabled: isCalendarBottomSheetOpen,
+    enabled: isCalendarBottomSheetOpen || isGameInfoBottomSheetOpen,
   });
 
   const { needsMatchingSetup } = useAuth();
