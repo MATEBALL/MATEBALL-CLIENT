@@ -13,6 +13,7 @@ interface MatchTabPanelProps {
   cards: MatchableCardProps[];
   filter: string;
 }
+
 const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const navigate = useNavigate();
 
@@ -34,8 +35,8 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
     <div className="flex-1 flex-col gap-[0.8rem] overflow-y-auto px-[1.6rem] py-[2rem]">
       {filteredCards.map((card) => (
         <button
-          type="button"
           key={card.id}
+          type="button"
           onClick={isClickable(card.status) ? () => handleCardClick(card) : undefined}
           className={cn('w-full', {
             'cursor-pointer': isClickable(card.status),
