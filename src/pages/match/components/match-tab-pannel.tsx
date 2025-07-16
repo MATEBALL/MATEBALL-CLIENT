@@ -23,7 +23,8 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const handleCardClick = (card: MatchableCardProps) => {
     const query = CLICKABLE_STATUS_MAP[card.status ?? ''];
     if (query) {
-      navigate(`${ROUTES.RESULT(String(card.id))}?type=${query}`);
+      const mode = card.type === 'group' ? 'group' : 'single';
+      navigate(`${ROUTES.RESULT(String(card.id))}?type=${query}&mode=${mode}`);
     }
   };
 
