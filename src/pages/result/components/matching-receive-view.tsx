@@ -37,6 +37,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
       },
       onError: (error) => {
         console.error('매칭 수락 실패:', error);
+        navigate(ROUTES.ERROR);
       },
     });
   };
