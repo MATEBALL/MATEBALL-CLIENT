@@ -10,7 +10,7 @@ hero:
       link: /stack
     - theme: brand
       text: 📜 트러블슈팅
-      link: /stack
+      link: /trouble
     - theme: brand
       text: 🗂️ 프로젝트 폴더구조
       link: /folder
