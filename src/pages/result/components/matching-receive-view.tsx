@@ -1,18 +1,25 @@
+import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
+import type { ChipColor, DetailedCardProps } from '@components/card/match-card/types/card';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
-import { mockMateReceive } from '@mocks/mockMatchReceiveData';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
-import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface MatchingReceiveViewProps {
   isGroupMatching?: boolean;
 }
 
 const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
+  const { matchId } = useParams();
   const navigate = useNavigate();
+
   usePreventBackNavigation(ROUTES.MATCH);
+
+  const parsedId = Number(matchId);
+  const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
 
   const handleReject = () => {
     navigate(`${ROUTES.RESULT}?type=fail`);
@@ -20,6 +27,16 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   const handleAccept = () => {
     navigate(`${ROUTES.RESULT}?type=agree`);
+  };
+
+  if (isError || !data?.mates?.[0]) return <div>매칭 정보를 불러올 수 없습니다.</div>;
+
+  const mate = data.mates[0];
+  const detailedCard: DetailedCardProps = {
+    ...mate,
+    type: 'detailed',
+    imgUrl: [mate.imgUrl],
+    chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
   };
 
   return (
@@ -33,7 +50,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
               : MATCHING_HEADER_MESSAGE.single.subDescription}
           </p>
         </section>
-        <Card {...mockMateReceive} type="detailed" className="w-full" />
+        <Card {...detailedCard} className="w-full" />
       </div>
 
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
