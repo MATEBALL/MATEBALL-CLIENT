@@ -45,7 +45,22 @@ export const VIEWING_STYLE = [
   },
 ];
 
-export const GENDER = ['남성', '여성', '상관없어요'] as const;
+export const GENDER = [
+  {
+    id: 1,
+    label: '남성',
+    icon: 'male',
+  },
+  {
+    id: 2,
+    label: '여성',
+    icon: 'female',
+  },
+  {
+    id: 3,
+    label: '상관없어요',
+  },
+];
 
 export const MATCHING_TYPE = ['1:1 매칭', '그룹 매칭'] as const;
 
