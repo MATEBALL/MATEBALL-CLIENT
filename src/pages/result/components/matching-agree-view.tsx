@@ -3,7 +3,7 @@ import Button from '@components/button/button/button';
 import MatchCurrentCard from '@components/card/match-current-card/match-current-card';
 import { LOTTIE_PATH } from '@constants/lotties';
 import { ROUTES } from '@routes/routes-config';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,8 +14,7 @@ interface MatchingAgreeViewProps {
 const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
   const navigate = useNavigate();
 
-  const { data: agreeData } = useQuery(matchQueries.COUNTED_MEMBER(Number(matchId)));
-
+  const { data: agreeData } = useSuspenseQuery(matchQueries.COUNTED_MEMBER(Number(matchId)));
   const matchedCount = agreeData?.count;
 
   return (
