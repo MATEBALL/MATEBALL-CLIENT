@@ -21,7 +21,15 @@ const Card = (props: CardProps) => {
           <p className={introductionClass}>{props.introduction}</p>
         )}
 
-        {type !== 'user' && <CardGameInfo className={gameInfoClass} {...props} />}
+        {type !== 'user' && (
+          <CardGameInfo
+            className={gameInfoClass}
+            awayTeam={props.awayTeam}
+            homeTeam={props.homeTeam}
+            stadium={props.stadium || ''}
+            date={props.date}
+          />
+        )}
 
         {type === 'detailed' && (
           <div>

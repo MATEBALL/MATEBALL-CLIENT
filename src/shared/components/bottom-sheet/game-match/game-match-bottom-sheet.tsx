@@ -39,8 +39,8 @@ const GameMatchBottomSheet = ({
   const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
 
   const disabled = selectedIdx === null || createMatchMutation.isPending;
-  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group'; //postmatchType용
-  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group'; //query용
+  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group';
+  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
 
   const handleClose = () => {
     setSelectedIdx(null);
@@ -49,7 +49,6 @@ const GameMatchBottomSheet = ({
 
   const handleSubmit = () => {
     if (selectedIdx === null) return;
-
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
 
