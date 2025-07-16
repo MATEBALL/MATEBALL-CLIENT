@@ -16,11 +16,13 @@ const Gender = ({ selectedOption, onSelect }: OnboardingStepProps) => {
       <div className="onboarding-inner">
         {GENDER.map((option) => (
           <Button
-            key={option}
-            label={option}
-            size={'setting_L'}
-            variant={selectedOption === option ? 'skyblueBorder' : 'white'}
-            onClick={() => onSelect(option)}
+            key={option.id}
+            label={option.label}
+            size="setting_L"
+            variant={selectedOption === option.label ? 'skyblueBorder' : 'white'}
+            onClick={() => onSelect(option.label)}
+            icon={option.icon}
+            className="flex gap-[0.8rem] "
           />
         ))}
       </div>

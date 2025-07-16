@@ -27,13 +27,66 @@ export const NO_TEAM_OPTION = '응원하는 팀이 없어요.';
 
 export const SYNC_MATE = ['같은 팀 메이트와 보고 싶어요', '상관없어요'] as const;
 
-export const VIEWING_STYLE = ['열정응원러', '경기집중러', '직관먹방러'] as const;
+export const VIEWING_STYLE = [
+  {
+    id: 1,
+    label: '열정응원러',
+    icon: 'passion',
+  },
+  {
+    id: 2,
+    label: '경기집중러',
+    icon: 'focus',
+  },
+  {
+    id: 3,
+    label: '직관먹방러',
+    icon: 'eat',
+  },
+];
 
-export const GENDER = ['남성', '여성', '상관없어요'] as const;
+export const GENDER = [
+  {
+    id: 1,
+    label: '남성',
+    icon: 'male',
+  },
+  {
+    id: 2,
+    label: '여성',
+    icon: 'female',
+  },
+  {
+    id: 3,
+    label: '상관없어요',
+  },
+];
 
-export const MATCHING_TYPE = ['1:1 매칭', '그룹 매칭'] as const;
+export const MATCHING_TYPE = [
+  {
+    id: 1,
+    label: '1:1 매칭',
+    icon: 'my-filled',
+  },
+  {
+    id: 2,
+    label: '그룹 매칭',
+    icon: 'group',
+  },
+];
 
-export const GROUP_ROLE = ['그룹장', '그룹원'] as const;
+export const GROUP_ROLE = [
+  {
+    id: 1,
+    label: '그룹장',
+    icon: 'leader',
+  },
+  {
+    id: 2,
+    label: '그룹원',
+    icon: 'my-filled',
+  },
+];
 
 export const ONBOARDING_STORAGE_KEY = 'mateball/onboardingSelections';
 
