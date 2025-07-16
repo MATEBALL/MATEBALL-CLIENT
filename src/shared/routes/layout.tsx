@@ -10,7 +10,7 @@ const Layout = () => {
   const { pathname, search } = useLocation();
   const params = new URLSearchParams(search);
 
-  const isFail = pathname === ROUTES.RESULT && params.get('type') === 'fail';
+  const isFail = pathname === ROUTES.RESULT() && params.get('type') === 'fail';
 
   const showBottomNav = SHOW_BOTTOM_NAVIGATE_PATHS.includes(pathname);
   const showHeader = !NO_HEADER_PATHS.some((path) => matchPath({ path, end: true }, pathname));

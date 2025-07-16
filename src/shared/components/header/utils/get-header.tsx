@@ -16,7 +16,7 @@ export const getHeaderContent = (
     const type = urlParams.get('type') ?? '';
     const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
 
-    if (pathname === ROUTES.RESULT) {
+    if (pathname === ROUTES.RESULT()) {
       if (type === 'sent') {
         navigate(ROUTES.HOME);
         return;
