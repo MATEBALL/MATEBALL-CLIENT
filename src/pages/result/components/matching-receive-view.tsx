@@ -1,10 +1,12 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { mockMateReceive } from '@mocks/mockMatchReceiveData';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
-import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 interface MatchingReceiveViewProps {
   isGroupMatching?: boolean;
@@ -12,14 +14,31 @@ interface MatchingReceiveViewProps {
 
 const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
   const navigate = useNavigate();
+  const { matchId } = useParams();
+  const [params] = useSearchParams();
+  const cardType = params.get('cardType');
+
   usePreventBackNavigation(ROUTES.MATCH);
 
+  const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
+
   const handleReject = () => {
-    navigate(`${ROUTES.RESULT}?type=fail`);
+    navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
   };
 
   const handleAccept = () => {
-    navigate(`${ROUTES.RESULT}?type=agree`);
+    acceptMatch(Number(matchId), {
+      onSuccess: () => {
+        if (cardType === 'group') {
+          navigate(`${ROUTES.RESULT(matchId)}?type=agree`);
+        } else {
+          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
+        }
+      },
+      onError: (error) => {
+        console.error('매칭 수락 실패:', error);
+      },
+    });
   };
 
   return (
