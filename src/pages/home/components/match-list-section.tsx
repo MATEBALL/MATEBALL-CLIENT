@@ -40,7 +40,7 @@ const MatchListSection = ({
     return isSingle ? (singleMatchData?.mates ?? []) : (groupMatchData?.mates ?? []);
   }, [isSingle, singleMatchData, groupMatchData]);
 
-  const handleCardClick = (matchId: number) => {
+  const handleCardClick = async (matchId: number) => {
     if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {
