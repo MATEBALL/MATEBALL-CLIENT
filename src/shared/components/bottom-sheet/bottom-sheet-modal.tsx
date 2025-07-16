@@ -1,6 +1,8 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import Button from '@components/button/button/button';
 import { ROUTES } from '@routes/routes-config';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 interface BottomSheetModalProps {
@@ -9,6 +11,7 @@ interface BottomSheetModalProps {
   description: string;
   subDescription: string | string[];
   isGroupMatching?: boolean;
+  matchId: number;
 }
 
 const BottomSheetModal = ({
@@ -17,14 +20,21 @@ const BottomSheetModal = ({
   description,
   subDescription,
   isGroupMatching,
+  matchId,
 }: BottomSheetModalProps) => {
   const navigate = useNavigate();
 
   const handleRequestClick = () => {
-    const mode = isGroupMatching ? 'group' : 'single';
-    navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
-    onClose();
+    requestMatch(matchId, {
+      onSuccess: () => {
+        const mode = isGroupMatching ? 'group' : 'single';
+        navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
+        onClose();
+      },
+    });
   };
+
+  const { mutate: requestMatch } = useMutation(matchMutations.MATCH_REQUEST());
 
   return (
     <BottomSheet showIndicator={false} isOpen={isOpen} onClose={onClose}>
