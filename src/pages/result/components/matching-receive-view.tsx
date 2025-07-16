@@ -24,6 +24,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
+  const { mutate: rejectMatch } = useMutation(matchMutations.MATCH_REJECT());
   const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
 
   const mate = data?.mates?.[0];
@@ -40,7 +41,15 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   };
 
   const handleReject = () => {
-    navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
+    rejectMatch(parsedId, {
+      onSuccess: () => {
+        navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
+      },
+      onError: (error) => {
+        console.error('매칭 거절 실패:', error);
+        navigate(ROUTES.ERROR);
+      },
+    });
   };
 
   const handleAccept = () => {
@@ -49,7 +58,8 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
         const resultType = cardType === 'group' ? 'agree' : 'success';
         navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
       },
-      onError: () => {
+      onError: (error) => {
+        console.error('매칭 수락 실패:', error);
         navigate(ROUTES.ERROR);
       },
     });
