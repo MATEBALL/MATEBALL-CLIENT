@@ -9,8 +9,8 @@ import type {
   getMatchCountResponse,
   getMatchDetailResponse,
   getSingleMatchListResponse,
-  getSingleMatchMate,
   getSingleMatchResultResponse,
+  getSingleMatchStatusResponse,
 } from '@/shared/types/match-types';
 
 export const matchQueries = {
@@ -66,7 +66,7 @@ export const matchQueries = {
    * 일대일 매칭 현황 조회
    */
   SINGLE_MATCH_STATUS: (status: string) =>
-    queryOptions<getSingleMatchMate>({
+    queryOptions<getSingleMatchStatusResponse>({
       queryKey: MATCH_KEY.STATUS.SINGLE(status),
       queryFn: () => get(END_POINT.GET_SINGLE_STATUS(status)),
     }),
@@ -75,7 +75,7 @@ export const matchQueries = {
    * 그룹 매칭 현황 조회
    */
   GROUP_MATCH_STATUS: (status: string) =>
-    queryOptions<getGroupMatchMate>({
+    queryOptions<{ mates: getGroupMatchMate[] }>({
       queryKey: MATCH_KEY.STATUS.GROUP(status),
       queryFn: () => get(END_POINT.GET_GROUP_STATUS(status)),
     }),
