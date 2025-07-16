@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const usePreventBackNavigation = (redirectUrl?: string) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handlePopState = () => {
       window.history.pushState(null, '', window.location.href);
 
       if (redirectUrl) {
-        window.location.href = redirectUrl;
+        navigate(redirectUrl, { replace: true });
       }
     };
 
@@ -16,7 +19,7 @@ const usePreventBackNavigation = (redirectUrl?: string) => {
     return () => {
       window.removeEventListener('popstate', handlePopState);
     };
-  }, [redirectUrl]);
+  }, [redirectUrl, navigate]);
 };
 
 export default usePreventBackNavigation;

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const MatchingAgreeView = () => {
   const navigate = useNavigate();
-  usePreventBackNavigation('/match');
+  usePreventBackNavigation(ROUTES.MATCH);
 
   // TODO: 실제 매칭된 인원 상태에서 받아오기
   const matchedCount = 3;

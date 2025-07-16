@@ -11,7 +11,7 @@ interface SentViewProps {
 }
 
 const SentView = ({ isGroupMatching = true }: SentViewProps) => {
-  usePreventBackNavigation('/');
+  usePreventBackNavigation(ROUTES.HOME);
 
   const navigate = useNavigate();
   const handleGoHome = () => navigate(ROUTES.HOME);

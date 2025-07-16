@@ -12,7 +12,7 @@ interface MatchingReceiveViewProps {
 
 const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
   const navigate = useNavigate();
-  usePreventBackNavigation('/match');
+  usePreventBackNavigation(ROUTES.MATCH);
 
   const handleReject = () => {
     navigate(`${ROUTES.RESULT}?type=fail`);

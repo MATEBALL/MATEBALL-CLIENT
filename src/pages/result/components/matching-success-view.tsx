@@ -12,7 +12,7 @@ interface MatchingSuccessViewProps {
 
 const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const navigate = useNavigate();
-  usePreventBackNavigation('/match');
+  usePreventBackNavigation(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">

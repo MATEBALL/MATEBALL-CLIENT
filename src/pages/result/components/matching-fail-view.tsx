@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const MatchingFailView = () => {
   const navigate = useNavigate();
-  usePreventBackNavigation('/match');
+  usePreventBackNavigation(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">
