@@ -1,5 +1,6 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
+import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { MATCHING_SUCCESS_TITLE } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
@@ -11,6 +12,7 @@ interface MatchingSuccessViewProps {
 
 const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const navigate = useNavigate();
+  usePreventBackNavigation(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">
