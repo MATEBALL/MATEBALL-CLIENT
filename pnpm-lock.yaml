@@ -50,6 +50,9 @@ importers:
       react:
         specifier: ^19.1.0
         version: 19.1.0
+      react-compact-toast:
+        specifier: ^0.1.6
+        version: 0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
@@ -2902,6 +2905,13 @@ packages:
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  react-compact-toast@0.1.6:
+    resolution: {integrity: sha512-dYV1IzyVFK29kw18rRYP2jpCZh/Uspb3vNwrTKGqxIXY8OLgopeYm2tlk4bEXlOA7u8pCB+1Arp/muoaHwt5hA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: ^18 || ^19
+      react-dom: ^18 || ^19
 
   react-docgen-typescript@2.4.0:
     resolution: {integrity: sha512-ZtAp5XTO5HRzQctjPU0ybY0RRCQO19X/8fxn3w7y2VVTUbGHDKULPTL4ky3vB05euSgG5NpALhEhDPvQ56wvXg==}
@@ -6031,6 +6041,11 @@ snapshots:
   punycode@2.3.1: {}
 
   queue-microtask@1.2.3: {}
+
+  react-compact-toast@0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   react-docgen-typescript@2.4.0(typescript@5.8.3):
     dependencies:
