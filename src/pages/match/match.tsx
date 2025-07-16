@@ -30,6 +30,7 @@ const Match = () => {
     ...card,
     type: 'single',
     imgUrl: [card.imgUrl],
+    chips: [card.team, card.style], // chips에 team, style 추가!
   })) as SingleCardProps[];
 
   const groupCards = (groupData?.mates ?? []).map((card) => ({
