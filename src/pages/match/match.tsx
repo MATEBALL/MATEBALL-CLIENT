@@ -1,5 +1,9 @@
 import { matchQueries } from '@apis/match/match-queries';
-import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
+import type {
+  ChipColor,
+  GroupCardProps,
+  SingleCardProps,
+} from '@components/card/match-card/types/card';
 import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import type { TabType } from '@components/tab/tab/tab-content';
 import TabContent from '@components/tab/tab/tab-content';
@@ -26,17 +30,17 @@ const Match = () => {
     enabled: activeType === '그룹',
   });
 
-  const singleCards = (singleData?.mates ?? []).map((card) => ({
+  const singleCards: SingleCardProps[] = (singleData?.mates ?? []).map((card) => ({
     ...card,
     type: 'single',
     imgUrl: [card.imgUrl],
-    chips: [card.team, card.style], // chips에 team, style 추가!
-  })) as SingleCardProps[];
+    chips: [card.team, card.style].map((v) => v as ChipColor),
+  }));
 
-  const groupCards = (groupData?.mates ?? []).map((card) => ({
+  const groupCards: GroupCardProps[] = (groupData?.mates ?? []).map((card) => ({
     ...card,
     type: 'group',
-  })) as GroupCardProps[];
+  }));
 
   const contentMap = {
     '1:1': <MatchTabPanel cards={singleCards} filter={filter} />,
