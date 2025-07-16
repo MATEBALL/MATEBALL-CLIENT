@@ -25,11 +25,10 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
       - uses: actions/configure-pages@v4
       - run: pnpm install --frozen-lockfile
-        working-directory: docs
       - run: pnpm run docs:build
         working-directory: docs
       - uses: actions/upload-pages-artifact@v3
@@ -39,6 +38,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4

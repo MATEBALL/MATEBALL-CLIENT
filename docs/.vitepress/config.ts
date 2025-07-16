@@ -6,7 +6,7 @@ export default defineConfig({
   description: 'mateball client convention & troubleshootig & docs',
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.svg'}],
+    ['link', { rel: 'icon', href: '/MATEBALL-CLIENT/favicon.svg' }],
   ],
   themeConfig: {
     nav: [
