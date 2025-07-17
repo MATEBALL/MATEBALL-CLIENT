@@ -1,3 +1,4 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
@@ -9,15 +10,15 @@ import Start from '@pages/onboarding/components/start';
 import SupportTeam from '@pages/onboarding/components/support-team';
 import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
-import { FIRST_FUNNEL_STEPS, ONBOARDING_STORAGE_KEY } from '@pages/onboarding/constants/onboarding';
+import { FIRST_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
 import {
   getButtonLabel,
   handleButtonClick,
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
-import { getStoredData } from '@pages/onboarding/utils/onboarding-storage';
 import { ROUTES } from '@routes/routes-config';
-import { useEffect, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Onboarding = () => {
@@ -26,15 +27,12 @@ const Onboarding = () => {
     ROUTES.HOME,
   );
 
-  const [selections, setSelections] = useState<Record<string, string | null>>(() => {
-    const stored = getStoredData(ONBOARDING_STORAGE_KEY);
-    return {
-      SUPPORT_TEAM: stored.SUPPORT_TEAM ?? null,
-      SYNC_SUPPORT_TEAM: stored.SYNC_SUPPORT_TEAM ?? null,
-      VIEWING_STYLE: stored.VIEWING_STYLE ?? null,
-      GENDER: stored.GENDER ?? null,
-      MATCHING_TYPE: stored.MATCHING_TYPE ?? null,
-    };
+  const [selections, setSelections] = useState<Record<string, string | null>>({
+    SUPPORT_TEAM: null,
+    SYNC_SUPPORT_TEAM: null,
+    VIEWING_STYLE: null,
+    GENDER: null,
+    MATCHING_TYPE: null,
   });
 
   const handleSelect = (stepName: string, value: string) => {
@@ -45,12 +43,10 @@ const Onboarding = () => {
 
   const [progressOverride, setProgressOverride] = useState<number | null>(null);
 
-  useEffect(() => {
-    localStorage.setItem(ONBOARDING_STORAGE_KEY, JSON.stringify(selections));
-  }, [selections]);
+  const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   return (
-    <div className="h-svh flex-col">
+    <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={goPrev} />
         {currentStep !== 'START' && (
@@ -116,7 +112,14 @@ const Onboarding = () => {
             variant="blue"
             disabled={isButtonDisabled(currentStep, selections)}
             onClick={() =>
-              handleButtonClick(currentStep, selections, goNext, navigate, setProgressOverride)
+              handleButtonClick(
+                currentStep,
+                selections,
+                goNext,
+                navigate,
+                setProgressOverride,
+                mutate,
+              )
             }
           />
         </div>

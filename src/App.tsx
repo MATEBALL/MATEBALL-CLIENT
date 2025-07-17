@@ -3,6 +3,7 @@ import { GlobalErrorBoundary } from '@routes/global-error-boundary.tsx';
 import { router } from '@routes/router';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ToastContainer } from 'react-compact-toast';
 import { RouterProvider } from 'react-router-dom';
 
 const App = () => {
@@ -10,7 +11,10 @@ const App = () => {
     <GlobalErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ToastContainer />
+        <div style={{ fontSize: '16px' }}>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </div>
       </QueryClientProvider>
     </GlobalErrorBoundary>
   );

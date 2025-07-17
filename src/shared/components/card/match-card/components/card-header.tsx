@@ -3,9 +3,14 @@ import CardProfile from '@components/card/match-card/components/card-profile-ima
 import type { CardProps } from '@components/card/match-card/types/card';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
+import { ROUTES } from '@routes/routes-config';
+import { matchPath, useLocation } from 'react-router-dom';
 
 const CardHeader = (props: CardProps) => {
   const { type } = props;
+  const { pathname } = useLocation();
+
+  const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
   switch (type) {
     case 'single':
@@ -23,9 +28,11 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={props.chips ?? []} />
             </div>
           </div>
-          <div className="ml-auto">
-            <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
-          </div>
+          {!isCreateMatchPage && (
+            <div className="ml-auto">
+              <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
+            </div>
+          )}
         </div>
       );
 
@@ -43,9 +50,11 @@ const CardHeader = (props: CardProps) => {
               <CardProfile type="group" imgUrl={props.imgUrl} />
             </div>
           </div>
-          <div className="ml-auto">
-            <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
-          </div>
+          {!isCreateMatchPage && (
+            <div className="ml-auto">
+              <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
+            </div>
+          )}
         </div>
       );
 
@@ -57,7 +66,7 @@ const CardHeader = (props: CardProps) => {
             <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
-                {props.age}세 | {props.gender}
+                {props.age} | {props.gender}
               </div>
             </div>
             <div className="ml-[1.2rem] flex-row gap-[0.8rem]">
@@ -75,7 +84,7 @@ const CardHeader = (props: CardProps) => {
             <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
-                {props.age}세 | {props.gender}
+                {props.age} | {props.gender}
               </div>
             </div>
             <div className="ml-[1.2rem] flex-row gap-[0.8rem]">

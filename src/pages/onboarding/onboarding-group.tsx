@@ -5,42 +5,31 @@ import DateSelect from '@pages/onboarding/components/date-select';
 import GroupRole from '@pages/onboarding/components/group-role';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
-import {
-  GROUP_FUNNEL_STEPS,
-  ONBOARDING_GROUP_STORAGE_KEY,
-} from '@pages/onboarding/constants/onboarding';
+import { GROUP_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
 import {
   getButtonLabel,
   handleButtonClick,
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
-import { getStoredData } from '@pages/onboarding/utils/onboarding-storage';
 import { ROUTES } from '@routes/routes-config';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const OnboardingGroup = () => {
-  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
+  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev, goTo } = useFunnel(
     GROUP_FUNNEL_STEPS,
     ROUTES.HOME,
   );
 
   const navigate = useNavigate();
 
-  const [selection, setSelection] = useState<Record<string, string | null>>(() => {
-    const stored = getStoredData(ONBOARDING_GROUP_STORAGE_KEY);
-    return {
-      GROUP_ROLE: stored.GROUP_ROLE ?? null,
-    };
+  const [selection, setSelection] = useState<Record<string, string | null>>({
+    GROUP_ROLE: null,
   });
 
   const handleSelect = (stepName: string, value: string) => {
     setSelection((prev) => ({ ...prev, [stepName]: value }));
   };
-
-  useEffect(() => {
-    localStorage.setItem(ONBOARDING_GROUP_STORAGE_KEY, JSON.stringify(selection));
-  }, [selection]);
 
   return (
     <div className="h-full flex-col">
@@ -81,7 +70,17 @@ const OnboardingGroup = () => {
               size="L"
               variant="blue"
               disabled={isButtonDisabled(currentStep, selection)}
-              onClick={() => handleButtonClick(currentStep, selection, goNext, navigate)}
+              onClick={() =>
+                handleButtonClick(
+                  currentStep,
+                  selection,
+                  goNext,
+                  navigate,
+                  undefined,
+                  undefined,
+                  goTo,
+                )
+              }
             />
           </div>
         )}

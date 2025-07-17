@@ -8,3 +8,4 @@ export const MATCHING_HEADER_MESSAGE = {
     subDescription: '상대의 정보를 확인하고, 매칭을 이어가 보세요.',
   },
 };
+export const ERROR_MESSAGE = '매칭 정보를 불러올 수 없습니다.\n다른 매칭으로 확인해 주세요.';

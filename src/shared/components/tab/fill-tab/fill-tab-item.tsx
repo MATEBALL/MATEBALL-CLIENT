@@ -13,7 +13,7 @@ const FillTabItem = ({ title, isActive, onClick }: FillTabItemProps) => {
       data-state={isActive ? 'active' : 'inactive'}
       onClick={onClick}
       className={cn(
-        'flex-row-center rounded-[8px] px-[0.8rem] py-[0.6rem]',
+        'flex-row-center rounded-[8px] px-[1.2rem] py-[0.6rem]',
         isActive ? 'bg-main-900' : 'cursor-pointer bg-gray-300',
       )}
     >

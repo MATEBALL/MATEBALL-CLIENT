@@ -1,8 +1,12 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-footer';
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+import Loading from '@pages/loading/loading';
+import { ROUTES } from '@routes/routes-config';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,30 +35,54 @@ const GameMatchBottomSheet = ({
   activeType,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
-  const matchId = 1; //임시 설정용
+  const [isNavigating, setIsNavigating] = useState(false);
   const navigate = useNavigate();
-  const navigateToMatchCreate = (matchId: number, type: 'single' | 'group') => {
-    navigate(`/match/create/${matchId}?type=${type}`);
-  };
+
+  const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
+
+  const disabled = selectedIdx === null || createMatchMutation.isPending || isNavigating;
+  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group';
+  const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
 
   const handleClose = () => {
+    if (isNavigating) return;
     setSelectedIdx(null);
     onClose();
   };
 
-  const disabled = selectedIdx === null;
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedIdx === null) return;
-
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
 
-    const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
-    navigateToMatchCreate(matchId, queryType);
-    handleClose();
+    createMatchMutation.mutate(
+      {
+        gameId: selectedGame.id,
+        matchType,
+      },
+      {
+        onSuccess: (response) => {
+          const createdMatchId = response.matchId.toString();
+
+          handleClose();
+
+          setIsNavigating(true);
+
+          setTimeout(() => {
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+          }, 2000);
+        },
+        onError: (error) => {
+          console.error('매치 생성 실패:', error);
+          setIsNavigating(false);
+        },
+      },
+    );
   };
 
+  if (isNavigating) {
+    return <Loading />;
+  }
   return (
     <BottomSheet isOpen={isOpen} onClose={handleClose} showIndicator gap="gap-[1.6rem]">
       <div className="w-full flex-col">

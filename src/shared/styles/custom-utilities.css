@@ -50,7 +50,7 @@
   }
 
   .signup-layout {
-    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem] h-full;
+    @apply px-[1.6rem] pt-[4rem] pb-[1.6rem];
   }
 
   .header-layout {

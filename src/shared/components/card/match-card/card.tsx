@@ -9,9 +9,9 @@ const Card = (props: CardProps) => {
   const { type, className, color } = props;
 
   const introductionClass = 'cap_14_m mt-[1.6rem]';
-  const gameInfoClass = type === 'detailed' ? 'my-[1.2rem]' : 'mt-[0.4rem]';
+  const gameInfoClass = 'mt-[0.4rem] py-[0.4rem]';
   const dividerClass = 'border-gray-300';
-  const matchingRateClass = 'mt-[1.6rem] ml-auto';
+  const matchingRateClass = 'ml-auto';
 
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
@@ -21,10 +21,18 @@ const Card = (props: CardProps) => {
           <p className={introductionClass}>{props.introduction}</p>
         )}
 
-        {type !== 'user' && <CardGameInfo className={gameInfoClass} {...props} />}
+        {type !== 'user' && (
+          <CardGameInfo
+            className={cn(type === 'single' && 'mt-[0.4rem]', gameInfoClass)}
+            awayTeam={props.awayTeam}
+            homeTeam={props.homeTeam}
+            stadium={props.stadium || ''}
+            date={props.date}
+          />
+        )}
 
         {type === 'detailed' && (
-          <div>
+          <div className="flex-col gap-[1.6rem]">
             <hr className={dividerClass} />
             <CardMatchingRate matchRate={props.matchRate} className={matchingRateClass} />
           </div>

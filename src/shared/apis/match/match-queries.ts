@@ -9,8 +9,8 @@ import type {
   getMatchCountResponse,
   getMatchDetailResponse,
   getSingleMatchListResponse,
-  getSingleMatchMate,
   getSingleMatchResultResponse,
+  getSingleMatchStatusResponse,
 } from '@/shared/types/match-types';
 
 export const matchQueries = {
@@ -37,10 +37,11 @@ export const matchQueries = {
   /**
    * 그룹 매칭 결과 조회
    */
-  GROUP_MATCH_RESULT: (matchId: number) =>
+  GROUP_MATCH_RESULT: (matchId: number, enabled = true) =>
     queryOptions<getGroupMatchResultResponse>({
       queryKey: MATCH_KEY.RESULT.GROUP(matchId),
       queryFn: () => get(END_POINT.GET_GROUP_RESULT(matchId)),
+      enabled,
     }),
 
   /**
@@ -65,7 +66,7 @@ export const matchQueries = {
    * 일대일 매칭 현황 조회
    */
   SINGLE_MATCH_STATUS: (status: string) =>
-    queryOptions<getSingleMatchMate>({
+    queryOptions<getSingleMatchStatusResponse>({
       queryKey: MATCH_KEY.STATUS.SINGLE(status),
       queryFn: () => get(END_POINT.GET_SINGLE_STATUS(status)),
     }),
@@ -74,7 +75,7 @@ export const matchQueries = {
    * 그룹 매칭 현황 조회
    */
   GROUP_MATCH_STATUS: (status: string) =>
-    queryOptions<getGroupMatchMate>({
+    queryOptions<{ mates: getGroupMatchMate[] }>({
       queryKey: MATCH_KEY.STATUS.GROUP(status),
       queryFn: () => get(END_POINT.GET_GROUP_STATUS(status)),
     }),
@@ -82,9 +83,12 @@ export const matchQueries = {
   /**
    * 매칭 요청 상세 조회
    */
-  MATCH_DETAIL: (matchId: number) =>
+  MATCH_DETAIL: (matchId: number, newRequest?: boolean) =>
     queryOptions<getMatchDetailResponse>({
-      queryKey: MATCH_KEY.DETAIL(matchId),
-      queryFn: () => get(END_POINT.GET_MATCH_DETAIL(matchId)),
+      queryKey: [MATCH_KEY.DETAIL(matchId), { newRequest }],
+      queryFn: () => {
+        const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''}`;
+        return get(url);
+      },
     }),
 };

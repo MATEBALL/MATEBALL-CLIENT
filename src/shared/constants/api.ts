@@ -11,7 +11,7 @@ export const END_POINT = {
   POST_INFO_NICKNAME: '/v1/users/info/nickname',
 
   // 경기 관련
-  GET_GAME_SCHEDULE: '/v1/users/game/schedule',
+  GET_GAME_SCHEDULE: (date: string) => `/v1/users/game/schedule?date=${date}`,
 
   // 매칭
   GET_USERS_NUM_COUNT: (matchId: number | string) => `/v1/users/num-count/${matchId}`,
@@ -26,9 +26,11 @@ export const END_POINT = {
   GET_SINGLE_STATUS: (status: string) => `/v1/users/match-stage/direct?status=${status}`,
   GET_GROUP_STATUS: (status: string) => `/v1/users/match-stage/group?status=${status}`,
 
-  GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match-detail/${matchId}`,
+  GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match/${matchId}`,
   POST_MATCH_REQUEST: (matchId: number | string) => `/v1/users/match-request/${matchId}`,
   PATCH_MATCH_ACCEPT: (matchId: number | string) => `/v1/users/match-accept/${matchId}`,
   PATCH_MATCH_REJECT: (matchId: number | string) => `/v1/users/match-reject/${matchId}`,
   PATCH_MATCH_STAGE: (matchId: number | string) => `/v1/users/match-stage/${matchId}`,
+  POST_MATCH_NEW_REQUEST: (matchId: number | string) =>
+    `/v1/users/match/${matchId}?newRequest=true`,
 };

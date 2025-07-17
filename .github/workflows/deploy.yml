@@ -1,0 +1,59 @@
+
+name: docs-deploy
+
+on:
+  push:
+    branches: [develop]
+    paths: [docs/**]
+  pull_request:
+    branches: [develop]
+    paths: [docs/**]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: docs-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Install Docs Dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: docs
+
+      - name: Build Docs
+        run: pnpm run docs:build
+        working-directory: docs
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

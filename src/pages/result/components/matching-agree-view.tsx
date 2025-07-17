@@ -1,15 +1,23 @@
+import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import MatchCurrentCard from '@components/card/match-current-card/match-current-card';
 import { LOTTIE_PATH } from '@constants/lotties';
+import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { ROUTES } from '@routes/routes-config';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
 
-const MatchingAgreeView = () => {
-  const navigate = useNavigate();
+interface MatchingAgreeViewProps {
+  matchId: string;
+}
 
-  // TODO: 실제 매칭된 인원 상태에서 받아오기
-  const matchedCount = 3;
+const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
+  const navigate = useNavigate();
+  usePreventBackNavigation(ROUTES.MATCH);
+
+  const { data: agreeData } = useSuspenseQuery(matchQueries.COUNTED_MEMBER(Number(matchId)));
+  const matchedCount = agreeData?.count;
 
   return (
     <div className="h-full flex-col-between gap-[2.4rem] px-[1.6rem]">

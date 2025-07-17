@@ -1,7 +1,10 @@
+import { matchQueries } from '@apis/match/match-queries';
+import Loading from '@pages/loading/loading';
 import MateCarousel from '@pages/match/components/mate-carousel';
 import MateFooter from '@pages/match/components/mate-footer';
 import MateHeader from '@pages/match/components/mate-header';
-import useMate from '@pages/match/hooks/useMate';
+import { mapMateData } from '@pages/match/utils/mate';
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 interface MateProps {
@@ -11,14 +14,24 @@ interface MateProps {
 }
 
 const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) => {
-  const { mates } = useMate(matchId);
+  const { data, isLoading } = useQuery({
+    ...matchQueries.MATCH_DETAIL(matchId, false),
+    enabled: !!matchId,
+  });
+
+  const mates = (data?.mates || []).map(mapMateData);
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const nickname = '두밥비'; //로그인한 사용자 닉네임
+
+  if (isLoading) return <Loading />;
 
   return (
-    <div className="h-full flex-col-between overflow-hidden">
-      <section className="flex-col-center gap-[4rem] pt-[4rem]">
-        <MateHeader nickname={nickname} isGroupMatching={isGroupMatching} />
+    <div className="h-full flex-col-between">
+      <section className="w-full flex-col-center gap-[4rem] pt-[4rem]">
+        <MateHeader
+          nickname={mates[currentIndex]?.nickname?.[0] ?? ''}
+          isGroupMatching={isGroupMatching}
+        />
         <MateCarousel
           mates={mates}
           currentIndex={currentIndex}

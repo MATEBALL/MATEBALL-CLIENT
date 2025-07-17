@@ -1,4 +1,5 @@
 import { LOTTIE_PATH } from '@constants/lotties';
+
 import { Lottie } from '@toss/lottie';
 
 const Complete = () => {

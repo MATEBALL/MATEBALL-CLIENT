@@ -4,7 +4,7 @@ import { EXTERNAL_LINKS } from '@constants/links';
 
 const Footer = () => {
   return (
-    <footer className="cap_12_m w-full flex-col gap-[4.8rem] px-[1.6rem] py-[3.2rem]">
+    <footer className="cap_12_m w-full flex-col gap-[4.8rem] bg-gray-200 px-[1.6rem] py-[3.2rem]">
       <div className="flex-col gap-[0.8rem]">
         <Icon name="logo-gray" width={9.2} height={2.5} className="text-gray-700" />
         <div className="flex-col gap-[0.4rem] text-gray-700">

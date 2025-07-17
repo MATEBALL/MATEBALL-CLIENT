@@ -11,30 +11,79 @@ export const FIRST_FUNNEL_STEPS = [
 export const GROUP_FUNNEL_STEPS = ['GROUP_ROLE', 'DATE_SELECT', 'COMPLETE'] as const;
 
 export const TEAMS = [
-  'KIA 타이거즈',
-  '삼성 라이온즈',
-  'LG 트윈스',
-  '두산 베어스',
-  'KT 위즈',
-  'SSG 랜더스',
-  '롯데 자이언츠',
-  '한화 이글스',
-  'NC 다이노스',
-  '키움 히어로즈',
+  'KIA',
+  '삼성',
+  'LG',
+  '두산',
+  'KT',
+  'SSG',
+  '롯데',
+  '한화',
+  'NC',
+  '키움',
 ] as const;
 
 export const NO_TEAM_OPTION = '응원하는 팀이 없어요.';
 
 export const SYNC_MATE = ['같은 팀 메이트와 보고 싶어요', '상관없어요'] as const;
 
-export const VIEWING_STYLE = ['열정 응원러', '경기 집중러', '직관 먹방러'] as const;
+export const VIEWING_STYLE = [
+  {
+    id: 1,
+    label: '열정응원러',
+    icon: 'passion',
+  },
+  {
+    id: 2,
+    label: '경기집중러',
+    icon: 'focus',
+  },
+  {
+    id: 3,
+    label: '직관먹방러',
+    icon: 'eat',
+  },
+];
 
-export const GENDER = ['남성', '여성', '상관없어요'] as const;
+export const GENDER = [
+  {
+    id: 1,
+    label: '남성',
+    icon: 'male',
+  },
+  {
+    id: 2,
+    label: '여성',
+    icon: 'female',
+  },
+  {
+    id: 3,
+    label: '상관없어요',
+  },
+];
 
-export const MATCHING_TYPE = ['1:1 매칭', '그룹 매칭'] as const;
+export const MATCHING_TYPE = [
+  {
+    id: 1,
+    label: '1:1 매칭',
+    icon: 'my-filled',
+  },
+  {
+    id: 2,
+    label: '그룹 매칭',
+    icon: 'group',
+  },
+];
 
-export const GROUP_ROLE = ['그룹장', '그룹원'] as const;
-
-export const ONBOARDING_STORAGE_KEY = 'mateball/onboardingSelections';
-
-export const ONBOARDING_GROUP_STORAGE_KEY = 'mateball/onboardingGroupSelections';
+export const GROUP_ROLE = [
+  {
+    id: 1,
+    label: '그룹장',
+    icon: 'leader',
+  },
+  {
+    id: 2,
+    label: '그룹원',
+    icon: 'my-filled',
+  },
+];

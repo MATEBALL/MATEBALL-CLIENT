@@ -133,6 +133,7 @@ export interface getGroupMatchResultResponse {
   nickname: string;
   awayTeam: string;
   homeTeam: string;
+  stadium: string;
   date: string;
   count: number;
   imgUrl: string[];
@@ -164,7 +165,7 @@ export interface postMatchCreateResponse {
  */
 export interface postMatchConditionRequest {
   team: string;
-  teamAllowed: string;
+  teamAllowed: string | null;
   style: string;
   genderPreference: string;
 }

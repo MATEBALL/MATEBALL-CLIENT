@@ -26,20 +26,51 @@ export const handleButtonClick = (
   goNext: () => void,
   navigate: NavigateFunction,
   setProgressOverride?: (step: number) => void,
+  matchMutate?: (
+    payload: {
+      team: string;
+      teamAllowed: string | null;
+      style: string;
+      genderPreference: string;
+    },
+    options?: { onSuccess?: () => void },
+  ) => void,
+  goTo?: (step: 'COMPLETE') => void,
 ) => {
   if (currentStep === 'START') {
     goNext();
   } else if (currentStep === 'MATCHING_TYPE') {
-    if (selections.MATCHING_TYPE === '1:1 매칭') {
-      goNext();
-    } else {
-      if (setProgressOverride) {
-        setProgressOverride(0);
-        setTimeout(() => {
-          navigate(ROUTES.ONBOARDING_GROUP);
-        }, 300);
-      }
+    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE, GENDER } = selections;
+    const parsedTeamAllowed = SYNC_SUPPORT_TEAM === '상관없어요' ? null : SYNC_SUPPORT_TEAM;
+
+    if (!SUPPORT_TEAM || !VIEWING_STYLE || !GENDER) return;
+
+    if (matchMutate) {
+      matchMutate(
+        {
+          team: SUPPORT_TEAM,
+          teamAllowed: parsedTeamAllowed,
+          style: VIEWING_STYLE,
+          genderPreference: GENDER,
+        },
+        {
+          onSuccess: () => {
+            if (selections.MATCHING_TYPE === '1:1 매칭') {
+              goNext();
+            } else {
+              if (setProgressOverride) {
+                setProgressOverride(0);
+                setTimeout(() => {
+                  navigate(ROUTES.ONBOARDING_GROUP);
+                }, 300);
+              }
+            }
+          },
+        },
+      );
     }
+  } else if (currentStep === 'GROUP_ROLE' && selections.GROUP_ROLE === '그룹원') {
+    goTo?.('COMPLETE');
   } else if (currentStep === 'COMPLETE') {
     navigate(ROUTES.HOME);
   } else {

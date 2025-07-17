@@ -1,11 +1,13 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
+import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
 
 const MatchingFailView = () => {
   const navigate = useNavigate();
+  usePreventBackNavigation(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">

@@ -4,7 +4,6 @@ import type {
   GroupCardProps,
   SingleCardProps,
 } from '@components/card/match-card/types/card';
-import { formatToKoreanDate } from './date-format';
 
 export interface SingleMatch extends SingleCardProps {
   id: number;
@@ -15,7 +14,7 @@ export interface GroupMatch extends GroupCardProps {
 
 export const getCommonProps = (match: SingleMatch | GroupMatch) => ({
   nickname: match.nickname,
-  date: formatToKoreanDate(match.date),
+  date: match.date,
   imgUrl: match.imgUrl,
   awayTeam: match.awayTeam,
   homeTeam: match.homeTeam,

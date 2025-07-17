@@ -18,7 +18,7 @@ export interface BaseCardProps {
   chips?: ChipColor[];
   awayTeam: string;
   homeTeam: string;
-  stadium: string;
+  stadium?: string;
   status?: string;
   color?: ColorType;
   onClick?: () => void;
