@@ -34,7 +34,7 @@ const BottomSheetModal = ({
     requestMatch(matchId, {
       onSuccess: () => {
         const mode = isGroupMatching ? 'group' : 'single';
-        navigate(`${ROUTES.RESULT}?type=sent&mode=${mode}`);
+        navigate(`${ROUTES.RESULT(`${matchId}`)}?type=sent&mode=${mode}`);
         onClose();
       },
       onError: (error: unknown) => {
