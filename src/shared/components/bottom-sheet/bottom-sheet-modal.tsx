@@ -78,4 +78,3 @@ const BottomSheetModal = ({
 };
 
 export default BottomSheetModal;
-
