@@ -13,7 +13,10 @@ interface MateProps {
 }
 
 const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) => {
-  const { data, isLoading } = useQuery(matchQueries.MATCH_DETAIL(matchId, false));
+  const { data, isLoading } = useQuery({
+    ...matchQueries.MATCH_DETAIL(matchId, false),
+    enabled: !!matchId,
+  });
   const mates = (data?.mates || []).map((mate) => ({
     ...mate,
     type: 'detailed' as const,

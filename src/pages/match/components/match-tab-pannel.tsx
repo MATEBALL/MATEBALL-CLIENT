@@ -4,6 +4,7 @@ import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import { cn } from '@libs/cn';
 import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
 import { getCardColor, statusToCategory } from '@pages/match/utils/match-status';
+import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
 
 type MatchableCardProps = SingleCardProps | GroupCardProps;
@@ -22,7 +23,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const handleCardClick = (card: MatchableCardProps) => {
     const query = CLICKABLE_STATUS_MAP[card.status ?? ''];
     if (query) {
-      navigate(`/result/${card.id}?type=${query}`); // type=receive 포함
+      navigate(`${ROUTES.RESULT(card.id.toString())}?type=${query}`);
     }
   };
 
