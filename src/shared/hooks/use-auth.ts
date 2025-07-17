@@ -1,9 +1,9 @@
 import { authQueries } from '@apis/auth/auth';
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const useAuth = () => {
   const queryClient = useQueryClient();
-  const { data } = useSuspenseQuery(authQueries.USER_STATUS());
+  const { data, isLoading } = useQuery(authQueries.USER_STATUS());
 
   const isAuthenticated = !!data?.nickname;
   const isNotMatched = data?.condition === false;
@@ -14,7 +14,13 @@ const useAuth = () => {
     queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
   };
 
-  return { isAuthenticated, isNotMatched, needsMatchingSetup, refreshUserStatus };
+  return {
+    isAuthenticated,
+    isNotMatched,
+    needsMatchingSetup,
+    refreshUserStatus,
+    isAuthLoading: isLoading,
+  };
 };
 
 export default useAuth;

@@ -3,9 +3,10 @@ import { ROUTES } from '@routes/routes-config';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const AuthGuard = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isAuthLoading } = useAuth();
 
-  if (!isAuthenticated) return <Navigate to={ROUTES.SPLASH} replace />;
+  if (isAuthLoading) return <div />;
+  if (!isAuthenticated) return <Navigate to={ROUTES.LOGIN} replace />;
 
   return <Outlet />;
 };
