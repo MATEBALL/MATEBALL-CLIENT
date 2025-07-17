@@ -49,6 +49,7 @@ const GameMatchBottomSheet = ({
   const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
 
   const handleClose = () => {
+    if (isNavigating) return;
     setSelectedIdx(null);
     onClose();
   };
