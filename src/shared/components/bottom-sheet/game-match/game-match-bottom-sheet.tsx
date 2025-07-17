@@ -4,6 +4,7 @@ import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-foot
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+import Loading from '@pages/loading/loading';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -34,15 +35,17 @@ const GameMatchBottomSheet = ({
   activeType,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
+  const [isNavigating, setIsNavigating] = useState(false);
   const navigate = useNavigate();
 
   const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
 
-  const disabled = selectedIdx === null || createMatchMutation.isPending;
+  const disabled = selectedIdx === null || createMatchMutation.isPending || isNavigating;
   const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group';
   const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
 
   const handleClose = () => {
+    if (isNavigating) return;
     setSelectedIdx(null);
     onClose();
   };
@@ -60,16 +63,26 @@ const GameMatchBottomSheet = ({
       {
         onSuccess: (response) => {
           const createdMatchId = response.matchId.toString();
-          navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+
           handleClose();
+
+          setIsNavigating(true);
+
+          setTimeout(() => {
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+          }, 2000);
         },
         onError: (error) => {
           console.error('매치 생성 실패:', error);
+          setIsNavigating(false);
         },
       },
     );
   };
 
+  if (isNavigating) {
+    return <Loading />;
+  }
   return (
     <BottomSheet isOpen={isOpen} onClose={handleClose} showIndicator gap="gap-[1.6rem]">
       <div className="w-full flex-col">
