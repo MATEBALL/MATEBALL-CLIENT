@@ -81,7 +81,17 @@ const OnboardingGroup = () => {
               size="L"
               variant="blue"
               disabled={isButtonDisabled(currentStep, selection)}
-              onClick={() => handleButtonClick(currentStep, selection, goNext, goTo, navigate)}
+              onClick={() =>
+                handleButtonClick(
+                  currentStep,
+                  selection,
+                  goNext,
+                  navigate,
+                  undefined, // setProgressOverride
+                  undefined,
+                  goTo,
+                )
+              }
             />
           </div>
         )}

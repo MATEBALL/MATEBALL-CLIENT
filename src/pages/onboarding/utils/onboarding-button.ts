@@ -24,7 +24,6 @@ export const handleButtonClick = (
   currentStep: string,
   selections: Record<string, string | null>,
   goNext: () => void,
-  goTo: (step: 'GROUP_ROLE' | 'DATE_SELECT' | 'COMPLETE') => void,
   navigate: NavigateFunction,
   setProgressOverride?: (step: number) => void,
   matchMutate?: (
@@ -36,6 +35,7 @@ export const handleButtonClick = (
     },
     options?: { onSuccess?: () => void },
   ) => void,
+  goTo?: (step: 'COMPLETE') => void,
 ) => {
   if (currentStep === 'START') {
     goNext();
@@ -70,7 +70,7 @@ export const handleButtonClick = (
       );
     }
   } else if (currentStep === 'GROUP_ROLE' && selections.GROUP_ROLE === '그룹원') {
-    goTo('COMPLETE');
+    goTo?.('COMPLETE');
   } else if (currentStep === 'COMPLETE') {
     navigate(ROUTES.HOME);
   } else {
