@@ -66,7 +66,7 @@ const GameMatchBottomSheet = ({
           if (fromOnboarding) {
             navigate(`${ROUTES.ONBOARDING_GROUP}?step=COMPLETE`);
           } else {
-            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`); // ✅ 홈에서 이동
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
           }
         },
         onError: (error) => {
