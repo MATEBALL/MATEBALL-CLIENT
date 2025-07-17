@@ -17,17 +17,17 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   return (
     <div className="h-full flex-col-between">
       <div className="flex-col-center gap-[4rem] rounded-full px-[1.6rem] pt-[4rem] pb-[8rem]">
-        <h2 className="title_24_sb text-center">
+        <h2 className="title_24_sb z-1 mb-[20rem] text-center">
           {isGroupMatching ? MATCHING_SUCCESS_TITLE.group : MATCHING_SUCCESS_TITLE.single}
         </h2>
-        <div className="relative z-0">
+        <div className="fixed top-[17rem] z-0">
           <div className="matching-success-background" />
           <div className="matching-lottie-gradient" />
           <div className="z-10 h-[16rem] w-[16rem] flex-row-center">
             <Lottie src={LOTTIE_PATH.SUCCESS} loop className="w-[16rem]" />
           </div>
         </div>
-        <p className="body_16_m text-center text-gray-600">
+        <p className="body_16_m z-1 text-center text-gray-600">
           이제 메이트와 소통할 수 있어요! <br />첫 인사를 건네볼까요?
         </p>
       </div>
