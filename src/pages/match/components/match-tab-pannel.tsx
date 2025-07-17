@@ -15,6 +15,7 @@ type MatchableCardProps = SingleCardProps | GroupCardProps;
 interface MatchTabPanelProps {
   cards: MatchableCardProps[];
   filter: string;
+  tabType: '1:1' | '그룹';
 }
 
 const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
