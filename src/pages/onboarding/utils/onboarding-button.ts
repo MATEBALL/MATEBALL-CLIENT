@@ -35,6 +35,7 @@ export const handleButtonClick = (
     },
     options?: { onSuccess?: () => void },
   ) => void,
+  goTo?: (step: 'COMPLETE') => void,
 ) => {
   if (currentStep === 'START') {
     goNext();
@@ -68,6 +69,8 @@ export const handleButtonClick = (
         },
       );
     }
+  } else if (currentStep === 'GROUP_ROLE' && selections.GROUP_ROLE === '그룹원') {
+    goTo?.('COMPLETE');
   } else if (currentStep === 'COMPLETE') {
     navigate(ROUTES.HOME);
   } else {
