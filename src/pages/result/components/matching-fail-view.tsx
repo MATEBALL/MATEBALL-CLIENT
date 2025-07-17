@@ -1,6 +1,7 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
+import { MATCHING_GUIDE_MESSAGE_DESCRIPTION } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
@@ -16,9 +17,8 @@ const MatchingFailView = () => {
         <div className="h-[16rem] w-[16rem] flex-row-center">
           <Lottie src={LOTTIE_PATH.FAIL} loop={true} className="w-[16rem]" />
         </div>
-        <p className="body_16_m text-center text-gray-600">
-          딱! 맞는 메이트의 요청이 도착하면 <br />
-          ‘매칭 현황’에서 확인할 수 있어요.
+        <p className="body_16_m whitespace-pre-line text-center text-gray-white">
+          {MATCHING_GUIDE_MESSAGE_DESCRIPTION}
         </p>
       </section>
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
