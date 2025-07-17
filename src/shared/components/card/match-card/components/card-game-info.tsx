@@ -1,6 +1,7 @@
 import type { CardGameInfoProps } from '@components/card/match-card/types/card';
 import ChipInfo from '@components/chip/chip-info';
 import { cn } from '@libs/cn';
+import { formatDate } from '@pages/match/utils/format-date';
 
 const CardGameInfo = ({ awayTeam, homeTeam, stadium, date, className }: CardGameInfoProps) => {
   return (
@@ -9,7 +10,7 @@ const CardGameInfo = ({ awayTeam, homeTeam, stadium, date, className }: CardGame
     >
       <ChipInfo icon="baseball" text={`${awayTeam} VS ${homeTeam}`} size={1.6} />
       <ChipInfo icon="location" text={stadium} size={1.6} />
-      <ChipInfo icon="calendar" text={date} size={1.6} />
+      <ChipInfo icon="calendar" text={formatDate(date)} size={1.6} />
     </div>
   );
 };
