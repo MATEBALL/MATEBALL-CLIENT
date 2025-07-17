@@ -87,7 +87,3 @@ export const GROUP_ROLE = [
     icon: 'my-filled',
   },
 ];
-
-export const ONBOARDING_STORAGE_KEY = 'mateball/onboardingSelections';
-
-export const ONBOARDING_GROUP_STORAGE_KEY = 'mateball/onboardingGroupSelections';
