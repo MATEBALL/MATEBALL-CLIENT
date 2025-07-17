@@ -1,7 +1,6 @@
 import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
 import type { CardProps, ChipColor } from '@components/card/match-card/types/card';
-import { formatToKoreanDate } from '@pages/home/utils/date-format';
 import MatchGuideSection from '@pages/match/create/components/match-guide-section';
 import type { MatchCardData } from '@pages/match/create/types/match-data-type';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -31,7 +30,7 @@ const SingleMatchCard = ({ matchId }: SingleMatchCardProps) => {
 
   const cardProps: CardProps = {
     ...matchData,
-    date: formatToKoreanDate(matchData.date),
+    date: matchData.date,
     className: 'w-full',
   };
 
