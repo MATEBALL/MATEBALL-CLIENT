@@ -6,9 +6,8 @@ import type { ChipColor, DetailedCardProps } from '@components/card/match-card/t
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
 interface MatchingReceiveViewProps {
   isGroupMatching?: boolean;
@@ -58,6 +57,8 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
     imgUrl: [mate.imgUrl],
     chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
   };
+
+  if (isError || !data?.mates?.[0]) return <div>매칭 정보를 불러올 수 없습니다.</div>;
 
   return (
     <div className="h-full flex-col-between overflow-hidden">
