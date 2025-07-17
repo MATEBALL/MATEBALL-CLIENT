@@ -16,6 +16,10 @@
     min-height: 100dvh;
   }
 
+  html {
+    background-color: white;
+  }
+
   html,
   body {
     font-size: 62.5%;
@@ -32,8 +36,11 @@
     flex-direction: column;
     scroll-behavior: smooth;
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1);
-    background-color: var(--color-background);
     scrollbar-width: none; /* Firefox */
+  }
+
+  body {
+    background-color: var(--color-background);
   }
 
   body::-webkit-scrollbar {
