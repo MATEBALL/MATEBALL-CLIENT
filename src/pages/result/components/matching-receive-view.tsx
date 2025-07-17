@@ -5,7 +5,7 @@ import Card from '@components/card/match-card/card';
 import type { ChipColor, DetailedCardProps } from '@components/card/match-card/types/card';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import ErrorView from '@pages/error/error-view';
-import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
+import { ERROR_MESSAGE, MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -30,7 +30,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const mate = data?.mates?.[0];
 
   if (isError || !mate) {
-    return <ErrorView message="매칭 정보를 불러올 수 없습니다.\n다른 매칭으로 확인해 주세요." />;
+    return <ErrorView message={ERROR_MESSAGE} />;
   }
 
   const detailedCard: DetailedCardProps = {
