@@ -47,7 +47,7 @@ const GameMatchBottomSheet = ({
     onClose();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedIdx === null) return;
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
