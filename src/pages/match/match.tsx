@@ -68,7 +68,7 @@ const Match = () => {
           onTabChange={handleTabChange}
         />
         <FillTabList
-          className="px-[1.6rem] py-[1rem]"
+          className="px-[1.6rem] py-[1.2rem]"
           tabs={fillTabItems}
           selected={filter}
           onChange={handleFilterChange}
