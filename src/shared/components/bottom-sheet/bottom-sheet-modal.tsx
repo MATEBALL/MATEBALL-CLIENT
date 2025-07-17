@@ -38,8 +38,7 @@ const BottomSheetModal = ({
         onClose();
       },
       onError: (error: unknown) => {
-        const axiosError = error as AxiosError;
-        const status = axiosError?.response?.status;
+        const status = (error as AxiosError)?.response?.status;
 
         if (status === MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.status) {
           showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.message, {
