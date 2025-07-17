@@ -19,8 +19,8 @@ const Layout = () => {
   return (
     <div className={cn('h-full flex-col', isFail && 'bg-gray-black')}>
       {showHeader && <Header />}
-      <div className="scrollbar-hide flex-grow overflow-y-auto">
-        <main>
+      <div className="scrollbar-hide flex-grow flex-col overflow-auto">
+        <main className="flex-1">
           <Outlet />
         </main>
         {pathname === ROUTES.HOME && <Footer />}

@@ -18,7 +18,7 @@ const SentView = ({ isGroupMatching = true }: SentViewProps) => {
   const handleGoMatch = () => navigate(ROUTES.MATCH);
 
   return (
-    <div className="h-svh flex-col-between">
+    <div className="h-full flex-col-between">
       <section className="flex-col-center gap-[4rem] pt-[4rem]">
         <h2 className="title_24_sb">매칭 요청이 전송되었어요!</h2>
         <div className="h-[16rem] w-[16rem] flex-row-center">

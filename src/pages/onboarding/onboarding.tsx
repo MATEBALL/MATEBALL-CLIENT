@@ -46,7 +46,7 @@ const Onboarding = () => {
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   return (
-    <div className="h-svh flex-col">
+    <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={goPrev} />
         {currentStep !== 'START' && (
