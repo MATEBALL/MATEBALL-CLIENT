@@ -1,5 +1,6 @@
 import { matchQueries } from '@apis/match/match-queries';
 import type { ChipColor } from '@components/card/match-card/types/card';
+import Loading from '@pages/loading/loading';
 import MateCarousel from '@pages/match/components/mate-carousel';
 import MateFooter from '@pages/match/components/mate-footer';
 import MateHeader from '@pages/match/components/mate-header';
@@ -27,7 +28,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  if (isLoading) return <div>로딩 중...</div>;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="h-svh flex-col-between overflow-hidden">
