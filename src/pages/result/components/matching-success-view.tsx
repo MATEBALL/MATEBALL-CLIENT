@@ -20,7 +20,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
         <h2 className="title_24_sb z-[var(--z-card-profile-4)] mb-[20rem] text-center">
           {isGroupMatching ? MATCHING_SUCCESS_TITLE.group : MATCHING_SUCCESS_TITLE.single}
         </h2>
-        <div className="fixed top-[17rem] z-0">
+        <div className="fixed top-[17rem]">
           <div className="matching-success-background" />
           <div className="matching-lottie-gradient" />
           <div className="z-[var(--z-card-profile-4)] h-[16rem] w-[16rem] flex-row-center">
