@@ -87,7 +87,7 @@ const OnboardingGroup = () => {
                   selection,
                   goNext,
                   navigate,
-                  undefined, // setProgressOverride
+                  undefined,
                   undefined,
                   goTo,
                 )
