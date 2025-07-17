@@ -1,11 +1,13 @@
 import { matchMutations } from '@apis/match/match-mutations';
+import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
+import type { ChipColor, DetailedCardProps } from '@components/card/match-card/types/card';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
-import { mockMateReceive } from '@mocks/mockMatchReceiveData';
+import ErrorView from '@pages/error/error-view';
 import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 interface MatchingReceiveViewProps {
@@ -13,37 +15,48 @@ interface MatchingReceiveViewProps {
 }
 
 const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
-  const navigate = useNavigate();
   const { matchId } = useParams();
+  const navigate = useNavigate();
   const [params] = useSearchParams();
   const cardType = params.get('cardtype');
 
   usePreventBackNavigation(ROUTES.MATCH);
 
+  const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
+  const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
+
+  const mate = data?.mates?.[0];
+
+  if (isError || !mate) {
+    return <ErrorView message="매칭 정보를 불러올 수 없습니다.\n다른 매칭으로 확인해 주세요." />;
+  }
+
+  const detailedCard: DetailedCardProps = {
+    ...mate,
+    type: 'detailed',
+    imgUrl: [mate.imgUrl],
+    chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
+  };
 
   const handleReject = () => {
     navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
   };
 
   const handleAccept = () => {
-    acceptMatch(Number(matchId), {
+    acceptMatch(parsedId, {
       onSuccess: () => {
-        if (cardType === 'group') {
-          navigate(`${ROUTES.RESULT(matchId)}?type=agree`);
-        } else {
-          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
-        }
+        const resultType = cardType === 'group' ? 'agree' : 'success';
+        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
       },
-      onError: (error) => {
-        console.error('매칭 수락 실패:', error);
+      onError: () => {
         navigate(ROUTES.ERROR);
       },
     });
   };
 
   return (
-    <div className="h-full flex-col-between overflow-hidden">
+    <div className="h-svh flex-col-between overflow-hidden">
       <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
         <section className="gap-[0.8rem] text-center">
           <h1 className="title_24_sb text-gray-black">{MATCHING_HEADER_MESSAGE.description}</h1>
@@ -53,7 +66,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
               : MATCHING_HEADER_MESSAGE.single.subDescription}
           </p>
         </section>
-        <Card {...mockMateReceive} type="detailed" className="w-full" />
+        <Card {...detailedCard} className="w-full" />
       </div>
 
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">

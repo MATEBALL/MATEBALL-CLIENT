@@ -15,7 +15,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   usePreventBackNavigation(ROUTES.MATCH);
 
   return (
-    <div className="h-full flex-col-between">
+    <div className="h-svh flex-col-between">
       <div className="flex-col-center gap-[4rem] rounded-full px-[1.6rem] pt-[4rem] pb-[8rem]">
         <h2 className="title_24_sb text-center">
           {isGroupMatching ? MATCHING_SUCCESS_TITLE.group : MATCHING_SUCCESS_TITLE.single}
