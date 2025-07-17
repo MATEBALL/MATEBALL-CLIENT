@@ -29,6 +29,7 @@ const SinglePage = () => {
           description={MATCHING_DESCRIPTION.single.description}
           subDescription={MATCHING_DESCRIPTION.single.subDescription}
           isGroupMatching={false}
+          matchId={numericMatchId}
         />
       )}
     </>
