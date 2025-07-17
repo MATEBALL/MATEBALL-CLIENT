@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 // Auth
-export const Login = lazy(() => import('@pages/login/login'));
+export const Login = lazy(() => import('@pages/login/login-with-splash'));
 export const SignUp = lazy(() => import('@pages/sign-up/sign-up'));
 
 // Home
