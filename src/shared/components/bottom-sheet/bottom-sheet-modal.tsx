@@ -1,6 +1,7 @@
 import { matchMutations } from '@apis/match/match-mutations';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import Button from '@components/button/button/button';
+import { MATCH_REQUEST_ERROR_MESSAGES } from '@constants/error-toast';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
@@ -39,10 +40,14 @@ const BottomSheetModal = ({
         const axiosError = error as AxiosError;
         const status = axiosError?.response?.status;
 
-        if (status === 429) {
-          showErrorToast('요청 및 생성할 수 있는 매칭 개수를 초과했어요.', { bottom: '5.3rem' });
-        } else if (status === 400) {
-          showErrorToast('같은 날짜에 중복 매칭은 불가능해요.', { bottom: '5.3rem' });
+        if (status === MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.status) {
+          showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.message, {
+            bottom: '5.3rem',
+          });
+        } else if (status === MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.status) {
+          showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.message, {
+            bottom: '5.3rem',
+          });
         }
       },
     });
