@@ -5,7 +5,7 @@ import Card from '@components/card/match-card/card';
 import type { ChipColor, DetailedCardProps } from '@components/card/match-card/types/card';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import ErrorView from '@pages/error/error-view';
-import { MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
+import { ERROR_MESSAGE, MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
@@ -24,12 +24,13 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
+  const { mutate: rejectMatch } = useMutation(matchMutations.MATCH_REJECT());
   const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
 
   const mate = data?.mates?.[0];
 
   if (isError || !mate) {
-    return <ErrorView message="매칭 정보를 불러올 수 없습니다.\n다른 매칭으로 확인해 주세요." />;
+    return <ErrorView message={ERROR_MESSAGE} />;
   }
 
   const detailedCard: DetailedCardProps = {
@@ -40,7 +41,15 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   };
 
   const handleReject = () => {
-    navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
+    rejectMatch(parsedId, {
+      onSuccess: () => {
+        navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
+      },
+      onError: (error) => {
+        console.error('매칭 거절 실패:', error);
+        navigate(ROUTES.ERROR);
+      },
+    });
   };
 
   const handleAccept = () => {
@@ -49,7 +58,8 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
         const resultType = cardType === 'group' ? 'agree' : 'success';
         navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
       },
-      onError: () => {
+      onError: (error) => {
+        console.error('매칭 수락 실패:', error);
         navigate(ROUTES.ERROR);
       },
     });
