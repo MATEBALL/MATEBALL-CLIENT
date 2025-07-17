@@ -1,10 +1,14 @@
 import Icon from '@components/icon/icon';
 
-const BottomSheetIndicator = () => {
+interface BottomSheetIndicatorProps {
+  onClick?: () => void;
+}
+
+const BottomSheetIndicator = ({ onClick }: BottomSheetIndicatorProps) => {
   return (
-    <div className="flex-col-center py-[1.2rem]">
+    <button type="button" className="flex-col-center cursor-pointer py-[1.2rem]" onClick={onClick}>
       <Icon width={4} height={1} name="indicator" />
-    </div>
+    </button>
   );
 };
 
