@@ -33,7 +33,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="scrollbar-hide flex-1 flex-col gap-[0.8rem] overflow-y-auto px-[1.6rem] py-[2rem]">
+    <div className="flex-col gap-[0.8rem] px-[1.6rem] py-[2rem]">
       {filteredCards.length === 0 ? (
         <EmptyState
           className="mt-[6.5rem]"
