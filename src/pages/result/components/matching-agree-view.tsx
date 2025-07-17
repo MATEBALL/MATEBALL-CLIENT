@@ -20,7 +20,7 @@ const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
   const matchedCount = agreeData?.count;
 
   return (
-    <div className="h-full flex-col-between gap-[2.4rem] px-[1.6rem]">
+    <div className="h-svh flex-col-between gap-[2.4rem] px-[1.6rem]">
       <div className="flex-col-center gap-[2.4rem] pt-[4rem]">
         <h2 className="title_24_sb text-center">매칭 수락이 완료되었습니다.</h2>
         <div className="flex-col-center gap-[1.6rem]">

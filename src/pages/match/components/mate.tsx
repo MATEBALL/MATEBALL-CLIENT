@@ -27,8 +27,8 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
   if (isLoading) return <div>로딩 중...</div>;
 
   return (
-    <div className="h-full flex-col-between overflow-hidden">
-      <section className="flex-col-center gap-[4rem] pt-[4rem]">
+    <div className="h-svh flex-col-between overflow-hidden">
+      <section className="w-full flex-col-center gap-[4rem] pt-[4rem]">
         <MateHeader
           nickname={mates[currentIndex]?.nickname?.[0] ?? ''}
           isGroupMatching={isGroupMatching}

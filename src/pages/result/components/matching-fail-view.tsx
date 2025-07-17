@@ -10,7 +10,7 @@ const MatchingFailView = () => {
   usePreventBackNavigation(ROUTES.MATCH);
 
   return (
-    <div className="h-full flex-col-between">
+    <div className="h-svh flex-col-between">
       <section className="flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
         <h2 className="title_24_sb text-gray-white">요청을 거절하셨습니다.</h2>
         <div className="h-[16rem] w-[16rem] flex-row-center">
