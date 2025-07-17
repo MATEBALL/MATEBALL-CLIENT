@@ -5,7 +5,7 @@ import SlideItem from '@pages/match/groups/components/slide-item';
 import { useSlide } from '@pages/match/hooks/useSlide';
 import { getSlideTransformStyle } from '@pages/match/styles/get-slide-transformstyle';
 
-interface MateItem extends DetailedCardProps {
+export interface MateItem extends DetailedCardProps {
   id: number;
 }
 
