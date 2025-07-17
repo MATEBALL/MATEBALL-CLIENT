@@ -21,38 +21,35 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   usePreventBackNavigation(ROUTES.MATCH);
 
-  const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
-
   const parsedId = Number(matchId);
+  const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
   const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
+
+  const mate = data?.mates?.[0];
+
+  if (isError || !mate) return <div>매칭 정보를 불러올 수 없습니다.</div>;
+
+  const detailedCard: DetailedCardProps = {
+    ...mate,
+    type: 'detailed',
+    imgUrl: [mate.imgUrl],
+    chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
+  };
 
   const handleReject = () => {
     navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
   };
 
   const handleAccept = () => {
-    acceptMatch(Number(matchId), {
+    acceptMatch(parsedId, {
       onSuccess: () => {
-        if (cardType === 'group') {
-          navigate(`${ROUTES.RESULT(matchId)}?type=agree`);
-        } else {
-          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
-        }
+        const resultType = cardType === 'group' ? 'agree' : 'success';
+        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
       },
       onError: () => {
         navigate(ROUTES.ERROR);
       },
     });
-  };
-
-  if (isError || !data?.mates?.[0]) return <div>매칭 정보를 불러올 수 없습니다.</div>;
-
-  const mate = data.mates[0];
-  const detailedCard: DetailedCardProps = {
-    ...mate,
-    type: 'detailed',
-    imgUrl: [mate.imgUrl],
-    chips: [mate.team, mate.style].filter((chip): chip is ChipColor => Boolean(chip)),
   };
 
   return (
