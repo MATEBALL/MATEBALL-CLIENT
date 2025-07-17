@@ -20,7 +20,9 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const [params] = useSearchParams();
   const cardType = params.get('cardtype');
 
-  usePreventBackNavigation(ROUTES.MATCH);
+  usePreventBackNavigation(
+    `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
+  );
 
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());

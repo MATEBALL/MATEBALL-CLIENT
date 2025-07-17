@@ -10,25 +10,45 @@ import TabContent from '@components/tab/tab/tab-content';
 import TabList from '@components/tab/tab/tab-list';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
 import { fillTabItems } from '@pages/match/utils/match-status';
+import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import type { getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
 
 const Match = () => {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const initialTab = (searchParams.get('tab') as TabType) || '1:1';
+  const initialFilter = searchParams.get('filter') || '전체';
+
   const [tabState, setTabState] = useState<{ type: TabType; filter: string }>({
-    type: '1:1',
-    filter: '전체',
+    type: initialTab,
+    filter: initialFilter,
   });
 
   const { type: activeType, filter } = tabState;
   const statusParam = filter === '전체' ? '' : filter;
 
+  const updateQuery = (newTab: TabType, newFilter: string) => {
+    const query = new URLSearchParams();
+    query.set('tab', newTab);
+    query.set('filter', newFilter);
+    navigate(`${ROUTES.MATCH}?${query.toString()}`, { replace: true });
+  };
+
   const handleTabChange = (type: TabType) => {
     setTabState({ type, filter: '전체' });
+    updateQuery(type, '전체');
   };
 
   const handleFilterChange = (filter: string) => {
-    setTabState((prev) => ({ ...prev, filter }));
+    setTabState((prev) => {
+      const next = { ...prev, filter };
+      updateQuery(next.type, filter);
+      return next;
+    });
   };
 
   const { data: singleData } = useQuery<{ mates: singleMatchMate[] }>({
@@ -54,8 +74,8 @@ const Match = () => {
   }));
 
   const contentMap = {
-    '1:1': <MatchTabPanel key="single" cards={singleCards} filter={filter} />,
-    그룹: <MatchTabPanel key="group" cards={groupCards} filter={filter} />,
+    '1:1': <MatchTabPanel key="single" cards={singleCards} filter={filter} tabType="1:1" />,
+    그룹: <MatchTabPanel key="group" cards={groupCards} filter={filter} tabType="그룹" />,
   };
 
   return (
