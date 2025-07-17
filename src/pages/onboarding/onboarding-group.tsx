@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const OnboardingGroup = () => {
-  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
+  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev, goTo } = useFunnel(
     GROUP_FUNNEL_STEPS,
     ROUTES.HOME,
   );
@@ -81,7 +81,7 @@ const OnboardingGroup = () => {
               size="L"
               variant="blue"
               disabled={isButtonDisabled(currentStep, selection)}
-              onClick={() => handleButtonClick(currentStep, selection, goNext, navigate)}
+              onClick={() => handleButtonClick(currentStep, selection, goNext, goTo, navigate)}
             />
           </div>
         )}
