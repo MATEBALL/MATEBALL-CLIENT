@@ -24,6 +24,7 @@ interface GameMatchBottomSheetProps {
   gameSchedule: GameScheduleItem[];
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
+  fromOnboarding?: boolean;
 }
 
 const GameMatchBottomSheet = ({
@@ -32,6 +33,7 @@ const GameMatchBottomSheet = ({
   date,
   gameSchedule,
   activeType,
+  fromOnboarding = false,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const navigate = useNavigate();
@@ -61,7 +63,11 @@ const GameMatchBottomSheet = ({
         onSuccess: (response) => {
           const createdMatchId = response.matchId.toString();
           handleClose();
-          navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+          if (fromOnboarding) {
+            navigate(`${ROUTES.ONBOARDING_GROUP}?step=COMPLETE`);
+          } else {
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`); // ✅ 홈에서 이동
+          }
         },
         onError: (error) => {
           console.error('매치 생성 실패:', error);
