@@ -5,8 +5,6 @@ import { Navigate, Outlet } from 'react-router-dom';
 const AuthGuard = () => {
   const { isAuthenticated, isAuthLoading } = useAuth();
 
-  console.log(isAuthenticated);
-
   if (isAuthLoading) return <div />;
   if (!isAuthenticated) return <Navigate to={ROUTES.LOGIN} replace />;
 
