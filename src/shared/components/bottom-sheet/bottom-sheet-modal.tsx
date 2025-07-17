@@ -26,6 +26,7 @@ const BottomSheetModal = ({
   matchId,
 }: BottomSheetModalProps) => {
   const navigate = useNavigate();
+  const { mutate: requestMatch } = useMutation(matchMutations.MATCH_REQUEST());
 
   const handleRequestClick = () => {
     if (typeof matchId !== 'number') return;
@@ -52,8 +53,6 @@ const BottomSheetModal = ({
       },
     });
   };
-
-  const { mutate: requestMatch } = useMutation(matchMutations.MATCH_REQUEST());
 
   return (
     <BottomSheet showIndicator={false} isOpen={isOpen} onClose={onClose}>
