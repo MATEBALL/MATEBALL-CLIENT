@@ -23,8 +23,6 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
 
-  usePreventBackNavigation(ROUTES.MATCH);
-
   const parsedId = Number(matchId);
   const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
 
@@ -41,8 +39,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
           navigate(`${ROUTES.RESULT(matchId)}?type=success`);
         }
       },
-      onError: (error) => {
-        console.error('매칭 수락 실패:', error);
+      onError: () => {
         navigate(ROUTES.ERROR);
       },
     });
@@ -55,10 +52,8 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
     ...mate,
     type: 'detailed',
     imgUrl: [mate.imgUrl],
-    chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
+    chips: [mate.team, mate.style].filter((chip): chip is ChipColor => Boolean(chip)),
   };
-
-  if (isError || !data?.mates?.[0]) return <div>매칭 정보를 불러올 수 없습니다.</div>;
 
   return (
     <div className="h-svh flex-col-between overflow-hidden">

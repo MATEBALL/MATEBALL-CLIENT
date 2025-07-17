@@ -22,7 +22,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
     type: 'detailed' as const,
     imgUrl: [mate.imgUrl],
     nickname: mate.nickname,
-    chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
+    chips: [mate.team, mate.style].filter((chip): chip is ChipColor => Boolean(chip)),
   }));
 
   const [currentIndex, setCurrentIndex] = useState(0);

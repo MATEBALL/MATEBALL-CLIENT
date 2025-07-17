@@ -15,10 +15,21 @@ import { useState } from 'react';
 import type { getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
 
 const Match = () => {
-  const [activeType, setActiveType] = useState<TabType>('1:1');
-  const [filter, setFilter] = useState('전체');
+  const [tabState, setTabState] = useState<{ type: TabType; filter: string }>({
+    type: '1:1',
+    filter: '전체',
+  });
 
+  const { type: activeType, filter } = tabState;
   const statusParam = filter === '전체' ? '' : filter;
+
+  const handleTabChange = (type: TabType) => {
+    setTabState({ type, filter: '전체' });
+  };
+
+  const handleFilterChange = (filter: string) => {
+    setTabState((prev) => ({ ...prev, filter }));
+  };
 
   const { data: singleData } = useQuery<{ mates: singleMatchMate[] }>({
     ...matchQueries.SINGLE_MATCH_STATUS(statusParam),
@@ -48,15 +59,20 @@ const Match = () => {
   };
 
   return (
-    <div className="scrollbar-hide h-svh grow flex-col">
+    <div className="scrollbar-hide h-full grow flex-col">
       <nav className="sticky top-0 z-[var(--z-under-header-section)] w-full bg-gray-100">
         <TabList
           className="px-[1.6rem]"
           colorMode="match"
           activeType={activeType}
-          onTabChange={setActiveType}
+          onTabChange={handleTabChange}
         />
-        <FillTabList className="px-[1.6rem] py-[1rem]" tabs={fillTabItems} onChange={setFilter} />
+        <FillTabList
+          className="px-[1.6rem] py-[1rem]"
+          tabs={fillTabItems}
+          selected={filter}
+          onChange={handleFilterChange}
+        />
       </nav>
       <TabContent activeType={activeType} contentMap={contentMap} />
     </div>
