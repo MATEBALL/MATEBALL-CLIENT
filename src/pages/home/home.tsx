@@ -70,7 +70,6 @@ const Home = () => {
         onClose={() => setIsCalendarBottomSheetOpen(false)}
         selectedDate={selectedDate}
         onDateSelect={handleDateSelect}
-        onWeekChange={handleDateSelect}
       />
       <GameMatchBottomSheet
         isOpen={isGameInfoBottomSheetOpen}
