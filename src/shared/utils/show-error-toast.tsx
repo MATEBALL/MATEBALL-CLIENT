@@ -18,6 +18,6 @@ export const showErrorToast = (
     icon: <Icon name="error" />,
     autoClose: 3000,
     position: 'bottomCenter',
-    className: `min-h-[4.5rem]! w-[34.3rem] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900 ${bottomClass}`,
+    className: `min-h-[4.5rem]! max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900 ${bottomClass}`,
   });
 };
