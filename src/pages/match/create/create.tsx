@@ -24,6 +24,7 @@ const Create = () => {
     return () => clearTimeout(timer);
   }, []);
 
+
   if (isInvalidMatchId(matchId?.toString()) || !matchType) {
     return <Navigate to={ROUTES.ERROR} replace />;
   }
