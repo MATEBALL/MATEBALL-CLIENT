@@ -86,12 +86,14 @@
   }
 
   .matching-success-background {
-    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35rem] h-[35rem] blur-3xl rounded-full -z-20;
-    background: radial-gradient(67.17% 67.17% at 33.26% 84.78%, #c1ffbb 5%, #bcf3ff 88.05%);
+    @apply absolute left-1/2 w-[30rem] h-[30rem] blur-3xl rounded-full z-[-20];
+    top: calc(50% + 10px);
+    transform: translate(-50%, -50%);
+    background: radial-gradient(67.17% 67.17% at 33.26% 84.78%, #9be88a 5%, #bcf3ff 88.05%);
   }
 
   .matching-lottie-gradient {
-    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18rem] h-[18rem] rounded-full -z-10;
+    @apply absolute left-1/2 top-1/2 w-[18rem] h-[18rem] -translate-x-1/2 -translate-y-1/2 rounded-full z-[-10];
     background: radial-gradient(
       74.24% 74.24% at 50.22% 50.22%,
       rgba(255, 255, 255, 0) 46.82%,

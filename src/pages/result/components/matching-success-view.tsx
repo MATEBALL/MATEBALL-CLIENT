@@ -20,11 +20,11 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
         <h2 className="title_24_sb text-center">
           {isGroupMatching ? MATCHING_SUCCESS_TITLE.group : MATCHING_SUCCESS_TITLE.single}
         </h2>
-        <div className="relative">
+        <div className="relative z-0">
           <div className="matching-success-background" />
           <div className="matching-lottie-gradient" />
-          <div className="h-[16rem] w-[16rem] flex-row-center">
-            <Lottie src={LOTTIE_PATH.SUCCESS} loop={true} className="w-[16rem]" />
+          <div className="z-10 h-[16rem] w-[16rem] flex-row-center">
+            <Lottie src={LOTTIE_PATH.SUCCESS} loop className="w-[16rem]" />
           </div>
         </div>
         <p className="body_16_m text-center text-gray-600">
