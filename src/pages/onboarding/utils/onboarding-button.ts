@@ -1,3 +1,5 @@
+import { authQueries } from '@apis/auth/auth';
+import queryClient from '@libs/query-client';
 import { ROUTES } from '@routes/routes-config';
 import type { NavigateFunction } from 'react-router-dom';
 
@@ -55,6 +57,7 @@ export const handleButtonClick = (
         },
         {
           onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
             if (selections.MATCHING_TYPE === '1:1 매칭') {
               goNext();
             } else {
