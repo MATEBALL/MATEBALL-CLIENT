@@ -54,7 +54,7 @@ const BottomSheet = ({
             exit={{ y: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
           >
-            {showIndicator && <BottomSheetIndicator />}
+            {showIndicator && <BottomSheetIndicator onClick={onClose} />}
             {children}
           </motion.div>
         </motion.div>

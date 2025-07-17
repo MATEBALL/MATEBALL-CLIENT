@@ -26,14 +26,14 @@ const GameMatchItem = ({ isSelected, away, home, time, stadium, onClick }: GameM
         <span>{home}</span>
       </div>
 
-      <div className="flex-row gap-2">
+      <div className="w-[20rem] flex-row gap-[0.8rem]">
         <div className="flex-row-center gap-[0.4rem]">
           <Icon name="clock" className="text-gray-500" size={1.6} />
           <span className="body_16_m text-gray-600">{time}</span>
         </div>
 
         <div className="flex-row-center gap-[0.4rem] text-gray-600">
-          <Icon name="baseball" className="text-gray-500" size={1.6} />
+          <Icon name="location" className="text-gray-500" size={1.6} />
           <span className="body_16_m text-gray-600">{stadium}</span>
         </div>
       </div>
