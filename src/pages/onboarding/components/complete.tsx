@@ -1,7 +1,11 @@
 import { LOTTIE_PATH } from '@constants/lotties';
+import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
+import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 
 const Complete = () => {
+  usePreventBackNavigation(ROUTES.HOME);
+
   return (
     <div className="flex-1 flex-col-center gap-[4rem]">
       <p className="title_24_sb text-center text-gray-black">
