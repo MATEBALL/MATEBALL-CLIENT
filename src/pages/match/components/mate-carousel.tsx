@@ -23,6 +23,8 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
     onChange: onDotClick,
   });
 
+  const reversedMates = [...mates].reverse();
+
   return (
     <section className="w-full flex-col gap-[1.6rem] overflow-hidden" aria-label="매칭 캐러셀">
       <ul
@@ -34,7 +36,7 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
         aria-roledescription="carousel"
         aria-live="polite"
       >
-        {mates.map((mate, index) => (
+        {reversedMates.map((mate, index) => (
           <li
             key={mate.id}
             aria-roledescription="slide"
