@@ -75,7 +75,7 @@ const MonthCalendar = ({
             const isNotCurrentMonth = day < startDate || day > endDate;
 
             const handleClick = (day: Date) => {
-              const isBlocked = day < addDays(entryDate, 1);
+              const isBlocked = day <= addDays(entryDate, 1);
               if (isBlocked) {
                 showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
                   bottom: toastBottomOffset ?? '-1.4rem',
