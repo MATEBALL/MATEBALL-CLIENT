@@ -10,12 +10,10 @@ interface ChipListProps {
 }
 
 const ChipList = ({ names }: ChipListProps) => {
-  const validNames = names.filter((name) =>
-    Object.keys(chipVariantOptions.bgColor).includes(name)
-  );
+  const validNames = names.filter((name) => Object.keys(chipVariantOptions.bgColor).includes(name));
 
   return (
-    <ul className="flex gap-[0.8rem]">
+    <ul className="flex min-h-[2.6rem] gap-[0.8rem]">
       {validNames.map((name) => (
         <li key={name}>
           <Chip label={name} bgColor={name} textColor={name} />
