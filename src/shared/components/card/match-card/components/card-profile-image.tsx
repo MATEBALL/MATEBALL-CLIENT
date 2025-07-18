@@ -21,8 +21,15 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
     filledImages.forEach((url, order) => {
       const key = url || `profile-slot-${order}`;
       profileElements.push(
-        <div key={key} className={cn(zIndexClasses[order])}>
-          <Icon size={2.8} name="profile" className={cn(profileVariants({ type }))} />
+        <div
+          key={key}
+          className={cn(
+            'flex items-center justify-center overflow-hidden rounded-full',
+            zIndexClasses[order],
+            profileVariants({ type }),
+          )}
+        >
+          <Icon size={2.8} name="profile" className={cn('rounded-full text-gray-black')} />
         </div>,
       );
     });
@@ -33,11 +40,13 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
         <div
           key={`empty-slot-${slotIndex}`}
           className={cn(
+            'flex-row-center overflow-hidden rounded-full',
             profileVariants({ type }),
-            'flex-row-center bg-gray-400',
             zIndexClasses[slotIndex],
           )}
-        />,
+        >
+          <div className="h-[2.8rem] w-[2.8rem] rounded-full bg-gray-400" />
+        </div>,
       );
     });
 
@@ -45,8 +54,13 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
   }
 
   return (
-    <div className="flex items-center">
-      <Icon width={6} height={6} name="profile" className={cn(profileVariants({ type }))} />
+    <div className="flex items-center overflow-hidden rounded-full">
+      <Icon
+        width={6}
+        height={6}
+        name="profile"
+        className={cn('overflow-hidden rounded-full', profileVariants({ type }))}
+      />
     </div>
   );
 };
