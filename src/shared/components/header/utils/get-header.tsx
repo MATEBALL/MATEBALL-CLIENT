@@ -14,6 +14,10 @@ export const getHeaderContent = (
 
   const handleBackClick = () => {
     const type = urlParams.get('type') ?? '';
+    const isCreate =
+      pathname.startsWith('/match/create') &&
+      (urlParams.get('type') === 'single' || urlParams.get('type') === 'group');
+
     const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
 
     if (pathname === ROUTES.RESULT()) {
@@ -21,10 +25,14 @@ export const getHeaderContent = (
         navigate(ROUTES.HOME);
         return;
       }
-
+      
       if (goMatchTypes.includes(type)) {
         navigate(ROUTES.MATCH);
         return;
+      }
+
+      if (isCreate) {
+        return null;
       }
     }
 
