@@ -13,6 +13,7 @@ const HomeCalendarTap = () => {
   return (
     <div className="sticky top-[5.6rem] z-10 bg-black px-[1.6rem] pt-[2.4rem]">
       <WeekCalendar
+        entryDate={new Date()}
         baseDate={baseWeekDate}
         value={selectedDate}
         onChange={(date) => {
