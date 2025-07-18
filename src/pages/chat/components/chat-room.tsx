@@ -27,7 +27,6 @@ const ChatRoom = () => {
         </div>
       </div>
 
-      {/* chat-3: 위치 유지 (필요시 정렬 추가 가능) */}
       <Icon name="chat-3" width={40} height={8.8} />
     </div>
   );
