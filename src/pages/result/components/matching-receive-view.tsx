@@ -45,8 +45,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
       onSuccess: () => {
         navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
       },
-      onError: (error) => {
-        console.error('매칭 거절 실패:', error);
+      onError: () => {
         navigate(ROUTES.ERROR);
       },
     });
@@ -58,8 +57,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
         const resultType = cardType === 'group' ? 'agree' : 'success';
         navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
       },
-      onError: (error) => {
-        console.error('매칭 수락 실패:', error);
+      onError: () => {
         navigate(ROUTES.ERROR);
       },
     });
