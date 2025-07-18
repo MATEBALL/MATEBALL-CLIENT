@@ -5,10 +5,13 @@ import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-foot
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+import { MATCH_REQUEST_ERROR_MESSAGES } from '@constants/error-toast';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface GameScheduleItem {
   id: number;
@@ -83,7 +86,17 @@ const GameMatchBottomSheet = ({
           }
         },
         onError: (error) => {
-          console.error('매치 생성 실패:', error);
+          const status = (error as AxiosError)?.response?.status;
+
+          if (status === MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.status) {
+            showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.message, {
+              bottom: '5.3rem',
+            });
+          } else if (status === MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.status) {
+            showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.message, {
+              bottom: '5.3rem',
+            });
+          }
         },
       },
     );

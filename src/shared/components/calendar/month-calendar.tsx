@@ -2,7 +2,9 @@ import { WEEK_DAY_COLORS, WEEK_DAYS, WEEKDAY } from '@components/calendar/consta
 import { calendarDayVariants } from '@components/calendar/styles/calendar-day-variants';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
+import { DATE_SELECT_TOAST_MESSAGE } from '@constants/error-toast';
 import {
+  addDays,
   addMonths,
   endOfMonth,
   format,
@@ -12,19 +14,24 @@ import {
   startOfMonth,
   subMonths,
 } from 'date-fns';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface MonthCalendarProps {
+  entryDate: Date;
   value: Date;
   selectedDate?: Date | null;
   onWeekChange: (date: Date) => void;
   onMonthChange: (date: Date) => void;
+  toastBottomOffset?: '4.6rem' | '5.3rem' | '-1.4rem';
 }
 
 const MonthCalendar = ({
+  entryDate,
   value,
   selectedDate,
   onWeekChange,
   onMonthChange,
+  toastBottomOffset,
 }: MonthCalendarProps) => {
   const days = getMonthGrid(value);
   const startDate = startOfMonth(value);
@@ -67,11 +74,22 @@ const MonthCalendar = ({
             const isDisabled = isPast || isMonday;
             const isNotCurrentMonth = day < startDate || day > endDate;
 
+            const handleClick = (day: Date) => {
+              const isBlocked = day <= addDays(entryDate, 1);
+              if (isBlocked) {
+                showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
+                  bottom: toastBottomOffset ?? '-1.4rem',
+                });
+                return;
+              }
+              onWeekChange(day);
+            };
+
             return (
               <div key={day.toISOString()} className="flex-row-center">
                 <button
                   type="button"
-                  onClick={() => onWeekChange(day)}
+                  onClick={() => handleClick(day)}
                   disabled={isDisabled}
                   className={calendarDayVariants({
                     monthSelected: isSelected,
