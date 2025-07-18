@@ -23,7 +23,7 @@ export const NICKNAME_PLACEHOLDER = '2-6자 이내의 닉네임을 입력하세�
 export const BIRTH_PLACEHOLDER = '생년을 YYYY 형태로 입력하세요.';
 
 export const BIRTH_ERROR_MESSAGES = {
-  LENGTH: '4자리 입력만 가능해요.',
+  LENGTH: '숫자로 4자리 입력만 가능해요.',
   NUMBER: '숫자만 입력 가능해요.',
 };
 

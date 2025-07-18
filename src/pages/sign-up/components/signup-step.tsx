@@ -117,17 +117,17 @@ const SignupStep = () => {
             <p className="body_16_m">성별</p>
             <div className="flex w-full gap-[0.8rem]">
               <Button
-                variant={genderValue === '여성' ? 'skyblueBorder' : 'white'}
+                variant={genderValue === '여성' ? 'skyblueBorder' : 'gray2'}
                 label="여성"
                 icon="female"
-                className="flex w-full gap-[0.4rem] bg-background"
+                className="flex w-full gap-[0.4rem]"
                 onClick={() => handleGenderClick('여성')}
               />
               <Button
-                variant={genderValue === '남성' ? 'skyblueBorder' : 'white'}
+                variant={genderValue === '남성' ? 'skyblueBorder' : 'gray2'}
                 label="남성"
                 icon="male"
-                className="flex w-full gap-[0.4rem] bg-background"
+                className="flex w-full gap-[0.4rem]"
                 onClick={() => handleGenderClick('남성')}
               />
             </div>
