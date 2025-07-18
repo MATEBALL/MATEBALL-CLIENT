@@ -49,10 +49,12 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
 
       <div className="w-full flex-col-center flex-grow">
         <MonthCalendar
+          entryDate={new Date()}
           value={currentMonth}
           selectedDate={selectedDate}
           onWeekChange={handleDateSelect}
           onMonthChange={handleMonthChange}
+          toastBottomOffset="-1.4rem"
         />
       </div>
 

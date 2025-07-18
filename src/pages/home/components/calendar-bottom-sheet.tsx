@@ -33,10 +33,12 @@ const CalendarBottomSheet = ({
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <div className="p-[1.6rem]">
         <MonthCalendar
+          entryDate={new Date()}
           value={localSelectedDate}
           selectedDate={localSelectedDate}
           onWeekChange={setLocalSelectedDate}
           onMonthChange={setLocalSelectedDate}
+          toastBottomOffset="5.3rem"
         />
       </div>
       <div className="p-[1.6rem]">

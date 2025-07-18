@@ -3,6 +3,7 @@ import { calendarDayVariants } from '@components/calendar/styles/calendar-day-va
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
 import {
+  addDays,
   addMonths,
   endOfMonth,
   format,
@@ -12,19 +13,24 @@ import {
   startOfMonth,
   subMonths,
 } from 'date-fns';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface MonthCalendarProps {
+  entryDate: Date;
   value: Date;
   selectedDate?: Date | null;
   onWeekChange: (date: Date) => void;
   onMonthChange: (date: Date) => void;
+  toastBottomOffset?: '4.6rem' | '5.3rem' | '-1.4rem';
 }
 
 const MonthCalendar = ({
+  entryDate,
   value,
   selectedDate,
   onWeekChange,
   onMonthChange,
+  toastBottomOffset,
 }: MonthCalendarProps) => {
   const days = getMonthGrid(value);
   const startDate = startOfMonth(value);
@@ -67,11 +73,22 @@ const MonthCalendar = ({
             const isDisabled = isPast || isMonday;
             const isNotCurrentMonth = day < startDate || day > endDate;
 
+            const handleClick = (day: Date) => {
+              const isBlocked = day < addDays(entryDate, 1);
+              if (isBlocked) {
+                showErrorToast('직관 준비를 위해 2일 후 날짜부터 선택 가능해요.', {
+                  bottom: toastBottomOffset ?? '-1.4rem',
+                });
+                return;
+              }
+              onWeekChange(day);
+            };
+
             return (
               <div key={day.toISOString()} className="flex-row-center">
                 <button
                   type="button"
-                  onClick={() => onWeekChange(day)}
+                  onClick={() => handleClick(day)}
                   disabled={isDisabled}
                   className={calendarDayVariants({
                     monthSelected: isSelected,
