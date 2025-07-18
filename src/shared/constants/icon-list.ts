@@ -1,3 +1,4 @@
+
 export const iconNames = [
   'arrow-left-18',
   'arrow-left-24',
@@ -8,6 +9,9 @@ export const iconNames = [
   'calendar-16',
   'calendar',
   'caution',
+  'chat-1',
+  'chat-2',
+  'chat-3',
   'chat-filled',
   'chat-lined',
   'chat-profile',
@@ -17,7 +21,7 @@ export const iconNames = [
   'close',
   'eat',
   'empty',
-  'error-filled',
+  'error',
   'female',
   'focus',
   'gender',
@@ -41,7 +45,7 @@ export const iconNames = [
   'passion',
   'plus',
   'team',
-  'watching',
+  'watching'
 ] as const;
-
+ 
 export type IconName = (typeof iconNames)[number];
