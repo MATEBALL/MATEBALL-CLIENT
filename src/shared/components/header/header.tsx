@@ -12,12 +12,13 @@ const Header = () => {
   const isSignUp = pathname.includes(ROUTES.SIGNUP);
   const isHome = pathname === ROUTES.HOME;
   const isMatch = location.pathname === ROUTES.MATCH;
+  const isChatRoom = pathname === ROUTES.CHAT_ROOM;
 
   return (
     <header
       className={clsx('header-layout', {
         'bg-gray-black': isFail || isHome,
-        'bg-gray-white': isSignUp,
+        'bg-gray-white': isSignUp || isChatRoom,
         'bg-gray-100': isMatch,
       })}
     >

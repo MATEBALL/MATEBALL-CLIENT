@@ -36,7 +36,11 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button label="채팅방 입장하기" className="w-full" onClick={() => navigate(ROUTES.CHAT)} />
+        <Button
+          label="채팅방 입장하기"
+          className="w-full"
+          onClick={() => navigate(ROUTES.CHAT_ROOM)}
+        />
       </div>
     </div>
   );

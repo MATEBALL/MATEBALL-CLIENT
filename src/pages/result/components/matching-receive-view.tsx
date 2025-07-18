@@ -3,8 +3,11 @@ import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
 import type { ChipColor, DetailedCardProps } from '@components/card/match-card/types/card';
+import { MATCH_KEY } from '@constants/query-key';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
+import queryClient from '@libs/query-client';
 import ErrorView from '@pages/error/error-view';
+import { fillTabItems } from '@pages/match/utils/match-status';
 import { ERROR_MESSAGE, MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -46,6 +49,10 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
     rejectMatch(parsedId, {
       onSuccess: () => {
         navigate(`${ROUTES.RESULT(matchId)}?type=fail`);
+        fillTabItems.forEach((label) => {
+          queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.SINGLE(label) });
+          queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.GROUP(label) });
+        });
       },
       onError: () => {
         navigate(ROUTES.ERROR);
@@ -61,6 +68,12 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
         } else {
           navigate(`${ROUTES.RESULT(matchId)}?type=success`);
         }
+        const resultType = cardType === 'group' ? 'agree' : 'success';
+        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+        fillTabItems.forEach((label) => {
+          queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.SINGLE(label) });
+          queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.GROUP(label) });
+        });
       },
       onError: () => {
         navigate(ROUTES.ERROR);
