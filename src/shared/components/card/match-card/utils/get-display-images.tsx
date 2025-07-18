@@ -2,15 +2,10 @@ const DEFAULT_PROFILE_URL = '/svgs/profile.svg';
 
 export function getDisplayImages(type: string, imgUrl: string[] = []): string[] {
   if (type === 'group') {
-    const filledImages = imgUrl && imgUrl.length > 0 ? imgUrl.slice(0, 4) : [];
+    const filledImages = imgUrl.length > 0 ? imgUrl.slice(0, 4) : [];
     const emptySlots = 4 - filledImages.length;
-    const emptyImages = Array(emptySlots).fill('');
-    return [...filledImages, ...emptyImages];
+    return [...filledImages, ...Array(emptySlots).fill('')];
   }
 
-  if (!imgUrl || imgUrl.length === 0) {
-    return [DEFAULT_PROFILE_URL];
-  }
-
-  return imgUrl.slice(0, 1);
+  return imgUrl.length > 0 ? [imgUrl[0]] : [DEFAULT_PROFILE_URL];
 }
