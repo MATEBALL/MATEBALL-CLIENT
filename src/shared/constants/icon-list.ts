@@ -43,6 +43,7 @@ export const iconNames = [
   'my-lined',
   'passion',
   'plus',
+  'profile',
   'team',
   'watching',
 ] as const;

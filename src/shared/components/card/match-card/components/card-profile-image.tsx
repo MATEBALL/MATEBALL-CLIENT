@@ -1,11 +1,10 @@
 import { profileVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProfileProps } from '@components/card/match-card/types/card';
+import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
 import type { ReactNode } from 'react';
 
 const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
-  const DEFAULT_PROFILE_URL = '/svgs/profile.svg';
-
   const zIndexClasses = [
     'z-[var(--z-card-profile-1)] ml-0',
     '-ml-[0.9rem] z-[var(--z-card-profile-2)]',
@@ -23,11 +22,7 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
       const key = url || `profile-slot-${order}`;
       profileElements.push(
         <div key={key} className={cn(zIndexClasses[order])}>
-          <img
-            src={DEFAULT_PROFILE_URL}
-            alt="그룹 프로필"
-            className={cn(profileVariants({ type }))}
-          />
+          <Icon size={2.8} name="profile" className={cn(profileVariants({ type }))} />
         </div>,
       );
     });
@@ -51,7 +46,7 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
 
   return (
     <div className="flex items-center">
-      <img src={DEFAULT_PROFILE_URL} alt="1:1 프로필" className={cn(profileVariants({ type }))} />
+      <Icon size={6} name="profile" className={cn(profileVariants({ type }))} />
     </div>
   );
 };
