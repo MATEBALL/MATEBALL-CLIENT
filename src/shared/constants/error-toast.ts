@@ -9,4 +9,4 @@ export const MATCH_REQUEST_ERROR_MESSAGES = {
   },
 };
 
-export const DATE_SELECT_TOAST_MESSAGE = '직관 준비를 위해 2일 이후 날짜부터 선택 가능해요.';
+export const DATE_SELECT_TOAST_MESSAGE = '직관 준비를 위해 2일 후 날짜부터 선택 가능해요.';
