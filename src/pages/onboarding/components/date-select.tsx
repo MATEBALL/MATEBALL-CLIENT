@@ -32,7 +32,7 @@ const DateSelect = () => {
   });
 
   return (
-    <div className="h-full w-full flex-col-between px-[1.6rem] pt-[1.6rem]">
+    <div className="h-full w-full flex-col-between gap-[5.6rem] px-[1.6rem] pt-[3.2rem]">
       <div className="flex-col-center gap-[0.8rem]">
         <p className="head_20_sb text-gray-black">어떤 경기를 직관하고 싶으신가요?</p>
         <p className="cap_14_m text-gray-600">
@@ -40,7 +40,7 @@ const DateSelect = () => {
         </p>
       </div>
 
-      <div className="w-full flex-col-center flex-grow">
+      <div className="w-full flex-grow">
         <MonthCalendar
           value={currentMonth}
           selectedDate={selectedDate}
