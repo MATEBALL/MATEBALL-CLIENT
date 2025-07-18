@@ -19,7 +19,7 @@ const Layout = () => {
   return (
     <div className={cn('h-full flex-col', isFail && 'bg-gray-black')}>
       {showHeader && <Header />}
-      <div className="scrollbar-hide flex-grow flex-col overflow-auto">
+      <div className="scrollbar-hide mt-[-0.1rem] flex-grow flex-col overflow-auto">
         <main className="flex-1">
           <Outlet />
         </main>
