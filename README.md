@@ -44,10 +44,9 @@
 <img width="1920" height="1080" alt="11" src="https://github.com/user-attachments/assets/720c5da2-4c13-4960-af33-1355f12662ba" />
 
 
-
 ## 👥 TEAM-MATEBALL Web Developers
 
-| <img src="https://github.com/user-attachments/assets/8b9f099f-1c16-4d91-a2da-8b6959b45a01" width="200" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/4896e21b-ee58-4f20-b7ba-ee752e3b27ff" width="200" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/bdc25e31-aeaf-4b4d-82ed-0ccffd08ee46" width="200" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/44644e12-5c98-4359-8964-a7e799ef5b79" width="200" alt="프로필사진">  |
+| <img src="https://github.com/user-attachments/assets/8b9f099f-1c16-4d91-a2da-8b6959b45a01" width="200" alt="프로필사진"> | <img src="https://github.com/user-attachments/assets/4896e21b-ee58-4f20-b7ba-ee752e3b27ff" width="200" alt="프로필사진">  | <img src="https://github.com/user-attachments/assets/44644e12-5c98-4359-8964-a7e799ef5b79" width="200" alt="프로필사진"> |  <img src="https://github.com/user-attachments/assets/bdc25e31-aeaf-4b4d-82ed-0ccffd08ee46" width="200" alt="프로필사진">  |
 | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------:
 |                            <div align = "center"><b>박희선</b></div>                            |                            <div align = "center"><b>김채은</b></div>                            |                            <div align = "center"><b>윤소은</b></div>                            |                             <div align = "center"><b>김예원</b></div>
 |                            [@heesunee](https://github.com/heesunee)                            |                [@bongtta](https://github.com/bongtta)                                 |                       [@Dubabii](https://github.com/Dubabbi)                        |                        [@yeeewww](https://github.com/yeeewww)   | 
