@@ -52,11 +52,7 @@ const OnboardingGroup = () => {
           </Step>
 
           <Step name="DATE_SELECT">
-            <DateSelect
-              onComplete={() => {
-                goNext();
-              }}
-            />
+            <DateSelect />
           </Step>
 
           <Step name="COMPLETE">

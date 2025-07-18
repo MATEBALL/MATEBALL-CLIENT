@@ -1,11 +1,12 @@
 import { matchMutations } from '@apis/match/match-mutations';
+import { matchQueries } from '@apis/match/match-queries';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-footer';
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ interface GameMatchBottomSheetProps {
   gameSchedule: GameScheduleItem[];
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
+  fromOnboarding?: boolean;
 }
 
 const GameMatchBottomSheet = ({
@@ -32,10 +34,11 @@ const GameMatchBottomSheet = ({
   date,
   gameSchedule,
   activeType,
+  fromOnboarding = false,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const navigate = useNavigate();
-
+  const queryClient = useQueryClient();
   const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
 
   const disabled = selectedIdx === null || createMatchMutation.isPending;
@@ -60,8 +63,24 @@ const GameMatchBottomSheet = ({
       {
         onSuccess: (response) => {
           const createdMatchId = response.matchId.toString();
+
+          if (matchType === 'direct') {
+            queryClient.invalidateQueries({
+              queryKey: matchQueries.SINGLE_MATCH_LIST(date).queryKey,
+            });
+          } else {
+            queryClient.invalidateQueries({
+              queryKey: matchQueries.GROUP_MATCH_LIST(date).queryKey,
+            });
+          }
+
           handleClose();
-          navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+
+          if (fromOnboarding) {
+            navigate(`${ROUTES.ONBOARDING_GROUP}?step=COMPLETE`);
+          } else {
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+          }
         },
         onError: (error) => {
           console.error('매치 생성 실패:', error);
