@@ -12,22 +12,27 @@ export const router = createBrowserRouter([
     path: ROUTES.SPLASH,
     element: <Splash />,
   },
+  ...publicRoutes,
   {
-    path: ROUTES.LAYOUT,
-    element: <Layout />,
+    path: '/',
+    element: <AuthGuard />,
+    errorElement: <></>,
     children: [
-      ...publicRoutes,
       {
-        element: <AuthGuard />,
-        children: [...protectedRoutes],
-      },
-      {
-        path: '/error',
-        element: <ErrorView />,
-      },
-      {
-        path: '*',
-        element: <ErrorView message={`존재하지 않는 페이지입니다.\nURL을 다시 확인해 주세요.`} />,
+        element: <Layout />,
+        children: [
+          ...protectedRoutes,
+          {
+            path: '/error',
+            element: <ErrorView />,
+          },
+          {
+            path: '*',
+            element: (
+              <ErrorView message={`존재하지 않는 페이지입니다.\nURL을 다시 확인해 주세요.`} />
+            ),
+          },
+        ],
       },
     ],
   },
