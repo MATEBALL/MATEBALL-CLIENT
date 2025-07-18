@@ -44,5 +44,4 @@ export const CLICKABLE_STATUS_MAP: Record<string, string> = {
   '매칭 완료': 'success',
   '승인 완료': 'agree',
   '새 요청': 'received',
-  '매칭 실패': 'fail',
 };
