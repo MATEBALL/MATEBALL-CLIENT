@@ -46,7 +46,7 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
 
   return (
     <div className="flex items-center">
-      <Icon size={6} name="profile" className={cn(profileVariants({ type }))} />
+      <Icon width={6} height={6} name="profile" className={cn(profileVariants({ type }))} />
     </div>
   );
 };
