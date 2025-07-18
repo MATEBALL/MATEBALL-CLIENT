@@ -22,9 +22,9 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
 export const profileVariants = cva('aspect-square rounded-full object-cover', {
   variants: {
     type: {
-      single: 'h-[6rem] outline outline-[1px] outline-gray-900',
-      group: 'h-[2.8rem] outline outline-[1px] outline-main-600',
-      detailed: 'h-[8.2rem] outline outline-[1px] outline-gray-900',
+      single: 'h-[6rem] w-[6rem] outline outline-[1px] outline-gray-900',
+      group: 'h-[2.8rem] w-[2.8rem] outline outline-[1px] outline-main-600',
+      detailed: 'h-[8.2rem] w-[8.2rem] outline outline-[1px] outline-gray-900',
       user: 'h-[8.2rem] w-[8.2rem] outline outline-[1px] outline-gray-900',
     },
   },
