@@ -1,5 +1,6 @@
 import {
   ChatList,
+  ChatRoom,
   Create,
   EditProfile,
   GroupMates,
@@ -15,6 +16,7 @@ import {
 import { ROUTES } from '@routes/routes-config';
 
 export const protectedRoutes = [
+  { path: ROUTES.CHAT_ROOM, element: <ChatRoom /> },
   { path: ROUTES.MATCH_CREATE(), element: <Create /> },
   { path: ROUTES.HOME, element: <Home /> },
   { path: ROUTES.MATCH_SINGLE(), element: <Single /> },

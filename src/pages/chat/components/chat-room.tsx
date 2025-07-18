@@ -11,7 +11,10 @@ const ChatRoom = () => {
 
         <section className="flex-col-center gap-[1.2rem]">
           <div className="cap_12_m w-[16.6rem] rounded-[40px] bg-gray-white px-[0.4rem] py-[0.6rem] text-center text-gray-800">
-            사용자 님이 입장하셨습니다.
+            롯데샌드 님이 입장하셨습니다.
+          </div>
+          <div className="cap_12_m w-[16.6rem] rounded-[40px] bg-gray-white px-[0.4rem] py-[0.6rem] text-center text-gray-800">
+            윤지 님이 입장하셨습니다.
           </div>
           <div className="cap_12_m w-[15.4rem] rounded-[40px] bg-gray-white px-[0.4rem] py-[0.6rem] text-center text-gray-800">
             2025년 7월 20일 일요일

@@ -14,6 +14,9 @@ const Header = () => {
   const isMatch = location.pathname === ROUTES.MATCH;
   const isChatRoom = pathname === ROUTES.CHAT_ROOM;
 
+  console.log(isChatRoom);
+  console.log(pathname);
+
   return (
     <header
       className={clsx('header-layout', {
