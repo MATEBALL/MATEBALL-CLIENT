@@ -56,8 +56,11 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const handleAccept = () => {
     acceptMatch(parsedId, {
       onSuccess: () => {
-        const resultType = cardType === 'group' ? 'agree' : 'success';
-        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+        if (cardType === 'group') {
+          navigate(ROUTES.MATCH);
+        } else {
+          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
+        }
       },
       onError: () => {
         navigate(ROUTES.ERROR);
