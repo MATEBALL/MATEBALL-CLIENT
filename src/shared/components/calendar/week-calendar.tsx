@@ -7,13 +7,12 @@ import { calendarDayVariants } from '@/shared/components/calendar/styles/calenda
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface WeekCalendarProps {
-  entryDate: Date;
   baseDate: Date;
   value: Date;
   onChange: (date: Date) => void;
 }
 
-const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProps) => {
+const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
   const days = getWeekDays(baseDate);
 
   return (
@@ -30,7 +29,7 @@ const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProp
             : 'text-gray-500';
 
         const handleClick = (day: Date) => {
-          const isBlocked = day < addDays(entryDate, 1);
+          const isBlocked = day <= addDays(baseDate, 1);
 
           if (isBlocked) {
             showErrorToast('직관 준비를 위해 2일 후 날짜부터 선택 가능해요.', {

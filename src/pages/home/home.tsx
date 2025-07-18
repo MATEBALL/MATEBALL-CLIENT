@@ -51,7 +51,6 @@ const Home = () => {
     <div className="bg-gray-200 pb-[5.6rem]">
       <TopSection />
       <CalendarSection
-        entryDate={entryDate}
         activeType={activeType}
         onTabChange={changeTab}
         selectedDate={selectedDate}

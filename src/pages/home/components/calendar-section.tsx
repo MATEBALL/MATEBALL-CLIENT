@@ -4,7 +4,6 @@ import TabList from '@components/tab/tab/tab-list';
 import CalendarButton from '@pages/home/components/calendar-button';
 
 interface CalendarSectionProps {
-  entryDate: Date;
   activeType: TabType;
   onTabChange: (type: TabType) => void;
   selectedDate: Date;
@@ -14,7 +13,6 @@ interface CalendarSectionProps {
 }
 
 const CalendarSection = ({
-  entryDate,
   activeType,
   onTabChange,
   selectedDate,
@@ -29,7 +27,6 @@ const CalendarSection = ({
   return (
     <section className="sticky top-0 z-[var(--z-under-header-section)] bg-gray-black px-[1.6rem] pt-[2.4rem]">
       <WeekCalendar
-        entryDate={entryDate}
         baseDate={baseWeekDate}
         value={selectedDate}
         onChange={(date) => {
