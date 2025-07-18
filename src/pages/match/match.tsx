@@ -29,7 +29,6 @@ const Match = () => {
         key="single"
         cards={mapSingleMatchData(singleData?.mates)}
         filter={filter}
-        tabType="1:1"
       />
     ),
     그룹: (
@@ -37,7 +36,6 @@ const Match = () => {
         key="group"
         cards={mapGroupMatchData(groupData?.mates)}
         filter={filter}
-        tabType="그룹"
       />
     ),
   };
