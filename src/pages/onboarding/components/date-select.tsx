@@ -1,31 +1,23 @@
-import BottomSheet from '@components/bottom-sheet/bottom-sheet';
+import { gameQueries } from '@apis/game/game-queries';
+import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
-import Button from '@components/button/button/button';
-import ButtonGame from '@components/button/button-game/button-game';
 import MonthCalendar from '@components/calendar/month-calendar';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
-import Icon from '@components/icon/icon';
-import { mockGameDatas } from '@mocks/mockGameData';
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import { ko } from 'date-fns/locale';
 import { useState } from 'react';
 
-interface DateSelectProps {
-  onComplete: () => void;
-}
-
-const DateSelect = ({ onComplete }: DateSelectProps) => {
+const DateSelect = () => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
-
   const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
   const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
-  const [selectedGameId, setSelectedGameId] = useState<number | null>(null);
+  const activeType = TAB_TYPES.GROUP;
 
   const { isOpen, open, close } = useBottomSheet();
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
-    setSelectedGameId(null);
     open();
   };
 
@@ -34,9 +26,10 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
     setSelectedDate(null);
   };
 
-  const handleGameClick = (id: number) => {
-    setSelectedGameId(id);
-  };
+  const dateStr = format(selectedDate ?? new Date(), 'yyyy-MM-dd');
+  const { data } = useQuery({
+    ...gameQueries.GAME_LIST(dateStr),
+  });
 
   return (
     <div className="h-full w-full flex-col-between px-[1.6rem] pt-[1.6rem]">
@@ -58,45 +51,14 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
         />
       </div>
 
-      <BottomSheet isOpen={isOpen} onClose={close}>
-        <div className="flex-col gap-[1.6rem]">
-          <div className="flex-col gap-[1.3rem] px-[1.6rem] pt-[1.6rem]">
-            <p className="cap_14_m text-gray-black">
-              {selectedDate && format(selectedDate, 'M월 d일 EEEE', { locale: ko })}
-            </p>
-            <div className="flex-col-center gap-[0.8rem]">
-              {mockGameDatas.map((game) => (
-                <ButtonGame
-                  key={game.id}
-                  awayTeam={game.awayTeam}
-                  homeTeam={game.homeTeam}
-                  gameTime={game.gameTime}
-                  stadium={game.stadium}
-                  selected={selectedGameId === game.id}
-                  onClick={() => handleGameClick(game.id)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className="flex-col-center gap-[1.2rem]">
-            <div className="flex-row-center gap-[0.8rem]">
-              <Icon name="caution" size={1.8} />
-              <p className="cap_12_m text-gray-600">하루에 한 경기만 매칭 생성이 가능해요.</p>
-            </div>
-            <div className="w-full p-[1.6rem]">
-              <Button
-                label="맞춤 매칭 생성하기"
-                disabled={!selectedGameId}
-                onClick={() => {
-                  close();
-                  onComplete();
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </BottomSheet>
+      <GameMatchBottomSheet
+        isOpen={isOpen}
+        onClose={close}
+        date={format(selectedDate ?? new Date(), 'yyyy-MM-dd')}
+        gameSchedule={data ?? []}
+        activeType={activeType}
+        fromOnboarding={true}
+      />
     </div>
   );
 };
