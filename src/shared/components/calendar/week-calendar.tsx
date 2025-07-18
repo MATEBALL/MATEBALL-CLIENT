@@ -1,5 +1,6 @@
 import { WEEKDAY } from '@components/calendar/constants/CALENDAR';
 import { getWeekDays } from '@components/calendar/utils/date-grid';
+import { DATE_SELECT_TOAST_MESSAGE } from '@constants/error-toast';
 import { cn } from '@libs/cn';
 import { addDays, format, isSameDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
@@ -32,7 +33,7 @@ const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
           const isBlocked = day <= addDays(baseDate, 1);
 
           if (isBlocked) {
-            showErrorToast('직관 준비를 위해 2일 후 날짜부터 선택 가능해요.', {
+            showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
               bottom: '4.6rem',
             });
             return;

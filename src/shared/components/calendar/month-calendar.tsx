@@ -2,6 +2,7 @@ import { WEEK_DAY_COLORS, WEEK_DAYS, WEEKDAY } from '@components/calendar/consta
 import { calendarDayVariants } from '@components/calendar/styles/calendar-day-variants';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
+import { DATE_SELECT_TOAST_MESSAGE } from '@constants/error-toast';
 import {
   addDays,
   addMonths,
@@ -76,7 +77,7 @@ const MonthCalendar = ({
             const handleClick = (day: Date) => {
               const isBlocked = day < addDays(entryDate, 1);
               if (isBlocked) {
-                showErrorToast('직관 준비를 위해 2일 후 날짜부터 선택 가능해요.', {
+                showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
                   bottom: toastBottomOffset ?? '-1.4rem',
                 });
                 return;
