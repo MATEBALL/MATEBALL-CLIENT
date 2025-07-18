@@ -208,7 +208,7 @@ export interface getGroupMatchMate {
 /**
  * 매칭 요청 상세조회용 Mate
  * get
- * /v1/users/match-detail/{matchId}
+ * /v1/users/match/{matchId}
  */
 export interface matchDetailMateSimple extends baseMate {
   age: string;
@@ -223,8 +223,9 @@ export interface matchDetailMateSimple extends baseMate {
 /**
  * 매칭 요청 상세조회 응답
  * get
- * /v1/users/match-detail/{matchId}
+ * /v1/users/match/{matchId}
  */
 export interface getMatchDetailResponse {
+  nickname: string;
   mates: matchDetailMateSimple[];
 }
