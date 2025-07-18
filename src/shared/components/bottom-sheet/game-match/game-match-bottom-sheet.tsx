@@ -87,6 +87,7 @@ const GameMatchBottomSheet = ({
           }
         },
         onError: (error) => {
+          setIsNavigating(false);
           const status = (error as AxiosError)?.response?.status;
 
           if (status === MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.status) {
