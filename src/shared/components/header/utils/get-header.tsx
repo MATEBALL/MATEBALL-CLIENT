@@ -1,6 +1,6 @@
 import Icon from '@components/icon/icon';
 import { ROUTES } from '@routes/routes-config';
-import type { NavigateFunction } from 'react-router-dom';
+import { matchPath, type NavigateFunction } from 'react-router-dom';
 
 export const getHeaderContent = (
   pathname: string,
@@ -14,6 +14,10 @@ export const getHeaderContent = (
 
   const handleBackClick = () => {
     const type = urlParams.get('type') ?? '';
+    const isCreate =
+      matchPath(`${ROUTES.MATCH_CREATE}/*`, pathname) &&
+      (urlParams.get('type') === 'single' || urlParams.get('type') === 'group');
+
     const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
 
     if (pathname === ROUTES.RESULT()) {
@@ -25,6 +29,10 @@ export const getHeaderContent = (
       if (goMatchTypes.includes(type)) {
         navigate(ROUTES.MATCH);
         return;
+      }
+
+      if (isCreate) {
+        return null;
       }
     }
 

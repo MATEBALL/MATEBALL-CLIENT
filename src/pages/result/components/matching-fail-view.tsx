@@ -4,11 +4,15 @@ import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { MATCHING_GUIDE_MESSAGE_DESCRIPTION } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const MatchingFailView = () => {
   const navigate = useNavigate();
-  usePreventBackNavigation(ROUTES.MATCH);
+  const [params] = useSearchParams();
+  const cardType = params.get('cardtype');
+  usePreventBackNavigation(
+    `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
+  );
 
   return (
     <div className="h-full flex-col-between">
