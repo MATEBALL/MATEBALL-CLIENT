@@ -39,6 +39,10 @@ export const getHeaderContent = (
     navigate(-1);
   };
 
+  const handleChatClick = () => {
+    navigate(ROUTES.CHAT);
+  };
+
   if (pathname === ROUTES.HOME) {
     return (
       <Icon
@@ -66,7 +70,7 @@ export const getHeaderContent = (
   if (pathname === ROUTES.CHAT_ROOM) {
     return (
       <div className="flex items-center gap-[0.8rem]">
-        <Icon name="arrow-left-24" />
+        <Icon name="arrow-left-24" onClick={handleChatClick} className="cursor-pointer" />
         <h1 className="subhead_18_sb">롯데샌드</h1>
         <div className="flex items-center gap-[0.4rem] text-gray-700">
           <Icon name="baseball" size={1.6} />
