@@ -57,6 +57,7 @@ export const Week: Story = {
 
     return (
       <WeekCalendar
+        entryDate={new Date()}
         value={selectedDate}
         baseDate={baseWeekDate}
         onChange={(date) => setSelectedDate(date)}

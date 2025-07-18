@@ -8,12 +8,13 @@ import { calendarDayVariants } from '@/shared/components/calendar/styles/calenda
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface WeekCalendarProps {
+  entryDate: Date;
   baseDate: Date;
   value: Date;
   onChange: (date: Date) => void;
 }
 
-const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
+const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProps) => {
   const days = getWeekDays(baseDate);
 
   return (
@@ -30,7 +31,7 @@ const WeekCalendar = ({ baseDate, value, onChange }: WeekCalendarProps) => {
             : 'text-gray-500';
 
         const handleClick = (day: Date) => {
-          const isBlocked = day <= addDays(baseDate, 1);
+          const isBlocked = day <= addDays(entryDate, 1);
 
           if (isBlocked) {
             showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
