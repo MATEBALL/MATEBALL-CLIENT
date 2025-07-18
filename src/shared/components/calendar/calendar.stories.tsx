@@ -39,7 +39,14 @@ type Story = StoryObj;
 export const Month: Story = {
   render: () => {
     const [value, setValue] = useState(new Date());
-    return <MonthCalendar value={value} onWeekChange={setValue} onMonthChange={setValue} />;
+    return (
+      <MonthCalendar
+        entryDate={new Date()}
+        value={value}
+        onWeekChange={setValue}
+        onMonthChange={setValue}
+      />
+    );
   },
 };
 
