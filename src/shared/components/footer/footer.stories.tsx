@@ -1,5 +1,6 @@
 import Footer from '@components/footer/footer';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof Footer> = {
   title: 'layout/Footer',
@@ -19,11 +20,13 @@ const meta: Meta<typeof Footer> = {
   },
   decorators: [
     (Story) => (
-      <div className="flex h-[40rem] items-center justify-center">
-        <div className="w-[37.5rem] bg-background">
-          <Story />
+      <MemoryRouter initialEntries={['/']}>
+        <div className="flex h-[40rem] items-center justify-center">
+          <div className="w-[37.5rem] bg-background">
+            <Story />
+          </div>
         </div>
-      </div>
+      </MemoryRouter>
     ),
   ],
   tags: ['autodocs'],

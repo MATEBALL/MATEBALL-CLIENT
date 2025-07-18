@@ -1,10 +1,21 @@
 import { COPYRIGHT_NOTICE, MATCHING_PLATFORM_NOTICE } from '@components/footer/constants/legal';
 import Icon from '@components/icon/icon';
 import { EXTERNAL_LINKS } from '@constants/links';
+import { ROUTES } from '@routes/routes-config';
+import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const { pathname } = useLocation();
+
+  const isHome = pathname === ROUTES.HOME;
+
   return (
-    <footer className="cap_12_m w-full flex-col gap-[4.8rem] bg-gray-200 px-[1.6rem] py-[3.2rem]">
+    <footer
+      className={clsx('cap_12_m w-full flex-col gap-[4.8rem] px-[1.6rem] py-[3.2rem]', {
+        'bg-gray-200': isHome,
+      })}
+    >
       <div className="flex-col gap-[0.8rem]">
         <Icon name="logo-gray" width={9.2} height={2.5} className="text-gray-700" />
         <div className="flex-col gap-[0.4rem] text-gray-700">
