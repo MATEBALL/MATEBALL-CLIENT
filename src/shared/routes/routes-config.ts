@@ -14,7 +14,7 @@ export const ROUTES = {
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
   CHAT: '/chat',
-  CHAT_ROOM: (id = ':matchId') => `/chat/${id}`,
+  CHAT_ROOM: `/chatroom`,
   RESULT: (id = ':matchId') => `/result/${id}`,
   ERROR: '/error',
   LOADING: '/loading',
