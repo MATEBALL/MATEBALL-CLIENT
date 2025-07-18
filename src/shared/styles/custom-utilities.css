@@ -58,7 +58,7 @@
   }
 
   .onboarding-layout {
-    @apply mt-[3.2rem] h-full w-full flex flex-col justify-between items-center;
+    @apply mt-[5rem] h-full w-full flex flex-col justify-between items-center;
   }
 
   .onboarding-inner {
