@@ -60,16 +60,16 @@ const CardHeader = (props: CardProps) => {
 
     case 'detailed':
       return (
-        <div className="flex">
+        <div className="flex gap-[1.2rem]">
           <CardProfile type="detailed" imgUrl={props.imgUrl} />
-          <div>
-            <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
+          <div className="flex-col gap-[0.8rem]">
+            <div className="flex-col gap-[0.4rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
                 {props.age} | {props.gender}
               </div>
             </div>
-            <div className="ml-[1.2rem] flex-row gap-[0.8rem]">
+            <div className="flex-row gap-[0.8rem]">
               <ChipList names={props.chips} />
             </div>
           </div>
