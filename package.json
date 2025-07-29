@@ -28,7 +28,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^12.23.3",
     "react": "^19.1.0",
-    "react-compact-toast": "^0.1.6",
+    "react-compact-toast": "^0.2.0",
     "react-dom": "^19.1.0",
     "react-error-boundary": "^6.0.0",
     "react-hook-form": "^7.59.0",
