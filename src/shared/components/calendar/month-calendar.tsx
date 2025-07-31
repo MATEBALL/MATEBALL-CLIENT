@@ -22,7 +22,7 @@ interface MonthCalendarProps {
   selectedDate?: Date | null;
   onWeekChange: (date: Date) => void;
   onMonthChange: (date: Date) => void;
-  toastBottomOffset?: '4.6rem' | '5.3rem' | '-1.4rem';
+  toastBottomOffset?: '7.6rem' | '8.3rem' | '2.4rem';
 }
 
 const MonthCalendar = ({
@@ -77,9 +77,7 @@ const MonthCalendar = ({
             const handleClick = (day: Date) => {
               const isBlocked = day <= addDays(entryDate, 1);
               if (isBlocked) {
-                showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
-                  bottom: toastBottomOffset ?? '-1.4rem',
-                });
+                showErrorToast(DATE_SELECT_TOAST_MESSAGE, toastBottomOffset ?? '2.4rem');
                 return;
               }
               onWeekChange(day);
