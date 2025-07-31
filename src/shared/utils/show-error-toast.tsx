@@ -9,7 +9,7 @@ export const showErrorToast = (message: string, offset: string = '8.3rem') => {
         <Icon name="error" />
       </div>
     ),
-    autoClose: 300000,
+    autoClose: 3000,
     position: 'bottomCenter',
     offset,
     className:
