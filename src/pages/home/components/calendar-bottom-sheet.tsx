@@ -38,7 +38,7 @@ const CalendarBottomSheet = ({
           selectedDate={localSelectedDate}
           onWeekChange={setLocalSelectedDate}
           onMonthChange={setLocalSelectedDate}
-          toastBottomOffset="5.3rem"
+          toastBottomOffset="8.3rem"
         />
       </div>
       <div className="p-[1.6rem]">

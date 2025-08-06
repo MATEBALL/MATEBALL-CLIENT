@@ -34,9 +34,7 @@ const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProp
           const isBlocked = day <= addDays(entryDate, 1);
 
           if (isBlocked) {
-            showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
-              bottom: '4.6rem',
-            });
+            showErrorToast(DATE_SELECT_TOAST_MESSAGE, '7.6rem');
             return;
           }
           onChange(day);

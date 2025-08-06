@@ -47,7 +47,7 @@ const DateSelect = () => {
           selectedDate={selectedDate}
           onWeekChange={handleDateSelect}
           onMonthChange={handleMonthChange}
-          toastBottomOffset="-1.4rem"
+          toastBottomOffset="2.4rem"
         />
       </div>
 

@@ -1,23 +1,14 @@
 import Icon from '@components/icon/icon';
 import { toast } from 'react-compact-toast';
 
-export const showErrorToast = (
-  message: string,
-  options?: { bottom?: '-1.4rem' | '4.6rem' | '5.3rem' },
-) => {
-  const bottomClassMap = {
-    '-1.4rem': 'bottom-[-1.4rem]',
-    '4.6rem': 'bottom-[4.6rem]',
-    '5.3rem': 'bottom-[5.3rem]',
-  };
-
-  const bottomClass = bottomClassMap[options?.bottom ?? '5.3rem'];
-
+export const showErrorToast = (message: string, offset: string = '8.3rem') => {
   toast({
     text: message,
-    icon: <Icon name="error" />,
+    icon: <Icon name="error" className="mr-[0.4rem]" />,
     autoClose: 3000,
     position: 'bottomCenter',
-    className: `min-h-[4.5rem]! max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900 ${bottomClass}`,
+    offset,
+    className:
+      'min-h-[4.5rem]! max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] bg-gray-900',
   });
 };
