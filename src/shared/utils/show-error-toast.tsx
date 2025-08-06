@@ -4,12 +4,8 @@ import { toast } from 'react-compact-toast';
 export const showErrorToast = (message: string, offset: string = '8.3rem') => {
   toast({
     text: message,
-    icon: (
-      <div className="mr-[0.4rem]">
-        <Icon name="error" />
-      </div>
-    ),
-    autoClose: 3000,
+    icon: <Icon name="error" className="mr-[0.4rem]" />,
+    autoClose: 300000,
     position: 'bottomCenter',
     offset,
     className:
