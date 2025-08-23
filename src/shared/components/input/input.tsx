@@ -12,6 +12,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   defaultMessage?: string;
   validationMessage?: string;
   ref?: React.Ref<HTMLInputElement>;
+  className?: string;
 }
 
 const Input = ({
@@ -23,6 +24,7 @@ const Input = ({
   defaultMessage,
   onBlur,
   ref,
+  className,
   ...props
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -43,6 +45,7 @@ const Input = ({
         className={cn(
           'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 p-[1.6rem]',
           borderClass,
+          className,
         )}
       >
         <input
