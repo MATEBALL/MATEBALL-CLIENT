@@ -1,8 +1,10 @@
+
 export const iconNames = [
   'arrow-left-18',
   'arrow-left-24',
   'arrow-left-white',
   'arrow-left',
+  'arrow-right-18',
   'arrow-right',
   'baseball',
   'calendar-16',
@@ -45,7 +47,7 @@ export const iconNames = [
   'plus',
   'profile',
   'team',
-  'watching',
+  'watching'
 ] as const;
-
+ 
 export type IconName = (typeof iconNames)[number];
