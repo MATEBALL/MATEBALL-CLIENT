@@ -10,13 +10,13 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onBlur
   label?: string;
   isError?: boolean;
   isValid?: boolean;
+  hasLength?: boolean;
   defaultMessage?: string;
   validationMessage?: string;
   ref?: React.Ref<HTMLInputElement>;
   className?: string;
   multiline?: boolean;
-  rows?: number;
-  autoGrow?: boolean;
+  length?: number;
   onBlur?: (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -27,12 +27,12 @@ const Input = ({
   label,
   validationMessage,
   defaultMessage,
+  length,
   onBlur,
   ref,
   className,
+  hasLength = false,
   multiline = false,
-  rows = 2,
-  autoGrow = true,
   ...props
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -60,7 +60,6 @@ const Input = ({
           <textarea
             id={id}
             ref={ref as React.Ref<HTMLTextAreaElement>}
-            rows={rows}
             className={cn(
               'w-full bg-transparent text-gray-black outline-none placeholder:text-gray-500',
               'resize-none whitespace-pre-wrap break-words',
@@ -93,9 +92,14 @@ const Input = ({
           <Icon
             name={inputState === 'valid' ? 'check-filled' : 'info-filled'}
             size={2}
-            className={iconColorClass}
+            className={cn('text-gray-600', !multiline && iconColorClass)}
           />
-          <p className={`cap_14_m ${iconColorClass}`}>{messageToShow}</p>
+          <div className="flex w-full justify-between">
+            <p className={cn('cap_14_m text-gray-600', !multiline && iconColorClass)}>
+              {messageToShow}
+            </p>
+            {hasLength && <p className="cap_14_m text-gray-600">{length}/50</p>}
+          </div>
         </div>
       )}
     </div>

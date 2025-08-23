@@ -14,6 +14,7 @@ import {
 } from '@pages/sign-up/constants/NOTICE';
 import {
   BIRTH_PLACEHOLDER,
+  INFORMATION_MAX_LENGTH,
   INFORMATION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
 } from '@pages/sign-up/constants/validation';
@@ -49,6 +50,8 @@ const SignupStep = () => {
 
   const nicknameMutation = useMutation(userMutations.NICKNAME());
   const userInfoMutation = useMutation(userMutations.USER_INFO());
+
+  const informationLength = informationValue.length ?? 0;
 
   const onSubmit = (data: NicknameFormValues) => {
     nicknameMutation.mutate(
@@ -120,14 +123,14 @@ const SignupStep = () => {
             className="h-[10.4rem]"
             label="한 줄 소개"
             defaultMessage={INFORMATION_RULE_MESSAGE}
-            validationMessage={errors.information?.message}
             multiline
-            rows={2}
-            autoGrow
+            maxLength={INFORMATION_MAX_LENGTH}
             isError={!!errors.information}
             isValid={isInformationValid}
             onBlur={onInformationBlur}
             ref={informationRef}
+            length={informationLength}
+            hasLength
             {...informationInputProps}
           />
           <Input
