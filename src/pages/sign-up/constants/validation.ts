@@ -32,3 +32,5 @@ export const GENDER_ERROR_MESSAGES = {
 };
 
 export const GENDER_OPTIONS = ['남성', '여성'] as const;
+
+export const SIGNUP_STEPS = ['AGREEMENT', 'INFORMATION'];
