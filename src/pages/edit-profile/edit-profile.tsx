@@ -1,6 +1,8 @@
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
+import SelectionGroup from '@pages/edit-profile/components/selection-group';
 import { PROFILE_SYNK_MATE } from '@pages/edit-profile/constants/edit-profile';
+import { mockEditData } from '@pages/edit-profile/mocks/mockEditData';
 import {
   GENDER,
   NO_TEAM_OPTION,
@@ -10,12 +12,10 @@ import {
 import { NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
 import { NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
 import { useState } from 'react';
-import { mockEditData } from './mocks/mockEditData';
 
 const EditProfile = () => {
   const [team, setTeam] = useState(mockEditData.team);
   const [gender, setGender] = useState(mockEditData.genderPreference);
-
   const [mateTeam, setMateTeam] = useState<string>(mockEditData.teamAllowed || '상관없어요');
   const [viewStyle, setViewStyle] = useState<string>(mockEditData.style);
 
@@ -75,60 +75,26 @@ const EditProfile = () => {
             </div>
           </div>
 
-          <div className="flex-col gap-[1.6rem]">
-            <p className="body_16_m">직관 메이트의 응원팀</p>
-            <div className="flex flex-wrap gap-[0.8rem]">
-              {PROFILE_SYNK_MATE.map((option) => {
-                const selected = mateTeam === option;
-                return (
-                  <Button
-                    key={option}
-                    label={option}
-                    variant={selected ? 'skyblue' : 'gray2'}
-                    className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
-                    onClick={() => setMateTeam(option)}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          <SelectionGroup
+            title="직관 메이트의 응원팀"
+            options={PROFILE_SYNK_MATE}
+            selectedValue={mateTeam}
+            onSelect={setMateTeam}
+          />
 
-          <div className="flex-col gap-[1.6rem]">
-            <p className="body_16_m">관람 스타일</p>
-            <div className="flex flex-wrap gap-[0.8rem]">
-              {VIEWING_STYLE.map((option) => {
-                const selected = viewStyle === option.label;
-                return (
-                  <Button
-                    key={option.id}
-                    label={option.label}
-                    variant={selected ? 'skyblue' : 'gray2'}
-                    className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
-                    onClick={() => setViewStyle(option.label)}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          <SelectionGroup
+            title="관람 스타일"
+            options={VIEWING_STYLE}
+            selectedValue={viewStyle}
+            onSelect={setViewStyle}
+          />
 
-          {/* 선호 성별 섹션 */}
-          <div className="flex-col gap-[1.6rem]">
-            <p className="body_16_m">선호 성별</p>
-            <div className="flex flex-wrap gap-[0.8rem]">
-              {GENDER.map((option) => {
-                const selected = gender === option.label;
-                return (
-                  <Button
-                    key={option.id}
-                    label={option.label}
-                    variant={selected ? 'skyblue' : 'gray2'}
-                    className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
-                    onClick={() => setGender(option.label)}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          <SelectionGroup
+            title="선호 성별"
+            options={GENDER}
+            selectedValue={gender}
+            onSelect={setGender}
+          />
         </div>
       </section>
 
