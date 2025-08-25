@@ -19,7 +19,7 @@ export const Result = lazy(() => import('@pages/result/result'));
 
 // Mypage
 export const Profile = lazy(() => import('@pages/profile/profile'));
-export const EditProfile = lazy(() => import('@pages/profile/edit-profile/edit-profile'));
+export const EditProfile = lazy(() => import('@pages/edit-profile/edit-profile'));
 
 // Chat
 export const ChatList = lazy(() => import('@pages/chat/chat-list'));
