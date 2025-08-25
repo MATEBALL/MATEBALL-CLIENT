@@ -17,4 +17,10 @@ export const userMutations = {
       mutationKey: USER_KEY.INFO(),
       mutationFn: ({ gender, birthYear }) => post(END_POINT.USER_INFO, { gender, birthYear }),
     }),
+
+  LOGOUT: () =>
+    mutationOptions<responseTypes, Error, void>({
+      mutationKey: USER_KEY.LOGOUT(),
+      mutationFn: () => post(END_POINT.POST_AUTH_LOGOUT),
+    }),
 };

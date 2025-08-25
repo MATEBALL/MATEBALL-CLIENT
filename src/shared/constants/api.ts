@@ -5,6 +5,9 @@ export const END_POINT = {
   POST_AUTH_LOGIN: '/auth/login?code=',
   GET_USER_STATUS: '/v1/users/info-check',
 
+  // 로그아웃
+  POST_AUTH_LOGOUT: '/auth/logout',
+
   // 유저 관련
   GET_KAKAO_INFO: '/v1/users/kakao/info',
   USER_INFO: '/v1/users/info',
