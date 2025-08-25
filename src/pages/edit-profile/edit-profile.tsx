@@ -69,8 +69,6 @@ const EditProfile = () => {
         </div>
       </section>
 
-      <hr className="my-[2.4rem] border-gray-200 border-t" />
-
       <section className="flex-col pb-[5.6rem]">
         <h2 className="subhead_18_sb mb-[0.4rem]">매칭 조건 수정</h2>
         <p className="cap_12_m mb-[1.6rem] text-gray-500">
