@@ -39,7 +39,7 @@ export const NicknameSchema = z.object({
   gender: z.enum(GENDER_OPTIONS, {
     required_error: GENDER_ERROR_MESSAGES.REQUIRED,
   }),
-  information: z.string().min(INFORMATION_MIN_LENGTH).max(INFORMATION_MAX_LENGTH),
+  information: z.string().trim().min(INFORMATION_MIN_LENGTH).max(INFORMATION_MAX_LENGTH),
 });
 
 export type NicknameFormValues = z.infer<typeof NicknameSchema>;
