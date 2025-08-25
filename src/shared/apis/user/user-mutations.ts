@@ -22,5 +22,8 @@ export const userMutations = {
     mutationOptions<responseTypes, Error, void>({
       mutationKey: USER_KEY.LOGOUT(),
       mutationFn: () => post(END_POINT.POST_AUTH_LOGOUT),
+      onSuccess: () => {
+        window.location.reload();
+      },
     }),
 };
