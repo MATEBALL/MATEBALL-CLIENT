@@ -1,13 +1,16 @@
+import { userMutations } from '@apis/user/user-mutations';
 import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
 import type { ChipColor } from '@components/chip/chip-list';
 import Divider from '@components/divider/divider';
 import Footer from '@components/footer/footer';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 const Profile = () => {
   const { data } = useQuery(userQueries.USER_INFO());
+
+  const { mutate: logout } = useMutation(userMutations.LOGOUT());
 
   const handleClick = (link: string) => {
     window.open(link, '_blank', 'noopener,noreferrer');
@@ -51,7 +54,12 @@ const Profile = () => {
           <p>의견 보내기</p>
         </button>
         <Divider color="bg-gray-300" margin="my-[1.6rem]" />
-        <button type="button" aria-label="로그아웃" className="cap_14_m py-[0.8rem] text-gray-800">
+        <button
+          type="button"
+          onClick={() => logout()}
+          aria-label="로그아웃"
+          className="cap_14_m py-[0.8rem] text-gray-800"
+        >
           <p>로그아웃</p>
         </button>
       </section>
