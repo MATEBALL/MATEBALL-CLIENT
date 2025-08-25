@@ -11,6 +11,7 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onBlur
   isError?: boolean;
   isValid?: boolean;
   hasLength?: boolean;
+  maxLength?: number;
   defaultMessage?: string;
   validationMessage?: string;
   ref?: React.Ref<HTMLInputElement>;
@@ -28,6 +29,7 @@ const Input = ({
   validationMessage,
   defaultMessage,
   length,
+  maxLength = 50,
   onBlur,
   ref,
   className,
@@ -98,7 +100,11 @@ const Input = ({
             <p className={cn('cap_14_m text-gray-600', !multiline && iconColorClass)}>
               {messageToShow}
             </p>
-            {hasLength && <p className="cap_14_m text-gray-600">{length}/50</p>}
+            {hasLength && (
+              <p className="cap_14_m text-gray-600">
+                {length}/{maxLength}
+              </p>
+            )}
           </div>
         </div>
       )}
