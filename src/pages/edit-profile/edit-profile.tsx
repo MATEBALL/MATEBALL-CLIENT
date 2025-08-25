@@ -11,13 +11,40 @@ import {
 } from '@pages/onboarding/constants/onboarding';
 import { NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
 import { NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
-import { useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 const EditProfile = () => {
   const [team, setTeam] = useState(mockEditData.team);
   const [gender, setGender] = useState(mockEditData.genderPreference);
-  const [mateTeam, setMateTeam] = useState<string>(mockEditData.teamAllowed || '상관없어요');
-  const [viewStyle, setViewStyle] = useState<string>(mockEditData.style);
+  const [mateTeam, setMateTeam] = useState(mockEditData.teamAllowed || '상관없어요');
+  const [viewStyle, setViewStyle] = useState(mockEditData.style);
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  const initialValue = useRef({
+    team: mockEditData.team,
+    gender: mockEditData.genderPreference,
+    mateTeam: mockEditData.teamAllowed || '상관없어요',
+    viewStyle: mockEditData.style,
+  });
+
+  const isDirty = useMemo(() => {
+    const init = initialValue.current;
+
+    return (
+      team !== init.team ||
+      gender !== init.gender ||
+      mateTeam !== init.mateTeam ||
+      viewStyle !== init.viewStyle
+    );
+  }, [team, gender, mateTeam, viewStyle]);
+
+  const handleSaveClick = () => {
+    if (!isDirty) return;
+
+    setIsSubmit(true);
+
+    // TODO: 실제 API 호출
+  };
 
   return (
     <div className="h-full bg-gray-white px-[1.6rem] pt-[1.6rem] pb-[4rem]">
@@ -98,7 +125,12 @@ const EditProfile = () => {
         </div>
       </section>
 
-      <Button label="매칭 조건 수정" />
+      <Button
+        onClick={handleSaveClick}
+        label="매칭 조건 수정"
+        disabled={!isDirty || isSubmit}
+        ariaLabel="매칭 조건 수정"
+      />
     </div>
   );
 };
