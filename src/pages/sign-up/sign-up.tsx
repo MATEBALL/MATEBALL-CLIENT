@@ -5,17 +5,14 @@ import { SIGNUP_STEPS } from '@pages/sign-up/constants/validation';
 import { ROUTES } from '@routes/routes-config';
 
 const SignUp = () => {
-  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
-    SIGNUP_STEPS,
-    ROUTES.HOME,
-  );
+  const { Funnel, Step, goNext } = useFunnel(SIGNUP_STEPS, ROUTES.HOME);
 
   return (
     <div className="h-full flex-col bg-gray-white">
       <div className="flex-1">
         <Funnel>
           <Step name="AGREEMENT">
-            <AgreementStep />
+            <AgreementStep next={goNext} />
           </Step>
           <Step name="INFORMATION">
             <SignupStep />

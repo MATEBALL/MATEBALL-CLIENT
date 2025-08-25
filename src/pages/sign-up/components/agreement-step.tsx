@@ -2,7 +2,11 @@ import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import { useState } from 'react';
 
-const AgreementStep = () => {
+interface AgreementStepProps {
+  next: () => void;
+}
+
+const AgreementStep = ({ next }: AgreementStepProps) => {
   const [terms, setTerms] = useState(false);
   const [privacy, setPrivacy] = useState(false);
 
@@ -64,7 +68,7 @@ const AgreementStep = () => {
           </div>
         </div>
         <div className="px-[1.6rem]">
-          <Button label="다음으로" disabled={!isAllChecked} />
+          <Button label="다음으로" disabled={!isAllChecked} onClick={next} />
         </div>
       </div>
     </div>
