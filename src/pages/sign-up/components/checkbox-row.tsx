@@ -15,7 +15,6 @@ const CheckboxRow = ({ label, checked, onClick, svg, divider, className }: Check
   return (
     <button
       type="button"
-      onClick={onClick}
       className={cn(
         'flex w-full items-center justify-between gap-[0.8rem] p-[0.8rem] px-[1.6rem] text-left',
         divider && 'border-gray-200 border-b',
@@ -23,7 +22,11 @@ const CheckboxRow = ({ label, checked, onClick, svg, divider, className }: Check
       )}
     >
       <div className="flex items-center gap-[0.8rem]">
-        <Icon name="check-filled" className={checked ? 'text-main-800' : 'text-gray-300'} />
+        <Icon
+          name="check-filled"
+          onClick={onClick}
+          className={checked ? 'text-main-800' : 'text-gray-300'}
+        />
         <span className="body_16_m">{label}</span>
       </div>
       {svg}
