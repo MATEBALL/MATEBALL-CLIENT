@@ -60,7 +60,7 @@ export const getHeaderContent = (
   }
 
   if (pathname === ROUTES.PROFILE) {
-    return <h1 className="head_20_sb text-gray-black">내 정보</h1>;
+    return <h1 className="head_20_sb text-gray-black">마이페이지</h1>;
   }
 
   if (pathname === ROUTES.CHAT) {

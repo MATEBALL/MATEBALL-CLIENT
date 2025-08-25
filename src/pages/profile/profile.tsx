@@ -14,6 +14,7 @@ const Profile = () => {
     <div className="h-full flex-col-between">
       <div className="w-full flex-col-center gap-[1.6rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
         <Card
+          className="!shadow-none"
           type="user"
           nickname={data.nickname ?? ''}
           imgUrl={[data.imgUrl ?? '']}
@@ -24,7 +25,7 @@ const Profile = () => {
           introduction={data.introduction ?? ''}
           chips={[(data.team ?? '') as ChipColor, (data.style ?? '') as ChipColor]}
         />
-        <Button size="L" label="매칭 조건 재설정 하기" />
+        <Button size="L" label="프로필 · 매칭 조건 수정" />
       </div>
       <Footer />
     </div>

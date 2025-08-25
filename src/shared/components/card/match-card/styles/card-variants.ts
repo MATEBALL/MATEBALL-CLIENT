@@ -9,7 +9,7 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
       user: 'p-[2rem] shadow-1',
     },
     color: {
-      active: 'bg-main-200 outline outline-[1px] outline-main-600',
+      active: 'bg-main-200 outline outline-main-600',
       inactive: 'bg-white',
     },
   },
