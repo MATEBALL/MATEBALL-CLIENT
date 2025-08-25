@@ -2,6 +2,7 @@ import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Card from '@components/card/match-card/card';
 import type { ChipColor } from '@components/chip/chip-list';
+import Divider from '@components/divider/divider';
 import Footer from '@components/footer/footer';
 import { useQuery } from '@tanstack/react-query';
 
@@ -27,6 +28,7 @@ const Profile = () => {
         />
         <Button size="L" label="프로필 · 매칭 조건 수정" />
       </div>
+      <Divider thickness={0.4} color="bg-gray-200" />
       <Footer />
     </div>
   );
