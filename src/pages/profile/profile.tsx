@@ -6,6 +6,7 @@ import type { ChipColor } from '@components/chip/chip-list';
 import Divider from '@components/divider/divider';
 import Footer from '@components/footer/footer';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { FEEDBACK_LINK, REQUEST_LINK } from './constants/link';
 
 const Profile = () => {
   const { data } = useQuery(userQueries.USER_INFO());
@@ -41,7 +42,7 @@ const Profile = () => {
           type="button"
           aria-label="문의하기"
           className="cap_14_m py-[0.8rem] text-gray-800"
-          onClick={() => handleClick('https://notion')}
+          onClick={() => handleClick(REQUEST_LINK)}
         >
           <p>문의하기</p>
         </button>
@@ -49,7 +50,7 @@ const Profile = () => {
           type="button"
           aria-label="의견 보내기"
           className="cap_14_m py-[0.8rem] text-gray-800"
-          onClick={() => handleClick('https://notion')}
+          onClick={() => handleClick(FEEDBACK_LINK)}
         >
           <p>의견 보내기</p>
         </button>
