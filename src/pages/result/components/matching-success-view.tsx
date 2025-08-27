@@ -32,7 +32,8 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
           </div>
         </div>
         <p className="body_16_m z-[var(--z-card-profile-4)] text-center text-gray-600">
-          이제 메이트와 소통할 수 있어요! <br />첫 인사를 건네볼까요?
+          이제 메이트와 소통할 수 있어요. <br />
+          채팅방에서는 기본 예의와 매너를 지켜주세요.
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
