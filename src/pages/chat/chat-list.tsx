@@ -1,20 +1,14 @@
-import { mockChatData } from '@mocks/mockChatData';
-import ChatCard from '@pages/chat/components/chat-card';
-import { ROUTES } from '@routes/routes-config';
-import { useNavigate } from 'react-router-dom';
+import Icon from '@components/icon/icon';
 
 const ChatList = () => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(ROUTES.CHAT_ROOM);
-  };
-
   return (
-    <div className="flex-col gap-[1.2rem] p-[1.6rem]">
-      {mockChatData.map((chat) => (
-        <ChatCard key={chat.id} chat={chat} onClick={handleClick} />
-      ))}
+    <div className="h-full flex-col-center gap-[0.8rem]">
+      <Icon name="graphic_chat_empty" width={16} height={16} />
+      <p className="cap_14_sb text-center text-gray-800">
+        채팅 기능은 아직 준비 중이에요!
+        <br />
+        완료된 매칭은 '매칭 현황'에서 확인하고 소통할 수 있어요.
+      </p>
     </div>
   );
 };
