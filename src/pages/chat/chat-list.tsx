@@ -2,7 +2,7 @@ import Icon from '@components/icon/icon';
 
 const ChatList = () => {
   return (
-    <div className="h-full flex-col-center gap-[0.8rem]">
+    <div className="h-full flex-col-center gap-[0.8rem] bg-gray-white">
       <Icon name="graphic_chat_empty" width={16} height={16} />
       <p className="cap_14_sb text-center text-gray-800">
         채팅 기능은 아직 준비 중이에요!
