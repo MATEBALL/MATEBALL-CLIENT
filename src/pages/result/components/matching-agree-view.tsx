@@ -39,11 +39,6 @@ const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button
-          label="메이트 더 찾아보기"
-          variant="skyblue"
-          onClick={() => navigate(ROUTES.HOME)}
-        />
         <Button label="매칭 현황 보기" onClick={() => navigate(ROUTES.MATCH)} />
       </div>
     </div>
