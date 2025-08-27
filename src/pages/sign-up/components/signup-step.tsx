@@ -7,11 +7,17 @@ import queryClient from '@libs/query-client';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
+  INFORMATION_RULE_MESSAGE,
   NICKNAME_RULE_MESSAGE,
   NICKNAME_SUCCESS_MESSAGE,
   NICKNAME_TITLE,
 } from '@pages/sign-up/constants/NOTICE';
-import { BIRTH_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
+import {
+  BIRTH_PLACEHOLDER,
+  INFORMATION_MAX_LENGTH,
+  INFORMATION_PLACEHOLDER,
+  NICKNAME_PLACEHOLDER,
+} from '@pages/sign-up/constants/validation';
 import { type NicknameFormValues, NicknameSchema } from '@pages/sign-up/schema/validation-schema';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
@@ -28,7 +34,7 @@ const SignupStep = () => {
   } = useForm<NicknameFormValues>({
     mode: 'onChange',
     resolver: zodResolver(NicknameSchema),
-    defaultValues: { nickname: '', gender: undefined, birthYear: '' },
+    defaultValues: { nickname: '', gender: undefined, birthYear: '', information: '' },
   });
 
   const navigate = useNavigate();
@@ -36,12 +42,16 @@ const SignupStep = () => {
   const nicknameValue = watch('nickname');
   const birthYearValue = watch('birthYear');
   const genderValue = watch('gender');
+  const informationValue = watch('information');
 
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
+  const isInformationValid = !errors.information && informationValue.length > 0;
 
   const nicknameMutation = useMutation(userMutations.NICKNAME());
   const userInfoMutation = useMutation(userMutations.USER_INFO());
+
+  const informationLength = informationValue.length ?? 0;
 
   const onSubmit = (data: NicknameFormValues) => {
     nicknameMutation.mutate(
@@ -79,6 +89,12 @@ const SignupStep = () => {
     ...birthYearInputProps
   } = register('birthYear');
 
+  const {
+    onBlur: onInformationBlur,
+    ref: informationRef,
+    ...informationInputProps
+  } = register('information');
+
   const handleGenderClick = (gender: '여성' | '남성') => {
     setValue('gender', gender, { shouldValidate: true, shouldDirty: true });
   };
@@ -86,7 +102,7 @@ const SignupStep = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-full w-full flex-col justify-between gap-[4rem]"
+      className="h-full w-full flex-col justify-between gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem]"
     >
       <div className="w-full flex-col gap-[4rem]">
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>
@@ -103,8 +119,23 @@ const SignupStep = () => {
             {...nicknameInputProps}
           />
           <Input
+            placeholder={INFORMATION_PLACEHOLDER}
+            className="h-[10.4rem]"
+            label="한 줄 소개"
+            defaultMessage={INFORMATION_RULE_MESSAGE}
+            multiline
+            maxLength={INFORMATION_MAX_LENGTH}
+            isError={!!errors.information}
+            isValid={isInformationValid}
+            onBlur={onInformationBlur}
+            ref={informationRef}
+            length={informationLength}
+            hasLength
+            {...informationInputProps}
+          />
+          <Input
             placeholder={BIRTH_PLACEHOLDER}
-            label="생년"
+            label="출생 연도"
             defaultMessage={isBirthYearValid ? BIRTHYEAR_SUCCESS_MESSAGE : BIRTHYEAR_RULE_MESSAGE}
             validationMessage={errors.birthYear?.message}
             isError={!!errors.birthYear}

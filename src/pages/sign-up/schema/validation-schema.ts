@@ -2,6 +2,8 @@ import {
   BIRTH_ERROR_MESSAGES,
   GENDER_ERROR_MESSAGES,
   GENDER_OPTIONS,
+  INFORMATION_MAX_LENGTH,
+  INFORMATION_MIN_LENGTH,
   NICKNAME_ERROR_MESSAGES,
   NICKNAME_MAX_LENGTH,
   NICKNAME_MIN_LENGTH,
@@ -37,6 +39,7 @@ export const NicknameSchema = z.object({
   gender: z.enum(GENDER_OPTIONS, {
     required_error: GENDER_ERROR_MESSAGES.REQUIRED,
   }),
+  information: z.string().trim().min(INFORMATION_MIN_LENGTH).max(INFORMATION_MAX_LENGTH),
 });
 
 export type NicknameFormValues = z.infer<typeof NicknameSchema>;

@@ -3,6 +3,7 @@ export const iconNames = [
   'arrow-left-24',
   'arrow-left-white',
   'arrow-left',
+  'arrow-right-18',
   'arrow-right',
   'baseball',
   'calendar-16',

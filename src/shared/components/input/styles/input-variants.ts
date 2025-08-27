@@ -8,6 +8,6 @@ export const inputClassMap = {
 export const iconColorMap = {
   error: 'text-state-error',
   valid: 'text-state-success',
-  focus: 'text-gray-500',
-  default: 'text-gray-500',
+  focus: 'text-gray-600',
+  default: 'text-gray-600',
 };
