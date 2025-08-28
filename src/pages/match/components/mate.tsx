@@ -11,11 +11,14 @@ interface MateProps {
   matchId: number;
   onRequestClick: () => void;
   isGroupMatching?: boolean;
+}
+
+interface LayoutContext {
   setIsLoading: (value: boolean) => void;
 }
 
 const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) => {
-  const { setIsLoading } = useOutletContext<MateProps>();
+  const { setIsLoading } = useOutletContext<LayoutContext>();
 
   const { data, isLoading } = useQuery({
     ...matchQueries.MATCH_DETAIL(matchId, false),
