@@ -57,8 +57,8 @@ const SignupStep = () => {
     };
 
     try {
-      await userInfoMutation.mutateAsync(userData);
       await agreementInfoMutaion.mutateAsync({ hasAccepted: true });
+      await userInfoMutation.mutateAsync(userData);
     } catch (e) {
       console.error('signup failed:', e);
     }
