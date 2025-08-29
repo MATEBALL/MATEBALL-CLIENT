@@ -14,26 +14,19 @@ export interface getUserInfoResponse {
 }
 
 /**
- * 유저 정보 등록 요청
+ * 사용자 정보 설정
  * post
- * /v1/users/info
+ * /v2/users/info
  */
 export interface postUserInfoRequest {
-  gender: string;
-  birthYear: number;
-}
-
-/**
- * 유저 닉네임 등록 요청
- * post
- * /v1/users/info/nickname
- */
-export interface postUserInfoNicknameRequest {
   nickname: string;
+  introduction: string;
+  birthYear: number;
+  gender: string;
 }
 
 /**
- * 유저 약관동의
+ * 사용자 약관동의
  * post
  * /v2/users/consent
  */

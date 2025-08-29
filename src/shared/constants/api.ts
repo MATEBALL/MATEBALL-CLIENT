@@ -8,8 +8,7 @@ export const END_POINT = {
   // 유저 관련
   GET_KAKAO_INFO: '/v1/users/kakao/info',
   AGREEMENT_INFO: '/v2/users/consent',
-  USER_INFO: '/v1/users/info',
-  POST_INFO_NICKNAME: '/v1/users/info/nickname',
+  USER_INFO: '/v2/users/info',
 
   // 경기 관련
   GET_GAME_SCHEDULE: (date: string) => `/v1/users/game/schedule?date=${date}`,
