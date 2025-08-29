@@ -4,7 +4,11 @@ import { USER_KEY } from '@constants/query-key';
 import queryClient from '@libs/query-client';
 import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
-import type { postUserInfoNicknameRequest, postUserInfoRequest } from '@/shared/types/user-types';
+import type {
+  postAgreementInfoRequest,
+  postUserInfoNicknameRequest,
+  postUserInfoRequest,
+} from '@/shared/types/user-types';
 
 export const userMutations = {
   NICKNAME: () =>
@@ -31,5 +35,11 @@ export const userMutations = {
       onError: (err) => {
         console.error('로그아웃 실패', err);
       },
+    }),
+
+  AGREEEMENT_INFO: () =>
+    mutationOptions<responseTypes, Error, postAgreementInfoRequest>({
+      mutationKey: USER_KEY.AGREEMENT(),
+      mutationFn: ({ hasAccepted }) => post(END_POINT.AGREEMENT_INFO, { hasAccepted }),
     }),
 };

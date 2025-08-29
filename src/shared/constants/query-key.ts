@@ -3,6 +3,7 @@ export const USER_KEY = {
   ALL: ['user'] as const,
 
   KAKAO: () => [...USER_KEY.ALL, 'kakao'] as const,
+  AGREEMENT: () => [USER_KEY.ALL, 'agreement'] as const,
   INFO: () => [...USER_KEY.ALL, 'info'] as const,
   NICKNAME: () => [...USER_KEY.ALL, 'nickname'] as const,
   LOGOUT: () => [...USER_KEY.ALL, 'logout'] as const,

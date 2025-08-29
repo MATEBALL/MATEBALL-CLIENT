@@ -31,3 +31,12 @@ export interface postUserInfoRequest {
 export interface postUserInfoNicknameRequest {
   nickname: string;
 }
+
+/**
+ * 유저 약관동의
+ * post
+ * /v2/users/consent
+ */
+export interface postAgreementInfoRequest {
+  hasAccepted: boolean;
+}
