@@ -44,17 +44,24 @@ const SignupStep = () => {
   const isInformationValid = !errors.introduction && informationValue.length > 0;
 
   const userInfoMutation = useMutation(userMutations.USER_INFO());
+  const agreementInfoMutaion = useMutation(userMutations.AGREEEMENT_INFO());
 
   const informationLength = informationValue.length ?? 0;
 
-  const onSubmit = (data: UserInfoFormValues) => {
+  const onSubmit = async (data: UserInfoFormValues) => {
     const userData: postUserInfoRequest = {
       nickname: data.nickname,
       introduction: data.introduction,
       birthYear: Number(data.birthYear),
       gender: data.gender,
     };
-    userInfoMutation.mutate(userData);
+
+    try {
+      await userInfoMutation.mutateAsync(userData);
+      await agreementInfoMutaion.mutateAsync({ hasAccepted: true });
+    } catch (e) {
+      console.error('signup failed:', e);
+    }
   };
 
   const { onBlur: onNicknameBlur, ref: nicknameRef, ...nicknameInputProps } = register('nickname');
