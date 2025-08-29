@@ -57,7 +57,7 @@ const Profile = () => {
           type="button"
           onClick={() => logout()}
           aria-label="로그아웃"
-          className="cap_14_m py-[0.8rem] text-gray-800"
+          className="cap_14_m cursor-pointer py-[0.8rem] text-gray-800"
         >
           <p>로그아웃</p>
         </button>
