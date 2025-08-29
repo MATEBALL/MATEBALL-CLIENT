@@ -1,5 +1,6 @@
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
+import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
 import { PROFILE_SYNK_MATE } from '@pages/edit-profile/constants/edit-profile';
 import { mockEditData } from '@pages/edit-profile/mocks/mockEditData';
@@ -125,9 +126,10 @@ const EditProfile = () => {
       </section>
 
       <Button
+        variant={!isDirty || isSubmit ? 'disabled' : 'blue'}
+        className={cn((!isDirty || isSubmit) && 'cursor-not-allowed')}
         onClick={handleSaveClick}
         label="매칭 조건 수정"
-        disabled={!isDirty || isSubmit}
         ariaLabel="매칭 조건 수정"
       />
     </div>
