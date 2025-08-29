@@ -13,10 +13,6 @@ const Profile = () => {
 
   const { mutate: logout } = useMutation(userMutations.LOGOUT());
 
-  const handleClick = (link: string) => {
-    window.open(link, '_blank', 'noopener,noreferrer');
-  };
-
   if (!data) return null;
 
   return (
@@ -38,22 +34,24 @@ const Profile = () => {
       </div>
       <Divider thickness={0.4} color="bg-gray-200" />
       <section className="w-full flex-col items-start px-[1.6rem]">
-        <button
-          type="button"
+        <a
+          href={REQUEST_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="문의하기"
           className="cap_14_m py-[0.8rem] text-gray-800"
-          onClick={() => handleClick(REQUEST_LINK)}
         >
-          <p>문의하기</p>
-        </button>
-        <button
-          type="button"
+          문의하기
+        </a>
+        <a
+          href={FEEDBACK_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
           aria-label="의견 보내기"
           className="cap_14_m py-[0.8rem] text-gray-800"
-          onClick={() => handleClick(FEEDBACK_LINK)}
         >
-          <p>의견 보내기</p>
-        </button>
+          의견 보내기
+        </a>
         <Divider color="bg-gray-300" margin="my-[1.6rem]" />
         <button
           type="button"
