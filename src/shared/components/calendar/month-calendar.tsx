@@ -1,4 +1,4 @@
-import { WEEK_DAY_COLORS, WEEK_DAYS, WEEKDAY } from '@components/calendar/constants/CALENDAR';
+import { WEEK_DAY_COLORS, WEEK_DAYS } from '@components/calendar/constants/CALENDAR';
 import { calendarDayVariants } from '@components/calendar/styles/calendar-day-variants';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
@@ -70,8 +70,7 @@ const MonthCalendar = ({
           {days.map((day) => {
             const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
-            const isMonday = day.getDay() === WEEKDAY.MONDAY;
-            const isDisabled = isPast || isMonday;
+            const isDisabled = isPast;
             const isNotCurrentMonth = day < startDate || day > endDate;
 
             const handleClick = (day: Date) => {

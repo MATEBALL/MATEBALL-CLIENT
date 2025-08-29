@@ -1,4 +1,3 @@
-import { WEEKDAY } from '@components/calendar/constants/CALENDAR';
 import { getWeekDays } from '@components/calendar/utils/date-grid';
 import { DATE_SELECT_TOAST_MESSAGE } from '@constants/error-toast';
 import { cn } from '@libs/cn';
@@ -21,14 +20,9 @@ const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProp
     <div className="w-full flex-row-between gap-[1.2rem]">
       {days.map((day) => {
         const isSelected = isSameDay(day, value);
-        const isMonday = day.getDay() === WEEKDAY.MONDAY;
 
-        const dateColor = isMonday ? 'text-gray-600' : 'text-gray-white';
-        const dayColor = isSelected
-          ? 'text-main-400'
-          : isMonday
-            ? 'text-gray-600'
-            : 'text-gray-500';
+        const dateColor = 'text-gray-white';
+        const dayColor = isSelected ? 'text-main-400' : 'text-gray-500';
 
         const handleClick = (day: Date) => {
           const isBlocked = day <= addDays(entryDate, 1);
@@ -45,11 +39,8 @@ const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProp
             key={day.toISOString()}
             type="button"
             onClick={() => handleClick(day)}
-            disabled={isMonday}
             className={calendarDayVariants({
               weekSelected: isSelected,
-              disabled: isMonday,
-              isMonday,
               size: 'week',
             })}
           >
