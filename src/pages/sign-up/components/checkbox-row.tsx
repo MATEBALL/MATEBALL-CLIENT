@@ -9,9 +9,10 @@ interface CheckboxProps {
   svg?: ReactNode;
   divider?: boolean;
   className?: string;
+  link?: string;
 }
 
-const CheckboxRow = ({ label, checked, onClick, svg, divider, className }: CheckboxProps) => {
+const CheckboxRow = ({ label, checked, onClick, svg, divider, className, link }: CheckboxProps) => {
   return (
     <button
       type="button"
@@ -27,7 +28,10 @@ const CheckboxRow = ({ label, checked, onClick, svg, divider, className }: Check
         </button>
         <span className="body_16_m">{label}</span>
       </div>
-      {svg}
+      <a href={link} className="cursor-pointer">
+        {' '}
+        {svg}
+      </a>
     </button>
   );
 };
