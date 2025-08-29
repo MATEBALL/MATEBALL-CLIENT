@@ -14,8 +14,7 @@ interface CheckboxProps {
 
 const CheckboxRow = ({ label, checked, onClick, svg, divider, className, link }: CheckboxProps) => {
   return (
-    <button
-      type="button"
+    <div
       className={cn(
         'flex w-full items-center justify-between gap-[0.8rem] p-[0.8rem] px-[1.6rem] text-left',
         divider && 'border-gray-200 border-b',
@@ -31,7 +30,7 @@ const CheckboxRow = ({ label, checked, onClick, svg, divider, className, link }:
       <a href={link} className="cursor-pointer" target="_blank" rel="noopener noreferrer">
         {svg}
       </a>
-    </button>
+    </div>
   );
 };
 
