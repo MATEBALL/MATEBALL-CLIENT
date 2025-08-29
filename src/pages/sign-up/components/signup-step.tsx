@@ -1,9 +1,7 @@
-import { authQueries } from '@apis/auth/auth';
 import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import queryClient from '@libs/query-client';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
@@ -14,15 +12,14 @@ import {
 } from '@pages/sign-up/constants/NOTICE';
 import {
   BIRTH_PLACEHOLDER,
-  INFORMATION_MAX_LENGTH,
-  INFORMATION_PLACEHOLDER,
+  INTRODUCTION_MAX_LENGTH,
+  INTRODUCTION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
 } from '@pages/sign-up/constants/validation';
-import { type NicknameFormValues, NicknameSchema } from '@pages/sign-up/schema/validation-schema';
-import { ROUTES } from '@routes/routes-config';
+import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
 import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import type { postUserInfoRequest } from '@/shared/types/user-types';
 
 const SignupStep = () => {
   const {
@@ -31,54 +28,33 @@ const SignupStep = () => {
     formState: { errors, isValid },
     watch,
     setValue,
-  } = useForm<NicknameFormValues>({
+  } = useForm<UserInfoFormValues>({
     mode: 'onChange',
-    resolver: zodResolver(NicknameSchema),
-    defaultValues: { nickname: '', gender: undefined, birthYear: '', information: '' },
+    resolver: zodResolver(UserInfoSchema),
+    defaultValues: { nickname: '', gender: undefined, birthYear: '', introduction: '' },
   });
-
-  const navigate = useNavigate();
 
   const nicknameValue = watch('nickname');
   const birthYearValue = watch('birthYear');
   const genderValue = watch('gender');
-  const informationValue = watch('information');
+  const informationValue = watch('introduction');
 
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
-  const isInformationValid = !errors.information && informationValue.length > 0;
+  const isInformationValid = !errors.introduction && informationValue.length > 0;
 
-  const nicknameMutation = useMutation(userMutations.NICKNAME());
   const userInfoMutation = useMutation(userMutations.USER_INFO());
 
   const informationLength = informationValue.length ?? 0;
 
-  const onSubmit = (data: NicknameFormValues) => {
-    nicknameMutation.mutate(
-      { nickname: data.nickname },
-      {
-        onSuccess: () => {
-          userInfoMutation.mutate(
-            {
-              gender: data.gender,
-              birthYear: Number(data.birthYear),
-            },
-            {
-              onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
-                navigate(ROUTES.HOME);
-              },
-              onError: (error) => {
-                console.error(error);
-              },
-            },
-          );
-        },
-        onError: (error) => {
-          console.error(error);
-        },
-      },
-    );
+  const onSubmit = (data: UserInfoFormValues) => {
+    const userData: postUserInfoRequest = {
+      nickname: data.nickname,
+      introduction: data.introduction,
+      birthYear: Number(data.birthYear),
+      gender: data.gender,
+    };
+    userInfoMutation.mutate(userData);
   };
 
   const { onBlur: onNicknameBlur, ref: nicknameRef, ...nicknameInputProps } = register('nickname');
@@ -93,7 +69,7 @@ const SignupStep = () => {
     onBlur: onInformationBlur,
     ref: informationRef,
     ...informationInputProps
-  } = register('information');
+  } = register('introduction');
 
   const handleGenderClick = (gender: '여성' | '남성') => {
     setValue('gender', gender, { shouldValidate: true, shouldDirty: true });
@@ -119,13 +95,13 @@ const SignupStep = () => {
             {...nicknameInputProps}
           />
           <Input
-            placeholder={INFORMATION_PLACEHOLDER}
+            placeholder={INTRODUCTION_PLACEHOLDER}
             className="h-[10.4rem]"
             label="한 줄 소개"
             defaultMessage={INFORMATION_RULE_MESSAGE}
             multiline
-            maxLength={INFORMATION_MAX_LENGTH}
-            isError={!!errors.information}
+            maxLength={INTRODUCTION_MAX_LENGTH}
+            isError={!!errors.introduction}
             isValid={isInformationValid}
             onBlur={onInformationBlur}
             ref={informationRef}
