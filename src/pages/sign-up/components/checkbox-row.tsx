@@ -28,8 +28,7 @@ const CheckboxRow = ({ label, checked, onClick, svg, divider, className, link }:
         </button>
         <span className="body_16_m">{label}</span>
       </div>
-      <a href={link} className="cursor-pointer">
-        {' '}
+      <a href={link} className="cursor-pointer" target="_blank" rel="noopener noreferrer">
         {svg}
       </a>
     </button>
