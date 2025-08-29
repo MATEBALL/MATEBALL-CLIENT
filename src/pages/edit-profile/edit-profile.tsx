@@ -103,8 +103,9 @@ const EditProfile = () => {
           <SelectionGroup
             title="직관 메이트의 응원팀"
             options={PROFILE_SYNK_MATE}
-            selectedValue={mateTeam}
+            selectedValue={team === NO_TEAM_OPTION ? '' : mateTeam}
             onSelect={setMateTeam}
+            disabled={team === NO_TEAM_OPTION}
           />
 
           <SelectionGroup
