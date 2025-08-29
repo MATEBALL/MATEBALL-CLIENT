@@ -1,4 +1,5 @@
 import Button from '@components/button/button/button';
+import { cn } from '@libs/cn';
 
 interface SelectionGroupProps {
   title: string;
@@ -28,10 +29,15 @@ const SelectionGroup = ({
             <Button
               key={key}
               label={label}
-              variant={isSelected ? 'skyblue' : 'gray2'}
-              className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
-              onClick={() => onSelect(label)}
-              disabled={disabled}
+              variant={disabled ? 'disabled' : isSelected ? 'skyblue' : 'gray2'}
+              className={cn(
+                'cap_14_sb w-auto px-[1.6rem] py-[0.6rem]',
+                disabled && 'cursor-not-allowed',
+              )}
+              onClick={() => {
+                if (disabled) return;
+                onSelect(label);
+              }}
             />
           );
         })}
