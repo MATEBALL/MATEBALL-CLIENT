@@ -5,9 +5,16 @@ interface SelectionGroupProps {
   options: { id: number; label: string }[] | string[];
   selectedValue: string;
   onSelect: (value: string) => void;
+  disabled?: boolean;
 }
 
-const SelectionGroup = ({ title, options, selectedValue, onSelect }: SelectionGroupProps) => {
+const SelectionGroup = ({
+  title,
+  options,
+  selectedValue,
+  onSelect,
+  disabled,
+}: SelectionGroupProps) => {
   return (
     <div className="flex-col gap-[1.6rem]">
       <p className="body_16_m">{title}</p>
@@ -24,6 +31,7 @@ const SelectionGroup = ({ title, options, selectedValue, onSelect }: SelectionGr
               variant={isSelected ? 'skyblue' : 'gray2'}
               className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
               onClick={() => onSelect(label)}
+              disabled={disabled}
             />
           );
         })}
