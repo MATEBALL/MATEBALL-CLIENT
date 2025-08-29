@@ -23,7 +23,7 @@ const EditProfile = () => {
   const initialValue = useRef({
     team: mockEditData.team,
     gender: mockEditData.genderPreference,
-    mateTeam: mockEditData.teamAllowed || '상관없어요',
+    mateTeam: mockEditData.teamAllowed,
     viewStyle: mockEditData.style,
   });
 
