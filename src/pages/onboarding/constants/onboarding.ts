@@ -30,17 +30,17 @@ export const SYNC_MATE = ['같은 팀 메이트와 보고 싶어요', '상관없
 export const VIEWING_STYLE = [
   {
     id: 1,
-    label: '열정응원러',
+    label: '열정 응원러',
     icon: 'passion',
   },
   {
     id: 2,
-    label: '경기집중러',
+    label: '경기 집중러',
     icon: 'focus',
   },
   {
     id: 3,
-    label: '직관먹방러',
+    label: '직관 먹방러',
     icon: 'eat',
   },
 ];
