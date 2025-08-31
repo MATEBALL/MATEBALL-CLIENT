@@ -21,6 +21,7 @@ export const iconNames = [
   'close',
   'eat',
   'empty',
+  'empty-2',
   'error',
   'female',
   'focus',

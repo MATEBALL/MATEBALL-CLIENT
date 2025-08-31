@@ -1,7 +1,8 @@
+import { gameQueries } from '@apis/game/game-queries';
 import { matchQueries } from '@apis/match/match-queries';
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
-import EmptyState from '@components/ui/empty-state';
+import EmptyView from '@components/ui/empty-view';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
@@ -36,6 +37,11 @@ const MatchListSection = ({
     enabled: isGroup,
   });
 
+  // 경기 정보 조회
+  const { data: gameSchedule, isLoading: gameLoading } = useQuery({
+    ...gameQueries.GAME_LIST(formattedDate),
+  });
+
   const filteredMatches = useMemo(() => {
     return isSingle ? (singleMatchData?.mates ?? []) : (groupMatchData?.mates ?? []);
   }, [isSingle, singleMatchData, groupMatchData]);
@@ -48,24 +54,39 @@ const MatchListSection = ({
     }
   };
 
+  // 경기가 없는 경우 (데이터가 없거나 404 에러)
+  const hasGames = gameSchedule && Array.isArray(gameSchedule) && gameSchedule.length > 0;
+
   return (
     <section className="p-[1.6rem]">
       <ButtonCreate
         label="맞춤 매칭 생성하기"
         className="ml-auto"
-        onClick={onOpenGameInfoBottomSheet}
+        textColor={!gameLoading && !hasGames ? 'text-gray-500' : undefined}
+        onClick={!gameLoading && !hasGames ? undefined : onOpenGameInfoBottomSheet}
       />
 
-      {filteredMatches.length > 0 ? (
-        <div className="mt-[1.6rem] space-y-[0.8rem]">
-          {renderMatchCards(filteredMatches, isSingle, handleCardClick)}
-        </div>
-      ) : (
-        <EmptyState
+      {!gameLoading && !hasGames ? (
+        // 경기가 없는 경우
+        <EmptyView
+          iconName="empty-2"
+          className="mt-[4rem]"
+          text="해당 날짜에는 진행되는 경기가 없어요!"
+          subText="경기가 있는 다른 날짜를 탐색해 보세요."
+        />
+      ) : filteredMatches.length === 0 ? (
+        // 경기는 있지만 매칭이 없는 경우
+        <EmptyView
+          iconName="empty"
           className="mt-[4rem]"
           text="해당 날짜에 등록된 매칭이 없어요!"
           subText="맞춤 매칭을 생성하거나, 다른 날짜를 탐색해 보세요."
         />
+      ) : (
+        // 매칭이 있는 경우
+        <div className="mt-[1.6rem] space-y-[0.8rem]">
+          {renderMatchCards(filteredMatches, isSingle, handleCardClick)}
+        </div>
       )}
     </section>
   );

@@ -50,7 +50,19 @@ export const matchQueries = {
   SINGLE_MATCH_LIST: (date: string) =>
     queryOptions<getSingleMatchListResponse>({
       queryKey: MATCH_KEY.LIST.SINGLE(date),
-      queryFn: () => get(END_POINT.GET_SINGLE_LIST(date)),
+      queryFn: async () => {
+        try {
+          const res = await get<getSingleMatchListResponse>(END_POINT.GET_SINGLE_LIST(date));
+          return res;
+        } catch (error: any) {
+          // 404 에러는 매칭이 없는 것이므로 빈 데이터 반환
+          if (error?.response?.status === 404) {
+            return { mates: [] };
+          }
+          // 다른 에러는 다시 던지기
+          throw error;
+        }
+      },
     }),
 
   /**
@@ -59,7 +71,19 @@ export const matchQueries = {
   GROUP_MATCH_LIST: (date: string) =>
     queryOptions<getGroupMatchListResponse>({
       queryKey: MATCH_KEY.LIST.GROUP(date),
-      queryFn: () => get(END_POINT.GET_GROUP_LIST(date)),
+      queryFn: async () => {
+        try {
+          const res = await get<getGroupMatchListResponse>(END_POINT.GET_GROUP_LIST(date));
+          return res;
+        } catch (error: any) {
+          // 404 에러는 매칭이 없는 것이므로 빈 데이터 반환
+          if (error?.response?.status === 404) {
+            return { mates: [] };
+          }
+          // 다른 에러는 다시 던지기
+          throw error;
+        }
+      },
     }),
 
   /**
