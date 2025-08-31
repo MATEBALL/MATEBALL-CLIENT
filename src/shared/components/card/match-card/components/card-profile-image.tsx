@@ -29,7 +29,7 @@ const CardProfile = ({ type, imgUrl = [] }: CardProfileProps) => {
             profileVariants({ type }),
           )}
         >
-          <Icon size={2.8} name="profile" className={cn('rounded-full text-gray-black')} />
+          <Icon size={2.8} name="profile" className={cn('rounded-full')} />
         </div>,
       );
     });

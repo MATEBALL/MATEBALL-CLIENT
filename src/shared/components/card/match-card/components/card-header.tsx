@@ -22,7 +22,7 @@ const CardHeader = (props: CardProps) => {
     }
     return {
       box: 'h-[1.6rem] w-[1.6rem]',
-      pos: '-left-[0.3rem] -bottom-[0.4rem]',
+      pos: 'right-[0.3rem] -bottom-[0.2rem]',
       size: 1.6 as const,
     };
   };
