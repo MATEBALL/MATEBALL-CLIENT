@@ -7,7 +7,7 @@ export const buttonVariants = cva(
       variant: {
         blue: 'bg-main-900 text-white',
         gray: 'bg-gray-400 text-white',
-        skyblue: '!text-main-900 bg-main-200',
+        skyblue: 'bg-main-200 text-main-900',
         white: 'bg-white text-gray-700',
         skyblueBorder: 'bg-main-200 text-main-900 outline outline-main-900',
         gray2: 'bg-background text-gray-700',

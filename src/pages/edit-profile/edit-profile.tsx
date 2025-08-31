@@ -3,7 +3,7 @@ import Divider from '@components/divider/divider';
 import Input from '@components/input/input';
 import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
-import { PROFILE_SYNK_MATE } from '@pages/edit-profile/constants/edit-profile';
+import { PROFILE_SYNC_MATE } from '@pages/edit-profile/constants/edit-profile';
 import { mockEditData } from '@pages/edit-profile/mocks/mockEditData';
 import {
   GENDER,
@@ -63,15 +63,15 @@ const EditProfile = () => {
           <Button label="수정" className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]" />
         </div>
 
-          <Input
-            placeholder={INFORMATION_PLACEHOLDER}
-            defaultMessage={INFORMATION_RULE_MESSAGE}
-            length={0}
-            hasLength
-            className="h-[10.4rem]"
-            label="한 줄 소개"
-            multiline
-          />
+        <Input
+          placeholder={INFORMATION_PLACEHOLDER}
+          defaultMessage={INFORMATION_RULE_MESSAGE}
+          length={0}
+          hasLength
+          className="h-[10.4rem]"
+          label="한 줄 소개"
+          multiline
+        />
         <div className="flex justify-end">
           <Button label="수정" className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]" />
         </div>
@@ -106,16 +106,19 @@ const EditProfile = () => {
               <Button
                 label={NO_TEAM_OPTION}
                 variant={team === NO_TEAM_OPTION ? 'skyblue' : 'gray2'}
-                className="cap_14_sb w-fit px-[1.6rem] py-[0.6rem] text-gray-900"
-                onClick={() => setTeam(NO_TEAM_OPTION)}
+                className="cap_14_sb w-fit px-[1.6rem] py-[0.6rem] "
+                onClick={() => {
+                  setTeam(NO_TEAM_OPTION);
+                  setMateTeam('상관없어요');
+                }}
               />
             </div>
           </div>
 
           <SelectionGroup
             title="직관 메이트의 응원팀"
-            options={PROFILE_SYNK_MATE}
-            selectedValue={team === NO_TEAM_OPTION ? '' : mateTeam}
+            options={PROFILE_SYNC_MATE}
+            selectedValue={mateTeam}
             onSelect={setMateTeam}
             disabled={team === NO_TEAM_OPTION}
           />
@@ -138,7 +141,7 @@ const EditProfile = () => {
 
       <Button
         variant={isSubmitDisabled ? 'disabled' : 'blue'}
-        className={cn((isSubmitDisabled) && 'cursor-not-allowed')}
+        className={cn(isSubmitDisabled && 'cursor-not-allowed')}
         onClick={handleSaveClick}
         label="매칭 조건 수정"
         ariaLabel="매칭 조건 수정"
