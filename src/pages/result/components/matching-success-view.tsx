@@ -1,3 +1,4 @@
+import { alarmMutations } from '@apis/alarm/alarm-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
@@ -7,7 +8,7 @@ import { ENTER_CHAT_COOLDOWN_MS } from '@pages/result/constants/matching-result'
 import { parseId } from '@pages/result/utils/number';
 import { openExternal } from '@pages/result/utils/url';
 import { ROUTES } from '@routes/routes-config';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
@@ -28,6 +29,8 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const matchIdFromQuery = parseId(params.get('matchId'));
   const matchId = Number.isFinite(matchIdFromPath) ? matchIdFromPath : matchIdFromQuery;
   const isValidMatchId = Number.isFinite(matchId);
+
+  const { mutate: readAlarm } = useMutation(alarmMutations.READ_ALARM());
 
   usePreventBackNavigation(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
 
@@ -53,12 +56,18 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const handleEnterChatClick = useCallback((): void => {
     if (!openChatUrl || clicking) return;
     setClicking(true);
+
+    const matchId = Number(params.get('matchId'));
+    if (Number.isFinite(matchId)) {
+      readAlarm(matchId);
+    }
+
     openExternal(openChatUrl);
     cooldownRef.current = window.setTimeout(() => {
       setClicking(false);
       cooldownRef.current = null;
     }, ENTER_CHAT_COOLDOWN_MS);
-  }, [clicking, openChatUrl]);
+  }, [clicking, openChatUrl, params, readAlarm]);
 
   const disabled = isUrlLoading || isError || clicking || !openChatUrl;
 

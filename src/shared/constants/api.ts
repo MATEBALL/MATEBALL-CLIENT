@@ -44,4 +44,5 @@ export const END_POINT = {
 
   // 알림
   GET_UNREAD_ALARMS: '/v2/users/alarm',
+  POST_READ_ALARM: (matchId: number | string) => `/v2/users/alarm/${matchId}`,
 };
