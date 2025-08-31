@@ -7,7 +7,7 @@ type ShowToastOptions = {
   bottom?: string;
 };
 
-const isValidLen = (v: string) => /^-?\d+(\.\d+)?(rem|px|vh|vw|%)$/.test(v);
+const isValidLen = (v: string) => /^-?\d+(\.\d+)?rem$/i.test(v.trim());
 
 const makeOffsetClass = (v: string) => {
   const clean = v.trim();
@@ -17,7 +17,7 @@ const makeOffsetClass = (v: string) => {
 
 const isShowToastOptions = (v: unknown): v is ShowToastOptions => {
   if (v === null || typeof v !== 'object') return false;
-  return 'icon' in v || 'offsetBottom' in v || 'bottom' in v;
+  return 'icon' in v || 'bottom' in v;
 };
 
 type ShowErrorToastFn = {
