@@ -38,7 +38,7 @@ export const userMutations = {
       },
     }),
 
-  AGREEEMENT_INFO: () =>
+  AGREEMENT_INFO: () =>
     mutationOptions<responseTypes, Error, postAgreementInfoRequest>({
       mutationKey: USER_KEY.AGREEMENT(),
       mutationFn: ({ hasAccepted }) => post(END_POINT.AGREEMENT_INFO, { hasAccepted }),

@@ -44,7 +44,7 @@ const SignupStep = () => {
   const isInformationValid = !errors.introduction && informationValue.length > 0;
 
   const userInfoMutation = useMutation(userMutations.USER_INFO());
-  const agreementInfoMutaion = useMutation(userMutations.AGREEEMENT_INFO());
+  const agreementInfoMutaion = useMutation(userMutations.AGREEMENT_INFO());
 
   const informationLength = informationValue.length ?? 0;
 
