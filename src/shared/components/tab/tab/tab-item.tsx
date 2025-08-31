@@ -23,7 +23,7 @@ const TabItem = ({ label, isActive, style, onClick }: TabItemProps) => {
     >
       <span
         className={cn(
-          style.typography,
+          style.textStyle,
           'text-center',
           isActive ? style.textActive : style.textInactive,
         )}
