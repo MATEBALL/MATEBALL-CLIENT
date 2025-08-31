@@ -1,4 +1,5 @@
 import { userMutations } from '@apis/user/user-mutations';
+import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Divider from '@components/divider/divider';
 import Input from '@components/input/input';
@@ -6,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
 import { PROFILE_SYNC_MATE } from '@pages/edit-profile/constants/edit-profile';
-import { mockEditData } from '@pages/edit-profile/mocks/mockEditData';
 import {
   EditProfileSchema,
   type EditProfileValues,
@@ -19,15 +19,17 @@ import {
 } from '@pages/onboarding/constants/onboarding';
 import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
 import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
-import { useMutation } from '@tanstack/react-query';
-import { useMemo, useRef, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const EditProfile = () => {
-  const [team, setTeam] = useState(mockEditData.team);
-  const [gender, setGender] = useState(mockEditData.genderPreference);
-  const [mateTeam, setMateTeam] = useState<string>(mockEditData.teamAllowed?.[0] ?? '');
-  const [viewStyle, setViewStyle] = useState<string>(mockEditData.style?.[0] ?? '');
+  const { data } = useQuery(userQueries.MATCH_CONDITION());
+
+  const [team, setTeam] = useState<string | undefined>(undefined);
+  const [gender, setGender] = useState<string | undefined>(undefined);
+  const [mateTeam, setMateTeam] = useState<string | undefined>(undefined);
+  const [viewStyle, setViewStyle] = useState<string | undefined>(undefined);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
@@ -41,10 +43,7 @@ const EditProfile = () => {
   } = useForm<EditProfileValues>({
     resolver: zodResolver(EditProfileSchema),
     mode: 'onChange',
-    defaultValues: {
-      nickname: '',
-      information: '',
-    },
+    defaultValues: { nickname: '', information: '' },
   });
 
   const nicknameVal = watch('nickname', '');
@@ -53,37 +52,32 @@ const EditProfile = () => {
   const submitNickname = async () => {
     const ok = await trigger('nickname');
     if (!ok) return;
-    editProfile({
-      field: '닉네임',
-      value: getValues('nickname').trim(),
-    });
+    editProfile({ field: '닉네임', value: getValues('nickname').trim() });
   };
 
   const submitInformation = async () => {
     const ok = await trigger('information');
     if (!ok) return;
-    editProfile({
-      field: '소개',
-      value: getValues('information').trim(),
-    });
+    editProfile({ field: '소개', value: getValues('information').trim() });
   };
 
-  const initialValue = useRef({
-    team: mockEditData.team,
-    gender: mockEditData.genderPreference,
-    mateTeam: mockEditData.teamAllowed,
-    viewStyle: mockEditData.style,
-  });
+  const initial = {
+    team: data?.team ?? '',
+    gender: data?.genderPreference ?? '',
+    mateTeam: data?.teamAllowed ?? '',
+    viewStyle: data?.style?.replace(' ', '') ?? '',
+  };
 
-  const isMatchDirty = useMemo(() => {
-    const init = initialValue.current;
-    return (
-      team !== init.team ||
-      gender !== init.gender ||
-      mateTeam !== init.mateTeam ||
-      viewStyle !== init.viewStyle
-    );
-  }, [team, gender, mateTeam, viewStyle]);
+  const teamValue = team ?? initial.team;
+  const genderValue = gender ?? initial.gender;
+  const viewStyleValue = viewStyle ?? initial.viewStyle;
+  const mateTeamValue = (teamValue === NO_TEAM_OPTION ? '' : (mateTeam ?? initial.mateTeam)) ?? '';
+
+  const isMatchDirty =
+    teamValue !== initial.team ||
+    genderValue !== initial.gender ||
+    mateTeamValue !== initial.mateTeam ||
+    viewStyleValue !== initial.viewStyle;
 
   const isSubmitDisabled = !isMatchDirty || isSubmit;
 
@@ -158,6 +152,7 @@ const EditProfile = () => {
         <Divider thickness={0.4} />
       </div>
 
+      {/* 매칭 조건 */}
       <section className="flex-col pb-[5.6rem]">
         <h2 className="subhead_18_sb mb-[0.4rem]">매칭 조건 수정</h2>
         <p className="cap_12_m mb-[1.6rem] text-gray-500">
@@ -172,14 +167,14 @@ const EditProfile = () => {
                 <Button
                   key={option}
                   label={option}
-                  variant={team === option ? 'skyblue' : 'gray2'}
+                  variant={teamValue === option ? 'skyblue' : 'gray2'}
                   className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem]"
                   onClick={() => setTeam(option)}
                 />
               ))}
               <Button
                 label={NO_TEAM_OPTION}
-                variant={team === NO_TEAM_OPTION ? 'skyblue' : 'gray2'}
+                variant={teamValue === NO_TEAM_OPTION ? 'skyblue' : 'gray2'}
                 className="cap_14_sb w-fit px-[1.6rem] py-[0.6rem]"
                 onClick={() => {
                   setTeam(NO_TEAM_OPTION);
@@ -192,22 +187,22 @@ const EditProfile = () => {
           <SelectionGroup
             title="직관 메이트의 응원팀"
             options={PROFILE_SYNC_MATE}
-            selectedValue={mateTeam}
+            selectedValue={mateTeamValue}
             onSelect={setMateTeam}
-            disabled={team === NO_TEAM_OPTION}
+            disabled={teamValue === NO_TEAM_OPTION}
           />
 
           <SelectionGroup
             title="관람 스타일"
             options={VIEWING_STYLE}
-            selectedValue={viewStyle}
+            selectedValue={viewStyleValue}
             onSelect={setViewStyle}
           />
 
           <SelectionGroup
             title="선호 성별"
             options={GENDER}
-            selectedValue={gender}
+            selectedValue={genderValue}
             onSelect={setGender}
           />
         </div>

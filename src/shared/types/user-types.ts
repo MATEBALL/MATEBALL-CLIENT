@@ -41,3 +41,15 @@ export interface postEditProfileRequest {
   field: string;
   value: string;
 }
+
+/**
+ * 매칭 조건 조회
+ * get
+ * /v2/users/match-condition
+ */
+export interface getMatchConditionResponse {
+  team: string;
+  teamAllowed: string | null;
+  style: string;
+  genderPreference: string;
+}
