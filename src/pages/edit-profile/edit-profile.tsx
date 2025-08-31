@@ -15,22 +15,15 @@ import {
   type EditProfileValues,
 } from '@pages/edit-profile/schema/EditProfileSchema';
 import { GENDER, NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
-import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
-import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-  GENDER,
-  NO_TEAM_OPTION,
-  TEAMS,
-  VIEWING_STYLE,
-} from '@pages/onboarding/constants/onboarding';
 import { INTRODUCTION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
 import {
   INTRODUCTION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
 } from '@pages/sign-up/constants/validation';
-import { useMemo, useRef, useState } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+
 
 const EditProfile = () => {
   const { data } = useQuery(userQueries.MATCH_CONDITION());
@@ -53,11 +46,11 @@ const EditProfile = () => {
   } = useForm<EditProfileValues>({
     resolver: zodResolver(EditProfileSchema),
     mode: 'onChange',
-    defaultValues: { nickname: '', information: '' },
+    defaultValues: { nickname: '', introduction: '' },
   });
 
   const nicknameVal = watch('nickname', '');
-  const informationVal = watch('information', '');
+  const introductionVal = watch('introduction', '');
 
   const submitNickname = async () => {
     const ok = await trigger('nickname');
@@ -66,9 +59,9 @@ const EditProfile = () => {
   };
 
   const submitInformation = async () => {
-    const ok = await trigger('information');
+    const ok = await trigger('introduction');
     if (!ok) return;
-    editProfile({ field: '소개', value: getValues('information').trim() });
+    editProfile({ field: '소개', value: getValues('introduction').trim() });
   };
 
   const initial = {
@@ -135,28 +128,29 @@ const EditProfile = () => {
         </div>
 
         <Controller
-          name="information"
+          name="introduction"
           control={control}
           render={({ field, fieldState }) => (
             <Input
               {...field}
-              placeholder={INFORMATION_PLACEHOLDER}
-              defaultMessage={INFORMATION_RULE_MESSAGE}
+              placeholder={INTRODUCTION_PLACEHOLDER}
+              defaultMessage={INTRODUCTION_RULE_MESSAGE}
               isError={!!fieldState.error}
               isValid={!fieldState.error && field.value.trim().length > 0}
-              length={informationVal.length}
+              length={introductionVal.length}
               hasLength
               className="h-[10.4rem]"
               label="한 줄 소개"
               multiline
             />
           )}
+        />
         <div className="flex justify-end">
           <Button
             type="button"
             label="수정"
             onClick={submitInformation}
-            disabled={!!errors.information || informationVal.trim().length === 0 || isSubmitting}
+            disabled={!!errors.introduction || introductionVal.trim().length === 0 || isSubmitting}
             className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
           />
         </div>

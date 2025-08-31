@@ -1,9 +1,9 @@
-import { NicknameSchema } from '@pages/sign-up/schema/validation-schema';
+import { UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
 import type { z } from 'zod';
 
-export const EditProfileSchema = NicknameSchema.pick({
+export const EditProfileSchema = UserInfoSchema.pick({
   nickname: true,
-  information: true,
+  introduction: true,
 });
 
 export type EditProfileValues = z.infer<typeof EditProfileSchema>;

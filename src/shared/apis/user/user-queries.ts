@@ -16,7 +16,7 @@ export const userQueries = {
   USER_INFO: () =>
     queryOptions<getUserInfoResponse>({
       queryKey: USER_KEY.INFO(),
-      queryFn: () => get(END_POINT.USER_INFO),
+      queryFn: () => get(END_POINT.GET_USER_INFO),
     }),
 
   MATCH_CONDITION: () =>
