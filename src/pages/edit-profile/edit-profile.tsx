@@ -24,7 +24,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
-
 const EditProfile = () => {
   const { data } = useQuery(userQueries.MATCH_CONDITION());
 
