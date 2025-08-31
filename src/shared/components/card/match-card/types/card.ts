@@ -22,7 +22,7 @@ export interface BaseCardProps {
   status?: string;
   color?: ColorType;
   onClick?: () => void;
-  isCreated: boolean;
+  isCreated?: boolean;
 }
 
 export interface SingleCardProps extends BaseCardProps {
@@ -35,7 +35,7 @@ export interface SingleCardProps extends BaseCardProps {
   team: string;
   style: string;
   matchRate?: number;
-  isCreated: boolean;
+  isCreated?: boolean;
 }
 
 export interface GroupCardProps extends BaseCardProps {
@@ -43,7 +43,7 @@ export interface GroupCardProps extends BaseCardProps {
   count: number;
   color?: 'active' | 'inactive';
   matchRate?: number;
-  isCreated: boolean;
+  isCreated?: boolean;
 }
 
 export interface DetailedCardProps extends BaseCardProps {
@@ -55,7 +55,7 @@ export interface DetailedCardProps extends BaseCardProps {
   chips: ChipColor[];
   team: string;
   style: string;
-  isCreated: boolean;
+  isCreated?: boolean;
 }
 
 export interface UserCardProps {
@@ -70,7 +70,7 @@ export interface UserCardProps {
   className?: string;
   color?: 'active' | 'inactive';
   chips: ChipColor[];
-  isCreated: boolean;
+  isCreated?: boolean;
 }
 
 export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
