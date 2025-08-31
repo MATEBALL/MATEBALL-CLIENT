@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
-  INFORMATION_RULE_MESSAGE,
+  INTRODUCTION_RULE_MESSAGE,
   NICKNAME_RULE_MESSAGE,
   NICKNAME_SUCCESS_MESSAGE,
   NICKNAME_TITLE,
@@ -105,7 +105,7 @@ const SignupStep = () => {
             placeholder={INTRODUCTION_PLACEHOLDER}
             className="h-[10.4rem]"
             label="한 줄 소개"
-            defaultMessage={INFORMATION_RULE_MESSAGE}
+            defaultMessage={INTRODUCTION_RULE_MESSAGE}
             multiline
             maxLength={INTRODUCTION_MAX_LENGTH}
             isError={!!errors.introduction}
