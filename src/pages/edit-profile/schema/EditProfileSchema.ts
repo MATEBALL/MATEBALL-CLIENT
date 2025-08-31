@@ -1,5 +1,5 @@
 import { NicknameSchema } from '@pages/sign-up/schema/validation-schema';
-import { z } from 'zod';
+import type { z } from 'zod';
 
 export const EditProfileSchema = NicknameSchema.pick({
   nickname: true,
