@@ -1,4 +1,5 @@
 import Button from '@components/button/button/button';
+import Divider from '@components/divider/divider';
 import Input from '@components/input/input';
 import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
@@ -10,8 +11,8 @@ import {
   TEAMS,
   VIEWING_STYLE,
 } from '@pages/onboarding/constants/onboarding';
-import { NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
-import { NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
+import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
+import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
 import { useMemo, useRef, useState } from 'react';
 
 const EditProfile = () => {
@@ -39,6 +40,8 @@ const EditProfile = () => {
     );
   }, [team, gender, mateTeam, viewStyle]);
 
+  const isSubmitDisabled = !isDirty || isSubmit;
+
   const handleSaveClick = () => {
     if (!isDirty) return;
 
@@ -60,15 +63,23 @@ const EditProfile = () => {
           <Button label="수정" className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]" />
         </div>
 
-        <Input
-          placeholder={NICKNAME_PLACEHOLDER}
-          label="한 줄 소개"
-          defaultMessage={NICKNAME_RULE_MESSAGE}
-        />
+          <Input
+            placeholder={INFORMATION_PLACEHOLDER}
+            defaultMessage={INFORMATION_RULE_MESSAGE}
+            length={0}
+            hasLength
+            className="h-[10.4rem]"
+            label="한 줄 소개"
+            multiline
+          />
         <div className="flex justify-end">
           <Button label="수정" className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]" />
         </div>
       </section>
+
+      <div className="-mx-[1.6rem] my-[3.2rem]">
+        <Divider thickness={0.4} />
+      </div>
 
       <section className="flex-col pb-[5.6rem]">
         <h2 className="subhead_18_sb mb-[0.4rem]">매칭 조건 수정</h2>
@@ -126,8 +137,8 @@ const EditProfile = () => {
       </section>
 
       <Button
-        variant={!isDirty || isSubmit ? 'disabled' : 'blue'}
-        className={cn((!isDirty || isSubmit) && 'cursor-not-allowed')}
+        variant={isSubmitDisabled ? 'disabled' : 'blue'}
+        className={cn((isSubmitDisabled) && 'cursor-not-allowed')}
         onClick={handleSaveClick}
         label="매칭 조건 수정"
         ariaLabel="매칭 조건 수정"
