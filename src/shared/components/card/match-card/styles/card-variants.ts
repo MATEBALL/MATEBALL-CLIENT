@@ -22,10 +22,10 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
 export const profileVariants = cva('overflow-hidden rounded-full object-cover', {
   variants: {
     type: {
-      single: 'h-[6rem] w-[6rem]',
+      single: 'h-[6rem] w-[6rem] ',
       group: 'h-[2.8rem] w-[2.8rem]',
-      detailed: 'h-[8.2rem] w-[8.2rem]',
-      user: 'h-[8.2rem] w-[8.2rem]',
+      detailed: 'h-[8.2rem] w-[8.2rem] ',
+      user: 'h-[8.2rem] w-[8.2rem] ',
     },
   },
   defaultVariants: {

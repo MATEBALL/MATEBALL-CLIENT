@@ -4,6 +4,7 @@ import type { CardProfileProps } from '@components/card/match-card/types/card';
 import { normalizeUrls } from '@components/card/match-card/utils/normalize-urls';
 import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
+import type { ReactNode } from 'react';
 
 export type ProfileType = CardProfileProps['type'];
 
@@ -40,9 +41,9 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
             className="h-[2.8rem] w-[2.8rem] rounded-full object-cover"
           />
         ) : isEmptyTail ? (
-          <div className="h-[2.8rem] w-[2.8rem] rounded-full bg-gray-400" />
+          <div className="h-[2.8rem] w-[2.8rem] rounded-full bg-gray-300" />
         ) : (
-          <Icon size={2.8} name="profile" className="rounded-full" />
+          <Icon size={2.8} name="profile" className="rounded-full text-gray-black" />
         )}
       </div>
     );
