@@ -2,6 +2,7 @@ import { get } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import type {
   getGroupMatchListResponse,
   getGroupMatchMate,
@@ -54,9 +55,9 @@ export const matchQueries = {
         try {
           const res = await get<getSingleMatchListResponse>(END_POINT.GET_SINGLE_LIST(date));
           return res;
-        } catch (error: any) {
+        } catch (error) {
           // 404 에러는 매칭이 없는 것이므로 빈 데이터 반환
-          if (error?.response?.status === 404) {
+          if ((error as AxiosError)?.response?.status === 404) {
             return { mates: [] };
           }
           // 다른 에러는 다시 던지기
@@ -75,9 +76,9 @@ export const matchQueries = {
         try {
           const res = await get<getGroupMatchListResponse>(END_POINT.GET_GROUP_LIST(date));
           return res;
-        } catch (error: any) {
+        } catch (error) {
           // 404 에러는 매칭이 없는 것이므로 빈 데이터 반환
-          if (error?.response?.status === 404) {
+          if ((error as AxiosError)?.response?.status === 404) {
             return { mates: [] };
           }
           // 다른 에러는 다시 던지기
