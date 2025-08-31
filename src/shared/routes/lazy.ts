@@ -7,6 +7,9 @@ export const SignUp = lazy(() => import('@pages/sign-up/sign-up'));
 // Home
 export const Home = lazy(() => import('@pages/home/home'));
 
+// Guide
+export const Guide = lazy(() => import('@pages/guide/guide'));
+
 // Matching
 export const Onboarding = lazy(() => import('@pages/onboarding/onboarding'));
 export const OnboardingGroup = lazy(() => import('@pages/onboarding/onboarding-group'));

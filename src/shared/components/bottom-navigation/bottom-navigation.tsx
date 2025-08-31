@@ -16,11 +16,23 @@ const BottomNavigation = () => {
 
   const isActive = (path: string) => pathname === path;
 
-  const isDisabled = (path: string) => needsMatchingSetup && path !== ROUTES.HOME;
+  const isDisabled = (path: string | string[]) => {
+    if (Array.isArray(path)) {
+      // 홈 탭은 항상 활성화
+      return false;
+    }
+    return needsMatchingSetup && path !== ROUTES.HOME;
+  };
 
-  const handleTabClick = (path: string) => {
+  const handleTabClick = (path: string | string[]) => {
     if (isDisabled(path)) return;
-    navigate(path);
+
+    if (Array.isArray(path)) {
+      // 홈 탭 클릭 시 홈으로 이동
+      navigate(ROUTES.HOME);
+    } else {
+      navigate(path);
+    }
   };
 
   return (
