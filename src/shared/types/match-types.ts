@@ -12,6 +12,7 @@ export interface baseMate {
   homeTeam: string;
   stadium: string;
   date: string; // YYYY-MM-DD
+  isCreated: boolean;
 }
 
 /**
@@ -203,6 +204,7 @@ export interface getGroupMatchMate {
   status: string;
   count: number;
   imgUrl: string[];
+  isCreated: boolean;
 }
 
 /**

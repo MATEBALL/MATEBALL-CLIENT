@@ -3,20 +3,38 @@ import CardProfile from '@components/card/match-card/components/card-profile-ima
 import type { CardProps } from '@components/card/match-card/types/card';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
+import Icon from '@components/icon/icon';
+import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { matchPath, useLocation } from 'react-router-dom';
 
 const CardHeader = (props: CardProps) => {
-  const { type } = props;
   const { pathname } = useLocation();
-
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
-  switch (type) {
+  const renderProfile = (profileType: CardProps['type']) => (
+    <div className="relative">
+      <CardProfile type={profileType} imgUrl={props.imgUrl} />
+      {props.isCreated && (
+        <span
+          className={cn(
+            '-bottom-[0.4rem] -left-[0.4rem] absolute',
+            'grid h-[2.4rem] w-[2.4rem] place-items-center',
+            'rounded-full bg-yellow-300 ring-2 ring-white',
+            'shadow-sm',
+          )}
+        >
+          <Icon name="crown" size={16} className="text-yellow-700" aria-hidden />
+        </span>
+      )}
+    </div>
+  );
+
+  switch (props.type) {
     case 'single':
       return (
         <div className="flex">
-          <CardProfile type="single" imgUrl={props.imgUrl} />
+          {renderProfile('single')}
           <div>
             <div className="flex items-center gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
@@ -41,13 +59,13 @@ const CardHeader = (props: CardProps) => {
         <div className="flex">
           <div>
             <div className="subhead_18_sb text-start">
-              {props.nickname} 외 {props.count - 1}명
+              {props.nickname} 외 {(props.count ?? 1) - 1}명
             </div>
             <div className="flex-row-center gap-[0.8rem] py-[0.4rem]">
               <div className="cap_12_m text-gray-900">
-                매칭된 인원 {props.count}/{GROUP_MAX}
+                매칭된 인원 {props.count ?? 1}/{GROUP_MAX}
               </div>
-              <CardProfile type="group" imgUrl={props.imgUrl} />
+              {renderProfile('group')}
             </div>
           </div>
           {!isCreateMatchPage && (
@@ -61,7 +79,7 @@ const CardHeader = (props: CardProps) => {
     case 'detailed':
       return (
         <div className="flex gap-[1.2rem]">
-          <CardProfile type="detailed" imgUrl={props.imgUrl} />
+          {renderProfile('detailed')}
           <div className="flex-col gap-[0.8rem]">
             <div className="flex-col gap-[0.4rem]">
               <div className="body_16_b">{props.nickname}</div>
@@ -70,7 +88,7 @@ const CardHeader = (props: CardProps) => {
               </div>
             </div>
             <div className="flex-row gap-[0.8rem]">
-              <ChipList names={props.chips} />
+              <ChipList names={props.chips ?? []} />
             </div>
           </div>
         </div>
@@ -79,7 +97,7 @@ const CardHeader = (props: CardProps) => {
     case 'user':
       return (
         <div className="flex">
-          <CardProfile type="user" imgUrl={props.imgUrl} />
+          {renderProfile('user')}
           <div>
             <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
               <div className="body_16_b">{props.nickname}</div>
@@ -88,7 +106,7 @@ const CardHeader = (props: CardProps) => {
               </div>
             </div>
             <div className="ml-[1.2rem] flex-row gap-[0.8rem]">
-              <ChipList names={props.chips} />
+              <ChipList names={props.chips ?? []} />
             </div>
           </div>
         </div>

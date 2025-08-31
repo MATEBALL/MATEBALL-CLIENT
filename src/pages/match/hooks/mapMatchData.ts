@@ -10,6 +10,7 @@ export const mapSingleMatchData = (mates: singleMatchMate[] = []): SingleCardPro
     ...mate,
     type: 'single',
     imgUrl: [mate.imgUrl],
+    isCreated: Boolean(mate.isCreated),
     chips: [mate.team, mate.style].map((v) => v as ChipColor),
   }));
 };
@@ -18,5 +19,6 @@ export const mapGroupMatchData = (mates: getGroupMatchMate[] = []): GroupCardPro
   return mates.map((mate) => ({
     ...mate,
     type: 'group',
+    isCreated: Boolean(mate.isCreated),
   }));
 };
