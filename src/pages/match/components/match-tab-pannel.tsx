@@ -5,7 +5,7 @@ import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import EmptyState from '@components/ui/empty-state';
 import { cn } from '@libs/cn';
 import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
-import { getCardColor, statusToCategory } from '@pages/match/utils/match-status';
+import { getCardColor, getPendingToast, statusToCategory } from '@pages/match/utils/match-status';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -13,16 +13,6 @@ import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 type MatchableCardProps = SingleCardProps | GroupCardProps;
 
-const getPendingToast = (status?: string, type?: MatchableCardProps['type']): string | '' => {
-  if (!status) return '';
-  if (status === '요청 대기 중') return '메이트의 요청을 기다리는 중입니다.';
-  if (status === '승인 대기 중') {
-    return type === 'group'
-      ? '메이트 전원의 승인을 기다리는 중입니다.'
-      : '메이트의 승인을 기다리는 중입니다.';
-  }
-  return '';
-};
 interface MatchTabPanelProps {
   cards: MatchableCardProps[];
   filter: string;
@@ -39,7 +29,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const handleCardClick = async (card: MatchableCardProps) => {
     const toastMsg = getPendingToast(card.status, card.type);
     if (toastMsg) {
-      showErrorToast(toastMsg);
+      showErrorToast(toastMsg, { icon: false });
       return;
     }
 
