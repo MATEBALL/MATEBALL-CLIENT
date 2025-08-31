@@ -8,6 +8,7 @@ import type {
   getGroupMatchResultResponse,
   getMatchCountResponse,
   getMatchDetailResponse,
+  getOpenChatUrlResponse,
   getSingleMatchListResponse,
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
@@ -90,5 +91,15 @@ export const matchQueries = {
         const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''}`;
         return get(url);
       },
+    }),
+
+  /**
+   * 오픈채팅방 주소 조회
+   */
+  OPEN_CHAT_URL: (matchId: number, enabled = true) =>
+    queryOptions<getOpenChatUrlResponse>({
+      queryKey: MATCH_KEY.OPEN_CHAT(matchId),
+      queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
+      enabled,
     }),
 };
