@@ -5,6 +5,7 @@ export const USER_KEY = {
   KAKAO: () => [...USER_KEY.ALL, 'kakao'] as const,
   INFO: () => [...USER_KEY.ALL, 'info'] as const,
   NICKNAME: () => [...USER_KEY.ALL, 'nickname'] as const,
+  LOGOUT: () => [...USER_KEY.ALL, 'logout'] as const,
 } as const;
 
 export const AUTH_KEY = {

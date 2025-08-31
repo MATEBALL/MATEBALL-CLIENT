@@ -1,4 +1,4 @@
-import { COPYRIGHT_NOTICE, MATCHING_PLATFORM_NOTICE } from '@components/footer/constants/legal';
+import { COPYRIGHT_NOTICE } from '@components/footer/constants/legal';
 import Icon from '@components/icon/icon';
 import { EXTERNAL_LINKS } from '@constants/links';
 import { ROUTES } from '@routes/routes-config';
@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={clsx('cap_12_m w-full flex-col gap-[4.8rem] px-[1.6rem] py-[3.2rem]', {
+      className={clsx('cap_12_m w-full flex-col gap-[2.4rem] px-[1.6rem] py-[3.2rem]', {
         'bg-gray-200': isHome,
       })}
     >
@@ -24,7 +24,6 @@ const Footer = () => {
         </div>
       </div>
       <div className="flex-col gap-[0.8rem] text-gray-600">
-        <p className="whitespace-pre-line">{MATCHING_PLATFORM_NOTICE}</p>
         <div className="flex-row gap-[0.8rem] py-[0.4rem]">
           <a
             href={EXTERNAL_LINKS.PRIVACY_POLICY}
