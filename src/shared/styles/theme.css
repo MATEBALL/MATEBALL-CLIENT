@@ -27,6 +27,7 @@
   --color-background: #f6f7f9;
   --color-overlay: rgba(0, 0, 0, 0.3);
   --color-kakao-brand: #fee500;
+  --color-owner: #fddb00;
 
   /* Grayscale */
   --color-gray-black: #1a1a1a;
@@ -76,6 +77,7 @@
   --z-bottom-nav: 8;
   --z-under-header-section: 5;
   --z-modal: 7;
+  --z-card-owner: 5;
   --z-card-profile-1: 4;
   --z-card-profile-2: 3;
   --z-card-profile-3: 2;

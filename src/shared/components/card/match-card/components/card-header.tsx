@@ -12,23 +12,41 @@ const CardHeader = (props: CardProps) => {
   const { pathname } = useLocation();
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
-  const renderProfile = (profileType: CardProps['type']) => (
-    <div className="relative">
-      <CardProfile type={profileType} imgUrl={props.imgUrl} />
-      {props.isCreated && (
-        <span
-          className={cn(
-            '-bottom-[0.4rem] -left-[0.4rem] absolute',
-            'grid h-[2.4rem] w-[2.4rem] place-items-center',
-            'rounded-full bg-yellow-300 ring-2 ring-white',
-            'shadow-sm',
-          )}
-        >
-          <Icon name="crown" size={16} className="text-yellow-700" aria-hidden />
-        </span>
-      )}
-    </div>
-  );
+  const getCrownSpec = (t: CardProps['type']) => {
+    if (t === 'group') {
+      return {
+        box: 'h-[1.2rem] w-[1.2rem]',
+        pos: 'left-[1.4rem] -bottom-[0.2rem]',
+        size: 1.2 as const,
+      };
+    }
+    return {
+      box: 'h-[1.6rem] w-[1.6rem]',
+      pos: '-left-[0.3rem] -bottom-[0.4rem]',
+      size: 1.6 as const,
+    };
+  };
+
+  const renderProfile = (profileType: CardProps['type']) => {
+    const spec = getCrownSpec(profileType);
+    return (
+      <div className="relative isolate">
+        <CardProfile type={profileType} imgUrl={props.imgUrl} />
+        {props.isCreated && (
+          <span
+            className={cn(
+              'pointer-events-none absolute z-[var(--z-card-owner)]',
+              spec.pos,
+              'grid place-items-center rounded-full shadow-sm',
+              spec.box,
+            )}
+          >
+            <Icon name="crown" size={spec.size} className="text-owner" aria-hidden />
+          </span>
+        )}
+      </div>
+    );
+  };
 
   switch (props.type) {
     case 'single':
