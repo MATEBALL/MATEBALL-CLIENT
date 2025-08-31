@@ -2,26 +2,30 @@ import { patch, post, put } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import queryClient from '@libs/query-client';
+import { router } from '@routes/router';
+import { ROUTES } from '@routes/routes-config';
 import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
 import type {
   postEditProfileRequest,
   postMatchConditionRequest,
-  postUserInfoNicknameRequest,
   postUserInfoRequest,
 } from '@/shared/types/user-types';
 
-export const userMutations = {
-  NICKNAME: () =>
-    mutationOptions<responseTypes, Error, postUserInfoNicknameRequest>({
-      mutationKey: USER_KEY.NICKNAME(),
-      mutationFn: ({ nickname }) => post(END_POINT.POST_INFO_NICKNAME, { nickname }),
-    }),
 
+export const userMutations = {
   USER_INFO: () =>
     mutationOptions<responseTypes, Error, postUserInfoRequest>({
       mutationKey: USER_KEY.INFO(),
-      mutationFn: ({ gender, birthYear }) => post(END_POINT.USER_INFO, { gender, birthYear }),
+      mutationFn: ({ nickname, introduction, birthYear, gender }) =>
+        post(END_POINT.USER_INFO, { nickname, introduction, birthYear, gender }),
+      onSuccess: async () => {
+        await queryClient.invalidateQueries({ queryKey: USER_KEY.ALL });
+        router.navigate(ROUTES.HOME, { replace: true });
+      },
+      onError: (err) => {
+        console.error(err);
+      },
     }),
 
   LOGOUT: () =>
@@ -37,7 +41,7 @@ export const userMutations = {
         console.error('로그아웃 실패', err);
       },
     }),
-
+  
   EDIT_PROFILE: () =>
     mutationOptions<responseTypes, Error, postEditProfileRequest>({
       mutationKey: USER_KEY.EDIT_PROFILE(),
@@ -55,5 +59,10 @@ export const userMutations = {
       mutationKey: USER_KEY.MATCH_CONDITION(),
       mutationFn: ({ team, teamAllowed, style, genderPreference }) =>
         patch(END_POINT.MATCH_CONDITION, { team, teamAllowed, style, genderPreference }),
+
+  AGREEMENT_INFO: () =>
+    mutationOptions<responseTypes, Error, postAgreementInfoRequest>({
+      mutationKey: USER_KEY.AGREEMENT(),
+      mutationFn: ({ hasAccepted }) => post(END_POINT.AGREEMENT_INFO, { hasAccepted }),
     }),
 };

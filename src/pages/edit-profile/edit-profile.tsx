@@ -20,6 +20,17 @@ import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/co
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+  GENDER,
+  NO_TEAM_OPTION,
+  TEAMS,
+  VIEWING_STYLE,
+} from '@pages/onboarding/constants/onboarding';
+import { INTRODUCTION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
+import {
+  INTRODUCTION_PLACEHOLDER,
+  NICKNAME_PLACEHOLDER,
+} from '@pages/sign-up/constants/validation';
+import { useMemo, useRef, useState } from 'react';
 
 const EditProfile = () => {
   const { data } = useQuery(userQueries.MATCH_CONDITION());
@@ -123,7 +134,6 @@ const EditProfile = () => {
           />
         </div>
 
-        {/* 한 줄 소개 */}
         <Controller
           name="information"
           control={control}
@@ -141,7 +151,6 @@ const EditProfile = () => {
               multiline
             />
           )}
-        />
         <div className="flex justify-end">
           <Button
             type="button"
