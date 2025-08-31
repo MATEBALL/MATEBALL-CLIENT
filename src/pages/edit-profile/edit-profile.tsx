@@ -6,17 +6,15 @@ import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
-import { PROFILE_SYNC_MATE } from '@pages/edit-profile/constants/edit-profile';
+import {
+  PROFILE_SYNC_MATE,
+  PROFILE_VIEWING_STYLE,
+} from '@pages/edit-profile/constants/edit-profile';
 import {
   EditProfileSchema,
   type EditProfileValues,
 } from '@pages/edit-profile/schema/EditProfileSchema';
-import {
-  GENDER,
-  NO_TEAM_OPTION,
-  TEAMS,
-  VIEWING_STYLE,
-} from '@pages/onboarding/constants/onboarding';
+import { GENDER, NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
 import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
 import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -33,6 +31,7 @@ const EditProfile = () => {
   const [isSubmit, setIsSubmit] = useState(false);
 
   const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
+  const { mutate: editMatchCondition } = useMutation(userMutations.EDIT_MATCH_CONDITION());
 
   const {
     control,
@@ -65,7 +64,7 @@ const EditProfile = () => {
     team: data?.team ?? '',
     gender: data?.genderPreference ?? '',
     mateTeam: data?.teamAllowed ?? '',
-    viewStyle: data?.style?.replace(' ', '') ?? '',
+    viewStyle: data?.style ?? '',
   };
 
   const teamValue = team ?? initial.team;
@@ -84,7 +83,13 @@ const EditProfile = () => {
   const handleSaveClick = () => {
     if (!isMatchDirty) return;
     setIsSubmit(true);
-    // TODO: 매칭 조건 API 호출
+
+    editMatchCondition({
+      team: teamValue,
+      genderPreference: genderValue,
+      style: viewStyleValue,
+      teamAllowed: teamValue === NO_TEAM_OPTION ? null : mateTeamValue || null,
+    });
   };
 
   return (
@@ -194,7 +199,7 @@ const EditProfile = () => {
 
           <SelectionGroup
             title="관람 스타일"
-            options={VIEWING_STYLE}
+            options={PROFILE_VIEWING_STYLE}
             selectedValue={viewStyleValue}
             onSelect={setViewStyle}
           />

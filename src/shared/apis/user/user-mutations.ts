@@ -1,4 +1,4 @@
-import { post, put } from '@apis/base/http';
+import { patch, post, put } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import queryClient from '@libs/query-client';
@@ -6,6 +6,7 @@ import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
 import type {
   postEditProfileRequest,
+  postMatchConditionRequest,
   postUserInfoNicknameRequest,
   postUserInfoRequest,
 } from '@/shared/types/user-types';
@@ -47,5 +48,12 @@ export const userMutations = {
       onError: (err) => {
         console.error('수정에 실패했어요', err);
       },
+    }),
+
+  EDIT_MATCH_CONDITION: () =>
+    mutationOptions<postMatchConditionRequest, Error, postMatchConditionRequest>({
+      mutationKey: USER_KEY.MATCH_CONDITION(),
+      mutationFn: ({ team, teamAllowed, style, genderPreference }) =>
+        patch(END_POINT.MATCH_CONDITION, { team, teamAllowed, style, genderPreference }),
     }),
 };
