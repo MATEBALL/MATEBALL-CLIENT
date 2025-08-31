@@ -14,4 +14,4 @@ export const BIRTHYEAR_RULE_MESSAGE = '4자리 숫자만 입력 가능';
 
 export const BIRTHYEAR_SUCCESS_MESSAGE = '올바른 입력 값이에요.';
 
-export const INFORMATION_RULE_MESSAGE = '비방, 욕설 등 불쾌감을 줄 수 있는 내용 제한';
+export const INTRODUCTION_RULE_MESSAGE = '비방, 욕설 등 불쾌감을 줄 수 있는 내용 제한';

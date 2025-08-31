@@ -11,8 +11,11 @@ import {
   TEAMS,
   VIEWING_STYLE,
 } from '@pages/onboarding/constants/onboarding';
-import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
-import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
+import { INTRODUCTION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
+import {
+  INTRODUCTION_PLACEHOLDER,
+  NICKNAME_PLACEHOLDER,
+} from '@pages/sign-up/constants/validation';
 import { useMemo, useRef, useState } from 'react';
 
 const EditProfile = () => {
@@ -64,8 +67,8 @@ const EditProfile = () => {
         </div>
 
         <Input
-          placeholder={INFORMATION_PLACEHOLDER}
-          defaultMessage={INFORMATION_RULE_MESSAGE}
+          placeholder={INTRODUCTION_PLACEHOLDER}
+          defaultMessage={INTRODUCTION_RULE_MESSAGE}
           length={0}
           hasLength
           className="h-[10.4rem]"

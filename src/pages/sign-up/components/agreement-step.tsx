@@ -1,6 +1,7 @@
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import CheckboxRow from '@pages/sign-up/components/checkbox-row';
+import { PRIVACY_LINK, TERMS_LINK } from '@pages/sign-up/constants/LINK';
 import { useState } from 'react';
 
 interface AgreementStepProps {
@@ -51,6 +52,7 @@ const AgreementStep = ({ next }: AgreementStepProps) => {
             onClick={handleCheckTerms}
             checked={terms}
             svg={<Icon name="arrow-right-18" size={1.8} />}
+            link={TERMS_LINK}
           />
 
           <CheckboxRow
@@ -58,6 +60,7 @@ const AgreementStep = ({ next }: AgreementStepProps) => {
             onClick={handleCheckPrivacy}
             checked={privacy}
             svg={<Icon name="arrow-right-18" size={1.8} />}
+            link={PRIVACY_LINK}
           />
         </div>
         <div className="px-[1.6rem]">
