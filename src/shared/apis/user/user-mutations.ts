@@ -1,4 +1,4 @@
-import { post } from '@apis/base/http';
+import { post, put } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import queryClient from '@libs/query-client';
@@ -40,7 +40,7 @@ export const userMutations = {
   EDIT_PROFILE: () =>
     mutationOptions<responseTypes, Error, postEditProfileRequest>({
       mutationKey: USER_KEY.EDIT_PROFILE(),
-      mutationFn: () => post(END_POINT.POST_EDIT_PROFILE),
+      mutationFn: ({ field, value }) => put(END_POINT.POST_EDIT_PROFILE, { field, value }),
       onSuccess: async () => {
         queryClient.invalidateQueries({ queryKey: USER_KEY.ALL });
       },
