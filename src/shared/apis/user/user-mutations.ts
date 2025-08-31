@@ -4,7 +4,6 @@ import { USER_KEY } from '@constants/query-key';
 import queryClient from '@libs/query-client';
 import { router } from '@routes/router';
 import { ROUTES } from '@routes/routes-config';
-
 import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
 import type { postAgreementInfoRequest, postUserInfoRequest } from '@/shared/types/user-types';
