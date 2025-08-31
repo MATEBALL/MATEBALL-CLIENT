@@ -12,6 +12,10 @@ export const END_POINT = {
   GET_KAKAO_INFO: '/v1/users/kakao/info',
   AGREEMENT_INFO: '/v2/users/consent',
   USER_INFO: '/v2/users/info',
+  GET_USER_INFO: '/v1/users/info',
+  POST_INFO_NICKNAME: '/v1/users/info/nickname',
+  POST_EDIT_PROFILE: '/v2/users/info',
+  MATCH_CONDITION: '/v2/users/match-condition',
 
   // 경기 관련
   GET_GAME_SCHEDULE: (date: string) => `/v1/users/game/schedule?date=${date}`,

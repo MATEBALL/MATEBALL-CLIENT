@@ -33,3 +33,37 @@ export interface postUserInfoRequest {
 export interface postAgreementInfoRequest {
   hasAccepted: boolean;
 }
+
+/**
+ * 사용자 정보 수정
+ * post
+ * /v2/users/info
+ */
+export interface postEditProfileRequest {
+  field: string;
+  value: string;
+}
+
+/**
+ * 매칭 조건 조회
+ * get
+ * /v2/users/match-condition
+ */
+export interface getMatchConditionResponse {
+  team: string;
+  teamAllowed: string | null;
+  style: string;
+  genderPreference: string;
+}
+
+/**
+ * 매칭 조건 수정
+ * post
+ * /v2/users/match-condition
+ */
+export interface postMatchConditionRequest {
+  team: string;
+  teamAllowed: string | null;
+  style: string;
+  genderPreference: string;
+}
