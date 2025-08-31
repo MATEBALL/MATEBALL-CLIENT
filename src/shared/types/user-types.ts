@@ -31,3 +31,13 @@ export interface postUserInfoRequest {
 export interface postUserInfoNicknameRequest {
   nickname: string;
 }
+
+/**
+ * 사용자 정보 수정
+ * post
+ * /v2/users/info
+ */
+export interface postEditProfileRequest {
+  field: string;
+  value: string;
+}
