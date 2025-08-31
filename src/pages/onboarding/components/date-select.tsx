@@ -48,6 +48,7 @@ const DateSelect = () => {
           onWeekChange={handleDateSelect}
           onMonthChange={handleMonthChange}
           toastBottomOffset="2.4rem"
+          hasGame={() => (data?.length ?? 0) > 0}
         />
       </div>
 
