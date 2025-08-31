@@ -17,7 +17,7 @@ const TabItem = ({ label, isActive, style, onClick }: TabItemProps) => {
       className={cn(
         isActive ? style.borderActive : style.borderInactive,
         style.size,
-        style.borderThickness,
+        style.borderStyle,
         'flex-row-center cursor-pointer whitespace-nowrap py-[0.6rem]',
       )}
     >

@@ -5,21 +5,24 @@ export const tabStyleMap = {
     textInactive: 'text-gray-500',
     borderActive: 'border-sub-900',
     borderInactive: 'border-transparent',
-    borderThickness: 'border-b-[0.4rem]',
+    borderStyle: 'border-b-[0.4rem]',
     size: 'h-[3.9rem] w-[5.6rem]',
     typography: 'subhead_18_sb',
   },
   match: {
-    gap: 'gap-[2.4rem]',
+    gap: 'gap-[2.4rem] px-[1.6rem] border-b border-gray-300',
     textActive: 'text-gray-black',
     textInactive: 'text-gray-600',
-    borderActive: 'border-gray-black',
-    borderInactive: 'border-transparent',
-    borderThickness: 'border-b-[0.2rem]',
-    size: 'h-[3.0rem] w-[4.8rem]',
+    borderActive: 'after:bg-gray-black',
+    borderInactive: 'after:bg-transparent',
+    borderStyle:
+      'relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 ' +
+      'after:h-[0.2rem] after:w-[12rem] after:rounded-full after:content-[""]',
+    size: 'h-[3.0rem] w-[17.2rem] mx-[2.6rem] pb-[0.2rem]',
     typography: 'head_20_sb',
   },
 } as const;
+
 
 export type TabStyleKey = keyof typeof tabStyleMap;
 export type TabStyleValue = (typeof tabStyleMap)[TabStyleKey];
