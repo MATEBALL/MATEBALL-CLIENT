@@ -9,9 +9,20 @@ import { getCardColor, statusToCategory } from '@pages/match/utils/match-status'
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 type MatchableCardProps = SingleCardProps | GroupCardProps;
 
+const getPendingToast = (status?: string, type?: MatchableCardProps['type']): string | '' => {
+  if (!status) return '';
+  if (status === '요청 대기 중') return '메이트의 요청을 기다리는 중입니다.';
+  if (status === '승인 대기 중') {
+    return type === 'group'
+      ? '메이트 전원의 승인을 기다리는 중입니다.'
+      : '메이트의 승인을 기다리는 중입니다.';
+  }
+  return '';
+};
 interface MatchTabPanelProps {
   cards: MatchableCardProps[];
   filter: string;
@@ -26,6 +37,12 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
     filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
 
   const handleCardClick = async (card: MatchableCardProps) => {
+    const toastMsg = getPendingToast(card.status, card.type);
+    if (toastMsg) {
+      showErrorToast(toastMsg);
+      return;
+    }
+
     const query = CLICKABLE_STATUS_MAP[card.status ?? ''];
     if (!query) return;
 
@@ -39,9 +56,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
     }
   };
 
-  const isClickable = (status?: string) => {
-    return Boolean(CLICKABLE_STATUS_MAP[status ?? '']);
-  };
+  const isClickable = (status?: string) => Boolean(CLICKABLE_STATUS_MAP[status ?? '']);
 
   return (
     <div className="flex-col gap-[0.8rem] px-[1.6rem] py-[2rem]">
@@ -56,10 +71,11 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
           <button
             key={card.id}
             type="button"
-            onClick={isClickable(card.status) ? () => handleCardClick(card) : undefined}
+            onClick={() => handleCardClick(card)}
             className={cn('w-full', {
               'cursor-pointer': isClickable(card.status),
             })}
+            aria-disabled={!isClickable(card.status)}
           >
             <Card
               status={card.status}
