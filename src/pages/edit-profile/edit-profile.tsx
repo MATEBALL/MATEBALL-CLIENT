@@ -1,3 +1,4 @@
+import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
 import Divider from '@components/divider/divider';
 import Input from '@components/input/input';
@@ -13,14 +14,20 @@ import {
 } from '@pages/onboarding/constants/onboarding';
 import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
 import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
+import { useMutation } from '@tanstack/react-query';
 import { useMemo, useRef, useState } from 'react';
 
 const EditProfile = () => {
+  const [nickname, setNickname] = useState('');
+  const [information, setInformation] = useState('');
+
   const [team, setTeam] = useState(mockEditData.team);
   const [gender, setGender] = useState(mockEditData.genderPreference);
   const [mateTeam, setMateTeam] = useState(mockEditData.teamAllowed || '상관없어요');
   const [viewStyle, setViewStyle] = useState(mockEditData.style);
   const [isSubmit, setIsSubmit] = useState(false);
+
+const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
 
   const initialValue = useRef({
     team: mockEditData.team,
@@ -29,7 +36,7 @@ const EditProfile = () => {
     viewStyle: mockEditData.style,
   });
 
-  const isDirty = useMemo(() => {
+  const isMatchDirty = useMemo(() => {
     const init = initialValue.current;
 
     return (
@@ -40,15 +47,17 @@ const EditProfile = () => {
     );
   }, [team, gender, mateTeam, viewStyle]);
 
-  const isSubmitDisabled = !isDirty || isSubmit;
+  const isSubmitDisabled = !isMatchDirty || isSubmit;
 
   const handleSaveClick = () => {
-    if (!isDirty) return;
+    if (!isMatchDirty) return;
 
     setIsSubmit(true);
 
     // TODO: 실제 API 호출
   };
+
+
 
   return (
     <div className="h-full bg-gray-white px-[1.6rem] pt-[1.6rem] pb-[4rem]">

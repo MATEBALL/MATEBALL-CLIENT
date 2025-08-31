@@ -4,7 +4,11 @@ import { USER_KEY } from '@constants/query-key';
 import queryClient from '@libs/query-client';
 import { mutationOptions } from '@tanstack/react-query';
 import type { responseTypes } from '@/shared/types/base-types';
-import type { postEditProfileRequest, postUserInfoNicknameRequest, postUserInfoRequest } from '@/shared/types/user-types';
+import type {
+  postEditProfileRequest,
+  postUserInfoNicknameRequest,
+  postUserInfoRequest,
+} from '@/shared/types/user-types';
 
 export const userMutations = {
   NICKNAME: () =>
@@ -33,11 +37,15 @@ export const userMutations = {
       },
     }),
 
-    EDIT_PROFILE: () => mutationOptions<responseTypes, Error, postEditProfileRequest>({
+  EDIT_PROFILE: () =>
+    mutationOptions<responseTypes, Error, postEditProfileRequest>({
       mutationKey: USER_KEY.EDIT_PROFILE(),
       mutationFn: () => post(END_POINT.POST_EDIT_PROFILE),
       onSuccess: async () => {
-        queryClient.invalidateQueries({queryKey: USER_KEY.ALL})
+        queryClient.invalidateQueries({ queryKey: USER_KEY.ALL });
+      },
+      onError: (err) => {
+        console.error('수정에 실패했어요', err)
       }
-    })
+    }),
 };
