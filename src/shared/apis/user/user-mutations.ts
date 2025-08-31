@@ -28,5 +28,8 @@ export const userMutations = {
 
         queryClient.removeQueries({ queryKey: USER_KEY.ALL });
       },
+      onError: (err) => {
+        console.error('로그아웃 실패', err)
+      }
     }),
 };
