@@ -8,7 +8,6 @@ import type {
   getGroupMatchResultResponse,
   getMatchCountResponse,
   getMatchDetailResponse,
-  getOpenChatUrlResponse,
   getSingleMatchListResponse,
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
@@ -97,7 +96,7 @@ export const matchQueries = {
    * 오픈채팅방 주소 조회
    */
   OPEN_CHAT_URL: (matchId: number, enabled = true) =>
-    queryOptions<getOpenChatUrlResponse>({
+    queryOptions<{ chattingUrl: string }>({
       queryKey: MATCH_KEY.OPEN_CHAT(matchId),
       queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
       enabled,

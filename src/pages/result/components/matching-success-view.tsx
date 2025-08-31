@@ -6,12 +6,14 @@ import { MATCHING_SUCCESS_TITLE } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 interface MatchingSuccessViewProps {
   isGroupMatching: boolean;
 }
+
+const parseId = (v?: string | null) => (v && /^\d+$/.test(v) ? Number(v) : NaN);
 
 const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const [params] = useSearchParams();
@@ -19,49 +21,46 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const [clicking, setClicking] = useState(false);
 
   const tab = isGroupMatching ? 'group' : 'single';
-  const matchIdFromPath = Number(id ?? matchIdParam ?? '');
-  const matchIdFromQuery = Number(params.get('matchId') ?? '');
+
+  const matchIdFromPath = parseId(id ?? matchIdParam ?? null);
+  const matchIdFromQuery = parseId(params.get('matchId'));
   const matchId = Number.isFinite(matchIdFromPath) ? matchIdFromPath : matchIdFromQuery;
+  const isValidMatchId = Number.isFinite(matchId);
 
   usePreventBackNavigation(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
 
   const {
-    data: openChatRes,
+    data,
     isLoading: isUrlLoading,
     isError,
   } = useQuery({
-    ...matchQueries.OPEN_CHAT_URL(matchId),
+    ...matchQueries.OPEN_CHAT_URL(matchId, isValidMatchId),
     staleTime: 0,
   });
 
-  const openChatUrl =
-    openChatRes?.data?.chattingUrl && typeof openChatRes.data.chattingUrl === 'string'
-      ? openChatRes.data.chattingUrl.trim()
-      : '';
+  const openChatUrl = useMemo(() => {
+    const url = data?.chattingUrl;
+    return typeof url === 'string' ? url.trim() : '';
+  }, [data]);
 
-  const normalizeUrl = (url: string) => (/^https?:\/\//i.test(url) ? url : `https://${url}`);
+  const normalizeUrl = useCallback(
+    (url: string) => (/^https?:\/\//i.test(url) ? url : `https://${url}`),
+    [],
+  );
 
-  const openExternal: (url: string) => void = (() => {
-    let opening = false;
-    return (url: string) => {
-      if (opening) return;
-      opening = true;
+  const openExternal = useCallback(
+    (url: string) => {
+      window.open(normalizeUrl(url), '_blank', 'noopener,noreferrer');
+    },
+    [normalizeUrl],
+  );
 
-      const finalUrl = normalizeUrl(url);
-      window.open(finalUrl, '_blank', 'noopener,noreferrer');
-
-      window.setTimeout(() => {
-        opening = false;
-      }, 800);
-    };
-  })();
-
-  const handleEnterChatClick = (): void => {
-    if (!openChatUrl) return;
+  const handleEnterChatClick = useCallback((): void => {
+    if (!openChatUrl || clicking) return;
     setClicking(true);
     openExternal(openChatUrl);
-    window.setTimeout(() => setClicking(false), 300);
-  };
+    window.setTimeout(() => setClicking(false), 800);
+  }, [clicking, openChatUrl, openExternal]);
 
   const disabled = isUrlLoading || isError || clicking || !openChatUrl;
 
