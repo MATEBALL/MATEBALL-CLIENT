@@ -2,10 +2,15 @@ import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
 import Divider from '@components/divider/divider';
 import Input from '@components/input/input';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
 import { PROFILE_SYNC_MATE } from '@pages/edit-profile/constants/edit-profile';
 import { mockEditData } from '@pages/edit-profile/mocks/mockEditData';
+import {
+  EditProfileSchema,
+  type EditProfileValues,
+} from '@pages/edit-profile/schema/EditProfileSchema';
 import {
   GENDER,
   NO_TEAM_OPTION,
@@ -16,18 +21,46 @@ import { INFORMATION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/
 import { INFORMATION_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
 import { useMutation } from '@tanstack/react-query';
 import { useMemo, useRef, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 
 const EditProfile = () => {
-  const [nickname, setNickname] = useState('');
-  const [information, setInformation] = useState('');
-
   const [team, setTeam] = useState(mockEditData.team);
   const [gender, setGender] = useState(mockEditData.genderPreference);
-  const [mateTeam, setMateTeam] = useState(mockEditData.teamAllowed || '상관없어요');
-  const [viewStyle, setViewStyle] = useState(mockEditData.style);
+  const [mateTeam, setMateTeam] = useState(mockEditData.teamAllowed[0] || '');
+  const [viewStyle, setViewStyle] = useState(mockEditData.style[0] || '');
   const [isSubmit, setIsSubmit] = useState(false);
 
-const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
+  const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting, dirtyFields },
+    watch,
+  } = useForm<EditProfileValues>({
+    resolver: zodResolver(EditProfileSchema),
+    mode: 'onChange',
+    defaultValues: {
+      nickname: '',
+      information: '',
+    },
+  });
+
+  const informationValue = watch('information', '');
+
+  const onSubmitNickname = (values: EditProfileValues) => {
+    editProfile({
+      field: '닉네임',
+      value: values.nickname.trim(),
+    });
+  };
+
+  const onSubmitInformation = (values: EditProfileValues) => {
+    editProfile({
+      field: '소개',
+      value: values.information.trim(),
+    });
+  };
 
   const initialValue = useRef({
     team: mockEditData.team,
@@ -38,7 +71,6 @@ const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
 
   const isMatchDirty = useMemo(() => {
     const init = initialValue.current;
-
     return (
       team !== init.team ||
       gender !== init.gender ||
@@ -51,39 +83,69 @@ const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
 
   const handleSaveClick = () => {
     if (!isMatchDirty) return;
-
     setIsSubmit(true);
-
-    // TODO: 실제 API 호출
+    // TODO: 매칭 조건 API 호출
   };
-
-
 
   return (
     <div className="h-full bg-gray-white px-[1.6rem] pt-[1.6rem] pb-[4rem]">
       <h2 className="subhead_18_sb mb-[1.6rem]">프로필 수정</h2>
       <section>
-        <Input
-          placeholder={NICKNAME_PLACEHOLDER}
-          label="닉네임"
-          defaultMessage={NICKNAME_RULE_MESSAGE}
-        />
-        <div className="mb-[2.5rem] flex justify-end">
-          <Button label="수정" className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]" />
-        </div>
+        <form onSubmit={handleSubmit(onSubmitNickname)}>
+          <Controller
+            name="nickname"
+            control={control}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                placeholder={NICKNAME_PLACEHOLDER}
+                label="닉네임"
+                defaultMessage={NICKNAME_RULE_MESSAGE}
+                validationMessage={fieldState.error?.message}
+                isError={!!fieldState.error}
+                isValid={!fieldState.error && fieldState.isDirty}
+              />
+            )}
+          />
+          <div className="mb-[2.5rem] flex justify-end">
+            <Button
+              label="수정"
+              type="submit"
+              disabled={!dirtyFields.nickname || isSubmitting}
+              className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
+            />
+          </div>
+        </form>
 
-        <Input
-          placeholder={INFORMATION_PLACEHOLDER}
-          defaultMessage={INFORMATION_RULE_MESSAGE}
-          length={0}
-          hasLength
-          className="h-[10.4rem]"
-          label="한 줄 소개"
-          multiline
-        />
-        <div className="flex justify-end">
-          <Button label="수정" className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]" />
-        </div>
+        <form onSubmit={handleSubmit(onSubmitInformation)}>
+          <Controller
+            name="information"
+            control={control}
+            render={({ field, fieldState }) => (
+              <Input
+                {...field}
+                placeholder={INFORMATION_PLACEHOLDER}
+                defaultMessage={INFORMATION_RULE_MESSAGE}
+                validationMessage={fieldState.error?.message}
+                isError={!!fieldState.error}
+                isValid={!fieldState.error && fieldState.isDirty}
+                length={informationValue.length}
+                hasLength
+                className="h-[10.4rem]"
+                label="한 줄 소개"
+                multiline
+              />
+            )}
+          />
+          <div className="flex justify-end">
+            <Button
+              label="수정"
+              type="submit"
+              disabled={!dirtyFields.information || isSubmitting}
+              className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
+            />
+          </div>
+        </form>
       </section>
 
       <div className="-mx-[1.6rem] my-[3.2rem]">
@@ -95,23 +157,19 @@ const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
         <p className="cap_12_m mb-[1.6rem] text-gray-500">
           수정한 조건을 기반으로 새로운 메이트를 추천해드려요!
         </p>
-
         <div className="flex-col gap-[3.2rem]">
           <div className="flex-col gap-[1.6rem]">
             <p className="body_16_m">응원팀</p>
             <div className="flex flex-wrap gap-[0.8rem]">
-              {TEAMS.map((option) => {
-                const selected = team === option;
-                return (
-                  <Button
-                    key={option}
-                    label={option}
-                    variant={selected ? 'skyblue' : 'gray2'}
-                    className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
-                    onClick={() => setTeam(option)}
-                  />
-                );
-              })}
+              {TEAMS.map((option) => (
+                <Button
+                  key={option}
+                  label={option}
+                  variant={team === option ? 'skyblue' : 'gray2'}
+                  className="cap_14_sb w-auto px-[1.6rem] py-[0.6rem] text-gray-900"
+                  onClick={() => setTeam(option)}
+                />
+              ))}
               <Button
                 label={NO_TEAM_OPTION}
                 variant={team === NO_TEAM_OPTION ? 'skyblue' : 'gray2'}
@@ -123,7 +181,6 @@ const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
               />
             </div>
           </div>
-
           <SelectionGroup
             title="직관 메이트의 응원팀"
             options={PROFILE_SYNC_MATE}
@@ -131,14 +188,12 @@ const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
             onSelect={setMateTeam}
             disabled={team === NO_TEAM_OPTION}
           />
-
           <SelectionGroup
             title="관람 스타일"
             options={VIEWING_STYLE}
             selectedValue={viewStyle}
             onSelect={setViewStyle}
           />
-
           <SelectionGroup
             title="선호 성별"
             options={GENDER}

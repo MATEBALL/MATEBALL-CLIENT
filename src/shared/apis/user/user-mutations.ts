@@ -45,7 +45,7 @@ export const userMutations = {
         queryClient.invalidateQueries({ queryKey: USER_KEY.ALL });
       },
       onError: (err) => {
-        console.error('수정에 실패했어요', err)
-      }
+        console.error('수정에 실패했어요', err);
+      },
     }),
 };
