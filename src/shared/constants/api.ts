@@ -41,4 +41,7 @@ export const END_POINT = {
   POST_MATCH_NEW_REQUEST: (matchId: number | string) =>
     `/v1/users/match/${matchId}?newRequest=true`,
   GET_OPEN_CHAT_URL: (matchId: number | string) => `/v2/users/match/${matchId}/chatting`,
+
+  // 알림
+  GET_UNREAD_ALARMS: '/v2/users/alarm',
 };

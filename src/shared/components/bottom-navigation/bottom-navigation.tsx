@@ -42,7 +42,7 @@ const BottomNavigation = () => {
           >
             <div className="relative flex">
               <Icon name={active ? icon.filled : icon.lined} width={2.4} height={2.4} />
-              {path === ROUTES.MATCH && (
+              {hasUnreadAlarms && path === ROUTES.MATCH && (
                 <div className="absolute top-[0.2rem] left-[2.4rem]">
                   <Icon name="badge" />
                 </div>
