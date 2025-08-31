@@ -5,12 +5,15 @@ import Card from '@components/card/match-card/card';
 import type { ChipColor } from '@components/chip/chip-list';
 import Divider from '@components/divider/divider';
 import Footer from '@components/footer/footer';
+import { FEEDBACK_LINK, REQUEST_LINK } from '@pages/profile/constants/link';
+import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { FEEDBACK_LINK, REQUEST_LINK } from './constants/link';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const { data } = useQuery(userQueries.USER_INFO());
+  const navigate = useNavigate();
 
+  const { data } = useQuery(userQueries.USER_INFO());
   const { mutate: logout } = useMutation(userMutations.LOGOUT());
 
   if (!data) return null;
@@ -30,7 +33,11 @@ const Profile = () => {
           introduction={data.introduction ?? ''}
           chips={[(data.team ?? '') as ChipColor, (data.style ?? '') as ChipColor]}
         />
-        <Button size="L" label="프로필 · 매칭 조건 수정" />
+        <Button
+          size="L"
+          label="프로필 · 매칭 조건 수정"
+          onClick={() => navigate(ROUTES.PROFILE_EDIT)}
+        />
       </div>
       <Divider thickness={0.4} color="bg-gray-200" />
       <section className="w-full flex-col items-start px-[1.6rem]">
