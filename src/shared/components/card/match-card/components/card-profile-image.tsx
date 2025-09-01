@@ -62,12 +62,7 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
     return <div className="flex items-center">{nodes}</div>;
   }
 
-  const src =
-    typeof imgUrl === 'string'
-      ? imgUrl
-      : Array.isArray(imgUrl)
-        ? imgUrl[0] ?? ''
-        : '';
+  const src = typeof imgUrl === 'string' ? imgUrl : Array.isArray(imgUrl) ? (imgUrl[0] ?? '') : '';
 
   return (
     <div className="flex items-center overflow-hidden rounded-full">
