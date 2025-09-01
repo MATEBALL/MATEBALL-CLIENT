@@ -29,7 +29,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   const handleCardClick = async (card: MatchableCardProps) => {
     const toastMsg = getPendingToast(card.status, card.type);
     if (toastMsg) {
-      showErrorToast(toastMsg, { icon: false });
+      showErrorToast(toastMsg, undefined, false);
       return;
     }
 
