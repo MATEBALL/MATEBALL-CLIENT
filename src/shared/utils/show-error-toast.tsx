@@ -9,6 +9,6 @@ export const showErrorToast = (message: string, offset?: string, showIcon: boole
     position: 'bottomCenter',
     offset: offset ?? '8.3rem',
     className:
-      'min-h-[4.5rem]! max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] bg-gray-900',
+      '!min-h-[4.5rem] max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] bg-gray-900',
   });
 };
