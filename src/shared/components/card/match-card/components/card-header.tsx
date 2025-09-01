@@ -77,11 +77,11 @@ const CardHeader = (props: CardProps) => {
         <div className="flex">
           <div>
             <div className="subhead_18_sb text-start">
-              {props.nickname} 외 {(props.count ?? 1) - 1}명
+              {props.nickname} 외 {props.count - 1}명
             </div>
             <div className="flex-row-center gap-[0.8rem] py-[0.4rem]">
               <div className="cap_12_m text-gray-900">
-                매칭된 인원 {props.count ?? 1}/{GROUP_MAX}
+                매칭된 인원 {props.count}/{GROUP_MAX}
               </div>
               {renderProfile('group')}
             </div>
@@ -106,7 +106,7 @@ const CardHeader = (props: CardProps) => {
               </div>
             </div>
             <div className="flex-row gap-[0.8rem]">
-              <ChipList names={props.chips ?? []} />
+              <ChipList names={props.chips} />
             </div>
           </div>
         </div>
