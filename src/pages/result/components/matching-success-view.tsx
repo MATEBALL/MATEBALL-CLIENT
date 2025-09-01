@@ -6,12 +6,14 @@ import { MATCHING_SUCCESS_TITLE } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 interface MatchingSuccessViewProps {
   isGroupMatching: boolean;
 }
+
+const CLICK_COOLDOWN_MS = 800;
 
 const parseId = (v?: string | null) => (v && /^\d+$/.test(v) ? Number(v) : NaN);
 
@@ -19,6 +21,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const [params] = useSearchParams();
   const { id, matchId: matchIdParam } = useParams<{ id?: string; matchId?: string }>();
   const [clicking, setClicking] = useState(false);
+  const cooldownRef = useRef<number | null>(null);
 
   const tab = isGroupMatching ? 'group' : 'single';
 
@@ -35,7 +38,6 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
     isError,
   } = useQuery({
     ...matchQueries.OPEN_CHAT_URL(matchId, isValidMatchId),
-    staleTime: 0,
   });
 
   const openChatUrl = useMemo(() => {
@@ -55,14 +57,29 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
     [normalizeUrl],
   );
 
+  const clearCooldown = useCallback(() => {
+    if (cooldownRef.current !== null) {
+      window.clearTimeout(cooldownRef.current);
+      cooldownRef.current = null;
+    }
+  }, []);
+
+  useEffect(() => clearCooldown, [clearCooldown]);
+
   const handleEnterChatClick = useCallback((): void => {
     if (!openChatUrl || clicking) return;
     setClicking(true);
     openExternal(openChatUrl);
-    window.setTimeout(() => setClicking(false), 800);
+    cooldownRef.current = window.setTimeout(() => {
+      setClicking(false);
+      cooldownRef.current = null;
+    }, CLICK_COOLDOWN_MS);
   }, [clicking, openChatUrl, openExternal]);
 
-  const disabled = isUrlLoading || isError || clicking || !openChatUrl;
+  const disabled = useMemo(
+    () => isUrlLoading || isError || clicking || !openChatUrl,
+    [isUrlLoading, isError, clicking, openChatUrl],
+  );
 
   return (
     <div className="h-full flex-col-between">
