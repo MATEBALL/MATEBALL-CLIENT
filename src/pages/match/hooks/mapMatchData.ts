@@ -1,6 +1,6 @@
 import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
+import { isChipColor, normalizeChipKey } from '@pages/match/utils/match-status';
 import type { getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
-import { isChipColor, normalizeChipKey } from '../utils/match-status';
 
 export const mapSingleMatchData = (mates: singleMatchMate[] = []): SingleCardProps[] => {
   return mates.map((mate) => {
