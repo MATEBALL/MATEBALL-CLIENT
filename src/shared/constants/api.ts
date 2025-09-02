@@ -30,8 +30,8 @@ export const END_POINT = {
   POST_MATCH: '/v1/users/match',
   POST_MATCH_CONDITION: '/v1/users/match-condition',
 
-  GET_SINGLE_STATUS: (status: string) => `/v1/users/match-stage/direct?status=${status}`,
-  GET_GROUP_STATUS: (status: string) => `/v1/users/match-stage/group?status=${status}`,
+  GET_SINGLE_STATUS: (status: string) => `/v2/users/match-stage/direct?status=${status}`,
+  GET_GROUP_STATUS: (status: string) => `/v2/users/match-stage/group?status=${status}`,
 
   GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match/${matchId}`,
   POST_MATCH_REQUEST: (matchId: number | string) => `/v1/users/match-request/${matchId}`,

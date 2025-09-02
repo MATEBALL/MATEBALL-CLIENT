@@ -12,6 +12,7 @@ export interface baseMate {
   homeTeam: string;
   stadium: string;
   date: string; // YYYY-MM-DD
+  isCreated: boolean;
 }
 
 /**
@@ -176,7 +177,7 @@ export interface postMatchConditionRequest {
  * /v1/users/match-stage/direct?
  */
 export interface getSingleMatchStatusResponse {
-  mates: singleMatchMate[];
+  results: singleMatchMate[];
 }
 
 /**
@@ -203,6 +204,7 @@ export interface getGroupMatchMate {
   status: string;
   count: number;
   imgUrl: string[];
+  isCreated: boolean;
 }
 
 /**
