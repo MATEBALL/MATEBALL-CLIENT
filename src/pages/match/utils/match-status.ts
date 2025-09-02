@@ -42,4 +42,4 @@ export const isClickable = (status?: string) => Boolean(CLICKABLE_STATUS_MAP[sta
 export const normalizeChipKey = (v?: string) => (v ?? '').replace(/\s/g, '');
 
 export const isChipColor = (k: string): k is ChipColor =>
-  Object.prototype.hasOwnProperty.call(chipVariantOptions.bgColor, k);
+  Object.hasOwn(chipVariantOptions.bgColor, k);
