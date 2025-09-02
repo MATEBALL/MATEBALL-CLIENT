@@ -3,7 +3,7 @@ import { Lottie } from '@toss/lottie';
 
 const Loading = () => {
   return (
-    <div className="fixed inset-0 z-10 flex-col-center gap-[4rem] bg-gray-300/50">
+    <div className="fixed inset-0 z-[var(--z-loading)] flex-col-center gap-[4rem] bg-gray-300/50">
       <Lottie src={LOTTIE_PATH.LOADING} width="8rem" height="8rem" loop={true} />
     </div>
   );
