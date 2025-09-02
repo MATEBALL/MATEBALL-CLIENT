@@ -3,19 +3,18 @@ import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { MATCHING_SUCCESS_TITLE } from '@pages/match/constants/matching';
+import { ENTER_CHAT_COOLDOWN_MS } from '@pages/result/constants/matching-result';
+import { parseId } from '@pages/result/utils/number';
+import { openExternal } from '@pages/result/utils/url';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 interface MatchingSuccessViewProps {
   isGroupMatching: boolean;
 }
-
-const CLICK_COOLDOWN_MS = 800;
-
-const parseId = (v?: string | null) => (v && /^\d+$/.test(v) ? Number(v) : NaN);
 
 const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const [params] = useSearchParams();
@@ -40,31 +39,16 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
     ...matchQueries.OPEN_CHAT_URL(matchId, isValidMatchId),
   });
 
-  const openChatUrl = useMemo(() => {
-    const url = data?.chattingUrl;
-    return typeof url === 'string' ? url.trim() : '';
-  }, [data]);
+  const openChatUrl = typeof data?.chattingUrl === 'string' ? data.chattingUrl.trim() : '';
 
-  const normalizeUrl = useCallback(
-    (url: string) => (/^https?:\/\//i.test(url) ? url : `https://${url}`),
-    [],
-  );
-
-  const openExternal = useCallback(
-    (url: string) => {
-      window.open(normalizeUrl(url), '_blank', 'noopener,noreferrer');
-    },
-    [normalizeUrl],
-  );
-
-  const clearCooldown = useCallback(() => {
-    if (cooldownRef.current !== null) {
-      window.clearTimeout(cooldownRef.current);
-      cooldownRef.current = null;
-    }
+  useEffect(() => {
+    return () => {
+      if (cooldownRef.current !== null) {
+        window.clearTimeout(cooldownRef.current);
+        cooldownRef.current = null;
+      }
+    };
   }, []);
-
-  useEffect(() => clearCooldown, [clearCooldown]);
 
   const handleEnterChatClick = useCallback((): void => {
     if (!openChatUrl || clicking) return;
@@ -73,13 +57,10 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
     cooldownRef.current = window.setTimeout(() => {
       setClicking(false);
       cooldownRef.current = null;
-    }, CLICK_COOLDOWN_MS);
-  }, [clicking, openChatUrl, openExternal]);
+    }, ENTER_CHAT_COOLDOWN_MS);
+  }, [clicking, openChatUrl]);
 
-  const disabled = useMemo(
-    () => isUrlLoading || isError || clicking || !openChatUrl,
-    [isUrlLoading, isError, clicking, openChatUrl],
-  );
+  const disabled = isUrlLoading || isError || clicking || !openChatUrl;
 
   return (
     <div className="h-full flex-col-between">
