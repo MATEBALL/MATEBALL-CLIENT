@@ -1,15 +1,6 @@
-import type {
-  ChipColor,
-  GroupCardProps,
-  SingleCardProps,
-} from '@components/card/match-card/types/card';
-import { chipVariantOptions } from '@components/chip/styles/chip-variants';
+import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
 import type { getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
-
-const normalizeChipKey = (v?: string) => (v ?? '').replace(/\s/g, '');
-
-const isChipColor = (k: string): k is ChipColor =>
-  Object.prototype.hasOwnProperty.call(chipVariantOptions.bgColor, k);
+import { isChipColor, normalizeChipKey } from '../utils/match-status';
 
 export const mapSingleMatchData = (mates: singleMatchMate[] = []): SingleCardProps[] => {
   return mates.map((mate) => {

@@ -1,5 +1,8 @@
 import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
+import type { ChipColor } from '@components/chip/chip-list';
+import { chipVariantOptions } from '@components/chip/styles/chip-variants';
 import { MATCH_PENDING_TOAST_MESSAGES } from '@constants/error-toast';
+import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
 
 export const statusToCategory = (status?: string): '대기 중' | '완료' | '실패' | '' => {
   if (!status) return '';
@@ -33,3 +36,10 @@ export const getPendingToast = (
   }
   return '';
 };
+
+export const isClickable = (status?: string) => Boolean(CLICKABLE_STATUS_MAP[status ?? '']);
+
+export const normalizeChipKey = (v?: string) => (v ?? '').replace(/\s/g, '');
+
+export const isChipColor = (k: string): k is ChipColor =>
+  Object.prototype.hasOwnProperty.call(chipVariantOptions.bgColor, k);

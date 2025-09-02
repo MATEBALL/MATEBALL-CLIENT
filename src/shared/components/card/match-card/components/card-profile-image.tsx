@@ -1,16 +1,15 @@
+import { PROFILE_SLOT_COUNT } from '@components/card/constants/MATCH';
 import { profileVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProfileProps } from '@components/card/match-card/types/card';
+import { normalizeUrls } from '@components/card/match-card/utils/normalize-urls';
 import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
 
-const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
-  const normalizeUrls = (url?: CardProfileProps['imgUrl']): string[] => {
-    if (typeof url === 'string') return [url];
-    return url ?? [];
-  };
+export type ProfileType = CardProfileProps['type'];
 
+const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
   const urls = normalizeUrls(imgUrl);
-  const slotCount = type === 'group' ? 4 : 1;
+  const slotCount = PROFILE_SLOT_COUNT[type];
   const slots = Array.from({ length: slotCount }, (_, i) => urls[i] ?? '');
 
   const zIndexClasses = [
@@ -38,7 +37,6 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
             src={src}
             alt=""
             loading="lazy"
-            decoding="async"
             className="h-[2.8rem] w-[2.8rem] rounded-full object-cover"
           />
         ) : isEmptyTail ? (
@@ -64,7 +62,7 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
           className="overflow-hidden rounded-full object-cover"
         />
       ) : (
-        <Icon width={6} height={6} name="profile" className="overflow-hidden rounded-full" />
+        <Icon size={6} name="profile" className="overflow-hidden rounded-full" />
       )}
     </div>
   );

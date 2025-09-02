@@ -17,13 +17,13 @@ const CardHeader = (props: CardProps) => {
       return {
         box: 'h-[1.2rem] w-[1.2rem]',
         pos: 'left-[1.4rem] -bottom-[0.2rem]',
-        size: 1.2 as const,
+        size: 1.2,
       };
     }
     return {
       box: 'h-[1.6rem] w-[1.6rem]',
       pos: 'right-[0.3rem] -bottom-[0.2rem]',
-      size: 1.6 as const,
+      size: 1.6,
     };
   };
 
@@ -98,8 +98,8 @@ const CardHeader = (props: CardProps) => {
       return (
         <div className="flex gap-[1.2rem]">
           {renderProfile(props)}
-          <div className="flex flex-col gap-[0.8rem]">
-            <div className="flex flex-col gap-[0.4rem]">
+          <div className="flex-col gap-[0.8rem]">
+            <div className="flex-col gap-[0.4rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
                 {props.age} | {props.gender}

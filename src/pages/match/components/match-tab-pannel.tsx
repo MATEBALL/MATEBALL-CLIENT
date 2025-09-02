@@ -5,7 +5,12 @@ import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import EmptyState from '@components/ui/empty-state';
 import { cn } from '@libs/cn';
 import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
-import { getCardColor, getPendingToast, statusToCategory } from '@pages/match/utils/match-status';
+import {
+  getCardColor,
+  getPendingToast,
+  isClickable,
+  statusToCategory,
+} from '@pages/match/utils/match-status';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -45,8 +50,6 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
       console.error('매칭 상태 전환 실패', error);
     }
   };
-
-  const isClickable = (status?: string) => Boolean(CLICKABLE_STATUS_MAP[status ?? '']);
 
   return (
     <div className="flex-col gap-[0.8rem] px-[1.6rem] py-[2rem]">
