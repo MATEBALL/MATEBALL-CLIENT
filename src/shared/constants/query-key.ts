@@ -55,4 +55,6 @@ export const MATCH_KEY = {
   DETAIL: (matchId: number) => [...MATCH_KEY.ALL, 'detail', matchId] as const,
   USERS_NUM_COUNT: (matchId: number) => [...MATCH_KEY.ALL, 'usersNumCount', matchId] as const,
   PATCH_STAGE: (key?: string) => [...MATCH_KEY.ALL, 'patch', 'stage', key] as const,
+
+  OPEN_CHAT: (matchId: number) => [...MATCH_KEY.ALL, 'open-chat', matchId] as const,
 } as const;

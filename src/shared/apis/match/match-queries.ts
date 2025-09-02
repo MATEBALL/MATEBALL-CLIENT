@@ -91,4 +91,14 @@ export const matchQueries = {
         return get(url);
       },
     }),
+
+  /**
+   * 오픈채팅방 주소 조회
+   */
+  OPEN_CHAT_URL: (matchId: number, enabled = true) =>
+    queryOptions<{ chattingUrl: string }>({
+      queryKey: MATCH_KEY.OPEN_CHAT(matchId),
+      queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
+      enabled,
+    }),
 };

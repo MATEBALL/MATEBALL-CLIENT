@@ -231,3 +231,15 @@ export interface getMatchDetailResponse {
   nickname: string;
   mates: matchDetailMateSimple[];
 }
+
+/**
+ * 오픈채팅방 주소 조회
+ * get
+ * /v2/users/match/{matchId}/chatting
+ */
+
+export interface getOpenChatUrlResponse {
+  status: number;
+  message: string;
+  data: { chattingUrl: string };
+}
