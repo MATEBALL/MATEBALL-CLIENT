@@ -37,7 +37,6 @@ const MatchListSection = ({
     enabled: isGroup,
   });
 
-  // 경기 정보 조회
   const { data: gameSchedule, isLoading: gameLoading } = useQuery({
     ...gameQueries.GAME_LIST(formattedDate),
   });
@@ -54,8 +53,7 @@ const MatchListSection = ({
     }
   };
 
-  // 경기가 없는 경우 (데이터가 없거나 404 에러)
-  const hasGames = gameSchedule && Array.isArray(gameSchedule) && gameSchedule.length > 0;
+  const hasGames = gameSchedule && gameSchedule.length > 0;
 
   return (
     <section className="p-[1.6rem]">
@@ -67,7 +65,6 @@ const MatchListSection = ({
       />
 
       {!gameLoading && !hasGames ? (
-        // 경기가 없는 경우
         <EmptyView
           iconName="empty-2"
           className="mt-[4rem]"
@@ -75,7 +72,6 @@ const MatchListSection = ({
           subText="경기가 있는 다른 날짜를 탐색해 보세요."
         />
       ) : filteredMatches.length === 0 ? (
-        // 경기는 있지만 매칭이 없는 경우
         <EmptyView
           iconName="empty"
           className="mt-[4rem]"
@@ -83,7 +79,6 @@ const MatchListSection = ({
           subText="맞춤 매칭을 생성하거나, 다른 날짜를 탐색해 보세요."
         />
       ) : (
-        // 매칭이 있는 경우
         <div className="mt-[1.6rem] space-y-[0.8rem]">
           {renderMatchCards(filteredMatches, isSingle, handleCardClick)}
         </div>
