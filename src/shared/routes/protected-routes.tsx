@@ -5,6 +5,7 @@ import {
   EditProfile,
   GroupMates,
   GroupNew,
+  Guide,
   Home,
   Match,
   Onboarding,
@@ -29,4 +30,5 @@ export const protectedRoutes = [
   { path: ROUTES.RESULT(), element: <Result /> },
   { path: ROUTES.ONBOARDING, element: <Onboarding /> },
   { path: ROUTES.ONBOARDING_GROUP, element: <OnboardingGroup /> },
+  { path: ROUTES.GUIDE, element: <Guide /> },
 ];
