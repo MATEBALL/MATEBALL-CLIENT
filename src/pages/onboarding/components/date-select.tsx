@@ -20,8 +20,6 @@ const DateSelect = () => {
   const { isOpen, open, close } = useBottomSheet();
 
   const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-
     const dateStr = format(date, 'yyyy-MM-dd');
 
     queryClient.fetchQuery(gameQueries.GAME_LIST(dateStr)).then((games) => {
@@ -43,6 +41,7 @@ const DateSelect = () => {
   const dateStr = format(selectedDate ?? new Date(), 'yyyy-MM-dd');
   const { data } = useQuery({
     ...gameQueries.GAME_LIST(dateStr),
+    enabled: !!selectedDate,
   });
 
   return (
