@@ -8,7 +8,7 @@ const CalendarButton = ({ onOpenBottomSheet }: CalendarButtonProps) => {
   return (
     <button
       type="button"
-      className="flex h-[3.2rem] flex-row-center cursor-pointer gap-[0.8rem] rounded-[8px] bg-gray-900 p-[0.8rem]"
+      className="h-[3.2rem] flex-row-center cursor-pointer gap-[0.8rem] rounded-[8px] bg-gray-900 p-[0.8rem]"
       onClick={onOpenBottomSheet}
     >
       <Icon name="calendar" size={2.4} className="text-gray-white" />
