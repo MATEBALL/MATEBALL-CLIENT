@@ -4,7 +4,6 @@ import type { CardProfileProps } from '@components/card/match-card/types/card';
 import { normalizeUrls } from '@components/card/match-card/utils/normalize-urls';
 import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
-import type { ReactNode } from 'react';
 
 export type ProfileType = CardProfileProps['type'];
 
