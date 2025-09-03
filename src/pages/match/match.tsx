@@ -1,3 +1,4 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import TabContent from '@components/tab/tab/tab-content';
@@ -6,12 +7,26 @@ import MatchTabPanel from '@pages/match/components/match-tab-pannel';
 import { mapGroupMatchData, mapSingleMatchData } from '@pages/match/hooks/mapMatchData';
 import { useMatchTabState } from '@pages/match/hooks/useMatchTabState';
 import { fillTabItems } from '@pages/match/utils/match-status';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 const Match = () => {
   const { tabState, handleTabChange, handleFilterChange } = useMatchTabState();
   const { type: activeType, filter } = tabState;
   const statusParam = filter === '전체' ? '' : filter;
+
+  const queryClient = useQueryClient();
+
+  const deleteMatchMutation = useMutation({
+    ...matchMutations.DELETE_MATCH(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: matchQueries.SINGLE_MATCH_STATUS('').queryKey });
+      queryClient.invalidateQueries({ queryKey: matchQueries.GROUP_MATCH_STATUS('').queryKey });
+    },
+  });
+
+  const handleDeleteAll = () => {
+    deleteMatchMutation.mutate();
+  };
 
   const { data: singleData } = useQuery({
     ...matchQueries.SINGLE_MATCH_STATUS(statusParam),
@@ -46,6 +61,16 @@ const Match = () => {
           onChange={handleFilterChange}
         />
       </nav>
+      <div className="px-[1.6rem]">
+        <button
+          type="button"
+          onClick={handleDeleteAll}
+          disabled={deleteMatchMutation.isPending}
+          className="rounded bg-red-500 px-4 py-2 text-white"
+        >
+          {deleteMatchMutation.isPending ? '삭제 중...' : '모든 매칭 삭제'}
+        </button>
+      </div>
       <TabContent activeType={activeType} contentMap={contentMap} />
     </div>
   );
