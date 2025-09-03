@@ -40,9 +40,9 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
             className="h-[2.8rem] w-[2.8rem] rounded-full object-cover"
           />
         ) : isEmptyTail ? (
-          <div className="h-[2.8rem] w-[2.8rem] rounded-full bg-gray-400" />
+          <div className="h-[2.8rem] w-[2.8rem] rounded-full bg-gray-300" />
         ) : (
-          <Icon size={2.8} name="profile" className="rounded-full" />
+          <Icon size={2.8} name="profile" className="rounded-full text-gray-black" />
         )}
       </div>
     );

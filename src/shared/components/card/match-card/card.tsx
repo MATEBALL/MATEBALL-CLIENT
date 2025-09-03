@@ -9,7 +9,7 @@ const Card = (props: CardProps) => {
   const { type, className, color } = props;
 
   const introductionClass = 'cap_14_m mt-[1.6rem]';
-  const gameInfoClass = 'mt-[0.4rem] py-[0.4rem]';
+  const gameInfoClass = 'mt-[1.2rem] ';
   const dividerClass = 'border-gray-300';
   const matchingRateClass = 'ml-auto';
 
@@ -23,7 +23,7 @@ const Card = (props: CardProps) => {
 
         {type !== 'user' && (
           <CardGameInfo
-            className={cn(type === 'single' && 'mt-[0.4rem]', gameInfoClass)}
+            className={cn(type === 'single' && 'mt-[1.2rem]', gameInfoClass)}
             awayTeam={props.awayTeam}
             homeTeam={props.homeTeam}
             stadium={props.stadium || ''}
