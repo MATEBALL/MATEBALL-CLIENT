@@ -59,14 +59,23 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
 
     const matchId = Number(params.get('matchId'));
     if (Number.isFinite(matchId)) {
-      readAlarm(matchId);
-    }
+      readAlarm(matchId, {
+        onSettled: () => {
+          openExternal(openChatUrl);
 
-    openExternal(openChatUrl);
-    cooldownRef.current = window.setTimeout(() => {
-      setClicking(false);
-      cooldownRef.current = null;
-    }, ENTER_CHAT_COOLDOWN_MS);
+          cooldownRef.current = window.setTimeout(() => {
+            setClicking(false);
+            cooldownRef.current = null;
+          }, ENTER_CHAT_COOLDOWN_MS);
+        },
+      });
+    } else {
+      openExternal(openChatUrl);
+      cooldownRef.current = window.setTimeout(() => {
+        setClicking(false);
+        cooldownRef.current = null;
+      }, ENTER_CHAT_COOLDOWN_MS);
+    }
   }, [clicking, openChatUrl, params, readAlarm]);
 
   const disabled = isUrlLoading || isError || clicking || !openChatUrl;

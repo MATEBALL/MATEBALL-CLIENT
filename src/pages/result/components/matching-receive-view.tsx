@@ -65,15 +65,16 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const handleAccept = () => {
     acceptMatch(parsedId, {
       onSuccess: () => {
-        readAlarm(parsedId);
+        readAlarm(parsedId, {
+          onSuccess: () => {
+            const resultType = cardType === 'group' ? 'agree' : 'success';
+            navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+          },
+          onError: () => {
+            navigate(ROUTES.ERROR);
+          },
+        });
 
-        if (cardType === 'group') {
-          navigate(ROUTES.MATCH);
-        } else {
-          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
-        }
-        const resultType = cardType === 'group' ? 'agree' : 'success';
-        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
         fillTabItems.forEach((label) => {
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.SINGLE(label) });
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.GROUP(label) });
