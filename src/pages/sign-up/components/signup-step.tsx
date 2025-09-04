@@ -102,7 +102,7 @@ const SignupStep = () => {
               ref={nicknameRef}
               {...nicknameInputProps}
             />
-           <Button label="중복 확인" className="cap_14_sb ml-auto w-fit px-[1.6rem] py-[0.6rem]"/>
+            <Button label="중복 확인" className="cap_14_sb ml-auto w-fit px-[1.6rem] py-[0.6rem]" />
           </div>
 
           <Input
