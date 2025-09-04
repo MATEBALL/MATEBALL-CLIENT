@@ -6,7 +6,6 @@ import { queryOptions } from '@tanstack/react-query';
 import axios from 'axios';
 import type { getMatchConditionResponse, getUserInfoResponse } from '@/shared/types/user-types';
 
-
 export const userQueries = {
   ALL: () => queryOptions({ queryKey: USER_KEY.ALL }),
 
@@ -31,7 +30,7 @@ export const userQueries = {
   NICKNAME_CHECK: (nickname: string) =>
     queryOptions<boolean>({
       queryKey: USER_KEY.NICKNAME_CHECK(nickname),
-      enabled: !!nickname && nickname.trim().length > 1,
+      enabled: false,
       queryFn: async () => {
         try {
           await get<void>(END_POINT.GET_NICKNAME_CHECK(nickname));
