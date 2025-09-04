@@ -15,7 +15,12 @@ import {
   type EditProfileValues,
 } from '@pages/edit-profile/schema/EditProfileSchema';
 import { GENDER, NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
-import { INTRODUCTION_RULE_MESSAGE, NICKNAME_DUPLICATED, NICKNAME_RULE_MESSAGE, NICKNAME_SUCCESS_MESSAGE } from '@pages/sign-up/constants/NOTICE';
+import {
+  INTRODUCTION_RULE_MESSAGE,
+  NICKNAME_DUPLICATED,
+  NICKNAME_RULE_MESSAGE,
+  NICKNAME_SUCCESS_MESSAGE,
+} from '@pages/sign-up/constants/NOTICE';
 import {
   INTRODUCTION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
@@ -99,10 +104,10 @@ const EditProfile = () => {
     });
   };
 
-    // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
-    useEffect(() => {
-      setNicknameStatus('idle');
-    }, [nicknameVal]);
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
+  useEffect(() => {
+    setNicknameStatus('idle');
+  }, [nicknameVal]);
 
   const handleCheckNickname = async () => {
     if (errors.nickname || nicknameVal.trim().length < 2) return;
@@ -138,7 +143,7 @@ const EditProfile = () => {
                     : undefined
               }
               isError={nicknameStatus === 'duplicate'}
-              isValid={nicknameStatus === 'available'}              
+              isValid={nicknameStatus === 'available'}
             />
           )}
         />
@@ -155,7 +160,9 @@ const EditProfile = () => {
             type="button"
             label="수정"
             onClick={submitNickname}
-            disabled={nicknameStatus !== 'available' || nicknameVal.trim().length === 0 || isSubmitting}
+            disabled={
+              nicknameStatus !== 'available' || nicknameVal.trim().length === 0 || isSubmitting
+            }
             className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
           />
         </div>
