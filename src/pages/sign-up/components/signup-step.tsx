@@ -1,4 +1,5 @@
 import { userMutations } from '@apis/user/user-mutations';
+import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -6,6 +7,7 @@ import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
   INTRODUCTION_RULE_MESSAGE,
+  NICKNAME_DUPLICATED,
   NICKNAME_RULE_MESSAGE,
   NICKNAME_SUCCESS_MESSAGE,
   NICKNAME_TITLE,
@@ -17,7 +19,9 @@ import {
   NICKNAME_PLACEHOLDER,
 } from '@pages/sign-up/constants/validation';
 import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
-import { useMutation } from '@tanstack/react-query';
+import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { postUserInfoRequest } from '@/shared/types/user-types';
 
@@ -39,12 +43,15 @@ const SignupStep = () => {
   const genderValue = watch('gender');
   const informationValue = watch('introduction');
 
+  const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
+
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
   const isInformationValid = !errors.introduction && informationValue.length > 0;
 
   const userInfoMutation = useMutation(userMutations.USER_INFO());
   const agreementInfoMutaion = useMutation(userMutations.AGREEMENT_INFO());
+  const { refetch: refetchNicknameCheck } = useQuery(userQueries.NICKNAME_CHECK(nicknameValue));
 
   const informationLength = informationValue.length ?? 0;
 
@@ -82,6 +89,22 @@ const SignupStep = () => {
     setValue('gender', gender, { shouldValidate: true, shouldDirty: true });
   };
 
+  const handleCheckNickname = async () => {
+    if (!isNicknameValid) return;
+    setNicknameStatus('checking');
+    try {
+      const { data } = await refetchNicknameCheck();
+      setNicknameStatus(data ? 'available' : 'duplicate');
+    } catch {
+      setNicknameStatus('idle');
+    }
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
+  useEffect(() => {
+    setNicknameStatus('idle');
+  }, [nicknameValue]);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -90,17 +113,32 @@ const SignupStep = () => {
       <div className="w-full flex-col gap-[4rem]">
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>
         <div className=" flex-col gap-[2.4rem]">
-          <Input
-            placeholder={NICKNAME_PLACEHOLDER}
-            label="닉네임"
-            defaultMessage={isNicknameValid ? NICKNAME_SUCCESS_MESSAGE : NICKNAME_RULE_MESSAGE}
-            validationMessage={errors.nickname?.message}
-            isError={!!errors.nickname}
-            isValid={isNicknameValid}
-            onBlur={onNicknameBlur}
-            ref={nicknameRef}
-            {...nicknameInputProps}
-          />
+          <div className="flex-col gap-[0.8rem]">
+            <Input
+              placeholder={NICKNAME_PLACEHOLDER}
+              label="닉네임"
+              defaultMessage={NICKNAME_RULE_MESSAGE}
+              validationMessage={
+                nicknameStatus === 'duplicate'
+                  ? NICKNAME_DUPLICATED
+                  : nicknameStatus === 'available'
+                    ? NICKNAME_SUCCESS_MESSAGE
+                    : undefined
+              }
+              isError={nicknameStatus === 'duplicate'}
+              isValid={nicknameStatus === 'available'}
+              onBlur={onNicknameBlur}
+              ref={nicknameRef}
+              {...nicknameInputProps}
+            />
+            <Button
+              label="중복 확인"
+              type="button"
+              className="cap_14_sb ml-auto w-fit px-[1.6rem] py-[0.6rem]"
+              onClick={handleCheckNickname}
+              disabled={!isNicknameValid}
+            />
+          </div>
           <Input
             placeholder={INTRODUCTION_PLACEHOLDER}
             className="h-[10.4rem]"
@@ -156,7 +194,7 @@ const SignupStep = () => {
         className="w-full"
         ariaLabel="가입하기"
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || nicknameStatus !== 'available'}
       />
     </form>
   );

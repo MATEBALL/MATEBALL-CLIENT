@@ -15,13 +15,19 @@ import {
   type EditProfileValues,
 } from '@pages/edit-profile/schema/EditProfileSchema';
 import { GENDER, NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
-import { INTRODUCTION_RULE_MESSAGE, NICKNAME_RULE_MESSAGE } from '@pages/sign-up/constants/NOTICE';
+import {
+  INTRODUCTION_RULE_MESSAGE,
+  NICKNAME_DUPLICATED,
+  NICKNAME_RULE_MESSAGE,
+  NICKNAME_SUCCESS_MESSAGE,
+} from '@pages/sign-up/constants/NOTICE';
 import {
   INTRODUCTION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
 } from '@pages/sign-up/constants/validation';
+import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const EditProfile = () => {
@@ -32,6 +38,7 @@ const EditProfile = () => {
   const [mateTeam, setMateTeam] = useState<string | undefined>(undefined);
   const [viewStyle, setViewStyle] = useState<string | undefined>(undefined);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
 
   const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
   const { mutate: editMatchCondition } = useMutation(userMutations.EDIT_MATCH_CONDITION());
@@ -50,6 +57,8 @@ const EditProfile = () => {
 
   const nicknameVal = watch('nickname', '');
   const introductionVal = watch('introduction', '');
+
+  const { refetch: refetchNicknameCheck } = useQuery(userQueries.NICKNAME_CHECK(nicknameVal));
 
   const submitNickname = async () => {
     const ok = await trigger('nickname');
@@ -95,6 +104,22 @@ const EditProfile = () => {
     });
   };
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
+  useEffect(() => {
+    setNicknameStatus('idle');
+  }, [nicknameVal]);
+
+  const handleCheckNickname = async () => {
+    if (errors.nickname || nicknameVal.trim().length < 2) return;
+    setNicknameStatus('checking');
+    try {
+      const { data } = await refetchNicknameCheck();
+      setNicknameStatus(data ? 'available' : 'duplicate');
+    } catch {
+      setNicknameStatus('idle');
+    }
+  };
+
   return (
     <div className="h-full bg-gray-white px-[1.6rem] pt-[1.6rem] pb-[4rem]">
       <h2 className="subhead_18_sb mb-[1.6rem]">프로필 수정</h2>
@@ -104,24 +129,40 @@ const EditProfile = () => {
         <Controller
           name="nickname"
           control={control}
-          render={({ field, fieldState }) => (
+          render={({ field }) => (
             <Input
               {...field}
               placeholder={NICKNAME_PLACEHOLDER}
               label="닉네임"
               defaultMessage={NICKNAME_RULE_MESSAGE}
-              validationMessage={fieldState.error?.message}
-              isError={!!fieldState.error}
-              isValid={!fieldState.error && field.value.trim().length > 0}
+              validationMessage={
+                nicknameStatus === 'duplicate'
+                  ? NICKNAME_DUPLICATED
+                  : nicknameStatus === 'available'
+                    ? NICKNAME_SUCCESS_MESSAGE
+                    : undefined
+              }
+              isError={nicknameStatus === 'duplicate'}
+              isValid={nicknameStatus === 'available'}
             />
           )}
         />
-        <div className="mb-[2.5rem] flex justify-end">
+        <div className="mb-[2.5rem] flex justify-end gap-[0.8rem]">
+          <Button
+            type="button"
+            variant="skyblue"
+            label="중복 확인"
+            onClick={handleCheckNickname}
+            disabled={!!errors.nickname || nicknameVal.trim().length === 0 || isSubmitting}
+            className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem] disabled:text-white"
+          />
           <Button
             type="button"
             label="수정"
             onClick={submitNickname}
-            disabled={!!errors.nickname || nicknameVal.trim().length === 0 || isSubmitting}
+            disabled={
+              nicknameStatus !== 'available' || nicknameVal.trim().length === 0 || isSubmitting
+            }
             className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
           />
         </div>
