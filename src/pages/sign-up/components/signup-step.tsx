@@ -105,8 +105,6 @@ const SignupStep = () => {
     setNicknameStatus('idle');
   }, [nicknameValue]);
 
-
-
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
