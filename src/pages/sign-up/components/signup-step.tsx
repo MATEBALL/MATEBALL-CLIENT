@@ -90,17 +90,21 @@ const SignupStep = () => {
       <div className="w-full flex-col gap-[4rem]">
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>
         <div className=" flex-col gap-[2.4rem]">
-          <Input
-            placeholder={NICKNAME_PLACEHOLDER}
-            label="닉네임"
-            defaultMessage={isNicknameValid ? NICKNAME_SUCCESS_MESSAGE : NICKNAME_RULE_MESSAGE}
-            validationMessage={errors.nickname?.message}
-            isError={!!errors.nickname}
-            isValid={isNicknameValid}
-            onBlur={onNicknameBlur}
-            ref={nicknameRef}
-            {...nicknameInputProps}
-          />
+          <div className="flex-col gap-[0.8rem]">
+            <Input
+              placeholder={NICKNAME_PLACEHOLDER}
+              label="닉네임"
+              defaultMessage={isNicknameValid ? NICKNAME_SUCCESS_MESSAGE : NICKNAME_RULE_MESSAGE}
+              validationMessage={errors.nickname?.message}
+              isError={!!errors.nickname}
+              isValid={isNicknameValid}
+              onBlur={onNicknameBlur}
+              ref={nicknameRef}
+              {...nicknameInputProps}
+            />
+           <Button label="중복 확인" className="cap_14_sb ml-auto w-fit px-[1.6rem] py-[0.6rem]"/>
+          </div>
+
           <Input
             placeholder={INTRODUCTION_PLACEHOLDER}
             className="h-[10.4rem]"
