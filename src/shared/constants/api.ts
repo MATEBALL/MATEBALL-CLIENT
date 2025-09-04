@@ -5,10 +5,19 @@ export const END_POINT = {
   POST_AUTH_LOGIN: '/auth/login?code=',
   GET_USER_STATUS: '/v1/users/info-check',
 
+  // 로그아웃
+  POST_AUTH_LOGOUT: '/auth/logout',
+
   // 유저 관련
   GET_KAKAO_INFO: '/v1/users/kakao/info',
-  USER_INFO: '/v1/users/info',
+  AGREEMENT_INFO: '/v2/users/consent',
+  USER_INFO: '/v2/users/info',
+  GET_NICKNAME_CHECK: (nickname: string) =>
+    `/v2/users/info?nickname=${encodeURIComponent(nickname)}`,
+  GET_USER_INFO: '/v1/users/info',
   POST_INFO_NICKNAME: '/v1/users/info/nickname',
+  POST_EDIT_PROFILE: '/v2/users/info',
+  MATCH_CONDITION: '/v2/users/match-condition',
 
   // 경기 관련
   GET_GAME_SCHEDULE: (date: string) => `/v1/users/game/schedule?date=${date}`,
@@ -23,8 +32,8 @@ export const END_POINT = {
   POST_MATCH: '/v1/users/match',
   POST_MATCH_CONDITION: '/v1/users/match-condition',
 
-  GET_SINGLE_STATUS: (status: string) => `/v1/users/match-stage/direct?status=${status}`,
-  GET_GROUP_STATUS: (status: string) => `/v1/users/match-stage/group?status=${status}`,
+  GET_SINGLE_STATUS: (status: string) => `/v2/users/match-stage/direct?status=${status}`,
+  GET_GROUP_STATUS: (status: string) => `/v2/users/match-stage/group?status=${status}`,
 
   GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match/${matchId}`,
   POST_MATCH_REQUEST: (matchId: number | string) => `/v1/users/match-request/${matchId}`,
@@ -33,4 +42,5 @@ export const END_POINT = {
   PATCH_MATCH_STAGE: (matchId: number | string) => `/v1/users/match-stage/${matchId}`,
   POST_MATCH_NEW_REQUEST: (matchId: number | string) =>
     `/v1/users/match/${matchId}?newRequest=true`,
+  GET_OPEN_CHAT_URL: (matchId: number | string) => `/v2/users/match/${matchId}/chatting`,
 };

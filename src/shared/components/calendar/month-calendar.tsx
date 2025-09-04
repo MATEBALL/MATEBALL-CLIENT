@@ -1,8 +1,8 @@
-import { WEEK_DAY_COLORS, WEEK_DAYS, WEEKDAY } from '@components/calendar/constants/CALENDAR';
+import { WEEK_DAY_COLORS, WEEK_DAYS } from '@components/calendar/constants/CALENDAR';
 import { calendarDayVariants } from '@components/calendar/styles/calendar-day-variants';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
-import { DATE_SELECT_TOAST_MESSAGE } from '@constants/error-toast';
+import { DATE_SELECT_TOAST_MESSAGE, NO_GAME_TOAST_MESSAGE } from '@constants/error-toast';
 import {
   addDays,
   addMonths,
@@ -22,7 +22,8 @@ interface MonthCalendarProps {
   selectedDate?: Date | null;
   onWeekChange: (date: Date) => void;
   onMonthChange: (date: Date) => void;
-  toastBottomOffset?: '4.6rem' | '5.3rem' | '-1.4rem';
+  toastBottomOffset?: '7.6rem' | '8.3rem' | '2.4rem';
+  hasGame?: (date: Date) => boolean;
 }
 
 const MonthCalendar = ({
@@ -32,6 +33,7 @@ const MonthCalendar = ({
   onWeekChange,
   onMonthChange,
   toastBottomOffset,
+  hasGame,
 }: MonthCalendarProps) => {
   const days = getMonthGrid(value);
   const startDate = startOfMonth(value);
@@ -70,16 +72,18 @@ const MonthCalendar = ({
           {days.map((day) => {
             const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
             const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
-            const isMonday = day.getDay() === WEEKDAY.MONDAY;
-            const isDisabled = isPast || isMonday;
+            const isDisabled = isPast;
             const isNotCurrentMonth = day < startDate || day > endDate;
 
             const handleClick = (day: Date) => {
               const isBlocked = day <= addDays(entryDate, 1);
               if (isBlocked) {
-                showErrorToast(DATE_SELECT_TOAST_MESSAGE, {
-                  bottom: toastBottomOffset ?? '-1.4rem',
-                });
+                showErrorToast(DATE_SELECT_TOAST_MESSAGE, toastBottomOffset ?? '2.4rem');
+                return;
+              }
+
+              if (hasGame && !hasGame(day)) {
+                showErrorToast(NO_GAME_TOAST_MESSAGE, toastBottomOffset ?? '3.2rem');
                 return;
               }
               onWeekChange(day);

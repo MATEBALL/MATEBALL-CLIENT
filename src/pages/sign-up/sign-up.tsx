@@ -1,9 +1,24 @@
+import { useFunnel } from '@hooks/use-funnel';
+import AgreementStep from '@pages/sign-up/components/agreement-step';
 import SignupStep from '@pages/sign-up/components/signup-step';
+import { SIGNUP_STEPS } from '@pages/sign-up/constants/validation';
+import { ROUTES } from '@routes/routes-config';
 
 const SignUp = () => {
+  const { Funnel, Step, goNext } = useFunnel(SIGNUP_STEPS, ROUTES.HOME);
+
   return (
-    <div className="signup-layout h-full bg-gray-white">
-      <SignupStep />
+    <div className="h-full flex-col bg-gray-white">
+      <div className="flex-1">
+        <Funnel>
+          <Step name="AGREEMENT">
+            <AgreementStep next={goNext} />
+          </Step>
+          <Step name="INFORMATION">
+            <SignupStep />
+          </Step>
+        </Funnel>
+      </div>
     </div>
   );
 };

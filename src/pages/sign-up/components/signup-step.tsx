@@ -1,22 +1,29 @@
-import { authQueries } from '@apis/auth/auth';
 import { userMutations } from '@apis/user/user-mutations';
+import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import queryClient from '@libs/query-client';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
+  INTRODUCTION_RULE_MESSAGE,
+  NICKNAME_DUPLICATED,
   NICKNAME_RULE_MESSAGE,
   NICKNAME_SUCCESS_MESSAGE,
   NICKNAME_TITLE,
 } from '@pages/sign-up/constants/NOTICE';
-import { BIRTH_PLACEHOLDER, NICKNAME_PLACEHOLDER } from '@pages/sign-up/constants/validation';
-import { type NicknameFormValues, NicknameSchema } from '@pages/sign-up/schema/validation-schema';
-import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import {
+  BIRTH_PLACEHOLDER,
+  INTRODUCTION_MAX_LENGTH,
+  INTRODUCTION_PLACEHOLDER,
+  NICKNAME_PLACEHOLDER,
+} from '@pages/sign-up/constants/validation';
+import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
+import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import type { postUserInfoRequest } from '@/shared/types/user-types';
 
 const SignupStep = () => {
   const {
@@ -25,50 +32,43 @@ const SignupStep = () => {
     formState: { errors, isValid },
     watch,
     setValue,
-  } = useForm<NicknameFormValues>({
+  } = useForm<UserInfoFormValues>({
     mode: 'onChange',
-    resolver: zodResolver(NicknameSchema),
-    defaultValues: { nickname: '', gender: undefined, birthYear: '' },
+    resolver: zodResolver(UserInfoSchema),
+    defaultValues: { nickname: '', gender: undefined, birthYear: '', introduction: '' },
   });
-
-  const navigate = useNavigate();
 
   const nicknameValue = watch('nickname');
   const birthYearValue = watch('birthYear');
   const genderValue = watch('gender');
+  const informationValue = watch('introduction');
+
+  const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
 
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
+  const isInformationValid = !errors.introduction && informationValue.length > 0;
 
-  const nicknameMutation = useMutation(userMutations.NICKNAME());
   const userInfoMutation = useMutation(userMutations.USER_INFO());
+  const agreementInfoMutaion = useMutation(userMutations.AGREEMENT_INFO());
+  const { refetch: refetchNicknameCheck } = useQuery(userQueries.NICKNAME_CHECK(nicknameValue));
 
-  const onSubmit = (data: NicknameFormValues) => {
-    nicknameMutation.mutate(
-      { nickname: data.nickname },
-      {
-        onSuccess: () => {
-          userInfoMutation.mutate(
-            {
-              gender: data.gender,
-              birthYear: Number(data.birthYear),
-            },
-            {
-              onSuccess: () => {
-                queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
-                navigate(ROUTES.HOME);
-              },
-              onError: (error) => {
-                console.error(error);
-              },
-            },
-          );
-        },
-        onError: (error) => {
-          console.error(error);
-        },
-      },
-    );
+  const informationLength = informationValue.length ?? 0;
+
+  const onSubmit = async (data: UserInfoFormValues) => {
+    const userData: postUserInfoRequest = {
+      nickname: data.nickname,
+      introduction: data.introduction,
+      birthYear: Number(data.birthYear),
+      gender: data.gender,
+    };
+
+    try {
+      await agreementInfoMutaion.mutateAsync({ hasAccepted: true });
+      await userInfoMutation.mutateAsync(userData);
+    } catch (e) {
+      console.error('signup failed:', e);
+    }
   };
 
   const { onBlur: onNicknameBlur, ref: nicknameRef, ...nicknameInputProps } = register('nickname');
@@ -79,32 +79,84 @@ const SignupStep = () => {
     ...birthYearInputProps
   } = register('birthYear');
 
+  const {
+    onBlur: onInformationBlur,
+    ref: informationRef,
+    ...informationInputProps
+  } = register('introduction');
+
   const handleGenderClick = (gender: '여성' | '남성') => {
     setValue('gender', gender, { shouldValidate: true, shouldDirty: true });
   };
 
+  const handleCheckNickname = async () => {
+    if (!isNicknameValid) return;
+    setNicknameStatus('checking');
+    try {
+      const { data } = await refetchNicknameCheck();
+      setNicknameStatus(data ? 'available' : 'duplicate');
+    } catch {
+      setNicknameStatus('idle');
+    }
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
+  useEffect(() => {
+    setNicknameStatus('idle');
+  }, [nicknameValue]);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-full w-full flex-col justify-between gap-[4rem]"
+      className="h-full w-full flex-col justify-between gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem]"
     >
       <div className="w-full flex-col gap-[4rem]">
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>
         <div className=" flex-col gap-[2.4rem]">
+          <div className="flex-col gap-[0.8rem]">
+            <Input
+              placeholder={NICKNAME_PLACEHOLDER}
+              label="닉네임"
+              defaultMessage={NICKNAME_RULE_MESSAGE}
+              validationMessage={
+                nicknameStatus === 'duplicate'
+                  ? NICKNAME_DUPLICATED
+                  : nicknameStatus === 'available'
+                    ? NICKNAME_SUCCESS_MESSAGE
+                    : undefined
+              }
+              isError={nicknameStatus === 'duplicate'}
+              isValid={nicknameStatus === 'available'}
+              onBlur={onNicknameBlur}
+              ref={nicknameRef}
+              {...nicknameInputProps}
+            />
+            <Button
+              label="중복 확인"
+              type="button"
+              className="cap_14_sb ml-auto w-fit px-[1.6rem] py-[0.6rem]"
+              onClick={handleCheckNickname}
+              disabled={!isNicknameValid}
+            />
+          </div>
           <Input
-            placeholder={NICKNAME_PLACEHOLDER}
-            label="닉네임"
-            defaultMessage={isNicknameValid ? NICKNAME_SUCCESS_MESSAGE : NICKNAME_RULE_MESSAGE}
-            validationMessage={errors.nickname?.message}
-            isError={!!errors.nickname}
-            isValid={isNicknameValid}
-            onBlur={onNicknameBlur}
-            ref={nicknameRef}
-            {...nicknameInputProps}
+            placeholder={INTRODUCTION_PLACEHOLDER}
+            className="h-[10.4rem]"
+            label="한 줄 소개"
+            defaultMessage={INTRODUCTION_RULE_MESSAGE}
+            multiline
+            maxLength={INTRODUCTION_MAX_LENGTH}
+            isError={!!errors.introduction}
+            isValid={isInformationValid}
+            onBlur={onInformationBlur}
+            ref={informationRef}
+            length={informationLength}
+            hasLength
+            {...informationInputProps}
           />
           <Input
             placeholder={BIRTH_PLACEHOLDER}
-            label="생년"
+            label="출생 연도"
             defaultMessage={isBirthYearValid ? BIRTHYEAR_SUCCESS_MESSAGE : BIRTHYEAR_RULE_MESSAGE}
             validationMessage={errors.birthYear?.message}
             isError={!!errors.birthYear}
@@ -142,7 +194,7 @@ const SignupStep = () => {
         className="w-full"
         ariaLabel="가입하기"
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || nicknameStatus !== 'available'}
       />
     </form>
   );

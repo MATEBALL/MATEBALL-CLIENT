@@ -2,6 +2,8 @@ import {
   BIRTH_ERROR_MESSAGES,
   GENDER_ERROR_MESSAGES,
   GENDER_OPTIONS,
+  INTRODUCTION_MAX_LENGTH,
+  INTRODUCTION_MIN_LENGTH,
   NICKNAME_ERROR_MESSAGES,
   NICKNAME_MAX_LENGTH,
   NICKNAME_MIN_LENGTH,
@@ -9,7 +11,7 @@ import {
 } from '@pages/sign-up/constants/validation';
 import { z } from 'zod';
 
-export const NicknameSchema = z.object({
+export const UserInfoSchema = z.object({
   nickname: z
     .string()
     .min(NICKNAME_MIN_LENGTH, { message: NICKNAME_ERROR_MESSAGES.LENGTH })
@@ -37,6 +39,7 @@ export const NicknameSchema = z.object({
   gender: z.enum(GENDER_OPTIONS, {
     required_error: GENDER_ERROR_MESSAGES.REQUIRED,
   }),
+  introduction: z.string().trim().min(INTRODUCTION_MIN_LENGTH).max(INTRODUCTION_MAX_LENGTH),
 });
 
-export type NicknameFormValues = z.infer<typeof NicknameSchema>;
+export type UserInfoFormValues = z.infer<typeof UserInfoSchema>;

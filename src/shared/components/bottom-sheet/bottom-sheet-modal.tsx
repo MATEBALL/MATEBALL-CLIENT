@@ -41,13 +41,9 @@ const BottomSheetModal = ({
         const status = (error as AxiosError)?.response?.status;
 
         if (status === MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.status) {
-          showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.message, {
-            bottom: '5.3rem',
-          });
+          showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.message, '8.3rem');
         } else if (status === MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.status) {
-          showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.message, {
-            bottom: '5.3rem',
-          });
+          showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.message, '8.3rem');
         }
       },
     });

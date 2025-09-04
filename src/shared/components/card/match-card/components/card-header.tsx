@@ -3,30 +3,66 @@ import CardProfile from '@components/card/match-card/components/card-profile-ima
 import type { CardProps } from '@components/card/match-card/types/card';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
+import Icon from '@components/icon/icon';
+import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { matchPath, useLocation } from 'react-router-dom';
 
 const CardHeader = (props: CardProps) => {
-  const { type } = props;
   const { pathname } = useLocation();
-
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
-  switch (type) {
+  const getCrownSpec = (t: CardProps['type']) => {
+    if (t === 'group') {
+      return {
+        box: 'h-[1.2rem] w-[1.2rem]',
+        pos: 'left-[1.4rem] -bottom-[0.2rem]',
+        size: 1.2,
+      };
+    }
+    return {
+      box: 'h-[1.6rem] w-[1.6rem]',
+      pos: 'right-[0.3rem] -bottom-[0.2rem]',
+      size: 1.6,
+    };
+  };
+
+  const renderProfile = (p: CardProps) => {
+    const spec = getCrownSpec(p.type);
+    return (
+      <div className="relative isolate">
+        <CardProfile type={p.type} imgUrl={p.imgUrl} />
+        {p.isCreated && (
+          <span
+            className={cn(
+              'pointer-events-none absolute z-[var(--z-card-owner)]',
+              spec.pos,
+              'grid place-items-center rounded-full shadow-sm',
+              spec.box,
+            )}
+          >
+            <Icon name="crown" size={spec.size} className="text-owner" aria-hidden />
+          </span>
+        )}
+      </div>
+    );
+  };
+
+  const chips = props.chips ?? [];
+
+  switch (props.type) {
     case 'single':
       return (
         <div className="flex">
-          <CardProfile type="single" imgUrl={props.imgUrl} />
-          <div>
-            <div className="flex items-center gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
+          {renderProfile(props)}
+          <div className="pl-[1.2rem]">
+            <div className="flex items-center gap-[0.8rem] pb-[0.8rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
                 {props.age} | {props.gender}
               </div>
             </div>
-            <div className="pl-[1.2rem]">
-              <ChipList names={props.chips ?? []} />
-            </div>
+            <ChipList names={chips} />
           </div>
           {!isCreateMatchPage && (
             <div className="ml-auto">
@@ -47,7 +83,7 @@ const CardHeader = (props: CardProps) => {
               <div className="cap_12_m text-gray-900">
                 매칭된 인원 {props.count}/{GROUP_MAX}
               </div>
-              <CardProfile type="group" imgUrl={props.imgUrl} />
+              {renderProfile(props)}
             </div>
           </div>
           {!isCreateMatchPage && (
@@ -61,7 +97,7 @@ const CardHeader = (props: CardProps) => {
     case 'detailed':
       return (
         <div className="flex gap-[1.2rem]">
-          <CardProfile type="detailed" imgUrl={props.imgUrl} />
+          {renderProfile(props)}
           <div className="flex-col gap-[0.8rem]">
             <div className="flex-col gap-[0.4rem]">
               <div className="body_16_b">{props.nickname}</div>
@@ -70,7 +106,7 @@ const CardHeader = (props: CardProps) => {
               </div>
             </div>
             <div className="flex-row gap-[0.8rem]">
-              <ChipList names={props.chips} />
+              <ChipList names={chips} />
             </div>
           </div>
         </div>
@@ -79,16 +115,16 @@ const CardHeader = (props: CardProps) => {
     case 'user':
       return (
         <div className="flex">
-          <CardProfile type="user" imgUrl={props.imgUrl} />
-          <div>
-            <div className="gap-[0.8rem] pb-[0.8rem] pl-[1.2rem]">
+          {renderProfile(props)}
+          <div className="pl-[1.2rem]">
+            <div className="flex items-center gap-[0.8rem] pb-[0.8rem]">
               <div className="body_16_b">{props.nickname}</div>
               <div className="cap_12_m text-gray-600">
                 {props.age} | {props.gender}
               </div>
             </div>
-            <div className="ml-[1.2rem] flex-row gap-[0.8rem]">
-              <ChipList names={props.chips} />
+            <div className="flex-row gap-[0.8rem]">
+              <ChipList names={chips} />
             </div>
           </div>
         </div>

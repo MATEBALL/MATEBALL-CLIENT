@@ -1,23 +1,42 @@
 import Icon from '@components/icon/icon';
 import { toast } from 'react-compact-toast';
 
-export const showErrorToast = (
-  message: string,
-  options?: { bottom?: '-1.4rem' | '4.6rem' | '5.3rem' },
-) => {
-  const bottomClassMap = {
-    '-1.4rem': 'bottom-[-1.4rem]',
-    '4.6rem': 'bottom-[4.6rem]',
-    '5.3rem': 'bottom-[5.3rem]',
-  };
+type ShowErrorToastOptions = {
+  icon?: boolean;
+};
 
-  const bottomClass = bottomClassMap[options?.bottom ?? '5.3rem'];
+const DEFAULT_AUTOCLOSE = 3000;
+
+const showErrorToastCore = (message: string, opts?: ShowErrorToastOptions) => {
+  const { icon = true } = opts ?? {};
 
   toast({
     text: message,
-    icon: <Icon name="error" />,
-    autoClose: 3000,
+    icon: icon ? <Icon name="error" className="mr-[0.4rem]" /> : undefined,
+    autoClose: DEFAULT_AUTOCLOSE,
     position: 'bottomCenter',
-    className: `min-h-[4.5rem]! max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] gap-[0.8rem] bg-gray-900 ${bottomClass}`,
+    className:
+      '!min-h-[4.5rem] max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] bg-gray-900',
+  });
+};
+
+export const showErrorToast = (
+  message: string,
+  offsetOrOptions?: string | ShowErrorToastOptions,
+  showIcon?: boolean,
+) => {
+  // 기존 API 호환성을 위해 offset 문자열을 무시하고 처리
+  if (typeof offsetOrOptions === 'string') {
+    return showErrorToastCore(message, {
+      icon: typeof showIcon === 'boolean' ? showIcon : true,
+    });
+  }
+
+  if (typeof offsetOrOptions === 'object' && offsetOrOptions) {
+    return showErrorToastCore(message, offsetOrOptions);
+  }
+
+  return showErrorToastCore(message, {
+    icon: typeof showIcon === 'boolean' ? showIcon : true,
   });
 };

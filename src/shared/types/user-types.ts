@@ -14,20 +14,56 @@ export interface getUserInfoResponse {
 }
 
 /**
- * 유저 정보 등록 요청
+ * 사용자 정보 설정
  * post
- * /v1/users/info
+ * /v2/users/info
  */
 export interface postUserInfoRequest {
-  gender: string;
+  nickname: string;
+  introduction: string;
   birthYear: number;
+  gender: string;
 }
 
 /**
- * 유저 닉네임 등록 요청
+ * 사용자 약관동의
  * post
- * /v1/users/info/nickname
+ * /v2/users/consent
  */
-export interface postUserInfoNicknameRequest {
-  nickname: string;
+export interface postAgreementInfoRequest {
+  hasAccepted: boolean;
+}
+
+/**
+ * 사용자 정보 수정
+ * post
+ * /v2/users/info
+ */
+export interface postEditProfileRequest {
+  field: string;
+  value: string;
+}
+
+/**
+ * 매칭 조건 조회
+ * get
+ * /v2/users/match-condition
+ */
+export interface getMatchConditionResponse {
+  team: string;
+  teamAllowed: string | null;
+  style: string;
+  genderPreference: string;
+}
+
+/**
+ * 매칭 조건 수정
+ * post
+ * /v2/users/match-condition
+ */
+export interface postMatchConditionRequest {
+  team: string;
+  teamAllowed: string | null;
+  style: string;
+  genderPreference: string;
 }

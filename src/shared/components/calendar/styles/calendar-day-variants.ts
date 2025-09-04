@@ -12,9 +12,6 @@ export const calendarDayVariants = cva('flex-row-center text-center', {
       true: 'cursor-not-allowed text-gray-500',
       false: 'cursor-pointer text-gray-900',
     },
-    isMonday: {
-      true: 'text-gray-600',
-    },
     notCurrentMonth: {
       true: 'pointer-events-none opacity-0',
     },
@@ -26,6 +23,5 @@ export const calendarDayVariants = cva('flex-row-center text-center', {
   defaultVariants: {
     monthSelected: false,
     disabled: false,
-    isMonday: false,
   },
 });

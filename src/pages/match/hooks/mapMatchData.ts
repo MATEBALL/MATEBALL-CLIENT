@@ -1,22 +1,28 @@
-import type {
-  ChipColor,
-  GroupCardProps,
-  SingleCardProps,
-} from '@components/card/match-card/types/card';
+import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
+import { isChipColor, normalizeChipKey } from '@pages/match/utils/match-status';
 import type { getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
 
 export const mapSingleMatchData = (mates: singleMatchMate[] = []): SingleCardProps[] => {
-  return mates.map((mate) => ({
-    ...mate,
-    type: 'single',
-    imgUrl: [mate.imgUrl],
-    chips: [mate.team, mate.style].map((v) => v as ChipColor),
-  }));
+  return mates.map((mate) => {
+    const teamKey = mate.team;
+    const styleKey = normalizeChipKey(mate.style);
+
+    const chips = [teamKey, styleKey].filter(isChipColor);
+
+    return {
+      ...mate,
+      type: 'single',
+      imgUrl: [mate.imgUrl],
+      isCreated: Boolean(mate.isCreated),
+      chips,
+    };
+  });
 };
 
 export const mapGroupMatchData = (mates: getGroupMatchMate[] = []): GroupCardProps[] => {
   return mates.map((mate) => ({
     ...mate,
     type: 'group',
+    isCreated: Boolean(mate.isCreated),
   }));
 };

@@ -12,6 +12,7 @@ import type {
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
 } from '@/shared/types/match-types';
+import { handleNotFoundError } from '@/shared/utils/query-error-handler';
 
 export const matchQueries = {
   ALL: () => queryOptions({ queryKey: MATCH_KEY.ALL }),
@@ -50,7 +51,14 @@ export const matchQueries = {
   SINGLE_MATCH_LIST: (date: string) =>
     queryOptions<getSingleMatchListResponse>({
       queryKey: MATCH_KEY.LIST.SINGLE(date),
-      queryFn: () => get(END_POINT.GET_SINGLE_LIST(date)),
+      queryFn: async () => {
+        try {
+          const res = await get<getSingleMatchListResponse>(END_POINT.GET_SINGLE_LIST(date));
+          return res;
+        } catch (error) {
+          return handleNotFoundError(error, { mates: [] });
+        }
+      },
     }),
 
   /**
@@ -59,7 +67,14 @@ export const matchQueries = {
   GROUP_MATCH_LIST: (date: string) =>
     queryOptions<getGroupMatchListResponse>({
       queryKey: MATCH_KEY.LIST.GROUP(date),
-      queryFn: () => get(END_POINT.GET_GROUP_LIST(date)),
+      queryFn: async () => {
+        try {
+          const res = await get<getGroupMatchListResponse>(END_POINT.GET_GROUP_LIST(date));
+          return res;
+        } catch (error) {
+          return handleNotFoundError(error, { mates: [] });
+        }
+      },
     }),
 
   /**
@@ -90,5 +105,15 @@ export const matchQueries = {
         const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''}`;
         return get(url);
       },
+    }),
+
+  /**
+   * 오픈채팅방 주소 조회
+   */
+  OPEN_CHAT_URL: (matchId: number, enabled = true) =>
+    queryOptions<{ chattingUrl: string }>({
+      queryKey: MATCH_KEY.OPEN_CHAT(matchId),
+      queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
+      enabled,
     }),
 };

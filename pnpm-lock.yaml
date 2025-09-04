@@ -48,8 +48,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0
       react-compact-toast:
-        specifier: ^0.1.6
-        version: 0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.2.0
+        version: 0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-dom:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
@@ -3385,8 +3385,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  react-compact-toast@0.1.6:
-    resolution: {integrity: sha512-dYV1IzyVFK29kw18rRYP2jpCZh/Uspb3vNwrTKGqxIXY8OLgopeYm2tlk4bEXlOA7u8pCB+1Arp/muoaHwt5hA==}
+  react-compact-toast@0.2.0:
+    resolution: {integrity: sha512-VtYSjSsr8x0Rhx0rTYjKa49/EX7B/3c7Idu9/XbxkQ5DPeX1PcFFPIWn0AZPqA2CscZTX7FDJR0fxt56RC3y1w==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ^19
@@ -7146,7 +7146,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  react-compact-toast@0.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  react-compact-toast@0.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
