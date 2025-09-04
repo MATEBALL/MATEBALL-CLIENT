@@ -1,5 +1,4 @@
-import { WEEKDAY } from '@components/calendar/constants/CALENDAR';
-import { addDays, endOfMonth, getDay, isAfter, startOfMonth, startOfWeek } from 'date-fns';
+import { addDays, endOfMonth, isAfter, startOfMonth, startOfWeek } from 'date-fns';
 
 export const getWeekDays = (baseDate: Date): Date[] => {
   return Array.from({ length: 7 }, (_, i) => addDays(baseDate, i));
@@ -17,6 +16,5 @@ export const getMonthGrid = (date: Date): Date[] => {
 };
 
 export const getInitialSelectedDate = (entryDate: Date): Date => {
-  const base = addDays(entryDate, 2);
-  return getDay(base) === WEEKDAY.MONDAY ? addDays(base, 1) : base;
+  return addDays(entryDate, 2);
 };

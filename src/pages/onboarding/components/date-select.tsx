@@ -4,9 +4,12 @@ import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import MonthCalendar from '@components/calendar/month-calendar';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
+import { NO_GAME_TOAST_MESSAGE } from '@constants/error-toast';
+import queryClient from '@libs/query-client';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { useState } from 'react';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 const DateSelect = () => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
@@ -17,8 +20,17 @@ const DateSelect = () => {
   const { isOpen, open, close } = useBottomSheet();
 
   const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-    open();
+    const dateStr = format(date, 'yyyy-MM-dd');
+
+    queryClient.fetchQuery(gameQueries.GAME_LIST(dateStr)).then((games) => {
+      if (!games || games.length === 0) {
+        showErrorToast(NO_GAME_TOAST_MESSAGE, '2.4rem');
+        return;
+      }
+
+      setSelectedDate(date);
+      open();
+    });
   };
 
   const handleMonthChange = (date: Date) => {
@@ -29,6 +41,7 @@ const DateSelect = () => {
   const dateStr = format(selectedDate ?? new Date(), 'yyyy-MM-dd');
   const { data } = useQuery({
     ...gameQueries.GAME_LIST(dateStr),
+    enabled: !!selectedDate,
   });
 
   return (
