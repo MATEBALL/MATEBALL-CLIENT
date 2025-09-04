@@ -18,3 +18,5 @@ export const MATCH_PENDING_TOAST_MESSAGES = {
 };
 
 export const DATE_SELECT_TOAST_MESSAGE = '직관 준비를 위해 2일 후 날짜부터 선택 가능해요.';
+
+export const NO_GAME_TOAST_MESSAGE = '해당 날짜에는 진행되는 경기가 없어요';
