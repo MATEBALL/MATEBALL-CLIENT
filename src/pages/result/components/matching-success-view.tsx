@@ -57,8 +57,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
     if (!openChatUrl || clicking) return;
     setClicking(true);
 
-    const matchId = Number(params.get('matchId'));
-    if (Number.isFinite(matchId)) {
+    if (isValidMatchId) {
       readAlarm(matchId, {
         onSettled: () => {
           openExternal(openChatUrl);
@@ -76,7 +75,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
         cooldownRef.current = null;
       }, ENTER_CHAT_COOLDOWN_MS);
     }
-  }, [clicking, openChatUrl, params, readAlarm]);
+  }, [clicking, openChatUrl, matchId, isValidMatchId, readAlarm]);
 
   const disabled = isUrlLoading || isError || clicking || !openChatUrl;
 
