@@ -62,3 +62,8 @@ export const MATCH_KEY = {
     MATCH: () => [...MATCH_KEY.ALL, 'delete'] as const,
   },
 } as const;
+
+export const ALARM_KEY = {
+  HAS_UNREAD: ['alarms', 'hasUnread'] as const,
+  READ: () => ['alarms', 'read'] as const,
+};

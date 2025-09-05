@@ -1,19 +1,15 @@
 import { get } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
+import { ALARM_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
-
-interface GetUnreadAlarmsResponse {
-  status: number;
-  message: string;
-  hasUnreadAlarms: boolean;
-}
+import type { getUnreadAlarmsResponse } from '@/shared/types/alarm-types';
 
 export const alarmQueries = {
   HAS_UNREAD: () =>
     queryOptions<boolean>({
-      queryKey: ['alarms', 'hasUnread'],
+      queryKey: ALARM_KEY.HAS_UNREAD,
       queryFn: async () => {
-        const res = await get<GetUnreadAlarmsResponse>(END_POINT.GET_UNREAD_ALARMS);
+        const res = await get<getUnreadAlarmsResponse>(END_POINT.GET_UNREAD_ALARMS);
         return res.hasUnreadAlarms;
       },
     }),
