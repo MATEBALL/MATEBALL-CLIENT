@@ -31,15 +31,18 @@
       content="https://www.mateball.co.kr/images/mateball-kakao-thumbnail.webp"
     />
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYTE3MEX43"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
 
-    gtag('config', 'G-DYTE3MEX43');
-    </script>
+  gtag('config', '%VITE_GOOGLE_ANALYTICS_ID%', {
+    send_page_view: false
+  });
+</script>
+
   </head>
   <body>
     <div id="root"></div>
