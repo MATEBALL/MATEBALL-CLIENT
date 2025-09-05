@@ -58,4 +58,13 @@ export const MATCH_KEY = {
   PATCH_STAGE: (key?: string) => [...MATCH_KEY.ALL, 'patch', 'stage', key] as const,
 
   OPEN_CHAT: (matchId: number) => [...MATCH_KEY.ALL, 'open-chat', matchId] as const,
+
+  DELETE: {
+    MATCH: () => [...MATCH_KEY.ALL, 'delete'] as const,
+  },
 } as const;
+
+export const ALARM_KEY = {
+  HAS_UNREAD: ['alarms', 'hasUnread'] as const,
+  READ: () => ['alarms', 'read'] as const,
+};
