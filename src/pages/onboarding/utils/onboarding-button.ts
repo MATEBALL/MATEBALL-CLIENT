@@ -79,6 +79,7 @@ export const handleButtonClick = (
     if (selections.GROUP_ROLE === '그룹원') {
       goTo?.('COMPLETE');
     } else {
+      gaEvent('match_create_click', { match_type: 'group', role: 'creator' });
       gaEvent('condition_set_completed', { match_type: 'group' });
       goNext();
     }
