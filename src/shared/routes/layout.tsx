@@ -2,11 +2,14 @@ import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
 import { NO_HEADER_PATHS, SHOW_BOTTOM_NAVIGATE_PATHS } from '@constants/header';
+import useAnalyticsPageView from '@hooks/use-analytics-page-view';
 import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { matchPath, Outlet, useLocation } from 'react-router-dom';
 
 const Layout = () => {
+  useAnalyticsPageView();
+
   const { pathname, search } = useLocation();
   const params = new URLSearchParams(search);
 

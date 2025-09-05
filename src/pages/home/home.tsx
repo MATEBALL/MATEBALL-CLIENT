@@ -6,6 +6,7 @@ import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Dialog from '@components/dialog/dialog';
 import useAuth from '@hooks/use-auth';
 import { useTabState } from '@hooks/use-tab-state';
+import { gaEvent } from '@libs/analytics';
 import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
 import MatchListSection from '@pages/home/components/match-list-section';
@@ -44,6 +45,7 @@ const Home = () => {
   };
 
   const handleComplete = () => {
+    gaEvent('condition_set_start');
     navigate(ROUTES.ONBOARDING);
   };
 
