@@ -3,6 +3,7 @@ import { matchQueries } from '@apis/match/match-queries';
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyView from '@components/ui/empty-view';
+import { gaEvent } from '@libs/analytics';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
@@ -46,6 +47,9 @@ const MatchListSection = ({
   }, [isSingle, singleMatchData, groupMatchData]);
 
   const handleCardClick = (matchId: number) => {
+    const matchType = isSingle ? 'one_to_one' : 'group';
+    gaEvent('home_profile_view', { match_id: matchId, match_type: matchType });
+
     if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {
@@ -55,13 +59,19 @@ const MatchListSection = ({
 
   const hasGames = gameSchedule && gameSchedule.length > 0;
 
+  const handleCreateClick = () => {
+    const matchType = isSingle ? 'one_to_one' : 'group';
+    gaEvent('match_create_click', { match_type: matchType, role: 'creator' });
+    onOpenGameInfoBottomSheet();
+  };
+
   return (
     <section className="p-[1.6rem]">
       <ButtonCreate
         label="맞춤 매칭 생성하기"
         className="ml-auto"
         textColor={!gameLoading && !hasGames ? 'text-gray-500' : undefined}
-        onClick={!gameLoading && !hasGames ? undefined : onOpenGameInfoBottomSheet}
+        onClick={!gameLoading && !hasGames ? undefined : handleCreateClick}
       />
 
       {!gameLoading && !hasGames ? (
