@@ -9,6 +9,7 @@ import { useMatchTabState } from '@pages/match/hooks/useMatchTabState';
 import { fillTabItems } from '@pages/match/utils/match-status';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import type { MatchCardData } from './create/types/match-data-type';
 
 const Match = () => {
   const { tabState, handleTabChange, handleFilterChange } = useMatchTabState();
@@ -45,11 +46,31 @@ const Match = () => {
     }
   }, [singleData, groupData, activeType]);
 
+  const handleCardClick = (card: MatchCardData) => {
+    gaEvent('match_card_click', {
+      match_id: card.id,
+      match_type: activeType === '1:1' ? 'one_to_one' : 'group',
+      match_status: card.status,
+    });
+  };
+
   const contentMap = {
     '1:1': (
-      <MatchTabPanel key="single" cards={mapSingleMatchData(singleData?.results)} filter={filter} />
+      <MatchTabPanel
+        key="single"
+        cards={mapSingleMatchData(singleData?.results)}
+        filter={filter}
+        onCardClick={handleCardClick}
+      />
     ),
-    그룹: <MatchTabPanel key="group" cards={mapGroupMatchData(groupData?.mates)} filter={filter} />,
+    그룹: (
+      <MatchTabPanel
+        key="group"
+        cards={mapGroupMatchData(groupData?.mates)}
+        filter={filter}
+        onCardClick={handleCardClick}
+      />
+    ),
   };
 
   return (
