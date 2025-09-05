@@ -32,7 +32,7 @@
     />
 
 <script type="module">
-  const GA_ID = import.meta.env
+  const GA_ID = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
 
   if (GA_ID) {
     const s = document.createElement("script");
