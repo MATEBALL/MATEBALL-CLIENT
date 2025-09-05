@@ -2,11 +2,13 @@ import { matchQueries } from '@apis/match/match-queries';
 import FillTabList from '@components/tab/fill-tab/fill-tab-list';
 import TabContent from '@components/tab/tab/tab-content';
 import TabList from '@components/tab/tab/tab-list';
+import { gaEvent } from '@libs/analytics';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
 import { mapGroupMatchData, mapSingleMatchData } from '@pages/match/hooks/mapMatchData';
 import { useMatchTabState } from '@pages/match/hooks/useMatchTabState';
 import { fillTabItems } from '@pages/match/utils/match-status';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 const Match = () => {
   const { tabState, handleTabChange, handleFilterChange } = useMatchTabState();
@@ -22,6 +24,26 @@ const Match = () => {
     ...matchQueries.GROUP_MATCH_STATUS(statusParam),
     enabled: activeType === '그룹',
   });
+
+  useEffect(() => {
+    if (activeType === '1:1' && singleData?.results) {
+      singleData.results.forEach((card) => {
+        gaEvent('match_card_view', {
+          match_id: card.id,
+          match_type: 'one_to_one',
+          match_status: card.status,
+        });
+      });
+    } else if (activeType === '그룹' && groupData?.mates) {
+      groupData.mates.forEach((card) => {
+        gaEvent('match_card_view', {
+          match_id: card.id,
+          match_type: 'group',
+          match_status: card.status,
+        });
+      });
+    }
+  }, [singleData, groupData, activeType]);
 
   const contentMap = {
     '1:1': (
