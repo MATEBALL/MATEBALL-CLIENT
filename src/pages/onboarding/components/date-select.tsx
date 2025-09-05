@@ -41,7 +41,6 @@ const DateSelect = () => {
   const dateStr = format(selectedDate ?? new Date(), 'yyyy-MM-dd');
   const { data } = useQuery({
     ...gameQueries.GAME_LIST(dateStr),
-    enabled: !!selectedDate,
   });
 
   return (
