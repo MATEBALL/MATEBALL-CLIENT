@@ -3,6 +3,7 @@ import { matchQueries } from '@apis/match/match-queries';
 import ButtonCreate from '@components/button/button-create/button-create';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import EmptyView from '@components/ui/empty-view';
+import { gaEvent } from '@libs/analytics';
 import { renderMatchCards } from '@pages/home/utils/match-card-renderers';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
@@ -46,6 +47,9 @@ const MatchListSection = ({
   }, [isSingle, singleMatchData, groupMatchData]);
 
   const handleCardClick = (matchId: number) => {
+    const matchType = isSingle ? 'one_to_one' : 'group';
+    gaEvent('home_profile_view', { match_id: matchId, match_type: matchType });
+
     if (isSingle) {
       navigate(`${ROUTES.MATCH_SINGLE(matchId.toString())}?type=sent&mode=single`);
     } else {

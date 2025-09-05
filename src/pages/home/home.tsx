@@ -15,7 +15,7 @@ import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condi
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { addDays, format } from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -38,6 +38,11 @@ const Home = () => {
   });
 
   const { needsMatchingSetup } = useAuth();
+
+  useEffect(() => {
+    const from = needsMatchingSetup ? 'onboarding' : 'return_user';
+    gaEvent('home_enter', { from });
+  }, [needsMatchingSetup]);
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
