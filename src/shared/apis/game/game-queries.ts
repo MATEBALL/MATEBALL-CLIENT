@@ -19,5 +19,6 @@ export const gameQueries = {
           return handleNotFoundError(error, []);
         }
       },
+      enabled: !!dateStr,
     }),
 };

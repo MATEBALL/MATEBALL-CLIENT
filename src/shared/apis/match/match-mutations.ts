@@ -1,4 +1,4 @@
-import { patch, post } from '@apis/base/http';
+import { del, patch, post } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';
@@ -17,6 +17,15 @@ export const matchMutations = {
     mutationOptions<postMatchCreateResponse, Error, postMatchCreateRequest>({
       mutationKey: MATCH_KEY.POST.MATCH(),
       mutationFn: ({ gameId, matchType }) => post(END_POINT.POST_MATCH, { gameId, matchType }),
+    }),
+
+  /**
+   * 매칭 전체 삭제
+   */
+  DELETE_MATCH: () =>
+    mutationOptions<responseTypes, Error, void>({
+      mutationKey: MATCH_KEY.DELETE.MATCH(),
+      mutationFn: () => del(END_POINT.DELETE_MATCH),
     }),
 
   /**

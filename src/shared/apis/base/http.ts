@@ -15,3 +15,7 @@ export function patch<T>(...args: Parameters<typeof instance.patch>): Promise<T>
 export function put<T>(...args: Parameters<typeof instance.put>): Promise<T> {
   return instance.put<T>(...args).then((res) => res.data);
 }
+
+export function del<T>(...args: Parameters<typeof instance.delete>): Promise<T> {
+  return instance.delete<T>(...args).then((res) => res.data);
+}

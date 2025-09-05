@@ -1,3 +1,4 @@
+import { alarmMutations } from '@apis/alarm/alarm-mutations';
 import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
@@ -29,6 +30,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
+  const { mutate: readAlarm } = useMutation(alarmMutations.READ_ALARM());
   const { mutate: rejectMatch } = useMutation(matchMutations.MATCH_REJECT());
   const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
 
@@ -63,13 +65,16 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const handleAccept = () => {
     acceptMatch(parsedId, {
       onSuccess: () => {
-        if (cardType === 'group') {
-          navigate(ROUTES.MATCH);
-        } else {
-          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
-        }
-        const resultType = cardType === 'group' ? 'agree' : 'success';
-        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+        readAlarm(parsedId, {
+          onSuccess: () => {
+            const resultType = cardType === 'group' ? 'agree' : 'success';
+            navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+          },
+          onError: () => {
+            navigate(ROUTES.ERROR);
+          },
+        });
+
         fillTabItems.forEach((label) => {
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.SINGLE(label) });
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.GROUP(label) });
