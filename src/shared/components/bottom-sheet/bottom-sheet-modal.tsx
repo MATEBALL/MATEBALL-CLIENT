@@ -51,7 +51,7 @@ const BottomSheetModal = ({
 
   return (
     <BottomSheet showIndicator={false} isOpen={isOpen} onClose={onClose}>
-      <div className="mx-auto flex-col-center gap-[0.4rem] px-[5rem] pt-[3.2rem] text-center">
+      <div className="flex-col-center gap-[0.4rem] px-[5rem] pt-[3.2rem] text-center">
         <div className="flex-col-center gap-[1.6rem] self-stretch">
           <div className="title_24_sb text-gray-black">잠깐!</div>
           <div className="body_16_b whitespace-nowrap text-gray-900">{description}</div>
