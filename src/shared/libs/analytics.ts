@@ -19,14 +19,11 @@ export function getGtag() {
   if (!Array.isArray(window.dataLayer)) {
     window.dataLayer = [];
   }
-  // 2. Add an explicit type for the rest parameter
   return (...args: unknown[]) => {
     window.dataLayer.push(args);
   };
 }
 
-// 3. Add explicit types for all function parameters
-// 공용 API
 export function identify(userId: string | number) {
   if (!userId) {
     /* eslint-disable-next-line no-console */ console.warn('[GA] userId is missing');
@@ -58,14 +55,12 @@ export function gaEvent(name: string, params: GaEventParams = {}) {
   gtag('event', name, params);
 }
 
-// 4. Create an interface for the destructured page view parameters
 interface PageViewParams {
   path?: string;
   title?: string;
   location?: string;
 }
 
-// SPA 페이지뷰 전송
 export function sendPageView({ path, title, location }: PageViewParams = {}) {
   const gtag = getGtag();
   gtag('event', 'page_view', {
@@ -79,20 +74,17 @@ export function sendPageView({ path, title, location }: PageViewParams = {}) {
   });
 }
 
-// 5. Create an interface for the domain helper parameters
-interface OnboardingData {
+interface SignUpData {
   userId: string | number;
   birthYear: string | number;
   gender: 'male' | 'female';
 }
 
-// 도메인 헬퍼 예시
-export function trackOnboardingCompleted({ userId, birthYear, gender }: OnboardingData) {
+export function trackSignUpCompleted({ userId, birthYear, gender }: SignUpData) {
   if (!/^\d{4}$/.test(String(birthYear))) {
     console.warn('[GA] birthYear format error (e.g., 1998)');
     return;
   }
-  // The 'gender' check is already handled by the type, but this runtime check is still good practice
   if (gender !== 'male' && gender !== 'female') {
     console.warn('[GA] gender must be male or female');
     return;
