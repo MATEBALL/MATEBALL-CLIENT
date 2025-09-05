@@ -57,7 +57,8 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "single",
-      "trailingCommas": "all"
+      "trailingCommas": "all",
+      "semicolons": "always"
     },
     "linter": {
       "enabled": true

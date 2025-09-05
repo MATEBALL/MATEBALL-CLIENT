@@ -7,29 +7,42 @@
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
       rel="preload"
       as="style"
-    />
+    >
     <link
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
-    />
+    >
 
     <title>메잇볼</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-     <meta
-      name="description"
-      content="나랑 딱! 맞는 직관 메이트와 연결되는 공간"
-    />
-    <meta property="og:title" content="mateball"/>
-    <meta property="og:description" content="나랑 딱! 맞는 직관 메이트와 연결되는 공간"/>
-    <meta property="og:type" content="website"/>
+    <meta name="description" content="나랑 딱! 맞는 직관 메이트와 연결되는 공간" >
+    <meta property="og:title" content="mateball" />
+    <meta property="og:description" content="나랑 딱! 맞는 직관 메이트와 연결되는 공간" />
+    <meta property="og:type" content="website" />
     <meta
       name="keywords"
       content="야구, 야구 직관, 야구 경기 직관, 야구 직관 동행, 야구 직관 동반인"
+    >
+    <meta property="og:url" content="https://www.mateball.co.kr" />
+    <meta
+      property="og:image"
+      content="https://www.mateball.co.kr/images/mateball-kakao-thumbnail.webp"
     />
-    <meta property="og:url" content="https://www.mateball.co.kr"/>
-    <meta property="og:image" content="https://www.mateball.co.kr/images/mateball-kakao-thumbnail.webp"/>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=%VITE_GOOGLE_ANALYTICS_ID%"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', '%VITE_GOOGLE_ANALYTICS_ID%', {
+    send_page_view: false
+  });
+</script>
+
   </head>
   <body>
     <div id="root"></div>

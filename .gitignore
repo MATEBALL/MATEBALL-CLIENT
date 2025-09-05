@@ -25,6 +25,8 @@ dist-ssr
 
 # Local env files
 .env
+.env.development
+.env.production
 *storybook.log
 
 # vitepress
