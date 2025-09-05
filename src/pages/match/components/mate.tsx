@@ -1,11 +1,11 @@
 import { matchQueries } from '@apis/match/match-queries';
+import Loading from '@pages/loading/loading';
 import MateCarousel from '@pages/match/components/mate-carousel';
 import MateFooter from '@pages/match/components/mate-footer';
 import MateHeader from '@pages/match/components/mate-header';
 import { mapMateData } from '@pages/match/utils/mate';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useState } from 'react';
 
 interface MateProps {
   matchId: number;
@@ -13,13 +13,7 @@ interface MateProps {
   isGroupMatching?: boolean;
 }
 
-interface LayoutContext {
-  setIsLoading: (value: boolean) => void;
-}
-
 const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) => {
-  const { setIsLoading } = useOutletContext<LayoutContext>();
-
   const { data, isLoading } = useQuery({
     ...matchQueries.MATCH_DETAIL(matchId, false),
     enabled: !!matchId,
@@ -29,13 +23,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    if (isLoading) {
-      setIsLoading(true);
-    } else {
-      setIsLoading(false);
-    }
-  }, [isLoading, setIsLoading]);
+  if (isLoading) return <Loading />;
 
   return (
     <div className="h-full flex-col-between">
