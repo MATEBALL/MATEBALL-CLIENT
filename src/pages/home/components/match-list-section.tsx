@@ -59,13 +59,19 @@ const MatchListSection = ({
 
   const hasGames = gameSchedule && gameSchedule.length > 0;
 
+  const handleCreateClick = () => {
+    const matchType = isSingle ? 'one_to_one' : 'group';
+    gaEvent('match_create_click', { match_type: matchType, role: 'creator' });
+    onOpenGameInfoBottomSheet();
+  };
+
   return (
     <section className="p-[1.6rem]">
       <ButtonCreate
         label="맞춤 매칭 생성하기"
         className="ml-auto"
         textColor={!gameLoading && !hasGames ? 'text-gray-500' : undefined}
-        onClick={!gameLoading && !hasGames ? undefined : onOpenGameInfoBottomSheet}
+        onClick={!gameLoading && !hasGames ? undefined : handleCreateClick}
       />
 
       {!gameLoading && !hasGames ? (
