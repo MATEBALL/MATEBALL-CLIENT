@@ -52,7 +52,7 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="flex-col gap-[0.8rem] px-[1.6rem] py-[2rem]">
+    <div className="flex-col gap-[0.8rem] px-[1.6rem]">
       {filteredCards.length === 0 ? (
         <EmptyView
           iconName="empty"
