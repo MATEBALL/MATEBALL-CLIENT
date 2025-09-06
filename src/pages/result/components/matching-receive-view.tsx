@@ -14,15 +14,12 @@ import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-interface MatchingReceiveViewProps {
-  isGroupMatching?: boolean;
-}
-
-const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
+const MatchingReceiveView = () => {
   const { matchId } = useParams();
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const cardType = params.get('cardtype');
+  const isGroupMatching = cardType === 'group';
 
   usePreventBackNavigation(
     `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
