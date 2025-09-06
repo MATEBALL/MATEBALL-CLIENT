@@ -26,7 +26,7 @@ export const NAV_ITEMS = [
     },
   },
   {
-    label: '내 정보',
+    label: '마이페이지',
     path: ROUTES.PROFILE,
     icon: {
       filled: 'my-filled',
