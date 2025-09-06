@@ -10,11 +10,11 @@ interface EmptyViewProps {
 
 const EmptyView = ({ iconName, text, subText, className }: EmptyViewProps) => {
   return (
-    <div className={cn('mt-[2.4rem] flex-col-center', className)}>
+    <div className={cn('flex-col-center gap-[2.4rem]', className)}>
       <Icon name={iconName} size={8.4} />
-      <div className="text-center">
-        <h3 className="head_20_sb mt-[2.4rem]">{text}</h3>
-        <p className="cap_14_m mt-[0.8rem] text-gray-500">{subText}</p>
+      <div className="flex-col-center gap-[0.8rem] text-center">
+        <h3 className="head_20_sb">{text}</h3>
+        <p className="cap_14_m text-gray-500">{subText}</p>
       </div>
     </div>
   );
