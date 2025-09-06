@@ -52,7 +52,7 @@ const OnboardingGroup = () => {
           </Step>
 
           <Step name="DATE_SELECT">
-            <DateSelect />
+            <DateSelect groupRole={selection.GROUP_ROLE} />
           </Step>
 
           <Step name="COMPLETE">

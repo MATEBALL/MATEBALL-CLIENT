@@ -29,6 +29,7 @@ interface GameMatchBottomSheetProps {
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
   fromOnboarding?: boolean;
+  groupRole?: string | null;
 }
 
 const GameMatchBottomSheet = ({
@@ -38,6 +39,7 @@ const GameMatchBottomSheet = ({
   gameSchedule,
   activeType,
   fromOnboarding = false,
+  groupRole,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const navigate = useNavigate();
@@ -80,7 +82,11 @@ const GameMatchBottomSheet = ({
           handleClose();
 
           if (fromOnboarding) {
-            navigate(`${ROUTES.ONBOARDING_GROUP}?step=COMPLETE`);
+            if (groupRole === '그룹장') {
+              navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+            } else {
+              navigate(`${ROUTES.ONBOARDING_GROUP}?step=COMPLETE`);
+            }
           } else {
             navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
           }
