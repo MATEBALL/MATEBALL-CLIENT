@@ -34,7 +34,7 @@ const BottomNavigation = () => {
             key={label}
             type="button"
             className={cn(
-              'h-[4.8rem] w-[4.8rem] flex-col-center gap-[0.4rem]',
+              'h-[4.8rem] w-[5.6rem] flex-col-center gap-[0.4rem]',
               disabled ? 'cursor-not-allowed' : 'cursor-pointer',
             )}
             onClick={() => handleTabClick(path)}
