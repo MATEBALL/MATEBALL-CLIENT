@@ -16,13 +16,13 @@ const CardHeader = (props: CardProps) => {
     if (t === 'group') {
       return {
         box: 'h-[1.2rem] w-[1.2rem]',
-        pos: 'left-[1.4rem] -bottom-[0.2rem]',
+        pos: 'left-[1.6rem] bottom-0',
         size: 1.2,
       };
     }
     return {
       box: 'h-[1.6rem] w-[1.6rem]',
-      pos: 'right-[0.3rem] -bottom-[0.2rem]',
+      pos: 'right-0 bottom-0',
       size: 1.6,
     };
   };
@@ -37,7 +37,7 @@ const CardHeader = (props: CardProps) => {
             className={cn(
               'pointer-events-none absolute z-[var(--z-card-owner)]',
               spec.pos,
-              'grid place-items-center rounded-full shadow-sm',
+              'grid place-items-center rounded-full',
               spec.box,
             )}
           >
