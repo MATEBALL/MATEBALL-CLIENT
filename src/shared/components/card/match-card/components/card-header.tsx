@@ -37,7 +37,7 @@ const CardHeader = (props: CardProps) => {
             className={cn(
               'pointer-events-none absolute z-[var(--z-card-owner)]',
               spec.pos,
-              'grid place-items-center rounded-full shadow-sm',
+              'grid place-items-center rounded-full',
               spec.box,
             )}
           >
