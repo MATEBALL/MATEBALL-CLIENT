@@ -67,8 +67,11 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
       onSuccess: () => {
         readAlarm(parsedId, {
           onSuccess: () => {
-            const resultType = cardType === 'group' ? 'agree' : 'success';
-            navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+            if (cardType === 'group') {
+              navigate(`${ROUTES.MATCH}?tab=그룹&filter=전체`);
+            } else {
+              navigate(`${ROUTES.RESULT(matchId)}?type=success`);
+            }
           },
           onError: () => {
             navigate(ROUTES.ERROR);
