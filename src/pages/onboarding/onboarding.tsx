@@ -113,6 +113,7 @@ const Onboarding = () => {
             disabled={isButtonDisabled(currentStep, selections)}
             onClick={() => {
               if (currentStep === 'SUPPORT_TEAM' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+                setSelections((prev) => ({ ...prev, SYNC_SUPPORT_TEAM: null }));
                 goTo('VIEWING_STYLE');
                 return;
               }
