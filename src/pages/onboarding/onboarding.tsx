@@ -10,7 +10,7 @@ import Start from '@pages/onboarding/components/start';
 import SupportTeam from '@pages/onboarding/components/support-team';
 import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
-import { FIRST_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
+import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
 import {
   getButtonLabel,
   handleButtonClick,
@@ -22,7 +22,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Onboarding = () => {
-  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
+  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev, goTo } = useFunnel(
     FIRST_FUNNEL_STEPS,
     ROUTES.HOME,
   );
@@ -111,7 +111,12 @@ const Onboarding = () => {
             size="L"
             variant="blue"
             disabled={isButtonDisabled(currentStep, selections)}
-            onClick={() =>
+            onClick={() => {
+              if (currentStep === 'SUPPORT_TEAM' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+                goTo('VIEWING_STYLE');
+                return;
+              }
+
               handleButtonClick(
                 currentStep,
                 selections,
@@ -119,8 +124,8 @@ const Onboarding = () => {
                 navigate,
                 setProgressOverride,
                 mutate,
-              )
-            }
+              );
+            }}
           />
         </div>
       </div>
