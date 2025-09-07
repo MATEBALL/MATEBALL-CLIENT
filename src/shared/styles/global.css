@@ -46,4 +46,11 @@
   body::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
   }
+
+  body.scroll-locked {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 }

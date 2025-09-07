@@ -2,8 +2,9 @@ import BottomSheetIndicator from '@components/bottom-sheet/bottom-sheet-indicato
 import useOutsideClick from '@components/bottom-sheet/hooks/use-outside-click';
 import { cn } from '@libs/cn';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { toggleScrollLock } from '@/shared/utils/scroll-lock';
 
 interface BottomSheetProps {
   isOpen: boolean;
@@ -24,6 +25,16 @@ const BottomSheet = ({
 }: BottomSheetProps) => {
   const sheetRef = useRef<HTMLDivElement>(null);
   useOutsideClick(sheetRef, onClose);
+
+  useEffect(() => {
+    toggleScrollLock(isOpen);
+
+    return () => {
+      if (isOpen) {
+        toggleScrollLock(false);
+      }
+    };
+  }, [isOpen]);
 
   return createPortal(
     <AnimatePresence>
