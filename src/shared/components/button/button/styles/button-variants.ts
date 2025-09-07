@@ -11,7 +11,7 @@ export const buttonVariants = cva(
         white: 'bg-white text-gray-700',
         skyblueBorder: 'bg-main-200 text-main-900 outline outline-main-900',
         gray2: 'bg-background text-gray-700',
-        disabled: 'bg-gray-100 text-gray-400',
+        disabled: 'rounded-[0.8rem] bg-gray-100 bg-gray-100 text-gray-400',
       },
       size: {
         M: 'w-full px-[0.8rem] py-[1.2rem]',
