@@ -4,6 +4,7 @@ import { cn } from '@libs/cn';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { handleScrollLock } from '@/shared/utils/scroll-lock';
 
 interface BottomSheetProps {
   isOpen: boolean;
@@ -24,6 +25,8 @@ const BottomSheet = ({
 }: BottomSheetProps) => {
   const sheetRef = useRef<HTMLDivElement>(null);
   useOutsideClick(sheetRef, onClose);
+
+  handleScrollLock(isOpen);
 
   return createPortal(
     <AnimatePresence>
