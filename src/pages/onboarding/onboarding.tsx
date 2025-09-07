@@ -45,10 +45,18 @@ const Onboarding = () => {
 
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
+  const handlePrev = () => {
+    if (currentStep === 'VIEWING_STYLE' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+      goTo('SUPPORT_TEAM');
+    } else {
+      goPrev();
+    }
+  };
+
   return (
     <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
-        <OnboardingHeader onClick={goPrev} />
+        <OnboardingHeader onClick={handlePrev} />
         {currentStep !== 'START' && (
           <div className="w-full">
             <ProgressBar
