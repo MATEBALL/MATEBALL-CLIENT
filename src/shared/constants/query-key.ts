@@ -66,6 +66,5 @@ export const MATCH_KEY = {
 
 export const ALARM_KEY = {
   HAS_UNREAD: ['alarms', 'hasUnread'] as const,
-  READ: () => ['alarms', 'read'] as const,
   READ_ALL: () => ['alarms', 'read-all'] as const,
 };
