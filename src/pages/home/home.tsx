@@ -17,7 +17,7 @@ import { useQuery } from '@tanstack/react-query';
 import { addDays, format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toggleScrollLock } from '@/shared/utils/scroll-lock';
+import { handleScrollLock } from '@/shared/utils/scroll-lock';
 
 const Home = () => {
   const { activeType, changeTab, isSingle, isGroup } = useTabState();
@@ -40,15 +40,7 @@ const Home = () => {
 
   const { needsMatchingSetup } = useAuth();
 
-  useEffect(() => {
-    toggleScrollLock(needsMatchingSetup);
-
-    return () => {
-      if (needsMatchingSetup) {
-        toggleScrollLock(false);
-      }
-    };
-  }, [needsMatchingSetup]);
+  handleScrollLock(needsMatchingSetup);
 
   useEffect(() => {
     const from = needsMatchingSetup ? 'onboarding' : 'return_user';

@@ -1,21 +1,9 @@
-let scrollPosition = 0;
-
-export const lockScroll = () => {
-  scrollPosition = window.scrollY;
-  document.body.classList.add('scroll-locked');
-  document.body.style.top = `-${scrollPosition}px`;
-};
-
-export const unlockScroll = () => {
-  document.body.classList.remove('scroll-locked');
-  document.body.style.top = '';
-  window.scrollTo(0, scrollPosition);
-};
-
-export const toggleScrollLock = (isOpen: boolean) => {
+export const handleScrollLock = (isOpen: boolean) => {
   if (isOpen) {
-    lockScroll();
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
   } else {
-    unlockScroll();
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('touch-action');
   }
 };
