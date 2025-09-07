@@ -40,7 +40,11 @@ const Home = () => {
 
   const { needsMatchingSetup } = useAuth();
 
-  handleScrollLock(needsMatchingSetup);
+  useEffect(() => {
+    if (!needsMatchingSetup) return;
+    handleScrollLock(true);
+    return () => handleScrollLock(false);
+  }, [needsMatchingSetup]);
 
   useEffect(() => {
     const from = needsMatchingSetup ? 'onboarding' : 'return_user';
