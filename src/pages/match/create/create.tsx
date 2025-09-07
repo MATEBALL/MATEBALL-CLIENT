@@ -1,15 +1,19 @@
-import Loading from '@pages/loading/loading';
 import ButtonSection from '@pages/match/create/components/button-section';
 import MatchCardSection from '@pages/match/create/components/match-card-section';
 import { isInvalidMatchId } from '@pages/match/utils/match-validators';
 import { ROUTES } from '@routes/routes-config';
-import { useEffect, useState } from 'react';
-import { Navigate, useParams, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, useOutletContext, useParams, useSearchParams } from 'react-router-dom';
+
+interface CreateProps {
+  setIsLoading: (value: boolean) => void;
+}
 
 const Create = () => {
+  const { setIsLoading } = useOutletContext<CreateProps>();
   const [searchParams] = useSearchParams();
   const { matchId } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
+
   const matchTypeParam = searchParams.get('type');
   const matchType =
     matchTypeParam === 'single' || matchTypeParam === 'group' ? matchTypeParam : undefined;
@@ -17,18 +21,16 @@ const Create = () => {
   const numericMatchId = Number(matchId);
 
   useEffect(() => {
+    setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [setIsLoading]);
 
   if (isInvalidMatchId(matchId?.toString()) || !matchType) {
     return <Navigate to={ROUTES.ERROR} replace />;
-  }
-  if (isLoading) {
-    return <Loading />;
   }
 
   return (

@@ -107,3 +107,4 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
 };
 
 export default MatchingSuccessView;
+
