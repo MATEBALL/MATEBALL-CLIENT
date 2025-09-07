@@ -59,7 +59,7 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
           alt=""
           loading="lazy"
           decoding="async"
-          className="overflow-hidden rounded-full object-cover"
+          className="h-full w-full overflow-hidden rounded-full object-cover"
         />
       ) : (
         <Icon size={6} name="profile" className="overflow-hidden rounded-full" />
