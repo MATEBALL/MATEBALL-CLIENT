@@ -2,6 +2,7 @@ import { matchMutations } from '@apis/match/match-mutations';
 import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import Button from '@components/button/button/button';
 import { MATCH_REQUEST_ERROR_MESSAGES } from '@constants/error-toast';
+import { gaEvent } from '@libs/analytics';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
@@ -30,6 +31,12 @@ const BottomSheetModal = ({
 
   const handleRequestClick = () => {
     if (typeof matchId !== 'number') return;
+
+    gaEvent('match_request_click', {
+      match_id: matchId,
+      match_type: isGroupMatching ? 'group' : 'one_to_one',
+      role: 'requester',
+    });
 
     requestMatch(matchId, {
       onSuccess: () => {

@@ -1,14 +1,14 @@
-import { alarmMutations } from '@apis/alarm/alarm-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
+import { gaEvent } from '@libs/analytics';
 import { MATCHING_SUCCESS_TITLE } from '@pages/match/constants/matching';
 import { ENTER_CHAT_COOLDOWN_MS } from '@pages/result/constants/matching-result';
 import { parseId } from '@pages/result/utils/number';
 import { openExternal } from '@pages/result/utils/url';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
@@ -29,8 +29,6 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const matchIdFromQuery = parseId(params.get('matchId'));
   const matchId = Number.isFinite(matchIdFromPath) ? matchIdFromPath : matchIdFromQuery;
   const isValidMatchId = Number.isFinite(matchId);
-
-  const { mutate: readAlarm } = useMutation(alarmMutations.READ_ALARM());
 
   usePreventBackNavigation(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
 
@@ -55,27 +53,23 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
 
   const handleEnterChatClick = useCallback((): void => {
     if (!openChatUrl || clicking) return;
+
+    const typeParam = params.get('type');
+    const role = typeParam === 'sent' ? 'requester' : 'creator';
+    const match_type = isGroupMatching ? 'group' : 'one_to_one';
+
+    gaEvent('chat_enter_click', {
+      match_id: matchId,
+      match_type,
+      role,
+    });
     setClicking(true);
-
-    if (isValidMatchId) {
-      readAlarm(matchId, {
-        onSettled: () => {
-          openExternal(openChatUrl);
-
-          cooldownRef.current = window.setTimeout(() => {
-            setClicking(false);
-            cooldownRef.current = null;
-          }, ENTER_CHAT_COOLDOWN_MS);
-        },
-      });
-    } else {
-      openExternal(openChatUrl);
-      cooldownRef.current = window.setTimeout(() => {
-        setClicking(false);
-        cooldownRef.current = null;
-      }, ENTER_CHAT_COOLDOWN_MS);
-    }
-  }, [clicking, openChatUrl, matchId, isValidMatchId, readAlarm]);
+    openExternal(openChatUrl);
+    cooldownRef.current = window.setTimeout(() => {
+      setClicking(false);
+      cooldownRef.current = null;
+    }, ENTER_CHAT_COOLDOWN_MS);
+  }, [clicking, openChatUrl, isGroupMatching, matchId, params]);
 
   const disabled = isUrlLoading || isError || clicking || !openChatUrl;
 

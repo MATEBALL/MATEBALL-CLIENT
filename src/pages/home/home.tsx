@@ -6,6 +6,7 @@ import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Dialog from '@components/dialog/dialog';
 import useAuth from '@hooks/use-auth';
 import { useTabState } from '@hooks/use-tab-state';
+import { gaEvent } from '@libs/analytics';
 import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
 import MatchListSection from '@pages/home/components/match-list-section';
@@ -14,7 +15,7 @@ import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condi
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { addDays, format } from 'date-fns';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -38,12 +39,18 @@ const Home = () => {
 
   const { needsMatchingSetup } = useAuth();
 
+  useEffect(() => {
+    const from = needsMatchingSetup ? 'onboarding' : 'return_user';
+    gaEvent('home_enter', { from });
+  }, [needsMatchingSetup]);
+
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
     setBaseWeekDate(date);
   };
 
   const handleComplete = () => {
+    gaEvent('condition_set_start');
     navigate(ROUTES.ONBOARDING);
   };
 
