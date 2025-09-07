@@ -36,7 +36,7 @@ const ResultPage = () => {
   }
 
   if (type === 'received') {
-    return <MatchingReceiveView isGroupMatching={isGroupMatching} />;
+    return <MatchingReceiveView />;
   }
 
   return <Navigate to={ROUTES.ERROR} replace />;
