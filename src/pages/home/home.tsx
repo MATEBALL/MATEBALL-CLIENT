@@ -55,7 +55,7 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-gray-200 pb-[5.6rem]">
+    <div className="h-full bg-gray-200 pb-[5.6rem]">
       <TopSection />
       <CalendarSection
         activeType={activeType}

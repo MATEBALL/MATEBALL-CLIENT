@@ -56,11 +56,11 @@ const MatchTabPanel = ({ cards, filter, onCardClick }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="flex-col gap-[0.8rem] px-[1.6rem] py-[2rem]">
+    <div className="flex-col gap-[0.8rem] px-[1.6rem]">
       {filteredCards.length === 0 ? (
         <EmptyView
           iconName="empty"
-          className="mt-[6.5rem]"
+          className="mt-[8.5rem]"
           text="아직 매칭된 메이트가 없어요!"
           subText="홈 화면에서 메이트를 먼저 찾아 보세요."
         />
