@@ -2,7 +2,6 @@ import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import MatchCurrentCard from '@components/card/match-current-card/match-current-card';
 import { LOTTIE_PATH } from '@constants/lotties';
-import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { ROUTES } from '@routes/routes-config';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
@@ -16,9 +15,6 @@ const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const cardType = params.get('cardtype');
-  usePreventBackNavigation(
-    `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
-  );
 
   const { data: agreeData } = useSuspenseQuery(matchQueries.COUNTED_MEMBER(Number(matchId)));
   const matchedCount = agreeData?.count;
@@ -39,7 +35,12 @@ const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button label="매칭 현황 보기" onClick={() => navigate(ROUTES.MATCH)} />
+        <Button
+          label="매칭 현황 보기"
+          onClick={() =>
+            navigate(`${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`)
+          }
+        />
       </div>
     </div>
   );

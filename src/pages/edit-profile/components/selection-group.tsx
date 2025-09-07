@@ -31,7 +31,7 @@ const SelectionGroup = ({
               label={label}
               variant={disabled ? 'disabled' : isSelected ? 'skyblue' : 'gray2'}
               className={cn(
-                'cap_14_sb w-auto px-[1.6rem] py-[0.6rem]',
+                'cap_14_sb w-auto rounded-[0.8rem] px-[1.6rem] py-[0.6rem]',
                 disabled && 'cursor-not-allowed',
               )}
               onClick={() => {

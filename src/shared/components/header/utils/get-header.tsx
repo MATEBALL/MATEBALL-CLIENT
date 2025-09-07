@@ -25,12 +25,10 @@ export const getHeaderContent = (
         navigate(ROUTES.HOME);
         return;
       }
-
       if (goMatchTypes.includes(type)) {
         navigate(ROUTES.MATCH);
         return;
       }
-
       if (isCreate) {
         return null;
       }
@@ -42,6 +40,12 @@ export const getHeaderContent = (
   const handleChatClick = () => {
     navigate(ROUTES.CHAT);
   };
+
+  const isResult = Boolean(matchPath(`${ROUTES.RESULT()}`, pathname));
+  const isGroupAgree = isResult && urlParams.get('type') === 'agree';
+  if (isGroupAgree) {
+    return null;
+  }
 
   if (pathname === ROUTES.HOME) {
     return (

@@ -16,7 +16,9 @@ const BottomNavigation = () => {
 
   const isActive = (path: string) => pathname === path;
 
-  const isDisabled = (path: string) => needsMatchingSetup && path !== ROUTES.HOME;
+  const isDisabled = (path: string) => {
+    return needsMatchingSetup && path !== ROUTES.HOME;
+  };
 
   const handleTabClick = (path: string) => {
     if (isDisabled(path)) return;

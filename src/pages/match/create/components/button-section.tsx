@@ -16,7 +16,8 @@ const ButtonSection = ({ matchType }: ButtonSectionProps) => {
   };
 
   const handleGoToMatch = () => {
-    navigate(ROUTES.MATCH);
+    const tab = matchType === 'group' ? '그룹' : '1:1';
+    navigate(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
   };
 
   return (
