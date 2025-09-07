@@ -46,6 +46,11 @@ const Onboarding = () => {
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   const handlePrev = () => {
+    if (currentStep === 'COMPLETE') {
+      navigate(ROUTES.HOME);
+      return;
+    }
+
     if (currentStep === 'VIEWING_STYLE' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
       goTo('SUPPORT_TEAM');
     } else {
