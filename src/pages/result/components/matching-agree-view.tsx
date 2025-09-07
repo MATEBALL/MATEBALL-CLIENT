@@ -5,7 +5,7 @@ import { LOTTIE_PATH } from '@constants/lotties';
 import { ROUTES } from '@routes/routes-config';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface MatchingAgreeViewProps {
   matchId: string;
@@ -13,6 +13,8 @@ interface MatchingAgreeViewProps {
 
 const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
   const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const cardType = params.get('cardtype');
 
   const { data: agreeData } = useSuspenseQuery(matchQueries.COUNTED_MEMBER(Number(matchId)));
   const matchedCount = agreeData?.count;
