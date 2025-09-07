@@ -62,6 +62,7 @@ const Input = ({
           <textarea
             id={id}
             ref={ref as React.Ref<HTMLTextAreaElement>}
+            maxLength={maxLength}
             className={cn(
               'w-full bg-transparent text-gray-black outline-none placeholder:text-gray-500',
               'resize-none whitespace-pre-wrap break-words',
