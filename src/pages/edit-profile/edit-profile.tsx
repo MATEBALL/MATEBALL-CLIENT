@@ -150,20 +150,33 @@ const EditProfile = () => {
         <div className="mb-[2.5rem] flex justify-end gap-[0.8rem]">
           <Button
             type="button"
-            variant="skyblue"
+            variant={
+              !!errors.nickname || nicknameVal.trim().length === 0 || isSubmitting
+                ? 'disabled'
+                : 'skyblue'
+            }
             label="중복 확인"
             onClick={handleCheckNickname}
-            disabled={!!errors.nickname || nicknameVal.trim().length === 0 || isSubmitting}
-            className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem] disabled:text-white"
+            className={cn(
+              'cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]',
+              (!!errors.nickname || nicknameVal.trim().length === 0 || isSubmitting) &&
+                'cursor-not-allowed',
+            )}
           />
           <Button
             type="button"
+            variant={
+              nicknameStatus !== 'available' || nicknameVal.trim().length === 0 || isSubmitting
+                ? 'disabled'
+                : 'blue'
+            }
             label="수정"
             onClick={submitNickname}
-            disabled={
-              nicknameStatus !== 'available' || nicknameVal.trim().length === 0 || isSubmitting
-            }
-            className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
+            className={cn(
+              'cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]',
+              (nicknameStatus !== 'available' || nicknameVal.trim().length === 0 || isSubmitting) &&
+                'cursor-not-allowed',
+            )}
           />
         </div>
 
@@ -188,10 +201,18 @@ const EditProfile = () => {
         <div className="flex justify-end">
           <Button
             type="button"
+            variant={
+              !!errors.introduction || introductionVal.trim().length === 0 || isSubmitting
+                ? 'disabled'
+                : 'blue'
+            }
             label="수정"
             onClick={submitInformation}
-            disabled={!!errors.introduction || introductionVal.trim().length === 0 || isSubmitting}
-            className="cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]"
+            className={cn(
+              'cap_14_sb mt-[0.8rem] w-auto px-[1.6rem] py-[0.6rem]',
+              (!!errors.introduction || introductionVal.trim().length === 0 || isSubmitting) &&
+                'cursor-not-allowed',
+            )}
           />
         </div>
       </section>
