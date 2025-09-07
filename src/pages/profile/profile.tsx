@@ -38,37 +38,38 @@ const Profile = () => {
           label="프로필 · 매칭 조건 수정"
           onClick={() => navigate(ROUTES.PROFILE_EDIT)}
         />
+        <Divider thickness={0.4} color="bg-gray-200" />
+        <section className="w-full flex-col items-start">
+          <a
+            href={REQUEST_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="문의하기"
+            className="cap_14_m py-[0.8rem] text-gray-800"
+          >
+            문의하기
+          </a>
+          <a
+            href={FEEDBACK_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="의견 보내기"
+            className="cap_14_m py-[0.8rem] text-gray-800"
+          >
+            의견 보내기
+          </a>
+          <Divider color="bg-gray-300" margin="my-[1.6rem]" />
+          <button
+            type="button"
+            onClick={() => logout()}
+            aria-label="로그아웃"
+            className="cap_14_m cursor-pointer py-[0.8rem] text-gray-800"
+          >
+            <p>로그아웃</p>
+          </button>
+        </section>
       </div>
-      <Divider thickness={0.4} color="bg-gray-200" />
-      <section className="w-full flex-col items-start px-[1.6rem]">
-        <a
-          href={REQUEST_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="문의하기"
-          className="cap_14_m py-[0.8rem] text-gray-800"
-        >
-          문의하기
-        </a>
-        <a
-          href={FEEDBACK_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="의견 보내기"
-          className="cap_14_m py-[0.8rem] text-gray-800"
-        >
-          의견 보내기
-        </a>
-        <Divider color="bg-gray-300" margin="my-[1.6rem]" />
-        <button
-          type="button"
-          onClick={() => logout()}
-          aria-label="로그아웃"
-          className="cap_14_m cursor-pointer py-[0.8rem] text-gray-800"
-        >
-          <p>로그아웃</p>
-        </button>
-      </section>
+
       <Footer />
     </div>
   );
