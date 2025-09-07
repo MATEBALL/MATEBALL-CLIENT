@@ -42,8 +42,7 @@ export const getHeaderContent = (
   };
 
   const isResult = Boolean(matchPath(`${ROUTES.RESULT()}`, pathname));
-  const isGroupAgree =
-    isResult && urlParams.get('type') === 'agree';
+  const isGroupAgree = isResult && urlParams.get('type') === 'agree';
   if (isGroupAgree) {
     return null;
   }

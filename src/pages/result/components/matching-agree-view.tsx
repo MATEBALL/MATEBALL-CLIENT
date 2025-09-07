@@ -2,11 +2,10 @@ import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
 import MatchCurrentCard from '@components/card/match-current-card/match-current-card';
 import { LOTTIE_PATH } from '@constants/lotties';
-import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { ROUTES } from '@routes/routes-config';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Lottie } from '@toss/lottie';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface MatchingAgreeViewProps {
   matchId: string;
@@ -14,11 +13,6 @@ interface MatchingAgreeViewProps {
 
 const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
   const navigate = useNavigate();
-  const [params] = useSearchParams();
-  const cardType = params.get('cardtype');
-  usePreventBackNavigation(
-    `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
-  );
 
   const { data: agreeData } = useSuspenseQuery(matchQueries.COUNTED_MEMBER(Number(matchId)));
   const matchedCount = agreeData?.count;
