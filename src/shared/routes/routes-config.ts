@@ -19,4 +19,5 @@ export const ROUTES = {
   ERROR: '/error',
   LOADING: '/loading',
   SPLASH: '/splash',
+  GUIDE: '/guide',
 };

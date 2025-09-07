@@ -34,3 +34,12 @@ export const NAV_ITEMS = [
     },
   },
 ];
+
+export type NavItem = {
+  label: string;
+  path: string;
+  icon: {
+    filled: string;
+    lined: string;
+  };
+};
