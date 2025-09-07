@@ -39,7 +39,12 @@ const MatchingAgreeView = ({ matchId }: MatchingAgreeViewProps) => {
         </p>
       </div>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
-        <Button label="매칭 현황 보기" onClick={() => navigate(ROUTES.MATCH)} />
+        <Button
+          label="매칭 현황 보기"
+          onClick={() =>
+            navigate(`${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`)
+          }
+        />
       </div>
     </div>
   );
