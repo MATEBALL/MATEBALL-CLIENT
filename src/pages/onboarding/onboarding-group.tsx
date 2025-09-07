@@ -31,10 +31,19 @@ const OnboardingGroup = () => {
     setSelection((prev) => ({ ...prev, [stepName]: value }));
   };
 
+  const handlePrev = () => {
+    if (currentStep === 'GROUP_ROLE' || currentStep === 'COMPLETE') {
+      navigate(ROUTES.HOME);
+      return;
+    }
+
+    goPrev();
+  };
+
   return (
     <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
-        <OnboardingHeader onClick={goPrev} />
+        <OnboardingHeader onClick={handlePrev} />
         {currentStep !== 'START' && (
           <div className="w-full">
             <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
