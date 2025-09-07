@@ -3,7 +3,7 @@ import { ROUTES } from '@routes/routes-config';
 export const NAV_ITEMS = [
   {
     label: '홈',
-    path: [ROUTES.HOME, ROUTES.GUIDE],
+    path: ROUTES.HOME,
     icon: {
       filled: 'home-filled',
       lined: 'home-lined',
@@ -37,7 +37,7 @@ export const NAV_ITEMS = [
 
 export type NavItem = {
   label: string;
-  path: string | string[];
+  path: string;
   icon: {
     filled: string;
     lined: string;

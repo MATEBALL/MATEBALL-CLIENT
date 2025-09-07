@@ -1,17 +1,12 @@
 import CardBanner from '@components/card/banner-card/banner-card';
-import { useEffect } from 'react';
+import { ROUTES } from '@routes/routes-config';
 import { useNavigate } from 'react-router-dom';
 
 const TopSection = () => {
   const navigate = useNavigate();
 
-  // 가이드 페이지 미리 로드
-  useEffect(() => {
-    import('@pages/guide/guide');
-  }, []);
-
   const handleBannerClick = () => {
-    navigate('/guide');
+    navigate(ROUTES.GUIDE);
   };
 
   return (
