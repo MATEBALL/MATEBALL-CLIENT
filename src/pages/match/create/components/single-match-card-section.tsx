@@ -37,7 +37,7 @@ const SingleMatchCard = ({ matchId }: SingleMatchCardProps) => {
   return (
     <div className="w-full flex-col-center gap-[4rem]">
       <MatchGuideSection nickname={matchData.nickname} />
-      <Card className="w-full" {...cardProps} />
+      <Card isCreated className="w-full" {...cardProps} />
     </div>
   );
 };
