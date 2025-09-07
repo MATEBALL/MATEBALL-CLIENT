@@ -10,7 +10,7 @@ export const tabStyleMap = {
     textStyle: 'subhead_18_sb',
   },
   match: {
-    gap: 'gap-[2.4rem] px-[1.6rem] border-b border-gray-300',
+    gap: 'px-[1.6rem] border-b border-gray-300',
     textActive: 'text-gray-black',
     textInactive: 'text-gray-600',
     borderActive: 'after:bg-gray-black',

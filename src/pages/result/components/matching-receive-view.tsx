@@ -1,3 +1,4 @@
+import { alarmMutations } from '@apis/alarm/alarm-mutations';
 import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
@@ -13,15 +14,12 @@ import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-interface MatchingReceiveViewProps {
-  isGroupMatching?: boolean;
-}
-
-const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProps) => {
+const MatchingReceiveView = () => {
   const { matchId } = useParams();
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const cardType = params.get('cardtype');
+  const isGroupMatching = cardType === 'group';
 
   usePreventBackNavigation(
     `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
@@ -29,6 +27,7 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
 
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
+  const { mutate: readAlarm } = useMutation(alarmMutations.READ_ALARM());
   const { mutate: rejectMatch } = useMutation(matchMutations.MATCH_REJECT());
   const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
 
@@ -63,13 +62,19 @@ const MatchingReceiveView = ({ isGroupMatching = true }: MatchingReceiveViewProp
   const handleAccept = () => {
     acceptMatch(parsedId, {
       onSuccess: () => {
-        if (cardType === 'group') {
-          navigate(ROUTES.MATCH);
-        } else {
-          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
-        }
-        const resultType = cardType === 'group' ? 'agree' : 'success';
-        navigate(`${ROUTES.RESULT(matchId)}?type=${resultType}`);
+        readAlarm(parsedId, {
+          onSuccess: () => {
+            if (cardType === 'group') {
+              navigate(`${ROUTES.MATCH}?tab=그룹&filter=전체`);
+            } else {
+              navigate(`${ROUTES.RESULT(matchId)}?type=success`);
+            }
+          },
+          onError: () => {
+            navigate(ROUTES.ERROR);
+          },
+        });
+
         fillTabItems.forEach((label) => {
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.SINGLE(label) });
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.GROUP(label) });

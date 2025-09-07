@@ -11,11 +11,12 @@ import type {
   postEditProfileRequest,
   postMatchConditionRequest,
   postUserInfoRequest,
+  UserInfoResponse,
 } from '@/shared/types/user-types';
 
 export const userMutations = {
   USER_INFO: () =>
-    mutationOptions<responseTypes, Error, postUserInfoRequest>({
+    mutationOptions<UserInfoResponse, Error, postUserInfoRequest>({
       mutationKey: USER_KEY.INFO(),
       mutationFn: ({ nickname, introduction, birthYear, gender }) =>
         post(END_POINT.USER_INFO, { nickname, introduction, birthYear, gender }),

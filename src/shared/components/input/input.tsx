@@ -44,6 +44,12 @@ const Input = ({
   const borderClass = inputClassMap[inputState];
   const iconColorClass = iconColorMap[inputState];
 
+  const helperIconName = multiline
+    ? 'info-filled'
+    : inputState === 'valid'
+      ? 'check-filled'
+      : 'info-filled';
+
   return (
     <div className="flex-col gap-[0.8rem]">
       {label && (
@@ -62,6 +68,7 @@ const Input = ({
           <textarea
             id={id}
             ref={ref as React.Ref<HTMLTextAreaElement>}
+            maxLength={maxLength}
             className={cn(
               'w-full bg-transparent text-gray-black outline-none placeholder:text-gray-500',
               'resize-none whitespace-pre-wrap break-words',
@@ -92,7 +99,7 @@ const Input = ({
       {messageToShow && (
         <div className="flex-row gap-[0.8rem]">
           <Icon
-            name={inputState === 'valid' ? 'check-filled' : 'info-filled'}
+            name={helperIconName}
             size={2}
             className={cn('text-gray-600', !multiline && iconColorClass)}
           />

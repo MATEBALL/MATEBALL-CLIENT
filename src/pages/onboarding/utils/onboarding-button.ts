@@ -1,4 +1,5 @@
 import { authQueries } from '@apis/auth/auth';
+import { gaEvent } from '@libs/analytics';
 import queryClient from '@libs/query-client';
 import { ROUTES } from '@routes/routes-config';
 import type { NavigateFunction } from 'react-router-dom';
@@ -59,8 +60,10 @@ export const handleButtonClick = (
           onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
             if (selections.MATCHING_TYPE === '1:1 매칭') {
+              gaEvent('condition_set_completed', { match_type: 'one_to_one' });
               goNext();
             } else {
+              gaEvent('condition_set_completed', { match_type: 'group' });
               if (setProgressOverride) {
                 setProgressOverride(0);
                 setTimeout(() => {
@@ -72,8 +75,14 @@ export const handleButtonClick = (
         },
       );
     }
-  } else if (currentStep === 'GROUP_ROLE' && selections.GROUP_ROLE === '그룹원') {
-    goTo?.('COMPLETE');
+  } else if (currentStep === 'GROUP_ROLE') {
+    if (selections.GROUP_ROLE === '그룹원') {
+      goTo?.('COMPLETE');
+    } else {
+      gaEvent('match_create_click', { match_type: 'group', role: 'creator' });
+      gaEvent('condition_set_completed', { match_type: 'group' });
+      goNext();
+    }
   } else if (currentStep === 'COMPLETE') {
     navigate(ROUTES.HOME);
   } else {

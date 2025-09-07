@@ -11,7 +11,11 @@ import { format } from 'date-fns';
 import { useState } from 'react';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
-const DateSelect = () => {
+interface DateSelectProps {
+  groupRole: string | null;
+}
+
+const DateSelect = ({ groupRole }: DateSelectProps) => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
   const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
@@ -71,6 +75,7 @@ const DateSelect = () => {
         gameSchedule={data ?? []}
         activeType={activeType}
         fromOnboarding={true}
+        groupRole={groupRole}
       />
     </div>
   );

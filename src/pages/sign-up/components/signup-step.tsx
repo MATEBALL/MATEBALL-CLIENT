@@ -3,6 +3,7 @@ import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { trackSignUpCompleted } from '@libs/analytics';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
@@ -65,7 +66,16 @@ const SignupStep = () => {
 
     try {
       await agreementInfoMutaion.mutateAsync({ hasAccepted: true });
-      await userInfoMutation.mutateAsync(userData);
+      const userInfoResponse = await userInfoMutation.mutateAsync(userData);
+
+      if (userInfoResponse) {
+        const userId = userInfoResponse.data?.userId;
+        trackSignUpCompleted({
+          userId: Number(userId),
+          birthYear: userData.birthYear,
+          gender: userData.gender === '여성' ? 'female' : 'male',
+        });
+      }
     } catch (e) {
       console.error('signup failed:', e);
     }

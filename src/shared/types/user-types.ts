@@ -1,3 +1,5 @@
+import type { ApiResponse } from './base-types';
+
 /**
  * 유저 정보 조회 응답
  * get
@@ -24,6 +26,12 @@ export interface postUserInfoRequest {
   birthYear: number;
   gender: string;
 }
+
+export interface postUserInfoResponse {
+  userId: number;
+}
+
+export type UserInfoResponse = ApiResponse<postUserInfoResponse>;
 
 /**
  * 사용자 약관동의

@@ -5,6 +5,7 @@ import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import EmptyView from '@components/ui/empty-view';
 import { cn } from '@libs/cn';
 import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
+import type { MatchCardData } from '@pages/match/create/types/match-data-type';
 import {
   getCardColor,
   getPendingToast,
@@ -21,9 +22,10 @@ type MatchableCardProps = SingleCardProps | GroupCardProps;
 interface MatchTabPanelProps {
   cards: MatchableCardProps[];
   filter: string;
+  onCardClick: (card: MatchCardData) => void;
 }
 
-const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
+const MatchTabPanel = ({ cards, filter, onCardClick }: MatchTabPanelProps) => {
   const navigate = useNavigate();
 
   const patchStageMutation = useMutation(matchMutations.MATCH_STAGE());
@@ -32,9 +34,11 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
     filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
 
   const handleCardClick = async (card: MatchableCardProps) => {
+    onCardClick(card);
+
     const toastMsg = getPendingToast(card.status, card.type);
     if (toastMsg) {
-      showErrorToast(toastMsg, '8.6rem', false);
+      showErrorToast(toastMsg, '8.9rem', false);
       return;
     }
 
@@ -52,11 +56,11 @@ const MatchTabPanel = ({ cards, filter }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="flex-col gap-[0.8rem] px-[1.6rem] py-[2rem]">
+    <div className="flex-col gap-[0.8rem] px-[1.6rem]">
       {filteredCards.length === 0 ? (
         <EmptyView
           iconName="empty"
-          className="mt-[6.5rem]"
+          className="mt-[8.5rem]"
           text="아직 매칭된 메이트가 없어요!"
           subText="홈 화면에서 메이트를 먼저 찾아 보세요."
         />
