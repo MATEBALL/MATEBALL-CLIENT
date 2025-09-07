@@ -1,10 +1,11 @@
+import { alarmMutations } from '@apis/alarm/alarm-mutations';
 import { alarmQueries } from '@apis/alarm/alarm-queries';
 import { NAV_ITEMS } from '@components/bottom-navigation/constants/bottom-navigation';
 import Icon from '@components/icon/icon';
 import useAuth from '@hooks/use-auth';
 import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const BottomNavigation = () => {
@@ -14,6 +15,8 @@ const BottomNavigation = () => {
 
   const { data: hasUnreadAlarms } = useQuery(alarmQueries.HAS_UNREAD());
 
+  const readAllAlarmsMutation = useMutation(alarmMutations.READ_ALL_ALARMS());
+
   const isActive = (path: string) => pathname === path;
 
   const isDisabled = (path: string) => {
@@ -22,6 +25,11 @@ const BottomNavigation = () => {
 
   const handleTabClick = (path: string) => {
     if (isDisabled(path)) return;
+
+    if (path === ROUTES.MATCH && hasUnreadAlarms) {
+      readAllAlarmsMutation.mutate();
+    }
+
     navigate(path);
   };
 

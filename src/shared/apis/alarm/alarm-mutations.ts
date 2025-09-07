@@ -14,4 +14,13 @@ export const alarmMutations = {
         queryClient.invalidateQueries({ queryKey: ALARM_KEY.HAS_UNREAD });
       },
     }),
+
+  READ_ALL_ALARMS: () =>
+    mutationOptions<Error, void>({
+      mutationKey: ALARM_KEY.READ_ALL(),
+      mutationFn: () => post(END_POINT.POST_READ_ALL_ALARMS),
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ALARM_KEY.HAS_UNREAD });
+      },
+    }),
 };
