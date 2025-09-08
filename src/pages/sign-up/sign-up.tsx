@@ -9,16 +9,14 @@ const SignUp = () => {
 
   return (
     <div className="h-full flex-col bg-gray-white">
-      <div className="flex-1">
-        <Funnel>
-          <Step name="AGREEMENT">
-            <AgreementStep next={goNext} />
-          </Step>
-          <Step name="INFORMATION">
-            <SignupStep />
-          </Step>
-        </Funnel>
-      </div>
+      <Funnel>
+        <Step name="AGREEMENT">
+          <AgreementStep next={goNext} />
+        </Step>
+        <Step name="INFORMATION">
+          <SignupStep />
+        </Step>
+      </Funnel>
     </div>
   );
 };
