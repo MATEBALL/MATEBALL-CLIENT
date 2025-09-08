@@ -211,4 +211,3 @@ const SignupStep = () => {
 };
 
 export default SignupStep;
-
