@@ -8,7 +8,6 @@ import { mapGroupMatchData, mapSingleMatchData } from '@pages/match/hooks/mapMat
 import { useMatchTabState } from '@pages/match/hooks/useMatchTabState';
 import { fillTabItems } from '@pages/match/utils/match-status';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
 import type { MatchCardData } from './create/types/match-data-type';
 
 const Match = () => {
@@ -25,26 +24,6 @@ const Match = () => {
     ...matchQueries.GROUP_MATCH_STATUS(statusParam),
     enabled: activeType === '그룹',
   });
-
-  useEffect(() => {
-    if (activeType === '1:1' && singleData?.results) {
-      singleData.results.forEach((card) => {
-        gaEvent('match_card_view', {
-          match_id: card.id,
-          match_type: 'one_to_one',
-          match_status: card.status,
-        });
-      });
-    } else if (activeType === '그룹' && groupData?.mates) {
-      groupData.mates.forEach((card) => {
-        gaEvent('match_card_view', {
-          match_id: card.id,
-          match_type: 'group',
-          match_status: card.status,
-        });
-      });
-    }
-  }, [singleData, groupData, activeType]);
 
   const handleCardClick = (card: MatchCardData) => {
     gaEvent('match_card_click', {
