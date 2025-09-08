@@ -8,17 +8,15 @@ const SignUp = () => {
   const { Funnel, Step, goNext } = useFunnel(SIGNUP_STEPS, ROUTES.HOME);
 
   return (
-    <div className="h-full flex-col bg-gray-white">
-      <div className="flex-1">
-        <Funnel>
-          <Step name="AGREEMENT">
-            <AgreementStep next={goNext} />
-          </Step>
-          <Step name="INFORMATION">
-            <SignupStep />
-          </Step>
-        </Funnel>
-      </div>
+    <div className="h-fullflex-col bg-gray-white">
+      <Funnel>
+        <Step name="AGREEMENT">
+          <AgreementStep next={goNext} />
+        </Step>
+        <Step name="INFORMATION">
+          <SignupStep />
+        </Step>
+      </Funnel>
     </div>
   );
 };
