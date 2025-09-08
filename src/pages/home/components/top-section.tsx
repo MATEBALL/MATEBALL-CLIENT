@@ -10,7 +10,7 @@ const TopSection = () => {
   };
 
   return (
-    <section className="bg-gray-black px-[1.6rem] pt-[0.1rem]">
+    <section className="min-h-[9.6rem] bg-gray-black px-[1.6rem] pt-[0.1rem]">
       <CardBanner
         subText="나와 딱 맞는 직관 메이트를 찾고 싶다면?"
         text="이용가이드 보러 가기"
