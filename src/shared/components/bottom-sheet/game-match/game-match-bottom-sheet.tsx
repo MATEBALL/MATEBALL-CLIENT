@@ -6,6 +6,7 @@ import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
 import { MATCH_REQUEST_ERROR_MESSAGES } from '@constants/error-toast';
+import { gaEvent } from '@libs/analytics';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
@@ -59,6 +60,12 @@ const GameMatchBottomSheet = ({
     if (selectedIdx === null) return;
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
+
+    const gaMatchType = activeType === TAB_TYPES.SINGLE ? 'one_to_one' : 'group';
+    gaEvent('match_create_click', {
+      match_type: gaMatchType,
+      role: 'creator',
+    });
 
     createMatchMutation.mutate(
       {
