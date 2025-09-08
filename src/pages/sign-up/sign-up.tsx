@@ -8,7 +8,7 @@ const SignUp = () => {
   const { Funnel, Step, goNext } = useFunnel(SIGNUP_STEPS, ROUTES.HOME);
 
   return (
-    <div className="h-fullflex-col bg-gray-white">
+    <div className="h-full flex-col bg-gray-white">
       <Funnel>
         <Step name="AGREEMENT">
           <AgreementStep next={goNext} />
