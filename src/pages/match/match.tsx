@@ -1,13 +1,9 @@
-import { matchQueries } from '@apis/match/match-queries';
 import FillTabList from '@components/tab/fill-tab/fill-tab-list';
-import TabContent from '@components/tab/tab/tab-content';
 import TabList from '@components/tab/tab/tab-list';
 import { gaEvent } from '@libs/analytics';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
-import { mapGroupMatchData, mapSingleMatchData } from '@pages/match/hooks/mapMatchData';
 import { useMatchTabState } from '@pages/match/hooks/useMatchTabState';
 import { fillTabItems } from '@pages/match/utils/match-status';
-import { useQuery } from '@tanstack/react-query';
 import type { MatchCardData } from './create/types/match-data-type';
 
 const Match = () => {
@@ -15,41 +11,12 @@ const Match = () => {
   const { type: activeType, filter } = tabState;
   const statusParam = filter === '전체' ? '' : filter;
 
-  const { data: singleData } = useQuery({
-    ...matchQueries.SINGLE_MATCH_STATUS(statusParam),
-    enabled: activeType === '1:1',
-  });
-
-  const { data: groupData } = useQuery({
-    ...matchQueries.GROUP_MATCH_STATUS(statusParam),
-    enabled: activeType === '그룹',
-  });
-
   const handleCardClick = (card: MatchCardData) => {
     gaEvent('match_card_click', {
       match_id: card.id,
       match_type: activeType === '1:1' ? 'one_to_one' : 'group',
       match_status: card.status,
     });
-  };
-
-  const contentMap = {
-    '1:1': (
-      <MatchTabPanel
-        key="single"
-        cards={mapSingleMatchData(singleData?.results)}
-        filter={filter}
-        onCardClick={handleCardClick}
-      />
-    ),
-    그룹: (
-      <MatchTabPanel
-        key="group"
-        cards={mapGroupMatchData(groupData?.mates)}
-        filter={filter}
-        onCardClick={handleCardClick}
-      />
-    ),
   };
 
   return (
@@ -68,7 +35,14 @@ const Match = () => {
           onChange={handleFilterChange}
         />
       </nav>
-      <TabContent activeType={activeType} contentMap={contentMap} />
+
+      <MatchTabPanel
+        key={`${activeType}-${statusParam}`}
+        activeType={activeType as '1:1' | '그룹'}
+        statusParam={statusParam}
+        filter={filter}
+        onCardClick={handleCardClick}
+      />
     </div>
   );
 };
