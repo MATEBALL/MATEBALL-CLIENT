@@ -118,7 +118,7 @@ const SignupStep = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="h-full w-full flex-col justify-between gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem]"
+      className="h-svh w-full flex-col justify-between gap-[4rem] px-[1.6rem] pt-[4rem] pb-[1.6rem]"
     >
       <div className="w-full flex-col gap-[4rem]">
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>

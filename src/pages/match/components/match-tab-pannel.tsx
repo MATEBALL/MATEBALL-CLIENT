@@ -1,11 +1,11 @@
 import { matchMutations } from '@apis/match/match-mutations';
+import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
 import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
 import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import EmptyView from '@components/ui/empty-view';
 import { cn } from '@libs/cn';
 import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
-import type { MatchCardData } from '@pages/match/create/types/match-data-type';
 import {
   getCardColor,
   getPendingToast,
@@ -13,25 +13,42 @@ import {
   statusToCategory,
 } from '@pages/match/utils/match-status';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
+import { mapGroupMatchData, mapSingleMatchData } from '../hooks/mapMatchData';
 
 type MatchableCardProps = SingleCardProps | GroupCardProps;
 
 interface MatchTabPanelProps {
-  cards: MatchableCardProps[];
+  activeType: '1:1' | '그룹';
+  statusParam: string;
   filter: string;
-  onCardClick: (card: MatchCardData) => void;
+  onCardClick: (card: MatchableCardProps) => void;
 }
 
-const MatchTabPanel = ({ cards, filter, onCardClick }: MatchTabPanelProps) => {
+const MatchTabPanel = ({ activeType, filter, statusParam, onCardClick }: MatchTabPanelProps) => {
   const navigate = useNavigate();
+  const isSingle = activeType === '1:1';
 
-  const patchStageMutation = useMutation(matchMutations.MATCH_STAGE());
+  const { data: singleData } = useQuery({
+    ...matchQueries.SINGLE_MATCH_STATUS(statusParam),
+    enabled: isSingle,
+  });
+
+  const { data: groupData } = useQuery({
+    ...matchQueries.GROUP_MATCH_STATUS(statusParam),
+    enabled: !isSingle,
+  });
+
+  const cards: MatchableCardProps[] = isSingle
+    ? mapSingleMatchData(singleData?.results)
+    : mapGroupMatchData(groupData?.mates);
 
   const filteredCards =
     filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
+
+  const patchStageMutation = useMutation(matchMutations.MATCH_STAGE());
 
   const handleCardClick = async (card: MatchableCardProps) => {
     onCardClick(card);
@@ -70,9 +87,7 @@ const MatchTabPanel = ({ cards, filter, onCardClick }: MatchTabPanelProps) => {
             key={card.id}
             type="button"
             onClick={() => handleCardClick(card)}
-            className={cn('w-full', {
-              'cursor-pointer': isClickable(card.status),
-            })}
+            className={cn('w-full', { 'cursor-pointer': isClickable(card.status) })}
             aria-disabled={!isClickable(card.status)}
           >
             <Card
