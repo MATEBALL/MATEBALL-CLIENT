@@ -13,7 +13,11 @@ const BannerCard = ({ text, subText, onClick }: CardBannerProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <button type="button" className={cn('relative cursor-pointer text-left')} onClick={onClick}>
+    <button
+      type="button"
+      className={cn('relative min-h-[9.6rem] cursor-pointer text-left')}
+      onClick={onClick}
+    >
       <img
         src={BannerImg}
         alt="홈배너"
