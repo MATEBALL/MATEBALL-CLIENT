@@ -1,4 +1,3 @@
-// src/pages/match/components/match-tab-pannel.tsx
 import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
