@@ -1,10 +1,13 @@
-import { patch, post, put } from '@apis/base/http';
+import { get, patch, post, put } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
+import { HTTP_STATUS } from '@constants/response';
 import queryClient from '@libs/query-client';
+import { NICKNAME_DUPLICATE_FAILURE_COUNT } from '@pages/sign-up/constants/validation';
 import { router } from '@routes/router';
 import { ROUTES } from '@routes/routes-config';
 import { mutationOptions } from '@tanstack/react-query';
+import axios from 'axios';
 import type { responseTypes } from '@/shared/types/base-types';
 import type {
   postAgreementInfoRequest,
@@ -67,5 +70,26 @@ export const userMutations = {
     mutationOptions<responseTypes, Error, postAgreementInfoRequest>({
       mutationKey: USER_KEY.AGREEMENT(),
       mutationFn: ({ hasAccepted }) => post(END_POINT.AGREEMENT_INFO, { hasAccepted }),
+    }),
+
+  NICKNAME_CHECK: () =>
+    mutationOptions<boolean, Error, { nickname: string }>({
+      mutationFn: async ({ nickname }) => {
+        try {
+          await get<void>(END_POINT.GET_NICKNAME_CHECK(nickname));
+          return true;
+        } catch (e) {
+          if (axios.isAxiosError(e) && e.response?.status === HTTP_STATUS.CONFLICT) {
+            return false;
+          }
+          throw e;
+        }
+      },
+      retry: (failureCount, error) => {
+        if (axios.isAxiosError(error) && error.response?.status === HTTP_STATUS.CONFLICT) {
+          return false;
+        }
+        return failureCount < NICKNAME_DUPLICATE_FAILURE_COUNT;
+      },
     }),
 };
