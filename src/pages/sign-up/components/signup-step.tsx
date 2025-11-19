@@ -1,5 +1,4 @@
 import { userMutations } from '@apis/user/user-mutations';
-import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -21,7 +20,7 @@ import {
 } from '@pages/sign-up/constants/validation';
 import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
 import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import type { postUserInfoRequest } from '@/shared/types/user-types';
@@ -52,7 +51,7 @@ const SignupStep = () => {
 
   const userInfoMutation = useMutation(userMutations.USER_INFO());
   const agreementInfoMutaion = useMutation(userMutations.AGREEMENT_INFO());
-  const { refetch: refetchNicknameCheck } = useQuery(userQueries.NICKNAME_CHECK(nicknameValue));
+  const { mutateAsync: checkNickname } = useMutation(userMutations.NICKNAME_CHECK());
 
   const informationLength = informationValue.length ?? 0;
 
@@ -103,8 +102,8 @@ const SignupStep = () => {
     if (!isNicknameValid) return;
     setNicknameStatus('checking');
     try {
-      const { data } = await refetchNicknameCheck();
-      setNicknameStatus(data ? 'available' : 'duplicate');
+      const available = await checkNickname({ nickname: nicknameValue });
+      setNicknameStatus(available ? 'available' : 'duplicate');
     } catch {
       setNicknameStatus('idle');
     }

@@ -58,8 +58,7 @@ const EditProfile = () => {
   const nicknameVal = watch('nickname', '');
   const introductionVal = watch('introduction', '');
 
-  const { refetch: refetchNicknameCheck } = useQuery(userQueries.NICKNAME_CHECK(nicknameVal));
-
+  const { mutateAsync: checkNickname } = useMutation(userMutations.NICKNAME_CHECK());
   const submitNickname = async () => {
     const ok = await trigger('nickname');
     if (!ok) return;
@@ -113,8 +112,8 @@ const EditProfile = () => {
     if (errors.nickname || nicknameVal.trim().length < 2) return;
     setNicknameStatus('checking');
     try {
-      const { data } = await refetchNicknameCheck();
-      setNicknameStatus(data ? 'available' : 'duplicate');
+      const available = await checkNickname({ nickname: nicknameVal });
+      setNicknameStatus(available ? 'available' : 'duplicate');
     } catch {
       setNicknameStatus('idle');
     }
