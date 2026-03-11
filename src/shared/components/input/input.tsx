@@ -2,12 +2,12 @@ import Icon from '@components/icon/icon';
 import { iconColorMap, inputClassMap } from '@components/input/styles/input-variants';
 import { cn } from '@libs/cn';
 import type React from 'react';
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
 import { useState } from 'react';
 import { defineInputState } from '@/shared/utils/define-input-state';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onBlur'> {
-  label?: string;
+  label?: ReactNode;
   isError?: boolean;
   isValid?: boolean;
   hasLength?: boolean;
@@ -53,7 +53,7 @@ const Input = ({
   return (
     <div className="flex-col gap-[0.8rem]">
       {label && (
-        <label htmlFor={id} className="body_16_m">
+        <label htmlFor={id} className="body_16_m text-gray-black">
           {label}
         </label>
       )}

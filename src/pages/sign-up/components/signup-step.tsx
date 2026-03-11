@@ -127,15 +127,20 @@ const SignupStep = () => {
             <p className="body_16_m text-gray-black">
               프로필 이미지 <span className="text-gray-500">(선택)</span>
             </p>
+            {/* TODO: 프로필 편집 api 연결 */}
             <div className="relative w-fit">
               <Icon name="profile" size={6.4} />
               <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
             </div>
           </div>
-          <div className="flex-col gap-[0.8rem] text-gray-black">
+          <div className="flex-col gap-[0.8rem]">
             <Input
               placeholder={NICKNAME_PLACEHOLDER}
-              label="닉네임"
+              label={
+                <>
+                  닉네임 <span className="text-gray-500">(필수)</span>
+                </>
+              }
               defaultMessage={NICKNAME_RULE_MESSAGE}
               validationMessage={
                 nicknameStatus === 'duplicate'
@@ -161,7 +166,11 @@ const SignupStep = () => {
           <Input
             placeholder={INTRODUCTION_PLACEHOLDER}
             className="h-[10.4rem]"
-            label="한 줄 소개"
+            label={
+              <>
+                한 줄 소개 <span className="text-gray-500">(필수)</span>
+              </>
+            }
             defaultMessage={INTRODUCTION_RULE_MESSAGE}
             multiline
             maxLength={INTRODUCTION_MAX_LENGTH}
@@ -175,7 +184,11 @@ const SignupStep = () => {
           />
           <Input
             placeholder={BIRTH_PLACEHOLDER}
-            label="출생 연도"
+            label={
+              <>
+                출생 연도 <span className="text-gray-500">(필수)</span>
+              </>
+            }
             defaultMessage={isBirthYearValid ? BIRTHYEAR_SUCCESS_MESSAGE : BIRTHYEAR_RULE_MESSAGE}
             validationMessage={errors.birthYear?.message}
             isError={!!errors.birthYear}
@@ -185,7 +198,9 @@ const SignupStep = () => {
             {...birthYearInputProps}
           />
           <div className="flex-col gap-[0.8rem]">
-            <p className="body_16_m">성별</p>
+            <p className="body_16_m text-gray-black">
+              성별 <span className="text-gray-500">(필수)</span>
+            </p>
             <div className="flex w-full gap-[0.8rem]">
               <Button
                 variant={genderValue === '여성' ? 'skyblueBorder' : 'gray2'}
