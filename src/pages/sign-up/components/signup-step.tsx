@@ -1,5 +1,6 @@
 import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
+import Icon from '@components/icon/icon';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { trackSignUpCompleted } from '@libs/analytics';
@@ -123,6 +124,15 @@ const SignupStep = () => {
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>
         <div className=" flex-col gap-[2.4rem]">
           <div className="flex-col gap-[0.8rem]">
+            <p className="body_16_m text-gray-black">
+              프로필 이미지 <span className="text-gray-500">(선택)</span>
+            </p>
+            <div className="relative w-fit">
+              <Icon name="profile" size={6.4} />
+              <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+            </div>
+          </div>
+          <div className="flex-col gap-[0.8rem] text-gray-black">
             <Input
               placeholder={NICKNAME_PLACEHOLDER}
               label="닉네임"
