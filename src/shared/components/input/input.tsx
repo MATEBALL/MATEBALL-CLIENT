@@ -59,7 +59,7 @@ const Input = ({
       )}
       <div
         className={cn(
-          'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 ',
+          'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] border border-transparent bg-gray-100',
           borderClass,
           className,
         )}
@@ -85,7 +85,7 @@ const Input = ({
           <input
             id={id}
             type="text"
-            className="flex-1 p-[1.6rem] text-gray-black placeholder:text-gray-500"
+            className="flex-1 p-[1.6rem] text-gray-black outline-none placeholder:text-gray-500"
             ref={ref}
             onFocus={() => setIsFocused(true)}
             onBlur={(e) => {
