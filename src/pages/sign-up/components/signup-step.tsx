@@ -3,6 +3,7 @@ import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import useAuth from '@hooks/use-auth';
 import { trackSignUpCompleted } from '@libs/analytics';
 import {
   BIRTHYEAR_RULE_MESSAGE,
@@ -19,9 +20,11 @@ import {
 } from '@pages/sign-up/constants/validation';
 import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
 import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
+import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import {
   getNicknameValidationMessage,
   getRequiredValidationMessage,
@@ -29,6 +32,9 @@ import {
 import type { postUserInfoRequest } from '@/shared/types/user-types';
 
 const SignupStep = () => {
+  const navigate = useNavigate();
+  const { refreshUserStatus } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -79,6 +85,9 @@ const SignupStep = () => {
           birthYear: userData.birthYear,
           gender: userData.gender === '여성' ? 'female' : 'male',
         });
+
+        refreshUserStatus();
+        navigate(ROUTES.ONBOARDING, { replace: true });
       }
     } catch (e) {
       console.error('signup failed:', e);
