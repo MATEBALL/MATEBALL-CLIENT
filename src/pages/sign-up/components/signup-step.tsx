@@ -8,14 +8,11 @@ import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
   INTRODUCTION_RULE_MESSAGE,
-  NICKNAME_DUPLICATED,
   NICKNAME_RULE_MESSAGE,
-  NICKNAME_SUCCESS_MESSAGE,
   NICKNAME_TITLE,
 } from '@pages/sign-up/constants/NOTICE';
 import {
   BIRTH_PLACEHOLDER,
-  COMMON_ERROR_MESSAGES,
   INTRODUCTION_MAX_LENGTH,
   INTRODUCTION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
@@ -25,6 +22,10 @@ import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import {
+  getNicknameValidationMessage,
+  getRequiredValidationMessage,
+} from '@/pages/sign-up/utils/get-validation-message';
 import type { postUserInfoRequest } from '@/shared/types/user-types';
 
 const SignupStep = () => {
@@ -113,26 +114,18 @@ const SignupStep = () => {
     }
   };
 
-  const nicknameValidationMessage =
-    nicknameStatus === 'duplicate'
-      ? NICKNAME_DUPLICATED
-      : !!errors.nickname && !nicknameValue.trim()
-        ? COMMON_ERROR_MESSAGES.REQUIRED
-        : errors.nickname?.message
-          ? errors.nickname.message
-          : nicknameStatus === 'available'
-            ? NICKNAME_SUCCESS_MESSAGE
-            : undefined;
+  const nicknameValidationMessage = getNicknameValidationMessage(
+    nicknameStatus,
+    errors.nickname,
+    nicknameValue,
+  );
 
-  const introductionValidationMessage =
-    !!errors.introduction && !informationValue.trim()
-      ? COMMON_ERROR_MESSAGES.REQUIRED
-      : errors.introduction?.message;
+  const introductionValidationMessage = getRequiredValidationMessage(
+    errors.introduction,
+    informationValue,
+  );
 
-  const birthYearValidationMessage =
-    !!errors.birthYear && !birthYearValue.trim()
-      ? COMMON_ERROR_MESSAGES.REQUIRED
-      : errors.birthYear?.message;
+  const birthYearValidationMessage = getRequiredValidationMessage(errors.birthYear, birthYearValue);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
   useEffect(() => {
