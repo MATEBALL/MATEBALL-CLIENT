@@ -101,10 +101,10 @@ const Input = ({
           <Icon
             name={helperIconName}
             size={2}
-            className={cn('text-gray-600', !multiline && iconColorClass)}
+            className={cn('text-gray-600', iconColorClass)}
           />
           <div className="flex w-full justify-between">
-            <p className={cn('cap_14_m text-gray-600', !multiline && iconColorClass)}>
+            <p className={cn('cap_14_m text-gray-600', iconColorClass)}>
               {messageToShow}
             </p>
             {hasLength && (
