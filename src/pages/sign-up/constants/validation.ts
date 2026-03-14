@@ -28,6 +28,7 @@ export const INTRODUCTION_PLACEHOLDER =
 export const BIRTH_ERROR_MESSAGES = {
   LENGTH: '숫자로 4자리 입력만 가능해요.',
   NUMBER: '숫자만 입력 가능해요.',
+  RANGE: '올바른 연도를 입력해주세요.', //TODO: 기획에서 전해주는 문구로 수정
 };
 
 export const GENDER_ERROR_MESSAGES = {
@@ -46,3 +47,6 @@ export const NICKNAME_DUPLICATE_FAILURE_COUNT = 2;
 export const COMMON_ERROR_MESSAGES = {
   REQUIRED: '필수 입력 항목입니다.',
 };
+
+export const BIRTH_YEAR_MIN = 1950;
+export const BIRTH_YEAR_MAX = 2007;
