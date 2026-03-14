@@ -15,6 +15,7 @@ import {
 } from '@pages/sign-up/constants/NOTICE';
 import {
   BIRTH_PLACEHOLDER,
+  COMMON_ERROR_MESSAGES,
   INTRODUCTION_MAX_LENGTH,
   INTRODUCTION_PLACEHOLDER,
   NICKNAME_PLACEHOLDER,
@@ -45,6 +46,8 @@ const SignupStep = () => {
   const informationValue = watch('introduction');
 
   const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
+
+  const hasNicknameError = !!errors.nickname || nicknameStatus === 'duplicate';
 
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
@@ -110,6 +113,27 @@ const SignupStep = () => {
     }
   };
 
+  const nicknameValidationMessage =
+    nicknameStatus === 'duplicate'
+      ? NICKNAME_DUPLICATED
+      : !!errors.nickname && !nicknameValue.trim()
+        ? COMMON_ERROR_MESSAGES.REQUIRED
+        : errors.nickname?.message
+          ? errors.nickname.message
+          : nicknameStatus === 'available'
+            ? NICKNAME_SUCCESS_MESSAGE
+            : undefined;
+
+  const introductionValidationMessage =
+    !!errors.introduction && !informationValue.trim()
+      ? COMMON_ERROR_MESSAGES.REQUIRED
+      : errors.introduction?.message;
+
+  const birthYearValidationMessage =
+    !!errors.birthYear && !birthYearValue.trim()
+      ? COMMON_ERROR_MESSAGES.REQUIRED
+      : errors.birthYear?.message;
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
   useEffect(() => {
     setNicknameStatus('idle');
@@ -142,14 +166,8 @@ const SignupStep = () => {
                 </>
               }
               defaultMessage={NICKNAME_RULE_MESSAGE}
-              validationMessage={
-                nicknameStatus === 'duplicate'
-                  ? NICKNAME_DUPLICATED
-                  : nicknameStatus === 'available'
-                    ? NICKNAME_SUCCESS_MESSAGE
-                    : undefined
-              }
-              isError={nicknameStatus === 'duplicate'}
+              validationMessage={nicknameValidationMessage}
+              isError={hasNicknameError}
               isValid={nicknameStatus === 'available'}
               onBlur={onNicknameBlur}
               ref={nicknameRef}
@@ -172,6 +190,7 @@ const SignupStep = () => {
               </>
             }
             defaultMessage={INTRODUCTION_RULE_MESSAGE}
+            validationMessage={introductionValidationMessage}
             multiline
             maxLength={INTRODUCTION_MAX_LENGTH}
             isError={!!errors.introduction}
@@ -190,7 +209,7 @@ const SignupStep = () => {
               </>
             }
             defaultMessage={isBirthYearValid ? BIRTHYEAR_SUCCESS_MESSAGE : BIRTHYEAR_RULE_MESSAGE}
-            validationMessage={errors.birthYear?.message}
+            validationMessage={birthYearValidationMessage}
             isError={!!errors.birthYear}
             isValid={isBirthYearValid}
             onBlur={onBirthYearBlur}

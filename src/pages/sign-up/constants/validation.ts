@@ -42,3 +42,7 @@ export const INTRODUCTION_MIN_LENGTH = 1;
 export const INTRODUCTION_MAX_LENGTH = 50;
 
 export const NICKNAME_DUPLICATE_FAILURE_COUNT = 2;
+
+export const COMMON_ERROR_MESSAGES = {
+  REQUIRED: '필수 입력 항목입니다.',
+};
