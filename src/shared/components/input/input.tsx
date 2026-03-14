@@ -98,15 +98,9 @@ const Input = ({
       </div>
       {messageToShow && (
         <div className="flex-row gap-[0.8rem]">
-          <Icon
-            name={helperIconName}
-            size={2}
-            className={cn('text-gray-600', iconColorClass)}
-          />
+          <Icon name={helperIconName} size={2} className={cn('text-gray-600', iconColorClass)} />
           <div className="flex w-full justify-between">
-            <p className={cn('cap_14_m text-gray-600', iconColorClass)}>
-              {messageToShow}
-            </p>
+            <p className={cn('cap_14_m text-gray-600', iconColorClass)}>{messageToShow}</p>
             {hasLength && (
               <p className="cap_14_m text-gray-600">
                 {length}/{maxLength}
