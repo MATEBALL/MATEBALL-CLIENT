@@ -16,20 +16,29 @@ import TopSection from '@pages/home/components/top-section';
 import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condition';
 import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
-import { addDays, format } from 'date-fns';
+import { addDays, format, isValid, parse } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { handleScrollLock } from '@/shared/utils/scroll-lock';
+
+const getSelectedDateFromQuery = (searchParams: URLSearchParams, fallbackDate: Date): Date => {
+  const queryDate = searchParams.get('date');
+  if (!queryDate) return fallbackDate;
+  const parsedDate = parse(queryDate, 'yyyy-MM-dd', new Date());
+  return isValid(parsedDate) ? parsedDate : fallbackDate;
+};
 
 const Home = () => {
   const { activeType, changeTab, isSingle, isGroup } = useTabState();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const entryDate = new Date();
-  const initialSelectedDate = getInitialSelectedDate(entryDate);
+  const fallbackSelectedDate = getInitialSelectedDate(entryDate);
+  const initialQuerySelectedDate = getSelectedDateFromQuery(searchParams, fallbackSelectedDate);
 
-  const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
+  const [selectedDate, setSelectedDate] = useState(initialQuerySelectedDate);
   const [baseWeekDate, setBaseWeekDate] = useState(
-    addDays(initialSelectedDate, WEEK_CALENDAR_START_OFFSET),
+    addDays(initialQuerySelectedDate, WEEK_CALENDAR_START_OFFSET),
   );
   const [isCalendarBottomSheetOpen, setIsCalendarBottomSheetOpen] = useState(false);
   const [isMatchingCtaBottomSheetOpen, setIsMatchingCtaBottomSheetOpen] = useState(false);
@@ -55,10 +64,28 @@ const Home = () => {
     gaEvent('home_enter', { from });
   }, [needsMatchingSetup]);
 
-  const handleDateSelect = (date: Date) => {
+  const syncSelectedDateToQuery = (date: Date) => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set('date', format(date, 'yyyy-MM-dd'));
+    setSearchParams(nextParams, { replace: true });
+  };
+
+  const handleDateChange = (date: Date) => {
     setSelectedDate(date);
     setBaseWeekDate(date);
+    syncSelectedDateToQuery(date);
   };
+
+  useEffect(() => {
+    const queryDate = getSelectedDateFromQuery(searchParams, fallbackSelectedDate);
+    const queryDateStr = format(queryDate, 'yyyy-MM-dd');
+    const selectedDateStr = format(selectedDate, 'yyyy-MM-dd');
+
+    if (queryDateStr !== selectedDateStr) {
+      setSelectedDate(queryDate);
+      setBaseWeekDate(queryDate);
+    }
+  }, [fallbackSelectedDate, searchParams, selectedDate]);
 
   const handleComplete = () => {
     gaEvent('condition_set_start');
@@ -83,7 +110,7 @@ const Home = () => {
         activeType={activeType}
         onTabChange={changeTab}
         selectedDate={selectedDate}
-        onDateChange={setSelectedDate}
+        onDateChange={handleDateChange}
         baseWeekDate={baseWeekDate}
         onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
       />
@@ -106,7 +133,7 @@ const Home = () => {
         isOpen={isCalendarBottomSheetOpen}
         onClose={() => setIsCalendarBottomSheetOpen(false)}
         selectedDate={selectedDate}
-        onDateSelect={handleDateSelect}
+        onDateSelect={handleDateChange}
       />
       <GameMatchBottomSheet
         isOpen={isGameInfoBottomSheetOpen}
