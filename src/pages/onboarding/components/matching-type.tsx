@@ -9,11 +9,8 @@ const MatchingType = ({ selectedOption, onSelect }: OnboardingStepProps) => {
       <div className="onboarding-title">
         <Icon name="matching" width={10.4} height={10.4} />
         <div className="flex-col-center gap-[0.8rem]">
-          <p className="head_20_sb text-center text-gray-black">
-            거의 다 왔어요.
-            <br />
-            어떤 유형의 매칭을 원하시나요?
-          </p>
+          <p className="head_20_sb text-center text-gray-black">어떤 매칭을 원하시나요?</p>
+          <p className="cap_14_m text-center text-gray-600">원하시는 매칭 인원을 선택해주세요.</p>
         </div>
       </div>
 

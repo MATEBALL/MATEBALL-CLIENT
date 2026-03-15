@@ -9,9 +9,9 @@ const SyncSupportTeam = ({ selectedOption, onSelect }: OnboardingStepProps) => {
       <div className="onboarding-title">
         <Icon name="cheer-team" width={10.4} height={10.4} />
         <p className="head_20_sb text-center text-gray-black">
-          메이트와 선호하는
+          같은 팀 메이트와
           <br />
-          응원 팀이 같으면 좋을까요?
+          직관하고 싶으신가요?
         </p>
       </div>
       <div className="onboarding-inner">
