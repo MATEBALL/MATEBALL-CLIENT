@@ -1,9 +1,11 @@
 import { gameQueries } from '@apis/game/game-queries';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
+import MatchingCtaBottomSheet from '@components/bottom-sheet/matching-cta/matching-cta-bottom-sheet';
 import Button from '@components/button/button/button';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Dialog from '@components/dialog/dialog';
+import type { TabType } from '@components/tab/tab/constants/tab-type';
 import useAuth from '@hooks/use-auth';
 import { useTabState } from '@hooks/use-tab-state';
 import { gaEvent } from '@libs/analytics';
@@ -30,12 +32,14 @@ const Home = () => {
     addDays(initialSelectedDate, WEEK_CALENDAR_START_OFFSET),
   );
   const [isCalendarBottomSheetOpen, setIsCalendarBottomSheetOpen] = useState(false);
+  const [isMatchingCtaBottomSheetOpen, setIsMatchingCtaBottomSheetOpen] = useState(false);
   const [isGameInfoBottomSheetOpen, setIsGameInfoBottomSheetOpen] = useState(false);
+  const [selectedCreateType, setSelectedCreateType] = useState<TabType>(activeType);
 
   const dateStr = format(selectedDate, 'yyyy-MM-dd');
   const { data } = useQuery({
     ...gameQueries.GAME_LIST(dateStr),
-    enabled: isCalendarBottomSheetOpen || isGameInfoBottomSheetOpen,
+    enabled: isCalendarBottomSheetOpen || isMatchingCtaBottomSheetOpen || isGameInfoBottomSheetOpen,
   });
 
   const { needsMatchingSetup } = useAuth();
@@ -61,6 +65,17 @@ const Home = () => {
     navigate(ROUTES.ONBOARDING);
   };
 
+  const handleOpenMatchingCtaBottomSheet = () => {
+    setSelectedCreateType(activeType);
+    setIsMatchingCtaBottomSheetOpen(true);
+  };
+
+  const handleMatchingCtaSubmit = (type: TabType) => {
+    setSelectedCreateType(type);
+    setIsMatchingCtaBottomSheetOpen(false);
+    setIsGameInfoBottomSheetOpen(true);
+  };
+
   return (
     <div className="h-full bg-gray-200 pb-[5.6rem]">
       <TopSection />
@@ -77,7 +92,15 @@ const Home = () => {
         isSingle={isSingle}
         isGroup={isGroup}
         selectedDate={selectedDate}
-        onOpenGameInfoBottomSheet={() => setIsGameInfoBottomSheetOpen(true)}
+        onOpenGameInfoBottomSheet={handleOpenMatchingCtaBottomSheet}
+      />
+      <MatchingCtaBottomSheet
+        isOpen={isMatchingCtaBottomSheetOpen}
+        onClose={() => setIsMatchingCtaBottomSheetOpen(false)}
+        date={format(selectedDate, 'yyyy-MM-dd')}
+        gameSchedule={data ?? []}
+        initialType={activeType}
+        onSubmit={handleMatchingCtaSubmit}
       />
       <CalendarBottomSheet
         isOpen={isCalendarBottomSheetOpen}
@@ -90,7 +113,7 @@ const Home = () => {
         onClose={() => setIsGameInfoBottomSheetOpen(false)}
         date={format(selectedDate, 'yyyy-MM-dd')}
         gameSchedule={data ?? []}
-        activeType={activeType}
+        activeType={selectedCreateType}
       />
       {needsMatchingSetup && (
         <div className="matching-modal-backdrop z-[var(--z-modal)] flex-col-center ">
