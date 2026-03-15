@@ -5,7 +5,7 @@ const useAuth = () => {
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery(authQueries.USER_STATUS());
 
-  const isAuthenticated = !!data?.nickname;
+  const isAuthenticated = data?.nickname === true;
   const isNotMatched = data?.condition === false;
 
   const needsMatchingSetup = isAuthenticated && isNotMatched;
