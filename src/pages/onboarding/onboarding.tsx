@@ -6,7 +6,6 @@ import Gender from '@pages/onboarding/components/gender';
 import MatchingType from '@pages/onboarding/components/matching-type';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
-import Start from '@pages/onboarding/components/start';
 import SupportTeam from '@pages/onboarding/components/support-team';
 import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
@@ -62,22 +61,16 @@ const Onboarding = () => {
     <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={handlePrev} />
-        {currentStep !== 'START' && (
-          <div className="w-full">
-            <ProgressBar
-              currentStep={progressOverride ?? currentIndex}
-              totalSteps={steps.length - 1}
-            />
-          </div>
-        )}
+        <div className="w-full">
+          <ProgressBar
+            currentStep={progressOverride ?? currentIndex}
+            totalSteps={steps.length - 1}
+          />
+        </div>
       </div>
 
       <div className="flex-1 flex-col-between">
         <Funnel>
-          <Step name="START">
-            <Start />
-          </Step>
-
           <Step name="SUPPORT_TEAM">
             <SupportTeam
               selectedOption={selections.SUPPORT_TEAM}

@@ -1,5 +1,4 @@
 export const FIRST_FUNNEL_STEPS = [
-  'START',
   'SUPPORT_TEAM',
   'SYNC_SUPPORT_TEAM',
   'VIEWING_STYLE',
