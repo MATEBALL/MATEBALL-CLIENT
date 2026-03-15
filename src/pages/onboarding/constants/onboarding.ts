@@ -69,7 +69,7 @@ export const MATCHING_TYPE = [
   },
   {
     id: 2,
-    label: '그룹 매칭',
+    label: '그룹 매칭(최대 4인)',
     icon: 'group',
   },
 ];
