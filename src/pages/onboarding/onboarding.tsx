@@ -60,9 +60,11 @@ const Onboarding = () => {
     <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={handlePrev} />
-        <div className="w-full">
-          <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
-        </div>
+        {currentStep !== 'COMPLETE' && (
+          <div className="w-full">
+            <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
+          </div>
+        )}
       </div>
 
       <div className="flex-1 flex-col-between">
@@ -103,7 +105,7 @@ const Onboarding = () => {
           </Step>
 
           <Step name="DATE_SELECT">
-            <DateSelect />
+            <DateSelect onComplete={goNext} />
           </Step>
 
           <Step name="COMPLETE">

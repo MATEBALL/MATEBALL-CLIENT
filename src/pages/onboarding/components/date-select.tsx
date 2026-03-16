@@ -11,7 +11,11 @@ import { format } from 'date-fns';
 import { useState } from 'react';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
-const DateSelect = () => {
+interface DateSelectProps {
+  onComplete: () => void;
+}
+
+const DateSelect = ({ onComplete }: DateSelectProps) => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
   const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
@@ -68,6 +72,7 @@ const DateSelect = () => {
         gameSchedule={data ?? []}
         activeType={activeType}
         fromOnboarding={true}
+        onComplete={onComplete}
       />
     </div>
   );
