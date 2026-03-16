@@ -1,7 +1,17 @@
 import Icon from '@components/icon/icon';
 import Input from '@components/input/input';
 
-const Frequency = () => {
+interface FrequencyProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const Frequency = ({ value, onChange }: FrequencyProps) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const numericValue = event.target.value.replace(/\D/g, '').slice(0, 3);
+    onChange(numericValue);
+  };
+
   return (
     <div className="mt-[5rem] h-full w-full flex-col items-center gap-[5.1rem]">
       <div className="onboarding-title">
@@ -13,7 +23,13 @@ const Frequency = () => {
 
       <div className="onboarding-inner">
         <p className="body_16_m text-gray-black">경기 수</p>
-        <Input className="bg-gray-white" placeholder="숫자로 입력하세요." />
+        <Input
+          className="bg-gray-white"
+          placeholder="숫자로 입력하세요."
+          value={value}
+          onChange={handleChange}
+          inputMode="numeric"
+        />
       </div>
     </div>
   );

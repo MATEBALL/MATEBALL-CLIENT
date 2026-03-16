@@ -4,6 +4,11 @@ import queryClient from '@libs/query-client';
 import { ROUTES } from '@routes/routes-config';
 import type { NavigateFunction } from 'react-router-dom';
 
+const isValidFrequency = (value: string | null) => {
+  if (!value) return false;
+  return /^\d{1,3}$/.test(value);
+};
+
 export const getButtonLabel = (currentStep: string) => {
   switch (currentStep) {
     case 'COMPLETE':
@@ -18,6 +23,11 @@ export const isButtonDisabled = (
   selections: Record<string, string | null>,
 ) => {
   if (currentStep === 'COMPLETE') return false;
+
+  if (currentStep === 'FREQUENCY') {
+    return !isValidFrequency(selections.FREQUENCY);
+  }
+
   return selections[currentStep] === null;
 };
 

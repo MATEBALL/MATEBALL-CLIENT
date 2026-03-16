@@ -30,7 +30,7 @@ interface GameMatchBottomSheetProps {
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
   fromOnboarding?: boolean;
-  // groupRole?: string | null;
+  // groupRole?: string | null;  TODO: 추후 삭제
   onComplete?: () => void;
 }
 

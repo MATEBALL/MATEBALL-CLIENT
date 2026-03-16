@@ -30,6 +30,7 @@ const Onboarding = () => {
   const [selections, setSelections] = useState<Record<string, string | null>>({
     SUPPORT_TEAM: null,
     SYNC_SUPPORT_TEAM: null,
+    FREQUENCY: null,
     VIEWING_STYLE: null,
     GENDER: null,
     MATCHING_TYPE: null,
@@ -68,7 +69,7 @@ const Onboarding = () => {
       </div>
 
       <div className="flex-1 flex-col-between">
-        <Funnel>
+        <Funnel currentStep={currentStep}>
           <Step name="SUPPORT_TEAM">
             <SupportTeam
               selectedOption={selections.SUPPORT_TEAM}
@@ -84,7 +85,10 @@ const Onboarding = () => {
           </Step>
 
           <Step name="FREQUENCY">
-            <Frequency />
+            <Frequency
+              value={selections.FREQUENCY ?? ''}
+              onChange={(value) => handleSelect('FREQUENCY', value)}
+            />
           </Step>
 
           <Step name="VIEWING_STYLE">
