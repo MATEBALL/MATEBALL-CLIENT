@@ -44,6 +44,15 @@ export const matchMutations = {
     }),
 
   /**
+   * 매칭 조건 삭제
+   */
+  DELETE_MATCH_CONDITION: () =>
+    mutationOptions<responseTypes, Error, void>({
+      mutationKey: MATCH_KEY.DELETE.CONDITION(),
+      mutationFn: () => del(END_POINT.DELETE_MATCH_CONDITION),
+    }),
+
+  /**
    * 매칭 요청
    */
   MATCH_REQUEST: () =>

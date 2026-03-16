@@ -61,6 +61,7 @@ export const MATCH_KEY = {
 
   DELETE: {
     MATCH: () => [...MATCH_KEY.ALL, 'delete'] as const,
+    CONDITION: () => [...MATCH_KEY.ALL, 'delete'] as const,
   },
 } as const;
 
