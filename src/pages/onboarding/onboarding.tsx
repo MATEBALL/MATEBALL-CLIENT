@@ -3,7 +3,7 @@ import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
 import DateSelect from '@pages/onboarding/components/date-select';
-import Gender from '@pages/onboarding/components/gender';
+import Frequency from '@pages/onboarding/components/frequency';
 import MatchingType from '@pages/onboarding/components/matching-type';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
@@ -83,6 +83,10 @@ const Onboarding = () => {
             />
           </Step>
 
+          <Step name="FREQUENCY">
+            <Frequency />
+          </Step>
+
           <Step name="VIEWING_STYLE">
             <ViewingStyle
               selectedOption={selections.VIEWING_STYLE}
@@ -90,12 +94,13 @@ const Onboarding = () => {
             />
           </Step>
 
-          <Step name="GENDER">
+          {/* TODO: GENDER 단계 관련 전부 삭제 */}
+          {/* <Step name="GENDER">
             <Gender
               selectedOption={selections.GENDER}
               onSelect={(option) => handleSelect('GENDER', option)}
             />
-          </Step>
+          </Step> */}
 
           <Step name="MATCHING_TYPE">
             <MatchingType
