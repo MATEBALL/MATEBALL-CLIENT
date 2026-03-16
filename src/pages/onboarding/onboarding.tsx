@@ -2,6 +2,7 @@ import { matchMutations } from '@apis/match/match-mutations';
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
+import DateSelect from '@pages/onboarding/components/date-select';
 import Gender from '@pages/onboarding/components/gender';
 import MatchingType from '@pages/onboarding/components/matching-type';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
@@ -40,8 +41,6 @@ const Onboarding = () => {
 
   const navigate = useNavigate();
 
-  const [progressOverride, setProgressOverride] = useState<number | null>(null);
-
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   const handlePrev = () => {
@@ -62,10 +61,7 @@ const Onboarding = () => {
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={handlePrev} />
         <div className="w-full">
-          <ProgressBar
-            currentStep={progressOverride ?? currentIndex}
-            totalSteps={steps.length - 1}
-          />
+          <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
         </div>
       </div>
 
@@ -106,35 +102,33 @@ const Onboarding = () => {
             />
           </Step>
 
+          <Step name="DATE_SELECT">
+            <DateSelect />
+          </Step>
+
           <Step name="COMPLETE">
             <Complete />
           </Step>
         </Funnel>
+        {currentStep !== 'DATE_SELECT' && (
+          <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <Button
+              label={getButtonLabel(currentStep)}
+              size="L"
+              variant="blue"
+              disabled={isButtonDisabled(currentStep, selections)}
+              onClick={() => {
+                if (currentStep === 'SUPPORT_TEAM' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+                  setSelections((prev) => ({ ...prev, SYNC_SUPPORT_TEAM: null }));
+                  goTo('VIEWING_STYLE');
+                  return;
+                }
 
-        <div className="sticky bottom-0 w-full p-[1.6rem]">
-          <Button
-            label={getButtonLabel(currentStep)}
-            size="L"
-            variant="blue"
-            disabled={isButtonDisabled(currentStep, selections)}
-            onClick={() => {
-              if (currentStep === 'SUPPORT_TEAM' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
-                setSelections((prev) => ({ ...prev, SYNC_SUPPORT_TEAM: null }));
-                goTo('VIEWING_STYLE');
-                return;
-              }
-
-              handleButtonClick(
-                currentStep,
-                selections,
-                goNext,
-                navigate,
-                setProgressOverride,
-                mutate,
-              );
-            }}
-          />
-        </div>
+                handleButtonClick(currentStep, selections, goNext, navigate, mutate);
+              }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

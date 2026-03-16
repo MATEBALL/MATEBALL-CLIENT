@@ -11,11 +11,7 @@ import { format } from 'date-fns';
 import { useState } from 'react';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
-interface DateSelectProps {
-  groupRole: string | null;
-}
-
-const DateSelect = ({ groupRole }: DateSelectProps) => {
+const DateSelect = () => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
   const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
@@ -52,9 +48,6 @@ const DateSelect = ({ groupRole }: DateSelectProps) => {
     <div className="h-full w-full flex-col-between gap-[5.6rem] px-[1.6rem] pt-[3.2rem]">
       <div className="flex-col-center gap-[0.8rem]">
         <p className="head_20_sb text-gray-black">어떤 경기를 직관하고 싶으신가요?</p>
-        <p className="cap_14_m text-gray-600">
-          단, 직관 준비를 위해 2일 이후 날짜부터 선택 가능해요.
-        </p>
       </div>
 
       <div className="w-full flex-grow">
@@ -75,7 +68,6 @@ const DateSelect = ({ groupRole }: DateSelectProps) => {
         gameSchedule={data ?? []}
         activeType={activeType}
         fromOnboarding={true}
-        groupRole={groupRole}
       />
     </div>
   );

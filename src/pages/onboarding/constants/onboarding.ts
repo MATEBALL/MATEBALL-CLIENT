@@ -4,6 +4,7 @@ export const FIRST_FUNNEL_STEPS = [
   'VIEWING_STYLE',
   'GENDER',
   'MATCHING_TYPE',
+  'DATE_SELECT',
   'COMPLETE',
 ] as const;
 
