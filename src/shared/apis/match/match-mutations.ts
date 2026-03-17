@@ -34,12 +34,11 @@ export const matchMutations = {
   MATCH_CONDITION: () =>
     mutationOptions<responseTypes, Error, postMatchConditionRequest>({
       mutationKey: MATCH_KEY.POST.CONDITION(),
-      mutationFn: ({ team, teamAllowed, style, genderPreference }) =>
+      mutationFn: ({ team, teamAllowed, style }) =>
         post<responseTypes>(END_POINT.POST_MATCH_CONDITION, {
           team,
           teamAllowed,
           style,
-          genderPreference,
         }),
     }),
 

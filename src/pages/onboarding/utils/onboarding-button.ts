@@ -41,23 +41,21 @@ export const handleButtonClick = (
       team: string;
       teamAllowed: string | null;
       style: string;
-      genderPreference: string;
     },
     options?: { onSuccess?: () => void },
   ) => void,
 ) => {
   if (currentStep === 'MATCHING_TYPE') {
-    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE, GENDER } = selections;
+    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE } = selections;
     const parsedTeamAllowed = SYNC_SUPPORT_TEAM === '상관없어요' ? null : SYNC_SUPPORT_TEAM;
 
-    if (!SUPPORT_TEAM || !VIEWING_STYLE || !GENDER) return;
+    if (!SUPPORT_TEAM || !VIEWING_STYLE) return;
 
     matchMutate?.(
       {
         team: SUPPORT_TEAM,
         teamAllowed: parsedTeamAllowed,
         style: VIEWING_STYLE,
-        genderPreference: GENDER,
       },
       {
         onSuccess: () => {

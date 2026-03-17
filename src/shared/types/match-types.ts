@@ -168,7 +168,6 @@ export interface postMatchConditionRequest {
   team: string;
   teamAllowed: string | null;
   style: string;
-  genderPreference: string;
 }
 
 /**
