@@ -28,7 +28,7 @@ const DateSelect = ({ onComplete }: DateSelectProps) => {
 
     queryClient.fetchQuery(gameQueries.GAME_LIST(dateStr)).then((games) => {
       if (!games || games.length === 0) {
-        showErrorToast(NO_GAME_TOAST_MESSAGE, '2.4rem');
+        showErrorToast(NO_GAME_TOAST_MESSAGE, { offset: '2.4rem', icon: false });
         return;
       }
 
