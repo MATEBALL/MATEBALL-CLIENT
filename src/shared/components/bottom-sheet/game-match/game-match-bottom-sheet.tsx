@@ -31,7 +31,7 @@ interface GameMatchBottomSheetProps {
   activeType: TabType;
   fromOnboarding?: boolean;
   // groupRole?: string | null;  TODO: 추후 삭제
-  onComplete?: () => void;
+  onComplete?: (matchId: number) => void;
 }
 
 const GameMatchBottomSheet = ({
@@ -91,9 +91,9 @@ const GameMatchBottomSheet = ({
           handleClose();
 
           if (fromOnboarding) {
-            onComplete?.();
+            onComplete?.(response.matchId);
           } else {
-            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId.toString())}?type=${queryType}`);
           }
         },
         onError: (error) => {

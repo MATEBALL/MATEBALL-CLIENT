@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface DateSelectProps {
-  onComplete: () => void;
+  onComplete: (matchId: number) => void;
 }
 
 const DateSelect = ({ onComplete }: DateSelectProps) => {

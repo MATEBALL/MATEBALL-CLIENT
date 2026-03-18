@@ -1,21 +1,27 @@
-// import Card from '@components/card/match-card/card';
 import { MATCHING_SUGGESTION_MESSAGE_TITLE } from '@pages/match/constants/matching';
+import CompleteGroupCard from './complete-group-card';
+import CompleteSingleCard from './complete-single-card';
 
 interface CompleteProps {
   nickname: string;
+  matchId: number;
+  type?: 'single' | 'group';
 }
 
-const Complete = ({ nickname }: CompleteProps) => {
-  
+const Complete = ({ nickname, matchId, type }: CompleteProps) => {
   return (
     <div className="w-full flex-1 flex-col-between gap-[4rem] whitespace-pre-line pt-[6.45rem]">
-      <div>
+      <div className="w-full flex-col gap-[4rem] px-[1.6rem]">
         <p className="title_24_sb text-center text-gray-black">
           {MATCHING_SUGGESTION_MESSAGE_TITLE(nickname)}
         </p>
-        {/* <Card isCreated className="w-full" {...cardProps} /> */}
-      </div>
 
+        {type === 'single' ? (
+          <CompleteSingleCard matchId={matchId} />
+        ) : (
+          <CompleteGroupCard matchId={matchId} />
+        )}
+      </div>
     </div>
   );
 };

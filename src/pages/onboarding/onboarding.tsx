@@ -34,6 +34,11 @@ const Onboarding = () => {
     MATCHING_TYPE: null,
   });
 
+  const [createdMatch, setCreatedMatch] = useState<{
+    matchId: number;
+    type: 'single' | 'group';
+  } | null>(null);
+
   const handleSelect = (stepName: string, value: string) => {
     setSelections((prev) => ({ ...prev, [stepName]: value }));
   };
@@ -115,11 +120,25 @@ const Onboarding = () => {
           </Step>
 
           <Step name="DATE_SELECT">
-            <DateSelect onComplete={goNext} />
+            <DateSelect
+              onComplete={(matchId) => {
+                setCreatedMatch({
+                  matchId,
+                  type: selections.MATCHING_TYPE === '1:1 매칭' ? 'single' : 'group',
+                });
+                goNext();
+              }}
+            />
           </Step>
 
           <Step name="COMPLETE">
-            <Complete nickname={data.nickname ?? ''} />
+            {createdMatch && (
+              <Complete
+                nickname={data.nickname ?? ''}
+                matchId={createdMatch.matchId}
+                type={createdMatch.type}
+              />
+            )}
           </Step>
         </Funnel>
 
