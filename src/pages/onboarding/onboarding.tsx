@@ -3,6 +3,7 @@ import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
+import CompleteButtonSection from '@pages/onboarding/components/complete-button-section';
 import DateSelect from '@pages/onboarding/components/date-select';
 import Frequency from '@pages/onboarding/components/frequency';
 import MatchingType from '@pages/onboarding/components/matching-type';
@@ -12,11 +13,7 @@ import SupportTeam from '@pages/onboarding/components/support-team';
 import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
-import {
-  getButtonLabel,
-  handleButtonClick,
-  isButtonDisabled,
-} from '@pages/onboarding/utils/onboarding-button';
+import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
@@ -129,7 +126,7 @@ const Onboarding = () => {
         {currentStep !== 'DATE_SELECT' && currentStep !== 'COMPLETE' && (
           <div className="sticky bottom-0 w-full p-[1.6rem]">
             <Button
-              label={getButtonLabel(currentStep)}
+              label="다음으로"
               size="L"
               variant="blue"
               disabled={isButtonDisabled(currentStep, selections)}
@@ -145,6 +142,7 @@ const Onboarding = () => {
             />
           </div>
         )}
+        {currentStep === 'COMPLETE' && <CompleteButtonSection />}
       </div>
     </div>
   );

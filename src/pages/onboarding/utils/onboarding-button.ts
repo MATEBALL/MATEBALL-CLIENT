@@ -9,15 +9,6 @@ const isValidFrequency = (value: string | null) => {
   return /^\d{1,3}$/.test(value);
 };
 
-export const getButtonLabel = (currentStep: string) => {
-  switch (currentStep) {
-    case 'COMPLETE':
-      return '메이트 더 찾아보기';
-    default:
-      return '다음으로';
-  }
-};
-
 export const isButtonDisabled = (
   currentStep: string,
   selections: Record<string, string | null>,
