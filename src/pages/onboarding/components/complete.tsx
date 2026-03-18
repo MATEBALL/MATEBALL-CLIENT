@@ -1,7 +1,5 @@
-import { LOTTIE_PATH } from '@constants/lotties';
 import { MATCHING_SUGGESTION_MESSAGE_TITLE } from '@pages/match/constants/matching';
-
-import { Lottie } from '@toss/lottie';
+import CompleteButtonSection from '@pages/onboarding/components/complete-button-section';
 
 interface CompleteProps {
   nickname: string;
@@ -9,12 +7,12 @@ interface CompleteProps {
 
 const Complete = ({ nickname }: CompleteProps) => {
   return (
-    <div className="flex-1 flex-col-center gap-[4rem] whitespace-pre-line">
+    <div className="w-full flex-1 flex-col-between gap-[4rem] whitespace-pre-line pt-[6.45rem]">
       <p className="title_24_sb text-center text-gray-black">
         {MATCHING_SUGGESTION_MESSAGE_TITLE(nickname)}
       </p>
 
-      <Lottie src={LOTTIE_PATH.AGREE} loop={true} width="16rem" height="16rem" />
+      <CompleteButtonSection />
     </div>
   );
 };

@@ -126,7 +126,7 @@ const Onboarding = () => {
           </Step>
         </Funnel>
 
-        {currentStep !== 'DATE_SELECT' && (
+        {currentStep !== 'DATE_SELECT' && currentStep !== 'COMPLETE' && (
           <div className="sticky bottom-0 w-full p-[1.6rem]">
             <Button
               label={getButtonLabel(currentStep)}
