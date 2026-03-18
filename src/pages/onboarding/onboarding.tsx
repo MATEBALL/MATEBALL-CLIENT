@@ -1,4 +1,5 @@
 import { matchMutations } from '@apis/match/match-mutations';
+import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
@@ -17,7 +18,7 @@ import {
   isButtonDisabled,
 } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -56,6 +57,9 @@ const Onboarding = () => {
       goPrev();
     }
   };
+
+  const { data } = useQuery(userQueries.USER_INFO());
+  if (!data) return null;
 
   return (
     <div className="h-full flex-col">
@@ -118,9 +122,10 @@ const Onboarding = () => {
           </Step>
 
           <Step name="COMPLETE">
-            <Complete />
+            <Complete nickname={data.nickname ?? ''} />
           </Step>
         </Funnel>
+
         {currentStep !== 'DATE_SELECT' && (
           <div className="sticky bottom-0 w-full p-[1.6rem]">
             <Button
