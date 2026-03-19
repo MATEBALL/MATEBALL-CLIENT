@@ -31,6 +31,7 @@ export const handleButtonClick = (
     payload: {
       team: string;
       teamAllowed: string | null;
+      avgSeason: number;
       style: string;
     },
     options?: { onSuccess?: () => void },
@@ -46,6 +47,7 @@ export const handleButtonClick = (
       {
         team: SUPPORT_TEAM,
         teamAllowed: parsedTeamAllowed,
+        avgSeason: Number(selections.FREQUENCY),
         style: VIEWING_STYLE,
       },
       {

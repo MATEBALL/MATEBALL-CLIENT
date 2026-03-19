@@ -30,7 +30,7 @@ export const END_POINT = {
   GET_GROUP_RESULT: (matchId: number | string) => `/v1/users/group/${matchId}`,
 
   POST_MATCH: '/v1/users/match',
-  POST_MATCH_CONDITION: '/v1/users/match-condition',
+  POST_MATCH_CONDITION: '/v3/users/match-condition',
   DELETE_MATCH_CONDITION: 'v3/users/match-condition',
 
   GET_SINGLE_STATUS: (status: string) => `/v2/users/match-stage/direct?status=${status}`,

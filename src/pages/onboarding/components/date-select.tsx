@@ -3,7 +3,7 @@ import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import MonthCalendar from '@components/calendar/month-calendar';
 import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
-import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
+import type { TabType } from '@components/tab/tab/tab-content';
 import { NO_GAME_TOAST_MESSAGE } from '@constants/error-toast';
 import queryClient from '@libs/query-client';
 import { useQuery } from '@tanstack/react-query';
@@ -13,13 +13,13 @@ import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface DateSelectProps {
   onComplete: (matchId: number) => void;
+  activeType: TabType;
 }
 
-const DateSelect = ({ onComplete }: DateSelectProps) => {
+const DateSelect = ({ onComplete, activeType }: DateSelectProps) => {
   const initialSelectedDate = getInitialSelectedDate(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
   const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
-  const activeType = TAB_TYPES.GROUP;
 
   const { isOpen, open, close } = useBottomSheet();
 

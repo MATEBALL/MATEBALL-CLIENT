@@ -1,6 +1,6 @@
 import { matchMutations } from '@apis/match/match-mutations';
-import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
 import CompleteButtonSection from '@pages/onboarding/components/complete-button-section';
@@ -15,7 +15,7 @@ import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
 import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,6 @@ const Onboarding = () => {
     SYNC_SUPPORT_TEAM: null,
     FREQUENCY: null,
     VIEWING_STYLE: null,
-    GENDER: null,
     MATCHING_TYPE: null,
   });
 
@@ -59,9 +58,6 @@ const Onboarding = () => {
       goPrev();
     }
   };
-
-  const { data } = useQuery(userQueries.USER_INFO());
-  if (!data) return null;
 
   return (
     <div className="h-full flex-col">
@@ -121,6 +117,9 @@ const Onboarding = () => {
 
           <Step name="DATE_SELECT">
             <DateSelect
+              activeType={
+                selections.MATCHING_TYPE === '1:1 매칭' ? TAB_TYPES.SINGLE : TAB_TYPES.GROUP
+              }
               onComplete={(matchId) => {
                 setCreatedMatch({
                   matchId,
@@ -133,11 +132,7 @@ const Onboarding = () => {
 
           <Step name="COMPLETE">
             {createdMatch && (
-              <Complete
-                nickname={data.nickname ?? ''}
-                matchId={createdMatch.matchId}
-                type={createdMatch.type}
-              />
+              <Complete nickname="" matchId={createdMatch.matchId} type={createdMatch.type} />
             )}
           </Step>
         </Funnel>
