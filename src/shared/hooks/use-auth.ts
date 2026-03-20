@@ -11,7 +11,7 @@ const useAuth = () => {
   const needsMatchingSetup = isAuthenticated && isNotMatched;
 
   const refreshUserStatus = () => {
-    queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
+    return queryClient.invalidateQueries({ queryKey: authQueries.USER_STATUS().queryKey });
   };
 
   return {

@@ -1,5 +1,7 @@
 import {
   BIRTH_ERROR_MESSAGES,
+  BIRTH_YEAR_MAX,
+  BIRTH_YEAR_MIN,
   GENDER_ERROR_MESSAGES,
   GENDER_OPTIONS,
   INTRODUCTION_MAX_LENGTH,
@@ -31,14 +33,23 @@ export const UserInfoSchema = z.object({
         message: NICKNAME_ERROR_MESSAGES.MIXEDLANG,
       },
     ),
+
   birthYear: z
     .string()
-    .min(4, { message: BIRTH_ERROR_MESSAGES.LENGTH })
-    .max(4, { message: BIRTH_ERROR_MESSAGES.LENGTH })
-    .regex(/^\d+$/, { message: BIRTH_ERROR_MESSAGES.NUMBER }),
+    .length(4, { message: BIRTH_ERROR_MESSAGES.LENGTH })
+    .regex(/^\d+$/, { message: BIRTH_ERROR_MESSAGES.NUMBER })
+    .refine(
+      (val) => {
+        const year = Number(val);
+        return year >= BIRTH_YEAR_MIN && year <= BIRTH_YEAR_MAX;
+      },
+      { message: BIRTH_ERROR_MESSAGES.RANGE },
+    ),
+
   gender: z.enum(GENDER_OPTIONS, {
     required_error: GENDER_ERROR_MESSAGES.REQUIRED,
   }),
+
   introduction: z.string().trim().min(INTRODUCTION_MIN_LENGTH).max(INTRODUCTION_MAX_LENGTH),
 });
 

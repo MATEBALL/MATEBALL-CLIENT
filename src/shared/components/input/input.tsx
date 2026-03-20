@@ -2,12 +2,12 @@ import Icon from '@components/icon/icon';
 import { iconColorMap, inputClassMap } from '@components/input/styles/input-variants';
 import { cn } from '@libs/cn';
 import type React from 'react';
-import type { InputHTMLAttributes } from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
 import { useState } from 'react';
 import { defineInputState } from '@/shared/utils/define-input-state';
 
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onBlur'> {
-  label?: string;
+  label?: ReactNode;
   isError?: boolean;
   isValid?: boolean;
   hasLength?: boolean;
@@ -53,13 +53,13 @@ const Input = ({
   return (
     <div className="flex-col gap-[0.8rem]">
       {label && (
-        <label htmlFor={id} className="body_16_m">
+        <label htmlFor={id} className="body_16_m text-gray-black">
           {label}
         </label>
       )}
       <div
         className={cn(
-          'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] bg-gray-100 ',
+          'body_16_m h-[5.6rem] w-full flex-row-between rounded-[12px] border border-transparent bg-gray-100',
           borderClass,
           className,
         )}
@@ -85,7 +85,7 @@ const Input = ({
           <input
             id={id}
             type="text"
-            className="flex-1 p-[1.6rem] text-gray-black placeholder:text-gray-500"
+            className="flex-1 p-[1.6rem] text-gray-black outline-none placeholder:text-gray-500"
             ref={ref}
             onFocus={() => setIsFocused(true)}
             onBlur={(e) => {
@@ -98,15 +98,9 @@ const Input = ({
       </div>
       {messageToShow && (
         <div className="flex-row gap-[0.8rem]">
-          <Icon
-            name={helperIconName}
-            size={2}
-            className={cn('text-gray-600', !multiline && iconColorClass)}
-          />
+          <Icon name={helperIconName} size={2} className={cn('text-gray-600', iconColorClass)} />
           <div className="flex w-full justify-between">
-            <p className={cn('cap_14_m text-gray-600', !multiline && iconColorClass)}>
-              {messageToShow}
-            </p>
+            <p className={cn('cap_14_m text-gray-600', iconColorClass)}>{messageToShow}</p>
             {hasLength && (
               <p className="cap_14_m text-gray-600">
                 {length}/{maxLength}
