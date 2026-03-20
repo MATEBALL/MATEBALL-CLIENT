@@ -1,15 +1,15 @@
 import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
+import Icon from '@components/icon/icon';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
+import useAuth from '@hooks/use-auth';
 import { trackSignUpCompleted } from '@libs/analytics';
 import {
   BIRTHYEAR_RULE_MESSAGE,
   BIRTHYEAR_SUCCESS_MESSAGE,
   INTRODUCTION_RULE_MESSAGE,
-  NICKNAME_DUPLICATED,
   NICKNAME_RULE_MESSAGE,
-  NICKNAME_SUCCESS_MESSAGE,
   NICKNAME_TITLE,
 } from '@pages/sign-up/constants/NOTICE';
 import {
@@ -20,12 +20,21 @@ import {
 } from '@pages/sign-up/constants/validation';
 import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/validation-schema';
 import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
+import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import {
+  getNicknameValidationMessage,
+  getRequiredValidationMessage,
+} from '@/pages/sign-up/utils/get-validation-message';
 import type { postUserInfoRequest } from '@/shared/types/user-types';
 
 const SignupStep = () => {
+  const navigate = useNavigate();
+  const { refreshUserStatus } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -33,7 +42,7 @@ const SignupStep = () => {
     watch,
     setValue,
   } = useForm<UserInfoFormValues>({
-    mode: 'onChange',
+    mode: 'all',
     resolver: zodResolver(UserInfoSchema),
     defaultValues: { nickname: '', gender: undefined, birthYear: '', introduction: '' },
   });
@@ -44,6 +53,8 @@ const SignupStep = () => {
   const informationValue = watch('introduction');
 
   const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
+
+  const hasNicknameError = !!errors.nickname || nicknameStatus === 'duplicate';
 
   const isNicknameValid = !errors.nickname && nicknameValue.length > 0;
   const isBirthYearValid = !errors.birthYear && birthYearValue.length > 0;
@@ -74,6 +85,9 @@ const SignupStep = () => {
           birthYear: userData.birthYear,
           gender: userData.gender === '여성' ? 'female' : 'male',
         });
+
+        await refreshUserStatus();
+        navigate(ROUTES.ONBOARDING, { replace: true });
       }
     } catch (e) {
       console.error('signup failed:', e);
@@ -109,6 +123,19 @@ const SignupStep = () => {
     }
   };
 
+  const nicknameValidationMessage = getNicknameValidationMessage(
+    nicknameStatus,
+    errors.nickname,
+    nicknameValue,
+  );
+
+  const introductionValidationMessage = getRequiredValidationMessage(
+    errors.introduction,
+    informationValue,
+  );
+
+  const birthYearValidationMessage = getRequiredValidationMessage(errors.birthYear, birthYearValue);
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
   useEffect(() => {
     setNicknameStatus('idle');
@@ -123,18 +150,26 @@ const SignupStep = () => {
         <h1 className="title_24_sb whitespace-pre-line">{NICKNAME_TITLE}</h1>
         <div className=" flex-col gap-[2.4rem]">
           <div className="flex-col gap-[0.8rem]">
+            <p className="body_16_m text-gray-black">
+              프로필 이미지 <span className="text-gray-500">(선택)</span>
+            </p>
+            {/* TODO: 프로필 편집 api 연결 */}
+            <div className="relative w-fit">
+              <Icon name="profile" size={6.4} />
+              <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+            </div>
+          </div>
+          <div className="flex-col gap-[0.8rem]">
             <Input
               placeholder={NICKNAME_PLACEHOLDER}
-              label="닉네임"
-              defaultMessage={NICKNAME_RULE_MESSAGE}
-              validationMessage={
-                nicknameStatus === 'duplicate'
-                  ? NICKNAME_DUPLICATED
-                  : nicknameStatus === 'available'
-                    ? NICKNAME_SUCCESS_MESSAGE
-                    : undefined
+              label={
+                <>
+                  닉네임 <span className="text-gray-500">(필수)</span>
+                </>
               }
-              isError={nicknameStatus === 'duplicate'}
+              defaultMessage={NICKNAME_RULE_MESSAGE}
+              validationMessage={nicknameValidationMessage}
+              isError={hasNicknameError}
               isValid={nicknameStatus === 'available'}
               onBlur={onNicknameBlur}
               ref={nicknameRef}
@@ -151,8 +186,13 @@ const SignupStep = () => {
           <Input
             placeholder={INTRODUCTION_PLACEHOLDER}
             className="h-[10.4rem]"
-            label="한 줄 소개"
+            label={
+              <>
+                한 줄 소개 <span className="text-gray-500">(필수)</span>
+              </>
+            }
             defaultMessage={INTRODUCTION_RULE_MESSAGE}
+            validationMessage={introductionValidationMessage}
             multiline
             maxLength={INTRODUCTION_MAX_LENGTH}
             isError={!!errors.introduction}
@@ -165,9 +205,13 @@ const SignupStep = () => {
           />
           <Input
             placeholder={BIRTH_PLACEHOLDER}
-            label="출생 연도"
+            label={
+              <>
+                출생 연도 <span className="text-gray-500">(필수)</span>
+              </>
+            }
             defaultMessage={isBirthYearValid ? BIRTHYEAR_SUCCESS_MESSAGE : BIRTHYEAR_RULE_MESSAGE}
-            validationMessage={errors.birthYear?.message}
+            validationMessage={birthYearValidationMessage}
             isError={!!errors.birthYear}
             isValid={isBirthYearValid}
             onBlur={onBirthYearBlur}
@@ -175,7 +219,9 @@ const SignupStep = () => {
             {...birthYearInputProps}
           />
           <div className="flex-col gap-[0.8rem]">
-            <p className="body_16_m">성별</p>
+            <p className="body_16_m text-gray-black">
+              성별 <span className="text-gray-500">(필수)</span>
+            </p>
             <div className="flex w-full gap-[0.8rem]">
               <Button
                 variant={genderValue === '여성' ? 'skyblueBorder' : 'gray2'}
