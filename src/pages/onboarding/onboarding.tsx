@@ -52,7 +52,7 @@ const Onboarding = () => {
       return;
     }
 
-    if (currentStep === 'VIEWING_STYLE' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+    if (currentStep === 'FREQUENCY' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
       goTo('SUPPORT_TEAM');
     } else {
       goPrev();
