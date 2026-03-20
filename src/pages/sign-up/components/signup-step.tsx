@@ -42,7 +42,7 @@ const SignupStep = () => {
     watch,
     setValue,
   } = useForm<UserInfoFormValues>({
-    mode: 'onChange',
+    mode: 'all',
     resolver: zodResolver(UserInfoSchema),
     defaultValues: { nickname: '', gender: undefined, birthYear: '', introduction: '' },
   });
@@ -86,7 +86,7 @@ const SignupStep = () => {
           gender: userData.gender === '여성' ? 'female' : 'male',
         });
 
-        refreshUserStatus();
+        await refreshUserStatus();
         navigate(ROUTES.ONBOARDING, { replace: true });
       }
     } catch (e) {
