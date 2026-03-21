@@ -30,11 +30,6 @@ const BottomNavigation = () => {
       readAllAlarmsMutation.mutate();
     }
 
-    if (path === ROUTES.HOME) {
-      navigate({ pathname: ROUTES.HOME, search: '' });
-      return;
-    }
-
     navigate(path);
   };
 
