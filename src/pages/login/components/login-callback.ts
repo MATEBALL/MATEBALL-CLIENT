@@ -1,8 +1,11 @@
-import { getUserStatus, postKakaoLogin } from '@apis/auth/auth';
+import { postKakaoLogin } from '@apis/auth/auth';
+import { get } from '@apis/base/http';
+import { END_POINT } from '@constants/api';
 import { HTTP_STATUS } from '@constants/response';
 import { ROUTES } from '@routes/routes-config';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import type { getUserStatusResponse } from '@/shared/types/auth-types';
 
 export const LoginCallback = () => {
   const code = new URL(window.location.href).searchParams.get('code');
@@ -20,7 +23,7 @@ export const LoginCallback = () => {
         const loginRes = await postKakaoLogin(code);
 
         if (loginRes.status === HTTP_STATUS.OK) {
-          const userInfo = await getUserStatus();
+          const userInfo = await get<getUserStatusResponse>(END_POINT.GET_USER_STATUS);
           if (userInfo.nickname === false) {
             navigate(ROUTES.SIGNUP);
           } else if (userInfo.nickname === true) {
