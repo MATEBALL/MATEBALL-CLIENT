@@ -61,7 +61,11 @@ const Home = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="h-full bg-gray-black pt-[0.8rem] pb-[5.6rem]">
+=======
+    <div className="h-full bg-gray-black pb-[5.6rem]">
+>>>>>>> 46e3a90 (fix: SP2 홈 색상 변경 및 엠티뷰 수정 (#404))
       <TopSection />
       <CalendarSection
         activeType={activeType}
