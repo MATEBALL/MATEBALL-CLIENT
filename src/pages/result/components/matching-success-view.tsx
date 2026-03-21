@@ -1,5 +1,6 @@
 import { matchQueries } from '@apis/match/match-queries';
 import Button from '@components/button/button/button';
+import MatchCurrentCard from '@components/card/match-current-card/match-current-card';
 import { LOTTIE_PATH } from '@constants/lotties';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import { gaEvent } from '@libs/analytics';
@@ -23,14 +24,12 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   const [clicking, setClicking] = useState(false);
   const cooldownRef = useRef<number | null>(null);
 
-  const tab = isGroupMatching ? 'group' : 'single';
-
   const matchIdFromPath = parseId(id ?? matchIdParam ?? null);
   const matchIdFromQuery = parseId(params.get('matchId'));
   const matchId = Number.isFinite(matchIdFromPath) ? matchIdFromPath : matchIdFromQuery;
   const isValidMatchId = Number.isFinite(matchId);
 
-  usePreventBackNavigation(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
+  usePreventBackNavigation(ROUTES.MATCH);
 
   const {
     data,
@@ -39,8 +38,13 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
   } = useQuery({
     ...matchQueries.OPEN_CHAT_URL(matchId, isValidMatchId),
   });
+  const { data: countedData } = useQuery({
+    ...matchQueries.COUNTED_MEMBER(matchId),
+    enabled: isGroupMatching && isValidMatchId,
+  });
 
   const openChatUrl = typeof data?.chattingUrl === 'string' ? data.chattingUrl.trim() : '';
+  const matchedCount = countedData?.count;
 
   useEffect(() => {
     return () => {
@@ -75,7 +79,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
 
   return (
     <div className="h-full flex-col-between">
-      <div className="flex-col-center gap-[4rem] rounded-full px-[1.6rem] pt-[4rem] pb-[8rem]">
+      <div className="flex-col-center gap-[3.2rem] rounded-full px-[1.6rem] pt-[4rem] pb-[8rem]">
         <h2 className="title_24_sb z-[var(--z-card-profile-4)] mb-[20rem] text-center">
           {isGroupMatching ? MATCHING_SUCCESS_TITLE.group : MATCHING_SUCCESS_TITLE.single}
         </h2>
@@ -87,6 +91,7 @@ const MatchingSuccessView = ({ isGroupMatching }: MatchingSuccessViewProps) => {
             <Lottie src={LOTTIE_PATH.SUCCESS} loop className="w-[16rem]" />
           </div>
         </div>
+        {isGroupMatching && <MatchCurrentCard count={matchedCount} />}
 
         <p className="body_16_m z-[var(--z-card-profile-4)] text-center text-gray-600">
           이제 메이트와 소통할 수 있어요. <br />
