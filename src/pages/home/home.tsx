@@ -56,6 +56,10 @@ const Home = () => {
     setBaseWeekDate(date);
   };
 
+  const handleWeekChange = (direction: 'prev' | 'next') => {
+    setBaseWeekDate((prev) => addDays(prev, direction === 'next' ? 7 : -7));
+  };
+
   const handleComplete = () => {
     gaEvent('condition_set_start');
     navigate(ROUTES.ONBOARDING);
@@ -71,6 +75,7 @@ const Home = () => {
         onDateChange={setSelectedDate}
         baseWeekDate={baseWeekDate}
         onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
+        onWeekChange={handleWeekChange}
       />
       <MatchListSection
         activeType={activeType}

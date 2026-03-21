@@ -10,6 +10,7 @@ interface CalendarSectionProps {
   onDateChange: (date: Date) => void;
   baseWeekDate: Date;
   onOpenBottomSheet: () => void;
+  onWeekChange: (direction: 'prev' | 'next') => void;
 }
 
 const CalendarSection = ({
@@ -19,6 +20,7 @@ const CalendarSection = ({
   onDateChange,
   baseWeekDate,
   onOpenBottomSheet,
+  onWeekChange,
 }: CalendarSectionProps) => {
   const handleTabChange = (type: TabType) => {
     onTabChange(type);
@@ -33,6 +35,7 @@ const CalendarSection = ({
         onChange={(date) => {
           onDateChange(date);
         }}
+        onWeekChange={onWeekChange}
       />
       <section className="mt-[2.5rem] flex justify-between">
         <TabList colorMode="home" activeType={activeType} onTabChange={handleTabChange} />
