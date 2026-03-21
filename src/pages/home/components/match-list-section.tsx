@@ -76,7 +76,7 @@ const MatchListSection = ({
 
       {!gameLoading && !hasGames ? (
         <EmptyView
-          iconName="empty-2"
+          iconName="graphic_empty_2"
           className="mt-[4rem]"
           text="해당 날짜에는 진행되는 경기가 없어요!"
           subText="경기가 있는 다른 날짜를 탐색해 보세요."
