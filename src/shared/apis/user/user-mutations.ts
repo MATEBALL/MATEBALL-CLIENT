@@ -62,8 +62,8 @@ export const userMutations = {
   EDIT_MATCH_CONDITION: () =>
     mutationOptions<postMatchConditionRequest, Error, postMatchConditionRequest>({
       mutationKey: USER_KEY.MATCH_CONDITION(),
-      mutationFn: ({ team, teamAllowed, style, genderPreference }) =>
-        patch(END_POINT.MATCH_CONDITION, { team, teamAllowed, style, genderPreference }),
+      mutationFn: ({ team, teamAllowed, style, avgSeason }) =>
+        patch(END_POINT.MATCH_CONDITION, { team, teamAllowed, style, avgSeason }),
     }),
 
   AGREEMENT_INFO: () =>
