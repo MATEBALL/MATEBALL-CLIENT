@@ -8,10 +8,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import ProfileCard from './components/profile-card';
 
-// TODO: api 연결
-const MOCK_MATCH_COUNT = 1;
-const MOCK_AVERAGE_SEASON_COUNT = 3;
-
 const Profile = () => {
   const navigate = useNavigate();
 
@@ -25,11 +21,11 @@ const Profile = () => {
       <div className="w-full flex-col-center gap-[3.2rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
         <ProfileCard
           nickname={data.nickname ?? ''}
-          imgUrl={data.imgUrl ?? ''}
           team={data.team ?? ''}
           style={data.style ?? ''}
-          matchCnt={MOCK_MATCH_COUNT}
-          avgSeason={MOCK_AVERAGE_SEASON_COUNT}
+          imgUrl={data.imgUrl ?? ''}
+          matchCnt={data.matchCnt ?? 0}
+          avgSeason={data.avgSeason ?? 0}
           onEditProfile={() => navigate(ROUTES.PROFILE_EDIT)}
         />
         <section className="w-full flex-col items-start">
