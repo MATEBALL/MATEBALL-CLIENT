@@ -32,6 +32,7 @@ export const ETC_COLORS = {
 
 export const GRAYSCALE_COLORS = {
   'gray-black': '#1a1a1a',
+  'gray-950': '#333333',
   'gray-900': '#3a3a3b',
   'gray-800': '#464748',
   'gray-700': '#656667',
