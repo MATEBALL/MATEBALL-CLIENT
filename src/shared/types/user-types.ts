@@ -3,16 +3,15 @@ import type { ApiResponse } from './base-types';
 /**
  * 유저 정보 조회 응답
  * get
- * /v1/users/info
+ * /v3/users/info
  */
 export interface getUserInfoResponse {
   nickname: string | null;
-  age: string | null;
-  gender: string | null;
   team: string | null;
   style: string | null;
-  introduction: string | null;
   imgUrl: string | null;
+  matchCnt: number | null;
+  avgSeason: number | null;
 }
 
 /**
