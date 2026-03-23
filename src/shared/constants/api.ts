@@ -14,7 +14,7 @@ export const END_POINT = {
   USER_INFO: '/v2/users/info',
   GET_NICKNAME_CHECK: (nickname: string) =>
     `/v2/users/info?nickname=${encodeURIComponent(nickname)}`,
-  GET_USER_INFO: '/v1/users/info',
+  GET_USER_INFO: '/v3/users/info',
   POST_INFO_NICKNAME: '/v1/users/info/nickname',
   POST_EDIT_PROFILE: '/v2/users/info',
   MATCH_CONDITION: '/v3/users/match-condition',
