@@ -14,6 +14,7 @@ export const buttonVariants = cva(
         disabled: 'rounded-[0.8rem] bg-gray-100 text-gray-400',
       },
       size: {
+        S: 'w-full px-[1.6rem] py-[0.6rem]',
         M: 'w-full px-[0.8rem] py-[1.2rem]',
         L: 'w-full px-[0.8rem] py-[1.2rem]',
         setting_M: 'w-full p-[0.8rem]',
