@@ -2,6 +2,7 @@ import { userMutations } from '@apis/user/user-mutations';
 import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Divider from '@components/divider/divider';
+import Icon from '@components/icon/icon';
 import Input from '@components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@libs/cn';
@@ -14,7 +15,7 @@ import {
   EditProfileSchema,
   type EditProfileValues,
 } from '@pages/edit-profile/schema/EditProfileSchema';
-import { GENDER, NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
+import { NO_TEAM_OPTION, TEAMS } from '@pages/onboarding/constants/onboarding';
 import {
   INTRODUCTION_RULE_MESSAGE,
   NICKNAME_DUPLICATED,
@@ -34,9 +35,9 @@ const EditProfile = () => {
   const { data } = useQuery(userQueries.MATCH_CONDITION());
 
   const [team, setTeam] = useState<string | undefined>(undefined);
-  const [gender, setGender] = useState<string | undefined>(undefined);
   const [mateTeam, setMateTeam] = useState<string | undefined>(undefined);
   const [viewStyle, setViewStyle] = useState<string | undefined>(undefined);
+  const [avgSeason, setAvgSeason] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
   const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
 
@@ -73,21 +74,21 @@ const EditProfile = () => {
 
   const initial = {
     team: data?.team ?? '',
-    gender: data?.genderPreference ?? '',
     mateTeam: data?.teamAllowed ?? '',
     viewStyle: data?.style ?? '',
+    avgSeason: data?.avgSeason ?? 0,
   };
 
   const teamValue = team ?? initial.team;
-  const genderValue = gender ?? initial.gender;
   const viewStyleValue = viewStyle ?? initial.viewStyle;
   const mateTeamValue = (teamValue === NO_TEAM_OPTION ? '' : (mateTeam ?? initial.mateTeam)) ?? '';
+  const avgSeasonValue = avgSeason === '' ? initial.avgSeason : Number(avgSeason);
 
   const isMatchDirty =
     teamValue !== initial.team ||
-    genderValue !== initial.gender ||
     mateTeamValue !== initial.mateTeam ||
-    viewStyleValue !== initial.viewStyle;
+    viewStyleValue !== initial.viewStyle ||
+    avgSeasonValue !== initial.avgSeason;
 
   const isSubmitDisabled = !isMatchDirty || isSubmit;
 
@@ -97,9 +98,9 @@ const EditProfile = () => {
 
     editMatchCondition({
       team: teamValue,
-      genderPreference: genderValue,
       style: viewStyleValue,
       teamAllowed: teamValue === NO_TEAM_OPTION ? null : mateTeamValue || null,
+      avgSeason: avgSeasonValue,
     });
   };
 
@@ -125,6 +126,15 @@ const EditProfile = () => {
 
       {/* 닉네임 */}
       <section>
+        <div className="mb-[2.4rem] flex-col gap-[0.8rem]">
+          <p className="body_16_m text-gray-black">프로필 이미지</p>
+          {/* TODO: 프로필 편집 api 연결 */}
+          <div className="relative w-fit">
+            <Icon name="profile" size={6.4} />
+            <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+          </div>
+        </div>
+
         <Controller
           name="nickname"
           control={control}
@@ -146,7 +156,7 @@ const EditProfile = () => {
             />
           )}
         />
-        <div className="mb-[2.5rem] flex justify-end gap-[0.8rem]">
+        <div className="mb-[2.4rem] flex justify-end gap-[0.8rem]">
           <Button
             type="button"
             variant={
@@ -267,12 +277,18 @@ const EditProfile = () => {
             onSelect={setViewStyle}
           />
 
-          <SelectionGroup
-            title="선호 성별"
-            options={GENDER}
-            selectedValue={genderValue}
-            onSelect={setGender}
-          />
+          <div className="flex-col gap-[1.6rem]">
+            <p className="body_16_m text-gray-black">평균 직관 수 </p>
+            <Input
+              value={avgSeason}
+              placeholder={initial.avgSeason.toString()}
+              inputMode="numeric"
+              onChange={(e) => {
+                const numericValue = e.target.value.replace(/\D/g, '').slice(0, 3);
+                setAvgSeason(numericValue);
+              }}
+            />
+          </div>
         </div>
       </section>
 
