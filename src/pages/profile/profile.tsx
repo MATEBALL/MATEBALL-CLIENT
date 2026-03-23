@@ -1,14 +1,17 @@
 import { userMutations } from '@apis/user/user-mutations';
 import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
-import Card from '@components/card/match-card/card';
-import type { ChipColor } from '@components/chip/chip-list';
 import Divider from '@components/divider/divider';
 import Footer from '@components/footer/footer';
 import { FEEDBACK_LINK, REQUEST_LINK } from '@pages/profile/constants/link';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import ProfileCard from './components/profile-card';
+
+// TODO: api 연결
+const MOCK_MATCH_COUNT = 1;
+const MOCK_AVERAGE_SEASON_COUNT = 3;
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -21,17 +24,14 @@ const Profile = () => {
   return (
     <div className="h-full flex-col-between">
       <div className="w-full flex-col-center gap-[1.6rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
-        <Card
-          className="!shadow-none"
-          type="user"
+        <ProfileCard
           nickname={data.nickname ?? ''}
-          imgUrl={[data.imgUrl ?? '']}
+          imgUrl={data.imgUrl ?? ''}
           team={data.team ?? ''}
           style={data.style ?? ''}
-          age={data.age ?? ''}
-          gender={data.gender ?? ''}
-          introduction={data.introduction ?? ''}
-          chips={[(data.team ?? '') as ChipColor, (data.style ?? '') as ChipColor]}
+          matchCnt={MOCK_MATCH_COUNT}
+          avgSeason={MOCK_AVERAGE_SEASON_COUNT}
+          onEditProfile={() => navigate(ROUTES.PROFILE_EDIT)}
         />
         <Button
           size="L"
