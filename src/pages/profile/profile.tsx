@@ -1,6 +1,5 @@
 import { userMutations } from '@apis/user/user-mutations';
 import { userQueries } from '@apis/user/user-queries';
-import Button from '@components/button/button/button';
 import Divider from '@components/divider/divider';
 import Footer from '@components/footer/footer';
 import { FEEDBACK_LINK, REQUEST_LINK } from '@pages/profile/constants/link';
@@ -23,7 +22,7 @@ const Profile = () => {
 
   return (
     <div className="h-full flex-col-between">
-      <div className="w-full flex-col-center gap-[1.6rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
+      <div className="w-full flex-col-center gap-[3.2rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
         <ProfileCard
           nickname={data.nickname ?? ''}
           imgUrl={data.imgUrl ?? ''}
@@ -33,12 +32,6 @@ const Profile = () => {
           avgSeason={MOCK_AVERAGE_SEASON_COUNT}
           onEditProfile={() => navigate(ROUTES.PROFILE_EDIT)}
         />
-        <Button
-          size="L"
-          label="프로필 · 매칭 조건 수정"
-          onClick={() => navigate(ROUTES.PROFILE_EDIT)}
-        />
-        <Divider thickness={0.4} color="bg-gray-200" />
         <section className="w-full flex-col items-start">
           <a
             href={REQUEST_LINK}
