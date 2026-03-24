@@ -1,4 +1,5 @@
 const TopSection = () => {
+  // TODO: 유저 수 api 연결
   const MOCK_USERS = 124;
 
   return (
