@@ -9,7 +9,7 @@ import { useTabState } from '@hooks/use-tab-state';
 import { gaEvent } from '@libs/analytics';
 import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
-import MatchListSection from '@pages/home/components/match-list-section';
+import GameListSection from '@pages/home/components/game-list-section';
 import TopSection from '@pages/home/components/top-section';
 import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condition';
 import { ROUTES } from '@routes/routes-config';
@@ -20,7 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import { handleScrollLock } from '@/shared/utils/scroll-lock';
 
 const Home = () => {
-  const { activeType, changeTab, isSingle, isGroup } = useTabState();
+  const { activeType, changeTab } = useTabState();
   const navigate = useNavigate();
   const entryDate = new Date();
   const initialSelectedDate = getInitialSelectedDate(entryDate);
@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   return (
-    <div className="h-full bg-gray-200 pb-[5.6rem]">
+    <div className="h-full bg-gray-black pt-[0.8rem] pb-[5.6rem]">
       <TopSection />
       <CalendarSection
         activeType={activeType}
@@ -72,13 +72,7 @@ const Home = () => {
         baseWeekDate={baseWeekDate}
         onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
       />
-      <MatchListSection
-        activeType={activeType}
-        isSingle={isSingle}
-        isGroup={isGroup}
-        selectedDate={selectedDate}
-        onOpenGameInfoBottomSheet={() => setIsGameInfoBottomSheetOpen(true)}
-      />
+      <GameListSection selectedDate={selectedDate} />
       <CalendarBottomSheet
         isOpen={isCalendarBottomSheetOpen}
         onClose={() => setIsCalendarBottomSheetOpen(false)}
