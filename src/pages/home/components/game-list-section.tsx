@@ -29,7 +29,7 @@ const GameListSection = ({ selectedDate }: GameListSectionProps) => {
   }
 
   return (
-    <section className="mt-[2.4rem] px-[1.6rem]">
+    <section className="px-[1.6rem]">
       <div className="flex-col gap-[1.2rem]">{renderGameCards(gameSchedule ?? [])}</div>
     </section>
   );
