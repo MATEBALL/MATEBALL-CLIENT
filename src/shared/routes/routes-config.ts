@@ -6,6 +6,7 @@ export const ROUTES = {
   SIGNUP: '/signup',
   ONBOARDING: '/onboarding',
   ONBOARDING_GROUP: '/onboarding/group',
+  GAME: (gameId = ':gameId') => `/game/${gameId}`,
   MATCH_CREATE: (id = ':matchId') => `/match/create/${id}`,
   MATCH_SINGLE: (id = ':matchId') => `/match/single/${id}`,
   GROUP_MATES: (id = ':matchId') => `/match/groups/mates/${id}`,
