@@ -9,6 +9,7 @@ interface CalendarSectionProps {
   onDateChange: (date: Date) => void;
   baseWeekDate: Date;
   onOpenBottomSheet: () => void;
+  entryDate: Date;
 }
 
 const CalendarSection = ({
@@ -16,6 +17,7 @@ const CalendarSection = ({
   onDateChange,
   baseWeekDate,
   onOpenBottomSheet,
+  entryDate,
 }: CalendarSectionProps) => {
   return (
     <section className="sticky top-0 z-[var(--z-under-header-section)] flex-col gap-[0.4rem] bg-gray-black px-[1.6rem] pt-[2.4rem] pb-[2.4rem]">
@@ -25,7 +27,7 @@ const CalendarSection = ({
       </div>
 
       <WeekCalendar
-        entryDate={new Date()}
+        entryDate={entryDate}
         baseDate={baseWeekDate}
         value={selectedDate}
         onChange={(date) => {

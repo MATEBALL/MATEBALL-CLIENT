@@ -2,7 +2,6 @@ import { gameQueries } from '@apis/game/game-queries';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import Button from '@components/button/button/button';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
-import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Dialog from '@components/dialog/dialog';
 import useAuth from '@hooks/use-auth';
 import { useTabState } from '@hooks/use-tab-state';
@@ -23,7 +22,7 @@ const Home = () => {
   const { activeType, changeTab } = useTabState();
   const navigate = useNavigate();
   const entryDate = new Date();
-  const initialSelectedDate = getInitialSelectedDate(entryDate);
+  const initialSelectedDate = entryDate;
 
   const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
   const [baseWeekDate, setBaseWeekDate] = useState(
@@ -71,6 +70,7 @@ const Home = () => {
         onDateChange={setSelectedDate}
         baseWeekDate={baseWeekDate}
         onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
+        entryDate={entryDate}
       />
       <GameListSection selectedDate={selectedDate} />
       <CalendarBottomSheet
