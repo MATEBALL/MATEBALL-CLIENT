@@ -7,6 +7,7 @@ export const getHeaderContent = (
   urlParams: URLSearchParams,
   isFail: boolean,
   navigate: NavigateFunction,
+  headerTitle: string,
 ) => {
   const handleLogoClick = () => {
     if (navigate) navigate(ROUTES.HOME);
@@ -43,6 +44,8 @@ export const getHeaderContent = (
 
   const isResult = Boolean(matchPath(`${ROUTES.RESULT()}`, pathname));
   const isGroupAgree = isResult && urlParams.get('type') === 'agree';
+  const isGame = Boolean(matchPath('/game/:gameId', pathname));
+
   if (isGroupAgree) {
     return null;
   }
@@ -80,6 +83,21 @@ export const getHeaderContent = (
           <Icon name="baseball" size={1.6} />
           <p className="cap_12_m">롯데 vs LG</p>
         </div>
+      </div>
+    );
+  }
+
+  if (isGame) {
+    return (
+      <div className="flex items-center gap-[0.8rem]">
+        <Icon
+          name="arrow-left-24"
+          width={2.4}
+          height={2.4}
+          onClick={handleBackClick}
+          className="cursor-pointer"
+        />
+        <h1 className="">{headerTitle}</h1>
       </div>
     );
   }
