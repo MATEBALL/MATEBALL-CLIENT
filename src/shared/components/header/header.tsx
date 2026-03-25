@@ -18,7 +18,7 @@ const Header = ({ headerTitle }: HeaderProps) => {
   const isMatch = pathname === ROUTES.MATCH;
   const isChatRoom = pathname === ROUTES.CHAT_ROOM;
   const isEditProfile = pathname === ROUTES.PROFILE_EDIT;
-  const isGame = Boolean(matchPath('/game/:gameId', pathname));
+  const isGame = Boolean(matchPath('/game/:date/:gameId', pathname));
 
   return (
     <header

@@ -44,7 +44,7 @@ export const getHeaderContent = (
 
   const isResult = Boolean(matchPath(`${ROUTES.RESULT()}`, pathname));
   const isGroupAgree = isResult && urlParams.get('type') === 'agree';
-  const isGame = Boolean(matchPath('/game/:gameId', pathname));
+  const isGame = Boolean(matchPath('/game/:date/:gameId', pathname));
 
   if (isGroupAgree) {
     return null;
@@ -97,7 +97,7 @@ export const getHeaderContent = (
           onClick={handleBackClick}
           className="cursor-pointer"
         />
-        <h1 className="">{headerTitle}</h1>
+        <h1 className="head_20_sb text-gray-black">{headerTitle}</h1>
       </div>
     );
   }
