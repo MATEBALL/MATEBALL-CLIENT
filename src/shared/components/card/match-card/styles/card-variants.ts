@@ -7,6 +7,7 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
       group: 'h-[12.9rem] p-[2rem]',
       detailed: 'gap-[1.2rem] p-[2rem] shadow-1',
       user: 'p-[2rem] shadow-1',
+      game: 'px-[2rem] py-[1.6rem]',
     },
     color: {
       active: 'bg-main-200 outline outline-main-600',
@@ -26,6 +27,7 @@ export const profileVariants = cva('overflow-hidden rounded-full object-cover', 
       group: 'h-[2.8rem] w-[2.8rem]',
       detailed: 'h-[8.2rem] w-[8.2rem] ',
       user: 'h-[8.2rem] w-[8.2rem] ',
+      game: 'h-[2.8rem] w-[2.8rem]',
     },
   },
   defaultVariants: {

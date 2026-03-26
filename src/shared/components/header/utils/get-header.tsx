@@ -89,7 +89,7 @@ export const getHeaderContent = (
 
   if (isGame) {
     return (
-      <div className="flex items-center gap-[0.8rem]">
+      <div className="flex items-center gap-[2rem]">
         <Icon
           name="arrow-left-24"
           width={2.4}

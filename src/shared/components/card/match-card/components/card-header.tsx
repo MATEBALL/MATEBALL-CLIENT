@@ -13,7 +13,7 @@ const CardHeader = (props: CardProps) => {
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
   const getCrownSpec = (t: CardProps['type']) => {
-    if (t === 'group') {
+    if (t === 'group' || t === 'game') {
       return {
         box: 'h-[1.2rem] w-[1.2rem]',
         pos: 'left-[1.6rem] bottom-0',
@@ -79,7 +79,7 @@ const CardHeader = (props: CardProps) => {
             <div className="subhead_18_sb text-start">
               {props.nickname} 외 {props.count - 1}명
             </div>
-            <div className="flex-row-center gap-[0.8rem] py-[0.4rem]">
+            <div className="flex-row-center">
               <div className="cap_12_m text-gray-900">
                 매칭된 인원 {props.count}/{GROUP_MAX}
               </div>
@@ -127,6 +127,23 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={chips} />
             </div>
           </div>
+        </div>
+      );
+
+    case 'game':
+      return (
+        <div className="flex">
+          <div className="flex-col gap-[0.4rem]">
+            <div className="subhead_18_sb text-start">
+              {props.nickname} 외 {props.count - 1}명
+            </div>
+            {renderProfile(props)}
+          </div>
+          {!isCreateMatchPage && (
+            <div className="ml-auto">
+              <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
+            </div>
+          )}
         </div>
       );
   }
