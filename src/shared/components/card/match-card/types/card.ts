@@ -78,6 +78,7 @@ export interface GameCardProps extends BaseCardProps {
   count: number;
   color?: 'active' | 'inactive';
   matchRate?: number;
+  isGroup: boolean;
 }
 
 export type CardProps =

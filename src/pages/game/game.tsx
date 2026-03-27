@@ -46,6 +46,7 @@ const Game = () => {
           stadium={gameMatchData.stadium}
           date={gameMatchData.date}
           matchRate={match.matchRate ?? undefined}
+          isGroup={match.isGroup}
         />
       ))}
     </div>

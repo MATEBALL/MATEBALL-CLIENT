@@ -1,6 +1,7 @@
 import { GROUP_MAX } from '@components/card/constants/MATCH';
 import CardProfile from '@components/card/match-card/components/card-profile-image';
 import type { CardProps } from '@components/card/match-card/types/card';
+import Chip from '@components/chip/chip';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
 import Icon from '@components/icon/icon';
@@ -135,17 +136,29 @@ const CardHeader = (props: CardProps) => {
     case 'game':
       return (
         <div className="flex">
-          <div className="flex-col gap-[0.4rem]">
+          <div className="w-full flex-col gap-[0.4rem]">
             <div className="subhead_18_sb text-start">
-              {props.nickname} 외 {props.count - 1}명
+              <div className="flex w-full">
+                {props.nickname} 외 {props.count - 1}명
+                {!isCreateMatchPage && (
+                  <div className="ml-auto flex-row gap-[0.8rem]">
+                    <ChipState
+                      status={props.status}
+                      rate={props.matchRate}
+                      colorType={props.chipColor}
+                    />
+                    <Chip
+                      label={props.isGroup ? '그룹' : '1:1'}
+                      bgColor={props.isGroup ? '그룹' : '1:1'}
+                      textColor={props.isGroup ? '그룹' : '1:1'}
+                      className="rounded-[8px]"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
             {renderProfile(props)}
           </div>
-          {!isCreateMatchPage && (
-            <div className="ml-auto">
-              <ChipState status={props.status} rate={props.matchRate} colorType={props.chipColor} />
-            </div>
-          )}
         </div>
       );
   }

@@ -15,6 +15,8 @@ export const chipVariantOptions = {
     열정응원러: 'bg-sub-400',
     경기집중러: 'bg-sub-400',
     직관먹방러: 'bg-sub-400',
+    '1:1': 'bg-team-doosan-background',
+    그룹: 'bg-team-doosan-background',
     default: 'bg-gray-200',
   },
   textColor: {
@@ -31,6 +33,8 @@ export const chipVariantOptions = {
     열정응원러: 'text-gray-800',
     경기집중러: 'text-gray-800',
     직관먹방러: 'text-gray-800',
+    '1:1': 'text-team-doosan-text',
+    그룹: 'text-team-doosan-text',
     default: 'text-black',
   },
 };
