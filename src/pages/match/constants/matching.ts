@@ -8,11 +8,7 @@ export const MATCHING_COMPLETE_MESSAGE = {
   single: '상대방이 요청을 승인하면 매칭이 성사돼요.',
 };
 
-export const MATCHING_HEADER_MESSAGE = (nickname: string, isGroup: boolean) =>
-  ({
-    group: `${nickname}님과 딱 맞는 그룹원이에요!`,
-    single: `${nickname}님과 딱 맞는 메이트예요!`,
-  })[isGroup ? 'group' : 'single'];
+export const MATCHING_HEADER_MESSAGE = (nickname: string) => `${nickname}님과 딱 맞는 메이트예요!`;
 
 export const MATCHING_DESCRIPTION = {
   group: {
