@@ -91,6 +91,7 @@ export type CardProps =
 export interface CardProfileProps {
   type: 'single' | 'group' | 'detailed' | 'user' | 'game';
   imgUrl: string[];
+  isGroup?: boolean;
 }
 
 export interface CardGameInfoProps {

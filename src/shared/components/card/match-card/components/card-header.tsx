@@ -34,7 +34,11 @@ const CardHeader = (props: CardProps) => {
 
     return (
       <div className="relative isolate">
-        <CardProfile type={p.type} imgUrl={p.imgUrl} />
+        <CardProfile
+          type={p.type}
+          imgUrl={p.imgUrl}
+          isGroup={p.type === 'game' ? p.isGroup : undefined}
+        />
         {shouldShowCrown && (
           <span
             className={cn(
@@ -142,11 +146,13 @@ const CardHeader = (props: CardProps) => {
                 {props.nickname} 외 {props.count - 1}명
                 {!isCreateMatchPage && (
                   <div className="ml-auto flex-row gap-[0.8rem]">
-                    <ChipState
-                      status={props.status}
-                      rate={props.matchRate}
-                      colorType={props.chipColor}
-                    />
+                    {props.matchRate != null && (
+                      <ChipState
+                        status={props.status}
+                        rate={props.matchRate}
+                        colorType={props.chipColor}
+                      />
+                    )}
                     <Chip
                       label={props.isGroup ? '그룹' : '1:1'}
                       bgColor={props.isGroup ? '그룹' : '1:1'}
