@@ -1,10 +1,8 @@
 import { getWeekDays } from '@components/calendar/utils/date-grid';
-import { DATE_SELECT_TOAST_MESSAGE } from '@constants/error-toast';
 import { cn } from '@libs/cn';
-import { addDays, format, isSameDay } from 'date-fns';
+import { format, isBefore, isSameDay, startOfDay } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import { calendarDayVariants } from '@/shared/components/calendar/styles/calendar-day-variants';
-import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface WeekCalendarProps {
   entryDate: Date;
@@ -20,17 +18,12 @@ const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProp
     <div className="w-full flex-row-between gap-[1.2rem]">
       {days.map((day) => {
         const isSelected = isSameDay(day, value);
+        const isDisabled = isBefore(startOfDay(day), startOfDay(entryDate));
 
         const dateColor = 'text-gray-white';
         const dayColor = isSelected ? 'text-main-400' : 'text-gray-500';
 
         const handleClick = (day: Date) => {
-          const isBlocked = day <= addDays(entryDate, 1);
-
-          if (isBlocked) {
-            showErrorToast(DATE_SELECT_TOAST_MESSAGE, '7.6rem');
-            return;
-          }
           onChange(day);
         };
 
@@ -41,6 +34,7 @@ const WeekCalendar = ({ entryDate, baseDate, value, onChange }: WeekCalendarProp
             onClick={() => handleClick(day)}
             className={calendarDayVariants({
               weekSelected: isSelected,
+              disabled: isDisabled,
               size: 'week',
             })}
           >
