@@ -24,7 +24,7 @@ export type ChipColor =
 export interface BaseCardProps {
   id: number;
   chipColor?: ChipColorType;
-  type: 'single' | 'group' | 'detailed';
+  type: 'single' | 'group' | 'detailed' | 'game';
   className?: string;
   nickname: string;
   date: string;
@@ -87,11 +87,25 @@ export interface UserCardProps {
   isCreated?: boolean;
 }
 
-export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
+export interface GameCardProps extends BaseCardProps {
+  type: 'game';
+  count: number;
+  color?: 'active' | 'inactive';
+  matchRate?: number;
+  isGroup: boolean;
+}
+
+export type CardProps =
+  | SingleCardProps
+  | GroupCardProps
+  | DetailedCardProps
+  | UserCardProps
+  | GameCardProps;
 
 export interface CardProfileProps {
-  type: 'single' | 'group' | 'detailed' | 'user';
+  type: 'single' | 'group' | 'detailed' | 'user' | 'game';
   imgUrl: string[];
+  isGroup?: boolean;
 }
 
 export interface CardGameInfoProps {

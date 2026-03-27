@@ -38,14 +38,14 @@ export default {
   },
 };
 
-export const Home = () => <Header />;
+export const Home = () => <Header headerTitle="" />;
 Home.args = { pathname: ROUTES.HOME, search: '' };
 
-export const Match = () => <Header />;
+export const Match = () => <Header headerTitle="" />;
 Match.args = { pathname: ROUTES.MATCH, search: '' };
 
-export const Fail = () => <Header />;
+export const Fail = () => <Header headerTitle="" />;
 Fail.args = { pathname: '/path', search: '?fail' };
 
-export const DefaultBack = () => <Header />;
+export const DefaultBack = () => <Header headerTitle="" />;
 DefaultBack.args = { pathname: '/path', search: '' };

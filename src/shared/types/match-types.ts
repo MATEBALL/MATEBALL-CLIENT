@@ -86,6 +86,15 @@ export interface matchDetailMate extends baseMate {
   matchRate: number;
 }
 
+export interface gameMatchItem {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  matchRate: number | null;
+  img: string[];
+}
+
 //
 // ─── 요청 및 응답 타입 ─────────────────────────────────────────
 //
@@ -123,6 +132,19 @@ export interface getSingleMatchListResponse {
 export interface getGroupMatchListResponse {
   mates: groupMatchMate[];
 }
+
+/**
+ * 경기별 매칭 리스트 조회 응답
+ * get
+ * /v3/users/match/{gameId}
+ */
+export type getGameMatchListResponse = {
+  awayTeam: string;
+  homeTeam: string;
+  date: string;
+  stadium: string;
+  result: gameMatchItem[];
+};
 
 /**
  * 그룹 매칭 상세 결과 응답

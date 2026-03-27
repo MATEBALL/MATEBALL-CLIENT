@@ -28,6 +28,7 @@ export const END_POINT = {
   GET_SINGLE_LIST: (date: string) => `/v1/users/direct?date=${date}`,
   GET_GROUP_LIST: (date: string) => `/v1/users/group?date=${date}`,
   GET_GROUP_RESULT: (matchId: number | string) => `/v1/users/group/${matchId}`,
+  GET_MATCH_LIST: (gameId: number) => `/v3/users/match/${gameId}`,
 
   POST_MATCH: '/v1/users/match',
   POST_MATCH_CONDITION: '/v3/users/match-condition',
