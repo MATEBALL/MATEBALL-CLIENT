@@ -22,13 +22,14 @@ const Layout = () => {
   const showHeader = !NO_HEADER_PATHS.some((path) => matchPath({ path, end: true }, pathname));
 
   const [isLoading, setIsLoading] = useState(false);
+  const [headerTitle, setHeaderTitle] = useState('');
 
   return (
     <div className={cn('h-full flex-col', isFail && 'bg-gray-black')}>
-      {showHeader && <Header />}
+      {showHeader && <Header headerTitle={headerTitle} />}
       <div className="scrollbar-hide mt-[-0.1rem] flex-grow flex-col overflow-auto">
         <main className="flex-1">
-          <Outlet context={{ setIsLoading }} />
+          <Outlet context={{ setIsLoading, setHeaderTitle }} />
         </main>
         {pathname === ROUTES.HOME && <Footer />}
       </div>

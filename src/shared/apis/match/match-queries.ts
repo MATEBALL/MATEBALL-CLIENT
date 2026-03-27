@@ -3,6 +3,7 @@ import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
 import type {
+  getGameMatchListResponse,
   getGroupMatchListResponse,
   getGroupMatchMate,
   getGroupMatchResultResponse,
@@ -73,6 +74,28 @@ export const matchQueries = {
           return res;
         } catch (error) {
           return handleNotFoundError(error, { mates: [] });
+        }
+      },
+    }),
+
+  /**
+   * 경기별 매칭 리스트 조회
+   */
+  GAME_MATCH_LIST: (gameId: number) =>
+    queryOptions<getGameMatchListResponse>({
+      queryKey: MATCH_KEY.LIST.GAME(gameId),
+      queryFn: async () => {
+        try {
+          const res = await get<getGameMatchListResponse>(END_POINT.GET_MATCH_LIST(gameId));
+          return res;
+        } catch (error) {
+          return handleNotFoundError(error, {
+            awayTeam: '',
+            homeTeam: '',
+            date: '',
+            stadium: '',
+            result: [],
+          });
         }
       },
     }),

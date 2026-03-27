@@ -7,4 +7,5 @@ export const PROFILE_SLOT_COUNT: Record<ProfileType, number> = {
   single: 1,
   detailed: 1,
   user: 1,
+  game: 4,
 };
