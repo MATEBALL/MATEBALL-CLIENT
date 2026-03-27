@@ -60,8 +60,8 @@ export const MATCH_KEY = {
   OPEN_CHAT: (matchId: number) => [...MATCH_KEY.ALL, 'open-chat', matchId] as const,
 
   DELETE: {
-    MATCH: () => [...MATCH_KEY.ALL, 'delete'] as const,
-    CONDITION: () => [...MATCH_KEY.ALL, 'delete'] as const,
+    MATCH: () => [...MATCH_KEY.ALL, 'delete', 'match'] as const,
+    CONDITION: () => [...MATCH_KEY.ALL, 'delete', 'condition'] as const,
   },
 } as const;
 

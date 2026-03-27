@@ -1,4 +1,5 @@
 import { matchMutations } from '@apis/match/match-mutations';
+import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import { useFunnel } from '@hooks/use-funnel';
@@ -15,7 +16,7 @@ import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
 import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,6 +59,9 @@ const Onboarding = () => {
       goPrev();
     }
   };
+
+  const { data: user } = useSuspenseQuery(userQueries.USER_INFO());
+  const nickname = user.nickname;
 
   return (
     <div className="h-full flex-col">
@@ -132,7 +136,11 @@ const Onboarding = () => {
 
           <Step name="COMPLETE">
             {createdMatch && (
-              <Complete nickname="" matchId={createdMatch.matchId} type={createdMatch.type} />
+              <Complete
+                nickname={nickname ?? ''}
+                matchId={createdMatch.matchId}
+                type={createdMatch.type}
+              />
             )}
           </Step>
         </Funnel>
