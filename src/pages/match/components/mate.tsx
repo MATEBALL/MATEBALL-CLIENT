@@ -21,11 +21,11 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
   const { setIsLoading } = useOutletContext<LayoutContext>();
 
   const { data, isLoading } = useQuery({
-    ...matchQueries.MATCH_DETAIL(matchId, false),
+    ...matchQueries.MATCH_MEMBERS(matchId),
     enabled: !!matchId,
   });
 
-  const mates = (data?.mates || []).map(mapMateData);
+  const mates = (data?.results || []).map(mapMateData);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -40,7 +40,7 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
   return (
     <div className="h-full flex-col-between bg-gray-white">
       <section className="w-full flex-col-center gap-[3.9rem] pt-[4.65rem]">
-        <MateHeader nickname={data?.nickname ?? ''} isGroupMatching={isGroupMatching} />
+        <MateHeader nickname={''} isGroupMatching={isGroupMatching} />
         <MateCarousel
           mates={mates}
           currentIndex={currentIndex}
