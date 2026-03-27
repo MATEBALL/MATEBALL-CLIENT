@@ -1,6 +1,6 @@
 import { gameQueries } from '@apis/game/game-queries';
 import EmptyView from '@components/ui/empty-view';
-import { renderGameCards } from '@pages/home/utils/game-card-renderers';
+import GameCard from '@pages/game/components/game-card';
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 
@@ -30,7 +30,11 @@ const GameListSection = ({ selectedDate }: GameListSectionProps) => {
 
   return (
     <section className="px-[1.6rem]">
-      <div className="flex-col gap-[1.2rem]">{renderGameCards(gameSchedule ?? [])}</div>
+      <div className="flex-col gap-[1.2rem]">
+        {(gameSchedule ?? []).map((game) => (
+          <GameCard key={game.id} game={game} dateStr={formattedDate} />
+        ))}
+      </div>
     </section>
   );
 };
