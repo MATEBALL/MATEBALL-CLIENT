@@ -73,7 +73,7 @@ const EditProfile = () => {
 
   const initial = {
     team: data?.team ?? '',
-    gender: data?.genderPreference ?? '',
+    gender: '',
     mateTeam: data?.teamAllowed ?? '',
     viewStyle: data?.style ?? '',
   };

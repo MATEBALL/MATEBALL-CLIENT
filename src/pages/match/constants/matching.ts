@@ -46,6 +46,9 @@ export const MAX_CREATE_DESCRIPTION = {
 export const MATCHING_GUIDE_MESSAGE_TITLE = (nickname: string) =>
   `${nickname} 님을 위한\n맞춤 매칭이 생성되었어요!`;
 
+export const MATCHING_SUGGESTION_MESSAGE_TITLE = (nickname: string) =>
+  `${nickname}님을 위한\n매칭카드를 만들어 드릴까요?`;
+
 export const MATCHING_GUIDE_MESSAGE_DESCRIPTION =
   '새 요청이 도착하면\n매칭 현황에서 확인할 수 있어요.';
 

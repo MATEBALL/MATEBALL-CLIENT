@@ -60,8 +60,8 @@ export interface postEditProfileRequest {
 export interface getMatchConditionResponse {
   team: string;
   teamAllowed: string | null;
+  avgSeason: number;
   style: string;
-  genderPreference: string;
 }
 
 /**

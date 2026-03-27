@@ -3,13 +3,23 @@ import { Children, type ReactElement, type ReactNode, useCallback, useEffect } f
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface FunnelProps {
-  children: ReactElement<{ name: string }>[];
+  children: ReactNode;
+  currentStep: string;
 }
 
 interface StepProps {
   name: string;
   children: ReactNode;
 }
+
+const Funnel = ({ children, currentStep }: FunnelProps) => {
+  const childrenArray = Children.toArray(children) as ReactElement<{ name: string }>[];
+  const matched = childrenArray.find((child) => child.props.name === currentStep);
+
+  return <>{matched}</>;
+};
+
+const Step = ({ children }: StepProps) => <>{children}</>;
 
 export const useFunnel = <T extends readonly string[]>(steps: T, completePath: string) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,14 +66,6 @@ export const useFunnel = <T extends readonly string[]>(steps: T, completePath: s
       navigate(-1);
     }
   }, [currentIndex, steps, goTo, navigate]);
-
-  const Funnel = ({ children }: FunnelProps) => {
-    const childrenArray = Children.toArray(children) as ReactElement<{ name: string }>[];
-    const matched = childrenArray.find((child) => child.props.name === currentStep);
-    return <>{matched}</>;
-  };
-
-  const Step = ({ children }: StepProps) => <>{children}</>;
 
   return {
     currentStep,

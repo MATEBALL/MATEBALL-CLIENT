@@ -1,10 +1,10 @@
 export const FIRST_FUNNEL_STEPS = [
-  'START',
   'SUPPORT_TEAM',
   'SYNC_SUPPORT_TEAM',
+  'FREQUENCY',
   'VIEWING_STYLE',
-  'GENDER',
   'MATCHING_TYPE',
+  'DATE_SELECT',
   'COMPLETE',
 ] as const;
 
@@ -70,7 +70,7 @@ export const MATCHING_TYPE = [
   },
   {
     id: 2,
-    label: '그룹 매칭',
+    label: '그룹 매칭(최대 4인)',
     icon: 'group',
   },
 ];
