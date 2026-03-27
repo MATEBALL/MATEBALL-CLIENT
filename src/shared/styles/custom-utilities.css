@@ -11,11 +11,7 @@
   .flex-row-between {
     @apply flex flex-row justify-between items-center;
   }
-
-  .flex-row-evenly {
-    @apply flex flex-row justify-evenly items-center;
-  }
-
+  
   .flex-row-end {
     @apply flex flex-row justify-end items-center;
   }

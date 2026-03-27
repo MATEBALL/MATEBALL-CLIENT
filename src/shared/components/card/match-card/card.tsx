@@ -31,15 +31,15 @@ const Card = (props: CardProps) => {
 
         {type === 'detailed' && (
           <div className="flex-col gap-[1.6rem]">
-            <div className="w-full flex-row-evenly rounded-[8px] bg-gray-white px-[1.2rem] py-[0.8rem]">
-              <div className="flex-col-between gap-[0.2rem]">
+            <div className="w-full flex-row items-center rounded-[8px] bg-gray-white px-[1.2rem] py-[0.8rem]">
+              <div className="flex-1 flex-col-between gap-[0.2rem]">
                 <p className="cap_14_sb text-gray-600">함께한 매칭</p>
                 <p className="head_20_sb text-gray-800">{props.avgGame ?? '-'}</p>
               </div>
               <div className="h-[3.3rem]">
                 <Divider direction="vertical" thickness={0.1} color="bg-gray-300" />
               </div>
-              <div className="flex-col-between gap-[0.2rem]">
+              <div className="flex-1 flex-col-between gap-[0.2rem]">
                 <p className="cap_14_sb text-gray-600">시즌 평균 직관</p>
                 <p className="head_20_sb text-gray-800">{props.avgSeason ?? '-'}</p>
               </div>
