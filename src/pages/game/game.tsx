@@ -32,15 +32,12 @@ const Game = () => {
     }
   };
 
-  const handleCardClick = (matchId: number) => {
-    console.log('clicked', matchId);
+  const handleCardClick = (matchId: number, isGroup: boolean) => {
+    const route = isGroup
+      ? ROUTES.GROUP_MATES(String(matchId))
+      : ROUTES.MATCH_SINGLE(String(matchId));
 
-    navigate(ROUTES.MATCH_SINGLE(String(matchId)));
-    // const route = isGroup
-    //   ? ROUTES.GROUP_MATES(String(matchId))
-    //   : ROUTES.MATCH_SINGLE(String(matchId));
-
-    // navigate(route);
+    navigate(route);
   };
 
   useEffect(() => {
@@ -64,7 +61,7 @@ const Game = () => {
           key={match.matchId}
           type="button"
           onClick={() => {
-            handleCardClick(match.matchId);
+            handleCardClick(match.matchId, match.isGroup);
           }}
         >
           <Card
@@ -80,7 +77,6 @@ const Game = () => {
             date={gameMatchData.date}
             matchRate={match.matchRate ?? undefined}
             isGroup={match.isGroup}
-            onClick={() => handleCardClick(match.matchId)}
             className="cursor-pointer"
           />
         </button>
