@@ -3,11 +3,6 @@ export const MATCHING_NOTICE = {
   single: '동시에 진행할 수 있는 1:1 매칭은 최대 3개예요.',
 };
 
-// export const MATCHING_COMPLETE_MESSAGE = {
-//   group: '모든 그룹원이 수락하면 그룹원이 돼요.',
-//   single: '상대방이 요청을 승인하면 매칭이 성사돼요.',
-// };
-
 export const MATCHING_HEADER_MESSAGE = (nickname: string) => `${nickname}님과 딱 맞는 메이트예요!`;
 
 export const MATCHING_DESCRIPTION = {
