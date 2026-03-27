@@ -14,10 +14,11 @@ interface LayoutOutletContext {
 const Game = () => {
   const { gameId } = useParams();
   const { setHeaderTitle } = useOutletContext<LayoutOutletContext>();
+  const parsedGameId = Number(gameId);
 
   const { data: gameMatchData } = useQuery({
-    ...matchQueries.GAME_MATCH_LIST(Number(gameId)),
-    enabled: !!gameId,
+    ...matchQueries.GAME_MATCH_LIST(parsedGameId),
+    enabled: Number.isFinite(parsedGameId),
   });
 
   const hasCreatedMatch = gameMatchData?.result.some((match) => match.matchRate === null);
