@@ -61,7 +61,7 @@ export interface getMatchConditionResponse {
   teamAllowed: string | null;
   avgSeason: number;
   style: string;
-  genderPreference: string;
+  avgSeason: number;
 }
 
 /**
