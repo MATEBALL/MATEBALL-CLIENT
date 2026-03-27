@@ -2,9 +2,8 @@ import { WEEK_DAY_COLORS, WEEK_DAYS } from '@components/calendar/constants/CALEN
 import { calendarDayVariants } from '@components/calendar/styles/calendar-day-variants';
 import { getMonthGrid } from '@components/calendar/utils/date-grid';
 import Icon from '@components/icon/icon';
-import { DATE_SELECT_TOAST_MESSAGE, NO_GAME_TOAST_MESSAGE } from '@constants/error-toast';
+import { NO_GAME_TOAST_MESSAGE } from '@constants/error-toast';
 import {
-  addDays,
   addMonths,
   endOfMonth,
   format,
@@ -71,17 +70,11 @@ const MonthCalendar = ({
         <div className="cap_14_m grid grid-cols-7 justify-items-center gap-y-[0.4rem]">
           {days.map((day) => {
             const isSelected = selectedDate ? isSameDay(day, selectedDate) : false;
-            const isPast = isBefore(startOfDay(day), startOfDay(new Date()));
+            const isPast = isBefore(startOfDay(day), startOfDay(entryDate));
             const isDisabled = isPast;
             const isNotCurrentMonth = day < startDate || day > endDate;
 
             const handleClick = (day: Date) => {
-              const isBlocked = day <= addDays(entryDate, 1);
-              if (isBlocked) {
-                showErrorToast(DATE_SELECT_TOAST_MESSAGE, toastBottomOffset ?? '2.4rem');
-                return;
-              }
-
               if (hasGame && !hasGame(day)) {
                 showErrorToast(NO_GAME_TOAST_MESSAGE, toastBottomOffset ?? '3.2rem');
                 return;
