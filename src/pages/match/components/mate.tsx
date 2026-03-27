@@ -38,8 +38,8 @@ const Mate = ({ matchId, onRequestClick, isGroupMatching = true }: MateProps) =>
   }, [isLoading, setIsLoading]);
 
   return (
-    <div className="h-full flex-col-between">
-      <section className="w-full flex-col-center gap-[4rem] pt-[4rem]">
+    <div className="h-full flex-col-between bg-gray-white">
+      <section className="w-full flex-col-center gap-[4rem] pt-[4.65rem]">
         <MateHeader nickname={data?.nickname ?? ''} isGroupMatching={isGroupMatching} />
         <MateCarousel
           mates={mates}

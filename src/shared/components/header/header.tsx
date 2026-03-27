@@ -16,6 +16,7 @@ const Header = ({ headerTitle }: HeaderProps) => {
   const isSignUp = pathname.includes(ROUTES.SIGNUP);
   const isHome = pathname === ROUTES.HOME;
   const isMatch = pathname === ROUTES.MATCH;
+  const isMatchSingle = Boolean(matchPath(ROUTES.MATCH_SINGLE(), pathname));
   const isChatRoom = pathname === ROUTES.CHAT_ROOM;
   const isEditProfile = pathname === ROUTES.PROFILE_EDIT;
   const isGame = Boolean(matchPath('/game/:date/:gameId', pathname));
@@ -24,7 +25,7 @@ const Header = ({ headerTitle }: HeaderProps) => {
     <header
       className={clsx('header-layout', {
         'bg-gray-black': isFail || isHome,
-        'bg-gray-white': isSignUp || isChatRoom || isEditProfile || isGame,
+        'bg-gray-white': isSignUp || isChatRoom || isEditProfile || isGame || isMatchSingle,
         'bg-gray-100': isMatch,
       })}
     >

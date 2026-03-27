@@ -10,8 +10,8 @@ export const MATCHING_COMPLETE_MESSAGE = {
 
 export const MATCHING_HEADER_MESSAGE = (nickname: string, isGroup: boolean) =>
   ({
-    group: `${nickname} 님과 딱 맞는 그룹원이에요!`,
-    single: `${nickname} 님과 딱 맞는 메이트예요!`,
+    group: `${nickname}님과 딱 맞는 그룹원이에요!`,
+    single: `${nickname}님과 딱 맞는 메이트예요!`,
   })[isGroup ? 'group' : 'single'];
 
 export const MATCHING_DESCRIPTION = {
@@ -35,7 +35,7 @@ export const MAX_CREATE_DESCRIPTION = {
 };
 
 export const MATCHING_GUIDE_MESSAGE_TITLE = (nickname: string) =>
-  `${nickname} 님을 위한\n맞춤 매칭이 생성되었어요!`;
+  `${nickname}님을 위한\n맞춤 매칭이 생성되었어요!`;
 
 export const MATCHING_SUGGESTION_MESSAGE_TITLE = (nickname: string) =>
   `${nickname}님을 위한\n매칭카드를 만들어 드릴까요?`;
