@@ -34,13 +34,22 @@ export const matchMutations = {
   MATCH_CONDITION: () =>
     mutationOptions<responseTypes, Error, postMatchConditionRequest>({
       mutationKey: MATCH_KEY.POST.CONDITION(),
-      mutationFn: ({ team, teamAllowed, style, genderPreference }) =>
+      mutationFn: ({ team, teamAllowed, avgSeason, style }) =>
         post<responseTypes>(END_POINT.POST_MATCH_CONDITION, {
           team,
           teamAllowed,
+          avgSeason,
           style,
-          genderPreference,
         }),
+    }),
+
+  /**
+   * 매칭 조건 삭제
+   */
+  DELETE_MATCH_CONDITION: () =>
+    mutationOptions<responseTypes, Error, void>({
+      mutationKey: MATCH_KEY.DELETE.CONDITION(),
+      mutationFn: () => del(END_POINT.DELETE_MATCH_CONDITION),
     }),
 
   /**
