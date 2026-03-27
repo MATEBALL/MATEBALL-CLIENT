@@ -2,9 +2,10 @@ import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
 import Icon from '@components/icon/icon';
 import { HAS_DONE_TOAST_MESSAGE } from '@constants/error-toast';
+import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
-import { useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 interface LayoutOutletContext {
@@ -15,6 +16,7 @@ const Game = () => {
   const { gameId } = useParams();
   const { setHeaderTitle } = useOutletContext<LayoutOutletContext>();
   const parsedGameId = Number(gameId);
+  const navigate = useNavigate();
 
   const { data: gameMatchData } = useQuery({
     ...matchQueries.GAME_MATCH_LIST(parsedGameId),
@@ -30,6 +32,17 @@ const Game = () => {
     }
   };
 
+  const handleCardClick = (matchId: number) => {
+    console.log('clicked', matchId);
+
+    navigate(ROUTES.MATCH_SINGLE(String(matchId)));
+    // const route = isGroup
+    //   ? ROUTES.GROUP_MATES(String(matchId))
+    //   : ROUTES.MATCH_SINGLE(String(matchId));
+
+    // navigate(route);
+  };
+
   useEffect(() => {
     if (!gameMatchData) {
       setHeaderTitle('');
@@ -40,29 +53,37 @@ const Game = () => {
 
     return () => {
       setHeaderTitle('');
-      return;
     };
   }, [gameMatchData, setHeaderTitle]);
 
   return (
     <div className="relative h-full flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
       {gameMatchData?.result.map((match) => (
-        // TODO: 카드 클릭시 프로필 상세 화면 navigate
         // TODO: 매칭 현황 상태가 [그룹원 모집중]인 카드만 노출
-        <Card
+        <button
           key={match.matchId}
-          id={match.matchId}
-          type="game"
-          nickname={match.nickname}
-          count={match.count}
-          imgUrl={match.img}
-          awayTeam={gameMatchData.awayTeam}
-          homeTeam={gameMatchData.homeTeam}
-          stadium={gameMatchData.stadium}
-          date={gameMatchData.date}
-          matchRate={match.matchRate ?? undefined}
-          isGroup={match.isGroup}
-        />
+          type="button"
+          onClick={() => {
+            handleCardClick(match.matchId);
+          }}
+        >
+          <Card
+            key={match.matchId}
+            id={match.matchId}
+            type="game"
+            nickname={match.nickname}
+            count={match.count}
+            imgUrl={match.img}
+            awayTeam={gameMatchData.awayTeam}
+            homeTeam={gameMatchData.homeTeam}
+            stadium={gameMatchData.stadium}
+            date={gameMatchData.date}
+            matchRate={match.matchRate ?? undefined}
+            isGroup={match.isGroup}
+            onClick={() => handleCardClick(match.matchId)}
+            className="cursor-pointer"
+          />
+        </button>
       ))}
       {/* TODO: 매칭 생성 바텀시트 연결 */}
       <button
