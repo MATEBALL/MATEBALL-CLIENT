@@ -74,6 +74,10 @@ const EditProfile = () => {
 
   const initial = {
     team: data?.team ?? '',
+<<<<<<< HEAD
+=======
+    gender: '',
+>>>>>>> 4fb54c3 (fix: SP2 매칭 조건 설정 페이지 수정 (#402))
     mateTeam: data?.teamAllowed ?? '',
     viewStyle: data?.style ?? '',
     avgSeason: data?.avgSeason ?? 0,
