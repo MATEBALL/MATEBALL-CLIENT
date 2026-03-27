@@ -12,7 +12,6 @@ interface ProfileCardProps {
   style: string;
   matchCnt?: number;
   avgSeason?: number;
-  onEditProfile?: () => void;
 }
 
 const ProfileCard = ({ nickname, imgUrl, team, style, matchCnt, avgSeason }: ProfileCardProps) => {
