@@ -1,5 +1,6 @@
 import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
+import Icon from '@components/icon/icon';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
@@ -32,7 +33,7 @@ const Game = () => {
   }, [gameMatchData, setHeaderTitle]);
 
   return (
-    <div className="flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
+    <div className="relative h-full flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
       {gameMatchData?.result.map((match) => (
         <Card
           key={match.matchId}
@@ -49,6 +50,10 @@ const Game = () => {
           isGroup={match.isGroup}
         />
       ))}
+      {/* TODO: 플로팅버튼 모달 연결 */}
+      <div className="absolute right-[1.6rem] bottom-[2rem] h-[4.8rem] w-[4.8rem] flex-row-center cursor-pointer rounded-full bg-main-900">
+        <Icon name="plus" color="white" />
+      </div>
     </div>
   );
 };
