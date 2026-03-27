@@ -1,11 +1,25 @@
 import type { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { chipStateVariants } from '@components/chip/styles/chip-state-variants';
-import type { chipVariants } from '@components/chip/styles/chip-variants';
 import type { VariantProps } from 'class-variance-authority';
 
 export type ChipColorType = NonNullable<VariantProps<typeof chipStateVariants>['colorType']>;
 type ColorType = NonNullable<VariantProps<typeof cardVariants>['color']>;
-export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']>;
+
+export type ChipColor =
+  | '두산'
+  | 'LG'
+  | '롯데'
+  | 'NC'
+  | 'KIA'
+  | '한화'
+  | 'KT'
+  | '삼성'
+  | 'SSG'
+  | '키움'
+  | '열정응원러'
+  | '경기집중러'
+  | '직관먹방러'
+  | 'default';
 
 export interface BaseCardProps {
   id: number;
