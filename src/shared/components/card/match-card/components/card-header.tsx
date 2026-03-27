@@ -21,18 +21,20 @@ const CardHeader = (props: CardProps) => {
       };
     }
     return {
-      box: 'h-[1.6rem] w-[1.6rem]',
+      box: 'h-[1.2rem] w-[1.2rem]',
       pos: 'right-0 bottom-0',
-      size: 1.6,
+      size: 1.2,
     };
   };
 
   const renderProfile = (p: CardProps) => {
     const spec = getCrownSpec(p.type);
+    const shouldShowCrown = p.isCreated || p.type === 'game';
+
     return (
       <div className="relative isolate">
         <CardProfile type={p.type} imgUrl={p.imgUrl} />
-        {p.isCreated && (
+        {shouldShowCrown && (
           <span
             className={cn(
               'pointer-events-none absolute z-[var(--z-card-owner)]',
