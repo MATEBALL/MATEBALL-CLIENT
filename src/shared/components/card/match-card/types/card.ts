@@ -55,8 +55,8 @@ export interface DetailedCardProps extends BaseCardProps {
   chips: ChipColor[];
   team: string;
   style: string;
-  avgGame: number;
-  avgSeason: number;
+  avgGame?: number;
+  avgSeason?: number;
   isCreated?: boolean;
 }
 
