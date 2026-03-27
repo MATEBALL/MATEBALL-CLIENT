@@ -38,10 +38,10 @@ export const handleButtonClick = (
   ) => void,
 ) => {
   if (currentStep === 'MATCHING_TYPE') {
-    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE } = selections;
+    const { SUPPORT_TEAM, SYNC_SUPPORT_TEAM, VIEWING_STYLE, FREQUENCY } = selections;
     const parsedTeamAllowed = SYNC_SUPPORT_TEAM === '상관없어요' ? null : SYNC_SUPPORT_TEAM;
 
-    if (!SUPPORT_TEAM || !VIEWING_STYLE) return;
+    if (!SUPPORT_TEAM || !VIEWING_STYLE || !isValidFrequency(FREQUENCY)) return;
 
     matchMutate?.(
       {
