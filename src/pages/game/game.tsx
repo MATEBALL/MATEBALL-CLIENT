@@ -1,4 +1,5 @@
-import { gameQueries } from '@apis/game/game-queries';
+import { matchQueries } from '@apis/match/match-queries';
+import Card from '@components/card/match-card/card';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
@@ -8,33 +9,45 @@ interface LayoutOutletContext {
 }
 
 const Game = () => {
-  const { date, gameId } = useParams();
+  const { gameId } = useParams();
   const { setHeaderTitle } = useOutletContext<LayoutOutletContext>();
 
-  const { data: gameSchedule } = useQuery({
-    ...gameQueries.GAME_LIST(date ?? ''),
-    enabled: !!date,
+  const { data: gameMatchData } = useQuery({
+    ...matchQueries.GAME_MATCH_LIST(Number(gameId)),
+    enabled: !!gameId,
   });
 
   useEffect(() => {
-    const currentGame = gameSchedule?.find((game) => String(game.id) === gameId);
-
-    if (!currentGame) {
+    if (!gameMatchData) {
       setHeaderTitle('');
       return;
     }
 
-    setHeaderTitle(`${currentGame.awayTeam} vs ${currentGame.homeTeam}`);
+    setHeaderTitle(`${gameMatchData.awayTeam} vs ${gameMatchData.homeTeam}`);
 
     return () => {
       setHeaderTitle('');
       return;
     };
-  }, [gameId, gameSchedule, setHeaderTitle]);
+  }, [gameMatchData, setHeaderTitle]);
 
   return (
-    <div>
-      <div>Game</div>
+    <div className="flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
+      {gameMatchData?.result.map((match) => (
+        <Card
+          key={match.matchId}
+          id={match.matchId}
+          type="game"
+          nickname={match.nickname}
+          count={match.count}
+          imgUrl={match.img}
+          awayTeam={gameMatchData.awayTeam}
+          homeTeam={gameMatchData.homeTeam}
+          stadium={gameMatchData.stadium}
+          date={gameMatchData.date}
+          matchRate={match.matchRate ?? undefined}
+        />
+      ))}
     </div>
   );
 };
