@@ -167,8 +167,8 @@ export interface postMatchCreateResponse {
 export interface postMatchConditionRequest {
   team: string;
   teamAllowed: string | null;
+  avgSeason: number;
   style: string;
-  genderPreference: string;
 }
 
 /**

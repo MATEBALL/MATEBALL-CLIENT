@@ -1,23 +1,22 @@
 import { matchMutations } from '@apis/match/match-mutations';
+import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
-import Gender from '@pages/onboarding/components/gender';
+import CompleteButtonSection from '@pages/onboarding/components/complete-button-section';
+import DateSelect from '@pages/onboarding/components/date-select';
+import Frequency from '@pages/onboarding/components/frequency';
 import MatchingType from '@pages/onboarding/components/matching-type';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
-import Start from '@pages/onboarding/components/start';
 import SupportTeam from '@pages/onboarding/components/support-team';
 import SyncSupportTeam from '@pages/onboarding/components/sync-support-team';
 import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
-import {
-  getButtonLabel,
-  handleButtonClick,
-  isButtonDisabled,
-} from '@pages/onboarding/utils/onboarding-button';
+import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,18 +29,21 @@ const Onboarding = () => {
   const [selections, setSelections] = useState<Record<string, string | null>>({
     SUPPORT_TEAM: null,
     SYNC_SUPPORT_TEAM: null,
+    FREQUENCY: null,
     VIEWING_STYLE: null,
-    GENDER: null,
     MATCHING_TYPE: null,
   });
+
+  const [createdMatch, setCreatedMatch] = useState<{
+    matchId: number;
+    type: 'single' | 'group';
+  } | null>(null);
 
   const handleSelect = (stepName: string, value: string) => {
     setSelections((prev) => ({ ...prev, [stepName]: value }));
   };
 
   const navigate = useNavigate();
-
-  const [progressOverride, setProgressOverride] = useState<number | null>(null);
 
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
@@ -51,33 +53,29 @@ const Onboarding = () => {
       return;
     }
 
-    if (currentStep === 'VIEWING_STYLE' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+    if (currentStep === 'FREQUENCY' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
       goTo('SUPPORT_TEAM');
     } else {
       goPrev();
     }
   };
 
+  const { data: user } = useSuspenseQuery(userQueries.USER_INFO());
+  const nickname = user.nickname;
+
   return (
     <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={handlePrev} />
-        {currentStep !== 'START' && (
+        {currentStep !== 'COMPLETE' && (
           <div className="w-full">
-            <ProgressBar
-              currentStep={progressOverride ?? currentIndex}
-              totalSteps={steps.length - 1}
-            />
+            <ProgressBar currentStep={currentIndex} totalSteps={steps.length - 1} />
           </div>
         )}
       </div>
 
       <div className="flex-1 flex-col-between">
-        <Funnel>
-          <Step name="START">
-            <Start />
-          </Step>
-
+        <Funnel currentStep={currentStep}>
           <Step name="SUPPORT_TEAM">
             <SupportTeam
               selectedOption={selections.SUPPORT_TEAM}
@@ -92,6 +90,13 @@ const Onboarding = () => {
             />
           </Step>
 
+          <Step name="FREQUENCY">
+            <Frequency
+              value={selections.FREQUENCY ?? ''}
+              onChange={(value) => handleSelect('FREQUENCY', value)}
+            />
+          </Step>
+
           <Step name="VIEWING_STYLE">
             <ViewingStyle
               selectedOption={selections.VIEWING_STYLE}
@@ -99,12 +104,13 @@ const Onboarding = () => {
             />
           </Step>
 
-          <Step name="GENDER">
+          {/* TODO: GENDER 단계 관련 전부 삭제 */}
+          {/* <Step name="GENDER">
             <Gender
               selectedOption={selections.GENDER}
               onSelect={(option) => handleSelect('GENDER', option)}
             />
-          </Step>
+          </Step> */}
 
           <Step name="MATCHING_TYPE">
             <MatchingType
@@ -113,35 +119,52 @@ const Onboarding = () => {
             />
           </Step>
 
+          <Step name="DATE_SELECT">
+            <DateSelect
+              activeType={
+                selections.MATCHING_TYPE === '1:1 매칭' ? TAB_TYPES.SINGLE : TAB_TYPES.GROUP
+              }
+              onComplete={(matchId) => {
+                setCreatedMatch({
+                  matchId,
+                  type: selections.MATCHING_TYPE === '1:1 매칭' ? 'single' : 'group',
+                });
+                goNext();
+              }}
+            />
+          </Step>
+
           <Step name="COMPLETE">
-            <Complete />
+            {createdMatch && (
+              <Complete
+                nickname={nickname ?? ''}
+                matchId={createdMatch.matchId}
+                type={createdMatch.type}
+              />
+            )}
           </Step>
         </Funnel>
 
-        <div className="sticky bottom-0 w-full p-[1.6rem]">
-          <Button
-            label={getButtonLabel(currentStep)}
-            size="L"
-            variant="blue"
-            disabled={isButtonDisabled(currentStep, selections)}
-            onClick={() => {
-              if (currentStep === 'SUPPORT_TEAM' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
-                setSelections((prev) => ({ ...prev, SYNC_SUPPORT_TEAM: null }));
-                goTo('VIEWING_STYLE');
-                return;
-              }
+        {currentStep !== 'DATE_SELECT' && currentStep !== 'COMPLETE' && (
+          <div className="sticky bottom-0 w-full p-[1.6rem]">
+            <Button
+              label="다음으로"
+              size="L"
+              variant="blue"
+              disabled={isButtonDisabled(currentStep, selections)}
+              onClick={() => {
+                if (currentStep === 'SUPPORT_TEAM' && selections.SUPPORT_TEAM === NO_TEAM_OPTION) {
+                  setSelections((prev) => ({ ...prev, SYNC_SUPPORT_TEAM: null }));
+                  goTo('FREQUENCY');
+                  return;
+                }
 
-              handleButtonClick(
-                currentStep,
-                selections,
-                goNext,
-                navigate,
-                setProgressOverride,
-                mutate,
-              );
-            }}
-          />
-        </div>
+                handleButtonClick(currentStep, selections, goNext, navigate, mutate);
+              }}
+            />
+          </div>
+        )}
+        {currentStep === 'COMPLETE' && <CompleteButtonSection />}
       </div>
     </div>
   );
