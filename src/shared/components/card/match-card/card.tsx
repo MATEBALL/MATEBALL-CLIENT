@@ -1,9 +1,11 @@
+import Button from '@components/button/button/button';
 import CardGameInfo from '@components/card/match-card/components/card-game-info';
 import CardHeader from '@components/card/match-card/components/card-header';
 import { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProps } from '@components/card/match-card/types/card';
 import Divider from '@components/divider/divider';
 import { cn } from '@libs/cn';
+import StateBar from './components/state-bar';
 
 const Card = (props: CardProps) => {
   const { type, className, color } = props;
@@ -44,6 +46,20 @@ const Card = (props: CardProps) => {
                 <p className="head_20_sb text-gray-800">{props.avgSeason ?? '-'}</p>
               </div>
             </div>
+          </div>
+        )}
+
+        {type === 'match' && (
+          <div className="flex-col gap-[1.2rem]">
+            <div className="flex-col gap-[0.4rem]">
+              <StateBar currentStep={1} totalSteps={2} />
+              <div className="cap_12_m grid grid-cols-3 text-gray-300">
+                <p className="text-left">요청</p>
+                <p className="text-center">수락 대기 중</p>
+                <p className="text-right">수락 완료</p>
+              </div>
+            </div>
+            <Button label="채팅방 입장하기" size="XS" className="cap_14_sb" />
           </div>
         )}
       </div>
