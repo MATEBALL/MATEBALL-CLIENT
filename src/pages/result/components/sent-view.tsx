@@ -15,10 +15,7 @@ const SentView = ({ isGroupMatching = true }: SentViewProps) => {
 
   const navigate = useNavigate();
   const handleGoHome = () => navigate(ROUTES.HOME);
-  const handleGoMatch = () => {
-    const tab = isGroupMatching ? '그룹' : '1:1';
-    navigate(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
-  };
+  const handleGoMatch = () => navigate(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">
@@ -30,12 +27,12 @@ const SentView = ({ isGroupMatching = true }: SentViewProps) => {
         <p className="body_16_m text-center text-gray-600">
           {isGroupMatching ? MATCHING_COMPLETE_MESSAGE.group : MATCHING_COMPLETE_MESSAGE.single}
           <br />
-          진행 과정은 ‘매칭 현황'에서 확인할 수 있어요!
+          진행 과정은 매칭 현황에서 확인할 수 있어요!
         </p>
       </section>
       <div className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
         <Button label="메이트 더 찾아보기" variant="skyblue" onClick={handleGoHome} />
-        <Button label="매칭 현황 보기" onClick={handleGoMatch} />
+        <Button label="매칭 현황" onClick={handleGoMatch} />
       </div>
     </div>
   );

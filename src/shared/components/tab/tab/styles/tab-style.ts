@@ -21,6 +21,18 @@ export const tabStyleMap = {
     size: 'h-[3.0rem] w-[17.2rem] mx-[2.6rem]',
     textStyle: 'head_20_sb pb-[0.4rem]',
   },
+  matchStatus: {
+    gap: 'border-b border-gray-800 px-[1.6rem]',
+    textActive: 'text-gray-white',
+    textInactive: 'text-gray-500',
+    borderActive: 'after:bg-main-900',
+    borderInactive: 'after:bg-transparent',
+    borderStyle:
+      'relative after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 ' +
+      'after:h-[0.2rem] after:w-[12rem] after:rounded-full after:content-[""]',
+    size: 'h-[3.4rem] flex-1',
+    textStyle: 'head_20_sb',
+  },
 } as const;
 
 export type TabStyleKey = keyof typeof tabStyleMap;

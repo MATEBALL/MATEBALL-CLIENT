@@ -23,9 +23,8 @@ const Header = ({ headerTitle }: HeaderProps) => {
   return (
     <header
       className={clsx('header-layout', {
-        'bg-gray-black': isFail || isHome,
+        'bg-gray-black': isFail || isHome || isMatch,
         'bg-gray-white': isSignUp || isChatRoom || isEditProfile || isGame,
-        'bg-gray-100': isMatch,
       })}
     >
       {getHeaderContent(pathname, urlParams, isFail, navigate, headerTitle)}
