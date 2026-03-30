@@ -50,7 +50,7 @@ export const MATCHING_GUIDE_MESSAGE_DESCRIPTION =
   '새 요청이 도착하면\n매칭 현황에서 확인할 수 있어요.';
 
 export const GROUP_MATCHING_CREATED_DESCRIPTION =
-  '매칭현황에서 요청을 확인하고\n채팅방에서 메이트와 만날 수 있어요.';
+  '매칭 현황에서 요청을 확인하고\n채팅방에서 메이트와 만날 수 있어요.';
 
 export const CLICKABLE_STATUS_MAP: Record<string, string> = {
   '매칭 완료': 'success',
