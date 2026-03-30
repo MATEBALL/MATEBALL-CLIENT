@@ -103,18 +103,30 @@ const CardHeader = (props: CardProps) => {
 
     case 'detailed':
       return (
-        <div className="flex gap-[1.2rem]">
-          {renderProfile(props)}
-          <div className="flex-col gap-[0.8rem]">
-            <div className="flex-col gap-[0.4rem]">
-              <div className="body_16_b">{props.nickname}</div>
-              <div className="cap_12_m text-gray-600">
-                {props.age} | {props.gender}
+        <div className="flex-col gap-[1.6rem]">
+          <div className="flex gap-[0.9rem]">
+            {renderProfile(props)}
+            <div className="flex-col-center gap-[0.8rem]">
+              <div className="flex-col">
+                <div className="subhead_18_sb text-gray-black">{props.nickname}</div>
+                <div className="cap_12_m text-gray-black">
+                  {props.age} | {props.gender}
+                </div>
               </div>
             </div>
-            <div className="flex-row gap-[0.8rem]">
-              <ChipList names={chips} />
+            <div className="ml-auto">
+              {props.matchRate != null && (
+                <ChipState
+                  status={props.status}
+                  rate={props.matchRate}
+                  colorType={props.chipColor}
+                />
+              )}
             </div>
+          </div>
+
+          <div className="flex-row gap-[0.8rem]">
+            <ChipList names={chips} />
           </div>
         </div>
       );

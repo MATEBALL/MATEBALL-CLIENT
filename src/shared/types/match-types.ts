@@ -27,7 +27,7 @@ export interface matchRateMate extends baseMate {
  * 1:1 매칭 리스트에 사용되는 Mate
  * @extends matchRateMate
  */
-export interface singleMatchMate extends matchRateMate {
+export interface singleMatchListMate extends matchRateMate {
   /** 나이 (예: "26세") */
   age: string;
   /** 응원 팀 */
@@ -95,6 +95,20 @@ export interface gameMatchItem {
   img: string[];
 }
 
+export interface matchMember {
+  memberId: number;
+  matchRate: number;
+  age: number;
+  gender: string;
+  nickname: string;
+  introduction: string;
+  team: string;
+  type: string;
+  avgGame: number;
+  avgSeason: number;
+  img: string;
+}
+
 //
 // ─── 요청 및 응답 타입 ─────────────────────────────────────────
 //
@@ -121,7 +135,7 @@ export interface getSingleMatchResultResponse extends singleMatchResult {}
  * /v1/users/direct?data=
  */
 export interface getSingleMatchListResponse {
-  mates: singleMatchMate[];
+  mates: singleMatchListMate[];
 }
 
 /**
@@ -252,6 +266,15 @@ export interface matchDetailMateSimple extends baseMate {
 export interface getMatchDetailResponse {
   nickname: string;
   mates: matchDetailMateSimple[];
+}
+
+/**
+ * 매칭된 그룹원 리스트 응답
+ * get
+ * /v3/users/match/members/{matchId}
+ */
+export interface getMatchMembersResponse {
+  results: matchMember[];
 }
 
 /**

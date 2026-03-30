@@ -9,6 +9,7 @@ import type {
   getGroupMatchResultResponse,
   getMatchCountResponse,
   getMatchDetailResponse,
+  getMatchMembersResponse,
   getSingleMatchListResponse,
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
@@ -128,6 +129,15 @@ export const matchQueries = {
         const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''}`;
         return get(url);
       },
+    }),
+
+  /**
+   * 매칭된 그룹원 리스트 조회
+   */
+  MATCH_MEMBERS: (matchId: number) =>
+    queryOptions<getMatchMembersResponse>({
+      queryKey: MATCH_KEY.MEMBERS(matchId),
+      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS(matchId)),
     }),
 
   /**

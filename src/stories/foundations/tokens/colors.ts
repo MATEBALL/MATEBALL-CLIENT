@@ -8,7 +8,7 @@ export const MAIN_COLORS = {
   'main-400': '#b8d0ff',
   'main-300': '#d0e0ff',
   'main-200': '#e7efff',
-  'main-100': '#e7efff',
+  'main-100': '#f3f7ff',
 };
 
 export const SUB_COLORS = {
