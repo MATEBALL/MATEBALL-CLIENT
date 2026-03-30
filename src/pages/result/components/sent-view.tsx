@@ -14,10 +14,7 @@ const SentView = ({ isGroupMatching = true }: SentViewProps) => {
 
   const navigate = useNavigate();
   const handleGoHome = () => navigate(ROUTES.HOME);
-  const handleGoMatch = () => {
-    const tab = isGroupMatching ? '그룹' : '1:1';
-    navigate(`${ROUTES.MATCH}?tab=${tab}&filter=전체`);
-  };
+  const handleGoMatch = () => navigate(ROUTES.MATCH);
 
   return (
     <div className="h-full flex-col-between">

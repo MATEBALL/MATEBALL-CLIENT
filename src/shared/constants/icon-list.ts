@@ -30,6 +30,7 @@ export const iconNames = [
   'focus',
   'gender',
   'graphic_chat_empty',
+  'graphic_empty_2',
   'group-role',
   'group',
   'home-filled',

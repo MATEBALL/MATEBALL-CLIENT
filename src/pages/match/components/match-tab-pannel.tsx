@@ -6,14 +6,10 @@ import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import EmptyView from '@components/ui/empty-view';
 import { cn } from '@libs/cn';
 import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
-import {
-  getCardColor,
-  getPendingToast,
-  isClickable,
-  statusToCategory,
-} from '@pages/match/utils/match-status';
+import { getCardColor, getPendingToast, isClickable } from '@pages/match/utils/match-status';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 import { mapGroupMatchData, mapSingleMatchData } from '../hooks/mapMatchData';
@@ -21,32 +17,26 @@ import { mapGroupMatchData, mapSingleMatchData } from '../hooks/mapMatchData';
 type MatchableCardProps = SingleCardProps | GroupCardProps;
 
 interface MatchTabPanelProps {
-  activeType: '1:1' | '그룹';
-  statusParam: string;
-  filter: string;
+  isCreatedTab: boolean;
   onCardClick: (card: MatchableCardProps) => void;
 }
 
-const MatchTabPanel = ({ activeType, filter, statusParam, onCardClick }: MatchTabPanelProps) => {
+const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   const navigate = useNavigate();
-  const isSingle = activeType === '1:1';
 
-  const { data: singleData } = useQuery({
-    ...matchQueries.SINGLE_MATCH_STATUS(statusParam),
-    enabled: isSingle,
-  });
+  const { data: singleData } = useQuery(matchQueries.SINGLE_MATCH_STATUS(''));
+  const { data: groupData } = useQuery(matchQueries.GROUP_MATCH_STATUS(''));
 
-  const { data: groupData } = useQuery({
-    ...matchQueries.GROUP_MATCH_STATUS(statusParam),
-    enabled: !isSingle,
-  });
+  const allCards: MatchableCardProps[] = useMemo(() => {
+    const singles = mapSingleMatchData(singleData?.results);
+    const groups = mapGroupMatchData(groupData?.mates);
+    return [...singles, ...groups];
+  }, [singleData, groupData]);
 
-  const cards: MatchableCardProps[] = isSingle
-    ? mapSingleMatchData(singleData?.results)
-    : mapGroupMatchData(groupData?.mates);
-
-  const filteredCards =
-    filter === '전체' ? cards : cards.filter((card) => statusToCategory(card.status) === filter);
+  const filteredCards = useMemo(
+    () => allCards.filter((card) => card.isCreated === isCreatedTab),
+    [allCards, isCreatedTab],
+  );
 
   const patchStageMutation = useMutation(matchMutations.MATCH_STAGE());
 
@@ -73,7 +63,7 @@ const MatchTabPanel = ({ activeType, filter, statusParam, onCardClick }: MatchTa
   };
 
   return (
-    <div className="z-[var(--z-under-header-section)] flex-col gap-[1.2rem] px-[1.6rem]">
+    <div className="z-[var(--z-under-header-section)] flex-col gap-[1.2rem] px-[1.6rem] pt-[1.6rem]">
       {filteredCards.length === 0 ? (
         <EmptyView
           iconName="empty"
@@ -84,7 +74,7 @@ const MatchTabPanel = ({ activeType, filter, statusParam, onCardClick }: MatchTa
       ) : (
         filteredCards.map((card) => (
           <button
-            key={card.id}
+            key={`${card.type}-${card.id}`}
             type="button"
             onClick={() => handleCardClick(card)}
             className={cn('w-full', { 'cursor-pointer': isClickable(card.status) })}
