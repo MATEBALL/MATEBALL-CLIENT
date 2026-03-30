@@ -28,5 +28,6 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   // (선택) Biome 로그 자세히 보기
-  "biome.trace.server": "verbose"
+  "biome.trace.server": "verbose",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

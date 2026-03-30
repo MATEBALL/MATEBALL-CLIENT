@@ -8,6 +8,8 @@ import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+const DARK_NAV_PATHS = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT];
+
 const BottomNavigation = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const BottomNavigation = () => {
 
   const readAllAlarmsMutation = useMutation(alarmMutations.READ_ALL_ALARMS());
 
+  const isDark = DARK_NAV_PATHS.includes(pathname);
   const isActive = (path: string) => pathname === path;
 
   const isDisabled = (path: string) => {
@@ -34,7 +37,12 @@ const BottomNavigation = () => {
   };
 
   return (
-    <div className="sticky bottom-0 z-[var(--z-bottom-nav)] flex w-full justify-between border-gray-200 border-t bg-gray-white px-[1.6rem] py-[0.8rem] shadow-2">
+    <div
+      className={cn(
+        'sticky bottom-0 z-[var(--z-bottom-nav)] flex w-full justify-between px-[1.6rem] py-[0.8rem]',
+        isDark ? 'bg-gray-black' : 'border-gray-200 border-t bg-gray-white shadow-2',
+      )}
+    >
       {NAV_ITEMS.map(({ label, path, icon }) => {
         const active = isActive(path);
         const disabled = isDisabled(path);
@@ -51,14 +59,32 @@ const BottomNavigation = () => {
             disabled={disabled}
           >
             <div className="relative flex">
-              <Icon name={active ? icon.filled : icon.lined} width={2.4} height={2.4} />
+              <Icon
+                name={active ? icon.filled : icon.lined}
+                width={2.4}
+                height={2.4}
+                className={cn(isDark && (active ? 'text-white' : 'text-gray-500'))}
+              />
               {hasUnreadAlarms && path === ROUTES.MATCH && (
                 <div className="absolute top-[0.2rem] left-[2.4rem]">
                   <Icon name="badge" />
                 </div>
               )}
             </div>
-            <p className={cn('cap_12_m text-gray-600', active && 'text-gray-black')}>{label}</p>
+            <p
+              className={cn(
+                'cap_12_m',
+                isDark
+                  ? active
+                    ? 'text-white'
+                    : 'text-gray-500'
+                  : active
+                    ? 'text-gray-black'
+                    : 'text-gray-600',
+              )}
+            >
+              {label}
+            </p>
           </button>
         );
       })}
