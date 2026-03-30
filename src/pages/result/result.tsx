@@ -21,7 +21,7 @@ const ResultPage = () => {
   }
 
   if (type === 'sent') {
-    return <SentView isGroupMatching={isGroupMatching} />;
+    return <SentView />;
   }
 
   if (type === 'success') {
