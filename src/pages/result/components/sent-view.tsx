@@ -5,11 +5,7 @@ import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
 
-interface SentViewProps {
-  isGroupMatching?: boolean;
-}
-
-const SentView = ({ isGroupMatching = true }: SentViewProps) => {
+const SentView = () => {
   usePreventBackNavigation(ROUTES.HOME);
 
   const navigate = useNavigate();
