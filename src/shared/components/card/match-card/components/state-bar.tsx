@@ -1,3 +1,5 @@
+import Icon from '@components/icon/icon';
+
 interface StateBarProps {
   currentStep: number;
   totalSteps: number;
@@ -8,12 +10,17 @@ const StateBar = ({ currentStep, totalSteps }: StateBarProps) => {
 
   return (
     <div className="pt-[1.2rem]">
-      <div className="h-[0.6rem] w-full rounded-[20px] bg-gray-100 ">
+      <div className="relative h-[0.8rem] w-full rounded-[20px] bg-gray-100 ">
         <div
-          className="progress-gradient h-full rounded-l-[20px] transition-all duration-300 ease-in-out"
+          className="progress-gradient h-full rounded-l-[20px]"
           style={{ width: `${progressPercent}%` }}
         />
-        {/* TODO: now-point icon 추가 */}
+        <div
+          className="-translate-x-1/2 absolute top-0 flex h-full items-center"
+          style={{ left: `${progressPercent}%` }}
+        >
+          <Icon name="now-point" size={0.8} />
+        </div>
       </div>
     </div>
   );
