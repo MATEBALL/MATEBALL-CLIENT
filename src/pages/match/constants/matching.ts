@@ -12,16 +12,7 @@ export const MATCHING_NOTICE = {
   single: '동시에 진행할 수 있는 1:1 매칭은 최대 3개예요.',
 };
 
-export const MATCHING_COMPLETE_MESSAGE = {
-  group: '그룹장이 요청을 수락하면 그룹원이 돼요.',
-  single: '상대방이 요청을 승인하면 매칭이 성사돼요.',
-};
-
-export const MATCHING_HEADER_MESSAGE = (nickname: string, isGroup: boolean) =>
-  ({
-    group: `${nickname} 님과 딱 맞는 그룹원이에요!`,
-    single: `${nickname} 님과 딱 맞는 메이트예요!`,
-  })[isGroup ? 'group' : 'single'];
+export const MATCHING_HEADER_MESSAGE = (nickname: string) => `${nickname}님과 딱 맞는 메이트예요!`;
 
 export const MATCHING_DESCRIPTION = {
   group: {
@@ -44,7 +35,7 @@ export const MAX_CREATE_DESCRIPTION = {
 };
 
 export const MATCHING_GUIDE_MESSAGE_TITLE = (nickname: string) =>
-  `${nickname} 님을 위한\n맞춤 매칭이 생성되었어요!`;
+  `${nickname}님을 위한\n맞춤 매칭이 생성되었어요!`;
 
 export const MATCHING_SUGGESTION_MESSAGE_TITLE = (nickname: string) =>
   `${nickname}님을 위한\n매칭카드를 만들어 드릴까요?`;

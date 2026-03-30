@@ -1,16 +1,11 @@
 import Button from '@components/button/button/button';
 import { LOTTIE_PATH } from '@constants/lotties';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
-import { MATCHING_COMPLETE_MESSAGE } from '@pages/match/constants/matching';
 import { ROUTES } from '@routes/routes-config';
 import { Lottie } from '@toss/lottie';
 import { useNavigate } from 'react-router-dom';
 
-interface SentViewProps {
-  isGroupMatching?: boolean;
-}
-
-const SentView = ({ isGroupMatching = true }: SentViewProps) => {
+const SentView = () => {
   usePreventBackNavigation(ROUTES.HOME);
 
   const navigate = useNavigate();
@@ -25,8 +20,7 @@ const SentView = ({ isGroupMatching = true }: SentViewProps) => {
           <Lottie src={LOTTIE_PATH.SEND} loop={true} className="w-[16rem]" />
         </div>
         <p className="body_16_m text-center text-gray-600">
-          {isGroupMatching ? MATCHING_COMPLETE_MESSAGE.group : MATCHING_COMPLETE_MESSAGE.single}
-          <br />
+          그룹장이 요청을 수락하면 그룹원이 돼요. <br />
           진행 과정은 매칭 현황에서 확인할 수 있어요!
         </p>
       </section>
