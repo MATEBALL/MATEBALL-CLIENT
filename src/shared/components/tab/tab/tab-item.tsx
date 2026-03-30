@@ -18,7 +18,7 @@ const TabItem = ({ label, isActive, style, onClick }: TabItemProps) => {
         isActive ? style.borderActive : style.borderInactive,
         style.size,
         style.borderStyle,
-        'flex-row-center cursor-pointer whitespace-nowrap py-[0.6rem]',
+        'flex-row-center cursor-pointer whitespace-nowrap py-[0.4rem]',
       )}
     >
       <span
