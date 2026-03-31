@@ -109,6 +109,19 @@ export interface matchMember {
   img: string;
 }
 
+export interface createList {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  awayTeam: string;
+  homeTeam: string;
+  date: string;
+  stateLabel: string;
+  update: string | null;
+  img: string[];
+}
+
 //
 // ─── 요청 및 응답 타입 ─────────────────────────────────────────
 //
@@ -288,3 +301,13 @@ export interface getOpenChatUrlResponse {
   message: string;
   data: { chattingUrl: string };
 }
+
+/**
+ * 생성한 매칭 리스트 조회
+ * get
+ * /v3/users/create
+ */
+
+export type getCreateListResponse = {
+  results: createList[];
+};

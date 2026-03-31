@@ -3,6 +3,7 @@ import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
 import type {
+  getCreateListResponse,
   getGameMatchListResponse,
   getGroupMatchListResponse,
   getGroupMatchMate,
@@ -148,5 +149,14 @@ export const matchQueries = {
       queryKey: MATCH_KEY.OPEN_CHAT(matchId),
       queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
       enabled,
+    }),
+
+  /**
+   * 생성한 매칭 리스트 조회
+   */
+  CREATE_LIST: () =>
+    queryOptions<getCreateListResponse>({
+      queryKey: MATCH_KEY.LIST.CREATE(),
+      queryFn: () => get(END_POINT.GET_CREATE_LIST),
     }),
 };
