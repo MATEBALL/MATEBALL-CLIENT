@@ -11,6 +11,7 @@ import type {
   getMatchCountResponse,
   getMatchDetailResponse,
   getMatchMembersResponse,
+  getRequestListResponse,
   getSingleMatchListResponse,
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
@@ -158,5 +159,14 @@ export const matchQueries = {
     queryOptions<getCreateListResponse>({
       queryKey: MATCH_KEY.LIST.CREATE(),
       queryFn: () => get(END_POINT.GET_CREATE_LIST),
+    }),
+
+  /**
+   * 생성한 매칭 리스트 조회
+   */
+  REQUEST_LIST: () =>
+    queryOptions<getRequestListResponse>({
+      queryKey: MATCH_KEY.LIST.REQUEST(),
+      queryFn: () => get(END_POINT.GET_REQUEST_LIST),
     }),
 };

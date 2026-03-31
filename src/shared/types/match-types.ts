@@ -122,6 +122,19 @@ export interface createList {
   img: string[];
 }
 
+export interface requestList {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  awayTeam: string;
+  homeTeam: string;
+  date: string;
+  stateLabel: string;
+  update: string | null;
+  imageUrls: string[];
+}
+
 //
 // ─── 요청 및 응답 타입 ─────────────────────────────────────────
 //
@@ -310,4 +323,14 @@ export interface getOpenChatUrlResponse {
 
 export type getCreateListResponse = {
   results: createList[];
+};
+
+/**
+ * 요청한 매칭 리스트 조회
+ * get
+ * /v3/users/request
+ */
+
+export type getRequestListResponse = {
+  results: requestList[];
 };

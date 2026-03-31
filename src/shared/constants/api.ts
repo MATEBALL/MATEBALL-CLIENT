@@ -34,6 +34,7 @@ export const END_POINT = {
   POST_MATCH_CONDITION: '/v3/users/match-condition',
   DELETE_MATCH_CONDITION: '/v3/users/match-condition',
   GET_CREATE_LIST: '/v3/users/create',
+  GET_REQUEST_LIST: '/v3/users/request',
 
   GET_SINGLE_STATUS: (status: string) => `/v2/users/match-stage/direct?status=${status}`,
   GET_GROUP_STATUS: (status: string) => `/v2/users/match-stage/group?status=${status}`,
