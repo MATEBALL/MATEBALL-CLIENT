@@ -74,7 +74,12 @@ const Card = (props: CardProps) => {
                 )}
               </div>
             </div>
-            <Button label="채팅방 입장하기" size="XS" className="cap_14_sb" />
+            <Button
+              label="채팅방 입장하기"
+              size="XS"
+              className="cap_14_sb"
+              disabled={!props.isButtonEnabled}
+            />
           </div>
         )}
       </div>
