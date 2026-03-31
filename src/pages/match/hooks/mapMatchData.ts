@@ -1,10 +1,11 @@
 import type {
   ChipColor,
   GroupCardProps,
+  MatchCardProps,
   SingleCardProps,
 } from '@components/card/match-card/types/card';
 import { isChipColor, normalizeChipKey } from '@pages/match/utils/match-status';
-import type { getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
+import type { createList, getGroupMatchMate, singleMatchMate } from '@/shared/types/match-types';
 
 export const mapSingleMatchData = (mates: singleMatchMate[] = []): SingleCardProps[] => {
   return mates.map((mate) => {
@@ -28,5 +29,26 @@ export const mapGroupMatchData = (mates: getGroupMatchMate[] = []): GroupCardPro
     ...mate,
     type: 'group',
     isCreated: Boolean(mate.isCreated),
+  }));
+};
+
+export const mapCreateMatchData = (mates: createList[] = []): MatchCardProps[] => {
+  return mates.map((mate) => ({
+    id: mate.matchId,
+    type: 'match',
+
+    nickname: mate.nickname,
+    count: mate.count,
+    imgUrl: mate.img,
+
+    awayTeam: mate.awayTeam,
+    homeTeam: mate.homeTeam,
+    stadium: '',
+    date: mate.date,
+
+    isGroup: mate.isGroup,
+    matchTabType: 'created',
+
+    statusLabel: mate.stateLabel,
   }));
 };
