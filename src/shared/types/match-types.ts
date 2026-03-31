@@ -116,6 +116,7 @@ export interface createList {
   isGroup: boolean;
   awayTeam: string;
   homeTeam: string;
+  stadium: string;
   date: string;
   stateLabel: string;
   update: string | null;
@@ -129,6 +130,7 @@ export interface requestList {
   isGroup: boolean;
   awayTeam: string;
   homeTeam: string;
+  stadium: string;
   date: string;
   stateLabel: string;
   update: string | null;
