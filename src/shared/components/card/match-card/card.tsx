@@ -6,6 +6,7 @@ import type { CardProps } from '@components/card/match-card/types/card';
 import Divider from '@components/divider/divider';
 import { cn } from '@libs/cn';
 import StateBar from './components/state-bar';
+import { MATCH_STATE } from './constants/status';
 import { getMatchCurrentStep } from './utils/get-match-current-step';
 
 const Card = (props: CardProps) => {
@@ -60,15 +61,15 @@ const Card = (props: CardProps) => {
               <div className="cap_12_m grid grid-cols-3 text-gray-300">
                 {props.matchTabType === 'created' ? (
                   <>
-                    <p className="text-left">매칭생성</p>
-                    <p className="text-center">그룹원 모집 중</p>
-                    <p className="text-right">매칭완료</p>
+                    <p className="text-left">{MATCH_STATE.CREATED}</p>
+                    <p className="text-center">{MATCH_STATE.RECRUITING}</p>
+                    <p className="text-right">{MATCH_STATE.MATCHING_COMPLETE}</p>
                   </>
                 ) : (
                   <>
-                    <p className="text-left">요청</p>
-                    <p className="text-center">수락 대기 중</p>
-                    <p className="text-right">수락완료</p>
+                    <p className="text-left">{MATCH_STATE.REQUESTED}</p>
+                    <p className="text-center">{MATCH_STATE.WAITING}</p>
+                    <p className="text-right">{MATCH_STATE.APPROVAL_COMPLETE}</p>
                   </>
                 )}
               </div>
