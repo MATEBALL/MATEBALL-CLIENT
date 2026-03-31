@@ -54,9 +54,19 @@ const Card = (props: CardProps) => {
             <div className="flex-col gap-[0.4rem]">
               <StateBar currentStep={1} totalSteps={2} />
               <div className="cap_12_m grid grid-cols-3 text-gray-300">
-                <p className="text-left">요청</p>
-                <p className="text-center">수락 대기 중</p>
-                <p className="text-right">수락 완료</p>
+                {props.matchTabType === 'created' ? (
+                  <>
+                    <p className="text-left">매칭생성</p>
+                    <p className="text-center">그룹원 모집 중</p>
+                    <p className="text-right">매칭완료</p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-left">요청</p>
+                    <p className="text-center">수락 대기 중</p>
+                    <p className="text-right">수락완료</p>
+                  </>
+                )}
               </div>
             </div>
             <Button label="채팅방 입장하기" size="XS" className="cap_14_sb" />
