@@ -14,7 +14,7 @@ const Card = (props: CardProps) => {
   const introductionClass = 'cap_14_m mt-[1.2rem]';
   const gameInfoClass = 'mt-[1.2rem] ';
 
-  const currentStep = type === 'match' ? getMatchCurrentStep(props.status, props.matchTabType) : 1;
+  const currentStep = type === 'match' ? getMatchCurrentStep(props.statusLabel, props.matchTabType) : 1;
 
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
