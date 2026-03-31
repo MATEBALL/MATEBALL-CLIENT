@@ -6,12 +6,15 @@ import type { CardProps } from '@components/card/match-card/types/card';
 import Divider from '@components/divider/divider';
 import { cn } from '@libs/cn';
 import StateBar from './components/state-bar';
+import { getMatchCurrentStep } from './utils/get-match-current-step';
 
 const Card = (props: CardProps) => {
   const { type, className, color } = props;
 
   const introductionClass = 'cap_14_m mt-[1.2rem]';
   const gameInfoClass = 'mt-[1.2rem] ';
+
+  const currentStep = type === 'match' ? getMatchCurrentStep(props.status, props.matchTabType) : 1;
 
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
@@ -52,7 +55,7 @@ const Card = (props: CardProps) => {
         {type === 'match' && (
           <div className="flex-col gap-[1.2rem]">
             <div className="flex-col gap-[0.4rem]">
-              <StateBar currentStep={1} totalSteps={2} />
+              <StateBar currentStep={currentStep} totalSteps={2} />
               <div className="cap_12_m grid grid-cols-3 text-gray-300">
                 {props.matchTabType === 'created' ? (
                   <>
