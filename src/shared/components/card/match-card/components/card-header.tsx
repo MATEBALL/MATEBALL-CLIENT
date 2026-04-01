@@ -35,6 +35,7 @@ const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
   const renderProfile = (p: CardProps) => {
     const spec = getCrownSpec(p.type);
     const shouldShowCrown = p.isCreated || p.type === 'game' || p.type === 'match';
+    const shouldShowArrow = p.type !== 'detailed';
 
     return (
       <div className="relative isolate flex items-center gap-[0.4rem]">
@@ -55,9 +56,11 @@ const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
             <Icon name="crown" size={spec.size} className="text-owner" aria-hidden />
           </span>
         )}
-        <button type="button" onClick={onMembersClick}>
-          <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
-        </button>
+        {shouldShowArrow && onMembersClick && (
+          <button type="button" onClick={onMembersClick}>
+            <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
+          </button>
+        )}
       </div>
     );
   };

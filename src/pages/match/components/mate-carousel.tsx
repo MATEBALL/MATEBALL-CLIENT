@@ -1,6 +1,6 @@
 import type { DetailedCardProps } from '@components/card/match-card/types/card';
 import { cn } from '@libs/cn';
-import CarouselIndicator from '@pages/match/groups/components/carousel_indicator';
+import CarouselIndicator from '@pages/match/groups/components/carousel-indicator';
 import SlideItem from '@pages/match/groups/components/slide-item';
 import { useSlide } from '@pages/match/hooks/useSlide';
 import { getSlideTransformStyle } from '@pages/match/styles/get-slide-transformstyle';
@@ -22,8 +22,8 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
     currentIndex,
     onChange: onDotClick,
   });
-
-  const reversedMates = [...mates].reverse();
+  
+  // const reversedMates = [...mates].reverse();
 
   return (
     <section className="w-full flex-col gap-[1.6rem] overflow-hidden" aria-label="매칭 캐러셀">
@@ -36,7 +36,7 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
         aria-roledescription="carousel"
         aria-live="polite"
       >
-        {reversedMates.map((mate, index) => (
+        {mates.map((mate, index) => (
           <li
             key={mate.id}
             aria-roledescription="slide"

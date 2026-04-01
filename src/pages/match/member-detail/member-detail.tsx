@@ -1,4 +1,5 @@
 import { matchQueries } from '@apis/match/match-queries';
+import { userQueries } from '@apis/user/user-queries';
 import MateCarousel from '@pages/match/components/mate-carousel';
 import { mapMateData } from '@pages/match/utils/mate';
 import { useQuery } from '@tanstack/react-query';
@@ -15,10 +16,12 @@ const MemberDetail = () => {
     ...matchQueries.MATCH_MEMBERS(parsedMatchId),
     enabled: Number.isFinite(parsedMatchId),
   });
+  const { data: user } = useQuery(userQueries.USER_INFO());
+  const myNickname = user?.nickname;
 
   const mates = useMemo(() => {
-    return (data?.results ?? []).map(mapMateData);
-  }, [data]);
+    return (data?.results ?? []).filter((mate) => mate.nickname !== myNickname).map(mapMateData);
+  }, [data, myNickname]);
 
   const initialIndex = useMemo(() => {
     if (!Number.isFinite(parsedMemberId)) return 0;
