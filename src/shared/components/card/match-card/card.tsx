@@ -5,6 +5,8 @@ import { cardVariants } from '@components/card/match-card/styles/card-variants';
 import type { CardProps } from '@components/card/match-card/types/card';
 import Divider from '@components/divider/divider';
 import { cn } from '@libs/cn';
+import { useState } from 'react';
+import MembersBottomSheet from './components/members-bottom-sheet';
 import StateBar from './components/state-bar';
 import { MATCH_STATE } from './constants/status';
 import { getMatchCurrentStep } from './utils/get-match-current-step';
@@ -18,9 +20,14 @@ const Card = (props: CardProps) => {
   const currentStep =
     type === 'match' ? getMatchCurrentStep(props.statusLabel, props.matchTabType) : 1;
 
+  const [isMembersSheetOpen, setIsMembersSheetOpen] = useState(false);
+
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
-      <CardHeader {...props} />
+      <CardHeader
+        {...props}
+        onMembersClick={type === 'match' ? () => setIsMembersSheetOpen(true) : undefined}
+      />
       <div className={cn(type === 'detailed' && 'flex-col gap-[2rem]')}>
         {(type === 'detailed' || type === 'user') && (
           <p className={introductionClass}>{props.introduction}</p>
@@ -81,6 +88,14 @@ const Card = (props: CardProps) => {
               disabled={!props.isButtonEnabled}
             />
           </div>
+        )}
+
+        {type === 'match' && (
+          <MembersBottomSheet
+            isOpen={isMembersSheetOpen}
+            onClose={() => setIsMembersSheetOpen(false)}
+            matchId={props.id}
+          />
         )}
       </div>
     </div>

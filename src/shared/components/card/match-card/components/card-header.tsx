@@ -9,7 +9,11 @@ import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { matchPath, useLocation } from 'react-router-dom';
 
-const CardHeader = (props: CardProps) => {
+type CardHeaderProps = CardProps & {
+  onMembersClick?: () => void;
+};
+
+const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
   const { pathname } = useLocation();
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
@@ -51,7 +55,9 @@ const CardHeader = (props: CardProps) => {
             <Icon name="crown" size={spec.size} className="text-owner" aria-hidden />
           </span>
         )}
-        <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
+        <button type="button" onClick={onMembersClick}>
+          <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
+        </button>
       </div>
     );
   };
