@@ -22,7 +22,7 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
     currentIndex,
     onChange: onDotClick,
   });
-  
+
   // const reversedMates = [...mates].reverse();
 
   return (

@@ -306,6 +306,15 @@ export interface getMatchMembersResponse {
 }
 
 /**
+ * 매칭된 그룹원 상세 리스트 응답
+ * get
+ * /v3/users/match-status/member/{matchId}
+ */
+export interface getMatchMembersDetailResponse {
+  results: matchMember[];
+}
+
+/**
  * 오픈채팅방 주소 조회
  * get
  * /v2/users/match/{matchId}/chatting

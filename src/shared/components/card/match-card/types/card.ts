@@ -91,6 +91,7 @@ export interface MatchCardProps extends BaseCardProps {
   matchTabType: 'created' | 'requested';
   statusLabel: string;
   isButtonEnabled: boolean;
+  hasUpdate?: boolean;
 }
 
 export type CardProps =

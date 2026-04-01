@@ -1,23 +1,23 @@
 import { tabStyleMap } from '@components/tab/tab/styles/tab-style';
 import TabItem from '@components/tab/tab/tab-item';
-import { gaEvent } from '@libs/analytics';
+// import { gaEvent } from '@libs/analytics';
+// import type { MatchCardData } from './create/types/match-data-type';
 import MatchTabPanel from '@pages/match/components/match-tab-pannel';
 import { MATCH_TAB_LIST } from '@pages/match/constants/matching';
 import { useMatchTabState } from '@pages/match/hooks/useMatchTabState';
-import type { MatchCardData } from './create/types/match-data-type';
 
 const tabStyle = tabStyleMap.matchStatus;
 
 const Match = () => {
   const { activeTab, handleTabChange, isCreatedTab } = useMatchTabState();
 
-  const handleCardClick = (card: MatchCardData) => {
-    gaEvent('match_card_click', {
-      match_id: card.id,
-      match_type: card.type === 'single' ? 'one_to_one' : 'group',
-      match_status: card.status,
-    });
-  };
+  // const handleCardClick = (card: MatchCardData) => {
+  //   gaEvent('match_card_click', {
+  //     match_id: card.id,
+  //     match_type: card.type === 'single' ? 'one_to_one' : 'group',
+  //     match_status: card.status,
+  //   });
+  // };
 
   return (
     <div className="h-full grow flex-col bg-gray-black">
@@ -35,7 +35,7 @@ const Match = () => {
         </ul>
       </nav>
 
-      <MatchTabPanel key={activeTab} isCreatedTab={isCreatedTab} onCardClick={handleCardClick} />
+      <MatchTabPanel key={activeTab} isCreatedTab={isCreatedTab} />
     </div>
   );
 };

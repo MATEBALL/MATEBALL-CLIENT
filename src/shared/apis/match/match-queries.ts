@@ -10,6 +10,7 @@ import type {
   getGroupMatchResultResponse,
   getMatchCountResponse,
   getMatchDetailResponse,
+  getMatchMembersDetailResponse,
   getMatchMembersResponse,
   getRequestListResponse,
   getSingleMatchListResponse,
@@ -140,6 +141,15 @@ export const matchQueries = {
     queryOptions<getMatchMembersResponse>({
       queryKey: MATCH_KEY.MEMBERS(matchId),
       queryFn: () => get(END_POINT.GET_MATCH_MEMBERS(matchId)),
+    }),
+
+  /**
+   * 매칭된 그룹원 리스트 조회
+   */
+  MATCH_MEMBERS_DETAIL: (matchId: number) =>
+    queryOptions<getMatchMembersDetailResponse>({
+      queryKey: MATCH_KEY.MEMBERS(matchId),
+      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS_DETAIL(matchId)),
     }),
 
   /**

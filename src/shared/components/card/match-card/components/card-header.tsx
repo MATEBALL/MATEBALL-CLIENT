@@ -57,7 +57,7 @@ const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
           </span>
         )}
         {shouldShowArrow && onMembersClick && (
-          <button type="button" onClick={onMembersClick}>
+          <button type="button" onClick={onMembersClick} className="cursor-pointer">
             <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
           </button>
         )}
@@ -197,7 +197,8 @@ const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
             <div className="flex w-full text-gray-white">
               {props.nickname} 외 {props.count - 1}명
               {!isCreateMatchPage && (
-                <div className="ml-auto flex-row gap-[0.8rem]">
+                <div className="ml-auto flex-row gap-[0.4rem]">
+                  {/* TODO: 새 요청, 매칭 실패 칩 렌더링 */}
                   <Chip
                     label={props.isGroup ? '그룹' : '1:1'}
                     bgColor={props.isGroup ? '그룹' : '1:1'}

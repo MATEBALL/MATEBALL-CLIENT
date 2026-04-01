@@ -22,12 +22,12 @@ const Card = (props: CardProps) => {
 
   const [isMembersSheetOpen, setIsMembersSheetOpen] = useState(false);
 
-  const canFetchMembers =
-    type === 'match' &&
-    ((props.matchTabType === 'requested' &&
-      [MATCH_STATE.WAITING, MATCH_STATE.APPROVAL_COMPLETE].includes(props.statusLabel)) ||
-      (props.matchTabType === 'created' &&
-        [MATCH_STATE.RECRUITING, MATCH_STATE.MATCHING_COMPLETE].includes(props.statusLabel)));
+  // const canFetchMembers =
+  //   type === 'match' &&
+  //   ((props.matchTabType === 'requested' &&
+  //     [MATCH_STATE.WAITING, MATCH_STATE.APPROVAL_COMPLETE].includes(props.statusLabel)) ||
+  //     (props.matchTabType === 'created' &&
+  //       [MATCH_STATE.RECRUITING, MATCH_STATE.MATCHING_COMPLETE].includes(props.statusLabel)));
 
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
@@ -88,6 +88,7 @@ const Card = (props: CardProps) => {
                 )}
               </div>
             </div>
+            {/* TODO: 오픈채팅방 링크 연결 */}
             <Button
               label="채팅방 입장하기"
               size="XS"
@@ -102,7 +103,6 @@ const Card = (props: CardProps) => {
             isOpen={isMembersSheetOpen}
             onClose={() => setIsMembersSheetOpen(false)}
             matchId={props.id}
-            canFetchMembers={canFetchMembers}
           />
         )}
       </div>

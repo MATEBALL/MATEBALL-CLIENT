@@ -41,6 +41,8 @@ export const END_POINT = {
 
   GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match/${matchId}`,
   GET_MATCH_MEMBERS: (matchId: number | string) => `/v3/users/match/members/${matchId}`,
+  GET_MATCH_MEMBERS_DETAIL: (matchId: number | string) =>
+    `/v3/users/match-status/members/${matchId}`,
   POST_MATCH_REQUEST: (matchId: number | string) => `/v3/users/match-request/${matchId}`,
   PATCH_MATCH_ACCEPT: (matchId: number | string) => `/v1/users/match-accept/${matchId}`,
   PATCH_MATCH_REJECT: (matchId: number | string) => `/v1/users/match-reject/${matchId}`,

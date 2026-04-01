@@ -38,6 +38,7 @@ const baseMatchCard = (
     stadium: string;
     date: string;
     stateLabel: string;
+    update: string | null;
   },
   matchTabType: 'created' | 'requested',
 ) => ({
@@ -53,6 +54,7 @@ const baseMatchCard = (
   matchTabType,
   statusLabel: mate.stateLabel,
   isButtonEnabled: getIsButtonEnabled(matchTabType, mate.stateLabel),
+  hasUpdate: mate.update !== null,
 });
 
 export const mapCreateMatchData = (mates: createList[] = []): MatchCardProps[] => {

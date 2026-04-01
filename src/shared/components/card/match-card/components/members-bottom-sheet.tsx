@@ -13,18 +13,16 @@ interface MembersBottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
   matchId: number;
-  canFetchMembers: boolean;
 }
 
 const MembersBottomSheet = ({
   isOpen,
   onClose,
   matchId,
-  canFetchMembers,
 }: MembersBottomSheetProps) => {
   const { data } = useQuery({
-    ...matchQueries.MATCH_MEMBERS(matchId),
-    enabled: isOpen && canFetchMembers,
+    ...matchQueries.MATCH_MEMBERS_DETAIL(matchId),
+    enabled: isOpen,
   });
   const { data: user } = useQuery(userQueries.USER_INFO());
 
