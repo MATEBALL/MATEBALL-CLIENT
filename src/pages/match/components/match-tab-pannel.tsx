@@ -1,27 +1,17 @@
-// import { matchMutations } from '@apis/match/match-mutations';
-
 import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
 import type { MatchCardProps } from '@components/card/match-card/types/card';
-// import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
-// import { getColorType } from '@components/card/match-card/utils/get-color-type';
 import EmptyView from '@components/ui/empty-view';
 import { MATCH_PENDING_TOAST_MESSAGES } from '@constants/error-toast';
 import { cn } from '@libs/cn';
-// import { cn } from '@libs/cn';
-// import { CLICKABLE_STATUS_MAP } from '@pages/match/constants/matching';
 import { isClickable } from '@pages/match/utils/match-status';
 import { ROUTES } from '@routes/routes-config';
-// import { ROUTES } from '@routes/routes-config';
-// import { useMutation } from '@tanstack/react-query';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 import { CLICKABLE_STATUS_MAP } from '../constants/matching';
-// import { useNavigate } from 'react-router-dom';
-// import { showErrorToast } from '@/shared/utils/show-error-toast';
 import { mapCreateMatchData, mapRequestMatchData } from '../hooks/mapMatchData';
 
 type MatchableCardProps = MatchCardProps;
@@ -33,9 +23,6 @@ interface MatchTabPanelProps {
 
 const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   const navigate = useNavigate();
-
-  // const { data: singleData } = useQuery(matchQueries.SINGLE_MATCH_STATUS(''));
-  // const { data: groupData } = useQuery(matchQueries.GROUP_MATCH_STATUS(''));
 
   const { data: createData } = useQuery({ ...matchQueries.CREATE_LIST(), enabled: isCreatedTab });
   const { data: requestData } = useQuery({

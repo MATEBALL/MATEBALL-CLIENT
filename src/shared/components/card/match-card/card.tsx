@@ -22,13 +22,6 @@ const Card = (props: CardProps) => {
 
   const [isMembersSheetOpen, setIsMembersSheetOpen] = useState(false);
 
-  // const canFetchMembers =
-  //   type === 'match' &&
-  //   ((props.matchTabType === 'requested' &&
-  //     [MATCH_STATE.WAITING, MATCH_STATE.APPROVAL_COMPLETE].includes(props.statusLabel)) ||
-  //     (props.matchTabType === 'created' &&
-  //       [MATCH_STATE.RECRUITING, MATCH_STATE.MATCHING_COMPLETE].includes(props.statusLabel)));
-
   return (
     <div className={cn(cardVariants({ type, color }), className)}>
       <CardHeader
