@@ -4,7 +4,9 @@ import BottomSheet from '@components/bottom-sheet/bottom-sheet';
 import Chip from '@components/chip/chip';
 import Divider from '@components/divider/divider';
 import Icon from '@components/icon/icon';
+import { ROUTES } from '@routes/routes-config';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { getChipColor } from '../utils/get-chip-color';
 
 interface MembersBottomSheetProps {
@@ -28,6 +30,8 @@ const MembersBottomSheet = ({
 
   const members = data?.results ?? [];
   const myNickname = user?.nickname;
+
+  const navigate = useNavigate();
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
@@ -57,10 +61,12 @@ const MembersBottomSheet = ({
                     <button
                       type="button"
                       disabled={member.nickname === myNickname}
-                      className="cursor-pointer py-[1.2rem] pl-[1.2rem] disabled:cursor-not-allowed"
+                      onClick={() => navigate(ROUTES.MATCH_MEMBER_DETAIL(matchId, member.memberId))}
+                      className="cursor-pointer py-[1.2rem] pl-[1.2rem] text-gray-500 disabled:cursor-not-allowed"
                     >
                       <Icon
                         name="arrow-right-18"
+                        size={1.8}
                         className={member.nickname === myNickname ? 'invisible' : ''}
                       />
                     </button>
