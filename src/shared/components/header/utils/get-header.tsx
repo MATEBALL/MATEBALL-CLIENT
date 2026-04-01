@@ -45,6 +45,7 @@ export const getHeaderContent = (
   const isResult = Boolean(matchPath(`${ROUTES.RESULT()}`, pathname));
   const isGroupAgree = isResult && urlParams.get('type') === 'agree';
   const isGame = Boolean(matchPath('/game/:date/:gameId', pathname));
+  const isMemberDetail = Boolean(matchPath(ROUTES.MATCH_MEMBER_DETAIL(), pathname));
 
   if (isGroupAgree) {
     return null;
@@ -98,6 +99,21 @@ export const getHeaderContent = (
           className="cursor-pointer"
         />
         <h1 className="head_20_sb text-gray-black">{headerTitle}</h1>
+      </div>
+    );
+  }
+
+  if (isMemberDetail) {
+    return (
+      <div className="flex items-center gap-[2rem]">
+        <Icon
+          name="arrow-left-24"
+          width={2.4}
+          height={2.4}
+          onClick={handleBackClick}
+          className="cursor-pointer"
+        />
+        <h1 className="head_20_sb text-gray-black">프로필 상세</h1>
       </div>
     );
   }
