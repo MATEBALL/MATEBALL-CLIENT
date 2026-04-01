@@ -55,7 +55,7 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   const handleCardClick = async (card: MatchableCardProps) => {
     onCardClick?.(card);
 
-    // TODO: 다른 버튼 눌렀을 때 토스트 차단 
+    // TODO: 다른 버튼 눌렀을 때 토스트 차단
     if (!card.hasUpdate) {
       const message = isCreatedTab
         ? MATCH_PENDING_TOAST_MESSAGES.REQUEST_WAITING

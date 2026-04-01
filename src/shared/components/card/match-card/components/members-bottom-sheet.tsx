@@ -15,11 +15,7 @@ interface MembersBottomSheetProps {
   matchId: number;
 }
 
-const MembersBottomSheet = ({
-  isOpen,
-  onClose,
-  matchId,
-}: MembersBottomSheetProps) => {
+const MembersBottomSheet = ({ isOpen, onClose, matchId }: MembersBottomSheetProps) => {
   const { data } = useQuery({
     ...matchQueries.MATCH_MEMBERS_DETAIL(matchId),
     enabled: isOpen,
