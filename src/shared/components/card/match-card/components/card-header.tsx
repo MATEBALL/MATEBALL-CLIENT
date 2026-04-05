@@ -1,6 +1,7 @@
 import { GROUP_MAX } from '@components/card/constants/MATCH';
 import CardProfile from '@components/card/match-card/components/card-profile-image';
 import type { CardProps } from '@components/card/match-card/types/card';
+import Chip from '@components/chip/chip';
 import ChipList from '@components/chip/chip-list';
 import ChipState from '@components/chip/chip-state/chip-state';
 import Icon from '@components/icon/icon';
@@ -8,12 +9,16 @@ import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { matchPath, useLocation } from 'react-router-dom';
 
-const CardHeader = (props: CardProps) => {
+type CardHeaderProps = CardProps & {
+  onMembersClick?: () => void;
+};
+
+const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
   const { pathname } = useLocation();
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
   const getCrownSpec = (t: CardProps['type']) => {
-    if (t === 'group') {
+    if (t === 'group' || t === 'game' || t === 'match') {
       return {
         box: 'h-[1.2rem] w-[1.2rem]',
         pos: 'left-[1.6rem] bottom-0',
@@ -21,18 +26,25 @@ const CardHeader = (props: CardProps) => {
       };
     }
     return {
-      box: 'h-[1.6rem] w-[1.6rem]',
+      box: 'h-[1.2rem] w-[1.2rem]',
       pos: 'right-0 bottom-0',
-      size: 1.6,
+      size: 1.2,
     };
   };
 
   const renderProfile = (p: CardProps) => {
     const spec = getCrownSpec(p.type);
+    const shouldShowCrown = p.isCreated || p.type === 'game' || p.type === 'match';
+    const shouldShowArrow = p.type !== 'detailed';
+
     return (
-      <div className="relative isolate">
-        <CardProfile type={p.type} imgUrl={p.imgUrl} />
-        {p.isCreated && (
+      <div className="relative isolate flex items-center gap-[0.4rem]">
+        <CardProfile
+          type={p.type}
+          imgUrl={p.imgUrl}
+          isGroup={p.type === 'game' || p.type === 'match' ? p.isGroup : undefined}
+        />
+        {shouldShowCrown && (
           <span
             className={cn(
               'pointer-events-none absolute z-[var(--z-card-owner)]',
@@ -43,6 +55,18 @@ const CardHeader = (props: CardProps) => {
           >
             <Icon name="crown" size={spec.size} className="text-owner" aria-hidden />
           </span>
+        )}
+        {shouldShowArrow && onMembersClick && (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onMembersClick?.();
+            }}
+            className="cursor-pointer"
+          >
+            <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
+          </button>
         )}
       </div>
     );
@@ -79,7 +103,7 @@ const CardHeader = (props: CardProps) => {
             <div className="subhead_18_sb text-start">
               {props.nickname} 외 {props.count - 1}명
             </div>
-            <div className="flex-row-center gap-[0.8rem] py-[0.4rem]">
+            <div className="flex-row-center">
               <div className="cap_12_m text-gray-900">
                 매칭된 인원 {props.count}/{GROUP_MAX}
               </div>
@@ -96,18 +120,30 @@ const CardHeader = (props: CardProps) => {
 
     case 'detailed':
       return (
-        <div className="flex gap-[1.2rem]">
-          {renderProfile(props)}
-          <div className="flex-col gap-[0.8rem]">
-            <div className="flex-col gap-[0.4rem]">
-              <div className="body_16_b">{props.nickname}</div>
-              <div className="cap_12_m text-gray-600">
-                {props.age} | {props.gender}
+        <div className="flex-col gap-[1.6rem]">
+          <div className="flex gap-[0.9rem]">
+            {renderProfile(props)}
+            <div className="flex-col-center gap-[0.8rem]">
+              <div className="flex-col">
+                <div className="subhead_18_sb text-gray-black">{props.nickname}</div>
+                <div className="cap_12_m text-gray-black">
+                  {props.age} | {props.gender}
+                </div>
               </div>
             </div>
-            <div className="flex-row gap-[0.8rem]">
-              <ChipList names={chips} />
+            <div className="ml-auto">
+              {props.matchRate != null && (
+                <ChipState
+                  status={props.status}
+                  rate={props.matchRate}
+                  colorType={props.chipColor}
+                />
+              )}
             </div>
+          </div>
+
+          <div className="flex-row gap-[0.8rem]">
+            <ChipList names={chips} />
           </div>
         </div>
       );
@@ -127,6 +163,61 @@ const CardHeader = (props: CardProps) => {
               <ChipList names={chips} />
             </div>
           </div>
+        </div>
+      );
+
+    case 'game':
+      return (
+        <div className="flex">
+          <div className="w-full flex-col gap-[0.4rem]">
+            <div className="subhead_18_sb text-start">
+              <div className="flex w-full">
+                {props.nickname} 외 {props.count - 1}명
+                {!isCreateMatchPage && (
+                  <div className="ml-auto flex-row gap-[0.8rem]">
+                    {props.matchRate != null && (
+                      <ChipState
+                        status={props.status}
+                        rate={props.matchRate}
+                        colorType={props.chipColor}
+                      />
+                    )}
+                    <Chip
+                      label={props.isGroup ? '그룹' : '1:1'}
+                      bgColor={props.isGroup ? '그룹' : '1:1'}
+                      textColor={props.isGroup ? '그룹' : '1:1'}
+                      className="rounded-[8px]"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            {renderProfile(props)}
+          </div>
+        </div>
+      );
+
+    case 'match':
+      return (
+        <div className="w-full flex-col gap-[0.4rem]">
+          <div className="subhead_18_sb text-start">
+            <div className="flex w-full text-gray-white">
+              {props.nickname} 외 {props.count - 1}명
+              {!isCreateMatchPage && (
+                <div className="ml-auto flex-row gap-[0.4rem]">
+                  {props.updateLabel && <ChipState status={props.updateLabel} />}
+
+                  <Chip
+                    label={props.isGroup ? '그룹' : '1:1'}
+                    bgColor={props.isGroup ? '그룹' : '1:1'}
+                    textColor={props.isGroup ? '그룹' : '1:1'}
+                    className="rounded-[8px]"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          {renderProfile(props)}
         </div>
       );
   }

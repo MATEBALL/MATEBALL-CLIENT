@@ -27,7 +27,7 @@ export interface matchRateMate extends baseMate {
  * 1:1 매칭 리스트에 사용되는 Mate
  * @extends matchRateMate
  */
-export interface singleMatchMate extends matchRateMate {
+export interface singleMatchListMate extends matchRateMate {
   /** 나이 (예: "26세") */
   age: string;
   /** 응원 팀 */
@@ -86,6 +86,57 @@ export interface matchDetailMate extends baseMate {
   matchRate: number;
 }
 
+export interface gameMatchItem {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  matchRate: number | null;
+  img: string[];
+}
+
+export interface matchMember {
+  memberId: number;
+  matchRate: number;
+  age: number;
+  gender: string;
+  nickname: string;
+  introduction: string;
+  team: string;
+  type: string;
+  avgGame: number;
+  avgSeason: number;
+  img: string;
+}
+
+export interface createList {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  awayTeam: string;
+  homeTeam: string;
+  stadium: string;
+  date: string;
+  stateLabel: string;
+  update: string | null;
+  img: string[];
+}
+
+export interface requestList {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  awayTeam: string;
+  homeTeam: string;
+  stadium: string;
+  date: string;
+  stateLabel: string;
+  update: string | null;
+  imageUrls: string[];
+}
+
 //
 // ─── 요청 및 응답 타입 ─────────────────────────────────────────
 //
@@ -112,7 +163,7 @@ export interface getSingleMatchResultResponse extends singleMatchResult {}
  * /v1/users/direct?data=
  */
 export interface getSingleMatchListResponse {
-  mates: singleMatchMate[];
+  mates: singleMatchListMate[];
 }
 
 /**
@@ -123,6 +174,19 @@ export interface getSingleMatchListResponse {
 export interface getGroupMatchListResponse {
   mates: groupMatchMate[];
 }
+
+/**
+ * 경기별 매칭 리스트 조회 응답
+ * get
+ * /v3/users/match/{gameId}
+ */
+export type getGameMatchListResponse = {
+  awayTeam: string;
+  homeTeam: string;
+  date: string;
+  stadium: string;
+  result: gameMatchItem[];
+};
 
 /**
  * 그룹 매칭 상세 결과 응답
@@ -167,8 +231,8 @@ export interface postMatchCreateResponse {
 export interface postMatchConditionRequest {
   team: string;
   teamAllowed: string | null;
+  avgSeason: number;
   style: string;
-  genderPreference: string;
 }
 
 /**
@@ -233,6 +297,24 @@ export interface getMatchDetailResponse {
 }
 
 /**
+ * 매칭된 그룹원 리스트 응답
+ * get
+ * /v3/users/match/members/{matchId}
+ */
+export interface getMatchMembersResponse {
+  results: matchMember[];
+}
+
+/**
+ * 매칭된 그룹원 상세 리스트 응답
+ * get
+ * /v3/users/match-status/member/{matchId}
+ */
+export interface getMatchMembersDetailResponse {
+  results: matchMember[];
+}
+
+/**
  * 오픈채팅방 주소 조회
  * get
  * /v2/users/match/{matchId}/chatting
@@ -243,3 +325,23 @@ export interface getOpenChatUrlResponse {
   message: string;
   data: { chattingUrl: string };
 }
+
+/**
+ * 생성한 매칭 리스트 조회
+ * get
+ * /v3/users/create
+ */
+
+export type getCreateListResponse = {
+  results: createList[];
+};
+
+/**
+ * 요청한 매칭 리스트 조회
+ * get
+ * /v3/users/request
+ */
+
+export type getRequestListResponse = {
+  results: requestList[];
+};

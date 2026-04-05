@@ -30,7 +30,8 @@ interface GameMatchBottomSheetProps {
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
   fromOnboarding?: boolean;
-  groupRole?: string | null;
+  // groupRole?: string | null;  TODO: 추후 삭제
+  onComplete?: (matchId: number) => void;
 }
 
 const GameMatchBottomSheet = ({
@@ -40,7 +41,8 @@ const GameMatchBottomSheet = ({
   gameSchedule,
   activeType,
   fromOnboarding = false,
-  groupRole,
+  // groupRole,
+  onComplete,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const navigate = useNavigate();
@@ -89,13 +91,9 @@ const GameMatchBottomSheet = ({
           handleClose();
 
           if (fromOnboarding) {
-            if (groupRole === '그룹장') {
-              navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
-            } else {
-              navigate(`${ROUTES.ONBOARDING_GROUP}?step=COMPLETE`);
-            }
+            onComplete?.(response.matchId);
           } else {
-            navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
+            navigate(`${ROUTES.MATCH_CREATE(createdMatchId.toString())}?type=${queryType}`);
           }
         },
         onError: (error) => {

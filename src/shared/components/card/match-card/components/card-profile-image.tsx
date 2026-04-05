@@ -7,17 +7,11 @@ import { cn } from '@libs/cn';
 
 export type ProfileType = CardProfileProps['type'];
 
-const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
+const CardProfile = ({ type, imgUrl, isGroup }: CardProfileProps) => {
   const urls = normalizeUrls(imgUrl);
-  const slotCount = PROFILE_SLOT_COUNT[type];
+  const slotCount =
+    type === 'game' || type === 'match' ? (isGroup ? 4 : 2) : PROFILE_SLOT_COUNT[type];
   const slots = Array.from({ length: slotCount }, (_, i) => urls[i] ?? '');
-
-  const zIndexClasses = [
-    'z-[var(--z-card-profile-1)] ml-0',
-    '-ml-[0.9rem] z-[var(--z-card-profile-2)]',
-    '-ml-[0.9rem] z-[var(--z-card-profile-3)]',
-    '-ml-[0.9rem] z-[var(--z-card-profile-4)]',
-  ];
 
   const renderGroupItem = (src: string, i: number) => {
     const hasSrc = src.length > 0;
@@ -29,7 +23,6 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
         className={cn(
           'flex items-center justify-center overflow-hidden rounded-full',
           profileVariants({ type }),
-          zIndexClasses[i],
         )}
       >
         {hasSrc ? (
@@ -67,8 +60,8 @@ const CardProfile = ({ type, imgUrl }: CardProfileProps) => {
     </div>
   );
 
-  if (type === 'group') {
-    return <div className="flex items-center">{slots.map(renderGroupItem)}</div>;
+  if (type === 'group' || type === 'game' || type === 'match') {
+    return <div className="flex items-center gap-[0.4rem]">{slots.map(renderGroupItem)}</div>;
   }
 
   return (

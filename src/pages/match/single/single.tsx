@@ -17,11 +17,7 @@ const SinglePage = () => {
 
   return (
     <>
-      <Mate
-        isGroupMatching={false}
-        matchId={numericMatchId}
-        onRequestClick={() => setShowModal(true)}
-      />
+      <Mate isGroupMatching={false} matchId={numericMatchId} />
       {showModal && (
         <BottomSheetModal
           isOpen={showModal}

@@ -30,6 +30,9 @@ export const MATCH_KEY = {
   LIST: {
     SINGLE: (date: string) => [...MATCH_KEY.ALL, 'list', 'single', date] as const,
     GROUP: (date: string) => [...MATCH_KEY.ALL, 'list', 'group', date] as const,
+    GAME: (gameId: number) => [...MATCH_KEY.ALL, 'list', 'game', gameId] as const,
+    CREATE: () => [...MATCH_KEY.ALL, 'list', 'create'] as const,
+    REQUEST: () => [...MATCH_KEY.ALL, 'list', 'request'] as const,
   },
 
   RESULT: {
@@ -54,13 +57,15 @@ export const MATCH_KEY = {
   },
 
   DETAIL: (matchId: number) => [...MATCH_KEY.ALL, 'detail', matchId] as const,
+  MEMBERS: (matchId: number) => [...MATCH_KEY.ALL, 'members', matchId] as const,
   USERS_NUM_COUNT: (matchId: number) => [...MATCH_KEY.ALL, 'usersNumCount', matchId] as const,
   PATCH_STAGE: (key?: string) => [...MATCH_KEY.ALL, 'patch', 'stage', key] as const,
 
   OPEN_CHAT: (matchId: number) => [...MATCH_KEY.ALL, 'open-chat', matchId] as const,
 
   DELETE: {
-    MATCH: () => [...MATCH_KEY.ALL, 'delete'] as const,
+    MATCH: () => [...MATCH_KEY.ALL, 'delete', 'match'] as const,
+    CONDITION: () => [...MATCH_KEY.ALL, 'delete', 'condition'] as const,
   },
 } as const;
 

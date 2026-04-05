@@ -8,7 +8,7 @@ export const MAIN_COLORS = {
   'main-400': '#b8d0ff',
   'main-300': '#d0e0ff',
   'main-200': '#e7efff',
-  'main-100': '#e7efff',
+  'main-100': '#f3f7ff',
 };
 
 export const SUB_COLORS = {
@@ -32,6 +32,7 @@ export const ETC_COLORS = {
 
 export const GRAYSCALE_COLORS = {
   'gray-black': '#1a1a1a',
+  'gray-950': '#333333',
   'gray-900': '#3a3a3b',
   'gray-800': '#464748',
   'gray-700': '#656667',

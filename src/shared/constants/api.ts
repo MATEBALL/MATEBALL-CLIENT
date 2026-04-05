@@ -14,10 +14,10 @@ export const END_POINT = {
   USER_INFO: '/v2/users/info',
   GET_NICKNAME_CHECK: (nickname: string) =>
     `/v2/users/info?nickname=${encodeURIComponent(nickname)}`,
-  GET_USER_INFO: '/v1/users/info',
+  GET_USER_INFO: '/v3/users/info',
   POST_INFO_NICKNAME: '/v1/users/info/nickname',
   POST_EDIT_PROFILE: '/v2/users/info',
-  MATCH_CONDITION: '/v2/users/match-condition',
+  MATCH_CONDITION: '/v3/users/match-condition',
 
   // 경기 관련
   GET_GAME_SCHEDULE: (date: string) => `/v1/users/game/schedule?date=${date}`,
@@ -28,15 +28,22 @@ export const END_POINT = {
   GET_SINGLE_LIST: (date: string) => `/v1/users/direct?date=${date}`,
   GET_GROUP_LIST: (date: string) => `/v1/users/group?date=${date}`,
   GET_GROUP_RESULT: (matchId: number | string) => `/v1/users/group/${matchId}`,
+  GET_MATCH_LIST: (gameId: number) => `/v3/users/match/${gameId}`,
 
   POST_MATCH: '/v1/users/match',
-  POST_MATCH_CONDITION: '/v1/users/match-condition',
+  POST_MATCH_CONDITION: '/v3/users/match-condition',
+  DELETE_MATCH_CONDITION: '/v3/users/match-condition',
+  GET_CREATE_LIST: '/v3/users/create',
+  GET_REQUEST_LIST: '/v3/users/request',
 
   GET_SINGLE_STATUS: (status: string) => `/v2/users/match-stage/direct?status=${status}`,
   GET_GROUP_STATUS: (status: string) => `/v2/users/match-stage/group?status=${status}`,
 
   GET_MATCH_DETAIL: (matchId: number | string) => `/v1/users/match/${matchId}`,
-  POST_MATCH_REQUEST: (matchId: number | string) => `/v1/users/match-request/${matchId}`,
+  GET_MATCH_MEMBERS: (matchId: number | string) => `/v3/users/match/members/${matchId}`,
+  GET_MATCH_MEMBERS_DETAIL: (matchId: number | string) =>
+    `/v3/users/match-status/members/${matchId}`,
+  POST_MATCH_REQUEST: (matchId: number | string) => `/v3/users/match-request/${matchId}`,
   PATCH_MATCH_ACCEPT: (matchId: number | string) => `/v1/users/match-accept/${matchId}`,
   PATCH_MATCH_REJECT: (matchId: number | string) => `/v1/users/match-reject/${matchId}`,
   PATCH_MATCH_STAGE: (matchId: number | string) => `/v1/users/match-stage/${matchId}`,

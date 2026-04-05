@@ -20,4 +20,4 @@ export const WEEK_DAY_COLORS: Record<(typeof WEEK_DAYS)[number], string> = {
   토: 'text-week-blue',
 };
 
-export const WEEK_CALENDAR_START_OFFSET = -2;
+export const WEEK_CALENDAR_START_OFFSET = 0;
