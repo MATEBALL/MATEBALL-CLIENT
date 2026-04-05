@@ -89,7 +89,12 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
             className={cn('w-full', { 'cursor-pointer': isClickable(card.statusLabel) })}
             aria-disabled={!isClickable(card.statusLabel)}
           >
-            <Card key={card.id} {...card} className="bg-gray-950" />
+            <Card
+              key={card.id}
+              {...card}
+              color={card.hasUpdate ? 'update' : undefined}
+              className="bg-gray-950"
+            />
           </button>
         ))
       )}

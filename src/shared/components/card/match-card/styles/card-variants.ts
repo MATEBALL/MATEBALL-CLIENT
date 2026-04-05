@@ -14,6 +14,7 @@ export const cardVariants = cva('relative w-full rounded-[12px] bg-white', {
       active: 'bg-main-200 outline outline-main-600',
       inactive: 'bg-white',
       detailed: 'bg-main-100',
+      update: 'outline-[1px] outline-main-800',
     },
   },
   defaultVariants: {

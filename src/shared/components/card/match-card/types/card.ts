@@ -86,7 +86,7 @@ export interface GameCardProps extends BaseCardProps {
 export interface MatchCardProps extends BaseCardProps {
   type: 'match';
   count: number;
-  color?: 'active' | 'inactive';
+  color?: ColorType;
   isGroup: boolean;
   matchTabType: 'created' | 'requested';
   statusLabel: string;
