@@ -7,6 +7,39 @@ declare global {
 
 export const GA_ID = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
 
+export function initGoogleAnalytics() {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+  if (!GA_ID) {
+    return;
+  }
+
+  if (!Array.isArray(window.dataLayer)) {
+    window.dataLayer = [];
+  }
+
+  window.gtag =
+    typeof window.gtag === 'function'
+      ? window.gtag
+      : (...args: unknown[]) => {
+          window.dataLayer.push(args);
+        };
+
+  const gaScriptSrc = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  const hasGaScript = Array.from(document.scripts).some((script) => script.src === gaScriptSrc);
+
+  if (!hasGaScript) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = gaScriptSrc;
+    document.head.appendChild(script);
+  }
+
+  window.gtag('js', new Date());
+  window.gtag('config', GA_ID, { send_page_view: false });
+}
+
 export function getGtag() {
   if (typeof window === 'undefined') {
     return () => {
