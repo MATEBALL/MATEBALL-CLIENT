@@ -9,6 +9,7 @@ interface CalendarSectionProps {
   onDateChange: (date: Date) => void;
   baseWeekDate: Date;
   onOpenBottomSheet: () => void;
+  onWeekChange: (direction: 'prev' | 'next') => void;
   entryDate: Date;
 }
 
@@ -17,6 +18,7 @@ const CalendarSection = ({
   onDateChange,
   baseWeekDate,
   onOpenBottomSheet,
+  onWeekChange,
   entryDate,
 }: CalendarSectionProps) => {
   return (
@@ -33,6 +35,7 @@ const CalendarSection = ({
         onChange={(date) => {
           onDateChange(date);
         }}
+        onWeekChange={onWeekChange}
       />
     </section>
   );
