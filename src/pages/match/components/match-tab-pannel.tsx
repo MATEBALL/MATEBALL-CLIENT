@@ -82,10 +82,18 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
         />
       ) : (
         cards.map((card) => (
-          <button
+          <div
             key={`${card.type}-${card.id}`}
-            type="button"
+            // biome-ignore lint/a11y/useSemanticElements: <explanation>
+            role="button"
+            tabIndex={0}
             onClick={() => handleCardClick(card)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleCardClick(card);
+              }
+            }}
             className={cn('w-full', { 'cursor-pointer': isClickable(card.statusLabel) })}
             aria-disabled={!isClickable(card.statusLabel)}
           >
@@ -95,7 +103,7 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
               color={card.hasUpdate ? 'update' : undefined}
               className="bg-gray-950"
             />
-          </button>
+          </div>
         ))
       )}
       ;

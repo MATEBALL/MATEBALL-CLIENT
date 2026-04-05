@@ -46,7 +46,10 @@ const BottomSheet = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={(event) => {
+              event.stopPropagation();
+              onClose();
+            }}
           />
 
           <motion.div
@@ -60,6 +63,10 @@ const BottomSheet = ({
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
+            onClick={(event) => {
+              event.stopPropagation();
+              onClose();
+            }}
           >
             {showIndicator && <BottomSheetIndicator onClick={onClose} />}
             {children}

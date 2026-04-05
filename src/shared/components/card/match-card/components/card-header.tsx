@@ -57,7 +57,14 @@ const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
           </span>
         )}
         {shouldShowArrow && onMembersClick && (
-          <button type="button" onClick={onMembersClick} className="cursor-pointer">
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onMembersClick?.();
+            }}
+            className="cursor-pointer"
+          >
             <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
           </button>
         )}

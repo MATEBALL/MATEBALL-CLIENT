@@ -87,6 +87,9 @@ const Card = (props: CardProps) => {
               size="XS"
               className="cap_14_sb"
               disabled={!props.isButtonEnabled}
+              onClick={(event) => {
+                event.stopPropagation();
+              }}
             />
           </div>
         )}
