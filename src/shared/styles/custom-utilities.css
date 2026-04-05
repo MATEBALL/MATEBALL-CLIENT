@@ -96,4 +96,12 @@
       #ffffff 72.4%
     );
   }
+
+  .progress-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--main-color-main-700, #5992ff) 0%,
+      var(--main-color-main-900, #1263ff) 100%
+    );
+  }
 }

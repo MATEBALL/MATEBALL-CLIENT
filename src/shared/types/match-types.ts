@@ -109,6 +109,34 @@ export interface matchMember {
   img: string;
 }
 
+export interface createList {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  awayTeam: string;
+  homeTeam: string;
+  stadium: string;
+  date: string;
+  stateLabel: string;
+  update: string | null;
+  img: string[];
+}
+
+export interface requestList {
+  matchId: number;
+  nickname: string;
+  count: number;
+  isGroup: boolean;
+  awayTeam: string;
+  homeTeam: string;
+  stadium: string;
+  date: string;
+  stateLabel: string;
+  update: string | null;
+  imageUrls: string[];
+}
+
 //
 // ─── 요청 및 응답 타입 ─────────────────────────────────────────
 //
@@ -278,6 +306,15 @@ export interface getMatchMembersResponse {
 }
 
 /**
+ * 매칭된 그룹원 상세 리스트 응답
+ * get
+ * /v3/users/match-status/member/{matchId}
+ */
+export interface getMatchMembersDetailResponse {
+  results: matchMember[];
+}
+
+/**
  * 오픈채팅방 주소 조회
  * get
  * /v2/users/match/{matchId}/chatting
@@ -288,3 +325,23 @@ export interface getOpenChatUrlResponse {
   message: string;
   data: { chattingUrl: string };
 }
+
+/**
+ * 생성한 매칭 리스트 조회
+ * get
+ * /v3/users/create
+ */
+
+export type getCreateListResponse = {
+  results: createList[];
+};
+
+/**
+ * 요청한 매칭 리스트 조회
+ * get
+ * /v3/users/request
+ */
+
+export type getRequestListResponse = {
+  results: requestList[];
+};

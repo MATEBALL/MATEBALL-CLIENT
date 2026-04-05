@@ -40,7 +40,9 @@ const BottomNavigation = () => {
     <div
       className={cn(
         'sticky bottom-0 z-[var(--z-bottom-nav)] flex w-full justify-between px-[1.6rem] py-[0.8rem]',
-        isDark ? 'bg-gray-black' : 'border-gray-200 border-t bg-gray-white shadow-2',
+        isDark
+          ? 'border-gray-900 border-t bg-gray-black shadow-2'
+          : 'border-gray-200 border-t bg-gray-white shadow-2',
       )}
     >
       {NAV_ITEMS.map(({ label, path, icon }) => {

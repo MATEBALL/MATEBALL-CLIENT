@@ -1,3 +1,4 @@
+import MemberDetail from '@pages/match/member-detail/member-detail';
 import {
   ChatList,
   ChatRoom,
@@ -26,6 +27,7 @@ export const protectedRoutes = [
   { path: ROUTES.GROUP_MATES(), element: <GroupMates /> },
   { path: ROUTES.GROUP_NEW(), element: <GroupNew /> },
   { path: ROUTES.MATCH, element: <Match /> },
+  { path: ROUTES.MATCH_MEMBER_DETAIL(), element: <MemberDetail /> },
   { path: ROUTES.PROFILE, element: <Profile /> },
   { path: ROUTES.PROFILE_EDIT, element: <EditProfile /> },
   { path: ROUTES.CHAT, element: <ChatList /> },

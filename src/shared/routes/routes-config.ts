@@ -12,6 +12,10 @@ export const ROUTES = {
   GROUP_MATES: (id = ':matchId') => `/match/groups/mates/${id}`,
   GROUP_NEW: (id = ':matchId') => `/match/groups/${id}/new`,
   MATCH: '/match',
+  MATCH_MEMBER_DETAIL: (
+    matchId: number | string = ':matchId',
+    memberId: number | string = ':memberId',
+  ) => `/match/${matchId}/members/${memberId}`,
   PROFILE: '/profile',
   PROFILE_EDIT: '/profile/edit',
   CHAT: '/chat',

@@ -1,4 +1,4 @@
-import CarouselIndicator from '@pages/match/groups/components/carousel_indicator';
+import CarouselIndicator from '@pages/match/groups/components/carousel-indicator';
 import { useSlide } from '@pages/match/hooks/useSlide';
 import { getSlideTransformStyle } from '@pages/match/styles/get-slide-transformstyle';
 import { useState } from 'react';

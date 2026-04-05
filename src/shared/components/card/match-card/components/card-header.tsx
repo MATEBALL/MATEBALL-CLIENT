@@ -9,12 +9,16 @@ import { cn } from '@libs/cn';
 import { ROUTES } from '@routes/routes-config';
 import { matchPath, useLocation } from 'react-router-dom';
 
-const CardHeader = (props: CardProps) => {
+type CardHeaderProps = CardProps & {
+  onMembersClick?: () => void;
+};
+
+const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
   const { pathname } = useLocation();
   const isCreateMatchPage = matchPath(ROUTES.MATCH_CREATE(), pathname);
 
   const getCrownSpec = (t: CardProps['type']) => {
-    if (t === 'group' || t === 'game') {
+    if (t === 'group' || t === 'game' || t === 'match') {
       return {
         box: 'h-[1.2rem] w-[1.2rem]',
         pos: 'left-[1.6rem] bottom-0',
@@ -30,14 +34,15 @@ const CardHeader = (props: CardProps) => {
 
   const renderProfile = (p: CardProps) => {
     const spec = getCrownSpec(p.type);
-    const shouldShowCrown = p.isCreated || p.type === 'game';
+    const shouldShowCrown = p.isCreated || p.type === 'game' || p.type === 'match';
+    const shouldShowArrow = p.type !== 'detailed';
 
     return (
-      <div className="relative isolate">
+      <div className="relative isolate flex items-center gap-[0.4rem]">
         <CardProfile
           type={p.type}
           imgUrl={p.imgUrl}
-          isGroup={p.type === 'game' ? p.isGroup : undefined}
+          isGroup={p.type === 'game' || p.type === 'match' ? p.isGroup : undefined}
         />
         {shouldShowCrown && (
           <span
@@ -50,6 +55,18 @@ const CardHeader = (props: CardProps) => {
           >
             <Icon name="crown" size={spec.size} className="text-owner" aria-hidden />
           </span>
+        )}
+        {shouldShowArrow && onMembersClick && (
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onMembersClick?.();
+            }}
+            className="cursor-pointer"
+          >
+            <Icon name="arrow-right-18" size={1.8} className="text-gray-white" />
+          </button>
         )}
       </div>
     );
@@ -177,6 +194,30 @@ const CardHeader = (props: CardProps) => {
             </div>
             {renderProfile(props)}
           </div>
+        </div>
+      );
+
+    case 'match':
+      return (
+        <div className="w-full flex-col gap-[0.4rem]">
+          <div className="subhead_18_sb text-start">
+            <div className="flex w-full text-gray-white">
+              {props.nickname} 외 {props.count - 1}명
+              {!isCreateMatchPage && (
+                <div className="ml-auto flex-row gap-[0.4rem]">
+                  {props.updateLabel && <ChipState status={props.updateLabel} />}
+
+                  <Chip
+                    label={props.isGroup ? '그룹' : '1:1'}
+                    bgColor={props.isGroup ? '그룹' : '1:1'}
+                    textColor={props.isGroup ? '그룹' : '1:1'}
+                    className="rounded-[8px]"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          {renderProfile(props)}
         </div>
       );
   }
