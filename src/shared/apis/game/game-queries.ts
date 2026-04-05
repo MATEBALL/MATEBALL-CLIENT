@@ -1,9 +1,8 @@
 import { get } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { GAME_KEY } from '@constants/query-key';
-import { queryOptions } from '@tanstack/react-query';
-import type { ApiResponse } from '@/shared/types/base-types';
 import { keepPreviousData, queryOptions } from '@tanstack/react-query';
+import type { ApiResponse } from '@/shared/types/base-types';
 import type { getGameScheduleResponse } from '@/shared/types/game-types';
 import { handleNotFoundError } from '@/shared/utils/query-error-handler';
 

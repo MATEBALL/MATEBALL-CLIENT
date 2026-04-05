@@ -2,10 +2,13 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "incremental": true,
     "target": "ES2020",
     "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "skipLibCheck": true,
     /* Bundler mode */
@@ -24,21 +27,51 @@
     /* path alias */
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["./src/pages/*"],
-      "@apis/*": ["./src/shared/apis/*"],
-      "@styles/*": ["./src/shared/styles/*"],
-      "@components/*": ["./src/shared/components/*"],
-      "@libs/*": ["./src/shared/libs/*"],
-      "@constants/*": ["./src/shared/constants/*"],
-      "@mocks/*": ["./src/shared/mocks/*"],
-      "@hooks/*": ["./src/shared/hooks/*"],
-      "@types/*": ["./src/shared/types/*"],
-      "@routes/*": ["./src/shared/routes/*"],
-      "@img/*": ["./src/shared/assets/images/*"],
-      "@svg/*": ["./src/shared/assets/svgs/*"],
-      "@lotties/*": ["./src/shared/assets/lotties/*"],
-      "@/*": ["./src/*"]
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@apis/*": [
+        "./src/shared/apis/*"
+      ],
+      "@styles/*": [
+        "./src/shared/styles/*"
+      ],
+      "@components/*": [
+        "./src/shared/components/*"
+      ],
+      "@libs/*": [
+        "./src/shared/libs/*"
+      ],
+      "@constants/*": [
+        "./src/shared/constants/*"
+      ],
+      "@mocks/*": [
+        "./src/shared/mocks/*"
+      ],
+      "@hooks/*": [
+        "./src/shared/hooks/*"
+      ],
+      "@types/*": [
+        "./src/shared/types/*"
+      ],
+      "@routes/*": [
+        "./src/shared/routes/*"
+      ],
+      "@img/*": [
+        "./src/shared/assets/images/*"
+      ],
+      "@svg/*": [
+        "./src/shared/assets/svgs/*"
+      ],
+      "@lotties/*": [
+        "./src/shared/assets/lotties/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

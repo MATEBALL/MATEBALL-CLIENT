@@ -32,9 +32,8 @@ const Home = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const entryDate = new Date();
-  const fallbackSelectedDate = getInitialSelectedDate(entryDate);
+  const fallbackSelectedDate = entryDate;
   const initialQuerySelectedDate = getSelectedDateFromQuery(searchParams, fallbackSelectedDate);
-  const initialSelectedDate = entryDate;
 
   const [selectedDate, setSelectedDate] = useState(initialQuerySelectedDate);
   const [baseWeekDate, setBaseWeekDate] = useState(
@@ -95,10 +94,11 @@ const Home = () => {
     navigate(ROUTES.ONBOARDING);
   };
 
-  const handleOpenMatchingCtaBottomSheet = () => {
-    setSelectedCreateType(activeType);
-    setIsMatchingCtaBottomSheetOpen(true);
-  };
+  // TODO: 추후 연결
+  // const handleOpenMatchingCtaBottomSheet = () => {
+  //   setSelectedCreateType(activeType);
+  //   setIsMatchingCtaBottomSheetOpen(true);
+  // };
 
   const handleMatchingCtaSubmit = (type: TabType) => {
     setSelectedCreateType(type);
