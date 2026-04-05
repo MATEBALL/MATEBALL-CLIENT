@@ -2,6 +2,7 @@ import { buttonVariants } from '@components/button/button/styles/button-variants
 import Icon from '@components/icon/icon';
 import { cn } from '@libs/cn';
 import type { VariantProps } from 'class-variance-authority';
+import type { MouseEventHandler } from 'react';
 
 type ButtonType = 'button' | 'submit' | 'reset';
 
@@ -9,7 +10,7 @@ interface ButtonProps extends VariantProps<typeof buttonVariants> {
   label: string;
   className?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   ariaLabel?: string;
   type?: ButtonType;
   icon?: string;

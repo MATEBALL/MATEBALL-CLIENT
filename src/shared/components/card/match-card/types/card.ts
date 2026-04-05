@@ -10,7 +10,7 @@ export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']
 export interface BaseCardProps {
   id: number;
   chipColor?: ChipColorType;
-  type: 'single' | 'group' | 'detailed' | 'game';
+  type: 'single' | 'group' | 'detailed' | 'game' | 'match';
   className?: string;
   nickname: string;
   date: string;
@@ -83,15 +83,28 @@ export interface GameCardProps extends BaseCardProps {
   isGroup: boolean;
 }
 
+export interface MatchCardProps extends BaseCardProps {
+  type: 'match';
+  count: number;
+  color?: ColorType;
+  isGroup: boolean;
+  matchTabType: 'created' | 'requested';
+  statusLabel: string;
+  isButtonEnabled: boolean;
+  hasUpdate?: boolean;
+  updateLabel?: string | null;
+}
+
 export type CardProps =
   | SingleCardProps
   | GroupCardProps
   | DetailedCardProps
   | UserCardProps
-  | GameCardProps;
+  | GameCardProps
+  | MatchCardProps;
 
 export interface CardProfileProps {
-  type: 'single' | 'group' | 'detailed' | 'user' | 'game';
+  type: 'single' | 'group' | 'detailed' | 'user' | 'game' | 'match';
   imgUrl: string[];
   isGroup?: boolean;
 }

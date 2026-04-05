@@ -3,13 +3,16 @@ import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
 import type {
+  getCreateListResponse,
   getGameMatchListResponse,
   getGroupMatchListResponse,
   getGroupMatchMate,
   getGroupMatchResultResponse,
   getMatchCountResponse,
   getMatchDetailResponse,
+  getMatchMembersDetailResponse,
   getMatchMembersResponse,
+  getRequestListResponse,
   getSingleMatchListResponse,
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
@@ -141,6 +144,15 @@ export const matchQueries = {
     }),
 
   /**
+   * 매칭된 그룹원 리스트 조회
+   */
+  MATCH_MEMBERS_DETAIL: (matchId: number) =>
+    queryOptions<getMatchMembersDetailResponse>({
+      queryKey: MATCH_KEY.MEMBERS(matchId),
+      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS_DETAIL(matchId)),
+    }),
+
+  /**
    * 오픈채팅방 주소 조회
    */
   OPEN_CHAT_URL: (matchId: number, enabled = true) =>
@@ -148,5 +160,23 @@ export const matchQueries = {
       queryKey: MATCH_KEY.OPEN_CHAT(matchId),
       queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
       enabled,
+    }),
+
+  /**
+   * 생성한 매칭 리스트 조회
+   */
+  CREATE_LIST: () =>
+    queryOptions<getCreateListResponse>({
+      queryKey: MATCH_KEY.LIST.CREATE(),
+      queryFn: () => get(END_POINT.GET_CREATE_LIST),
+    }),
+
+  /**
+   * 생성한 매칭 리스트 조회
+   */
+  REQUEST_LIST: () =>
+    queryOptions<getRequestListResponse>({
+      queryKey: MATCH_KEY.LIST.REQUEST(),
+      queryFn: () => get(END_POINT.GET_REQUEST_LIST),
     }),
 };

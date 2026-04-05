@@ -9,7 +9,8 @@ export type ProfileType = CardProfileProps['type'];
 
 const CardProfile = ({ type, imgUrl, isGroup }: CardProfileProps) => {
   const urls = normalizeUrls(imgUrl);
-  const slotCount = type === 'game' ? (isGroup ? 4 : 2) : PROFILE_SLOT_COUNT[type];
+  const slotCount =
+    type === 'game' || type === 'match' ? (isGroup ? 4 : 2) : PROFILE_SLOT_COUNT[type];
   const slots = Array.from({ length: slotCount }, (_, i) => urls[i] ?? '');
 
   const renderGroupItem = (src: string, i: number) => {
@@ -59,7 +60,7 @@ const CardProfile = ({ type, imgUrl, isGroup }: CardProfileProps) => {
     </div>
   );
 
-  if (type === 'group' || type === 'game') {
+  if (type === 'group' || type === 'game' || type === 'match') {
     return <div className="flex items-center gap-[0.4rem]">{slots.map(renderGroupItem)}</div>;
   }
 

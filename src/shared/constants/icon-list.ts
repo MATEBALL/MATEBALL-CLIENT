@@ -48,6 +48,7 @@ export const iconNames = [
   'matchinglist-lined',
   'my-filled',
   'my-lined',
+  'now-point',
   'passion',
   'plus',
   'profile',

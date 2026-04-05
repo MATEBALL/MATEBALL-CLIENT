@@ -31,6 +31,8 @@ export const MATCH_KEY = {
     SINGLE: (date: string) => [...MATCH_KEY.ALL, 'list', 'single', date] as const,
     GROUP: (date: string) => [...MATCH_KEY.ALL, 'list', 'group', date] as const,
     GAME: (gameId: number) => [...MATCH_KEY.ALL, 'list', 'game', gameId] as const,
+    CREATE: () => [...MATCH_KEY.ALL, 'list', 'create'] as const,
+    REQUEST: () => [...MATCH_KEY.ALL, 'list', 'request'] as const,
   },
 
   RESULT: {
