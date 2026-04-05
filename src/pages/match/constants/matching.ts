@@ -1,18 +1,18 @@
+export const MATCH_TAB_TYPES = {
+  CREATED: '생성한 매칭',
+  REQUESTED: '요청한 매칭',
+} as const;
+
+export type MatchTabType = (typeof MATCH_TAB_TYPES)[keyof typeof MATCH_TAB_TYPES];
+
+export const MATCH_TAB_LIST: MatchTabType[] = [MATCH_TAB_TYPES.CREATED, MATCH_TAB_TYPES.REQUESTED];
+
 export const MATCHING_NOTICE = {
   group: '동시에 진행할 수 있는 그룹 매칭은 최대 2개예요.',
   single: '동시에 진행할 수 있는 1:1 매칭은 최대 3개예요.',
 };
 
-export const MATCHING_COMPLETE_MESSAGE = {
-  group: '모든 그룹원이 수락하면 그룹원이 돼요.',
-  single: '상대방이 요청을 승인하면 매칭이 성사돼요.',
-};
-
-export const MATCHING_HEADER_MESSAGE = (nickname: string, isGroup: boolean) =>
-  ({
-    group: `${nickname} 님과 딱 맞는 그룹원이에요!`,
-    single: `${nickname} 님과 딱 맞는 메이트예요!`,
-  })[isGroup ? 'group' : 'single'];
+export const MATCHING_HEADER_MESSAGE = (nickname: string) => `${nickname}님과 딱 맞는 메이트예요!`;
 
 export const MATCHING_DESCRIPTION = {
   group: {
@@ -35,10 +35,16 @@ export const MAX_CREATE_DESCRIPTION = {
 };
 
 export const MATCHING_GUIDE_MESSAGE_TITLE = (nickname: string) =>
-  `${nickname} 님을 위한\n맞춤 매칭이 생성되었어요!`;
+  `${nickname}님을 위한\n맞춤 매칭이 생성되었어요!`;
+
+export const MATCHING_SUGGESTION_MESSAGE_TITLE = (nickname: string) =>
+  `${nickname}님을 위한\n매칭카드를 만들어 드릴까요?`;
 
 export const MATCHING_GUIDE_MESSAGE_DESCRIPTION =
-  '딱! 맞는 메이트의 요청이 도착하면\n' + "'매칭 현황'에서 확인할 수 있어요.";
+  '새 요청이 도착하면\n매칭 현황에서 확인할 수 있어요.';
+
+export const GROUP_MATCHING_CREATED_DESCRIPTION =
+  '매칭 현황에서 요청을 확인하고\n채팅방에서 메이트와 만날 수 있어요.';
 
 export const CLICKABLE_STATUS_MAP: Record<string, string> = {
   '매칭 완료': 'success',

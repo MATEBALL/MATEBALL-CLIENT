@@ -50,7 +50,7 @@
   }
 
   .header-layout {
-    @apply sticky top-0 z-[var(--z-header)] h-[5.6rem] py-[1.55rem] pl-[2rem];
+    @apply sticky top-0 z-[var(--z-header)] h-[5.6rem] py-[1.55rem] pl-[1.2rem];
   }
 
   .onboarding-layout {
@@ -94,6 +94,14 @@
       74.24% 74.24% at 50.22% 50.22%,
       rgba(255, 255, 255, 0) 46.82%,
       #ffffff 72.4%
+    );
+  }
+
+  .progress-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--main-color-main-700, #5992ff) 0%,
+      var(--main-color-main-900, #1263ff) 100%
     );
   }
 }

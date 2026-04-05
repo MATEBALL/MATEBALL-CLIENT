@@ -3,7 +3,6 @@ import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match
 import MatchingCtaBottomSheet from '@components/bottom-sheet/matching-cta/matching-cta-bottom-sheet';
 import Button from '@components/button/button/button';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
-import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import Dialog from '@components/dialog/dialog';
 import type { TabType } from '@components/tab/tab/constants/tab-type';
 import useAuth from '@hooks/use-auth';
@@ -11,7 +10,7 @@ import { useTabState } from '@hooks/use-tab-state';
 import { gaEvent } from '@libs/analytics';
 import CalendarBottomSheet from '@pages/home/components/calendar-bottom-sheet';
 import CalendarSection from '@pages/home/components/calendar-section';
-import MatchListSection from '@pages/home/components/match-list-section';
+import GameListSection from '@pages/home/components/game-list-section';
 import TopSection from '@pages/home/components/top-section';
 import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condition';
 import { ROUTES } from '@routes/routes-config';
@@ -29,12 +28,13 @@ const getSelectedDateFromQuery = (searchParams: URLSearchParams, fallbackDate: D
 };
 
 const Home = () => {
-  const { activeType, changeTab, isSingle, isGroup } = useTabState();
+  const { activeType, changeTab } = useTabState();
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const entryDate = new Date();
   const fallbackSelectedDate = getInitialSelectedDate(entryDate);
   const initialQuerySelectedDate = getSelectedDateFromQuery(searchParams, fallbackSelectedDate);
+  const initialSelectedDate = entryDate;
 
   const [selectedDate, setSelectedDate] = useState(initialQuerySelectedDate);
   const [baseWeekDate, setBaseWeekDate] = useState(
@@ -86,6 +86,9 @@ const Home = () => {
       setBaseWeekDate(queryDate);
     }
   }, [fallbackSelectedDate, searchParams, selectedDate]);
+  const handleWeekChange = (direction: 'prev' | 'next') => {
+    setBaseWeekDate((prev) => addDays(prev, direction === 'next' ? 7 : -7));
+  };
 
   const handleComplete = () => {
     gaEvent('condition_set_start');
@@ -104,7 +107,7 @@ const Home = () => {
   };
 
   return (
-    <div className="h-full bg-gray-200 pb-[5.6rem]">
+    <div className="h-full bg-gray-black pt-[0.8rem] pb-[5.6rem]">
       <TopSection />
       <CalendarSection
         activeType={activeType}
@@ -113,13 +116,8 @@ const Home = () => {
         onDateChange={handleDateChange}
         baseWeekDate={baseWeekDate}
         onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
-      />
-      <MatchListSection
-        activeType={activeType}
-        isSingle={isSingle}
-        isGroup={isGroup}
-        selectedDate={selectedDate}
-        onOpenGameInfoBottomSheet={handleOpenMatchingCtaBottomSheet}
+        onWeekChange={handleWeekChange}
+        entryDate={entryDate}
       />
       <MatchingCtaBottomSheet
         isOpen={isMatchingCtaBottomSheetOpen}
@@ -129,6 +127,7 @@ const Home = () => {
         initialType={activeType}
         onSubmit={handleMatchingCtaSubmit}
       />
+      <GameListSection selectedDate={selectedDate} />
       <CalendarBottomSheet
         isOpen={isCalendarBottomSheetOpen}
         onClose={() => setIsCalendarBottomSheetOpen(false)}

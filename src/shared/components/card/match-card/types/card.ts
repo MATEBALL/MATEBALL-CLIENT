@@ -10,7 +10,7 @@ export type ChipColor = NonNullable<VariantProps<typeof chipVariants>['bgColor']
 export interface BaseCardProps {
   id: number;
   chipColor?: ChipColorType;
-  type: 'single' | 'group' | 'detailed';
+  type: 'single' | 'group' | 'detailed' | 'game' | 'match';
   className?: string;
   nickname: string;
   date: string;
@@ -55,6 +55,8 @@ export interface DetailedCardProps extends BaseCardProps {
   chips: ChipColor[];
   team: string;
   style: string;
+  avgGame?: number;
+  avgSeason?: number;
   isCreated?: boolean;
 }
 
@@ -73,11 +75,38 @@ export interface UserCardProps {
   isCreated?: boolean;
 }
 
-export type CardProps = SingleCardProps | GroupCardProps | DetailedCardProps | UserCardProps;
+export interface GameCardProps extends BaseCardProps {
+  type: 'game';
+  count: number;
+  color?: 'active' | 'inactive';
+  matchRate?: number;
+  isGroup: boolean;
+}
+
+export interface MatchCardProps extends BaseCardProps {
+  type: 'match';
+  count: number;
+  color?: ColorType;
+  isGroup: boolean;
+  matchTabType: 'created' | 'requested';
+  statusLabel: string;
+  isButtonEnabled: boolean;
+  hasUpdate?: boolean;
+  updateLabel?: string | null;
+}
+
+export type CardProps =
+  | SingleCardProps
+  | GroupCardProps
+  | DetailedCardProps
+  | UserCardProps
+  | GameCardProps
+  | MatchCardProps;
 
 export interface CardProfileProps {
-  type: 'single' | 'group' | 'detailed' | 'user';
+  type: 'single' | 'group' | 'detailed' | 'user' | 'game' | 'match';
   imgUrl: string[];
+  isGroup?: boolean;
 }
 
 export interface CardGameInfoProps {

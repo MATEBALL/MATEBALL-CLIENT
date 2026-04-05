@@ -1,21 +1,12 @@
-import CardBanner from '@components/card/banner-card/banner-card';
-import { ROUTES } from '@routes/routes-config';
-import { useNavigate } from 'react-router-dom';
-
 const TopSection = () => {
-  const navigate = useNavigate();
-
-  const handleBannerClick = () => {
-    navigate(ROUTES.GUIDE);
-  };
+  // TODO: 유저 수 api 연결
+  const MOCK_USERS = 124;
 
   return (
-    <section className="min-h-[9.6rem] bg-gray-black px-[1.6rem] pt-[0.1rem]">
-      <CardBanner
-        subText="나와 딱 맞는 직관 메이트를 찾고 싶다면?"
-        text="이용가이드 보러 가기"
-        onClick={handleBannerClick}
-      />
+    <section className="mx-[1.6rem] rounded-[12px] bg-gray-900 px-[1.6rem] py-[1rem]">
+      <p className="cap_14_m text-gray-white">
+        현재 <span className="text-sub-800">{MOCK_USERS}명</span>이 메이트를 찾고 있어요!🔥
+      </p>
     </section>
   );
 };

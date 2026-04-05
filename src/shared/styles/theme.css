@@ -9,7 +9,7 @@
   --color-main-400: #b8d0ff;
   --color-main-300: #d0e0ff;
   --color-main-200: #e7efff;
-  --color-main-100: #e7efff;
+  --color-main-100: #f3f7ff;
 
   /* Sub */
   --color-sub-1000: #a6cc4b;
@@ -31,6 +31,7 @@
 
   /* Grayscale */
   --color-gray-black: #1a1a1a;
+  --color-gray-950: #333333;
   --color-gray-900: #3a3a3b;
   --color-gray-800: #464748;
   --color-gray-700: #656667;

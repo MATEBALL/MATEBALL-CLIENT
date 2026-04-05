@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer
       className={clsx('cap_12_m w-full flex-col gap-[2.4rem] px-[1.6rem] py-[3.2rem]', {
-        'bg-gray-200': isHome,
+        'bg-gray-black': isHome,
       })}
     >
       <div className="flex-col gap-[0.8rem]">

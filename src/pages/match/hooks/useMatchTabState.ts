@@ -1,42 +1,24 @@
-import type { TabType } from '@components/tab/tab/tab-content';
-import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { MATCH_TAB_TYPES, type MatchTabType } from '../constants/matching';
+
+const isMatchTabType = (value: string | null): value is MatchTabType =>
+  value === MATCH_TAB_TYPES.CREATED || value === MATCH_TAB_TYPES.REQUESTED;
 
 export const useMatchTabState = () => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-
-  const isTabType = (value: string | null): value is TabType => {
-    return value === '1:1' || value === '그룹';
-  };
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const tabParam = searchParams.get('tab');
-  const filterParam = searchParams.get('filter');
-  const initialTab: TabType = isTabType(tabParam) ? tabParam : '1:1';
-  const initialFilter = filterParam || '전체';
+  const initialTab: MatchTabType = isMatchTabType(tabParam) ? tabParam : MATCH_TAB_TYPES.CREATED;
 
-  const [tabState, setTabState] = useState({ type: initialTab, filter: initialFilter });
+  const [activeTab, setActiveTab] = useState<MatchTabType>(initialTab);
 
-  const updateTabQuery = (type: TabType, filter: string) => {
-    const query = new URLSearchParams();
-    query.set('tab', type);
-    query.set('filter', filter);
-    navigate(`${ROUTES.MATCH}?${query.toString()}`, { replace: true });
+  const handleTabChange = (tab: MatchTabType) => {
+    setActiveTab(tab);
+    setSearchParams({ tab }, { replace: true });
   };
 
-  const handleTabChange = (type: TabType) => {
-    setTabState({ type, filter: '전체' });
-    updateTabQuery(type, '전체');
-  };
+  const isCreatedTab = activeTab === MATCH_TAB_TYPES.CREATED;
 
-  const handleFilterChange = (filter: string) => {
-    setTabState((prev) => {
-      const next = { ...prev, filter };
-      updateTabQuery(next.type, filter);
-      return next;
-    });
-  };
-
-  return { tabState, handleTabChange, handleFilterChange };
+  return { activeTab, handleTabChange, isCreatedTab };
 };

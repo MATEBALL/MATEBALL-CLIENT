@@ -1,4 +1,3 @@
-import type { GroupCardProps, SingleCardProps } from '@components/card/match-card/types/card';
 import type { ChipColor } from '@components/chip/chip-list';
 import { chipVariantOptions } from '@components/chip/styles/chip-variants';
 import { MATCH_PENDING_TOAST_MESSAGES } from '@constants/error-toast';
@@ -21,19 +20,11 @@ export const getCardColor = (status?: string): 'active' | 'inactive' => {
 
 export const fillTabItems = ['전체', '대기 중', '완료', '실패'];
 
-type MatchableCardProps = SingleCardProps | GroupCardProps;
-
-export const getPendingToast = (
-  status?: string,
-  type?: MatchableCardProps['type'],
-): string | '' => {
+export const getPendingToast = (status?: string): string | '' => {
   if (!status) return '';
   if (status === '요청 대기 중') return MATCH_PENDING_TOAST_MESSAGES.REQUEST_WAITING;
-  if (status === '승인 대기 중') {
-    return type === 'group'
-      ? MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING.group
-      : MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING.single;
-  }
+  if (status === '승인 대기 중') MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING;
+
   return '';
 };
 

@@ -1,22 +1,19 @@
 import Button from '@components/button/button/button';
 import { useFunnel } from '@hooks/use-funnel';
-import Complete from '@pages/onboarding/components/complete';
-import DateSelect from '@pages/onboarding/components/date-select';
+// import Complete from '@pages/onboarding/components/complete';
+// import DateSelect from '@pages/onboarding/components/date-select';
 import GroupRole from '@pages/onboarding/components/group-role';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
 import ProgressBar from '@pages/onboarding/components/progress-bar';
 import { GROUP_FUNNEL_STEPS } from '@pages/onboarding/constants/onboarding';
-import {
-  getButtonLabel,
-  handleButtonClick,
-  isButtonDisabled,
-} from '@pages/onboarding/utils/onboarding-button';
+import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// TODO: 그룹 온보딩 관련 전부 삭제
 const OnboardingGroup = () => {
-  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev, goTo } = useFunnel(
+  const { Funnel, Step, currentStep, currentIndex, steps, goNext, goPrev } = useFunnel(
     GROUP_FUNNEL_STEPS,
     ROUTES.HOME,
   );
@@ -52,7 +49,7 @@ const OnboardingGroup = () => {
       </div>
 
       <div className="flex-1 flex-col-between">
-        <Funnel>
+        <Funnel currentStep={currentStep}>
           <Step name="GROUP_ROLE">
             <GroupRole
               selectedOption={selection.GROUP_ROLE}
@@ -60,32 +57,22 @@ const OnboardingGroup = () => {
             />
           </Step>
 
-          <Step name="DATE_SELECT">
-            <DateSelect groupRole={selection.GROUP_ROLE} />
-          </Step>
+          {/* <Step name="DATE_SELECT">
+            <DateSelect />
+          </Step> */}
 
-          <Step name="COMPLETE">
+          {/* <Step name="COMPLETE">
             <Complete />
-          </Step>
+          </Step> */}
         </Funnel>
         {currentStep !== 'DATE_SELECT' && (
           <div className="sticky bottom-0 w-full p-[1.6rem]">
             <Button
-              label={getButtonLabel(currentStep)}
+              label="다음으로"
               size="L"
               variant="blue"
               disabled={isButtonDisabled(currentStep, selection)}
-              onClick={() =>
-                handleButtonClick(
-                  currentStep,
-                  selection,
-                  goNext,
-                  navigate,
-                  undefined,
-                  undefined,
-                  goTo,
-                )
-              }
+              onClick={() => handleButtonClick(currentStep, selection, goNext, navigate, undefined)}
             />
           </div>
         )}
