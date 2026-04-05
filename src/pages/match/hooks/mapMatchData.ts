@@ -30,6 +30,7 @@ const baseMatchCard = (
   statusLabel: mate.stateLabel,
   isButtonEnabled: getIsButtonEnabled(matchTabType, mate.stateLabel),
   hasUpdate: mate.update !== null,
+  updateLabel: mate.update,
 });
 
 export const mapCreateMatchData = (mates: createList[] = []): MatchCardProps[] => {

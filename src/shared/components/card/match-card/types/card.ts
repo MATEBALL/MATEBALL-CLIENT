@@ -92,6 +92,7 @@ export interface MatchCardProps extends BaseCardProps {
   statusLabel: string;
   isButtonEnabled: boolean;
   hasUpdate?: boolean;
+  updateLabel?: string | null;
 }
 
 export type CardProps =

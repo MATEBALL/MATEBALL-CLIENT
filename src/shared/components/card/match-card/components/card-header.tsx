@@ -198,7 +198,8 @@ const CardHeader = ({ onMembersClick, ...props }: CardHeaderProps) => {
               {props.nickname} 외 {props.count - 1}명
               {!isCreateMatchPage && (
                 <div className="ml-auto flex-row gap-[0.4rem]">
-                  {/* TODO: 새 요청, 매칭 실패 칩 렌더링 */}
+                  {props.updateLabel && <ChipState status={props.updateLabel} />}
+
                   <Chip
                     label={props.isGroup ? '그룹' : '1:1'}
                     bgColor={props.isGroup ? '그룹' : '1:1'}
