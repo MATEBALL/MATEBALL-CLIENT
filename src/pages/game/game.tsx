@@ -23,7 +23,7 @@ const Game = () => {
     enabled: Number.isFinite(parsedGameId),
   });
 
-  const hasCreatedMatch = gameMatchData?.result.some((match) => match.matchRate === null);
+  const hasCreatedMatch = gameMatchData?.result?.some((match) => match.matchRate === null);
 
   const handleCreateMatchClick = () => {
     if (hasCreatedMatch) {
@@ -55,7 +55,7 @@ const Game = () => {
 
   return (
     <div className="relative h-full flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
-      {gameMatchData?.result.map((match) => (
+      {gameMatchData?.result?.map((match) => (
         // TODO: 매칭 현황 상태가 [그룹원 모집중]인 카드만 노출
         <button
           key={match.matchId}

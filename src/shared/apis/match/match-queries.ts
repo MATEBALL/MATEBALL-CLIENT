@@ -117,8 +117,29 @@ export const matchQueries = {
       queryKey: MATCH_KEY.LIST.GAME(gameId),
       queryFn: async () => {
         try {
-          const res = await get<getGameMatchListResponse>(END_POINT.GET_MATCH_LIST(gameId));
-          return res;
+          const res = await get<getGameMatchListResponse | ApiResponse<getGameMatchListResponse>>(
+            END_POINT.GET_MATCH_LIST(gameId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return (
+              res.data ?? {
+                awayTeam: '',
+                homeTeam: '',
+                date: '',
+                stadium: '',
+                result: [],
+              }
+            );
+          }
+
+          return res as getGameMatchListResponse;
         } catch (error) {
           return handleNotFoundError(error, {
             awayTeam: '',
