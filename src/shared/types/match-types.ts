@@ -302,6 +302,7 @@ export interface getMatchDetailResponse {
  * /v3/users/match/members/{matchId}
  */
 export interface getMatchMembersResponse {
+  leader: string;
   results: matchMember[];
 }
 

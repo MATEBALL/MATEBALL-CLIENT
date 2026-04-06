@@ -188,7 +188,27 @@ export const matchQueries = {
   MATCH_MEMBERS: (matchId: number) =>
     queryOptions<getMatchMembersResponse>({
       queryKey: MATCH_KEY.MEMBERS(matchId),
-      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS(matchId)),
+      queryFn: async () => {
+        try {
+          const res = await get<getMatchMembersResponse | ApiResponse<getMatchMembersResponse>>(
+            END_POINT.GET_MATCH_MEMBERS(matchId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { leader: '', results: [] };
+          }
+
+          return res as getMatchMembersResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { leader: '', results: [] });
+        }
+      },
     }),
 
   /**
