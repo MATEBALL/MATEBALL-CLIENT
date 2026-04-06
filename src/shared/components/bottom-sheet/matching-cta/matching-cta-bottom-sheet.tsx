@@ -48,32 +48,34 @@ const MatchingCtaBottomSheet = ({
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
-      <div className="w-full flex-col gap-[1.6rem] px-[1.6rem] pt-[1.6rem]">
-        <p className="body_16_b text-gray-black">아직 매칭이 없어요. 먼저 만들어볼까요?</p>
+      <div className="flex-col gap-[1.2rem]">
+        <div className="w-full flex-col gap-[1.6rem] px-[1.6rem] pt-[1.6rem]">
+          <p className="body_16_b text-gray-black">아직 매칭이 없어요. 먼저 만들어볼까요?</p>
 
-        <div className="flex-row-center gap-[1.3rem]">
-          <button
-            type="button"
-            className={`body_16_b h-[6.4rem] w-full flex-row-center rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
-              selectedType === TAB_TYPES.SINGLE
-                ? 'border-main-900 bg-main-200 text-main-900'
-                : 'border-gray-300 bg-white text-gray-black'
-            }`}
-            onClick={() => setSelectedType(TAB_TYPES.SINGLE)}
-          >
-            1:1매칭
-          </button>
-          <button
-            type="button"
-            className={`body_16_b h-[6.4rem] w-full flex-row-center rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
-              selectedType === TAB_TYPES.GROUP
-                ? 'border-main-900 bg-main-200 text-main-900'
-                : 'border-gray-300 bg-white text-gray-black'
-            }`}
-            onClick={() => setSelectedType(TAB_TYPES.GROUP)}
-          >
-            그룹매칭(최대 4인)
-          </button>
+          <div className="flex-row-center gap-[1.3rem]">
+            <button
+              type="button"
+              className={`body_16_b h-[6.4rem] w-full flex-row-center rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
+                selectedType === TAB_TYPES.SINGLE
+                  ? 'border-main-900 bg-main-200 text-main-900'
+                  : 'border-gray-300 bg-white text-gray-black'
+              }`}
+              onClick={() => setSelectedType(TAB_TYPES.SINGLE)}
+            >
+              1:1매칭
+            </button>
+            <button
+              type="button"
+              className={`body_16_b h-[6.4rem] w-full flex-row-center whitespace-nowrap rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
+                selectedType === TAB_TYPES.GROUP
+                  ? 'border-main-900 bg-main-200 text-main-900'
+                  : 'border-gray-300 bg-white text-gray-black'
+              }`}
+              onClick={() => setSelectedType(TAB_TYPES.GROUP)}
+            >
+              그룹매칭(최대 4인)
+            </button>
+          </div>
         </div>
 
         <div className="w-full flex-row-end">

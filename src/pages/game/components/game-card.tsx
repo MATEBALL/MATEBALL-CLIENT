@@ -1,8 +1,6 @@
 import Button from '@components/button/button/button';
 import type { ChipColor } from '@components/card/match-card/types/card';
 import Chip from '@components/chip/chip';
-import { ROUTES } from '@routes/routes-config';
-import { useNavigate } from 'react-router-dom';
 
 export interface GameCardItem {
   id: number;
@@ -10,20 +8,15 @@ export interface GameCardItem {
   homeTeam: string;
   gameTime: string;
   stadium: string;
+  matchCount?: number;
 }
 
 interface GameCardProps {
   game: GameCardItem;
-  dateStr: string;
+  onGameClick: (game: GameCardItem) => void;
 }
 
-const GameCard = ({ game, dateStr }: GameCardProps) => {
-  const navigate = useNavigate();
-
-  const handleGoToGame = () => {
-    navigate(ROUTES.GAME(dateStr, String(game.id)));
-  };
-
+const GameCard = ({ game, onGameClick }: GameCardProps) => {
   return (
     <div key={game.id} className="flex-col gap-[2rem] rounded-[12px] bg-gray-950 p-[1.6rem]">
       <div className="flex-col gap-[1.6rem]">
@@ -50,7 +43,7 @@ const GameCard = ({ game, dateStr }: GameCardProps) => {
       <Button
         label="메이트 만나기"
         className="cap_14_sb h-[3.8rem] rounded-[8px] p-[0.8rem]"
-        onClick={handleGoToGame}
+        onClick={() => onGameClick(game)}
       />
     </div>
   );
