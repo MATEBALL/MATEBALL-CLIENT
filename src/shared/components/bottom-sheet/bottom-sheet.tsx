@@ -65,7 +65,6 @@ const BottomSheet = ({
             transition={{ type: 'tween', duration: 0.3 }}
             onClick={(event) => {
               event.stopPropagation();
-              onClose();
             }}
           >
             {showIndicator && <BottomSheetIndicator onClick={onClose} />}
