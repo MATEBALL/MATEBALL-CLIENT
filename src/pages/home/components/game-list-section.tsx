@@ -34,11 +34,7 @@ const GameListSection = ({ selectedDate, onGameClick }: GameListSectionProps) =>
     <section className="px-[1.6rem]">
       <div className="flex-col gap-[1.2rem]">
         {(gameSchedule ?? []).map((game) => (
-          <GameCard
-            key={game.id}
-            game={game}
-            onGameClick={() => onGameClick(game)}
-          />
+          <GameCard key={game.id} game={game} onGameClick={() => onGameClick(game)} />
         ))}
       </div>
     </section>

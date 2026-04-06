@@ -78,7 +78,7 @@ const MatchingCtaBottomSheet = ({
           </div>
         </div>
 
-        <div className="w-full flex-row-end">
+        <div className="w-full flex-row-end px-[1.6rem]">
           <div className="flex-row-center gap-[0.4rem] rounded-[0.4rem] py-[0.4rem] pr-[0.8rem]">
             <Icon name="baseball" size={1.6} className="text-gray-600" />
             <span className="cap_12_m text-gray-600">{gameLabel}</span>

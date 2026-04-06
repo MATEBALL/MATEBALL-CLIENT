@@ -240,7 +240,7 @@ export const matchQueries = {
     }),
 
   /**
-   * 생성한 매칭 리스트 조회
+   * 요청한 매칭 리스트 조회
    */
   REQUEST_LIST: () =>
     queryOptions<getRequestListResponse>({
