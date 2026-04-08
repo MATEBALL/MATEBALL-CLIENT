@@ -3,7 +3,6 @@ import GroupMatchingCreatedView from '@pages/result/components/group-matching-cr
 import MatchingAgreeView from '@pages/result/components/matching-agree-view';
 import MatchingFailView from '@pages/result/components/matching-fail-view';
 import MatchingReceiveView from '@pages/result/components/matching-receive-view';
-import MatchingSuccessView from '@pages/result/components/matching-success-view';
 import SentView from '@pages/result/components/sent-view';
 import { ROUTES } from '@routes/routes-config';
 import { Navigate, useParams, useSearchParams } from 'react-router-dom';
@@ -13,8 +12,6 @@ const ResultPage = () => {
   const [params] = useSearchParams();
 
   const type = params.get('type');
-  const mode = params.get('mode');
-  const isGroupMatching = mode === 'group';
 
   if (!type || !matchId) {
     return <ErrorView />;
@@ -25,10 +22,7 @@ const ResultPage = () => {
   }
 
   if (type === 'success') {
-    if (isGroupMatching) {
-      return <GroupMatchingCreatedView />;
-    }
-    return <MatchingSuccessView isGroupMatching={false} />;
+    return <GroupMatchingCreatedView />;
   }
 
   if (type === 'agree') {

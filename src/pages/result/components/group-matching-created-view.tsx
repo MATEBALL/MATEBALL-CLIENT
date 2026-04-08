@@ -22,6 +22,9 @@ const GroupMatchingCreatedView = () => {
   const [clicking, setClicking] = useState(false);
   const cooldownRef = useRef<number | null>(null);
 
+  const mode = params.get('mode');
+  const isGroupMatching = mode === 'group';
+
   const matchIdFromPath = parseId(id ?? matchIdParam ?? null);
   const matchIdFromQuery = parseId(params.get('matchId'));
   const matchId = Number.isFinite(matchIdFromPath) ? matchIdFromPath : matchIdFromQuery;
@@ -29,8 +32,13 @@ const GroupMatchingCreatedView = () => {
 
   usePreventBackNavigation(ROUTES.MATCH);
 
+  const { data: singleData } = useQuery({
+    ...matchQueries.SINGLE_MATCH_RESULT(matchId),
+    enabled: isValidMatchId && !isGroupMatching,
+  });
+
   const { data: groupData } = useQuery({
-    ...matchQueries.GROUP_MATCH_RESULT(matchId, isValidMatchId),
+    ...matchQueries.GROUP_MATCH_RESULT(matchId, isValidMatchId && isGroupMatching),
   });
 
   const {
@@ -41,8 +49,9 @@ const GroupMatchingCreatedView = () => {
     ...matchQueries.OPEN_CHAT_URL(matchId, isValidMatchId),
   });
 
+  const createdData = isGroupMatching ? groupData : singleData;
   const openChatUrl = typeof chatData?.chattingUrl === 'string' ? chatData.chattingUrl.trim() : '';
-  const nickname = groupData?.nickname ?? '';
+  const nickname = createdData?.nickname ?? '';
 
   useEffect(() => {
     return () => {
@@ -81,19 +90,19 @@ const GroupMatchingCreatedView = () => {
           <p className="body_16_m text-gray-600">{GROUP_MATCHING_CREATED_DESCRIPTION}</p>
         </section>
 
-        {groupData && (
+        {createdData && (
           <Card
             className="w-full"
             type="game"
-            id={groupData.id}
-            nickname={groupData.nickname}
-            count={groupData.count}
-            imgUrl={groupData.imgUrl}
-            awayTeam={groupData.awayTeam}
-            homeTeam={groupData.homeTeam}
-            stadium={groupData.stadium}
-            date={groupData.date}
-            isGroup={true}
+            id={createdData.id}
+            nickname={createdData.nickname}
+            count={isGroupMatching ? createdData.count : 1}
+            imgUrl={Array.isArray(createdData.imgUrl) ? createdData.imgUrl : [createdData.imgUrl]}
+            awayTeam={createdData.awayTeam}
+            homeTeam={createdData.homeTeam}
+            stadium={createdData.stadium}
+            date={createdData.date}
+            isGroup={isGroupMatching}
           />
         )}
       </div>

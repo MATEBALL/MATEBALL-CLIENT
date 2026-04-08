@@ -155,7 +155,9 @@ export interface getMatchCountResponse {
  * get
  * /v1/users/direct/{matchId}
  */
-export interface getSingleMatchResultResponse extends singleMatchResult {}
+export interface getSingleMatchResultResponse extends singleMatchResult {
+  count: number;
+}
 
 /**
  * 1:1 매칭 리스트 조회 응답
