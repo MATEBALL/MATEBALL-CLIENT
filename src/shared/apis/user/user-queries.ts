@@ -8,7 +8,6 @@ import type {
   getUserCountResponse,
   getUserInfoResponse,
 } from '@/shared/types/user-types';
-import type { getMatchConditionResponse, getUserInfoResponse } from '@/shared/types/user-types';
 
 export const userQueries = {
   ALL: () => queryOptions({ queryKey: USER_KEY.ALL }),
