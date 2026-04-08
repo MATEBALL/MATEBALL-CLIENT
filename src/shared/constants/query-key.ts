@@ -10,6 +10,7 @@ export const USER_KEY = {
   LOGOUT: () => [...USER_KEY.ALL, 'logout'] as const,
   EDIT_PROFILE: () => [...USER_KEY.ALL, 'edit'] as const,
   MATCH_CONDITION: () => [...USER_KEY.ALL, 'match_condition'] as const,
+  COUNT: () => [...USER_KEY.ALL, 'count'] as const,
 } as const;
 
 export const AUTH_KEY = {
@@ -58,6 +59,7 @@ export const MATCH_KEY = {
 
   DETAIL: (matchId: number) => [...MATCH_KEY.ALL, 'detail', matchId] as const,
   MEMBERS: (matchId: number) => [...MATCH_KEY.ALL, 'members', matchId] as const,
+  MEMBERS_DETAIL: (matchId: number) => [...MATCH_KEY.ALL, 'members-detail', matchId] as const,
   USERS_NUM_COUNT: (matchId: number) => [...MATCH_KEY.ALL, 'usersNumCount', matchId] as const,
   PATCH_STAGE: (key?: string) => [...MATCH_KEY.ALL, 'patch', 'stage', key] as const,
 

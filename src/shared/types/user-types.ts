@@ -74,3 +74,12 @@ export interface postMatchConditionRequest {
   style: string;
   avgSeason: number;
 }
+
+/**
+ * 전체 유저수 조회
+ * get
+ * /v3/users/count
+ */
+export interface getUserCountResponse {
+  userCnt: number;
+}

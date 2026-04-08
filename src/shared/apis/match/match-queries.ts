@@ -38,7 +38,27 @@ export const matchQueries = {
   SINGLE_MATCH_RESULT: (matchId: number) =>
     queryOptions<getSingleMatchResultResponse>({
       queryKey: MATCH_KEY.RESULT.SINGLE(matchId),
-      queryFn: () => get(END_POINT.GET_SINGLE_RESULT(matchId)),
+      queryFn: async () => {
+        const res = await get<
+          getSingleMatchResultResponse | ApiResponse<getSingleMatchResultResponse>
+        >(END_POINT.GET_SINGLE_RESULT(matchId));
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('일대일 매칭 결과 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getSingleMatchResultResponse;
+      },
     }),
 
   /**
@@ -47,7 +67,27 @@ export const matchQueries = {
   GROUP_MATCH_RESULT: (matchId: number, enabled = true) =>
     queryOptions<getGroupMatchResultResponse>({
       queryKey: MATCH_KEY.RESULT.GROUP(matchId),
-      queryFn: () => get(END_POINT.GET_GROUP_RESULT(matchId)),
+      queryFn: async () => {
+        const res = await get<
+          getGroupMatchResultResponse | ApiResponse<getGroupMatchResultResponse>
+        >(END_POINT.GET_GROUP_RESULT(matchId));
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('그룹 매칭 결과 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getGroupMatchResultResponse;
+      },
       enabled,
     }),
 
@@ -117,8 +157,29 @@ export const matchQueries = {
       queryKey: MATCH_KEY.LIST.GAME(gameId),
       queryFn: async () => {
         try {
-          const res = await get<getGameMatchListResponse>(END_POINT.GET_MATCH_LIST(gameId));
-          return res;
+          const res = await get<getGameMatchListResponse | ApiResponse<getGameMatchListResponse>>(
+            END_POINT.GET_MATCH_LIST(gameId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return (
+              res.data ?? {
+                awayTeam: '',
+                homeTeam: '',
+                date: '',
+                stadium: '',
+                result: [],
+              }
+            );
+          }
+
+          return res as getGameMatchListResponse;
         } catch (error) {
           return handleNotFoundError(error, {
             awayTeam: '',
@@ -167,16 +228,56 @@ export const matchQueries = {
   MATCH_MEMBERS: (matchId: number) =>
     queryOptions<getMatchMembersResponse>({
       queryKey: MATCH_KEY.MEMBERS(matchId),
-      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS(matchId)),
+      queryFn: async () => {
+        try {
+          const res = await get<getMatchMembersResponse | ApiResponse<getMatchMembersResponse>>(
+            END_POINT.GET_MATCH_MEMBERS(matchId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { leader: '', results: [] };
+          }
+
+          return res as getMatchMembersResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { leader: '', results: [] });
+        }
+      },
     }),
 
   /**
-   * 매칭된 그룹원 리스트 조회
+   * 매칭된 그룹원 리스트 상세 조회
    */
   MATCH_MEMBERS_DETAIL: (matchId: number) =>
     queryOptions<getMatchMembersDetailResponse>({
-      queryKey: MATCH_KEY.MEMBERS(matchId),
-      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS_DETAIL(matchId)),
+      queryKey: MATCH_KEY.MEMBERS_DETAIL(matchId),
+      queryFn: async () => {
+        try {
+          const res = await get<
+            getMatchMembersDetailResponse | ApiResponse<getMatchMembersDetailResponse>
+          >(END_POINT.GET_MATCH_MEMBERS_DETAIL(matchId));
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { results: [] };
+          }
+
+          return res as getMatchMembersDetailResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
     }),
 
   /**
@@ -185,7 +286,27 @@ export const matchQueries = {
   OPEN_CHAT_URL: (matchId: number, enabled = true) =>
     queryOptions<{ chattingUrl: string }>({
       queryKey: MATCH_KEY.OPEN_CHAT(matchId),
-      queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
+      queryFn: async () => {
+        try {
+          const res = await get<{ chattingUrl: string } | ApiResponse<{ chattingUrl: string }>>(
+            END_POINT.GET_OPEN_CHAT_URL(matchId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { chattingUrl: '' };
+          }
+
+          return res as { chattingUrl: string };
+        } catch (error) {
+          return handleNotFoundError(error, { chattingUrl: '' });
+        }
+      },
       enabled,
     }),
 
@@ -195,15 +316,55 @@ export const matchQueries = {
   CREATE_LIST: () =>
     queryOptions<getCreateListResponse>({
       queryKey: MATCH_KEY.LIST.CREATE(),
-      queryFn: () => get(END_POINT.GET_CREATE_LIST),
+      queryFn: async () => {
+        try {
+          const res = await get<getCreateListResponse | ApiResponse<getCreateListResponse>>(
+            END_POINT.GET_CREATE_LIST,
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { results: [] };
+          }
+
+          return res as getCreateListResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
     }),
 
   /**
-   * 생성한 매칭 리스트 조회
+   * 요청한 매칭 리스트 조회
    */
   REQUEST_LIST: () =>
     queryOptions<getRequestListResponse>({
       queryKey: MATCH_KEY.LIST.REQUEST(),
-      queryFn: () => get(END_POINT.GET_REQUEST_LIST),
+      queryFn: async () => {
+        try {
+          const res = await get<getRequestListResponse | ApiResponse<getRequestListResponse>>(
+            END_POINT.GET_REQUEST_LIST,
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { results: [] };
+          }
+
+          return res as getRequestListResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
     }),
 };

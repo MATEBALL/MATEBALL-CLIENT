@@ -20,6 +20,7 @@ interface MatchingCtaBottomSheetProps {
   gameSchedule: GameScheduleItem[];
   initialType: TabType;
   onSubmit: (type: TabType) => void;
+  showDescription?: boolean;
 }
 
 const MatchingCtaBottomSheet = ({
@@ -29,6 +30,7 @@ const MatchingCtaBottomSheet = ({
   gameSchedule,
   initialType,
   onSubmit,
+  showDescription = true,
 }: MatchingCtaBottomSheetProps) => {
   const [selectedType, setSelectedType] = useState<TabType>(initialType);
 
@@ -48,35 +50,39 @@ const MatchingCtaBottomSheet = ({
 
   return (
     <BottomSheet isOpen={isOpen} onClose={onClose}>
-      <div className="w-full flex-col gap-[1.6rem] px-[1.6rem] pt-[1.6rem]">
-        <p className="body_16_b text-gray-black">아직 매칭이 없어요. 먼저 만들어볼까요?</p>
+      <div className="flex-col gap-[1.2rem]">
+        <div className="w-full flex-col gap-[1.6rem] px-[1.6rem] pt-[1.6rem]">
+          {showDescription && (
+            <p className="body_16_b text-gray-black">아직 매칭이 없어요. 먼저 만들어볼까요?</p>
+          )}
 
-        <div className="flex-row-center gap-[1.3rem]">
-          <button
-            type="button"
-            className={`body_16_b h-[6.4rem] w-full flex-row-center rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
-              selectedType === TAB_TYPES.SINGLE
-                ? 'border-main-900 bg-main-200 text-main-900'
-                : 'border-gray-300 bg-white text-gray-black'
-            }`}
-            onClick={() => setSelectedType(TAB_TYPES.SINGLE)}
-          >
-            1:1매칭
-          </button>
-          <button
-            type="button"
-            className={`body_16_b h-[6.4rem] w-full flex-row-center rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
-              selectedType === TAB_TYPES.GROUP
-                ? 'border-main-900 bg-main-200 text-main-900'
-                : 'border-gray-300 bg-white text-gray-black'
-            }`}
-            onClick={() => setSelectedType(TAB_TYPES.GROUP)}
-          >
-            그룹매칭(최대 4인)
-          </button>
+          <div className="flex-row-center gap-[1.3rem]">
+            <button
+              type="button"
+              className={`body_16_b h-[6.4rem] w-full flex-row-center rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
+                selectedType === TAB_TYPES.SINGLE
+                  ? 'border-main-900 bg-main-200 text-main-900'
+                  : 'border-gray-300 bg-white text-gray-black'
+              }`}
+              onClick={() => setSelectedType(TAB_TYPES.SINGLE)}
+            >
+              1:1매칭
+            </button>
+            <button
+              type="button"
+              className={`body_16_b h-[6.4rem] w-full flex-row-center whitespace-nowrap rounded-[1.2rem] border px-[2rem] py-[1.2rem] ${
+                selectedType === TAB_TYPES.GROUP
+                  ? 'border-main-900 bg-main-200 text-main-900'
+                  : 'border-gray-300 bg-white text-gray-black'
+              }`}
+              onClick={() => setSelectedType(TAB_TYPES.GROUP)}
+            >
+              그룹매칭(최대 4인)
+            </button>
+          </div>
         </div>
 
-        <div className="w-full flex-row-end">
+        <div className="w-full flex-row-end px-[1.6rem]">
           <div className="flex-row-center gap-[0.4rem] rounded-[0.4rem] py-[0.4rem] pr-[0.8rem]">
             <Icon name="baseball" size={1.6} className="text-gray-600" />
             <span className="cap_12_m text-gray-600">{gameLabel}</span>

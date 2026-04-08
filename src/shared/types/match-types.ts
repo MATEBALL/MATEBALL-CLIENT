@@ -155,7 +155,9 @@ export interface getMatchCountResponse {
  * get
  * /v1/users/direct/{matchId}
  */
-export interface getSingleMatchResultResponse extends singleMatchResult {}
+export interface getSingleMatchResultResponse extends singleMatchResult {
+  count: number;
+}
 
 /**
  * 1:1 매칭 리스트 조회 응답
@@ -202,6 +204,7 @@ export interface getGroupMatchResultResponse {
   date: string;
   count: number;
   imgUrl: string[];
+  isGroup: boolean;
 }
 
 /**
@@ -302,6 +305,7 @@ export interface getMatchDetailResponse {
  * /v3/users/match/members/{matchId}
  */
 export interface getMatchMembersResponse {
+  leader: string;
   results: matchMember[];
 }
 
