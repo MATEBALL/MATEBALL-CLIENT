@@ -202,6 +202,7 @@ export interface getGroupMatchResultResponse {
   date: string;
   count: number;
   imgUrl: string[];
+  isGroup: boolean;
 }
 
 /**

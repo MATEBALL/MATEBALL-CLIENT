@@ -38,7 +38,27 @@ export const matchQueries = {
   SINGLE_MATCH_RESULT: (matchId: number) =>
     queryOptions<getSingleMatchResultResponse>({
       queryKey: MATCH_KEY.RESULT.SINGLE(matchId),
-      queryFn: () => get(END_POINT.GET_SINGLE_RESULT(matchId)),
+      queryFn: async () => {
+        const res = await get<
+          getSingleMatchResultResponse | ApiResponse<getSingleMatchResultResponse>
+        >(END_POINT.GET_SINGLE_RESULT(matchId));
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('일대일 매칭 결과 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getSingleMatchResultResponse;
+      },
     }),
 
   /**
@@ -47,7 +67,27 @@ export const matchQueries = {
   GROUP_MATCH_RESULT: (matchId: number, enabled = true) =>
     queryOptions<getGroupMatchResultResponse>({
       queryKey: MATCH_KEY.RESULT.GROUP(matchId),
-      queryFn: () => get(END_POINT.GET_GROUP_RESULT(matchId)),
+      queryFn: async () => {
+        const res = await get<
+          getGroupMatchResultResponse | ApiResponse<getGroupMatchResultResponse>
+        >(END_POINT.GET_GROUP_RESULT(matchId));
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('그룹 매칭 결과 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getGroupMatchResultResponse;
+      },
       enabled,
     }),
 
@@ -226,7 +266,27 @@ export const matchQueries = {
   OPEN_CHAT_URL: (matchId: number, enabled = true) =>
     queryOptions<{ chattingUrl: string }>({
       queryKey: MATCH_KEY.OPEN_CHAT(matchId),
-      queryFn: () => get(END_POINT.GET_OPEN_CHAT_URL(matchId)),
+      queryFn: async () => {
+        try {
+          const res = await get<{ chattingUrl: string } | ApiResponse<{ chattingUrl: string }>>(
+            END_POINT.GET_OPEN_CHAT_URL(matchId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { chattingUrl: '' };
+          }
+
+          return res as { chattingUrl: string };
+        } catch (error) {
+          return handleNotFoundError(error, { chattingUrl: '' });
+        }
+      },
       enabled,
     }),
 
@@ -236,7 +296,27 @@ export const matchQueries = {
   CREATE_LIST: () =>
     queryOptions<getCreateListResponse>({
       queryKey: MATCH_KEY.LIST.CREATE(),
-      queryFn: () => get(END_POINT.GET_CREATE_LIST),
+      queryFn: async () => {
+        try {
+          const res = await get<getCreateListResponse | ApiResponse<getCreateListResponse>>(
+            END_POINT.GET_CREATE_LIST,
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { results: [] };
+          }
+
+          return res as getCreateListResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
     }),
 
   /**
@@ -245,6 +325,26 @@ export const matchQueries = {
   REQUEST_LIST: () =>
     queryOptions<getRequestListResponse>({
       queryKey: MATCH_KEY.LIST.REQUEST(),
-      queryFn: () => get(END_POINT.GET_REQUEST_LIST),
+      queryFn: async () => {
+        try {
+          const res = await get<getRequestListResponse | ApiResponse<getRequestListResponse>>(
+            END_POINT.GET_REQUEST_LIST,
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { results: [] };
+          }
+
+          return res as getRequestListResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
     }),
 };

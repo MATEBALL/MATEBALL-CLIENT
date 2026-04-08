@@ -75,7 +75,7 @@ const GroupMatchingCreatedView = () => {
 
   return (
     <div className="h-full flex-col-between">
-      <div className="flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
+      <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[9.3rem]">
         <section className="flex-col-center gap-[0.8rem] whitespace-pre-line text-center">
           <h1 className="title_24_sb">{MATCHING_GUIDE_MESSAGE_TITLE(nickname)}</h1>
           <p className="body_16_m text-gray-600">{GROUP_MATCHING_CREATED_DESCRIPTION}</p>
@@ -83,9 +83,8 @@ const GroupMatchingCreatedView = () => {
 
         {groupData && (
           <Card
-            isCreated
             className="w-full"
-            type="group"
+            type="game"
             id={groupData.id}
             nickname={groupData.nickname}
             count={groupData.count}
@@ -94,7 +93,7 @@ const GroupMatchingCreatedView = () => {
             homeTeam={groupData.homeTeam}
             stadium={groupData.stadium}
             date={groupData.date}
-            status="그룹"
+            isGroup={true}
           />
         )}
       </div>
