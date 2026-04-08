@@ -252,12 +252,32 @@ export const matchQueries = {
     }),
 
   /**
-   * 매칭된 그룹원 리스트 조회
+   * 매칭된 그룹원 리스트 상세 조회
    */
   MATCH_MEMBERS_DETAIL: (matchId: number) =>
     queryOptions<getMatchMembersDetailResponse>({
       queryKey: MATCH_KEY.MEMBERS(matchId),
-      queryFn: () => get(END_POINT.GET_MATCH_MEMBERS_DETAIL(matchId)),
+      queryFn: async () => {
+        try {
+          const res = await get<
+            getMatchMembersDetailResponse | ApiResponse<getMatchMembersDetailResponse>
+          >(END_POINT.GET_MATCH_MEMBERS_DETAIL(matchId));
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return res.data ?? { results: [] };
+          }
+
+          return res as getMatchMembersDetailResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
     }),
 
   /**
