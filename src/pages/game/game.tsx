@@ -49,6 +49,8 @@ const Game = () => {
     : [];
 
   const handleCreateMatchClick = () => {
+    if (!gameMatchData) return;
+
     if (hasCreatedMatch) {
       showErrorToast(HAS_DONE_TOAST_MESSAGE, { offset: '2.4rem', icon: false });
       return;

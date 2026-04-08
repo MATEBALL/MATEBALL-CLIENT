@@ -256,7 +256,7 @@ export const matchQueries = {
    */
   MATCH_MEMBERS_DETAIL: (matchId: number) =>
     queryOptions<getMatchMembersDetailResponse>({
-      queryKey: MATCH_KEY.MEMBERS(matchId),
+      queryKey: MATCH_KEY.MEMBERS_DETAIL(matchId),
       queryFn: async () => {
         try {
           const res = await get<

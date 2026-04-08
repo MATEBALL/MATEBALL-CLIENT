@@ -67,7 +67,7 @@ const MatchingCreatedView = () => {
 
     gaEvent('chat_enter_click', {
       match_id: matchId,
-      match_type: 'group',
+      match_type: isGroupMatching ? 'group' : 'one_to_one',
       role: 'creator',
     });
     setClicking(true);
@@ -76,7 +76,7 @@ const MatchingCreatedView = () => {
       setClicking(false);
       cooldownRef.current = null;
     }, ENTER_CHAT_COOLDOWN_MS);
-  }, [clicking, openChatUrl, matchId]);
+  }, [clicking, openChatUrl, matchId, isGroupMatching]);
 
   const handleGoToMatch = () => navigate(ROUTES.MATCH);
 
