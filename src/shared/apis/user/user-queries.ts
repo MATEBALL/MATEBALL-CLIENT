@@ -21,13 +21,53 @@ export const userQueries = {
   USER_INFO: () =>
     queryOptions<getUserInfoResponse>({
       queryKey: USER_KEY.INFO(),
-      queryFn: () => get(END_POINT.GET_USER_INFO),
+      queryFn: async () => {
+        const res = await get<getUserInfoResponse | ApiResponse<getUserInfoResponse>>(
+          END_POINT.GET_USER_INFO,
+        );
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('유저 정보 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getUserInfoResponse;
+      },
     }),
 
   MATCH_CONDITION: () =>
     queryOptions<getMatchConditionResponse>({
       queryKey: USER_KEY.MATCH_CONDITION(),
-      queryFn: () => get<getMatchConditionResponse>(END_POINT.MATCH_CONDITION),
+      queryFn: async () => {
+        const res = await get<getMatchConditionResponse | ApiResponse<getMatchConditionResponse>>(
+          END_POINT.MATCH_CONDITION,
+        );
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('매칭 조건 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getMatchConditionResponse;
+      },
     }),
 
   USER_COUNT: () =>
