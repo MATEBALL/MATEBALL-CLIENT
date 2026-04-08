@@ -2,7 +2,7 @@ import { del, patch, post } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { MATCH_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';
-import type { responseTypes } from '@/shared/types/base-types';
+import type { ApiResponse, responseTypes } from '@/shared/types/base-types';
 import type {
   postMatchConditionRequest,
   postMatchCreateRequest,
@@ -16,7 +16,28 @@ export const matchMutations = {
   CREATE_MATCH: () =>
     mutationOptions<postMatchCreateResponse, Error, postMatchCreateRequest>({
       mutationKey: MATCH_KEY.POST.MATCH(),
-      mutationFn: ({ gameId, matchType }) => post(END_POINT.POST_MATCH, { gameId, matchType }),
+      mutationFn: async ({ gameId, matchType }) => {
+        const res = await post<ApiResponse<postMatchCreateResponse> | postMatchCreateResponse>(
+          END_POINT.POST_MATCH,
+          { gameId, matchType },
+        );
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('매칭 생성 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as postMatchCreateResponse;
+      },
     }),
 
   /**

@@ -15,12 +15,15 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-const GroupMatchingCreatedView = () => {
+const MatchingCreatedView = () => {
   const [params] = useSearchParams();
   const { id, matchId: matchIdParam } = useParams<{ id?: string; matchId?: string }>();
   const navigate = useNavigate();
   const [clicking, setClicking] = useState(false);
   const cooldownRef = useRef<number | null>(null);
+
+  const mode = params.get('mode');
+  const isGroupMatching = mode === 'group';
 
   const matchIdFromPath = parseId(id ?? matchIdParam ?? null);
   const matchIdFromQuery = parseId(params.get('matchId'));
@@ -29,8 +32,13 @@ const GroupMatchingCreatedView = () => {
 
   usePreventBackNavigation(ROUTES.MATCH);
 
+  const { data: singleData } = useQuery({
+    ...matchQueries.SINGLE_MATCH_RESULT(matchId),
+    enabled: isValidMatchId && !isGroupMatching,
+  });
+
   const { data: groupData } = useQuery({
-    ...matchQueries.GROUP_MATCH_RESULT(matchId, isValidMatchId),
+    ...matchQueries.GROUP_MATCH_RESULT(matchId, isValidMatchId && isGroupMatching),
   });
 
   const {
@@ -41,8 +49,9 @@ const GroupMatchingCreatedView = () => {
     ...matchQueries.OPEN_CHAT_URL(matchId, isValidMatchId),
   });
 
+  const createdData = isGroupMatching ? groupData : singleData;
   const openChatUrl = typeof chatData?.chattingUrl === 'string' ? chatData.chattingUrl.trim() : '';
-  const nickname = groupData?.nickname ?? '';
+  const nickname = createdData?.nickname ?? '';
 
   useEffect(() => {
     return () => {
@@ -58,7 +67,7 @@ const GroupMatchingCreatedView = () => {
 
     gaEvent('chat_enter_click', {
       match_id: matchId,
-      match_type: 'group',
+      match_type: isGroupMatching ? 'group' : 'one_to_one',
       role: 'creator',
     });
     setClicking(true);
@@ -67,7 +76,7 @@ const GroupMatchingCreatedView = () => {
       setClicking(false);
       cooldownRef.current = null;
     }, ENTER_CHAT_COOLDOWN_MS);
-  }, [clicking, openChatUrl, matchId]);
+  }, [clicking, openChatUrl, matchId, isGroupMatching]);
 
   const handleGoToMatch = () => navigate(ROUTES.MATCH);
 
@@ -75,26 +84,25 @@ const GroupMatchingCreatedView = () => {
 
   return (
     <div className="h-full flex-col-between">
-      <div className="flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
+      <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[9.3rem]">
         <section className="flex-col-center gap-[0.8rem] whitespace-pre-line text-center">
           <h1 className="title_24_sb">{MATCHING_GUIDE_MESSAGE_TITLE(nickname)}</h1>
           <p className="body_16_m text-gray-600">{GROUP_MATCHING_CREATED_DESCRIPTION}</p>
         </section>
 
-        {groupData && (
+        {createdData && (
           <Card
-            isCreated
             className="w-full"
-            type="group"
-            id={groupData.id}
-            nickname={groupData.nickname}
-            count={groupData.count}
-            imgUrl={groupData.imgUrl}
-            awayTeam={groupData.awayTeam}
-            homeTeam={groupData.homeTeam}
-            stadium={groupData.stadium}
-            date={groupData.date}
-            status="그룹"
+            type="game"
+            id={createdData.id}
+            nickname={createdData.nickname}
+            count={isGroupMatching ? createdData.count : 1}
+            imgUrl={Array.isArray(createdData.imgUrl) ? createdData.imgUrl : [createdData.imgUrl]}
+            awayTeam={createdData.awayTeam}
+            homeTeam={createdData.homeTeam}
+            stadium={createdData.stadium}
+            date={createdData.date}
+            isGroup={isGroupMatching}
           />
         )}
       </div>
@@ -119,4 +127,4 @@ const GroupMatchingCreatedView = () => {
   );
 };
 
-export default GroupMatchingCreatedView;
+export default MatchingCreatedView;

@@ -58,6 +58,8 @@ const Mate = ({ matchId, isGroupMatching = true }: MateProps) => {
     enabled: !!matchId,
   });
   const mates = (data?.results || []).map(mapMateData);
+  // TODO: 네이밍 수정
+  const leader = data?.leader ?? '';
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -73,7 +75,7 @@ const Mate = ({ matchId, isGroupMatching = true }: MateProps) => {
     <div className="h-full flex-col-between bg-gray-white">
       <section className="w-full flex-col-center gap-[3.9rem] pt-[4.65rem]">
         {/* TODO: 서버 응답값 수정 후 nickname 연동 */}
-        <MateHeader nickname={''} isGroupMatching={isGroupMatching} />
+        <MateHeader nickname={leader} isGroupMatching={isGroupMatching} />
         <MateCarousel
           mates={mates}
           currentIndex={currentIndex}

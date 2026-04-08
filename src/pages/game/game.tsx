@@ -1,10 +1,17 @@
+import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
+import MatchingCtaBottomSheet from '@components/bottom-sheet/matching-cta/matching-cta-bottom-sheet';
 import Card from '@components/card/match-card/card';
 import Icon from '@components/icon/icon';
-import { HAS_DONE_TOAST_MESSAGE } from '@constants/error-toast';
+import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
+import type { TabType } from '@components/tab/tab/tab-content';
+import { HAS_DONE_TOAST_MESSAGE, MY_MATCH_TOAST_MESSAGE } from '@constants/error-toast';
+import { gaEvent } from '@libs/analytics';
+import queryClient from '@libs/query-client';
 import { ROUTES } from '@routes/routes-config';
-import { useQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
@@ -18,26 +25,85 @@ const Game = () => {
   const parsedGameId = Number(gameId);
   const navigate = useNavigate();
 
+  const [isMatchingCtaBottomSheetOpen, setIsMatchingCtaBottomSheetOpen] = useState(false);
+
   const { data: gameMatchData } = useQuery({
     ...matchQueries.GAME_MATCH_LIST(parsedGameId),
     enabled: Number.isFinite(parsedGameId),
   });
 
-  const hasCreatedMatch = gameMatchData?.result.some((match) => match.matchRate === null);
+  const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
+
+  const hasCreatedMatch = gameMatchData?.result?.some((match) => match.matchRate === null);
+
+  const gameSchedule = gameMatchData
+    ? [
+        {
+          id: parsedGameId,
+          awayTeam: gameMatchData.awayTeam,
+          homeTeam: gameMatchData.homeTeam,
+          gameTime: '',
+          stadium: gameMatchData.stadium,
+        },
+      ]
+    : [];
 
   const handleCreateMatchClick = () => {
+    if (!gameMatchData) return;
+
     if (hasCreatedMatch) {
       showErrorToast(HAS_DONE_TOAST_MESSAGE, { offset: '2.4rem', icon: false });
       return;
     }
+
+    setIsMatchingCtaBottomSheetOpen(true);
   };
 
-  const handleCardClick = (matchId: number, isGroup: boolean) => {
-    const route = isGroup
-      ? ROUTES.GROUP_MATES(String(matchId))
-      : ROUTES.MATCH_SINGLE(String(matchId));
+  const handleMatchingCtaSubmit = (type: TabType) => {
+    if (!Number.isFinite(parsedGameId)) return;
 
-    navigate(route);
+    const matchType = type === TAB_TYPES.SINGLE ? 'DIRECT' : 'GROUP';
+    const queryType = type === TAB_TYPES.SINGLE ? 'single' : 'group';
+    const gaMatchType = type === TAB_TYPES.SINGLE ? 'one_to_one' : 'group';
+
+    gaEvent('match_create_click', {
+      match_type: gaMatchType,
+      role: 'creator',
+    });
+
+    createMatchMutation.mutate(
+      {
+        gameId: parsedGameId,
+        matchType,
+      },
+      {
+        onSuccess: (response) => {
+          const createdMatchId = response.matchId.toString();
+
+          setIsMatchingCtaBottomSheetOpen(false);
+
+          navigate(`${ROUTES.RESULT(createdMatchId)}?type=success&mode=${queryType}`);
+        },
+      },
+    );
+  };
+
+  const handleCardClick = async (matchId: number, isGroup: boolean) => {
+    try {
+      await queryClient.fetchQuery(matchQueries.MATCH_DETAIL(matchId, false));
+
+      const route = isGroup
+        ? ROUTES.GROUP_MATES(String(matchId))
+        : ROUTES.MATCH_SINGLE(String(matchId));
+
+      navigate(route);
+    } catch (error) {
+      const status = (error as AxiosError)?.response?.status;
+
+      if (status === 400 || status === 404) {
+        showErrorToast(MY_MATCH_TOAST_MESSAGE, '2.4rem', false);
+      }
+    }
   };
 
   useEffect(() => {
@@ -55,7 +121,7 @@ const Game = () => {
 
   return (
     <div className="relative h-full flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
-      {gameMatchData?.result.map((match) => (
+      {gameMatchData?.result?.map((match) => (
         // TODO: 매칭 현황 상태가 [그룹원 모집중]인 카드만 노출
         <button
           key={match.matchId}
@@ -81,7 +147,7 @@ const Game = () => {
           />
         </button>
       ))}
-      {/* TODO: 매칭 생성 바텀시트 연결 */}
+
       <button
         type="button"
         aria-label="매칭 생성"
@@ -90,6 +156,16 @@ const Game = () => {
       >
         <Icon name="plus" color="white" />
       </button>
+
+      <MatchingCtaBottomSheet
+        isOpen={isMatchingCtaBottomSheetOpen}
+        onClose={() => setIsMatchingCtaBottomSheetOpen(false)}
+        date={gameMatchData?.date ?? ''}
+        gameSchedule={gameSchedule}
+        initialType={TAB_TYPES.SINGLE}
+        onSubmit={handleMatchingCtaSubmit}
+        showDescription={false}
+      />
     </div>
   );
 };
