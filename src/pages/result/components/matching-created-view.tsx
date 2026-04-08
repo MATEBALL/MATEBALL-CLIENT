@@ -15,7 +15,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-const GroupMatchingCreatedView = () => {
+const MatchingCreatedView = () => {
   const [params] = useSearchParams();
   const { id, matchId: matchIdParam } = useParams<{ id?: string; matchId?: string }>();
   const navigate = useNavigate();
@@ -127,4 +127,4 @@ const GroupMatchingCreatedView = () => {
   );
 };
 
-export default GroupMatchingCreatedView;
+export default MatchingCreatedView;
