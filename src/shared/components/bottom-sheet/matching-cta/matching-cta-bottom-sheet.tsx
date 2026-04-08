@@ -20,6 +20,7 @@ interface MatchingCtaBottomSheetProps {
   gameSchedule: GameScheduleItem[];
   initialType: TabType;
   onSubmit: (type: TabType) => void;
+  showDescription?: boolean;
 }
 
 const MatchingCtaBottomSheet = ({
@@ -29,6 +30,7 @@ const MatchingCtaBottomSheet = ({
   gameSchedule,
   initialType,
   onSubmit,
+  showDescription = true,
 }: MatchingCtaBottomSheetProps) => {
   const [selectedType, setSelectedType] = useState<TabType>(initialType);
 
@@ -50,7 +52,9 @@ const MatchingCtaBottomSheet = ({
     <BottomSheet isOpen={isOpen} onClose={onClose}>
       <div className="flex-col gap-[1.2rem]">
         <div className="w-full flex-col gap-[1.6rem] px-[1.6rem] pt-[1.6rem]">
-          <p className="body_16_b text-gray-black">아직 매칭이 없어요. 먼저 만들어볼까요?</p>
+          {showDescription && (
+            <p className="body_16_b text-gray-black">아직 매칭이 없어요. 먼저 만들어볼까요?</p>
+          )}
 
           <div className="flex-row-center gap-[1.3rem]">
             <button
