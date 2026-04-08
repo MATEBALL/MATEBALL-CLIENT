@@ -17,19 +17,19 @@ const Footer = () => {
       })}
     >
       <div className="flex-col gap-[0.8rem]">
-        <Icon name="logo-gray" width={9.2} height={2.5} className="text-gray-700" />
-        <div className="flex-col gap-[0.4rem] text-gray-700">
+        <Icon name="logo-gray" width={9.2} height={2.5} className="text-gray-500" />
+        <div className="flex-col gap-[0.4rem] text-gray-500">
           <p>대표 정윤지</p>
           <p>이메일 mateball0615@gmail.com</p>
         </div>
       </div>
-      <div className="flex-col gap-[0.8rem] text-gray-600">
+      <div className="flex-col gap-[0.8rem] text-gray-500">
         <div className="flex-row gap-[0.8rem] py-[0.4rem]">
           <a
             href={EXTERNAL_LINKS.PRIVACY_POLICY}
             target="_blank"
             rel="noopener noreferrer"
-            className="cap_12_m text-gray-800"
+            className="cap_12_m text-gray-500"
           >
             개인정보처리방침
           </a>
@@ -37,7 +37,7 @@ const Footer = () => {
             href={EXTERNAL_LINKS.TERMS_OF_SERVICE}
             target="_blank"
             rel="noopener noreferrer"
-            className="cap_12_m text-gray-800"
+            className="cap_12_m text-gray-500"
           >
             이용약관
           </a>
