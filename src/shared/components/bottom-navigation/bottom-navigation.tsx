@@ -8,7 +8,7 @@ import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const DARK_NAV_PATHS = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT];
+const DARK_NAV_PATHS = [ROUTES.HOME, ROUTES.MATCH, ROUTES.CHAT, ROUTES.PROFILE];
 
 const BottomNavigation = () => {
   const { pathname } = useLocation();
