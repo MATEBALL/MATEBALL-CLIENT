@@ -5,10 +5,12 @@ import Card from '@components/card/match-card/card';
 import Icon from '@components/icon/icon';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import type { TabType } from '@components/tab/tab/tab-content';
-import { HAS_DONE_TOAST_MESSAGE } from '@constants/error-toast';
+import { HAS_DONE_TOAST_MESSAGE, MY_MATCH_TOAST_MESSAGE } from '@constants/error-toast';
 import { gaEvent } from '@libs/analytics';
+import queryClient from '@libs/query-client';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
@@ -84,12 +86,22 @@ const Game = () => {
     );
   };
 
-  const handleCardClick = (matchId: number, isGroup: boolean) => {
-    const route = isGroup
-      ? ROUTES.GROUP_MATES(String(matchId))
-      : ROUTES.MATCH_SINGLE(String(matchId));
+  const handleCardClick = async (matchId: number, isGroup: boolean) => {
+    try {
+      await queryClient.fetchQuery(matchQueries.MATCH_DETAIL(matchId, false));
 
-    navigate(route);
+      const route = isGroup
+        ? ROUTES.GROUP_MATES(String(matchId))
+        : ROUTES.MATCH_SINGLE(String(matchId));
+
+      navigate(route);
+    } catch (error) {
+      const status = (error as AxiosError)?.response?.status;
+
+      if (status === 400 || status === 404) {
+        showErrorToast(MY_MATCH_TOAST_MESSAGE, '2.4rem', false);
+      }
+    }
   };
 
   useEffect(() => {
