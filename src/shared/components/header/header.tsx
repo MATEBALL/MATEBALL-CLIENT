@@ -22,11 +22,12 @@ const Header = ({ headerTitle }: HeaderProps) => {
   const isEditProfile = pathname === ROUTES.PROFILE_EDIT;
   const isGame = Boolean(matchPath('/game/:date/:gameId', pathname));
   const isMemberDetail = Boolean(matchPath(ROUTES.MATCH_MEMBER_DETAIL(), pathname));
+  const isProfile = pathname === ROUTES.PROFILE;
 
   return (
     <header
       className={clsx('header-layout', {
-        'bg-gray-black': isFail || isHome || isMatch,
+        'bg-gray-black': isFail || isHome || isMatch || isProfile,
         'bg-gray-white':
           isSignUp ||
           isChatRoom ||
