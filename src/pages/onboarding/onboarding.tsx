@@ -1,5 +1,4 @@
 import { matchMutations } from '@apis/match/match-mutations';
-import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import { useFunnel } from '@hooks/use-funnel';
@@ -16,7 +15,7 @@ import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
 import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -60,9 +59,6 @@ const Onboarding = () => {
     }
   };
 
-  const { data: user } = useSuspenseQuery(userQueries.USER_INFO());
-  const nickname = user.nickname;
-
   return (
     <div className="h-full flex-col">
       <div className="sticky top-0 bg-background">
@@ -104,14 +100,6 @@ const Onboarding = () => {
             />
           </Step>
 
-          {/* TODO: GENDER 단계 관련 전부 삭제 */}
-          {/* <Step name="GENDER">
-            <Gender
-              selectedOption={selections.GENDER}
-              onSelect={(option) => handleSelect('GENDER', option)}
-            />
-          </Step> */}
-
           <Step name="MATCHING_TYPE">
             <MatchingType
               selectedOption={selections.MATCHING_TYPE}
@@ -135,13 +123,7 @@ const Onboarding = () => {
           </Step>
 
           <Step name="COMPLETE">
-            {createdMatch && (
-              <Complete
-                nickname={nickname ?? ''}
-                matchId={createdMatch.matchId}
-                type={createdMatch.type}
-              />
-            )}
+            {createdMatch && <Complete matchId={createdMatch.matchId} type={createdMatch.type} />}
           </Step>
         </Funnel>
 

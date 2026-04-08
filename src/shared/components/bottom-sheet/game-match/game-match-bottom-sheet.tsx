@@ -30,7 +30,6 @@ interface GameMatchBottomSheetProps {
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
   fromOnboarding?: boolean;
-  // groupRole?: string | null;  TODO: 추후 삭제
   onComplete?: (matchId: number) => void;
 }
 
@@ -41,7 +40,6 @@ const GameMatchBottomSheet = ({
   gameSchedule,
   activeType,
   fromOnboarding = false,
-  // groupRole,
   onComplete,
 }: GameMatchBottomSheetProps) => {
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
@@ -50,7 +48,7 @@ const GameMatchBottomSheet = ({
   const createMatchMutation = useMutation(matchMutations.CREATE_MATCH());
 
   const disabled = selectedIdx === null || createMatchMutation.isPending;
-  const matchType = activeType === TAB_TYPES.SINGLE ? 'direct' : 'group';
+  const matchType = activeType === TAB_TYPES.SINGLE ? 'DIRECT' : 'GROUP';
   const queryType = activeType === TAB_TYPES.SINGLE ? 'single' : 'group';
 
   const handleClose = () => {
@@ -78,7 +76,7 @@ const GameMatchBottomSheet = ({
         onSuccess: (response) => {
           const createdMatchId = response.matchId.toString();
 
-          if (matchType === 'direct') {
+          if (matchType === 'DIRECT') {
             queryClient.invalidateQueries({
               queryKey: matchQueries.SINGLE_MATCH_LIST(date).queryKey,
             });
