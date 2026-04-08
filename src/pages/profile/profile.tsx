@@ -17,7 +17,7 @@ const Profile = () => {
   if (!data) return null;
 
   return (
-    <div className="h-full flex-col-between">
+    <div className="h-full flex-col-between bg-gray-black">
       <div className="w-full flex-col-center gap-[3.2rem] px-[1.6rem] pt-[1.6rem] pb-[5.6rem]">
         <ProfileCard
           nickname={data.nickname ?? ''}
@@ -34,7 +34,7 @@ const Profile = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="문의하기"
-            className="cap_14_m py-[0.8rem] text-gray-800"
+            className="cap_14_m py-[0.8rem] text-gray-300"
           >
             문의하기
           </a>
@@ -43,16 +43,16 @@ const Profile = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="의견 보내기"
-            className="cap_14_m py-[0.8rem] text-gray-800"
+            className="cap_14_m py-[0.8rem] text-gray-300"
           >
             의견 보내기
           </a>
-          <Divider color="bg-gray-300" margin="my-[1.6rem]" />
+          <Divider color="bg-gray-600" margin="my-[1.6rem]" />
           <button
             type="button"
             onClick={() => logout()}
             aria-label="로그아웃"
-            className="cap_14_m cursor-pointer py-[0.8rem] text-gray-800"
+            className="cap_14_m cursor-pointer py-[0.8rem] text-gray-300"
           >
             <p>로그아웃</p>
           </button>
