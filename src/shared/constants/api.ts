@@ -18,6 +18,7 @@ export const END_POINT = {
   POST_INFO_NICKNAME: '/v1/users/info/nickname',
   POST_EDIT_PROFILE: '/v2/users/info',
   MATCH_CONDITION: '/v3/users/match-condition',
+  GET_USER_COUNT: '/v3/users/count',
 
   // 경기 관련
   GET_GAME_SCHEDULE: (date: string) => `/v1/users/game/schedule?date=${date}`,
@@ -30,7 +31,7 @@ export const END_POINT = {
   GET_GROUP_RESULT: (matchId: number | string) => `/v1/users/group/${matchId}`,
   GET_MATCH_LIST: (gameId: number) => `/v3/users/match/${gameId}`,
 
-  POST_MATCH: '/v1/users/match',
+  POST_MATCH: '/v3/users/match',
   POST_MATCH_CONDITION: '/v3/users/match-condition',
   DELETE_MATCH_CONDITION: '/v3/users/match-condition',
   GET_CREATE_LIST: '/v3/users/create',

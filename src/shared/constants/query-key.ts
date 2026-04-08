@@ -10,6 +10,7 @@ export const USER_KEY = {
   LOGOUT: () => [...USER_KEY.ALL, 'logout'] as const,
   EDIT_PROFILE: () => [...USER_KEY.ALL, 'edit'] as const,
   MATCH_CONDITION: () => [...USER_KEY.ALL, 'match_condition'] as const,
+  COUNT: () => [...USER_KEY.ALL, 'count'] as const,
 } as const;
 
 export const AUTH_KEY = {

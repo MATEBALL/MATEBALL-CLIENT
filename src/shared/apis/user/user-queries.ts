@@ -2,7 +2,12 @@ import { get } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { USER_KEY } from '@constants/query-key';
 import { queryOptions } from '@tanstack/react-query';
-import type { getMatchConditionResponse, getUserInfoResponse } from '@/shared/types/user-types';
+import type { ApiResponse } from '@/shared/types/base-types';
+import type {
+  getMatchConditionResponse,
+  getUserCountResponse,
+  getUserInfoResponse,
+} from '@/shared/types/user-types';
 
 export const userQueries = {
   ALL: () => queryOptions({ queryKey: USER_KEY.ALL }),
@@ -23,5 +28,31 @@ export const userQueries = {
     queryOptions<getMatchConditionResponse>({
       queryKey: USER_KEY.MATCH_CONDITION(),
       queryFn: () => get<getMatchConditionResponse>(END_POINT.MATCH_CONDITION),
+    }),
+
+  USER_COUNT: () =>
+    queryOptions<getUserCountResponse>({
+      queryKey: USER_KEY.COUNT(),
+      queryFn: async () => {
+        const res = await get<getUserCountResponse | ApiResponse<getUserCountResponse>>(
+          END_POINT.GET_USER_COUNT,
+        );
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('유저 수 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getUserCountResponse;
+      },
     }),
 };
