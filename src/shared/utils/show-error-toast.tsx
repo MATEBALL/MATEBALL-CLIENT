@@ -4,12 +4,13 @@ import { toast } from 'react-compact-toast';
 type ShowErrorToastOptions = {
   icon?: boolean;
   offset?: string;
+  className?: string;
 };
 
 const DEFAULT_AUTOCLOSE = 2000;
 
 const showErrorToastCore = (message: string, opts?: ShowErrorToastOptions) => {
-  const { icon = true } = opts ?? {};
+  const { icon = true, className = '' } = opts ?? {};
 
   toast({
     text: message,
@@ -17,8 +18,13 @@ const showErrorToastCore = (message: string, opts?: ShowErrorToastOptions) => {
     autoClose: DEFAULT_AUTOCLOSE,
     offset: opts?.offset,
     position: 'bottomCenter',
-    className:
-      '!min-h-[4.5rem] max-w-[calc(43rem-3.2rem)] w-[calc(100%-3.2rem)] cap_14_m text-gray-white rounded-[12px] bg-gray-700',
+    className: `
+      !min-h-[4.5rem]
+      max-w-[calc(43rem-3.2rem)]
+      w-[calc(100%-3.2rem)]
+      rounded-[12px]
+      ${className || 'cap_14_m text-gray-white bg-gray-700'}
+    `,
   });
 };
 

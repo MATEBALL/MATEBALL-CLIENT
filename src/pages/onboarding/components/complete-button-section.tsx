@@ -50,7 +50,11 @@ const CompleteButtonSection = ({ pendingMatch }: CompleteButtonSectionProps) => 
             });
           }
 
-          navigate(ROUTES.HOME);
+          navigate(ROUTES.HOME, {
+            state: {
+              shouldShowMatchCreatedToast: true,
+            },
+          });
         },
       },
     );
