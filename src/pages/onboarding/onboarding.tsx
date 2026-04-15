@@ -60,7 +60,7 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="h-full flex-col">
+    <div className="h-full flex-col bg-background">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={handlePrev} />
         {currentStep !== 'COMPLETE' && (
