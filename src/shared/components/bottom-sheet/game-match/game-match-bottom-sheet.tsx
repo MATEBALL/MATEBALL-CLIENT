@@ -5,32 +5,22 @@ import GameMatchFooter from '@components/bottom-sheet/game-match/game-match-foot
 import GameMatchList from '@components/bottom-sheet/game-match/game-match-list';
 import { formatDateWeekday } from '@components/bottom-sheet/game-match/utils/format-date-weekday';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
-import { MATCH_REQUEST_ERROR_MESSAGES } from '@constants/error-toast';
 import { gaEvent } from '@libs/analytics';
+import type { SelectedGame } from '@pages/onboarding/components/date-select';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { showErrorToast } from '@/shared/utils/show-error-toast';
-
-interface GameScheduleItem {
-  id: number;
-  awayTeam: string;
-  homeTeam: string;
-  gameTime: string;
-  stadium: string;
-}
 
 interface GameMatchBottomSheetProps {
   isOpen: boolean;
   onClose: () => void;
   date: string;
-  gameSchedule: GameScheduleItem[];
+  gameSchedule: SelectedGame[];
   onClick?: (selectedId: number | null) => void;
   activeType: TabType;
   fromOnboarding?: boolean;
-  onComplete?: (matchId: number) => void;
+  onComplete?: (selected: { game: SelectedGame; date: string }) => void;
 }
 
 const GameMatchBottomSheet = ({
@@ -56,10 +46,20 @@ const GameMatchBottomSheet = ({
     onClose();
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (selectedIdx === null) return;
+
     const selectedGame = gameSchedule[selectedIdx];
     if (!selectedGame) return;
+
+    if (fromOnboarding) {
+      handleClose();
+      onComplete?.({
+        game: selectedGame,
+        date,
+      });
+      return;
+    }
 
     const gaMatchType = activeType === TAB_TYPES.SINGLE ? 'one_to_one' : 'group';
     gaEvent('match_create_click', {
@@ -87,21 +87,7 @@ const GameMatchBottomSheet = ({
           }
 
           handleClose();
-
-          if (fromOnboarding) {
-            onComplete?.(response.matchId);
-          } else {
-            navigate(`${ROUTES.MATCH_CREATE(createdMatchId.toString())}?type=${queryType}`);
-          }
-        },
-        onError: (error) => {
-          const status = (error as AxiosError)?.response?.status;
-
-          if (status === MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.status) {
-            showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.TOO_MANY_REQUESTS.message, '8.3rem');
-          } else if (status === MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.status) {
-            showErrorToast(MATCH_REQUEST_ERROR_MESSAGES.DUPLICATE_MATCH.message, '8.3rem');
-          }
+          navigate(`${ROUTES.MATCH_CREATE(createdMatchId)}?type=${queryType}`);
         },
       },
     );

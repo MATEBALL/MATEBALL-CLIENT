@@ -4,7 +4,7 @@ import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
 import CompleteButtonSection from '@pages/onboarding/components/complete-button-section';
-import DateSelect from '@pages/onboarding/components/date-select';
+import DateSelect, { type SelectedGame } from '@pages/onboarding/components/date-select';
 import Frequency from '@pages/onboarding/components/frequency';
 import MatchingType from '@pages/onboarding/components/matching-type';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
@@ -33,8 +33,9 @@ const Onboarding = () => {
     MATCHING_TYPE: null,
   });
 
-  const [createdMatch, setCreatedMatch] = useState<{
-    matchId: number;
+  const [pendingMatch, setPendingMatch] = useState<{
+    game: SelectedGame;
+    date: string;
     type: 'single' | 'group';
   } | null>(null);
 
@@ -43,7 +44,6 @@ const Onboarding = () => {
   };
 
   const navigate = useNavigate();
-
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   const handlePrev = () => {
@@ -112,9 +112,10 @@ const Onboarding = () => {
               activeType={
                 selections.MATCHING_TYPE === '1:1 매칭' ? TAB_TYPES.SINGLE : TAB_TYPES.GROUP
               }
-              onComplete={(matchId) => {
-                setCreatedMatch({
-                  matchId,
+              onComplete={({ game, date }) => {
+                setPendingMatch({
+                  game,
+                  date,
                   type: selections.MATCHING_TYPE === '1:1 매칭' ? 'single' : 'group',
                 });
                 goNext();
@@ -123,7 +124,13 @@ const Onboarding = () => {
           </Step>
 
           <Step name="COMPLETE">
-            {createdMatch && <Complete matchId={createdMatch.matchId} type={createdMatch.type} />}
+            {pendingMatch && (
+              <Complete
+                selectedGame={pendingMatch.game}
+                selectedDate={pendingMatch.date}
+                type={pendingMatch.type}
+              />
+            )}
           </Step>
         </Funnel>
 
@@ -146,7 +153,9 @@ const Onboarding = () => {
             />
           </div>
         )}
-        {currentStep === 'COMPLETE' && <CompleteButtonSection />}
+        {currentStep === 'COMPLETE' && pendingMatch && (
+          <CompleteButtonSection pendingMatch={pendingMatch} />
+        )}
       </div>
     </div>
   );
