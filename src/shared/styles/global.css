@@ -48,6 +48,6 @@
   }
 
   .toast-text {
-  max-width: none !important;
-}
+    max-width: none !important;
+  }
 }
