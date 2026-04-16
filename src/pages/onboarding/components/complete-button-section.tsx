@@ -25,6 +25,8 @@ const CompleteButtonSection = ({ pendingMatch }: CompleteButtonSectionProps) => 
   };
 
   const handleCreate = () => {
+    if (createMatchMutation.isPending) return;
+
     const matchType = pendingMatch.type === 'single' ? 'DIRECT' : 'GROUP';
     const gaMatchType = pendingMatch.type === 'single' ? 'one_to_one' : 'group';
 
@@ -70,7 +72,14 @@ const CompleteButtonSection = ({ pendingMatch }: CompleteButtonSectionProps) => 
           className="w-full"
           onClick={handleGoToMate}
         />
-        <Button label="만들기" size="M" variant="blue" className="w-full" onClick={handleCreate} />
+        <Button
+          label="만들기"
+          size="M"
+          variant="blue"
+          className="w-full"
+          onClick={handleCreate}
+          disabled={createMatchMutation.isPending}
+        />
       </section>
     </div>
   );
