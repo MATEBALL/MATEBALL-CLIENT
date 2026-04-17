@@ -7,12 +7,20 @@ const CompleteGroupCard = ({ matchId }: { matchId: number }) => {
   const { data } = useSuspenseQuery(matchQueries.GROUP_MATCH_RESULT(matchId));
 
   const cardProps: CardProps = {
-    ...data,
-    type: 'group',
+    id: data.id,
+    type: 'game',
+    nickname: data.nickname,
+    count: data.count,
+    imgUrl: Array.isArray(data.imgUrl) ? data.imgUrl : [data.imgUrl],
+    awayTeam: data.awayTeam,
+    homeTeam: data.homeTeam,
+    stadium: data.stadium,
+    date: data.date,
+    isGroup: true,
     className: 'w-full',
   };
 
-  return <Card isCreated {...cardProps} />;
+  return <Card {...cardProps} />;
 };
 
 export default CompleteGroupCard;

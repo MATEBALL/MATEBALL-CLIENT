@@ -120,7 +120,7 @@ const Game = () => {
   }, [gameMatchData, setHeaderTitle]);
 
   return (
-    <div className="relative h-full flex-col gap-[1.2rem] px-[1.6rem] pt-[2rem]">
+    <div className="relative h-full flex-col gap-[1.2rem] bg-gray-100 px-[1.6rem] pt-[2rem]">
       {gameMatchData?.result?.map((match) => (
         // TODO: 매칭 현황 상태가 [그룹원 모집중]인 카드만 노출
         <button

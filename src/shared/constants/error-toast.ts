@@ -21,3 +21,5 @@ export const NO_GAME_TOAST_MESSAGE = '해당 날짜에는 진행되는 경기가
 export const HAS_DONE_TOAST_MESSAGE = '이미 매칭을 만든 경기예요.';
 
 export const MY_MATCH_TOAST_MESSAGE = '내가 만든 매칭은 매칭현황에서 확인 가능해요.';
+
+export const CREATE_MATCH_TOAST_MESSAGE = '방금 만든 카드를 매칭 현황에서 확인해 보세요!  🎉 ';

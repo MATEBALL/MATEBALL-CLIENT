@@ -1,11 +1,10 @@
 import { matchMutations } from '@apis/match/match-mutations';
-import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import { TAB_TYPES } from '@components/tab/tab/constants/tab-type';
 import { useFunnel } from '@hooks/use-funnel';
 import Complete from '@pages/onboarding/components/complete';
 import CompleteButtonSection from '@pages/onboarding/components/complete-button-section';
-import DateSelect from '@pages/onboarding/components/date-select';
+import DateSelect, { type SelectedGame } from '@pages/onboarding/components/date-select';
 import Frequency from '@pages/onboarding/components/frequency';
 import MatchingType from '@pages/onboarding/components/matching-type';
 import OnboardingHeader from '@pages/onboarding/components/onboarding-header';
@@ -16,7 +15,7 @@ import ViewingStyle from '@pages/onboarding/components/viewing-style';
 import { FIRST_FUNNEL_STEPS, NO_TEAM_OPTION } from '@pages/onboarding/constants/onboarding';
 import { handleButtonClick, isButtonDisabled } from '@pages/onboarding/utils/onboarding-button';
 import { ROUTES } from '@routes/routes-config';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,8 +33,9 @@ const Onboarding = () => {
     MATCHING_TYPE: null,
   });
 
-  const [createdMatch, setCreatedMatch] = useState<{
-    matchId: number;
+  const [pendingMatch, setPendingMatch] = useState<{
+    game: SelectedGame;
+    date: string;
     type: 'single' | 'group';
   } | null>(null);
 
@@ -44,7 +44,6 @@ const Onboarding = () => {
   };
 
   const navigate = useNavigate();
-
   const { mutate } = useMutation(matchMutations.MATCH_CONDITION());
 
   const handlePrev = () => {
@@ -60,11 +59,8 @@ const Onboarding = () => {
     }
   };
 
-  const { data: user } = useSuspenseQuery(userQueries.USER_INFO());
-  const nickname = user.nickname;
-
   return (
-    <div className="h-full flex-col">
+    <div className="h-full flex-col bg-background">
       <div className="sticky top-0 bg-background">
         <OnboardingHeader onClick={handlePrev} />
         {currentStep !== 'COMPLETE' && (
@@ -104,14 +100,6 @@ const Onboarding = () => {
             />
           </Step>
 
-          {/* TODO: GENDER 단계 관련 전부 삭제 */}
-          {/* <Step name="GENDER">
-            <Gender
-              selectedOption={selections.GENDER}
-              onSelect={(option) => handleSelect('GENDER', option)}
-            />
-          </Step> */}
-
           <Step name="MATCHING_TYPE">
             <MatchingType
               selectedOption={selections.MATCHING_TYPE}
@@ -124,9 +112,10 @@ const Onboarding = () => {
               activeType={
                 selections.MATCHING_TYPE === '1:1 매칭' ? TAB_TYPES.SINGLE : TAB_TYPES.GROUP
               }
-              onComplete={(matchId) => {
-                setCreatedMatch({
-                  matchId,
+              onComplete={({ game, date }) => {
+                setPendingMatch({
+                  game,
+                  date,
                   type: selections.MATCHING_TYPE === '1:1 매칭' ? 'single' : 'group',
                 });
                 goNext();
@@ -135,11 +124,11 @@ const Onboarding = () => {
           </Step>
 
           <Step name="COMPLETE">
-            {createdMatch && (
+            {pendingMatch && (
               <Complete
-                nickname={nickname ?? ''}
-                matchId={createdMatch.matchId}
-                type={createdMatch.type}
+                selectedGame={pendingMatch.game}
+                selectedDate={pendingMatch.date}
+                type={pendingMatch.type}
               />
             )}
           </Step>
@@ -164,7 +153,9 @@ const Onboarding = () => {
             />
           </div>
         )}
-        {currentStep === 'COMPLETE' && <CompleteButtonSection />}
+        {currentStep === 'COMPLETE' && pendingMatch && (
+          <CompleteButtonSection pendingMatch={pendingMatch} />
+        )}
       </div>
     </div>
   );
