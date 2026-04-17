@@ -11,8 +11,16 @@ import { format } from 'date-fns';
 import { useState } from 'react';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
+export interface SelectedGame {
+  id: number;
+  awayTeam: string;
+  homeTeam: string;
+  gameTime: string;
+  stadium: string;
+}
+
 interface DateSelectProps {
-  onComplete: (matchId: number) => void;
+  onComplete: (selected: { game: SelectedGame; date: string }) => void;
   activeType: TabType;
 }
 
@@ -71,7 +79,7 @@ const DateSelect = ({ onComplete, activeType }: DateSelectProps) => {
         date={format(selectedDate ?? new Date(), 'yyyy-MM-dd')}
         gameSchedule={data ?? []}
         activeType={activeType}
-        fromOnboarding={true}
+        fromOnboarding
         onComplete={onComplete}
       />
     </div>

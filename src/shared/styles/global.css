@@ -46,4 +46,8 @@
   body::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
   }
+
+  .toast-text {
+    max-width: none !important;
+  }
 }

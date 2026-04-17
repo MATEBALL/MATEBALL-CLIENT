@@ -5,6 +5,7 @@ import Button from '@components/button/button/button';
 import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import Dialog from '@components/dialog/dialog';
 import { TAB_TYPES, type TabType } from '@components/tab/tab/constants/tab-type';
+import { CREATE_MATCH_TOAST_MESSAGE } from '@constants/error-toast';
 import useAuth from '@hooks/use-auth';
 import { useTabState } from '@hooks/use-tab-state';
 import { gaEvent } from '@libs/analytics';
@@ -19,8 +20,9 @@ import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { addDays, format } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { handleScrollLock } from '@/shared/utils/scroll-lock';
+import { showErrorToast } from '@/shared/utils/show-error-toast';
 
 // TODO: 선택 날짜 유지 로직 수정
 // const getSelectedDateFromQuery = (searchParams: URLSearchParams, fallbackDate: Date): Date => {
@@ -32,6 +34,7 @@ import { handleScrollLock } from '@/shared/utils/scroll-lock';
 
 const Home = () => {
   const { activeType, changeTab } = useTabState();
+  const location = useLocation();
   const navigate = useNavigate();
   // const [searchParams, setSearchParams] = useSearchParams();
   const entryDate = new Date();
@@ -67,6 +70,21 @@ const Home = () => {
     const from = needsMatchingSetup ? 'onboarding' : 'return_user';
     gaEvent('home_enter', { from });
   }, [needsMatchingSetup]);
+
+  useEffect(() => {
+    if (location.state?.shouldShowMatchCreatedToast) {
+      showErrorToast(CREATE_MATCH_TOAST_MESSAGE, {
+        offset: '8.8rem',
+        icon: false,
+        className: 'bg-sub-900 text-gray-black cap_14_sb',
+      });
+
+      navigate(location.pathname, {
+        replace: true,
+        state: {},
+      });
+    }
+  }, [location, navigate]);
 
   // const syncSelectedDateToQuery = (date: Date) => {
   //   const nextParams = new URLSearchParams(searchParams);
