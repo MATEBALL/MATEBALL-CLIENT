@@ -75,3 +75,14 @@ export const ALARM_KEY = {
   HAS_UNREAD: ['alarms', 'hasUnread'] as const,
   READ_ALL: () => ['alarms', 'read-all'] as const,
 };
+
+export const IMAGE_KEY = {
+  ALL: ['image'] as const,
+
+  PROFILE: {
+    ALL: () => [...IMAGE_KEY.ALL, 'profile'] as const,
+    POST: () => [...IMAGE_KEY.ALL, 'profile', 'post'] as const,
+    PATCH: () => [...IMAGE_KEY.ALL, 'profile', 'patch'] as const,
+    DELETE: () => [...IMAGE_KEY.ALL, 'profile', 'delete'] as const,
+  },
+};
