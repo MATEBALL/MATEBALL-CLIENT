@@ -83,7 +83,7 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
         cards.map((card) => (
           <div
             key={`${card.type}-${card.id}`}
-            // biome-ignore lint/a11y/useSemanticElements: <explanation>
+            // biome-ignore lint/a11y/useSemanticElements: 카드 전체를 클릭 영역으로 사용하기 위해 div에 button role 부여
             role="button"
             tabIndex={0}
             onClick={() => handleCardClick(card)}
