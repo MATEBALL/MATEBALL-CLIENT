@@ -14,3 +14,6 @@ export const PROFILE_VIEWING_STYLE = [
     label: '직관먹방러',
   },
 ];
+
+export const DEFAULT_PROFILE_IMAGE_URL =
+  'https://mateball-file.s3.ap-northeast-2.amazonaws.com/profile.jpg';

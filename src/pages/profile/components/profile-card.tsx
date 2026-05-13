@@ -28,7 +28,7 @@ const ProfileCard = ({ nickname, imgUrl, team, style, matchCnt, avgSeason }: Pro
           <img
             src={imgUrl}
             alt={`${nickname} 프로필 이미지`}
-            className="h-[6rem] w-[6rem] rounded-[60px]"
+            className="h-[6rem] w-[6rem] rounded-[60px] object-cover"
           />
           <div className="flex-col gap-[0.4rem]">
             <p className="subhead_18_sb text-gray-white">{nickname}</p>

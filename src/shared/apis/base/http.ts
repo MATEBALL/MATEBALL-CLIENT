@@ -19,3 +19,23 @@ export function put<T>(...args: Parameters<typeof instance.put>): Promise<T> {
 export function del<T>(...args: Parameters<typeof instance.delete>): Promise<T> {
   return instance.delete<T>(...args).then((res) => res.data);
 }
+
+export function postFormData<T>(url: string, formData: FormData): Promise<T> {
+  return instance
+    .post<T>(url, formData, {
+      headers: {
+        'Content-Type': undefined,
+      },
+    })
+    .then((res) => res.data);
+}
+
+export function patchFormData<T>(url: string, formData: FormData): Promise<T> {
+  return instance
+    .patch<T>(url, formData, {
+      headers: {
+        'Content-Type': undefined,
+      },
+    })
+    .then((res) => res.data);
+}

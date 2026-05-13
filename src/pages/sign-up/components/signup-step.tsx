@@ -1,3 +1,4 @@
+import { imageMutations } from '@apis/image/image-mutations';
 import { userMutations } from '@apis/user/user-mutations';
 import Button from '@components/button/button/button';
 import Icon from '@components/icon/icon';
@@ -22,7 +23,7 @@ import { type UserInfoFormValues, UserInfoSchema } from '@pages/sign-up/schema/v
 import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -34,6 +35,7 @@ import type { postUserInfoRequest } from '@/shared/types/user-types';
 const SignupStep = () => {
   const navigate = useNavigate();
   const { refreshUserStatus } = useAuth();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -53,6 +55,7 @@ const SignupStep = () => {
   const informationValue = watch('introduction');
 
   const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
 
   const hasNicknameError = !!errors.nickname || nicknameStatus === 'duplicate';
 
@@ -63,6 +66,12 @@ const SignupStep = () => {
   const userInfoMutation = useMutation(userMutations.USER_INFO());
   const agreementInfoMutaion = useMutation(userMutations.AGREEMENT_INFO());
   const { mutateAsync: checkNickname } = useMutation(userMutations.NICKNAME_CHECK());
+  const postProfileImageMutation = useMutation({
+    ...imageMutations.POST_PROFILE_IMAGE(),
+    onSuccess: ({ profileImageUrl }) => {
+      setProfileImageUrl(profileImageUrl);
+    },
+  });
 
   const informationLength = informationValue.length ?? 0;
 
@@ -123,6 +132,20 @@ const SignupStep = () => {
     }
   };
 
+  const handleProfileImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleProfileImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const image = event.target.files?.[0];
+
+    if (!image) return;
+
+    postProfileImageMutation.mutate({ image });
+
+    event.target.value = '';
+  };
+
   const nicknameValidationMessage = getNicknameValidationMessage(
     nicknameStatus,
     errors.nickname,
@@ -153,10 +176,34 @@ const SignupStep = () => {
             <p className="body_16_m text-gray-black">
               프로필 이미지 <span className="text-gray-500">(선택)</span>
             </p>
-            {/* TODO: 프로필 편집 api 연결 */}
             <div className="relative w-fit">
-              <Icon name="profile" size={6.4} />
-              <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+              <button
+                type="button"
+                onClick={handleProfileImageClick}
+                disabled={postProfileImageMutation.isPending}
+                aria-label="프로필 이미지 등록"
+                className="relative w-fit"
+              >
+                {profileImageUrl ? (
+                  <img
+                    src={profileImageUrl}
+                    alt="프로필 이미지"
+                    className="h-[6.4rem] w-[6.4rem] rounded-full object-cover object-center"
+                  />
+                ) : (
+                  <Icon name="profile" size={6.4} />
+                )}
+
+                <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+              </button>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                onChange={handleProfileImageChange}
+                className="hidden"
+              />
             </div>
           </div>
           <div className="flex-col gap-[0.8rem]">
