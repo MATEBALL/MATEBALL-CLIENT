@@ -2,7 +2,6 @@ import { gameQueries } from '@apis/game/game-queries';
 import GameMatchBottomSheet from '@components/bottom-sheet/game-match/game-match-bottom-sheet';
 import useBottomSheet from '@components/bottom-sheet/hooks/use-bottom-sheet';
 import MonthCalendar from '@components/calendar/month-calendar';
-import { getInitialSelectedDate } from '@components/calendar/utils/date-grid';
 import type { TabType } from '@components/tab/tab/tab-content';
 import { NO_GAME_TOAST_MESSAGE } from '@constants/error-toast';
 import queryClient from '@libs/query-client';
@@ -25,9 +24,9 @@ interface DateSelectProps {
 }
 
 const DateSelect = ({ onComplete, activeType }: DateSelectProps) => {
-  const initialSelectedDate = getInitialSelectedDate(new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate);
-  const [currentMonth, setCurrentMonth] = useState<Date>(initialSelectedDate);
+  const entryDate = new Date();
+  const [selectedDate, setSelectedDate] = useState<Date | null>(entryDate);
+  const [currentMonth, setCurrentMonth] = useState<Date>(entryDate);
 
   const { isOpen, open, close } = useBottomSheet();
 
@@ -64,7 +63,7 @@ const DateSelect = ({ onComplete, activeType }: DateSelectProps) => {
 
       <div className="w-full flex-grow">
         <MonthCalendar
-          entryDate={new Date()}
+          entryDate={entryDate}
           value={currentMonth}
           selectedDate={selectedDate}
           onWeekChange={handleDateSelect}
