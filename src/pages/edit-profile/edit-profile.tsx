@@ -35,110 +35,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const EditProfile = () => {
+  const queryClient = useQueryClient();
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const { data } = useQuery(userQueries.MATCH_CONDITION());
   const { data: userInfo } = useQuery(userQueries.USER_INFO());
 
-  const [team, setTeam] = useState<string | undefined>(undefined);
-  const [mateTeam, setMateTeam] = useState<string | undefined>(undefined);
-  const [viewStyle, setViewStyle] = useState<string | undefined>(undefined);
-  const [avgSeason, setAvgSeason] = useState('');
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
-  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
-
   const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
   const { mutate: editMatchCondition } = useMutation(userMutations.EDIT_MATCH_CONDITION());
-
-  // TODO: 추후 이미지 삭제 시 연결
-  // const deleteProfileImageMutation = useMutation({
-  //   ...imageMutations.DELETE_PROFILE_IMAGE(),
-  //   onSuccess: ({ profileImageUrl }) => {
-  //     setProfileImageUrl(profileImageUrl);
-  //   },
-  // });
-
-  const {
-    control,
-    formState: { errors, isSubmitting },
-    trigger,
-    getValues,
-    watch,
-  } = useForm<EditProfileValues>({
-    resolver: zodResolver(EditProfileSchema),
-    mode: 'onChange',
-    defaultValues: { nickname: '', introduction: '' },
-  });
-
-  const nicknameVal = watch('nickname', '');
-  const introductionVal = watch('introduction', '');
-
   const { mutateAsync: checkNickname } = useMutation(userMutations.NICKNAME_CHECK());
-  const submitNickname = async () => {
-    const ok = await trigger('nickname');
-    if (!ok) return;
-    editProfile({ field: '닉네임', value: getValues('nickname').trim() });
-  };
-
-  const submitInformation = async () => {
-    const ok = await trigger('introduction');
-    if (!ok) return;
-    editProfile({ field: '소개', value: getValues('introduction').trim() });
-  };
-
-  const initial = {
-    team: data?.team ?? '',
-    mateTeam: data?.teamAllowed ?? '',
-    viewStyle: data?.style ?? '',
-    avgSeason: data?.avgSeason ?? 0,
-  };
-
-  const teamValue = team ?? initial.team;
-  const viewStyleValue = viewStyle ?? initial.viewStyle;
-  const mateTeamValue = (teamValue === NO_TEAM_OPTION ? '' : (mateTeam ?? initial.mateTeam)) ?? '';
-  const avgSeasonValue = avgSeason === '' ? initial.avgSeason : Number(avgSeason);
-
-  const isMatchDirty =
-    teamValue !== initial.team ||
-    mateTeamValue !== initial.mateTeam ||
-    viewStyleValue !== initial.viewStyle ||
-    avgSeasonValue !== initial.avgSeason;
-
-  const isSubmitDisabled = !isMatchDirty || isSubmit;
-
-  const handleSaveClick = () => {
-    if (!isMatchDirty) return;
-    setIsSubmit(true);
-
-    editMatchCondition({
-      team: teamValue,
-      style: viewStyleValue,
-      teamAllowed: teamValue === NO_TEAM_OPTION ? null : mateTeamValue || null,
-      avgSeason: avgSeasonValue,
-    });
-  };
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
-  useEffect(() => {
-    setNicknameStatus('idle');
-  }, [nicknameVal]);
-
-  const handleCheckNickname = async () => {
-    if (errors.nickname || nicknameVal.trim().length < 2) return;
-    setNicknameStatus('checking');
-    try {
-      const available = await checkNickname({ nickname: nicknameVal });
-      setNicknameStatus(available ? 'available' : 'duplicate');
-    } catch {
-      setNicknameStatus('idle');
-    }
-  };
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const queryClient = useQueryClient();
-
-  const handleProfileImageClick = () => {
-    fileInputRef.current?.click();
-  };
 
   const postProfileImageMutation = useMutation({
     ...imageMutations.POST_PROFILE_IMAGE(),
@@ -162,8 +68,105 @@ const EditProfile = () => {
     },
   });
 
+  // TODO: 추후 이미지 삭제 시 연결
+  // const deleteProfileImageMutation = useMutation({
+  //   ...imageMutations.DELETE_PROFILE_IMAGE(),
+  //   onSuccess: ({ profileImageUrl }) => {
+  //     setProfileImageUrl(profileImageUrl);
+  //   },
+  // });
+
+  const {
+    control,
+    formState: { errors, isSubmitting },
+    trigger,
+    getValues,
+    watch,
+  } = useForm<EditProfileValues>({
+    resolver: zodResolver(EditProfileSchema),
+    mode: 'onChange',
+    defaultValues: { nickname: '', introduction: '' },
+  });
+
+  const [team, setTeam] = useState<string | undefined>(undefined);
+  const [mateTeam, setMateTeam] = useState<string | undefined>(undefined);
+  const [viewStyle, setViewStyle] = useState<string | undefined>(undefined);
+  const [avgSeason, setAvgSeason] = useState('');
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+
+  const nicknameVal = watch('nickname', '');
+  const introductionVal = watch('introduction', '');
+
+  const initial = {
+    team: data?.team ?? '',
+    mateTeam: data?.teamAllowed ?? '',
+    viewStyle: data?.style ?? '',
+    avgSeason: data?.avgSeason ?? 0,
+  };
+
+  const teamValue = team ?? initial.team;
+  const viewStyleValue = viewStyle ?? initial.viewStyle;
+  const mateTeamValue = (teamValue === NO_TEAM_OPTION ? '' : (mateTeam ?? initial.mateTeam)) ?? '';
+  const avgSeasonValue = avgSeason === '' ? initial.avgSeason : Number(avgSeason);
+
+  const isMatchDirty =
+    teamValue !== initial.team ||
+    mateTeamValue !== initial.mateTeam ||
+    viewStyleValue !== initial.viewStyle ||
+    avgSeasonValue !== initial.avgSeason;
+
+  const isSubmitDisabled = !isMatchDirty || isSubmit;
+
   const hasCustomProfileImage =
     Boolean(userInfo?.imgUrl) && userInfo?.imgUrl !== DEFAULT_PROFILE_IMAGE_URL;
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
+  useEffect(() => {
+    setNicknameStatus('idle');
+  }, [nicknameVal]);
+
+  useEffect(() => {
+    if (userInfo?.imgUrl) {
+      setProfileImageUrl(userInfo.imgUrl);
+    }
+  }, [userInfo?.imgUrl]);
+
+  const submitNickname = async () => {
+    const ok = await trigger('nickname');
+    if (!ok) return;
+    editProfile({ field: '닉네임', value: getValues('nickname').trim() });
+  };
+
+  const submitInformation = async () => {
+    const ok = await trigger('introduction');
+    if (!ok) return;
+    editProfile({ field: '소개', value: getValues('introduction').trim() });
+  };
+
+  const handleSaveClick = () => {
+    if (!isMatchDirty) return;
+    setIsSubmit(true);
+
+    editMatchCondition({
+      team: teamValue,
+      style: viewStyleValue,
+      teamAllowed: teamValue === NO_TEAM_OPTION ? null : mateTeamValue || null,
+      avgSeason: avgSeasonValue,
+    });
+  };
+
+  const handleCheckNickname = async () => {
+    if (errors.nickname || nicknameVal.trim().length < 2) return;
+    setNicknameStatus('checking');
+    try {
+      const available = await checkNickname({ nickname: nicknameVal });
+      setNicknameStatus(available ? 'available' : 'duplicate');
+    } catch {
+      setNicknameStatus('idle');
+    }
+  };
 
   const handleProfileImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const image = event.target.files?.[0];
@@ -179,11 +182,9 @@ const EditProfile = () => {
     event.target.value = '';
   };
 
-  useEffect(() => {
-    if (userInfo?.imgUrl) {
-      setProfileImageUrl(userInfo.imgUrl);
-    }
-  }, [userInfo?.imgUrl]);
+  const handleProfileImageClick = () => {
+    fileInputRef.current?.click();
+  };
 
   return (
     <div className="h-full bg-gray-white px-[1.6rem] pt-[1.6rem] pb-[4rem]">
