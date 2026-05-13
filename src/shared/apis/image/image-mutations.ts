@@ -1,9 +1,10 @@
-import { patchFormData, postFormData } from '@apis/base/http';
+import { del, patchFormData, postFormData } from '@apis/base/http';
 import { END_POINT } from '@constants/api';
 import { IMAGE_KEY } from '@constants/query-key';
 import { mutationOptions } from '@tanstack/react-query';
 import type { ApiResponse } from '@/shared/types/base-types';
 import type {
+  DeleteProfileImageResponse,
   PatchProfileImageRequest,
   PatchProfileImageResponse,
   PostProfileImageRequest,
@@ -46,6 +47,22 @@ export const imageMutations = {
 
         if (!res.data) {
           throw new Error('프로필 이미지 수정 응답 데이터가 없습니다.');
+        }
+
+        return res.data;
+      },
+    }),
+
+  DELETE_PROFILE_IMAGE: () =>
+    mutationOptions<DeleteProfileImageResponse, Error, void>({
+      mutationKey: IMAGE_KEY.PROFILE.DELETE(),
+      mutationFn: async () => {
+        const res = await del<ApiResponse<DeleteProfileImageResponse>>(
+          END_POINT.DELETE_PROFILE_IMAGE,
+        );
+
+        if (!res.data) {
+          throw new Error('프로필 이미지 삭제 응답 데이터가 없습니다.');
         }
 
         return res.data;
