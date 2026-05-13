@@ -198,7 +198,7 @@ const EditProfile = () => {
             <button
               type="button"
               onClick={handleProfileImageClick}
-              disabled={patchProfileImageMutation.isPending}
+              disabled={patchProfileImageMutation.isPending || postProfileImageMutation.isPending}
               aria-label="프로필 이미지 수정"
               className="relative w-fit"
             >
