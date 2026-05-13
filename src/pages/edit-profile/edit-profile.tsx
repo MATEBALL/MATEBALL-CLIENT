@@ -1,13 +1,16 @@
+import { imageMutations } from '@apis/image/image-mutations';
 import { userMutations } from '@apis/user/user-mutations';
 import { userQueries } from '@apis/user/user-queries';
 import Button from '@components/button/button/button';
 import Divider from '@components/divider/divider';
 import Icon from '@components/icon/icon';
 import Input from '@components/input/input';
+import { USER_KEY } from '@constants/query-key';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@libs/cn';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
 import {
+  DEFAULT_PROFILE_IMAGE_URL,
   PROFILE_SYNC_MATE,
   PROFILE_VIEWING_STYLE,
 } from '@pages/edit-profile/constants/edit-profile';
@@ -27,12 +30,13 @@ import {
   NICKNAME_PLACEHOLDER,
 } from '@pages/sign-up/constants/validation';
 import type { NicknameStatus } from '@pages/sign-up/types/nickname-types';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 const EditProfile = () => {
   const { data } = useQuery(userQueries.MATCH_CONDITION());
+  const { data: userInfo } = useQuery(userQueries.USER_INFO());
 
   const [team, setTeam] = useState<string | undefined>(undefined);
   const [mateTeam, setMateTeam] = useState<string | undefined>(undefined);
@@ -40,9 +44,18 @@ const EditProfile = () => {
   const [avgSeason, setAvgSeason] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
   const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
+  const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
 
   const { mutate: editProfile } = useMutation(userMutations.EDIT_PROFILE());
   const { mutate: editMatchCondition } = useMutation(userMutations.EDIT_MATCH_CONDITION());
+
+  // TODO: 추후 이미지 삭제 시 연결
+  // const deleteProfileImageMutation = useMutation({
+  //   ...imageMutations.DELETE_PROFILE_IMAGE(),
+  //   onSuccess: ({ profileImageUrl }) => {
+  //     setProfileImageUrl(profileImageUrl);
+  //   },
+  // });
 
   const {
     control,
@@ -120,6 +133,58 @@ const EditProfile = () => {
     }
   };
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const queryClient = useQueryClient();
+
+  const handleProfileImageClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const postProfileImageMutation = useMutation({
+    ...imageMutations.POST_PROFILE_IMAGE(),
+    onSuccess: ({ profileImageUrl }) => {
+      setProfileImageUrl(profileImageUrl);
+
+      queryClient.invalidateQueries({
+        queryKey: USER_KEY.INFO(),
+      });
+    },
+  });
+
+  const patchProfileImageMutation = useMutation({
+    ...imageMutations.PATCH_PROFILE_IMAGE(),
+    onSuccess: ({ profileImageUrl }) => {
+      setProfileImageUrl(profileImageUrl);
+
+      queryClient.invalidateQueries({
+        queryKey: USER_KEY.INFO(),
+      });
+    },
+  });
+
+  const hasCustomProfileImage =
+    Boolean(userInfo?.imgUrl) && userInfo?.imgUrl !== DEFAULT_PROFILE_IMAGE_URL;
+
+  const handleProfileImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const image = event.target.files?.[0];
+
+    if (!image) return;
+
+    if (hasCustomProfileImage) {
+      patchProfileImageMutation.mutate({ image });
+    } else {
+      postProfileImageMutation.mutate({ image });
+    }
+
+    event.target.value = '';
+  };
+
+  useEffect(() => {
+    if (userInfo?.imgUrl) {
+      setProfileImageUrl(userInfo.imgUrl);
+    }
+  }, [userInfo?.imgUrl]);
+
   return (
     <div className="h-full bg-gray-white px-[1.6rem] pt-[1.6rem] pb-[4rem]">
       <h2 className="subhead_18_sb mb-[1.6rem]">프로필 수정</h2>
@@ -128,10 +193,34 @@ const EditProfile = () => {
       <section>
         <div className="mb-[2.4rem] flex-col gap-[0.8rem]">
           <p className="body_16_m text-gray-black">프로필 이미지</p>
-          {/* TODO: 프로필 편집 api 연결 */}
           <div className="relative w-fit">
-            <Icon name="profile" size={6.4} />
-            <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+            <button
+              type="button"
+              onClick={handleProfileImageClick}
+              disabled={patchProfileImageMutation.isPending}
+              aria-label="프로필 이미지 수정"
+              className="relative w-fit"
+            >
+              {profileImageUrl ? (
+                <img
+                  src={profileImageUrl}
+                  alt="프로필 이미지"
+                  className="h-[6.4rem] w-[6.4rem] rounded-full object-cover"
+                />
+              ) : (
+                <Icon name="profile" size={6.4} />
+              )}
+
+              <Icon name="camera" size={1.6} className="absolute right-0 bottom-0" />
+            </button>
+
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg,image/jpg,image/png,image/webp"
+              onChange={handleProfileImageChange}
+              className="hidden"
+            />
           </div>
         </div>
 
