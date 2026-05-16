@@ -11,18 +11,13 @@ import { fillTabItems } from '@pages/match/utils/match-status';
 import { ERROR_MESSAGE, MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const MatchingReceiveView = () => {
   const { matchId } = useParams();
   const navigate = useNavigate();
-  const [params] = useSearchParams();
-  const cardType = params.get('cardtype');
-  const isGroupMatching = cardType === 'group';
 
-  usePreventBackNavigation(
-    `${ROUTES.MATCH}?tab=${cardType === 'group' ? '그룹' : '1:1'}&filter=전체`,
-  );
+  usePreventBackNavigation(`${ROUTES.MATCH}?tab=생성한 매칭&filter=전체`);
 
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
@@ -60,11 +55,7 @@ const MatchingReceiveView = () => {
   const handleAccept = () => {
     acceptMatch(parsedId, {
       onSuccess: () => {
-        if (isGroupMatching) {
-          navigate(`${ROUTES.MATCH}?tab=그룹&filter=전체`);
-        } else {
-          navigate(`${ROUTES.RESULT(matchId)}?type=success`);
-        }
+        navigate(`${ROUTES.MATCH}?tab=생성한 매칭&filter=전체`);
 
         fillTabItems.forEach((label) => {
           queryClient.invalidateQueries({ queryKey: MATCH_KEY.STATUS.SINGLE(label) });
@@ -78,12 +69,12 @@ const MatchingReceiveView = () => {
   };
 
   return (
-    <div className="h-full flex-col-between overflow-hidden">
-      <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
+    <div className="h-full flex-col-between overflow-hidden bg-gray-white">
+      <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[4.8rem]">
         <section className="gap-[0.8rem] text-center">
           <h1 className="title_24_sb text-gray-black">{MATCHING_HEADER_MESSAGE}</h1>
         </section>
-        <Card {...detailedCard} className="w-full" />
+        <Card {...detailedCard} type="detailed" color="detailed" className="w-full" />
       </div>
 
       <section className="w-full flex-row-center gap-[0.8rem] p-[1.6rem]">
