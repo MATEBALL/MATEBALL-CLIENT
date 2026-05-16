@@ -65,7 +65,7 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="z-[var(--z-under-header-section)] flex-col gap-[1.2rem] px-[1.6rem] pt-[1.6rem]">
+    <div className="flex-col gap-[1.2rem] px-[1.6rem] pt-[1.6rem]">
       {cards.length === 0 ? (
         <EmptyView
           iconName="empty"
