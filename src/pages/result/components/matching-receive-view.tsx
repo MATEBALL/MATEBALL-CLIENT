@@ -96,10 +96,10 @@ const MatchingReceiveView = () => {
           size="L"
           variant="skyblue"
           className="w-full"
-          label="요청 거절하기"
+          label="요청 거절"
           onClick={handleReject}
         />
-        <Button size="L" className="w-full" label="요청 수락하기" onClick={handleAccept} />
+        <Button size="L" className="w-full" label="요청 수락" onClick={handleAccept} />
       </section>
     </div>
   );
