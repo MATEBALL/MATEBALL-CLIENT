@@ -10,7 +10,9 @@ const SentView = () => {
 
   const navigate = useNavigate();
   const handleGoHome = () => navigate(ROUTES.HOME);
-  const handleGoMatch = () => navigate(ROUTES.MATCH);
+  const handleGoMatch = () => {
+    navigate(`${ROUTES.MATCH}?tab=요청한 매칭`);
+  };
 
   return (
     <div className="h-full flex-col-between pt-[9.6rem]">

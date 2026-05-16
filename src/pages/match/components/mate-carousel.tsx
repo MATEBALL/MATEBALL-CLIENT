@@ -49,7 +49,7 @@ const MateCarousel = ({ mates, currentIndex, onDotClick, isGroupMatching }: Mate
         ))}
       </ul>
 
-      {isGroupMatching && (
+      {isGroupMatching && mates.length > 1 && (
         <div className="flex-row-center">
           <CarouselIndicator
             ids={mates.map((mate) => `mate-${mate.id}`)}
