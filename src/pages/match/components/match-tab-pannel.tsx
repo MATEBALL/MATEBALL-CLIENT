@@ -42,7 +42,10 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   const handleCardClick = async (card: MatchableCardProps) => {
     onCardClick?.(card);
 
-    if (!card.hasUpdate) {
+    const query =
+      isCreatedTab && card.hasUpdate ? 'received' : CLICKABLE_STATUS_MAP[card.statusLabel ?? ''];
+
+    if (!query) {
       const message = isCreatedTab
         ? MATCH_PENDING_TOAST_MESSAGES.REQUEST_WAITING
         : MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING;
@@ -57,11 +60,8 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
     //   return;
     // }
 
-    const query = CLICKABLE_STATUS_MAP[card.statusLabel ?? ''];
-    if (!query) return;
-
     try {
-      if (card.statusLabel === '승인 완료') {
+      if (card.statusLabel === '매칭 완료' || card.statusLabel === '수락 완료') {
         await patchStageMutation.mutateAsync(card.id);
       }
       navigate(`${ROUTES.RESULT(card.id.toString())}?type=${query}&cardtype=${card.type}`);

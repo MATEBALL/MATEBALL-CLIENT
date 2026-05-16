@@ -216,9 +216,28 @@ export const matchQueries = {
   MATCH_DETAIL: (matchId: number, newRequest?: boolean) =>
     queryOptions<getMatchDetailResponse>({
       queryKey: [MATCH_KEY.DETAIL(matchId), { newRequest }],
-      queryFn: () => {
-        const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''}`;
-        return get(url);
+      queryFn: async () => {
+        const url = `${END_POINT.GET_MATCH_DETAIL(matchId)}${
+          typeof newRequest !== 'undefined' ? `?newRequest=${newRequest}` : ''
+        }`;
+
+        const res = await get<getMatchDetailResponse | ApiResponse<getMatchDetailResponse>>(url);
+
+        if (
+          typeof res === 'object' &&
+          res !== null &&
+          'status' in res &&
+          'message' in res &&
+          'data' in res
+        ) {
+          if (!res.data) {
+            throw new Error('매칭 요청 상세 응답 데이터가 없습니다.');
+          }
+
+          return res.data;
+        }
+
+        return res as getMatchDetailResponse;
       },
     }),
 

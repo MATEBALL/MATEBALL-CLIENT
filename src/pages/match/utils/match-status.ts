@@ -23,7 +23,7 @@ export const fillTabItems = ['전체', '대기 중', '완료', '실패'];
 export const getPendingToast = (status?: string): string | '' => {
   if (!status) return '';
   if (status === '요청 대기 중') return MATCH_PENDING_TOAST_MESSAGES.REQUEST_WAITING;
-  if (status === '승인 대기 중') MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING;
+  if (status === '승인 대기 중') return MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING;
 
   return '';
 };
