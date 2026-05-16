@@ -54,12 +54,6 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
       return;
     }
 
-    // const toastMsg = getPendingToast(card.statusLabel, card.type);
-    // if (toastMsg) {
-    //   showErrorToast(toastMsg, '8.9rem', false);
-    //   return;
-    // }
-
     try {
       if (card.statusLabel === '매칭 완료' || card.statusLabel === '수락 완료') {
         await patchStageMutation.mutateAsync(card.id);
