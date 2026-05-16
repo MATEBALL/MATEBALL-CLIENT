@@ -9,6 +9,7 @@ export const chipStateVariants = cva(
         inactive: 'bg-gray-200 text-gray-700',
         dark: 'bg-gray-800 text-gray-white',
         outline: 'bg-gray-white text-main-900 outline-[1px] outline-main-900',
+        update: 'bg-main-900 text-gray-white',
       },
     },
     defaultVariants: {
