@@ -81,12 +81,7 @@ const MatchingReceiveView = () => {
     <div className="h-full flex-col-between overflow-hidden">
       <div className="w-full flex-col-center gap-[4rem] px-[1.6rem] pt-[4rem]">
         <section className="gap-[0.8rem] text-center">
-          <h1 className="title_24_sb text-gray-black">{MATCHING_HEADER_MESSAGE.description}</h1>
-          <p className="body_16_m whitespace-pre-line text-gray-600">
-            {isGroupMatching
-              ? MATCHING_HEADER_MESSAGE.group.subDescription
-              : MATCHING_HEADER_MESSAGE.single.subDescription}
-          </p>
+          <h1 className="title_24_sb text-gray-black">{MATCHING_HEADER_MESSAGE}</h1>
         </section>
         <Card {...detailedCard} className="w-full" />
       </div>
