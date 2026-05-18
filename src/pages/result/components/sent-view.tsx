@@ -10,10 +10,12 @@ const SentView = () => {
 
   const navigate = useNavigate();
   const handleGoHome = () => navigate(ROUTES.HOME);
-  const handleGoMatch = () => navigate(ROUTES.MATCH);
+  const handleGoMatch = () => {
+    navigate(`${ROUTES.MATCH}?tab=요청한 매칭`);
+  };
 
   return (
-    <div className="h-full flex-col-between">
+    <div className="h-full flex-col-between pt-[9.6rem]">
       <section className="flex-col-center gap-[4rem] pt-[4rem]">
         <h2 className="title_24_sb">매칭 요청이 전송되었어요!</h2>
         <div className="h-[16rem] w-[16rem] flex-row-center">

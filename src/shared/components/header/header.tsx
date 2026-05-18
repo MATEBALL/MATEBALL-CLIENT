@@ -9,8 +9,10 @@ interface HeaderProps {
 
 const Header = ({ headerTitle }: HeaderProps) => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const urlParams = new URLSearchParams(location.search);
+  const { pathname, search } = useLocation();
+  const urlParams = new URLSearchParams(search);
+
+  const resultType = urlParams.get('type');
 
   const isFail = urlParams.get('type') === 'fail';
   const isSignUp = pathname.includes(ROUTES.SIGNUP);
@@ -23,6 +25,8 @@ const Header = ({ headerTitle }: HeaderProps) => {
   const isGame = Boolean(matchPath('/game/:date/:gameId', pathname));
   const isMemberDetail = Boolean(matchPath(ROUTES.MATCH_MEMBER_DETAIL(), pathname));
   const isProfile = pathname === ROUTES.PROFILE;
+  const isResult = Boolean(matchPath(ROUTES.RESULT(), pathname));
+  const isMatchingReceive = isResult && resultType === 'received';
 
   return (
     <header
@@ -35,7 +39,8 @@ const Header = ({ headerTitle }: HeaderProps) => {
           isGame ||
           isMatchSingle ||
           isMatchGroup ||
-          isMemberDetail,
+          isMemberDetail ||
+          isMatchingReceive,
       })}
     >
       {getHeaderContent(pathname, urlParams, isFail, navigate, headerTitle)}

@@ -5,14 +5,14 @@ export const getColorType = (status?: string, explicitColorType?: ChipColorType)
   if (explicitColorType) return explicitColorType;
   if (!status) return 'inactive';
 
-  if (
-    status.includes(STATUS_KEYWORDS.MATCHING_COMPLETE) ||
-    status.includes(STATUS_KEYWORDS.NEW_REQUEST)
-  )
-    return 'active';
+  if (status.includes(STATUS_KEYWORDS.NEW_REQUEST)) return 'update';
+
+  if (status.includes(STATUS_KEYWORDS.MATCHING_COMPLETE)) return 'active';
 
   if (status.includes(STATUS_KEYWORDS.APPROVAL_COMPLETE)) return 'outline';
+
   if (status.includes(STATUS_KEYWORDS.FAILED)) return 'dark';
+
   if (status.includes(STATUS_KEYWORDS.WAITING)) return 'inactive';
 
   return 'inactive';
