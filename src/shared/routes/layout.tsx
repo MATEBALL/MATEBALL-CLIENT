@@ -13,13 +13,21 @@ const Layout = () => {
   useAnalyticsPageView();
 
   const { pathname, search } = useLocation();
-  const params = new URLSearchParams(search);
+  const searchParams = new URLSearchParams(search);
 
+  const resultType = searchParams.get('type');
+
+  const isResult = Boolean(matchPath({ path: ROUTES.RESULT(), end: true }, pathname));
   const isFail =
-    matchPath({ path: '/result/:id', end: true }, pathname) && params.get('type') === 'fail';
+    matchPath({ path: '/result/:id', end: true }, pathname) && searchParams.get('type') === 'fail';
+
+  const shouldHideResultHeader = isResult && resultType !== 'received';
+
+  const showHeader =
+    !NO_HEADER_PATHS.some((path) => matchPath({ path, end: true }, pathname)) &&
+    !shouldHideResultHeader;
 
   const showBottomNav = SHOW_BOTTOM_NAVIGATE_PATHS.includes(pathname);
-  const showHeader = !NO_HEADER_PATHS.some((path) => matchPath({ path, end: true }, pathname));
 
   const [isLoading, setIsLoading] = useState(false);
   const [headerTitle, setHeaderTitle] = useState('');

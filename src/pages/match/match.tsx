@@ -21,7 +21,7 @@ const Match = () => {
 
   return (
     <div className="h-full grow flex-col bg-gray-black">
-      <nav className="sticky top-0 z-[var(--z-under-header-section)] w-full bg-gray-black">
+      <nav className="sticky top-0 z-[var(--z-header)] w-full bg-gray-black">
         <ul className={`flex items-center ${tabStyle.gap}`}>
           {MATCH_TAB_LIST.map((tab) => (
             <TabItem

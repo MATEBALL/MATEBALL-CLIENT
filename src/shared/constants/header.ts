@@ -14,8 +14,6 @@ export const NO_HEADER_PATHS = [
   ROUTES.ONBOARDING_GROUP,
 
   ROUTES.CHAT,
-
-  ROUTES.RESULT(),
 ];
 
 export const SHOW_BOTTOM_NAVIGATE_PATHS = [

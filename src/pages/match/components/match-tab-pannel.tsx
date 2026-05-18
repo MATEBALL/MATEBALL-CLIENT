@@ -1,6 +1,7 @@
 import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
+import { MATCH_STATE } from '@components/card/match-card/constants/status';
 import type { MatchCardProps } from '@components/card/match-card/types/card';
 import EmptyView from '@components/ui/empty-view';
 import { MATCH_PENDING_TOAST_MESSAGES } from '@constants/error-toast';
@@ -42,7 +43,10 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   const handleCardClick = async (card: MatchableCardProps) => {
     onCardClick?.(card);
 
-    if (!card.hasUpdate) {
+    const query =
+      isCreatedTab && card.hasUpdate ? 'received' : CLICKABLE_STATUS_MAP[card.statusLabel ?? ''];
+
+    if (!query) {
       const message = isCreatedTab
         ? MATCH_PENDING_TOAST_MESSAGES.REQUEST_WAITING
         : MATCH_PENDING_TOAST_MESSAGES.APPROVAL_WAITING;
@@ -51,17 +55,11 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
       return;
     }
 
-    // const toastMsg = getPendingToast(card.statusLabel, card.type);
-    // if (toastMsg) {
-    //   showErrorToast(toastMsg, '8.9rem', false);
-    //   return;
-    // }
-
-    const query = CLICKABLE_STATUS_MAP[card.statusLabel ?? ''];
-    if (!query) return;
-
     try {
-      if (card.statusLabel === '승인 완료') {
+      if (
+        card.statusLabel === MATCH_STATE.MATCHING_COMPLETE ||
+        card.statusLabel === MATCH_STATE.APPROVAL_COMPLETE
+      ) {
         await patchStageMutation.mutateAsync(card.id);
       }
       navigate(`${ROUTES.RESULT(card.id.toString())}?type=${query}&cardtype=${card.type}`);
@@ -71,7 +69,7 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
   };
 
   return (
-    <div className="z-[var(--z-under-header-section)] flex-col gap-[1.2rem] px-[1.6rem] pt-[1.6rem]">
+    <div className="flex-col gap-[1.2rem] px-[1.6rem] pt-[1.6rem]">
       {cards.length === 0 ? (
         <EmptyView
           iconName="empty"

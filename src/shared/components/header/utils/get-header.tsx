@@ -19,7 +19,7 @@ export const getHeaderContent = (
       matchPath(`${ROUTES.MATCH_CREATE}/*`, pathname) &&
       (urlParams.get('type') === 'single' || urlParams.get('type') === 'group');
 
-    const goMatchTypes = ['fail', 'agree', 'success', 'receive'];
+    const goMatchTypes = ['fail', 'agree', 'success', 'received'];
 
     if (pathname === ROUTES.RESULT()) {
       if (type === 'sent') {
