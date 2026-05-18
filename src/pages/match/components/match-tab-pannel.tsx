@@ -1,6 +1,7 @@
 import { matchMutations } from '@apis/match/match-mutations';
 import { matchQueries } from '@apis/match/match-queries';
 import Card from '@components/card/match-card/card';
+import { MATCH_STATE } from '@components/card/match-card/constants/status';
 import type { MatchCardProps } from '@components/card/match-card/types/card';
 import EmptyView from '@components/ui/empty-view';
 import { MATCH_PENDING_TOAST_MESSAGES } from '@constants/error-toast';
@@ -55,7 +56,10 @@ const MatchTabPanel = ({ isCreatedTab, onCardClick }: MatchTabPanelProps) => {
     }
 
     try {
-      if (card.statusLabel === '매칭 완료' || card.statusLabel === '수락 완료') {
+      if (
+        card.statusLabel === MATCH_STATE.MATCHING_COMPLETE ||
+        card.statusLabel === MATCH_STATE.APPROVAL_COMPLETE
+      ) {
         await patchStageMutation.mutateAsync(card.id);
       }
       navigate(`${ROUTES.RESULT(card.id.toString())}?type=${query}&cardtype=${card.type}`);

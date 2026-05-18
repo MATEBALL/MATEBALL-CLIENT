@@ -51,6 +51,6 @@ export const MATCHING_GUIDE_CREATED_DESCRIPTION =
 
 export const CLICKABLE_STATUS_MAP: Record<string, string> = {
   '매칭 완료': 'success',
-  '승인 완료': 'agree',
+  '수락 완료': 'agree',
   새요청: 'received',
 };

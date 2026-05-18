@@ -8,7 +8,7 @@ export const STATUS_KEYWORDS = {
 
 export const MATCH_STATE = {
   CREATED: '매칭생성',
-  RECRUITING: '그룹원 모집 중',
+  RECRUITING: '그룹원 모집중',
   MATCHING_COMPLETE: '매칭완료',
   REQUESTED: '요청',
   WAITING: '수락 대기 중',
