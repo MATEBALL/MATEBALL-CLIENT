@@ -24,7 +24,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { handleScrollLock } from '@/shared/utils/scroll-lock';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
 
-// TODO: 선택 날짜 유지 로직 수정
+// TODO: 선택 날짜 유지 로직 수정 후 적용
 // const getSelectedDateFromQuery = (searchParams: URLSearchParams, fallbackDate: Date): Date => {
 //   const queryDate = searchParams.get('date');
 //   if (!queryDate) return fallbackDate;
