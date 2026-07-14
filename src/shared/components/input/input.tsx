@@ -18,6 +18,7 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onBlur
   className?: string;
   multiline?: boolean;
   length?: number;
+  isHelperNeutral?: boolean;
   onBlur?: (e: React.FocusEvent<HTMLInputElement> | React.FocusEvent<HTMLTextAreaElement>) => void;
 }
 
@@ -35,14 +36,20 @@ const Input = ({
   className,
   hasLength = false,
   multiline = false,
+  isHelperNeutral = false,
   ...props
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputState = defineInputState(isError, isFocused, isValid);
   const messageToShow = validationMessage ?? defaultMessage;
 
-  const borderClass = inputClassMap[inputState];
-  const iconColorClass = iconColorMap[inputState];
+  const borderClass = isHelperNeutral
+    ? isFocused
+      ? inputClassMap.focus
+      : inputClassMap.default
+    : inputClassMap[inputState];
+
+  const iconColorClass = isHelperNeutral ? iconColorMap.default : iconColorMap[inputState];
 
   const helperIconName = multiline
     ? 'info-filled'
@@ -98,9 +105,15 @@ const Input = ({
       </div>
       {messageToShow && (
         <div className="flex-row gap-[0.8rem]">
-          <Icon name={helperIconName} size={2} className={cn('text-gray-600', iconColorClass)} />
+          <Icon
+            name={helperIconName}
+            size={2}
+            className={cn('text-gray-600', !isHelperNeutral && iconColorClass)}
+          />
           <div className="flex w-full justify-between">
-            <p className={cn('cap_14_m text-gray-600', iconColorClass)}>{messageToShow}</p>
+            <p className={cn('cap_14_m text-gray-600', !isHelperNeutral && iconColorClass)}>
+              {messageToShow}
+            </p>
             {hasLength && (
               <p className="cap_14_m text-gray-600">
                 {length}/{maxLength}

@@ -294,6 +294,7 @@ const EditProfile = () => {
               className="h-[10.4rem]"
               label="한 줄 소개"
               multiline
+              isHelperNeutral
             />
           )}
         />
