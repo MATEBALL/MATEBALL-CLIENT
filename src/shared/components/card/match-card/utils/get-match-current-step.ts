@@ -10,6 +10,7 @@ export const getMatchCurrentStep = (status?: string, matchTabType?: MatchTabType
       case '그룹원 모집중':
         return 1;
       case '매칭완료':
+      case '완료':
         return 2;
       default:
         return 0;
@@ -22,6 +23,7 @@ export const getMatchCurrentStep = (status?: string, matchTabType?: MatchTabType
     case '수락 대기 중':
       return 1;
     case '수락완료':
+    case '완료':
       return 2;
     default:
       return 0;
