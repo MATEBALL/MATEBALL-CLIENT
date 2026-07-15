@@ -1,5 +1,7 @@
 export const PROFILE_SYNC_MATE = ['같은 팀 메이트', '상관없어요'];
 
+export const SAME_TEAM_SERVER_VALUE = '같은 팀 메이트와 보고 싶어요';
+
 export const PROFILE_VIEWING_STYLE = [
   {
     id: 1,
