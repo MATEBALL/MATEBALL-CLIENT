@@ -8,6 +8,7 @@ import Input from '@components/input/input';
 import { USER_KEY } from '@constants/query-key';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { cn } from '@libs/cn';
+import ProfileImageBottomSheet from '@pages/edit-profile/components/profile-image-bottom-sheet';
 import SelectionGroup from '@pages/edit-profile/components/selection-group';
 import {
   DEFAULT_PROFILE_IMAGE_URL,
@@ -51,6 +52,7 @@ const EditProfile = () => {
     ...imageMutations.POST_PROFILE_IMAGE(),
     onSuccess: ({ profileImageUrl }) => {
       setProfileImageUrl(profileImageUrl);
+      setIsProfileImageSheetOpen(false);
 
       queryClient.invalidateQueries({
         queryKey: USER_KEY.INFO(),
@@ -62,6 +64,7 @@ const EditProfile = () => {
     ...imageMutations.PATCH_PROFILE_IMAGE(),
     onSuccess: ({ profileImageUrl }) => {
       setProfileImageUrl(profileImageUrl);
+      setIsProfileImageSheetOpen(false);
 
       queryClient.invalidateQueries({
         queryKey: USER_KEY.INFO(),
@@ -70,12 +73,18 @@ const EditProfile = () => {
   });
 
   // TODO: 추후 이미지 삭제 시 연결
-  // const deleteProfileImageMutation = useMutation({
-  //   ...imageMutations.DELETE_PROFILE_IMAGE(),
-  //   onSuccess: ({ profileImageUrl }) => {
-  //     setProfileImageUrl(profileImageUrl);
-  //   },
-  // });
+  const deleteProfileImageMutation = useMutation({
+    ...imageMutations.DELETE_PROFILE_IMAGE(),
+
+    onSuccess: ({ profileImageUrl }) => {
+      setProfileImageUrl(profileImageUrl);
+      setIsProfileImageSheetOpen(false);
+
+      queryClient.invalidateQueries({
+        queryKey: USER_KEY.INFO(),
+      });
+    },
+  });
 
   const {
     control,
@@ -96,6 +105,7 @@ const EditProfile = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [nicknameStatus, setNicknameStatus] = useState<NicknameStatus>('idle');
   const [profileImageUrl, setProfileImageUrl] = useState<string | null>(null);
+  const [isProfileImageSheetOpen, setIsProfileImageSheetOpen] = useState(false);
 
   const nicknameVal = watch('nickname', '');
   const introductionVal = watch('introduction', '');
@@ -124,7 +134,7 @@ const EditProfile = () => {
   const isSubmitDisabled = !isMatchDirty || isSubmit;
 
   const hasCustomProfileImage =
-    Boolean(userInfo?.imgUrl) && userInfo?.imgUrl !== DEFAULT_PROFILE_IMAGE_URL;
+    Boolean(profileImageUrl) && profileImageUrl !== DEFAULT_PROFILE_IMAGE_URL;
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: reset nickname status whenever value changes
   useEffect(() => {
@@ -187,7 +197,18 @@ const EditProfile = () => {
   };
 
   const handleProfileImageClick = () => {
+    setIsProfileImageSheetOpen(true);
+  };
+
+  const handleSelectProfileImage = () => {
+    setIsProfileImageSheetOpen(false);
     fileInputRef.current?.click();
+  };
+
+  const handleDeleteProfileImage = () => {
+    if (!hasCustomProfileImage || deleteProfileImageMutation.isPending) return;
+
+    deleteProfileImageMutation.mutate();
   };
 
   return (
@@ -202,7 +223,11 @@ const EditProfile = () => {
             <button
               type="button"
               onClick={handleProfileImageClick}
-              disabled={patchProfileImageMutation.isPending || postProfileImageMutation.isPending}
+              disabled={
+                patchProfileImageMutation.isPending ||
+                postProfileImageMutation.isPending ||
+                deleteProfileImageMutation.isPending
+              }
               aria-label="프로필 이미지 수정"
               className="relative w-fit"
             >
@@ -393,6 +418,15 @@ const EditProfile = () => {
         onClick={handleSaveClick}
         label="매칭 조건 수정"
         ariaLabel="매칭 조건 수정"
+      />
+
+      <ProfileImageBottomSheet
+        isOpen={isProfileImageSheetOpen}
+        onClose={() => setIsProfileImageSheetOpen(false)}
+        onSelectImage={handleSelectProfileImage}
+        onDeleteImage={handleDeleteProfileImage}
+        canDelete={hasCustomProfileImage}
+        isDeleting={deleteProfileImageMutation.isPending}
       />
     </div>
   );
