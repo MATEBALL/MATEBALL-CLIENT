@@ -10,7 +10,7 @@ export const getHeaderContent = (
   headerTitle: string,
 ) => {
   const handleLogoClick = () => {
-    if (navigate) navigate({ pathname: ROUTES.HOME, search: '' });
+    window.location.href = ROUTES.HOME;
   };
 
   const handleBackClick = () => {
