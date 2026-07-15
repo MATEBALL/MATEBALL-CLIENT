@@ -13,6 +13,7 @@ import {
   DEFAULT_PROFILE_IMAGE_URL,
   PROFILE_SYNC_MATE,
   PROFILE_VIEWING_STYLE,
+  SAME_TEAM_SERVER_VALUE,
 } from '@pages/edit-profile/constants/edit-profile';
 import {
   EditProfileSchema,
@@ -99,9 +100,12 @@ const EditProfile = () => {
   const nicknameVal = watch('nickname', '');
   const introductionVal = watch('introduction', '');
 
+  const normalizeMateTeam = (value?: string | null) =>
+    value === SAME_TEAM_SERVER_VALUE ? PROFILE_SYNC_MATE[0] : (value ?? '');
+
   const initial = {
     team: data?.team ?? '',
-    mateTeam: data?.teamAllowed ?? '',
+    mateTeam: normalizeMateTeam(data?.teamAllowed),
     viewStyle: data?.style ?? '',
     avgSeason: data?.avgSeason ?? 0,
   };
@@ -294,6 +298,7 @@ const EditProfile = () => {
               className="h-[10.4rem]"
               label="한 줄 소개"
               multiline
+              isHelperNeutral
             />
           )}
         />

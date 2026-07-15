@@ -39,7 +39,11 @@ const MembersBottomSheet = ({ isOpen, onClose, matchId }: MembersBottomSheetProp
               <li key={member.memberId}>
                 <div className="w-full flex-row items-center gap-[1.2rem] py-[1.6rem]">
                   <div className="relative h-[4.2rem] w-[4.2rem]">
-                    <img src={member.img} alt="" className="h-full " />
+                    <img
+                      src={member.img}
+                      alt=""
+                      className="h-full w-full rounded-full object-cover"
+                    />
                     {index === 0 && (
                       <span className="absolute right-0 bottom-0">
                         <Icon name="crown" size={1.2} className="text-owner" />
