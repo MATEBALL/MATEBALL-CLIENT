@@ -8,16 +8,13 @@ import type { TabType } from '@components/tab/tab/tab-content';
 import { HAS_DONE_TOAST_MESSAGE, MY_MATCH_TOAST_MESSAGE } from '@constants/error-toast';
 import { gaEvent } from '@libs/analytics';
 import queryClient from '@libs/query-client';
+import type { LayoutOutletContext } from '@routes/layout';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
-
-interface LayoutOutletContext {
-  setHeaderTitle: (title: string) => void;
-}
 
 const Game = () => {
   const { gameId } = useParams();
