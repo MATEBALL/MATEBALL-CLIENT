@@ -1,4 +1,5 @@
 import BottomNavigation from '@components/bottom-navigation/bottom-navigation';
+import { WEEK_CALENDAR_START_OFFSET } from '@components/calendar/constants/CALENDAR';
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
 import { NO_HEADER_PATHS, SHOW_BOTTOM_NAVIGATE_PATHS } from '@constants/header';
@@ -6,8 +7,21 @@ import useAnalyticsPageView from '@hooks/use-analytics-page-view';
 import { cn } from '@libs/cn';
 import Loading from '@pages/loading/loading';
 import { ROUTES } from '@routes/routes-config';
+import { addDays } from 'date-fns';
 import { useState } from 'react';
 import { matchPath, Outlet, useLocation } from 'react-router-dom';
+
+export interface HomeCalendarState {
+  selectedDate: Date;
+  baseWeekDate: Date;
+}
+
+export interface LayoutOutletContext {
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setHeaderTitle: React.Dispatch<React.SetStateAction<string>>;
+  homeCalendarState: HomeCalendarState;
+  setHomeCalendarState: React.Dispatch<React.SetStateAction<HomeCalendarState>>;
+}
 
 const Layout = () => {
   useAnalyticsPageView();
@@ -32,12 +46,28 @@ const Layout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [headerTitle, setHeaderTitle] = useState('');
 
+  const [homeCalendarState, setHomeCalendarState] = useState<HomeCalendarState>(() => {
+    const entryDate = new Date();
+
+    return {
+      selectedDate: entryDate,
+      baseWeekDate: addDays(entryDate, WEEK_CALENDAR_START_OFFSET),
+    };
+  });
+
   return (
     <div className={cn('h-full flex-col', isFail && 'bg-gray-black')}>
       {showHeader && <Header headerTitle={headerTitle} />}
       <div className="scrollbar-hide mt-[-0.1rem] flex-grow flex-col overflow-auto">
         <main className="flex-1">
-          <Outlet context={{ setIsLoading, setHeaderTitle }} />
+          <Outlet
+            context={{
+              setIsLoading,
+              setHeaderTitle,
+              homeCalendarState,
+              setHomeCalendarState,
+            }}
+          />
         </main>
         {pathname === ROUTES.HOME && <Footer />}
       </div>

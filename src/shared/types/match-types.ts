@@ -319,6 +319,15 @@ export interface getMatchMembersDetailResponse {
 }
 
 /**
+ * 요청한 매칭의 그룹원 상세 리스트 응답
+ * get
+ * /v3/users/match/{matchId}/member-details
+ */
+export interface getRequestMembersDetailResponse {
+  results: matchMember[];
+}
+
+/**
  * 오픈채팅방 주소 조회
  * get
  * /v2/users/match/{matchId}/chatting

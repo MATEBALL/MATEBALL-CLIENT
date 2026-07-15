@@ -16,40 +16,26 @@ import CalendarSection from '@pages/home/components/calendar-section';
 import GameListSection from '@pages/home/components/game-list-section';
 import TopSection from '@pages/home/components/top-section';
 import { MATCHING_MODAL_DESCRIPTION } from '@pages/home/constants/matching-condition';
+import type { LayoutOutletContext } from '@routes/layout';
 import { ROUTES } from '@routes/routes-config';
 import { useMutation } from '@tanstack/react-query';
 import { addDays, format } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { handleScrollLock } from '@/shared/utils/scroll-lock';
 import { showErrorToast } from '@/shared/utils/show-error-toast';
-
-// TODO: 선택 날짜 유지 로직 수정 후 적용
-// const getSelectedDateFromQuery = (searchParams: URLSearchParams, fallbackDate: Date): Date => {
-//   const queryDate = searchParams.get('date');
-//   if (!queryDate) return fallbackDate;
-//   const parsedDate = parse(queryDate, 'yyyy-MM-dd', new Date());
-//   return isValid(parsedDate) ? parsedDate : fallbackDate;
-// };
 
 const Home = () => {
   const { activeType, changeTab } = useTabState();
   const location = useLocation();
   const navigate = useNavigate();
-  // const [searchParams, setSearchParams] = useSearchParams();
-  const entryDate = new Date();
-  const initialSelectedDate = entryDate;
-  // const fallbackSelectedDate = entryDate;
-  // const initialQuerySelectedDate = getSelectedDateFromQuery(searchParams, fallbackSelectedDate);
 
-  const [selectedDate, setSelectedDate] = useState(initialSelectedDate);
-  // const [selectedDate, setSelectedDate] = useState(initialQuerySelectedDate);
-  // const [baseWeekDate, setBaseWeekDate] = useState(
-  //   addDays(initialQuerySelectedDate, WEEK_CALENDAR_START_OFFSET),
-  // );
-  const [baseWeekDate, setBaseWeekDate] = useState(
-    addDays(initialSelectedDate, WEEK_CALENDAR_START_OFFSET),
-  );
+  const { homeCalendarState, setHomeCalendarState } = useOutletContext<LayoutOutletContext>();
+
+  const { selectedDate, baseWeekDate } = homeCalendarState;
+
+  const entryDate = new Date();
+
   const [isCalendarBottomSheetOpen, setIsCalendarBottomSheetOpen] = useState(false);
   const [isMatchingCtaBottomSheetOpen, setIsMatchingCtaBottomSheetOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState<GameCardItem | null>(null);
@@ -62,60 +48,59 @@ const Home = () => {
 
   useEffect(() => {
     if (!needsMatchingSetup) return;
+
     handleScrollLock(true);
+
     return () => handleScrollLock(false);
   }, [needsMatchingSetup]);
 
   useEffect(() => {
     const from = needsMatchingSetup ? 'onboarding' : 'return_user';
+
     gaEvent('home_enter', { from });
   }, [needsMatchingSetup]);
 
   useEffect(() => {
-    if (location.state?.shouldShowMatchCreatedToast) {
-      showErrorToast(CREATE_MATCH_TOAST_MESSAGE, {
-        offset: '8.8rem',
-        icon: false,
-        className: 'bg-sub-900 text-gray-black cap_14_sb',
-      });
+    if (!location.state?.shouldShowMatchCreatedToast) return;
 
-      navigate(location.pathname, {
-        replace: true,
-        state: {},
-      });
-    }
-  }, [location, navigate]);
+    showErrorToast(CREATE_MATCH_TOAST_MESSAGE, {
+      offset: '8.8rem',
+      icon: false,
+      className: 'bg-sub-900 text-gray-black cap_14_sb',
+    });
 
-  // const syncSelectedDateToQuery = (date: Date) => {
-  //   const nextParams = new URLSearchParams(searchParams);
-  //   nextParams.set('date', format(date, 'yyyy-MM-dd'));
-  //   setSearchParams(nextParams, { replace: true });
-  // };
+    navigate(location.pathname, {
+      replace: true,
+      state: {
+        ...location.state,
+        shouldShowMatchCreatedToast: false,
+      },
+    });
+  }, [location.pathname, location.state, navigate]);
 
-  const handleDateSelect = (date: Date) => {
-    setSelectedDate(date);
-    setBaseWeekDate(date);
+  // 주간 캘린더에서 날짜 선택:
+  // 선택 날짜만 변경하고 현재 주간 위치는 유지
+  const handleDateChange = (date: Date) => {
+    setHomeCalendarState((prev) => ({
+      ...prev,
+      selectedDate: date,
+    }));
   };
 
-  // const handleDateChange = (date: Date) => {
-  //   setSelectedDate(date);
-  //   setBaseWeekDate(date);
-  //   syncSelectedDateToQuery(date);
-  // };
-
-  // useEffect(() => {
-  //   const queryDate = getSelectedDateFromQuery(searchParams, fallbackSelectedDate);
-  //   const queryDateStr = format(queryDate, 'yyyy-MM-dd');
-  //   const selectedDateStr = format(selectedDate, 'yyyy-MM-dd');
-
-  //   if (queryDateStr !== selectedDateStr) {
-  //     setSelectedDate(queryDate);
-  //     setBaseWeekDate(queryDate);
-  //   }
-  // }, [fallbackSelectedDate, searchParams, selectedDate]);
+  // 월간 캘린더에서 날짜 선택:
+  // 선택 날짜와 표시하는 주간을 함께 변경
+  const handleDateSelect = (date: Date) => {
+    setHomeCalendarState({
+      selectedDate: date,
+      baseWeekDate: addDays(date, WEEK_CALENDAR_START_OFFSET),
+    });
+  };
 
   const handleWeekChange = (direction: 'prev' | 'next') => {
-    setBaseWeekDate((prev) => addDays(prev, direction === 'next' ? 7 : -7));
+    setHomeCalendarState((prev) => ({
+      ...prev,
+      baseWeekDate: addDays(prev.baseWeekDate, direction === 'next' ? 7 : -7),
+    }));
   };
 
   const handleComplete = () => {
@@ -171,16 +156,18 @@ const Home = () => {
   return (
     <div className="h-full bg-gray-black pt-[0.8rem] pb-[5.6rem]">
       <TopSection />
+
       <CalendarSection
         activeType={activeType}
         onTabChange={changeTab}
         selectedDate={selectedDate}
-        onDateChange={setSelectedDate}
+        onDateChange={handleDateChange}
         baseWeekDate={baseWeekDate}
         onOpenBottomSheet={() => setIsCalendarBottomSheetOpen(true)}
         onWeekChange={handleWeekChange}
         entryDate={entryDate}
       />
+
       <MatchingCtaBottomSheet
         isOpen={isMatchingCtaBottomSheetOpen}
         onClose={() => setIsMatchingCtaBottomSheetOpen(false)}
@@ -189,15 +176,18 @@ const Home = () => {
         initialType={activeType}
         onSubmit={handleMatchingCtaSubmit}
       />
+
       <GameListSection selectedDate={selectedDate} onGameClick={handleGameClick} />
+
       <CalendarBottomSheet
         isOpen={isCalendarBottomSheetOpen}
         onClose={() => setIsCalendarBottomSheetOpen(false)}
         selectedDate={selectedDate}
         onDateSelect={handleDateSelect}
       />
+
       {needsMatchingSetup && (
-        <div className="matching-modal-backdrop z-[var(--z-modal)] flex-col-center ">
+        <div className="matching-modal-backdrop z-[var(--z-modal)] flex-col-center">
           <Dialog info={MATCHING_MODAL_DESCRIPTION}>
             <Button label="최초 매칭 조건 설정" onClick={handleComplete} />
           </Dialog>

@@ -13,7 +13,7 @@ const MemberDetail = () => {
   const parsedMemberId = Number(memberId);
 
   const { data } = useQuery({
-    ...matchQueries.MATCH_MEMBERS(parsedMatchId),
+    ...matchQueries.MATCH_MEMBERS_DETAIL(parsedMatchId),
     enabled: Number.isFinite(parsedMatchId),
   });
   const { data: user } = useQuery(userQueries.USER_INFO());
