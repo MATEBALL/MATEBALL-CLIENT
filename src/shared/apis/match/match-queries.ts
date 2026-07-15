@@ -14,9 +14,11 @@ import type {
   getMatchMembersDetailResponse,
   getMatchMembersResponse,
   getRequestListResponse,
+  getRequestMembersDetailResponse,
   getSingleMatchListResponse,
   getSingleMatchResultResponse,
   getSingleMatchStatusResponse,
+  matchMember,
 } from '@/shared/types/match-types';
 import { handleNotFoundError } from '@/shared/utils/query-error-handler';
 
@@ -293,6 +295,39 @@ export const matchQueries = {
           }
 
           return res as getMatchMembersDetailResponse;
+        } catch (error) {
+          return handleNotFoundError(error, { results: [] });
+        }
+      },
+    }),
+
+  /**
+   * 요청한 매칭의 그룹원 상세 리스트 조회
+   */
+  REQUEST_MEMBERS_DETAIL: (matchId: number) =>
+    queryOptions<getRequestMembersDetailResponse>({
+      queryKey: MATCH_KEY.REQUEST_MEMBERS_DETAIL(matchId),
+      queryFn: async () => {
+        try {
+          const res = await get<matchMember[] | ApiResponse<matchMember[]>>(
+            END_POINT.GET_REQUEST_MEMBERS_DETAIL(matchId),
+          );
+
+          if (
+            typeof res === 'object' &&
+            res !== null &&
+            'status' in res &&
+            'message' in res &&
+            'data' in res
+          ) {
+            return {
+              results: res.data ?? [],
+            };
+          }
+
+          return {
+            results: res as matchMember[],
+          };
         } catch (error) {
           return handleNotFoundError(error, { results: [] });
         }
