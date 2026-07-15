@@ -72,7 +72,6 @@ const EditProfile = () => {
     },
   });
 
-  // TODO: 추후 이미지 삭제 시 연결
   const deleteProfileImageMutation = useMutation({
     ...imageMutations.DELETE_PROFILE_IMAGE(),
 
