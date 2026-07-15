@@ -39,10 +39,9 @@ const GameCard = ({ game, onGameClick }: GameCardProps) => {
         </div>
       </div>
 
-      {/* TODO: 버튼 스타일 추후 수정 */}
       <Button
         label="메이트 만나기"
-        className="cap_14_sb h-[3.8rem] rounded-[8px] p-[0.8rem]"
+        className="cap_14_sb rounded-[8px] px-[0.8rem] py-[1rem]"
         onClick={() => onGameClick(game)}
       />
     </div>
