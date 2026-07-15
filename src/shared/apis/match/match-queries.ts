@@ -313,20 +313,14 @@ export const matchQueries = {
             END_POINT.GET_REQUEST_MEMBERS_DETAIL(matchId),
           );
 
-          if (
-            typeof res === 'object' &&
-            res !== null &&
-            'status' in res &&
-            'message' in res &&
-            'data' in res
-          ) {
+          if (Array.isArray(res)) {
             return {
-              results: res.data ?? [],
+              results: res,
             };
           }
 
           return {
-            results: res as matchMember[],
+            results: res?.data ?? [],
           };
         } catch (error) {
           return handleNotFoundError(error, { results: [] });
