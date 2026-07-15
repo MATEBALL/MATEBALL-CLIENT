@@ -78,8 +78,6 @@ const Home = () => {
     });
   }, [location.pathname, location.state, navigate]);
 
-  // 주간 캘린더에서 날짜 선택:
-  // 선택 날짜만 변경하고 현재 주간 위치는 유지
   const handleDateChange = (date: Date) => {
     setHomeCalendarState((prev) => ({
       ...prev,
@@ -87,8 +85,6 @@ const Home = () => {
     }));
   };
 
-  // 월간 캘린더에서 날짜 선택:
-  // 선택 날짜와 표시하는 주간을 함께 변경
   const handleDateSelect = (date: Date) => {
     setHomeCalendarState({
       selectedDate: date,
