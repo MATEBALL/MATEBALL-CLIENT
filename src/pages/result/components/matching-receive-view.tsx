@@ -7,6 +7,7 @@ import { MATCH_KEY } from '@constants/query-key';
 import usePreventBackNavigation from '@hooks/use-prevent-back-navigation';
 import queryClient from '@libs/query-client';
 import ErrorView from '@pages/error/error-view';
+import Loading from '@pages/loading/loading';
 import { fillTabItems } from '@pages/match/utils/match-status';
 import { ERROR_MESSAGE, MATCHING_HEADER_MESSAGE } from '@pages/result/constants/matching-result';
 import { ROUTES } from '@routes/routes-config';
@@ -22,18 +23,30 @@ const MatchingReceiveView = () => {
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
   const { mutate: rejectMatch } = useMutation(matchMutations.MATCH_REJECT());
-  const { data: matchDetailData, isError: isMatchDetailError } = useQuery({
+  const {
+    data: matchDetailData,
+    isError: isMatchDetailError,
+    isLoading: isMatchDetailLoading,
+  } = useQuery({
     ...matchQueries.MATCH_DETAIL(parsedId, true),
     enabled: Number.isFinite(parsedId),
   });
 
-  const { data: memberDetailData, isError: isMemberDetailError } = useQuery({
+  const {
+    data: memberDetailData,
+    isError: isMemberDetailError,
+    isLoading: isMemberDetailLoading,
+  } = useQuery({
     ...matchQueries.REQUEST_MEMBERS_DETAIL(parsedId),
     enabled: Number.isFinite(parsedId),
   });
 
   const mate = matchDetailData?.mates?.[0];
   const memberDetail = memberDetailData?.results?.[0];
+
+  if (isMatchDetailLoading || isMemberDetailLoading) {
+    return <Loading />;
+  }
 
   if (isMatchDetailError || isMemberDetailError || !mate) {
     return <ErrorView message={ERROR_MESSAGE} />;
