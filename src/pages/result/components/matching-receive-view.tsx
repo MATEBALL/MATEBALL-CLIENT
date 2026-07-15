@@ -22,16 +22,27 @@ const MatchingReceiveView = () => {
   const parsedId = Number(matchId);
   const { mutate: acceptMatch } = useMutation(matchMutations.MATCH_ACCEPT());
   const { mutate: rejectMatch } = useMutation(matchMutations.MATCH_REJECT());
-  const { data, isError } = useQuery(matchQueries.MATCH_DETAIL(parsedId, true));
+  const { data: matchDetailData, isError: isMatchDetailError } = useQuery({
+    ...matchQueries.MATCH_DETAIL(parsedId, true),
+    enabled: Number.isFinite(parsedId),
+  });
 
-  const mate = data?.mates?.[0];
+  const { data: memberDetailData, isError: isMemberDetailError } = useQuery({
+    ...matchQueries.REQUEST_MEMBERS_DETAIL(parsedId),
+    enabled: Number.isFinite(parsedId),
+  });
 
-  if (isError || !mate) {
+  const mate = matchDetailData?.mates?.[0];
+  const memberDetail = memberDetailData?.results?.[0];
+
+  if (isMatchDetailError || isMemberDetailError || !mate) {
     return <ErrorView message={ERROR_MESSAGE} />;
   }
 
   const detailedCard: DetailedCardProps = {
     ...mate,
+    avgGame: memberDetail?.avgGame,
+    avgSeason: memberDetail?.avgSeason,
     type: 'detailed',
     imgUrl: [mate.imgUrl],
     chips: [mate.team, mate.style].filter(Boolean) as ChipColor[],
